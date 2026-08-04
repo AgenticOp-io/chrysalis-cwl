@@ -22,5 +22,6 @@ Fixtures under this tree are **language** golds — independent of convert hub p
 | `16-layout` | RFC-0011 layout import |
 | `17-ui-v0` | RFC-0017/0018 components + trees |
 | `18-ui-v1` | RFC-0019 islands + events |
+| `19-early-exit` | RFC-0021 `if` / `foreach` |
 
-Run: `npm run test:cwl-roundtrip`
+Run: `npm run test:language`

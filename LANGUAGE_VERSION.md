@@ -3,17 +3,17 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `0.1.1` |
-| **Status** | Fixtures + parse→print + UI print |
+| **Version** | `0.1.2` |
+| **Status** | Fixtures + parse→print + UI + RFC-0021 + diagnose gate |
 | **Date** | 2026-08-04 |
 
 ## What this version means
 
-`0.1.1` extends the language-pillar baseline:
+`0.1.2` extends the language-pillar baseline:
 
 - Grammar / surface docs: `docs/language/CWL.md` + RFCs 0001–0021
-- Local golden fixtures: `fixtures/language-gold/` (incl. UI v0/v1, layout, middleware)
-- Stability gate: parse → print → parse (`npm run test:cwl-roundtrip`)
+- Local golden fixtures: `fixtures/language-gold/` (incl. UI, layout, early-exit/foreach)
+- Stability gates: `npm run test:language` (round-trip + diagnose)
 - Local fmt: `scripts/hub-ingest/cwl-fmt.mjs` (parse→print, no WebIR)
 - Packages: `packages/cwl`, `runtime-cwl*`, `emit-runtime-cwl` (runtime still exercises convert golds where wired)
 
@@ -32,10 +32,10 @@ Breaking changes must be versioned in this file **before** they land in parser/p
 - WebIR package ownership (still under convert)
 - Helix / Secure DNA firewall
 - Convert product hub smokes as the language authority path
-- RFC-0021 early-exit / foreach AST round-trip (parser still skips bodies)
+- Nested `if` / nested `foreach` body stmt lists (RFC-0021 remaining gap)
 
 ## Gate
 
 ```bash
-npm run test:cwl-roundtrip
+npm run test:language
 ```

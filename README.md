@@ -23,8 +23,10 @@ Convert (`../chrysalis-convert`) and Secure (`../chrysalis-security`) consume CW
 ## Language gate
 
 ```bash
-npm run test:cwl-roundtrip
+npm run test:language
 ```
+
+(`test:cwl-roundtrip` + `test:cwl-diagnose`)
 
 Convert keeps **junctions** at the old paths so the Universal Translator monorepo still resolves packages/scripts.
 

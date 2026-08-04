@@ -10,15 +10,17 @@ Language matures here. Convert and Secure pull; they do not own the north star.
 - [x] Print coverage for native UI trees / components / islands / events
 - [x] Local `cwl-fmt` without WebIR
 - [x] Expand golds: middleware, defaults/headers, HTML interp, layout, UI v0/v1
+- [x] RFC-0021 `if` / `foreach` AST capture + gold
+- [x] Diagnose gate over language-gold (`npm run test:cwl-diagnose`)
+- [x] Sync convert `cwl-ui-tree` attr + `on` event fixes
 - [ ] Keep convert junctions valid when touching shared `cwl-*.mjs` scripts
-- [ ] Capture RFC-0021 `if` / `foreach` in AST for round-trip
+- [ ] Sync convert `cwl-parser` defaults / RFC-0021 capture (still a separate copy)
 
 ## Next
 
-- [ ] Diagnose gate over language-gold (holes + dup routes)
 - [ ] Extract or vendor `@chrysalis/webir` so ingest can run without convert-only helpers
 - [ ] Editor/CLI surface owned by this pillar
-- [ ] Sync convert copies/junctions of `cwl-parser` / `cwl-ui-tree` after event-attach fix
+- [ ] Prefer junctions over divergent copies for `cwl-*.mjs` between pillars
 
 ## Later
 

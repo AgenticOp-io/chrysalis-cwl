@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test:cwl-roundtrip": "node scripts/gate-cwl-roundtrip.mjs",
-    "test:language": "npm run test:cwl-roundtrip",
+    "test:cwl-diagnose": "node scripts/gate-cwl-diagnose.mjs",
+    "test:language": "npm run test:cwl-roundtrip && npm run test:cwl-diagnose",
     "fmt:cwl": "node scripts/hub-ingest/cwl-fmt.mjs",
     "test:runtime-cwl": "npm test --prefix packages/runtime-cwl"
   }

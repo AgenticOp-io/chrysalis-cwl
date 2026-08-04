@@ -49,7 +49,14 @@ Mature CWL as a language: specs/RFCs, parser/runtime stability, versioning, fixt
 - Parser retains path/query defaults; UI `on` events attach to enclosing element; element attrs captured correctly
 - `cwl-fmt` is local parse→print (convert WebIR fmt remains convert’s concern if still copied)
 
-**Next slice:** RFC-0021 AST capture; diagnose gate; sync convert parser copies/junctions; no Helix; don’t break junctions
+**Next slice:** vendor/extract webir for ingest; prefer junctions over divergent `cwl-*.mjs` copies; sync convert parser capture; no Helix; don’t break junctions
+
+## Slice 0.1.2 (2026-08-04)
+
+- RFC-0021 `if` / `foreach` parse→print + `19-early-exit` gold
+- `npm run test:cwl-diagnose` + `test:language` runs both gates
+- Convert `cwl-ui-tree.mjs` synced for attr + enclosing-element events
+
 
 ## Convert bridge (G10123 / D6548) — 2026-08-04
 

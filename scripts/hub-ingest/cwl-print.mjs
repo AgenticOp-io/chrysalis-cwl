@@ -246,6 +246,20 @@ export function printCwlModule(mod, opts = {}) {
       }
     }
 
+    for (const g of route.earlyGuards ?? []) {
+      lines.push(`  if ${g.condExpr} {`);
+      if (typeof g.status === "number") {
+        lines.push(`    status ${g.status};`);
+      }
+      if (g.body?.kind === "html") {
+        lines.push(`    return html ${printCwlLiteral(g.body.value)};`);
+      } else if (g.body) {
+        const expr = printCwlBodyExpr(g.body);
+        if (expr != null) lines.push(`    return ${expr};`);
+      }
+      lines.push("  }");
+    }
+
     if (route.loadBody) {
       const loadExpr = printCwlBodyExpr(route.loadBody);
       if (loadExpr != null) lines.push(`  load ${loadExpr};`);
@@ -268,6 +282,18 @@ export function printCwlModule(mod, opts = {}) {
       const expr = printCwlBodyExpr(body);
       if (expr != null) lines.push(`  return ${expr};`);
       else lines.push(`  hole cwl:empty-handler;`);
+    }
+
+    for (const fe of route.foreachBindings ?? []) {
+      const keyPart = fe.key ? ` ${fe.key} =>` : "";
+      lines.push(`  foreach ${fe.collection} as${keyPart} ${fe.item} {`);
+      if (fe.body?.kind === "html") {
+        lines.push(`    return html ${printCwlLiteral(fe.body.value)};`);
+      } else if (fe.body) {
+        const expr = printCwlBodyExpr(fe.body);
+        if (expr != null) lines.push(`    return ${expr};`);
+      }
+      lines.push("  }");
     }
 
     lines.push("}");
@@ -314,6 +340,17 @@ export function canonicalizeCwlModule(mod) {
           : { name: h.name },
       ),
       loadBody: canonicalizeBody(r.loadBody),
+      earlyGuards: (r.earlyGuards ?? []).map((g) => ({
+        condExpr: g.condExpr,
+        status: g.status ?? null,
+        body: canonicalizeBody(g.body),
+      })),
+      foreachBindings: (r.foreachBindings ?? []).map((fe) => ({
+        collection: fe.collection,
+        key: fe.key ?? null,
+        item: fe.item,
+        body: canonicalizeBody(fe.body),
+      })),
       body: canonicalizeBody(r.body),
     })),
   };
