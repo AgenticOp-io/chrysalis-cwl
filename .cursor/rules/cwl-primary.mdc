@@ -1,0 +1,12 @@
+---
+description: This repo is the canonical CWL language tree — own semantics here
+alwaysApply: true
+---
+
+# CWL pillar — you are the primary holder
+
+This tree owns CWL language logic. Convert junctions/mirrors and Secure bridges **consume** you.
+
+- Prefer language RFCs, packages, and golds here over convert hub POC deadlines.
+- When convert has a mirrored script, treat **this** copy as source of truth; tell convert to sync.
+- Do not implement Helix DNA firewall features here.

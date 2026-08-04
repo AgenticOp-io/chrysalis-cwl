@@ -5,6 +5,9 @@
   "description": "Chrysalis Web Language (CWL) — language pillar",
   "type": "module",
   "scripts": {
+    "test:cwl-roundtrip": "node scripts/gate-cwl-roundtrip.mjs",
+    "test:language": "npm run test:cwl-roundtrip",
+    "fmt:cwl": "node scripts/hub-ingest/cwl-fmt.mjs",
     "test:runtime-cwl": "npm test --prefix packages/runtime-cwl"
   }
 }

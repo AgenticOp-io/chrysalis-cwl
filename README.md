@@ -8,14 +8,23 @@ Convert (`../chrysalis-convert`) and Secure (`../chrysalis-security`) consume CW
 
 | Path | Role |
 |------|------|
+| `LANGUAGE_VERSION.md` | Language version + compatibility rules |
+| `fixtures/language-gold/` | Golden `.cwl` fixtures (parse→print) |
 | `packages/cwl` | Language package surface / README |
 | `packages/runtime-cwl` | In-process CWL runtime |
 | `packages/runtime-cwl-browser` | Browser runtime |
 | `packages/runtime-cwl-worker` | Worker runtime |
 | `packages/emit-runtime-cwl` | Emit deployable CWL/Node projects |
-| `scripts/hub-ingest/cwl-*.mjs` | Parser, ingest, fmt, diagnose, emit helpers |
+| `scripts/hub-ingest/cwl-*.mjs` | Parser, print, ingest, fmt, diagnose, emit helpers |
+| `scripts/gate-cwl-roundtrip.mjs` | Language parse→print gate |
 | `docs/language/` | `CWL.md`, RFCs, language programs |
 | `docs/history/` | Prior Cursor sessions + pillar chat notes |
+
+## Language gate
+
+```bash
+npm run test:cwl-roundtrip
+```
 
 Convert keeps **junctions** at the old paths so the Universal Translator monorepo still resolves packages/scripts.
 
