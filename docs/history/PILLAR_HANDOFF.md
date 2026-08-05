@@ -51,11 +51,11 @@ Mature CWL as a language: specs/RFCs, parser/runtime stability, versioning, fixt
 
 **Next slice:** vendor/extract webir for ingest; prefer junctions over divergent `cwl-*.mjs` copies; sync convert parser capture; no Helix; don’t break junctions
 
-## Slice 0.1.2 (2026-08-04)
+## Slice 0.1.4 (2026-08-05) — constitution fleshed out
 
-- RFC-0021 `if` / `foreach` parse→print + `19-early-exit` gold
-- `npm run test:cwl-diagnose` + `test:language` runs both gates
-- Convert `cwl-ui-tree.mjs` synced for attr + enclosing-element events
+- Full `CWL-PILLAR-HOME.md` (why Convert/Secure need CWL, surfaces, sync, completeness, SOP)
+- Phased roadmap 0.1 → 1.0 with exit criteria
+- `npm run sync:convert`; gold README + planned RFC-0015/16/20 suites
 
 
 ## Convert bridge (G10123 / D6548) — 2026-08-04

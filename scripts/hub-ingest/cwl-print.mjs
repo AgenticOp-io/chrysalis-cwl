@@ -1,4 +1,84 @@
 /**
+ * Print control-block stmt lists (`status` / `return` / nested `if` / `foreach`).
+ * Surface documentation only — no condition or loop evaluation.
+ * @param {object[]} stmts
+ * @param {string} indent
+ * @param {string[]} lines
+ */
+function printControlStmts(stmts, indent, lines) {
+  for (const s of stmts ?? []) {
+    if (s.kind === "status" && typeof s.status === "number") {
+      lines.push(`${indent}status ${s.status};`);
+      continue;
+    }
+    if (s.kind === "return") {
+      if (s.body?.kind === "html") {
+        lines.push(`${indent}return html ${printCwlLiteral(s.body.value)};`);
+      } else if (s.body) {
+        const expr = printCwlBodyExpr(s.body);
+        if (expr != null) lines.push(`${indent}return ${expr};`);
+      }
+      continue;
+    }
+    if (s.kind === "if") {
+      lines.push(`${indent}if ${s.condExpr} {`);
+      printControlStmts(s.stmts ?? [], `${indent}  `, lines);
+      lines.push(`${indent}}`);
+      continue;
+    }
+    if (s.kind === "foreach") {
+      const keyPart = s.key ? ` ${s.key} =>` : "";
+      lines.push(`${indent}foreach ${s.collection} as${keyPart} ${s.item} {`);
+      printControlStmts(s.stmts ?? [], `${indent}  `, lines);
+      lines.push(`${indent}}`);
+    }
+  }
+}
+
+/**
+ * Flatten legacy status/body into a stmt list when `stmts` is absent.
+ * @param {{ status?: number | null, body?: object | null, stmts?: object[] }} block
+ */
+function controlStmtsOf(block) {
+  if (Array.isArray(block.stmts) && block.stmts.length > 0) return block.stmts;
+  /** @type {object[]} */
+  const out = [];
+  if (typeof block.status === "number") out.push({ kind: "status", status: block.status });
+  if (block.body) out.push({ kind: "return", body: block.body });
+  return out;
+}
+
+/**
+ * @param {object[] | null | undefined} stmts
+ */
+function canonicalizeControlStmts(stmts) {
+  return (stmts ?? []).map((s) => {
+    if (s.kind === "status") return { kind: "status", status: s.status ?? null };
+    if (s.kind === "return") return { kind: "return", body: canonicalizeBody(s.body) };
+    if (s.kind === "if") {
+      return {
+        kind: "if",
+        condExpr: s.condExpr,
+        status: s.status ?? null,
+        body: canonicalizeBody(s.body),
+        stmts: canonicalizeControlStmts(s.stmts),
+      };
+    }
+    if (s.kind === "foreach") {
+      return {
+        kind: "foreach",
+        collection: s.collection,
+        key: s.key ?? null,
+        item: s.item,
+        body: canonicalizeBody(s.body),
+        stmts: canonicalizeControlStmts(s.stmts),
+      };
+    }
+    return s;
+  });
+}
+
+/**
  * Print a parsed CWL module AST back to source text.
  * Pair with `parseCwlModule` for language-pillar parse→print round-trips
  * without WebIR / convert hub helpers.
@@ -248,15 +328,7 @@ export function printCwlModule(mod, opts = {}) {
 
     for (const g of route.earlyGuards ?? []) {
       lines.push(`  if ${g.condExpr} {`);
-      if (typeof g.status === "number") {
-        lines.push(`    status ${g.status};`);
-      }
-      if (g.body?.kind === "html") {
-        lines.push(`    return html ${printCwlLiteral(g.body.value)};`);
-      } else if (g.body) {
-        const expr = printCwlBodyExpr(g.body);
-        if (expr != null) lines.push(`    return ${expr};`);
-      }
+      printControlStmts(controlStmtsOf(g), "    ", lines);
       lines.push("  }");
     }
 
@@ -287,12 +359,7 @@ export function printCwlModule(mod, opts = {}) {
     for (const fe of route.foreachBindings ?? []) {
       const keyPart = fe.key ? ` ${fe.key} =>` : "";
       lines.push(`  foreach ${fe.collection} as${keyPart} ${fe.item} {`);
-      if (fe.body?.kind === "html") {
-        lines.push(`    return html ${printCwlLiteral(fe.body.value)};`);
-      } else if (fe.body) {
-        const expr = printCwlBodyExpr(fe.body);
-        if (expr != null) lines.push(`    return ${expr};`);
-      }
+      printControlStmts(controlStmtsOf(fe), "    ", lines);
       lines.push("  }");
     }
 
@@ -344,12 +411,14 @@ export function canonicalizeCwlModule(mod) {
         condExpr: g.condExpr,
         status: g.status ?? null,
         body: canonicalizeBody(g.body),
+        stmts: canonicalizeControlStmts(controlStmtsOf(g)),
       })),
       foreachBindings: (r.foreachBindings ?? []).map((fe) => ({
         collection: fe.collection,
         key: fe.key ?? null,
         item: fe.item,
         body: canonicalizeBody(fe.body),
+        stmts: canonicalizeControlStmts(controlStmtsOf(fe)),
       })),
       body: canonicalizeBody(r.body),
     })),

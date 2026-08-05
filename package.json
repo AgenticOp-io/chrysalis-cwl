@@ -4,11 +4,21 @@
   "private": true,
   "description": "Chrysalis Web Language (CWL) — language pillar",
   "type": "module",
+  "bin": {
+    "cwl": "scripts/cwl-cli.mjs"
+  },
   "scripts": {
+    "cwl": "node scripts/cwl-cli.mjs",
+    "check": "node scripts/cwl-cli.mjs check",
     "test:cwl-roundtrip": "node scripts/gate-cwl-roundtrip.mjs",
     "test:cwl-diagnose": "node scripts/gate-cwl-diagnose.mjs",
-    "test:language": "npm run test:cwl-roundtrip && npm run test:cwl-diagnose",
+    "test:cwl-dna-bridge": "node scripts/gate-cwl-dna-bridge.mjs",
+    "test:language": "npm run test:cwl-roundtrip && npm run test:cwl-diagnose && npm run test:cwl-dna-bridge",
+    "test:cwl-mirrors": "node scripts/gate-cwl-mirrors.mjs",
     "fmt:cwl": "node scripts/hub-ingest/cwl-fmt.mjs",
-    "test:runtime-cwl": "npm test --prefix packages/runtime-cwl"
+    "sync:convert": "node scripts/sync-to-convert.mjs",
+    "test:runtime-cwl": "npm test --prefix packages/runtime-cwl",
+    "link:webir": "node scripts/link-webir.mjs",
+    "smoke:webir": "node scripts/smoke-webir-resolve.mjs"
   }
 }

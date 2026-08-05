@@ -1,34 +1,46 @@
-# Chrysalis Web Language (CWL) — language pillar
+# Chrysalis Web Language (CWL) — THE language of the web
 
-**CWL · Convert · Secure** — this repo is the **CWL** pillar. Mature the language here.
+**CWL · Convert · Secure** — this repo **owns** CWL. Convert translates into/out of it. Secure bridges to it. Neither redefines it.
 
-Convert (`../chrysalis-convert`) and Secure (`../chrysalis-security`) consume CWL; they do not own the language’s north star.
+**Start here:** [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md)
 
 ## What’s here
 
 | Path | Role |
 |------|------|
-| `LANGUAGE_VERSION.md` | Language version + compatibility rules |
-| `fixtures/language-gold/` | Golden `.cwl` fixtures (parse→print) |
-| `packages/cwl` | Language package surface / README |
-| `packages/runtime-cwl` | In-process CWL runtime |
-| `packages/runtime-cwl-browser` | Browser runtime |
-| `packages/runtime-cwl-worker` | Worker runtime |
-| `packages/emit-runtime-cwl` | Emit deployable CWL/Node projects |
-| `scripts/hub-ingest/cwl-*.mjs` | Parser, print, ingest, fmt, diagnose, emit helpers |
-| `scripts/gate-cwl-roundtrip.mjs` | Language parse→print gate |
-| `docs/language/` | `CWL.md`, RFCs, language programs |
-| `docs/history/` | Prior Cursor sessions + pillar chat notes |
+| `LANGUAGE_VERSION.md` | Language semver + compatibility |
+| `CHANGELOG.md` | Language deltas |
+| `docs/language/CWL-PILLAR-HOME.md` | Constitution — ownership, sync, completeness |
+| `docs/language/CWL-CLI.md` | Authoring CLI (`parse` / `print` / `fmt` / `diagnose` / `check`) |
+| `docs/language/CWL.md` | Language reference |
+| `docs/language/CWL-RFC.md` | RFC index (0001–0021) |
+| `docs/language/CWL-SURFACE-TAXONOMY.md` | Named surfaces |
+| `docs/history/ROADMAP.md` | Phased plan to 1.0 |
+| `fixtures/language-gold/` | Golden `.cwl` fixtures |
+| `packages/cwl` | Language package surface |
+| `packages/runtime-cwl*` | Runtimes |
+| `packages/emit-runtime-cwl` | Emit deployable projects |
+| `scripts/hub-ingest/cwl-*.mjs` | Parser, print, fmt, diagnose, ingest helpers |
+| `scripts/gate-cwl-*.mjs` | Language gates |
+| `scripts/sync-to-convert.mjs` | Mirror sync into convert |
 
-## Language gate
+## CLI
+
+Authoring commands (no WebIR): [`docs/language/CWL-CLI.md`](./docs/language/CWL-CLI.md)
 
 ```bash
-npm run test:language
+npm run cwl -- parse fixtures/language-gold/01-literals/routes.cwl
+npm run cwl -- check fixtures/language-gold
+npm run check -- path/to/file-or-dir.cwl
 ```
 
-(`test:cwl-roundtrip` + `test:cwl-diagnose`)
+## Gates
 
-Convert keeps **junctions** at the old paths so the Universal Translator monorepo still resolves packages/scripts.
+```bash
+npm run test:language    # round-trip + diagnose
+npm run sync:convert     # push parser/print/ui mirrors to ../chrysalis-convert
+```
+
 
 ## Laws (language)
 

@@ -1,12 +1,25 @@
 ---
-description: This repo is the canonical CWL language tree — own semantics here
+description: CWL is THE language of the web — Convert and Secure consume it
 alwaysApply: true
 ---
 
-# CWL pillar — you are the primary holder
+# CWL — THE language of the web
 
-This tree owns CWL language logic. Convert junctions/mirrors and Secure bridges **consume** you.
+Canonical constitution: [`docs/language/CWL-PILLAR-HOME.md`](../../docs/language/CWL-PILLAR-HOME.md)
 
-- Prefer language RFCs, packages, and golds here over convert hub POC deadlines.
-- When convert has a mirrored script, treat **this** copy as source of truth; tell convert to sync.
-- Do not implement Helix DNA firewall features here.
+CWL is not a side format. It is the **canonical web language** for Chrysalis: what a web app *is* (routes, pages, data, UI, effects, honest holes).
+
+| Pillar | Relationship to CWL |
+| --- | --- |
+| **This repo (`chrysalis-cwl`)** | Owns grammar, RFCs, parser/print, fixtures, versioning |
+| **Convert** | Translates origin ↔ WebIR/CWL ↔ emit. Pulls language from here |
+| **Secure (Helix)** | Protects with traffic DNA; bridges to CWL when comparing/seeding surface — does not fork the language |
+
+## Rules
+
+- Land language fixes **here first**, then `npm run sync:convert`.
+- Prefer `fixtures/language-gold` + RFCs over hub/WISP product smokes as language proof.
+- Run `npm run test:language` before claiming done.
+- Do not implement Helix firewall features here.
+- Do not let convert-only forks become the “real” CWL.
+- Judge work as a **language** (spec, fixtures, tooling), not a single customer POC.

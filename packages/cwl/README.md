@@ -7,6 +7,7 @@
 ## Public API
 
 - Grammar and semantics: **`docs/language/CWL.md`**
+- CLI: **`docs/language/CWL-CLI.md`** (`npm run cwl -- …` from repo root)
 - Language version: **`LANGUAGE_VERSION.md`**
 - Golden fixtures: **`fixtures/language-gold/`**
 - Round-trip gate: **`npm run test:cwl-roundtrip`**

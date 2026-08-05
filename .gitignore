@@ -7,3 +7,6 @@ node_modules/
 data/
 .env
 .env.*
+
+# Local Phase 0.3 link to convert webir (npm run link:webir). Do not commit the junction tree.
+packages/webir

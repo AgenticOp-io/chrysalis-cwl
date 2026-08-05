@@ -27,7 +27,7 @@ All surfaces share one module file (or multi-file `import`), one WebIR module, a
 | **CWL API** | `@route` + handler + JSON/object `return` | Express routes, `+server.ts`, Next route handlers, OpenAPI ops | **Shipped** — RFC-0001–0008, verify gold |
 | **CWL Pages** | `@page` + `return html` | Static HTML, SSR shells, Blade/Jinja-like pages | **Shipped** — RFC-0010/0011/0014 |
 | **CWL Data** | `load { … }` on pages | Svelte `load`, Next `page.server`, PHP controller prep | **Partial** — RFC-0013 |
-| **CWL UI** | RFC-0017–0019 (`@component`, islands, events) | Server + client island metadata; no silent Svelte/React lowering |
+| **CWL UI** | RFC-0017–0019 (`@component`, islands, events) | Server + client island metadata; no silent Svelte/React lowering | **Shipped (language)** — parse/print golds `17`/`18`; runtime/verify deepen in convert |
 | **CWL Effects** | `effects:`, `use auth`, `use json` | Middleware, session, body parsers | **Declarative** — deepening with verify |
 
 ### Not a CWL surface
@@ -46,8 +46,9 @@ All surfaces share one module file (or multi-file `import`), one WebIR module, a
   │  CWL API    @route  → JSON handlers      │
   │  CWL Pages  @page   → HTML / layouts     │
   │  CWL Data   load    → page data sidecar  │
-  │  CWL UI     (future / holes today)       │
+  │  CWL UI     @component / islands / events│
   │  CWL Effects use / effects metadata      │
+  │  Control    if / foreach (RFC-0021)      │
   └──────────────────┬──────────────────────┘
                      │ 1:1
                      ▼

@@ -247,6 +247,89 @@ function parseEffects(effectsRaw) {
 }
 
 /**
+ * Parse a control-block stmt list until the matching `}` that closes the block
+ * opened on the caller’s `if` / `foreach` header line.
+ *
+ * Captures nested `if` / `foreach` as stmt nodes (honest surface / round-trip).
+ * Does not evaluate conditions or loop bodies — WebIR/Hono remain authority.
+ *
+ * @param {string[]} lines
+ * @param {number} startI index of the first line inside the block
+ * @param {{ path: string[], query: string[], header: string[], cookie: string[], body: string[], pathDefaults: Record<string, unknown>, queryDefaults: Record<string, unknown> }} bindings
+ * @returns {{ stmts: object[], nextI: number, status: number | null, body: object | null }}
+ */
+function parseControlStmts(lines, startI, bindings) {
+  /** @type {object[]} */
+  const stmts = [];
+  /** @type {number | null} */
+  let status = null;
+  /** @type {object | null} */
+  let body = null;
+  let i = startI;
+  let depth = 1;
+  while (i < lines.length && depth > 0) {
+    const gline = lines[i].trim();
+    i += 1;
+    if (depth === 1 && gline && gline !== "}") {
+      const gsm = STATUS_RE.exec(gline);
+      if (gsm) {
+        status = Number(gsm[1]);
+        stmts.push({ kind: "status", status });
+        continue;
+      }
+      const gHtml = extractCwlHtmlReturnLiteral(gline);
+      if (gHtml !== null) {
+        const lit = parseCwlLiteral(gHtml);
+        if (lit.ok && typeof lit.value === "string") {
+          body = { kind: "html", value: lit.value };
+          stmts.push({ kind: "return", body });
+        }
+        continue;
+      }
+      const gret = RETURN_RE.exec(gline);
+      if (gret) {
+        const parsed = parseCwlReturnValue(gret[1], bindings);
+        if (parsed.ok) {
+          body = parsed.body;
+          stmts.push({ kind: "return", body: parsed.body });
+        }
+        continue;
+      }
+      const ifGuard = IF_GUARD_RE.exec(gline);
+      if (ifGuard) {
+        const nested = parseControlStmts(lines, i, bindings);
+        i = nested.nextI;
+        stmts.push({
+          kind: "if",
+          condExpr: ifGuard[1].trim(),
+          status: nested.status,
+          body: nested.body,
+          stmts: nested.stmts,
+        });
+        continue;
+      }
+      const foreachBind = FOREACH_RE.exec(gline);
+      if (foreachBind) {
+        const nested = parseControlStmts(lines, i, bindings);
+        i = nested.nextI;
+        stmts.push({
+          kind: "foreach",
+          collection: foreachBind[1],
+          key: foreachBind[2] ?? null,
+          item: foreachBind[3],
+          body: nested.body,
+          stmts: nested.stmts,
+        });
+        continue;
+      }
+    }
+    if (gline.endsWith("{")) depth += 1;
+    if (gline === "}") depth -= 1;
+  }
+  return { stmts, nextI: i, status, body };
+}
+
+/**
  * @param {string} source
  * @param {string} file
  */
@@ -356,11 +439,20 @@ export function parseCwlModule(source, file) {
     let responseContentType = null;
     /** @type {object | null} */
     let loadBody = null;
-    /** @type {Array<{ condExpr: string, status: number | null, body: object | null }>} */
+    /** @type {Array<{ condExpr: string, status: number | null, body: object | null, stmts: object[] }>} */
     const earlyGuards = [];
-    /** @type {Array<{ collection: string, key: string | null, item: string, body: object | null }>} */
+    /** @type {Array<{ collection: string, key: string | null, item: string, body: object | null, stmts: object[] }>} */
     const foreachBindings = [];
     let body = { kind: "hole", reason: "cwl:empty-handler" };
+    const handlerBindings = () => ({
+      path: handlerPathParams,
+      query: handlerQueryParams,
+      header: handlerHeaders,
+      cookie: handlerCookies,
+      body: handlerBodyParams,
+      pathDefaults: handlerPathDefaults,
+      queryDefaults: handlerQueryDefaults,
+    });
     while (i < lines.length) {
       const inner = lines[i].trim();
       i += 1;
@@ -469,88 +561,31 @@ export function parseCwlModule(source, file) {
         else loadBody = { kind: "hole", reason: `cwl:${parsed.error}` };
         continue;
       }
-      // Early-exit guards (RFC-0021): capture cond + status/return body.
+      // Early-exit guards (RFC-0021): cond + stmt-list body (nested if/foreach ok).
       const ifGuard = IF_GUARD_RE.exec(inner);
       if (ifGuard) {
-        const condExpr = ifGuard[1].trim();
-        let guardStatus = null;
-        /** @type {object | null} */
-        let guardBody = null;
-        let depth = 1;
-        while (i < lines.length && depth > 0) {
-          const gline = lines[i].trim();
-          i += 1;
-          if (depth === 1 && gline && gline !== "}") {
-            const gsm = STATUS_RE.exec(gline);
-            if (gsm) {
-              guardStatus = Number(gsm[1]);
-              continue;
-            }
-            const gHtml = extractCwlHtmlReturnLiteral(gline);
-            if (gHtml !== null) {
-              const lit = parseCwlLiteral(gHtml);
-              if (lit.ok && typeof lit.value === "string") guardBody = { kind: "html", value: lit.value };
-              continue;
-            }
-            const gret = RETURN_RE.exec(gline);
-            if (gret) {
-              const parsed = parseCwlReturnValue(gret[1], {
-                path: handlerPathParams,
-                query: handlerQueryParams,
-                header: handlerHeaders,
-                cookie: handlerCookies,
-                body: handlerBodyParams,
-                pathDefaults: handlerPathDefaults,
-                queryDefaults: handlerQueryDefaults,
-              });
-              if (parsed.ok) guardBody = parsed.body;
-              continue;
-            }
-          }
-          if (gline.endsWith("{")) depth += 1;
-          if (gline === "}") depth -= 1;
-        }
-        earlyGuards.push({ condExpr, status: guardStatus, body: guardBody });
+        const nested = parseControlStmts(lines, i, handlerBindings());
+        i = nested.nextI;
+        earlyGuards.push({
+          condExpr: ifGuard[1].trim(),
+          status: nested.status,
+          body: nested.body,
+          stmts: nested.stmts,
+        });
         continue;
       }
-      // Stmt-level foreach binding (RFC-0021).
+      // Stmt-level foreach binding (RFC-0021): collection + stmt-list body.
       const foreachBind = FOREACH_RE.exec(inner);
       if (foreachBind) {
-        const collection = foreachBind[1];
-        const key = foreachBind[2] ?? null;
-        const item = foreachBind[3];
-        /** @type {object | null} */
-        let feBody = null;
-        let depth = 1;
-        while (i < lines.length && depth > 0) {
-          const gline = lines[i].trim();
-          i += 1;
-          if (depth === 1 && gline && gline !== "}") {
-            const gHtml = extractCwlHtmlReturnLiteral(gline);
-            if (gHtml !== null) {
-              const lit = parseCwlLiteral(gHtml);
-              if (lit.ok && typeof lit.value === "string") feBody = { kind: "html", value: lit.value };
-              continue;
-            }
-            const gret = RETURN_RE.exec(gline);
-            if (gret) {
-              const parsed = parseCwlReturnValue(gret[1], {
-                path: handlerPathParams,
-                query: handlerQueryParams,
-                header: handlerHeaders,
-                cookie: handlerCookies,
-                body: handlerBodyParams,
-                pathDefaults: handlerPathDefaults,
-                queryDefaults: handlerQueryDefaults,
-              });
-              if (parsed.ok) feBody = parsed.body;
-              continue;
-            }
-          }
-          if (gline.endsWith("{")) depth += 1;
-          if (gline === "}") depth -= 1;
-        }
-        foreachBindings.push({ collection, key, item, body: feBody });
+        const nested = parseControlStmts(lines, i, handlerBindings());
+        i = nested.nextI;
+        foreachBindings.push({
+          collection: foreachBind[1],
+          key: foreachBind[2] ?? null,
+          item: foreachBind[3],
+          body: nested.body,
+          stmts: nested.stmts,
+        });
         continue;
       }
       const ret = RETURN_RE.exec(inner);

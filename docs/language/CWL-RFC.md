@@ -25,6 +25,7 @@ CWL evolves by **RFC**: each proposal must cite cross-language evidence (path kn
 | [0019](CWL-RFC-0019-native-ui-v1.md) | Native UI v1 (client islands, events) | accepted |
 | [0020](CWL-RFC-0020-effects-middleware.md) | Effects middleware chains | accepted |
 | [0021](CWL-RFC-0021-early-exit-cond-expr.md) | Early-exit cond expressions + opaque call/member/empty residual + foreach bind | accepted (`!param` / `g_empty_<name>`) |
+| [0022](CWL-RFC-0022-dna-surface-bridge.md) | CWL `@route`/`@page` surface ↔ `app-dna-v1` route identity (Secure bridge contract) | accepted (contract only) |
 
 **Process**
 

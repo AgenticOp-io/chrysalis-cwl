@@ -62,6 +62,19 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     surface: "api",
     summary: "HTTP upstream proxy to existing WISP backend-services (operator-owned; Mongo unchanged).",
   },
+  "cwl:empty-handler": {
+    rfc: "0012",
+    origin: "cwl",
+    surface: "api",
+    summary: "Handler body intentionally empty / not yet authored; placeholder hole.",
+  },
+  "unsupported:php-session": {
+    rfc: "0012",
+    origin: "php",
+    surface: "api",
+    summary: "PHP session semantics not modeled in CWL; explicit hole required.",
+  },
+
   "hub-next:page-component": {
     rfc: "0012",
     origin: "nextjs",

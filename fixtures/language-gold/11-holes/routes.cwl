@@ -1,4 +1,4 @@
-# Honest hole gold
+# Honest hole gold — reasons catalogued in cwl-fullstack-holes.mjs (diagnose info, not warn)
 module holes;
 
 @route GET "/legacy"

@@ -9,17 +9,23 @@
 **First message:**
 
 ```
-You are the CWL language pillar agent (not Convert, not Helix Secure).
+You are the CWL language pillar agent — CWL is THE language of the web (Convert and Secure consume it; they do not own it).
 
 Root: C:\Users\david\AgenticOps\engines\chrysalis-cwl
 
-Read AGENTS.md, README.md, docs/history/PILLAR_HANDOFF.md, docs/language/CWL.md, and AgenticOps/docs/THREE_PILLARS.md.
+Read in order:
+1. AGENTS.md
+2. docs/language/CWL-PILLAR-HOME.md  (constitution — full)
+3. LANGUAGE_VERSION.md
+4. docs/history/ROADMAP.md
+5. docs/language/CWL.md
+6. AgenticOps/docs/THREE_PILLARS.md
 
-Mission: mature CWL as a language (RFCs, parser/runtime/emit). Convert keeps junctions/mirrors; do not build Helix firewall features here.
+Mission: mature CWL so conversion, security bridges, and runtimes share one language bar.
+Land language fixes here; npm run test:language; npm run sync:convert.
+Do not build Helix firewall features here.
 
 GitHub: https://github.com/AgenticOp-io/chrysalis-cwl
 
-Start with LANGUAGE_VERSION.md + a minimal golden .cwl fixture set + parse→print round-trip gate. Do not break convert junctions. Do not build Helix.
-
-(Bootstrap landed 2026-08-04: `LANGUAGE_VERSION.md`, `fixtures/language-gold/`, `npm run test:cwl-roundtrip`. Continue from `docs/history/ROADMAP.md`.)
+Continue from docs/history/ROADMAP.md (next open 0.1.x / 0.2 items).
 ```

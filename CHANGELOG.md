@@ -1,21 +1,41 @@
 # CWL language changelog
 
+## 0.1.6 — 2026-08-05
+
+- RFC-0022 DNA surface bridge: `cwl-dna-seed.mjs` + `npm run test:cwl-dna-bridge` (seed ≡ `24-dna-bridge/expected-dna.json`)
+- `test:language` now includes DNA bridge contract gate
+- Phase 0.2–0.5 tooling landed in tree: convert script junctions + `test:cwl-mirrors`, pillar CLI (`cwl` / `check`), WebIR resolve link + smoke, RFC-0022 docs/fixture
+
+## 0.1.5 — 2026-08-05
+
+- Language golds `20-probes` (RFC-0015), `21-form-action` (RFC-0016), `22-effects-middleware` (RFC-0020) — parse→print only; honest gaps documented in fixture READMEs
+- Catalogued `unsupported:php-session` + `cwl:empty-handler` so `11-holes` diagnose warns drop to info
+- Suite map updated in `fixtures/language-gold/README.md`
+- Nested `if` / nested `foreach` stmt-list AST capture + print round-trip (RFC-0021 remaining gap; surface only — no loop evaluate); fixture `23-nested-control`
+
+## 0.1.4 — 2026-08-05
+
+- Fleshed out `CWL-PILLAR-HOME.md` as full constitution (Convert/Secure needs, surfaces, sync, completeness, agent SOP)
+- Full phased `ROADMAP.md` (0.1 → 1.0) with exit criteria
+- Expanded `fixtures/language-gold/README.md` + planned golds (0015/0016/0020)
+- Added `npm run sync:convert` (`scripts/sync-to-convert.mjs`)
+- Convert pointer doc expanded to match
+
+## 0.1.3 — 2026-08-04
+
+- Synced language parser + print into convert (`cwl-parser.mjs`, `cwl-print.mjs`)
+- Documented CWL as **THE** language of the web (initial home, AGENTS, THREE_PILLARS, cursor rule)
+- Convert keeps WebIR `cwl-fmt`; pillar fmt remains parse→print
+
 ## 0.1.2 — 2026-08-04
 
-- Parser captures RFC-0021 `if` guards and `foreach` bindings (cond/status/return + collection/item/body)
-- Print/canonicalize round-trip for early-exit + foreach
-- Fixture `19-early-exit`
-- Diagnose gate: `npm run test:cwl-diagnose` (wired into `test:language`)
-- Synced convert `cwl-ui-tree.mjs` with element-attr + enclosing-element `on` event fixes
+- Parser captures RFC-0021 `if` guards and `foreach` bindings
+- Fixture `19-early-exit`; diagnose gate; convert `cwl-ui-tree` attr/`on` fixes
 
 ## 0.1.1 — 2026-08-04
 
-- Print covers native UI trees, component use, islands, and events (RFC-0017–0019)
-- Parser fix: multiline `on <event>` attaches to the enclosing element (not last child)
-- Parser fix: `element "tag" attr "val"` attributes were dropped; now captured from the post-tag tail
-- `cwl-fmt` is parse→print local (no WebIR / convert)
-- Expanded `fixtures/language-gold/` (middleware, defaults/headers, HTML interp, layout, UI v0/v1)
+- UI print; element attr + `on` event parser fixes; local fmt; golds through UI v1
 
 ## 0.1.0 — 2026-08-04
 
-- Pillar bootstrap: `LANGUAGE_VERSION.md`, golden fixtures, parse→print gate
+- Pillar bootstrap: version, golds, parse→print gate
