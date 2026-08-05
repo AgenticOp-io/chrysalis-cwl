@@ -8,7 +8,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 
 | Dir | Surface / topic | RFC |
 | --- | --- | --- |
-| `01-literals` | API literal returns | core |
+| `01-literals` | API literal returns (+ `expected-webir.json` ingest gold) | core |
 | `02-path-params` | Path `:id` | 0002 |
 | `03-query-params` | `query` | 0003 |
 | `04-request-context` | header / cookie | 0004 |
@@ -45,10 +45,13 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 
 ```bash
 npm run test:language
+npm run test:ingest          # needs npm run link:webir (sibling convert webir dist)
+# npm run test:language:full # language + ingest
 ```
 
 - **Round-trip:** parse → print → parse AST equality + print idempotence; multi-file + layout resolve  
 - **Diagnose:** no diagnose **errors** (warns OK for honest holes / hints)
+- **Ingest (optional):** CWL → WebIR on `01-literals`; compares `expected-webir.json` when present
 
 ## Authoring rules
 

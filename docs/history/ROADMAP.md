@@ -50,11 +50,14 @@ CWL is **THE language of the web**. Convert and Secure pull; they do not own the
 - [x] **Ownership (homeable):** `@chrysalis/webir` resolves from this pillar via `packages/webir` junction + `load-webir.mjs` (`npm run link:webir` / `npm run smoke:webir`) — no convert `cwd` hack for resolve; committed story in `packages/WEBIR.md`
 - [x] **Partial (Agent G):** CWL WebIR helpers in-pillar — `hub-t.mjs`, `hub-cwl-{middleware,auth-presets,effects}.mjs`, `cwlPathParamsForWebir` (no hub-lift); synced via `CWL_WEBIR_HELPERS`
 - [x] **Partial (Agent H):** thin `hub-lift-cwl-webir.mjs` (CWL-only; no COBOL/fat lift); `cwl-ingest` + `export-cwl-webir` use local helpers/`load-webir`; `npm run smoke:cwl-ingest` green on `01-literals`
+- [x] **Partial (Agent I):** `test:ingest` (= `smoke:cwl-ingest`) + `01-literals/expected-webir.json`; `test:language` stays WebIR-free; optional `test:language:full`
+- [x] **Partial (Agent J / Slice 4):** thin `hub-emit-cwl-webir.mjs` WebIR→CWL; `npm run smoke:cwl-emit` + `test:ingest-roundtrip` on `01-literals`; pillar `cwl-fmt` stays parse→print (dual-mode deferred)
 - [ ] **Convert flip:** physical tree in chrysalis-cwl; convert `packages/webir` → cwl (deferred — unsafe for convert pnpm until Slice 3 checklist; see plan)
-- [ ] Pillar ingest under formal `test:language` / `test:ingest` + WebIR → CWL emit round-trip (Slice 4)
+- [ ] Dual-mode `cwl-fmt` (explicit with convert; do not overwrite convert WebIR fmt)
 - [ ] Convert depends on shared webir package (not a private fork)
 
-**Exit 0.3:** Parse, print, ingest, and at least one WebIR round-trip path runnable from `chrysalis-cwl` alone.
+**Exit 0.3:** Parse, print, ingest, and at least one WebIR round-trip path runnable from `chrysalis-cwl` alone.  
+**Round-trip path (met):** `smoke:cwl-emit` / `test:ingest-roundtrip` from this pillar with linked `@chrysalis/webir`.
 
 ---
 

@@ -81,7 +81,7 @@ function main() {
         ? {}
         : {
             error: "hash-diverge-not-reparse",
-            hint: "run npm run sync:convert, or replace convert copy with a file symlink to chrysalis-cwl",
+            hint: "run npm run setup:mirrors (preferred) or npm run sync:convert",
           }),
       ...(reparse && !identical && !sameInode
         ? {

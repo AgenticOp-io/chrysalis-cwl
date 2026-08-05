@@ -3,17 +3,19 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `0.1.6` |
-| **Status** | 0.1.x + DNA bridge seed gate; CLI / junctions / WebIR resolve |
+| **Version** | `0.1.7` |
+| **Status** | 0.1.x + pillar CWL↔WebIR ingest/emit smokes (`test:ingest` / `test:ingest-roundtrip`) |
 | **Date** | 2026-08-05 |
 
 ## What this version means
 
-`0.1.6` gates the RFC-0022 CWL→draft-DNA seed against the gold fixture and records Phase 0.2–0.5 tooling already in tree:
+`0.1.7` gates CWL ↔ WebIR from the language pillar (no convert `cwd` hack) when `@chrysalis/webir` is linked:
 
-- `npm run test:cwl-dna-bridge` / included in `test:language`
-- Seeder: `scripts/hub-ingest/cwl-dna-seed.mjs` (Helix consumes; no firewall here)
-- Prior: nested control golds, CLI, mirrors gate, WebIR resolve smoke
+- `npm run test:ingest` / `smoke:cwl-ingest` on `fixtures/language-gold/01-literals` (+ `expected-webir.json`)
+- `npm run smoke:cwl-emit` / `test:ingest-roundtrip` — CWL → WebIR → CWL thin emit (literals / flat objects; honest holes)
+- Thin pillar lift + emit helpers (`hub-lift-cwl-webir.mjs`, `hub-emit-cwl-webir.mjs` + Agent G WebIR helpers)
+- `test:language` stays parse/print/diagnose/dna-bridge only (WebIR optional)
+- Optional `test:language:full` = `test:language` + `test:ingest-roundtrip`
 
 See `CHANGELOG.md` for deltas.
 
@@ -27,7 +29,8 @@ Breaking changes must be versioned in this file **before** they land in parser/p
 
 ## Out of scope for `0.1.x`
 
-- WebIR package ownership (still under convert) — Phase 0.3
+- WebIR physical package ownership flip (homeable via junction today; tree still under convert) — Phase 0.3 Slice 3
+- Dual-mode `cwl-fmt` (pillar stays parse→print; convert keeps WebIR fmt) — Phase 0.3 Slice 4 remainder
 - Helix / Secure DNA firewall implementation
 - Convert product hub smokes as the language authority path
 - Nested `if` / nested `foreach` body stmt lists (RFC-0021 remaining gap) — **done in 0.1.5** (surface AST; no loop evaluate)
@@ -37,5 +40,7 @@ Breaking changes must be versioned in this file **before** they land in parser/p
 
 ```bash
 npm run test:language
-npm run sync:convert   # after language script changes
+npm run test:ingest              # needs npm run link:webir + sibling convert webir dist
+npm run test:ingest-roundtrip    # ingest + thin WebIR→CWL emit
+npm run sync:convert             # after language script changes
 ```

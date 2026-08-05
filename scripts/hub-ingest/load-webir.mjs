@@ -1,9 +1,12 @@
 /**
  * Resolve `@chrysalis/webir` from the language pillar without convert cwd hacks.
  *
+ * Pillar home path is `packages/webir` (junction today → convert; eventual extract).
+ * See packages/WEBIR.md and docs/history/WEBIR-EXTRACT-PLAN.md.
+ *
  * Order:
- * 1. `packages/webir/dist` (junction or future in-tree extract)
- * 2. Sibling `../chrysalis-convert/packages/webir/dist`
+ * 1. `packages/webir/dist` (junction or future in-tree extract) — preferred home
+ * 2. Sibling `../chrysalis-convert/packages/webir/dist` — fallback before flip
  * 3. Package name import (when workspace / file: dep is installed)
  */
 import { existsSync } from "node:fs";

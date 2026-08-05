@@ -6,7 +6,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { liftCwlFileToWebir } from "./cwl-ingest.mjs";
-import { loadWebir } from "./shared.mjs";
+import { loadWebir } from "./load-webir.mjs";
 
 /**
  * @param {string} cwlPath

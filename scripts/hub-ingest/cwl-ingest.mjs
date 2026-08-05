@@ -1,7 +1,7 @@
 /**
  * CWL → WebIR ingest (direct; no lossy lift).
  */
-import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lowerHubPageWithLoadBody, lowerHubPageWithLoadAndUiBody } from "./hub-lift-webir-route.mjs";
+import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lowerHubPageWithLoadBody, lowerHubPageWithLoadAndUiBody } from "./hub-lift-cwl-webir.mjs";
 import { lowerCwlHtmlTemplateBody } from "./cwl-html-template.mjs";
 import { lowerCwlUiTreeBody, resolveCwlUiComponent } from "./cwl-ui-tree.mjs";
 import { parseCwlModuleResolved, resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";

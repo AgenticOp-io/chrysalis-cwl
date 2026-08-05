@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 0.1.7 — 2026-08-05
+
+- Phase 0.3 ingest: thin `hub-lift-cwl-webir.mjs` + WebIR helpers; `cwl-ingest` / `export-cwl-webir` use `load-webir.mjs`
+- `npm run smoke:cwl-ingest` / `test:ingest` green on `01-literals` with `expected-webir.json` golden
+- `test:language` unchanged (no WebIR required); optional `test:language:full` = language + ingest-roundtrip
+- Phase 0.3 Slice 4: thin WebIR→CWL emit (`hub-emit-cwl-webir.mjs`) + `npm run smoke:cwl-emit` / `test:ingest-roundtrip` on `01-literals`; pillar `cwl-fmt` remains parse→print (no dual-mode)
+
 ## 0.1.6 — 2026-08-05
 
 - RFC-0022 DNA surface bridge: `cwl-dna-seed.mjs` + `npm run test:cwl-dna-bridge` (seed ≡ `24-dna-bridge/expected-dna.json`)

@@ -8,5 +8,6 @@ data/
 .env
 .env.*
 
-# Local Phase 0.3 link to convert webir (npm run link:webir). Do not commit the junction tree.
+# Local Phase 0.3 pillar home for @chrysalis/webir (npm run link:webir).
+# Junction only — committed story: packages/WEBIR.md. Do not commit the reparse point.
 packages/webir

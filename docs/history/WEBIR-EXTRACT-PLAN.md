@@ -1,7 +1,7 @@
 # WebIR extract plan (Phase 0.3)
 
 **Owner:** CWL Agent F (language pillar); Slice 2A by Agent H (+ G helpers)  
-**Status:** resolve smoke ✅; thin CWL ingest smoke ✅ (`smoke:cwl-ingest`); convert `loadWebir` cwd hack ✅ (Slice 3.3); ownership flip deferred  
+**Status:** resolve smoke ✅; thin CWL ingest ✅ (`smoke:cwl-ingest` / `test:ingest` + `expected-webir.json`); convert `loadWebir` cwd hack ✅ (Slice 3.3); ownership flip deferred  
 **Constitution:** [`docs/language/CWL-PILLAR-HOME.md`](../language/CWL-PILLAR-HOME.md) §5 / Phase 0.3  
 **Convert package today:** `../chrysalis-convert/packages/webir` (`@chrysalis/webir@2.0.2`)
 
@@ -111,7 +111,8 @@ Also in Slice 2:
 - [x] `cwlPathParamsForWebir` via `hub-t.mjs` (Agent G)
 - [x] `export-cwl-webir.mjs` → `load-webir.mjs`
 - [x] Gate: `npm run smoke:cwl-ingest` on `fixtures/language-gold/01-literals` → WebIR module + golden snapshot
-- [ ] Optional: golden WebIR snapshot file under language-gold (not required for smoke green)
+- [x] Golden WebIR snapshot: `fixtures/language-gold/01-literals/expected-webir.json` (paths relativized in smoke)
+- [x] Formal `npm run test:ingest` (= smoke); `test:language` unchanged; optional `test:language:full`
 - [ ] Convert optionally re-exports / imports pillar thin core (deferred — convert still uses fat hub-lift; **do not break convert**)
 
 ### Slice 3 — Ownership flip
@@ -170,7 +171,9 @@ Also in Slice 2:
 npm run link:webir       # once per clone (needs sibling convert + built dist)
 npm run smoke:webir      # ModuleBuilder resolve smoke
 npm run smoke:cwl-ingest # parse gold .cwl → lift WebIR (default: 01-literals)
-npm run test:language    # unchanged — parse/print/diagnose only
+npm run test:ingest      # alias of smoke:cwl-ingest (+ expected-webir.json)
+npm run test:language    # unchanged — parse/print/diagnose/dna-bridge (no WebIR)
+npm run test:language:full  # test:language + test:ingest (needs link:webir)
 ```
 
 ---

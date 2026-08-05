@@ -11,9 +11,12 @@ Phase 0.3 first slice: resolve and construct WebIR **from chrysalis-cwl alone** 
 ```bash
 npm run link:webir   # creates packages/webir → ../chrysalis-convert/packages/webir
 npm run smoke:webir  # ModuleBuilder + dialects via load-webir.mjs
+npm run test:ingest  # CWL → WebIR on 01-literals (+ expected-webir.json); needs link
 ```
 
 `packages/webir` is gitignored (local reparse point). After clone: run `link:webir` once (sibling convert + built `dist/` required).
+
+`test:language` does **not** require WebIR. Use `test:language:full` when ingest should be included.
 
 ## Resolve order (`scripts/hub-ingest/load-webir.mjs`)
 
@@ -56,6 +59,7 @@ See [`docs/history/WEBIR-EXTRACT-PLAN.md`](../docs/history/WEBIR-EXTRACT-PLAN.md
 | --- | --- |
 | `npm run link:webir` | `scripts/link-webir.mjs` |
 | `npm run smoke:webir` | `scripts/smoke-webir-resolve.mjs` |
+| `npm run test:ingest` | `scripts/smoke-cwl-ingest.mjs` (+ `01-literals/expected-webir.json`) |
 | Loader | `scripts/hub-ingest/load-webir.mjs` |
 | Plan | `docs/history/WEBIR-EXTRACT-PLAN.md` |
 | Roadmap | Phase 0.3 in `docs/history/ROADMAP.md` |

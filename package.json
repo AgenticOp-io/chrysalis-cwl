@@ -14,11 +14,17 @@
     "test:cwl-diagnose": "node scripts/gate-cwl-diagnose.mjs",
     "test:cwl-dna-bridge": "node scripts/gate-cwl-dna-bridge.mjs",
     "test:language": "npm run test:cwl-roundtrip && npm run test:cwl-diagnose && npm run test:cwl-dna-bridge",
+    "test:ingest": "npm run smoke:cwl-ingest",
+    "test:ingest-roundtrip": "npm run smoke:cwl-ingest && npm run smoke:cwl-emit",
+    "test:language:full": "npm run test:language && npm run test:ingest-roundtrip",
     "test:cwl-mirrors": "node scripts/gate-cwl-mirrors.mjs",
+    "setup:mirrors": "node scripts/setup-convert-mirrors.mjs",
     "fmt:cwl": "node scripts/hub-ingest/cwl-fmt.mjs",
     "sync:convert": "node scripts/sync-to-convert.mjs",
     "test:runtime-cwl": "npm test --prefix packages/runtime-cwl",
     "link:webir": "node scripts/link-webir.mjs",
-    "smoke:webir": "node scripts/smoke-webir-resolve.mjs"
+    "smoke:webir": "node scripts/smoke-webir-resolve.mjs",
+    "smoke:cwl-ingest": "node scripts/smoke-cwl-ingest.mjs",
+    "smoke:cwl-emit": "node scripts/smoke-cwl-emit.mjs"
   }
 }

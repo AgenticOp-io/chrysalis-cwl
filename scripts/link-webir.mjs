@@ -1,15 +1,19 @@
 #!/usr/bin/env node
 /**
- * Create packages/webir → ../chrysalis-convert/packages/webir (Windows junction / Unix symlink).
- * Idempotent. Does not modify convert. See docs/history/WEBIR-EXTRACT-PLAN.md.
+ * Home `@chrysalis/webir` under the CWL pillar via junction/symlink:
+ *   packages/webir → ../chrysalis-convert/packages/webir
+ *
+ * Idempotent. Does not modify convert (flip convert→cwl is Slice 3 — see
+ * docs/history/WEBIR-EXTRACT-PLAN.md and packages/WEBIR.md).
  */
-import { existsSync, lstatSync, rmSync, symlinkSync } from "node:fs";
+import { existsSync, lstatSync, mkdirSync, rmSync, symlinkSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const LINK = join(ROOT, "packages/webir");
+const PACKAGES = join(ROOT, "packages");
+const LINK = join(PACKAGES, "webir");
 const TARGET = resolve(ROOT, "../chrysalis-convert/packages/webir");
 
 function main() {
@@ -24,11 +28,15 @@ function main() {
     process.exit(1);
   }
 
+  mkdirSync(PACKAGES, { recursive: true });
+
   if (existsSync(LINK)) {
     const st = lstatSync(LINK);
     // Already a reparse / symlink — leave alone if it points at a usable dist
     if (existsSync(join(LINK, "dist/index.js"))) {
-      console.log(`ok: ${LINK} already resolves webir dist`);
+      console.log(`ok: pillar home packages/webir resolves dist`);
+      console.log(`    ${LINK} → ${TARGET}`);
+      console.log("    next: convert flip (convert packages/webir → this tree) — see packages/WEBIR.md");
       return;
     }
     if (st.isSymbolicLink() || (process.platform === "win32" && !st.isFile())) {
@@ -48,7 +56,8 @@ function main() {
   } else {
     symlinkSync(TARGET, LINK, "dir");
   }
-  console.log(`linked: ${LINK} → ${TARGET}`);
+  console.log(`linked: pillar home ${LINK} → ${TARGET}`);
+  console.log("run: npm run smoke:webir");
 }
 
 main();
