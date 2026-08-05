@@ -83,9 +83,9 @@ export CHRYSALIS_CWL_ROOT=/path/to/chrysalis-cwl
 
 Point at the **repo root** of chrysalis-cwl (the directory that contains `LANGUAGE_VERSION.md`), not `packages/cwl`.
 
-### A3. npm `file:` dependency (optional package pin)
+### A3. npm `file:` dependency (declared today)
 
-Use when a consumer `package.json` should declare a resolvable `@chrysalis/cwl` without registry:
+Convert and Secure already declare this pin. Use the same form for any other local consumer without a registry:
 
 ```json
 {
