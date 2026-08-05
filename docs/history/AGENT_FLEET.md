@@ -1,90 +1,63 @@
-# CWL finish fleet — open these agents
+# CWL finish fleet (updated)
 
 Root: `C:\Users\david\AgenticOps\engines\chrysalis-cwl`  
-Constitution: `docs/language/CWL-PILLAR-HOME.md`  
-Roadmap: `docs/history/ROADMAP.md`
+Chat / workspace title: **chrysalis-cwl** (same as folder)
 
-Orchestrator chat owns coordination. Each agent owns a **non-overlapping** slice. After landing: `npm run test:language` and `npm run sync:convert` if you touched mirrored scripts.
+Agents A–H landed 0.1–0.5 + WebIR resolve + thin ingest. **Still open:** formal `test:ingest`, WebIR→CWL emit (Slice 4), convert `loadWebir` package import (no mass-move), 1.0 publish/pin.
 
----
+## Open New Agent (left rail) — paste one block each
 
-## Agent A — Close 0.1 golds + holes
-
-```
-You are CWL Agent A (language pillar). Root: C:\Users\david\AgenticOps\engines\chrysalis-cwl
-Read AGENTS.md + docs/language/CWL-PILLAR-HOME.md + docs/history/ROADMAP.md.
-
-OWN: fixtures/language-gold/20-* 21-* 22-*, fixtures README, cwl-fullstack-holes.mjs, 11-holes alignment.
-TASK: Add language golds for RFC-0015, 0016, 0020 from docs/language RFCs (parse→print only; no Helix). Align 11-holes reasons with hole catalog so diagnose warns drop where catalogued. Do NOT edit cwl-parser/cwl-print except tiny hole-catalog imports if required.
-DONE: npm run test:language green; update ROADMAP 0.1 checkboxes; CHANGELOG note under 0.1.x.
-```
-
-## Agent B — Nested if / foreach (RFC-0021 gap)
+### Agent I — Formal ingest gate + land uncommitted 0.3 helpers
 
 ```
-You are CWL Agent B (language pillar). Root: C:\Users\david\AgenticOps\engines\chrysalis-cwl
-Read CWL-RFC-0021 + cwl-parser.mjs + cwl-print.mjs.
+You are CWL Agent I. Workspace/root MUST be C:\Users\david\AgenticOps\engines\chrysalis-cwl (title the chat chrysalis-cwl).
+Read AGENTS.md, docs/language/CWL-PILLAR-HOME.md, docs/history/ROADMAP.md Phase 0.3, docs/history/WEBIR-EXTRACT-PLAN.md.
 
-OWN: cwl-parser.mjs, cwl-print.mjs, fixtures/language-gold/23-nested-control/ (new).
-TASK: Capture nested if / nested foreach stmt lists in AST + print round-trip without inventing loop evaluate (honest surface only). Keep Hono/WebIR as behavior authority. Sync convert via npm run sync:convert.
-DONE: gold + gate green; ROADMAP checkbox; do not touch fixtures 20-22 or CLI.
+OWN: scripts/smoke-cwl-ingest.mjs, package.json test:ingest wiring, fixtures/language-gold/01-literals webir snapshot if useful, hub-t / hub-cwl-* / hub-lift-cwl-webir already in tree — finish + document only.
+TASK: Ensure npm run smoke:cwl-ingest and npm run test:ingest (or fold into test:language as optional second script) are green. Do NOT mass-move packages/webir. Do NOT edit Secure firewall. Bump CHANGELOG/LANGUAGE_VERSION if needed. Prefer committing related files when green.
+DONE: report commands + status; update ROADMAP 0.3 checkboxes you closed.
 ```
 
-## Agent C — Phase 0.2 junctions
+### Agent J — Slice 4 WebIR → CWL emit round-trip
 
 ```
-You are CWL Agent C (language pillar + convert mirrors). Root: C:\Users\david\AgenticOps\engines\chrysalis-cwl
-Read CWL-PILLAR-HOME §7 sync protocol + scripts/sync-to-convert.mjs.
+You are CWL Agent J. Root: C:\Users\david\AgenticOps\engines\chrysalis-cwl (chat title chrysalis-cwl).
+Read WEBIR-EXTRACT-PLAN Slice 4 + emit-cwl-from-hub.mjs / export paths.
 
-OWN: scripts/sync-to-convert.mjs, new scripts/gate-cwl-mirrors.mjs, convert hub-ingest junctions for cwl-parser/print/ui-tree/module-graph/diagnose/fullstack-holes ONLY.
-TASK: Prefer Windows directory/file junctions from convert → chrysalis-cwl for those files; sync:convert no-op when already junctioned; add gate that fails if hashes diverge and not reparse points. Do not break convert WebIR cwl-fmt/ingest. Do not implement Helix.
-DONE: npm run sync:convert + new mirror gate; document in ROADMAP 0.2.
+OWN: emit-cwl-from-hub path + new smoke/gate for WebIR→CWL (pillar-local), optional dual-mode note for cwl-fmt (do not overwrite convert fmt).
+TASK: Prove at least one WebIR→CWL round-trip from this pillar alone (start from 01-literals ingest output). Honest holes OK. No Helix. Don't break convert fat hub-lift.
+DONE: npm script green; ROADMAP Slice 4 / 0.3 checkbox update.
 ```
 
-## Agent D — Phase 0.4 language CLI
+### Agent K — Convert loadWebir package import (no ownership flip)
 
 ```
-You are CWL Agent D (language pillar). Root: C:\Users\david\AgenticOps\engines\chrysalis-cwl
-Read CWL-PILLAR-HOME + package.json scripts.
+You are CWL Agent K (touches convert carefully). CWL root: C:\Users\david\AgenticOps\engines\chrysalis-cwl. Convert: C:\Users\david\AgenticOps\engines\chrysalis-convert.
+Read WEBIR-EXTRACT-PLAN Slice 3 items 3 only — NOT physical git mv of webir.
 
-OWN: scripts/cwl-cli.mjs (or packages/cwl bin), package.json bin/scripts, short docs/language/CWL-CLI.md.
-TASK: CLI: parse | print | fmt | diagnose | check (check = round-trip AST + diagnose over path/glob). No WebIR required. Wire npm run cwl. Do not change parser semantics; call existing modules.
-DONE: CLI works on fixtures/language-gold; ROADMAP 0.4 checkboxes; test:language still green.
+OWN: convert scripts/hub-ingest/shared.mjs loadWebir (or equivalent) to resolve @chrysalis/webir / file URL without process.cwd() hack; docs in WEBIR.md / plan.
+TASK: Smallest safe change so convert AND pillar load WebIR via package/path resolve. Run hub:cwl-language-pillar-smoke after. Do NOT junction-flip packages/webir ownership yet.
+DONE: smoke green; document remaining Slice 3 blockers.
 ```
 
-## Agent E — Phase 0.5 DNA↔CWL bridge contract (docs+fixtures only)
+### Agent L — Phase 1.0 pin path (no real npm publish unless asked)
 
 ```
-You are CWL Agent E (language pillar). Root: C:\Users\david\AgenticOps\engines\chrysalis-cwl
-Read THREE_PILLARS + Secure AGENTS (CWL is THE language; Helix owns DNA enforce).
+You are CWL Agent L. Root: C:\Users\david\AgenticOps\engines\chrysalis-cwl.
+Read docs/language/CWL-PUBLISH.md + ROADMAP Phase 1.0.
 
-OWN: docs/language/CWL-RFC-0022-dna-surface-bridge.md (or appendix), fixtures/language-gold/24-dna-bridge/ (minimal .cwl + expected DNA shape JSON). NO code under chrysalis-security firewall.
-TASK: Document CWL route/page surface ↔ app-dna-v1 route identity mapping; fixture pair only. Helix consumes later.
-DONE: RFC + fixture; ROADMAP 0.5; no Helix implementation.
+OWN: CWL-PUBLISH.md, packages/cwl version sync, short pin notes for convert/Secure AGENTS or docs pointers (file: or version field) — do not actually npm publish unless user said publish.
+TASK: Align @chrysalis/cwl package.json version with LANGUAGE_VERSION.md; document how Convert/Secure will pin; leave publish as checklist.
+DONE: docs + version align; ROADMAP 1.0 partial checkboxes honest.
 ```
-
-## Agent F — Phase 0.3 WebIR extract (first honest slice)
-
-```
-You are CWL Agent F (language pillar). Root: C:\Users\david\AgenticOps\engines\chrysalis-cwl
-Convert webir: C:\Users\david\AgenticOps\engines\chrysalis-convert\packages\webir
-
-OWN: docs/history/WEBIR-EXTRACT-PLAN.md, optional packages/webir junction or package.json dependency experiment, scripts note for ingest.
-TASK: Do NOT mass-move the whole webir tree blindly. Produce a concrete extract plan + the smallest slice that lets cwl-ingest resolve webir from this pillar (junction or workspace dep). If blocked, document blockers precisely. No Helix. Don't break convert.
-DONE: plan doc + either working local ingest smoke or explicit blocker list; ROADMAP 0.3 status update.
-```
-
----
 
 ## Parallel safety
 
 | Agent | May edit |
 | --- | --- |
-| A | fixtures 20–22, holes catalog, 11-holes |
-| B | parser, print, fixture 23 |
-| C | sync/gate scripts, convert junctions only for listed files |
-| D | CLI + package.json bin |
-| E | RFC-0022 + fixture 24 |
-| F | WEBIR plan + minimal package wiring |
+| I | ingest smoke, package.json scripts, gold snapshot, 0.3 docs |
+| J | emit-cwl*, new emit smoke, Slice 4 docs |
+| K | convert shared.loadWebir + CWL plan docs |
+| L | publish docs + packages/cwl version |
 
-Orchestrator merges ROADMAP/CHANGELOG/`LANGUAGE_VERSION` after agents report.
+Orchestrator merges ROADMAP/CHANGELOG after agents report.
