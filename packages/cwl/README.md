@@ -1,7 +1,7 @@
 # Chrysalis Web Language (CWL)
 
 **Package:** `@chrysalis/cwl`  
-**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `0.1.6`)  
+**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `0.1.7`)  
 **Status:** `private: true` — not published yet (Phase 1.0)
 
 ## Purpose
@@ -10,6 +10,7 @@
 
 ## Public API
 
+- **Pin package:** `import { VERSION, pillarRoot, languageVersion } from '@chrysalis/cwl'`
 - Grammar and semantics: **`docs/language/CWL.md`**
 - Constitution: **`docs/language/CWL-PILLAR-HOME.md`**
 - CLI: **`docs/language/CWL-CLI.md`** (`npm run cwl -- …` from repo root)

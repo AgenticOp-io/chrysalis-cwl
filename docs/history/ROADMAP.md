@@ -86,12 +86,15 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ## Phase 1.0 — Published language
 
-- [x] **Partial (prep):** `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md`; publish/pin path documented ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md)) — **not published**
-- [ ] npm (or private registry) package version ≡ `LANGUAGE_VERSION.md` (actual publish)
-- [ ] Convert and Secure pin a CWL release
+- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.7`) — metadata only; package stays `"private": true`
+- [x] Pre-publish pin path documented: sibling workspace / `file:` / env `CHRYSALIS_CWL_ROOT` ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
+- [x] Convert + Secure **`file:` pin** `@chrysalis/cwl` (`npm run test:cwl-pin`)
+- [ ] npm (or private registry) package version ≡ `LANGUAGE_VERSION.md` (**actual publish — still open**)
+- [ ] Convert pins a **registry** CWL release (today: `file:` + junctions)
+- [ ] Secure pins a **registry** CWL release (today: `file:` + sibling / env)
 - [ ] Breaking changes require major bump + RFC migration notes
 
-**Exit 1.0:** External consumers depend on a versioned language artifact, not a random tree copy.
+**Exit 1.0:** External consumers depend on a versioned language artifact, not a random tree copy. **Not exited** — registry publish remains open; local `file:` pins are in place.
 
 ---
 

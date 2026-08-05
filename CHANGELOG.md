@@ -2,10 +2,12 @@
 
 ## 0.1.7 — 2026-08-05
 
+- Convert + Secure pin `@chrysalis/cwl` via `file:../chrysalis-cwl/packages/cwl`; package exports `VERSION` / `pillarRoot()`; `npm run test:cwl-pin` (wired into `test:language`)
 - Phase 0.3 ingest: thin `hub-lift-cwl-webir.mjs` + WebIR helpers; `cwl-ingest` / `export-cwl-webir` use `load-webir.mjs`
 - `npm run smoke:cwl-ingest` / `test:ingest` green on `01-literals` with `expected-webir.json` golden
 - `test:language` unchanged (no WebIR required); optional `test:language:full` = language + ingest-roundtrip
 - Phase 0.3 Slice 4: thin WebIR→CWL emit (`hub-emit-cwl-webir.mjs`) + `npm run smoke:cwl-emit` / `test:ingest-roundtrip` on `01-literals`; pillar `cwl-fmt` remains parse→print (no dual-mode)
+- Phase 1.0 pin path (docs only, no npm publish): `CWL-PUBLISH.md` fleshed for Convert/Secure (`file:` / sibling / `CHRYSALIS_CWL_ROOT`); ROADMAP 1.0 honest (publish still open)
 
 ## 0.1.6 — 2026-08-05
 
