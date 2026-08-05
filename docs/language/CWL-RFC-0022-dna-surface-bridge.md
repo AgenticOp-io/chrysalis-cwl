@@ -150,11 +150,12 @@ Gate: `npm run test:language` covers the `.cwl` only. The JSON is a **contract g
 2. Define host resolution when seeding from CWL (profile vs `"default"`).
 3. Implement path-template **shape** equality for CWL-named vs DNA-`/:id` learned templates.
 4. Decide whether bridge annotations (`cwl_effects`) live in an envelope beside DNA or a Helix-private extension (schema today is `additionalProperties: false` on `app-dna-v1` — keep effects **out** of the certified certificate body unless schema is versioned).
-5. Wire cutover gate: convert/CWL surface ⊆ certified DNA (identity), without forking grammar.
+5. Wire cutover gate: CWL surface ⊆ certified DNA (identity), without forking grammar — **Convert does not own this**.
 
 ## Verify (language pillar)
 
 - [x] RFC published and indexed in `CWL-RFC.md`
 - [x] Fixture pair under `fixtures/language-gold/24-dna-bridge/`
 - [x] `.cwl` passes `npm run test:language` round-trip + diagnose
-- [ ] Secure consumes mapping (Helix — out of scope here)
+- [x] Spine: `npm run smoke:ut-spine` (contract always; Helix when Secure sibling — `smoke:ut-spine:helix`)
+- [x] Secure consumes mapping (`cutover-smoke` / `cwl-bridge`) — Helix owns enforce

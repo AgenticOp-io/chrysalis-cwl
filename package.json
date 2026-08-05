@@ -15,6 +15,8 @@
     "test:cwl-dna-bridge": "node scripts/gate-cwl-dna-bridge.mjs",
     "test:cwl-pin": "node scripts/gate-cwl-pin.mjs",
     "test:language": "npm run test:cwl-roundtrip && npm run test:cwl-diagnose && npm run test:cwl-dna-bridge && npm run test:cwl-pin",
+    "smoke:ut-spine": "node scripts/smoke-ut-spine.mjs",
+    "smoke:ut-spine:helix": "node scripts/smoke-ut-spine.mjs --require-helix",
     "test:ingest": "npm run smoke:cwl-ingest",
     "test:ingest-roundtrip": "npm run smoke:cwl-ingest && npm run smoke:cwl-emit",
     "test:language:full": "npm run test:language && npm run test:ingest-roundtrip",

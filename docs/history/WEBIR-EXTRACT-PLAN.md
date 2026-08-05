@@ -1,7 +1,7 @@
 # WebIR extract plan (Phase 0.3)
 
 **Owner:** CWL Agent F (language pillar); Slice 2A by Agent H (+ G helpers)  
-**Status:** resolve smoke ✅; thin CWL ingest ✅ (`smoke:cwl-ingest` / `test:ingest` + `expected-webir.json`); convert `loadWebir` cwd hack ✅ (Slice 3.3); ownership flip deferred  
+**Status:** resolve smoke ✅; thin CWL ingest ✅ (`smoke:cwl-ingest` / `test:ingest` + `expected-webir.json`); convert `loadWebir` cwd hack ✅ (Slice 3.3); **ownership flip deferred (2026-08-05 link-until-pnpm)**  
 **Constitution:** [`docs/language/CWL-PILLAR-HOME.md`](../language/CWL-PILLAR-HOME.md) §5 / Phase 0.3  
 **Convert package today:** `../chrysalis-convert/packages/webir` (`@chrysalis/webir@2.0.2`)
 
@@ -182,6 +182,7 @@ npm run test:language:full  # test:language + test:ingest (needs link:webir)
 
 | Date | Decision |
 | --- | --- |
+| 2026-08-05 | **Slice 3 deferred — link-until-pnpm.** Keep `@chrysalis/webir` physical home under convert; pillar continues `link:webir` junction. Flip only when Convert has a proven `file:`/`pnpm` consumer path for `runtime-cwl*` without breaking hub ST packs. Exit criteria: (1) convert `import("@chrysalis/webir")` green without cwd hacks on GCE full prove sample, (2) pillar `packages/webir` real tree + convert junction reverse, (3) no PHP_converter leftover as SoR. Until then: **link forever is honest.** |
 | 2026-08-04 | First slice = link + pillar `loadWebir` + resolve smoke; defer hub-lift split and package move |
 | 2026-08-04 | Prefer eventual home of `@chrysalis/webir` in **chrysalis-cwl** (language substrate); convert consumes |
 | 2026-08-04 | Do not copy entire convert `shared.mjs` into the pillar |

@@ -273,6 +273,15 @@ See [`docs/history/ROADMAP.md`](../history/ROADMAP.md) for the working checklist
 5. Sync convert mirrors (`npm run sync:convert`).
 6. Bump `LANGUAGE_VERSION.md` + `CHANGELOG.md` for user-visible language changes.
 7. Refuse Helix firewall features and demo faÃ§ades.
+8. UT↔Helix spine: `npm run smoke:ut-spine` (this pillar) — never re-home in Convert.
+
+## Prove (RFC-0022 spine)
+
+```bash
+npm run test:cwl-dna-bridge   # contract gold
+npm run smoke:ut-spine        # + Helix when Secure sibling present
+npm run smoke:ut-spine:helix  # fail if Secure absent
+```
 
 Starter paste: [`docs/history/NEW_AGENT_STARTER.md`](../history/NEW_AGENT_STARTER.md).
 
@@ -286,7 +295,9 @@ Starter paste: [`docs/history/NEW_AGENT_STARTER.md`](../history/NEW_AGENT_STARTE
 | [`CWL-RFC.md`](./CWL-RFC.md) | RFC index |
 | [`CWL-SURFACE-TAXONOMY.md`](./CWL-SURFACE-TAXONOMY.md) | Named surfaces |
 | [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) | Semver for the language |
-| [`CHANGELOG.md`](../../CHANGELOG.md) | What changed |
+| [`CWL-RFC-0022-dna-surface-bridge.md`](./CWL-RFC-0022-dna-surface-bridge.md) | DNA surface contract |
+| [`UT-CONVERT-SECURE-SPINE.md`](../../../../docs/UT-CONVERT-SECURE-SPINE.md) | CWL-owned spine (not Convert) |
+
 | [`fixtures/language-gold/README.md`](../../fixtures/language-gold/README.md) | Gold map |
 | [`THREE_PILLARS.md`](../../../../docs/THREE_PILLARS.md) | Portfolio map |
 

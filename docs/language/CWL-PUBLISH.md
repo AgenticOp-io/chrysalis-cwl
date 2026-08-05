@@ -7,16 +7,18 @@ Package metadata: [`packages/cwl/package.json`](../../packages/cwl/package.json)
 
 ---
 
-## Today (pre-publish)
+## Exit 1.0 gate (do not publish before)
 
-| Fact | Detail |
+| Gate | Status |
 | --- | --- |
-| Package | `@chrysalis/cwl` stays `"private": true` |
-| Version | Must match `LANGUAGE_VERSION.md` (currently `0.1.7`) — metadata aligned for future pin |
-| Convert | **`file:../chrysalis-cwl/packages/cwl`** pin (devDependency) + junctions / sibling |
-| Secure | **`file:../chrysalis-cwl/packages/cwl`** pin + sibling / `CHRYSALIS_CWL_ROOT` |
+| `LANGUAGE_VERSION.md` ≡ `packages/cwl/package.json` version | Required |
+| `npm run test:language` (+ pin gate) green | Required |
+| Convert + Secure `file:` pins proven (`test:cwl-pin`) | **Done** (pre-publish) |
+| UT ↔ Helix spine consumes CWL gold without forking grammar | **Done** (CWL `smoke:ut-spine` / Secure `cutover-smoke`) |
+| WebIR ownership flip (Slice 3) **or** explicit link-until-pnpm | **Link-until-pnpm** locked 2026-08-05 — flip not a publish blocker for `@chrysalis/cwl` language package |
+| Registry decision (public npm vs private) | Human / orchestrator |
 
-**Version rule:** whenever the language surface changes for consumers, bump **both** `LANGUAGE_VERSION.md` and `packages/cwl/package.json` `"version"` to the same string.
+**Do not `npm publish` in this session.** Keep `"private": true` until Exit 1.0 is intentionally opened.
 
 ---
 

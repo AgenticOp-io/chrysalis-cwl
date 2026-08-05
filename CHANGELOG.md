@@ -8,6 +8,7 @@
 - `test:language` unchanged (no WebIR required); optional `test:language:full` = language + ingest-roundtrip
 - Phase 0.3 Slice 4: thin WebIR→CWL emit (`hub-emit-cwl-webir.mjs`) + `npm run smoke:cwl-emit` / `test:ingest-roundtrip` on `01-literals`; pillar `cwl-fmt` remains parse→print (no dual-mode)
 - Phase 1.0 pin path (docs only, no npm publish): `CWL-PUBLISH.md` fleshed for Convert/Secure (`file:` / sibling / `CHRYSALIS_CWL_ROOT`); ROADMAP 1.0 honest (publish still open)
+- **WebIR Slice 3:** ownership flip deferred — **link-until-pnpm** decision locked in `WEBIR-EXTRACT-PLAN.md` (2026-08-05); UT↔Helix spine is **CWL-owned** (`npm run smoke:ut-spine`), not Convert
 
 ## 0.1.6 — 2026-08-05
 
