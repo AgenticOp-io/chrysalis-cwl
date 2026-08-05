@@ -2,6 +2,8 @@
 
 You own **CWL — THE language of the web** for AgenticOps. Convert and Secure consume you; they do not redefine you.
 
+**Authority / git:** Parent authorizes push — see `AgenticOps/docs/AGENT_AUTHORITY.md` and `AgenticOps/docs/SUBAGENT_PUSH_PROTOCOL.md`.
+
 ## Read first
 
 1. [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md) — **constitution (full)**
