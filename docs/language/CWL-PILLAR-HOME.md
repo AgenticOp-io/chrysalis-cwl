@@ -1,4 +1,4 @@
-﻿# CWL â€” THE language of the web
+﻿# CWL — THE language of the web
 
 **Home:** `engines/chrysalis-cwl`  
 **Repo:** https://github.com/AgenticOp-io/chrysalis-cwl  
@@ -18,7 +18,7 @@ It is the canonical, human-readable way to say what a web application *is*:
 - Page data loaders (**CWL Data**)
 - Component / island UI (**CWL UI**)
 - Middleware and effects (**CWL Effects**)
-- Explicit unsupported regions (**holes** â€” never silent invention)
+- Explicit unsupported regions (**holes** — never silent invention)
 
 CWL maps **1:1** to **WebIR**. WebIR is the semantic IR; CWL is the language surface. Emit targets (Hono, Fastify, Next, `runtime-cwl`, Chimera) and oracle verify pull from that pair.
 
@@ -49,7 +49,7 @@ Neither owns the grammar. Both **need** the language to be real, stable, and hon
 | Need | Without CWL | With CWL |
 | --- | --- | --- |
 | Lift target | Ad-hoc emit per framework | One authored surface â†’ many emits |
-| Hole language | Vague â€œTODOâ€ / silent stubs | Typed `hole reason;` â€” honest budget |
+| Hole language | Vague â€œTODOâ€ / silent stubs | Typed `hole reason;` — honest budget |
 | Verify / oracle | Compare opaque JS trees | Replay against WebIR/CWL contract |
 | Authoring | Edit generated Hono/Next forever | Edit `.cwl`, re-emit |
 | Product law | Easy to ship demo faÃ§ades | FaÃ§ades fail the language bar |
@@ -62,7 +62,7 @@ Pointer in convert: [`chrysalis-convert/docs/CWL-PILLAR-HOME.md`](../../../chrys
 
 ## 3. Why Secure needs CWL
 
-Helix enforces **traffic DNA** (`app-dna-v1`) out of the box â€” it does not load the convert monorepo to protect a host.
+Helix enforces **traffic DNA** (`app-dna-v1`) out of the box — it does not load the convert monorepo to protect a host.
 
 Secure still needs CWL when:
 
@@ -101,9 +101,9 @@ RFC index: [`CWL-RFC.md`](./CWL-RFC.md).
 | Name | Role |
 | --- | --- |
 | Chimera | Migration runtime shell |
-| Emit backends | Hono / Fastify / Next â€” **targets** |
-| Databases / queues / vendor SDKs | Infra â€” CWL declares *app* surface, not storage engines |
-| Traffic DNA | Secure identity artifact â€” may *bridge* to CWL |
+| Emit backends | Hono / Fastify / Next — **targets** |
+| Databases / queues / vendor SDKs | Infra — CWL declares *app* surface, not storage engines |
+| Traffic DNA | Secure identity artifact — may *bridge* to CWL |
 
 ---
 
@@ -134,15 +134,15 @@ RFC index: [`CWL-RFC.md`](./CWL-RFC.md).
 | `@chrysalis/runtime-cwl-worker` | Worker runtime |
 | `@chrysalis/emit-runtime-cwl` | Emit deployable Node project from CWL |
 
-WebIR (`@chrysalis/webir`) still lives under **convert** until extracted â€” shared substrate, not a second language.
+WebIR (`@chrysalis/webir`) still lives under **convert** until extracted — shared substrate, not a second language.
 
 ### Core scripts (language-owned)
 
 | Script | Role | Convert dependency |
 | --- | --- | --- |
-| `cwl-parser.mjs` | Parse `.cwl` â†’ AST | **Mirror** â€” sync from here |
-| `cwl-print.mjs` | AST â†’ `.cwl` | **Mirror** â€” sync from here |
-| `cwl-ui-tree.mjs` | UI tree parse | **Mirror** â€” sync from here |
+| `cwl-parser.mjs` | Parse `.cwl` â†’ AST | **Mirror** — sync from here |
+| `cwl-print.mjs` | AST â†’ `.cwl` | **Mirror** — sync from here |
+| `cwl-ui-tree.mjs` | UI tree parse | **Mirror** — sync from here |
 | `cwl-module-graph.mjs` | Multi-file resolve | **Mirror** |
 | `cwl-diagnose.mjs` | Authoring diagnostics | **Mirror** |
 | `cwl-fullstack-holes.mjs` | Hole catalog | **Mirror** |
@@ -155,12 +155,12 @@ WebIR (`@chrysalis/webir`) still lives under **convert** until extracted â€�
 
 ## 6. Laws (language)
 
-1. **Honest holes** â€” unsupported behavior is `hole reason;`, never silent invention or demo faÃ§ades.
-2. **CWL â†” WebIR authority** â€” no lossy â€œregex liftâ€ as the semantic path.
-3. **Version breaking changes** â€” bump `LANGUAGE_VERSION.md` *before* landing breaks.
-4. **Judge as a language** â€” RFCs + fixtures + tooling, not one customer POC (WISP showcases; it does not define CWL).
-5. **One source of truth** â€” this tree owns semantics; Convert/Secure pull or bridge.
-6. **Same bar as the portfolio** â€” propose Â· verify dispose Â· honest holes Â· no faÃ§ades.
+1. **Honest holes** — unsupported behavior is `hole reason;`, never silent invention or demo faÃ§ades.
+2. **CWL â†” WebIR authority** — no lossy â€œregex liftâ€ as the semantic path.
+3. **Version breaking changes** — bump `LANGUAGE_VERSION.md` *before* landing breaks.
+4. **Judge as a language** — RFCs + fixtures + tooling, not one customer POC (WISP showcases; it does not define CWL).
+5. **One source of truth** — this tree owns semantics; Convert/Secure pull or bridge.
+6. **Same bar as the portfolio** — propose Â· verify dispose Â· honest holes Â· no faÃ§ades.
 
 ---
 
@@ -179,7 +179,7 @@ Language behavior is edited **here**. Convert copies are mirrors until junctions
 
 ### Sync carefully
 
-- `hub-cwl-path-params.mjs` â€” keep `extractPathParamsFromCwlPath` identical; convert may retain `cwlPathParamsForWebir`
+- `hub-cwl-path-params.mjs` — keep `extractPathParamsFromCwlPath` identical; convert may retain `cwlPathParamsForWebir`
 - Do **not** overwrite convert `cwl-fmt.mjs` with pillar local fmt without an explicit dual-mode decision
 
 ### Procedure
@@ -215,7 +215,7 @@ npm run test:cwl-mirrors       # convert mirrors identical or reparse points
 | Diagnose | No parse/diagnose **errors** (warns allowed for honest holes / hints) |
 | Mirrors | Convert always-sync scripts are byte-identical **or** reparse points into this pillar |
 
-Convert product proves (complete-conversion, hub golds) are **consumer** gates â€” they must not redefine grammar.
+Convert product proves (complete-conversion, hub golds) are **consumer** gates — they must not redefine grammar.
 
 ---
 
@@ -231,9 +231,9 @@ Convert product proves (complete-conversion, hub golds) are **consumer** gates �
 | Version + changelog | Yes |
 | Documented ownership + sync protocol | Yes (this file) |
 | Local fmt without WebIR | Yes |
-| Ingest/fmt via WebIR without convert checkout | No â€” blocked on WebIR extract |
-| Junctions instead of copies | In progress (0.2) â€” six always-sync hub-ingest scripts file-symlinked on Windows; `test:cwl-mirrors` gate; copies still used when no reparse |
-| Published npm language version â‰¡ `LANGUAGE_VERSION.md` | No |
+| Ingest/fmt via WebIR without convert checkout | Partial — `link:webir` + `test:ingest` / `smoke:cwl-ingest` (01-literals + `expected-webir.json`); emit round-trip + ownership flip still open |
+| Junctions instead of copies | In progress (0.2) — six always-sync hub-ingest scripts file-symlinked on Windows; `test:cwl-mirrors` gate; copies still used when no reparse |
+| Published npm language version ≡ `LANGUAGE_VERSION.md` | No |
 | Nested `if` / nested `foreach` stmt lists | No (RFC-0021 remaining gap) |
 | DNAâ†”CWL bridge library in Secure | No (Secure later) |
 
@@ -246,7 +246,7 @@ A surface is **language-ready** when:
 3. Semantics documented in `CWL.md` / taxonomy  
 4. Breaking changes versioned  
 
-**Runtime/emit/verify depth** can lag the language bar â€” Convert deepens verify; this pillar does not wait on one POC to define syntax.
+**Runtime/emit/verify depth** can lag the language bar — Convert deepens verify; this pillar does not wait on one POC to define syntax.
 
 ---
 
@@ -294,4 +294,4 @@ Starter paste: [`docs/history/NEW_AGENT_STARTER.md`](../history/NEW_AGENT_STARTE
 
 ## One line
 
-**CWL is THE language of the web. Convert lifts apps into it. Secure proves live identity â€” and speaks CWL when bridging surface to DNA.**
+**CWL is THE language of the web. Convert lifts apps into it. Secure proves live identity — and speaks CWL when bridging surface to DNA.**
