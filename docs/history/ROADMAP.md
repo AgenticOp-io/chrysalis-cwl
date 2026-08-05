@@ -37,6 +37,7 @@ CWL is **THE language of the web**. Convert and Secure pull; they do not own the
 - [x] CI check: mirrored files identical **or** are reparse points — `npm run test:cwl-mirrors` (`scripts/gate-cwl-mirrors.mjs`)
 - [x] `sync:convert` becomes no-op when junctions present; still copies on platforms without junctions (`junction-noop` in report)
 - [x] Confirm convert product gates still green after junction cutover (`hub:cwl-language-pillar-smoke` G10123 OK on 0.1.6)
+- [x] Durable setup: `npm run setup:mirrors` (`scripts/setup-convert-mirrors.mjs`) recreates the six convert→cwl file symlinks after fresh checkout; document `core.symlinks` / CI copy fallback in `CWL-PILLAR-HOME` §7
 
 **Exit 0.2:** No divergent parser/print/ui-tree copies between pillars.
 
@@ -44,11 +45,13 @@ CWL is **THE language of the web**. Convert and Secure pull; they do not own the
 
 ## Phase 0.3 — WebIR with the language
 
-**Plan:** [`WEBIR-EXTRACT-PLAN.md`](./WEBIR-EXTRACT-PLAN.md)
+**Plan:** [`WEBIR-EXTRACT-PLAN.md`](./WEBIR-EXTRACT-PLAN.md) · home story: [`packages/WEBIR.md`](../../packages/WEBIR.md)
 
-- [x] **Partial:** resolve `@chrysalis/webir` from this pillar via `packages/webir` link + `load-webir.mjs` (`npm run link:webir` / `npm run smoke:webir`) — no convert `cwd` hack for resolve
-- [ ] Extract or vendor `@chrysalis/webir` so this pillar can run **ingest** without convert-only path hacks (blocked on hub-lift / middleware / effects helpers — see plan)
-- [ ] Pillar `cwl-ingest` + optional WebIR fmt mode green under `npm run test:language` (or `test:ingest`)
+- [x] **Ownership (homeable):** `@chrysalis/webir` resolves from this pillar via `packages/webir` junction + `load-webir.mjs` (`npm run link:webir` / `npm run smoke:webir`) — no convert `cwd` hack for resolve; committed story in `packages/WEBIR.md`
+- [x] **Partial (Agent G):** CWL WebIR helpers in-pillar — `hub-t.mjs`, `hub-cwl-{middleware,auth-presets,effects}.mjs`, `cwlPathParamsForWebir` (no hub-lift); synced via `CWL_WEBIR_HELPERS`
+- [x] **Partial (Agent H):** thin `hub-lift-cwl-webir.mjs` (CWL-only; no COBOL/fat lift); `cwl-ingest` + `export-cwl-webir` use local helpers/`load-webir`; `npm run smoke:cwl-ingest` green on `01-literals`
+- [ ] **Convert flip:** physical tree in chrysalis-cwl; convert `packages/webir` → cwl (deferred — unsafe for convert pnpm until Slice 3 checklist; see plan)
+- [ ] Pillar ingest under formal `test:language` / `test:ingest` + WebIR → CWL emit round-trip (Slice 4)
 - [ ] Convert depends on shared webir package (not a private fork)
 
 **Exit 0.3:** Parse, print, ingest, and at least one WebIR round-trip path runnable from `chrysalis-cwl` alone.
@@ -80,7 +83,8 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ## Phase 1.0 — Published language
 
-- [ ] npm (or private registry) package version ≡ `LANGUAGE_VERSION.md`
+- [x] **Partial (prep):** `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md`; publish/pin path documented ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md)) — **not published**
+- [ ] npm (or private registry) package version ≡ `LANGUAGE_VERSION.md` (actual publish)
 - [ ] Convert and Secure pin a CWL release
 - [ ] Breaking changes require major bump + RFC migration notes
 

@@ -9,7 +9,8 @@ You own **CWL — THE language of the web** for AgenticOps. Convert and Secure c
 3. [`docs/history/ROADMAP.md`](./docs/history/ROADMAP.md)
 4. [`README.md`](./README.md)
 5. [`docs/language/CWL.md`](./docs/language/CWL.md)
-6. `AgenticOps/docs/THREE_PILLARS.md`
+6. [`docs/language/CWL-PUBLISH.md`](./docs/language/CWL-PUBLISH.md) — publish later; Convert/Secure pin (`file:` vs registry)
+7. `AgenticOps/docs/THREE_PILLARS.md`
 
 ## Mission
 
@@ -29,4 +30,4 @@ Make CWL the **canonical** way to say what a web app is — so conversion, secur
 - Allow convert-only forks of parsers to become the “real” CWL  
 - Break convert by deleting shared paths without updating convert  
 
-WebIR package still lives under convert for now (`packages/webir`); treat it as shared substrate until Phase 0.3 extract.
+WebIR (`@chrysalis/webir`) is **homeable** from this pillar via `packages/webir` junction (`npm run link:webir` / `smoke:webir`); physical tree still under convert until Phase 0.3 ownership flip — see `packages/WEBIR.md`.

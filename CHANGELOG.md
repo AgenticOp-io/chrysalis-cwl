@@ -5,6 +5,7 @@
 - RFC-0022 DNA surface bridge: `cwl-dna-seed.mjs` + `npm run test:cwl-dna-bridge` (seed ≡ `24-dna-bridge/expected-dna.json`)
 - `test:language` now includes DNA bridge contract gate
 - Phase 0.2–0.5 tooling landed in tree: convert script junctions + `test:cwl-mirrors`, pillar CLI (`cwl` / `check`), WebIR resolve link + smoke, RFC-0022 docs/fixture
+- Phase 1.0 prep: `@chrysalis/cwl` package version aligned to `LANGUAGE_VERSION.md` (`0.1.6`); publish/pin path in `docs/language/CWL-PUBLISH.md` (still `private`, not published)
 
 ## 0.1.5 — 2026-08-05
 
