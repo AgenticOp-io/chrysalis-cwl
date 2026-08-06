@@ -1,5 +1,5 @@
 ---
-description: CWL is THE language of the web — Convert and Secure consume it
+description: CWL is THE language of the web — this repo/chat is CWL-only
 alwaysApply: true
 ---
 
@@ -11,15 +11,17 @@ CWL is not a side format. It is the **canonical web language** for Chrysalis: wh
 
 | Pillar | Relationship to CWL |
 | --- | --- |
-| **This repo (`chrysalis-cwl`)** | Owns grammar, RFCs, parser/print, fixtures, versioning |
-| **Convert** | Translates origin ↔ WebIR/CWL ↔ emit. Pulls language from here |
-| **Secure (Helix)** | Protects with traffic DNA; bridges to CWL when comparing/seeding surface — does not fork the language |
+| **This repo (`chrysalis-cwl`)** | Owns grammar, RFCs, parser/print, fixtures, versioning — **edit only here** |
+| **Convert** | Separate agent — translates origin ↔ WebIR/CWL ↔ emit; pulls language from here |
+| **Secure (Helix)** | Separate agent — traffic DNA; optional CWL bridge; does not fork the language |
 
 ## Rules
 
-- Land language fixes **here first**, then `npm run sync:convert`.
+- **CWL-only workspace:** do not edit `chrysalis-convert` or `chrysalis-security` from this chat.
+- Land language fixes **here first**; hand off sync/consume to Convert / Secure agents.
 - Prefer `fixtures/language-gold` + RFCs over hub/WISP product smokes as language proof.
 - Run `npm run test:language` before claiming done.
-- Do not implement Helix firewall features here.
+- Do not implement Helix firewall features or Convert product gates here.
 - Do not let convert-only forks become the “real” CWL.
 - Judge work as a **language** (spec, fixtures, tooling), not a single customer POC.
+- Cross-lane needs → Requested CHANGELOG for the other agent; stop.
