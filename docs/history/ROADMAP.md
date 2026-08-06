@@ -52,6 +52,8 @@ CWL is **THE language of the web**. Convert and Secure pull; they do not own the
 - [x] **Partial (Agent H):** thin `hub-lift-cwl-webir.mjs` (CWL-only; no COBOL/fat lift); `cwl-ingest` + `export-cwl-webir` use local helpers/`load-webir`; `npm run smoke:cwl-ingest` green on `01-literals`
 - [x] **Partial (Agent I):** `test:ingest` (= `smoke:cwl-ingest`) + `01-literals/expected-webir.json`; `test:language` stays WebIR-free; optional `test:language:full`
 - [x] **Partial (Agent J / Slice 4):** thin `hub-emit-cwl-webir.mjs` WebIR→CWL; `npm run smoke:cwl-emit` + `test:ingest-roundtrip` on `01-literals`; pillar `cwl-fmt` stays parse→print (dual-mode deferred)
+- [x] **Ingest matrix:** `01-literals` + `02-path-params` + `24-dna-bridge` goldens (`npm run smoke:cwl-ingest-matrix`)
+- [x] **UT evidence pack:** `npm run smoke:ut-evidence` → `reports/ut-spine/EVIDENCE.md`
 - [ ] **Convert flip:** physical tree in chrysalis-cwl; convert `packages/webir` → cwl (deferred — unsafe for convert pnpm until Slice 3 checklist; see plan)
 - [ ] Dual-mode `cwl-fmt` (explicit with convert; do not overwrite convert WebIR fmt)
 - [ ] Convert depends on shared webir package (not a private fork)
@@ -79,6 +81,7 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 - [x] RFC or appendix: CWL route/page surface ↔ `app-dna-v1` route identity mapping ([RFC-0022](../language/CWL-RFC-0022-dna-surface-bridge.md))
 - [x] Fixture pair: minimal `.cwl` + expected DNA shape (no firewall code here) (`fixtures/language-gold/24-dna-bridge/`)
 - [x] Secure consumes mapping; does not fork grammar (`cwl-dna-seed` in CWL; Helix CLI seeds via sibling import)
+- [x] UT spine + evidence pack (`smoke:ut-spine` / `smoke:ut-evidence`) — Convert consumes via `hub:cwl-helix-cutover-smoke` only
 
 **Exit 0.5:** Documented, fixture-backed bridge contract; Helix owns enforcement.
 

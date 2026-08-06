@@ -11,3 +11,6 @@ data/
 # Local Phase 0.3 pillar home for @chrysalis/webir (npm run link:webir).
 # Junction only — committed story: packages/WEBIR.md. Do not commit the reparse point.
 packages/webir
+
+# Local prove artifacts
+reports/

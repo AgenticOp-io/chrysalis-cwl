@@ -9,7 +9,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | Dir | Surface / topic | RFC |
 | --- | --- | --- |
 | `01-literals` | API literal returns (+ `expected-webir.json` ingest gold) | core |
-| `02-path-params` | Path `:id` | 0002 |
+| `02-path-params` | Path `:id` (+ `expected-webir.json`) | 0002 |
 | `03-query-params` | `query` | 0003 |
 | `04-request-context` | header / cookie | 0004 |
 | `05-request-body` | `body` + `use json` | 0005 |
@@ -30,7 +30,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `20-probes` | production readiness probe surfaces | 0015 |
 | `21-form-action` | form-action catalogued hole | 0016 |
 | `22-effects-middleware` | effects middleware chains | 0020 |
-| `24-dna-bridge` | CWL surface ↔ `app-dna-v1` seed shape (+ `expected-dna.json`) | 0022 |
+| `24-dna-bridge` | CWL surface ↔ `app-dna-v1` seed shape (+ `expected-dna.json` + `expected-webir.json`) | 0022 |
 
 ## Parseable subset notes (0.1.5)
 
