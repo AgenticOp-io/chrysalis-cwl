@@ -2,7 +2,7 @@
 
 **Status:** CWL side prepared; **physical flip waits on Convert agent**  
 **Lock:** link-until-pnpm (2026-08-05) until Convert confirms pnpm consumers.  
-**Refreshed:** 2026-08-07 (CWL `0.1.8` boundary-break)
+**Refreshed:** 2026-08-08 (CWL `0.1.9`; pillars private — `AgenticOp-io/chrysalis` is private)
 
 ## CWL has done
 

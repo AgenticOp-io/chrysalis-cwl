@@ -8,6 +8,7 @@ import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { diagnoseCwlSource } from "./hub-ingest/cwl-diagnose.mjs";
 import { formatCwlFile, formatCwlSource } from "./hub-ingest/cwl-fmt.mjs";
+import { mapDiagnoseSource } from "./hub-ingest/cwl-lsp-map.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 import { canonicalizeCwlModule, printCwlModule } from "./hub-ingest/cwl-print.mjs";
 
@@ -21,12 +22,16 @@ Commands:
   fmt <file.cwl> [--write|--stdout]
                                 Format via parse→print (default: --write)
   diagnose <file.cwl>           Authoring diagnostics JSON
+  diagnose --stdin [--lsp]      Diagnose buffer from stdin (optional LSP map)
   check <file-or-dir>           Round-trip AST equality + diagnose
                                 (recurses directories for *.cwl)
 
 Options:
   -h, --help                    Show this help
   --json                        Force JSON report (default for parse/diagnose/check/fmt)
+  --stdin                       Read source from stdin (diagnose/fmt)
+  --lsp                         With diagnose: emit editor/LSP map shape
+  --name <path>                 Virtual path for --stdin (default: stdin.cwl)
 
 Examples:
   npm run cwl -- parse fixtures/language-gold/01-literals/routes.cwl
@@ -141,12 +146,26 @@ function parseArgs(argv) {
   const flags = new Set();
   /** @type {string[]} */
   const positional = [];
-  for (const a of argv) {
+  /** @type {Record<string, string>} */
+  const opts = {};
+  for (let i = 0; i < argv.length; i += 1) {
+    const a = argv[i];
     if (a === "-h" || a === "--help") flags.add("help");
-    else if (a.startsWith("--")) flags.add(a.slice(2));
+    else if (a === "--name") {
+      opts.name = argv[++i] ?? "";
+    } else if (a.startsWith("--name=")) {
+      opts.name = a.slice("--name=".length);
+    } else if (a.startsWith("--")) flags.add(a.slice(2));
     else positional.push(a);
   }
-  return { flags, positional };
+  return { flags, positional, opts };
+}
+
+/** @returns {Promise<string>} */
+async function readStdin() {
+  const chunks = [];
+  for await (const chunk of process.stdin) chunks.push(chunk);
+  return Buffer.concat(chunks).toString("utf8");
 }
 
 function printJson(obj) {
@@ -158,7 +177,7 @@ function printJson(obj) {
  * @param {string[]} positional
  * @param {Set<string>} flags
  */
-async function runCommand(cmd, positional, flags) {
+async function runCommand(cmd, positional, flags, opts = {}) {
   switch (cmd) {
     case "parse": {
       const file = positional[0];
@@ -185,8 +204,15 @@ async function runCommand(cmd, positional, flags) {
       return 0;
     }
     case "fmt": {
+      if (flags.has("stdin")) {
+        const name = opts.name || "stdin.cwl";
+        const source = await readStdin();
+        const formatted = formatCwlSource(source, name);
+        process.stdout.write(formatted.endsWith("\n") ? formatted : `${formatted}\n`);
+        return 0;
+      }
       const file = positional[0];
-      if (!file) throw new Error("fmt requires <file.cwl>");
+      if (!file) throw new Error("fmt requires <file.cwl> or --stdin");
       const abs = resolve(file);
       const write = flags.has("write") || (!flags.has("stdout") && !flags.has("check"));
       if (flags.has("stdout")) {
@@ -214,11 +240,22 @@ async function runCommand(cmd, positional, flags) {
       return 0;
     }
     case "diagnose": {
+      if (flags.has("stdin")) {
+        const name = opts.name || "stdin.cwl";
+        const source = await readStdin();
+        const report = flags.has("lsp")
+          ? mapDiagnoseSource(source, name, `file://${name}`)
+          : diagnoseCwlSource(source, name);
+        printJson(report);
+        return report.ok ? 0 : 1;
+      }
       const file = positional[0];
-      if (!file) throw new Error("diagnose requires <file.cwl>");
+      if (!file) throw new Error("diagnose requires <file.cwl> or --stdin");
       const abs = resolve(file);
       const source = await readFile(abs, "utf8");
-      const report = diagnoseCwlSource(source, abs);
+      const report = flags.has("lsp")
+        ? mapDiagnoseSource(source, abs, `file://${abs.replace(/\\/g, "/")}`)
+        : diagnoseCwlSource(source, abs);
       printJson(report);
       return report.ok ? 0 : 1;
     }
@@ -269,7 +306,7 @@ async function runCommand(cmd, positional, flags) {
 }
 
 async function main() {
-  const { flags, positional } = parseArgs(process.argv.slice(2));
+  const { flags, positional, opts } = parseArgs(process.argv.slice(2));
   if (flags.has("help") || positional.length === 0) {
     process.stdout.write(USAGE);
     process.exit(positional.length === 0 && !flags.has("help") ? 2 : 0);
@@ -277,7 +314,7 @@ async function main() {
 
   const [cmd, ...rest] = positional;
   try {
-    const code = await runCommand(cmd, rest, flags);
+    const code = await runCommand(cmd, rest, flags, opts);
     process.exit(code);
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);

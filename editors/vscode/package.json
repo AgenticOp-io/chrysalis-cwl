@@ -1,9 +1,10 @@
 {
   "name": "cwl-lsp",
   "displayName": "Chrysalis Web Language",
-  "description": "CWL language support — TextMate grammar + check task (LSP server later).",
-  "version": "0.1.8",
+  "description": "CWL language support — TextMate, push diagnostics, format (private pillar).",
+  "version": "0.1.9",
   "publisher": "agenticop",
+  "private": true,
   "engines": {
     "vscode": "^1.85.0"
   },

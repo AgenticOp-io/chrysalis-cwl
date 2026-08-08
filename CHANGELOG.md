@@ -1,5 +1,22 @@
 # CWL language changelog
 
+## 0.1.9 — 2026-08-08
+
+- **Private pillars:** GitHub `chrysalis-cwl`, `chrysalis` (Convert), `chrysalis-security` set private; docs in `PRIVATE-PILLARS.md`
+- DNA authoring slice: diagnose → LSP map (`cwl-lsp-map.mjs`) + `test:cwl-lsp-map` → `CWL_LSP_MAP_OK`
+- CLI: `diagnose --stdin [--lsp]`, `fmt --stdin` for editor buffers
+- VS Code extension: push diagnostics + document formatting (still not Marketplace / not full LSP server)
+- Private-first publish posture: Exit 1.0 defaults to private registry, not public npm
+- Plan: `docs/history/DNA-EVOLUTION-0.1.9.md`
+
+### Requested (Convert)
+
+- WebIR physical flip still open (`WEBIR-FLIP-REQUESTED.md`); pull `0.1.9` junctions after land; repo is now **private**
+
+### Requested (Secure)
+
+- Keep `file:` pin; repo is now **private**; no grammar forks
+
 ## 0.1.8 — 2026-08-07
 
 - Boundary-break execution: ingest matrix covers all `language-gold/*/routes.cwl` with `expected-webir.json`

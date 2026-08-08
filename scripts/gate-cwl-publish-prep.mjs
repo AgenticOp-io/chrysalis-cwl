@@ -25,8 +25,10 @@ ok("package-name", pkg.name === "@chrysalis/cwl");
 ok("package-exports", !!pkg.exports?.["."]);
 ok("package-bin", !!pkg.bin?.cwl);
 ok("publish-doc", existsSync(join(ROOT, "docs/language/CWL-PUBLISH.md")));
+ok("private-pillars-doc", existsSync(join(ROOT, "docs/history/PRIVATE-PILLARS.md")));
 ok("rfc-0023", existsSync(join(ROOT, "docs/language/CWL-RFC-0023-deploy-dna-profiles.md")));
 ok("rfc-0024", existsSync(join(ROOT, "docs/language/CWL-RFC-0024-island-kinds.md")));
+ok("lsp-map-module", existsSync(join(ROOT, "scripts/hub-ingest/cwl-lsp-map.mjs")));
 const deployPath = join(
   ROOT,
   "fixtures/language-gold/24-dna-bridge/deploy-profile.json",

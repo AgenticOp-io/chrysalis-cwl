@@ -89,19 +89,32 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ---
 
-## Phase 1.0 — Published language
+## Phase 0.6 — Private-first authoring (DNA gravity)
 
-- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.8`) — metadata only; package stays `"private": true`
+- [x] Pillar GitHub repos private ([`PRIVATE-PILLARS.md`](./PRIVATE-PILLARS.md))
+- [x] Diagnose → LSP map + `test:cwl-lsp-map` ([`DNA-EVOLUTION-0.1.9.md`](./DNA-EVOLUTION-0.1.9.md))
+- [x] Editor push-diagnostics + format DocumentProvider (`editors/vscode`)
+- [x] CLI `--stdin` for unsaved buffers
+- [ ] Full stdio Language Server (completion / hover)
+
+**Exit 0.6:** Authors get live diagnostics/fmt inside the private pillar without Convert.
+
+---
+
+## Phase 1.0 — Published language (private registry)
+
+- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.9`) — metadata only; package stays `"private": true`
 - [x] Pre-publish pin path documented: sibling workspace / `file:` / env `CHRYSALIS_CWL_ROOT` ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
 - [x] Convert + Secure **`file:` pin** `@chrysalis/cwl` (`npm run test:cwl-pin`)
 - [x] Publish **prep gate** `npm run test:cwl-publish-prep` (package stays `"private": true`)
-- [x] Editor scaffold + CI language workflow (LSP full server still open)
-- [ ] npm (or private registry) package version ≡ `LANGUAGE_VERSION.md` (**actual publish — still open**)
-- [ ] Convert pins a **registry** CWL release (today: `file:` + junctions)
-- [ ] Secure pins a **registry** CWL release (today: `file:` + sibling / env)
+- [x] Editor diagnostics v0 + CI language workflow (full LSP server still open)
+- [x] Private-first registry decision documented (no public npm by default)
+- [ ] Private registry package version ≡ `LANGUAGE_VERSION.md` (**actual publish — still open**)
+- [ ] Convert pins a **private registry** CWL release (today: `file:` + junctions)
+- [ ] Secure pins a **private registry** CWL release (today: `file:` + sibling / env)
 - [ ] Breaking changes require major bump + RFC migration notes
 
-**Exit 1.0:** External consumers depend on a versioned language artifact, not a random tree copy. **Not exited** — registry publish remains open; local `file:` pins are in place.
+**Exit 1.0:** Consumers depend on a versioned **private** language artifact, not a random tree copy. **Not exited** — registry publish remains open; local `file:` pins are in place.
 
 ---
 

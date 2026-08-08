@@ -16,9 +16,9 @@ Package metadata: [`packages/cwl/package.json`](../../packages/cwl/package.json)
 | Convert + Secure `file:` pins proven (`test:cwl-pin`) | **Done** (pre-publish) |
 | UT ↔ Helix spine consumes CWL gold without forking grammar | **Done** (CWL `smoke:ut-spine` / Secure `cutover-smoke`) |
 | WebIR ownership flip (Slice 3) **or** explicit link-until-pnpm | **Link-until-pnpm** locked 2026-08-05 — flip not a publish blocker for `@chrysalis/cwl` language package |
-| Registry decision (public npm vs private) | Human / orchestrator |
+| Registry decision | **Private registry only by default** (pillars are private GitHub — see [`PRIVATE-PILLARS.md`](../history/PRIVATE-PILLARS.md)). Public npm requires explicit human reopen. |
 
-**Do not `npm publish` in this session.** Keep `"private": true` until Exit 1.0 is intentionally opened.
+**Do not `npm publish` in this session.** Keep `"private": true` until Exit 1.0 is intentionally opened. Prefer private registry over public npm.
 
 ---
 
@@ -28,10 +28,10 @@ Agents do **not** run `npm publish` by default. When Exit 1.0 is intentionally o
 
 1. Confirm `packages/cwl/package.json` `"version"` ≡ `LANGUAGE_VERSION.md`.
 2. Gate: `npm run test:language` green; `CHANGELOG.md` entry for the release.
-3. Decide registry (public npm vs private AgenticOps registry).
-4. Set `"private": false` (or `publishConfig`) **only for the publish commit**.
+3. Default: private AgenticOps / GitHub Packages registry. Public npm only if human reopens distribution.
+4. Keep `"private": true` for private registries that allow publish; or set `publishConfig` for the private registry scope.
 5. From `packages/cwl` (or workspace root with `-w @chrysalis/cwl`):  
-   `npm publish --access public` (or scoped private registry equivalent).
+   `npm publish` to the **private** registry (do not `--access public` unless distribution was reopened).
 6. Publish artifact: `@chrysalis/cwl@<LANGUAGE_VERSION>`.
 7. Tag git `cwl-v<LANGUAGE_VERSION>` (optional but preferred).
 8. Leave a follow-up: Convert / Secure PRs that switch to the registry pin (below).
