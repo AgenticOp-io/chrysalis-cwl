@@ -1,0 +1,36 @@
+{
+  "name": "cwl-lsp",
+  "displayName": "Chrysalis Web Language",
+  "description": "CWL language support — TextMate grammar + check task (LSP server later).",
+  "version": "0.1.8",
+  "publisher": "agenticop",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Programming Languages"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "cwl",
+        "aliases": ["Chrysalis Web Language", "CWL"],
+        "extensions": [".cwl"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cwl",
+        "scopeName": "source.cwl",
+        "path": "./syntaxes/cwl.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "cwl.checkActive",
+        "title": "CWL: Check active file"
+      }
+    ]
+  },
+  "main": "./extension.js",
+  "activationEvents": ["onLanguage:cwl"]
+}

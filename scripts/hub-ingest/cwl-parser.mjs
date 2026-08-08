@@ -443,7 +443,10 @@ export function parseCwlModule(source, file) {
     const earlyGuards = [];
     /** @type {Array<{ collection: string, key: string | null, item: string, body: object | null, stmts: object[] }>} */
     const foreachBindings = [];
+    /** @type {string[]} Attachment / body hole reasons (RFC-0012/0024); kept when a later return sets body. */
+    const attachmentHoles = [];
     let body = { kind: "hole", reason: "cwl:empty-handler" };
+    let sawReturn = false;
     const handlerBindings = () => ({
       path: handlerPathParams,
       query: handlerQueryParams,
@@ -529,6 +532,7 @@ export function parseCwlModule(source, file) {
         } else {
           body = { kind: "hole", reason: "cwl:invalid-html-return" };
         }
+        sawReturn = true;
         continue;
       }
       if (UI_RETURN_RE.test(inner) || /^return\s+ui\s+[A-Za-z]/.test(inner)) {
@@ -544,6 +548,7 @@ export function parseCwlModule(source, file) {
         } else {
           body = { kind: "hole", reason: `cwl:${uiParsed.error ?? "invalid-ui-return"}` };
         }
+        sawReturn = true;
         continue;
       }
       const loadM = LOAD_RE.exec(inner);
@@ -604,11 +609,17 @@ export function parseCwlModule(source, file) {
         } else {
           body = { kind: "hole", reason: `cwl:${parsed.error}` };
         }
+        sawReturn = true;
         continue;
       }
       const hol = HOLE_RE.exec(inner);
       if (hol) {
-        body = { kind: "hole", reason: hol[1] };
+        const reason = hol[1];
+        attachmentHoles.push(reason);
+        // Keep hole as body only until an explicit return/html/ui replaces it (RFC-0024 attachments).
+        if (!sawReturn) {
+          body = { kind: "hole", reason };
+        }
         continue;
       }
       body = { kind: "hole", reason: "cwl:unknown-statement" };
@@ -640,6 +651,7 @@ export function parseCwlModule(source, file) {
       loadBody,
       earlyGuards,
       foreachBindings,
+      attachmentHoles,
       body,
     });
   }

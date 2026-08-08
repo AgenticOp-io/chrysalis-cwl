@@ -74,6 +74,24 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     surface: "api",
     summary: "PHP session semantics not modeled in CWL; explicit hole required.",
   },
+  "unsupported:wasm-module": {
+    rfc: "0024",
+    origin: "cwl",
+    surface: "client",
+    summary: "Wasm compute island — declare only; do not invent Wasm Component Model in CWL grammar.",
+  },
+  "unsupported:vendor-sdk": {
+    rfc: "0024",
+    origin: "cwl",
+    surface: "client",
+    summary: "Third-party client SDK island (maps/payments/analytics) — preserve origin; do not invent.",
+  },
+  "unsupported:opaque-script": {
+    rfc: "0024",
+    origin: "cwl",
+    surface: "client",
+    summary: "Unclassified browser script — honest hole until a catalogued island kind applies.",
+  },
 
   "hub-next:page-component": {
     rfc: "0012",

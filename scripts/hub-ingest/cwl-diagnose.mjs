@@ -47,8 +47,16 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
     } else {
       seen.set(key, r.name);
     }
+    /** @type {string[]} */
+    const holeReasons = [];
+    for (const reason of r.attachmentHoles ?? []) {
+      holeReasons.push(String(reason));
+    }
     if (r.body?.kind === "hole") {
       const reason = String(r.body.reason ?? "unknown");
+      if (!holeReasons.includes(reason)) holeReasons.push(reason);
+    }
+    for (const reason of holeReasons) {
       if (isCataloguedFullstackHole(reason)) {
         const entry = lookupFullstackHole(reason);
         diagnostics.push({
@@ -60,7 +68,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
         diagnostics.push({
           severity: "warn",
           code: "uncatalogued-hole",
-          message: `hole ${reason} is not in RFC-0012 catalog`,
+          message: `hole ${reason} is not in the language hole catalog`,
         });
       }
     }
@@ -79,7 +87,9 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
     const effects = r.effects ?? [];
     if (effects.length === 0) effectNoneRouteCount += 1;
     else effectRouteCount += 1;
-    if (r.body?.kind === "hole") holeRouteCount += 1;
+    if (r.body?.kind === "hole" || (r.attachmentHoles?.length ?? 0) > 0) {
+      holeRouteCount += 1;
+    }
 
     const bodyKind = r.body?.kind;
     if (r.surfaceKind === "page" && (bodyKind === "object" || bodyKind === "literal")) {

@@ -1,5 +1,18 @@
 # CWL language changelog
 
+## 0.1.8 — 2026-08-07
+
+- Boundary-break execution: ingest matrix covers all `language-gold/*/routes.cwl` with `expected-webir.json`
+- RFC-0023 deploy/DNA profiles + `24-dna-bridge/deploy-profile.json`
+- RFC-0024 island kinds + `25-island-kinds` + catalogued `unsupported:wasm-module|vendor-sdk|opaque-script`
+- **Attachment holes:** `hole` + later `return` kept on `attachmentHoles` (parse/print/diagnose/ingest); RFC-0024 gold no longer silently drops island holes
+- `test:cwl-publish-prep` → `CWL_PUBLISH_PREP_OK` (still no npm publish); wired into `test:language`; validates deploy-profile schema
+- UT spine reads RFC-0023 `deploy-profile.json` when present
+- VS Code scaffold (`editors/vscode`) + `docs/language/CWL-LSP.md` (honest TextMate+check limits)
+- GitHub Actions `cwl-language.yml`
+- WebIR flip handoff: `docs/history/WEBIR-FLIP-REQUESTED.md` (Convert agent)
+- `pnpm-workspace.yaml` prepared for future `packages/webir`
+
 ## 0.1.7 — 2026-08-05
 
 - Convert + Secure pin `@chrysalis/cwl` via `file:../chrysalis-cwl/packages/cwl`; package exports `VERSION` / `pillarRoot()`; `npm run test:cwl-pin` (wired into `test:language`)

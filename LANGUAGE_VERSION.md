@@ -3,19 +3,22 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `0.1.7` |
-| **Status** | 0.1.x + pillar CWL↔WebIR ingest/emit smokes (`test:ingest` / `test:ingest-roundtrip`) |
-| **Date** | 2026-08-05 |
+| **Version** | `0.1.8` |
+| **Status** | Boundary-break slice: full ingest matrix, publish prep, RFC-0023/0024, attachment holes, editor scaffold |
+| **Date** | 2026-08-07 |
 
 ## What this version means
 
-`0.1.7` gates CWL ↔ WebIR from the language pillar (no convert `cwd` hack) when `@chrysalis/webir` is linked:
+`0.1.8` advances the language toward substrate + authoring + identity vocabulary:
 
-- `npm run test:ingest` / `smoke:cwl-ingest` on `fixtures/language-gold/01-literals` (+ `expected-webir.json`)
-- `npm run smoke:cwl-emit` / `test:ingest-roundtrip` — CWL → WebIR → CWL thin emit (literals / flat objects; honest holes)
-- Thin pillar lift + emit helpers (`hub-lift-cwl-webir.mjs`, `hub-emit-cwl-webir.mjs` + Agent G WebIR helpers)
-- `test:language` stays parse/print/diagnose/dna-bridge only (WebIR optional)
-- Optional `test:language:full` = `test:language` + `test:ingest-roundtrip`
+- Ingest matrix over **all** `fixtures/language-gold/*/routes.cwl` (+ `expected-webir.json`)
+- RFC-0023 deploy/DNA profiles + gold `deploy-profile.json`
+- RFC-0024 island kinds + gold `25-island-kinds` + hole catalog entries
+- Attachment holes: `hole` + later `return` kept on AST (`attachmentHoles`) through print/diagnose/ingest
+- `npm run test:cwl-publish-prep` (no publish) wired into `test:language`
+- VS Code TextMate + check command scaffold (`editors/vscode`)
+- CI workflow `.github/workflows/cwl-language.yml`
+- WebIR physical flip still **Requested** for Convert — [`WEBIR-FLIP-REQUESTED.md`](./docs/history/WEBIR-FLIP-REQUESTED.md)
 
 See `CHANGELOG.md` for deltas.
 
@@ -29,18 +32,15 @@ Breaking changes must be versioned in this file **before** they land in parser/p
 
 ## Out of scope for `0.1.x`
 
-- WebIR physical package ownership flip (homeable via junction today; tree still under convert) — Phase 0.3 Slice 3
-- Dual-mode `cwl-fmt` (pillar stays parse→print; convert keeps WebIR fmt) — Phase 0.3 Slice 4 remainder
+- WebIR physical package ownership flip (Convert-coordinated) — Phase 0.3 Slice 3
+- Dual-mode `cwl-fmt` — Phase 0.3 remainder
 - Helix / Secure DNA firewall implementation
-- Convert product hub smokes as the language authority path
-- Nested `if` / nested `foreach` body stmt lists (RFC-0021 remaining gap) — **done in 0.1.5** (surface AST; no loop evaluate)
-- Published npm language release — Phase 1.0
+- Actual `npm publish` — Phase 1.0 Exit (human)
 
 ## Gate
 
 ```bash
 npm run test:language
-npm run test:ingest              # needs npm run link:webir + sibling convert webir dist
-npm run test:ingest-roundtrip    # ingest + thin WebIR→CWL emit
-npm run sync:convert             # after language script changes
+npm run smoke:cwl-ingest-matrix   # needs link:webir
+npm run test:language:full
 ```

@@ -30,9 +30,11 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `20-probes` | production readiness probe surfaces | 0015 |
 | `21-form-action` | form-action catalogued hole | 0016 |
 | `22-effects-middleware` | effects middleware chains | 0020 |
-| `24-dna-bridge` | CWL surface ↔ `app-dna-v1` seed shape (+ `expected-dna.json` + `expected-webir.json`) | 0022 |
+| `23-nested-control` | nested `if` / `foreach` stmt lists | 0021 |
+| `24-dna-bridge` | CWL surface ↔ `app-dna-v1` (+ `expected-dna.json` + `expected-webir.json` + `deploy-profile.json`) | 0022/0023 |
+| `25-island-kinds` | Wasm/vendor/opaque attachment holes (+ return shell) | 0024 |
 
-## Parseable subset notes (0.1.5)
+## Parseable subset notes (0.1.8)
 
 | Dir | In gold (parser accepts) | Honest gap / elsewhere |
 | --- | --- | --- |
@@ -40,18 +42,20 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `20-probes` | `/search` query HTML + `/blog/:slug` load HTML | runtime probe assertions (convert) |
 | `21-form-action` | `hole hub-svelte:form-action` + HTML form shell | no `actions{}` syntax invented |
 | `22-effects-middleware` | `auth.require` / `cors.allow` / `csrf.verify` chains | middleware helper lowering (convert) |
+| `25-island-kinds` | `hole` + `return html` on same page (`attachmentHoles`) | Wasm/vendor runtime (Convert/Secure) |
 
 ## Gates
 
 ```bash
 npm run test:language
-npm run test:ingest          # needs npm run link:webir (sibling convert webir dist)
-# npm run test:language:full # language + ingest
+npm run test:ingest                 # needs npm run link:webir
+npm run smoke:cwl-ingest-matrix     # all language-gold/*/routes.cwl
+# npm run test:language:full        # language + ingest-roundtrip + matrix
 ```
 
 - **Round-trip:** parse → print → parse AST equality + print idempotence; multi-file + layout resolve  
-- **Diagnose:** no diagnose **errors** (warns OK for honest holes / hints)
-- **Ingest (optional):** CWL → WebIR on `01-literals`; compares `expected-webir.json` when present
+- **Diagnose:** no diagnose **errors** (warns OK for honest holes / hints); catalogued holes are **info**
+- **Ingest (optional):** CWL → WebIR; compares `expected-webir.json` when present
 
 ## Authoring rules
 

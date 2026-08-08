@@ -12,6 +12,7 @@ import { spawnSync } from "node:child_process";
 import {
   existsSync,
   mkdirSync,
+  readFileSync,
   writeFileSync,
   rmSync,
 } from "node:fs";
@@ -23,6 +24,10 @@ const OUT_DIR = join(ROOT, "reports/ut-spine");
 const ARTIFACT_DIR = join(OUT_DIR, "artifacts");
 const OUT_JSON = join(OUT_DIR, "ut-spine.json");
 const GOLD = join(ROOT, "fixtures/language-gold/24-dna-bridge/routes.cwl");
+const DEPLOY_PROFILE = join(
+  ROOT,
+  "fixtures/language-gold/24-dna-bridge/deploy-profile.json",
+);
 
 function resolveSecureRoot() {
   if (process.env.CHRYSALIS_SECURITY_ROOT) {
@@ -51,6 +56,29 @@ export async function runUtSpine(opts = {}) {
     detail: existsSync(GOLD)
       ? GOLD.replace(/\\/g, "/")
       : "missing fixtures/language-gold/24-dna-bridge/routes.cwl",
+  });
+
+  /** @type {{ schema?: string, app_id?: string, host?: string } | null} */
+  let deployProfile = null;
+  if (existsSync(DEPLOY_PROFILE)) {
+    try {
+      deployProfile = JSON.parse(readFileSync(DEPLOY_PROFILE, "utf8"));
+    } catch {
+      deployProfile = null;
+    }
+  }
+  const profileOk =
+    !!deployProfile &&
+    deployProfile.schema === "cwl-deploy-profile-v1" &&
+    typeof deployProfile.host === "string";
+  steps.push({
+    id: "cwl-deploy-profile",
+    ok: profileOk || !existsSync(DEPLOY_PROFILE),
+    detail: profileOk
+      ? `RFC-0023 ${deployProfile.host}`
+      : existsSync(DEPLOY_PROFILE)
+        ? "invalid deploy-profile.json"
+        : "absent — host default",
   });
 
   // Always: language contract (no Helix required)
@@ -101,9 +129,15 @@ export async function runUtSpine(opts = {}) {
         fileUrl(join(secureRoot, "packages/dna-core/index.mjs"))
       );
 
+      const seedHost =
+        typeof deployProfile?.host === "string" ? deployProfile.host : "default";
+      const seedAppId =
+        typeof deployProfile?.app_id === "string"
+          ? deployProfile.app_id
+          : "ut-spine";
       const seeded = await bridge.seedDnaFromCwlFile(GOLD, {
-        app_id: "ut-spine",
-        host: "default",
+        app_id: seedAppId,
+        host: seedHost,
         mode: "draft",
         fixture: "fixtures/language-gold/24-dna-bridge/routes.cwl",
         cwlRoot: ROOT,
@@ -156,13 +190,13 @@ export async function runUtSpine(opts = {}) {
       const known = dna.scoreRequest(certified, {
         method: "GET",
         path: "/api/health",
-        host: "default",
+        host: seedHost,
       });
       assert(known.allow === true, `known deny: ${JSON.stringify(known)}`);
       const unknown = dna.scoreRequest(certified, {
         method: "GET",
         path: "/api/backdoor",
-        host: "default",
+        host: seedHost,
       });
       assert(unknown.allow === false, "unknown must deny");
       steps.push({ id: "helix-enforce", ok: true });

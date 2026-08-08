@@ -52,9 +52,9 @@ CWL is **THE language of the web**. Convert and Secure pull; they do not own the
 - [x] **Partial (Agent H):** thin `hub-lift-cwl-webir.mjs` (CWL-only; no COBOL/fat lift); `cwl-ingest` + `export-cwl-webir` use local helpers/`load-webir`; `npm run smoke:cwl-ingest` green on `01-literals`
 - [x] **Partial (Agent I):** `test:ingest` (= `smoke:cwl-ingest`) + `01-literals/expected-webir.json`; `test:language` stays WebIR-free; optional `test:language:full`
 - [x] **Partial (Agent J / Slice 4):** thin `hub-emit-cwl-webir.mjs` WebIR→CWL; `npm run smoke:cwl-emit` + `test:ingest-roundtrip` on `01-literals`; pillar `cwl-fmt` stays parse→print (dual-mode deferred)
-- [x] **Ingest matrix:** `01-literals` + `02-path-params` + `24-dna-bridge` goldens (`npm run smoke:cwl-ingest-matrix`)
+- [x] **Ingest matrix:** all `language-gold/*/routes.cwl` + `expected-webir.json` (`npm run smoke:cwl-ingest-matrix`)
 - [x] **UT evidence pack:** `npm run smoke:ut-evidence` → `reports/ut-spine/EVIDENCE.md`
-- [ ] **Convert flip:** physical tree in chrysalis-cwl; convert `packages/webir` → cwl (deferred — unsafe for convert pnpm until Slice 3 checklist; see plan)
+- [ ] **Convert flip:** physical tree in chrysalis-cwl — **Requested:** [`WEBIR-FLIP-REQUESTED.md`](./WEBIR-FLIP-REQUESTED.md)
 - [ ] Dual-mode `cwl-fmt` (explicit with convert; do not overwrite convert WebIR fmt)
 - [ ] Convert depends on shared webir package (not a private fork)
 
@@ -82,6 +82,8 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 - [x] Fixture pair: minimal `.cwl` + expected DNA shape (no firewall code here) (`fixtures/language-gold/24-dna-bridge/`)
 - [x] Secure consumes mapping; does not fork grammar (`cwl-dna-seed` in CWL; Helix CLI seeds via sibling import)
 - [x] UT spine + evidence pack (`smoke:ut-spine` / `smoke:ut-evidence`) — Convert consumes via `hub:cwl-helix-cutover-smoke` only
+- [x] RFC-0023 deploy/DNA profiles + gold profile on `24-dna-bridge`
+- [x] RFC-0024 island kinds vocabulary + `25-island-kinds`
 
 **Exit 0.5:** Documented, fixture-backed bridge contract; Helix owns enforcement.
 
@@ -89,9 +91,11 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ## Phase 1.0 — Published language
 
-- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.7`) — metadata only; package stays `"private": true`
+- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.8`) — metadata only; package stays `"private": true`
 - [x] Pre-publish pin path documented: sibling workspace / `file:` / env `CHRYSALIS_CWL_ROOT` ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
 - [x] Convert + Secure **`file:` pin** `@chrysalis/cwl` (`npm run test:cwl-pin`)
+- [x] Publish **prep gate** `npm run test:cwl-publish-prep` (package stays `"private": true`)
+- [x] Editor scaffold + CI language workflow (LSP full server still open)
 - [ ] npm (or private registry) package version ≡ `LANGUAGE_VERSION.md` (**actual publish — still open**)
 - [ ] Convert pins a **registry** CWL release (today: `file:` + junctions)
 - [ ] Secure pins a **registry** CWL release (today: `file:` + sibling / env)

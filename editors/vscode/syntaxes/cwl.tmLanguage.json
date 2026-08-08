@@ -1,0 +1,59 @@
+{
+  "scopeName": "source.cwl",
+  "name": "CWL",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#keywords" },
+    { "include": "#decorators" },
+    { "include": "#strings" },
+    { "include": "#holes" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.cwl",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.cwl",
+          "match": "\\b(module|import|use|handler|page|load|effects|param|query|body|header|cookie|status|return|html|ui|hole|if|foreach|none)\\b"
+        }
+      ]
+    },
+    "decorators": {
+      "patterns": [
+        {
+          "name": "entity.name.function.decorator.cwl",
+          "match": "@(route|page|component)\\b"
+        },
+        {
+          "name": "constant.language.http-method.cwl",
+          "match": "\\b(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.cwl",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [{ "name": "constant.character.escape.cwl", "match": "\\\\." }]
+        }
+      ]
+    },
+    "holes": {
+      "patterns": [
+        {
+          "name": "invalid.deprecated.cwl",
+          "match": "\\bhole\\b"
+        }
+      ]
+    }
+  }
+}

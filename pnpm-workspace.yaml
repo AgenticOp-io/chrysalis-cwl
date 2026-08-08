@@ -1,0 +1,3 @@
+packages:
+  - "packages/cwl"
+  # After Convert-coordinated flip: packages/webir

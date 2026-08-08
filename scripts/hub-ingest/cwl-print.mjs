@@ -341,19 +341,34 @@ export function printCwlModule(mod, opts = {}) {
     }
 
     const body = route.body;
-    if (body?.kind === "hole") {
-      const reason = String(body.reason ?? "cwl:hole");
+    const attachmentHoles = Array.isArray(route.attachmentHoles)
+      ? route.attachmentHoles
+      : [];
+    /** @param {string} reason */
+    const printHoleLine = (reason) => {
+      const r = String(reason ?? "cwl:hole");
       lines.push(
-        /^[A-Za-z0-9_:.-]+$/.test(reason)
-          ? `  hole ${reason};`
-          : `  hole legacy ${JSON.stringify(reason)};`,
+        /^[A-Za-z0-9_:.-]+$/.test(r)
+          ? `  hole ${r};`
+          : `  hole legacy ${JSON.stringify(r)};`,
       );
-    } else if (body?.kind === "ui") {
-      printCwlUiReturn(body, "  ", lines);
+    };
+    if (body?.kind === "hole") {
+      // Body-as-hole: print each attachment (or the body reason once).
+      if (attachmentHoles.length > 0) {
+        for (const reason of attachmentHoles) printHoleLine(reason);
+      } else {
+        printHoleLine(body.reason ?? "cwl:hole");
+      }
     } else {
-      const expr = printCwlBodyExpr(body);
-      if (expr != null) lines.push(`  return ${expr};`);
-      else lines.push(`  hole cwl:empty-handler;`);
+      for (const reason of attachmentHoles) printHoleLine(reason);
+      if (body?.kind === "ui") {
+        printCwlUiReturn(body, "  ", lines);
+      } else {
+        const expr = printCwlBodyExpr(body);
+        if (expr != null) lines.push(`  return ${expr};`);
+        else lines.push(`  hole cwl:empty-handler;`);
+      }
     }
 
     for (const fe of route.foreachBindings ?? []) {
@@ -420,6 +435,7 @@ export function canonicalizeCwlModule(mod) {
         body: canonicalizeBody(fe.body),
         stmts: canonicalizeControlStmts(controlStmtsOf(fe)),
       })),
+      attachmentHoles: [...(r.attachmentHoles ?? [])],
       body: canonicalizeBody(r.body),
     })),
   };

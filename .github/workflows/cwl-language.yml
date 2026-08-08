@@ -1,0 +1,22 @@
+name: CWL language
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  language:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Language gates (no WebIR)
+        run: npm run test:language
+      - name: Publish prep (no publish)
+        run: npm run test:cwl-publish-prep
+      - name: CLI check golds
+        run: npm run check -- fixtures/language-gold
