@@ -18,16 +18,30 @@ Package: [`packages/cwl/package.json`](../../packages/cwl/package.json) (`@chrys
 | Registry | **GitHub Packages only** (`publishConfig.access: restricted`) |
 | Public npm | **Forbidden** unless human reopens |
 
-## How to publish
+## GitHub Packages publish name
 
-```bash
-npm run sync:cwl-package-lib
-npm run test:language
-cd packages/cwl
-# .npmrc: @chrysalis:registry=https://npm.pkg.github.com
-#         //npm.pkg.github.com/:_authToken=…
-npm publish
+Local / `file:` consumers keep package name **`@chrysalis/cwl`**.
+
+GitHub Packages requires the npm scope to match the org (`AgenticOp-io`), so the **published** artifact is:
+
+```text
+@agenticop-io/cwl@1.0.0
 ```
+
+CI (`.github/workflows/publish-cwl.yml`) renames at publish time. After publish, Convert/Secure may:
+
+```json
+"@agenticop-io/cwl": "1.0.0"
+```
+
+with `.npmrc`:
+
+```text
+@agenticop-io:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=YOUR_TOKEN
+```
+
+Or keep `file:../chrysalis-cwl/packages/cwl` until ready.
 
 ## Package subpath exports
 

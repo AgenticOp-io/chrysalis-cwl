@@ -23,22 +23,26 @@ npm run test:language
 npm run test:cwl-pack    # alias → publish-prep pack dry-run → CWL_EXIT_1_0_PACK_OK
 ```
 
-## Publish (human / CI with token)
+## Publish (human / CI)
+
+**Preferred:** push tag `cwl-v*` → workflow `publish-cwl` publishes **`@agenticop-io/cwl`** (org scope required by GitHub Packages). Local package name stays `@chrysalis/cwl` for `file:` pins.
+
+**Local (needs Packages scope):**
 
 ```bash
-# GitHub Packages auth
-# .npmrc in packages/cwl or user home:
-# //npm.pkg.github.com/:_authToken=YOUR_TOKEN
-# @chrysalis:registry=https://npm.pkg.github.com
+gh auth refresh -h github.com -s write:packages,read:packages,repo
+# complete device login in browser
 
 cd packages/cwl
-npm publish
+npm pkg set name=@agenticop-io/cwl
+# .npmrc:
+# @agenticop-io:registry=https://npm.pkg.github.com
+# //npm.pkg.github.com/:_authToken=$(gh auth token)
+npm publish --access restricted
+npm pkg set name=@chrysalis/cwl   # restore local name
 ```
 
-Requires `NODE_AUTH_TOKEN` / PAT with `write:packages` on `AgenticOp-io`.  
-Do **not** use `--access public`.
-
-Optional tag: `git tag cwl-v1.0.0 && git push origin cwl-v1.0.0`
+`gh` default token often lacks `write:packages` (only `repo`) — refresh is required.
 
 ## After publish — Requested
 

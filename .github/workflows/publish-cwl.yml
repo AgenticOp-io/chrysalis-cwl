@@ -1,0 +1,35 @@
+# Publish @agenticop-io/cwl to GitHub Packages on version tags
+name: publish-cwl
+
+on:
+  push:
+    tags:
+      - "cwl-v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@agenticop-io"
+      - name: Sync lib + language gate
+        run: |
+          npm run sync:cwl-package-lib
+          npm run test:language
+      - name: Publish to GitHub Packages
+        working-directory: packages/cwl
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # GH Packages requires scope == org; local pin name stays @chrysalis/cwl for file: consumers
+          npm pkg set name=@agenticop-io/cwl
+          npm publish --access restricted
