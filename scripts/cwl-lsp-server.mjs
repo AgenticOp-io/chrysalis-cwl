@@ -12,7 +12,48 @@ import { mapDiagnoseSource } from "./hub-ingest/cwl-lsp-map.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 
 export const CWL_LSP_SERVER_KIND = "chrysalis.cwl.lsp-server";
-export const CWL_LSP_SERVER_VERSION = "0.1.10";
+export const CWL_LSP_SERVER_VERSION = "0.1.11";
+
+/** CompletionItemKind.Keyword */
+const KIND_KEYWORD = 14;
+/** CompletionItemKind.Text */
+const KIND_TEXT = 1;
+
+/**
+ * v0 keyword / surface / effect catalog (context-light; no import or path smarts).
+ * @type {ReadonlyArray<{ label: string, kind: number, detail: string, insertText?: string }>}
+ */
+export const CWL_COMPLETION_CATALOG = Object.freeze([
+  { label: "module", kind: KIND_KEYWORD, detail: "CWL module declaration", insertText: "module " },
+  { label: "@route", kind: KIND_KEYWORD, detail: "API route surface", insertText: '@route GET "/"' },
+  { label: "@page", kind: KIND_KEYWORD, detail: "Page surface", insertText: '@page GET "/"' },
+  {
+    label: "@component",
+    kind: KIND_KEYWORD,
+    detail: "UI component declaration",
+    insertText: "@component ",
+  },
+  { label: "handler", kind: KIND_KEYWORD, detail: "Route handler block", insertText: "handler " },
+  { label: "page", kind: KIND_KEYWORD, detail: "Page handler block", insertText: "page " },
+  { label: "effects", kind: KIND_KEYWORD, detail: "Declared effects line", insertText: "effects: " },
+  { label: "hole", kind: KIND_KEYWORD, detail: "Honest unsupported region", insertText: "hole " },
+  { label: "return", kind: KIND_KEYWORD, detail: "Handler return", insertText: "return " },
+  { label: "load", kind: KIND_KEYWORD, detail: "Page data load", insertText: "load " },
+  { label: "use", kind: KIND_KEYWORD, detail: "Module preset (json / auth / …)", insertText: "use " },
+  // Common effect presets (RFC-0007)
+  { label: "none", kind: KIND_TEXT, detail: "Effect preset: none" },
+  { label: "io", kind: KIND_TEXT, detail: "Effect preset: io" },
+  { label: "db.read", kind: KIND_TEXT, detail: "Effect preset: db.read" },
+  { label: "db.write", kind: KIND_TEXT, detail: "Effect preset: db.write" },
+  { label: "session.read", kind: KIND_TEXT, detail: "Effect preset: session.read" },
+  { label: "session.write", kind: KIND_TEXT, detail: "Effect preset: session.write" },
+  { label: "time.now", kind: KIND_TEXT, detail: "Effect preset: time.now" },
+  { label: "random", kind: KIND_TEXT, detail: "Effect preset: random" },
+  { label: "mail.send", kind: KIND_TEXT, detail: "Effect preset: mail.send" },
+  { label: "auth.require", kind: KIND_TEXT, detail: "Effect preset: auth.require" },
+  { label: "cors.allow", kind: KIND_TEXT, detail: "Effect preset: cors.allow" },
+  { label: "csrf.verify", kind: KIND_TEXT, detail: "Effect preset: csrf.verify" },
+]);
 
 /** @type {Map<string, { uri: string, text: string, version: number }>} */
 const documents = new Map();
@@ -97,6 +138,43 @@ function uriToPath(uri) {
     /* fall through */
   }
   return uri.replace(/^file:\/\//, "") || "stdin.cwl";
+}
+
+/**
+ * Prefix under the cursor for cheap filtering (word / @word / dotted effect).
+ * @param {string} lineText
+ * @param {number} character
+ */
+function completionPrefix(lineText, character) {
+  const before = lineText.slice(0, Math.max(0, character));
+  const m = /(@?[A-Za-z_][\w.-]*)$/.exec(before);
+  return m ? m[1] : "";
+}
+
+/**
+ * Keyword / surface / effect completion (v0 — context-light).
+ * @param {string} text
+ * @param {{ line: number, character: number }} position
+ * @returns {Array<{ label: string, kind: number, detail: string, insertText?: string }>}
+ */
+export function completionsAt(text, position) {
+  const lines = text.split(/\r?\n/);
+  const lineText = lines[position.line] ?? "";
+  const prefix = completionPrefix(lineText, position.character);
+  const lower = prefix.toLowerCase();
+  const items = [];
+  for (const entry of CWL_COMPLETION_CATALOG) {
+    if (lower && !entry.label.toLowerCase().startsWith(lower)) continue;
+    /** @type {{ label: string, kind: number, detail: string, insertText?: string }} */
+    const item = {
+      label: entry.label,
+      kind: entry.kind,
+      detail: entry.detail,
+    };
+    if (entry.insertText) item.insertText = entry.insertText;
+    items.push(item);
+  }
+  return items;
 }
 
 /**
@@ -194,6 +272,10 @@ function handleMessage(msg) {
           },
           documentFormattingProvider: true,
           hoverProvider: true,
+          completionProvider: {
+            triggerCharacters: ["@", "."],
+            resolveProvider: false,
+          },
         },
         serverInfo: {
           name: "cwl-lsp-server",
@@ -269,6 +351,16 @@ function handleMessage(msg) {
         break;
       }
       respond(id ?? null, hoverAt(doc.text, uri, params.position));
+      break;
+    }
+    case "textDocument/completion": {
+      const uri = params?.textDocument?.uri;
+      const doc = uri ? documents.get(uri) : undefined;
+      if (!doc || !params?.position) {
+        respond(id ?? null, []);
+        break;
+      }
+      respond(id ?? null, completionsAt(doc.text, params.position));
       break;
     }
     case "$/cancelRequest":

@@ -37,6 +37,18 @@ async function main() {
     if (d.source !== "cwl") failures.push(`bad-source:${d.source}`);
   }
 
+  // Gold: hole stmts at 1-based lines 7 and 13 → LSP 0-based 6 and 12.
+  const holeDiags = (mapped.diagnostics ?? []).filter((d) => d.code === "catalogued-hole");
+  if (holeDiags.length < 2) {
+    failures.push("expected-two-catalogued-hole-diags");
+  } else {
+    const lines0 = holeDiags.map((d) => d.range.start.line).sort((a, b) => a - b);
+    if (lines0[0] !== 6) failures.push(`hole-range-line-expected-6-got-${lines0[0]}`);
+    if (lines0[1] !== 12) failures.push(`hole-range-line-expected-12-got-${lines0[1]}`);
+    // Must not collapse to document start (pre-range bug).
+    if (lines0.every((n) => n === 0)) failures.push("hole-ranges-all-line-0");
+  }
+
   if (toLspSeverity("error") !== "Error") failures.push("severity-error");
   if (toLspSeverity("warn") !== "Warning") failures.push("severity-warn");
   if (toLspSeverity("info") !== "Information") failures.push("severity-info");
@@ -55,6 +67,9 @@ async function main() {
     token: failures.length === 0 ? "CWL_LSP_MAP_OK" : "CWL_LSP_MAP_FAIL",
     gold: GOLD,
     mappedCount: mapped.diagnostics?.length ?? 0,
+    holeRangeLines0: (mapped.diagnostics ?? [])
+      .filter((d) => d.code === "catalogued-hole")
+      .map((d) => d.range.start.line),
     failures,
   };
   process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);

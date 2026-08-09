@@ -25,7 +25,7 @@
     "smoke:cwl-ingest-matrix": "node scripts/smoke-cwl-ingest-matrix.mjs",
     "test:ingest": "npm run smoke:cwl-ingest",
     "test:ingest-roundtrip": "npm run smoke:cwl-ingest && npm run smoke:cwl-emit",
-    "test:language:full": "npm run test:language && npm run test:ingest-roundtrip && npm run smoke:cwl-ingest-matrix",
+    "test:language:full": "npm run test:language && npm run test:ingest-roundtrip && npm run smoke:cwl-ingest-matrix && npm run smoke:cwl-runtime-matrix",
     "test:cwl-mirrors": "node scripts/gate-cwl-mirrors.mjs",
     "setup:mirrors": "node scripts/setup-convert-mirrors.mjs",
     "fmt:cwl": "node scripts/hub-ingest/cwl-fmt.mjs",
@@ -35,6 +35,7 @@
     "smoke:webir": "node scripts/smoke-webir-resolve.mjs",
     "smoke:cwl-ingest": "node scripts/smoke-cwl-ingest.mjs",
     "smoke:cwl-emit": "node scripts/smoke-cwl-emit.mjs",
-    "smoke:cwl-runtime-gold": "node scripts/smoke-cwl-runtime-gold.mjs"
+    "smoke:cwl-runtime-gold": "node scripts/smoke-cwl-runtime-gold.mjs",
+    "smoke:cwl-runtime-matrix": "node scripts/smoke-cwl-runtime-matrix.mjs"
   }
 }

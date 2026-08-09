@@ -3,19 +3,18 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `0.1.10` |
-| **Status** | Private-first DNA authoring: minimal stdio LSP (diagnose/fmt/hover) |
-| **Date** | 2026-08-08 |
+| **Version** | `0.1.11` |
+| **Status** | Private-first DNA authoring: stdio LSP + completion v0 |
+| **Date** | 2026-08-09 |
 
 ## What this version means
 
-`0.1.10` adds a **minimal stdio Language Server** wrapping the 0.1.9 diagnose/fmt map:
+`0.1.11` adds **completion v0** on the 0.1.10 stdio Language Server:
 
-- `scripts/cwl-lsp-server.mjs` — JSON-RPC over stdio (`initialize`, doc sync, diagnostics, formatting, cheap hover)
-- VS Code extension: thin spawn client (no `vscode-languageclient` / zero extension npm deps)
-- `npm run test:cwl-lsp-server` → `CWL_LSP_SERVER_OK` (wired into `test:language`)
-- Pillars stay private — no Marketplace / public npm
-- Prior: editor DiagnosticCollection + `cwl diagnose --stdin --lsp` + map gate (`0.1.9`)
+- `textDocument/completion` — keywords / surface starters (`module`, `@route`, `@page`, `@component`, `handler`, `effects`, `hole`, `return`, `load`) + common effect presets; prefix filter only (no import/path smarts)
+- Gate asserts completion returns ≥1 item (`CWL_LSP_SERVER_OK`)
+- VS Code thin client registers CompletionItemProvider (`@` / `.` triggers)
+- Prior: diagnose/fmt/cheap hover (`0.1.10`)
 
 See `CHANGELOG.md` for deltas. Spec: [`docs/language/CWL-LSP.md`](./docs/language/CWL-LSP.md)
 
@@ -30,7 +29,7 @@ Breaking changes must be versioned in this file **before** they land in parser/p
 ## Out of scope for `0.1.x`
 
 - WebIR physical package ownership flip (Convert-coordinated)
-- Full IDE LSP (completion / rename / workspace symbols)
+- Full IDE LSP (rename / go-to-def / workspace symbols / smart import-path completion)
 - Helix / Secure DNA firewall implementation
 - Public npm / Marketplace — pillars stay private unless human reopens
 

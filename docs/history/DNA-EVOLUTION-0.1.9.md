@@ -1,6 +1,6 @@
 # DNA evolution — 0.1.9 (private-first authoring)
 
-**North star:** CWL as the genetic identity of web programs (see pillar constitution).  
+**North star:** CWL as the genetic identity of web programs — follow **Rosetta → Universal Translator → DNA of the web** ([`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md); pillar constitution [`CWL-PILLAR-HOME.md`](../language/CWL-PILLAR-HOME.md)).  
 **Constraint:** Chrysalis pillars stay **private** ([PRIVATE-PILLARS.md](./PRIVATE-PILLARS.md)). No public Marketplace / public npm until human reopens.
 
 ## Sequence
@@ -13,8 +13,18 @@
 | C | LSP map gate (`test:cwl-lsp-map`) | CWL | This slice |
 | D | Private-first publish docs | CWL | This slice |
 | E | WebIR physical flip | Convert | Requested — [`DNA-STEP-E-WEBIR.md`](./DNA-STEP-E-WEBIR.md) |
-| F | Minimal stdio Language Server (diagnose/fmt/cheap hover) | CWL | Done in **0.1.10** (`cwl-lsp-server.mjs`); completion/rename still later |
+| F | Minimal stdio Language Server (diagnose/fmt/cheap hover) | CWL | Done in **0.1.10** (`cwl-lsp-server.mjs`); completion v0 in **0.1.11**; rename still later |
 | G | Convert gravity / Secure cutover default | Convert / Secure | Requested |
+
+## Next build slices (after 0.1.9 / 0.1.10)
+
+Queue detail: [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md). Path law: [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md).
+
+| Slice | Work | Owner |
+| --- | --- | --- |
+| **Runtime matrix** | Expand `smoke:cwl-runtime-gold` beyond `01-literals` — honest 501 holes, no façades ([`DNA-STEP-EXECUTE.md`](./DNA-STEP-EXECUTE.md)) | CWL |
+| **Completion** | LSP keyword / route-surface completion (optional; still not rename/go-to-def) ([`CWL-LSP.md`](../language/CWL-LSP.md)) | CWL |
+| **Ranges** | Better diagnostic ranges from parser locations (map v1 is line-granular today) | CWL |
 
 ## Step G handoffs (Requested)
 

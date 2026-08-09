@@ -336,12 +336,16 @@ function parseControlStmts(lines, startI, bindings) {
 export function parseCwlModule(source, file) {
   const lines = source.split(/\r?\n/);
   let moduleName = "main";
+  /** @type {number | null} 1-based line of `module …;` when present */
+  let moduleLine = null;
   /** @type {Array<"express.json"|"express.urlencoded">} */
   const moduleUses = [];
   /** @type {Array<"chrysalis.auth.session"|"chrysalis.auth.bearer">} */
   const moduleAuthUses = [];
   /** @type {string[]} */
   const imports = [];
+  /** @type {number[]} 1-based lines parallel to `imports` */
+  const importLines = [];
   /** @type {Array<{ name: string, props: string[], tree: object, line: number }>} */
   const components = [];
   /** @type {Array<{ method: string, path: string, pathParams: string[], name: string, line: number, effects: string[], handlerPathParams: string[], handlerQueryParams: string[], handlerHeaders: string[], handlerCookies: string[], handlerBodyParams: string[], responseStatus: number | null, body: object }>} */
@@ -355,6 +359,7 @@ export function parseCwlModule(source, file) {
     const mod = MODULE_RE.exec(line);
     if (mod) {
       moduleName = mod[1];
+      moduleLine = lineNo;
       continue;
     }
     const useM = USE_PRESET_RE.exec(line);
@@ -372,6 +377,7 @@ export function parseCwlModule(source, file) {
     const impM = IMPORT_RE.exec(line);
     if (impM) {
       imports.push(impM[1]);
+      importLines.push(lineNo);
       continue;
     }
     const compDecl = COMPONENT_DECL_RE.exec(line);
@@ -445,7 +451,9 @@ export function parseCwlModule(source, file) {
     const foreachBindings = [];
     /** @type {string[]} Attachment / body hole reasons (RFC-0012/0024); kept when a later return sets body. */
     const attachmentHoles = [];
-    let body = { kind: "hole", reason: "cwl:empty-handler" };
+    /** @type {number[]} 1-based lines parallel to `attachmentHoles` (hole statement sites). */
+    const attachmentHoleLines = [];
+    let body = { kind: "hole", reason: "cwl:empty-handler", line: lineNo };
     let sawReturn = false;
     const handlerBindings = () => ({
       path: handlerPathParams,
@@ -530,7 +538,7 @@ export function parseCwlModule(source, file) {
           body = { kind: "html", value: lit.value };
           if (!responseContentType) responseContentType = "text/html; charset=utf-8";
         } else {
-          body = { kind: "hole", reason: "cwl:invalid-html-return" };
+          body = { kind: "hole", reason: "cwl:invalid-html-return", line: i };
         }
         sawReturn = true;
         continue;
@@ -546,7 +554,7 @@ export function parseCwlModule(source, file) {
           if (!responseContentType) responseContentType = "text/html; charset=utf-8";
           i = uiParsed.consumed;
         } else {
-          body = { kind: "hole", reason: `cwl:${uiParsed.error ?? "invalid-ui-return"}` };
+          body = { kind: "hole", reason: `cwl:${uiParsed.error ?? "invalid-ui-return"}`, line: i };
         }
         sawReturn = true;
         continue;
@@ -607,7 +615,7 @@ export function parseCwlModule(source, file) {
         if (parsed.ok) {
           body = parsed.body;
         } else {
-          body = { kind: "hole", reason: `cwl:${parsed.error}` };
+          body = { kind: "hole", reason: `cwl:${parsed.error}`, line: i };
         }
         sawReturn = true;
         continue;
@@ -616,18 +624,19 @@ export function parseCwlModule(source, file) {
       if (hol) {
         const reason = hol[1];
         attachmentHoles.push(reason);
+        attachmentHoleLines.push(i);
         // Keep hole as body only until an explicit return/html/ui replaces it (RFC-0024 attachments).
         if (!sawReturn) {
-          body = { kind: "hole", reason };
+          body = { kind: "hole", reason, line: i };
         }
         continue;
       }
-      body = { kind: "hole", reason: "cwl:unknown-statement" };
+      body = { kind: "hole", reason: "cwl:unknown-statement", line: i };
     }
     const pathParams = extractPathParamsFromCwlPath(path);
     for (const p of handlerPathParams) {
       if (!pathParams.includes(p)) {
-        body = { kind: "hole", reason: `cwl:param-not-in-path:${p}` };
+        body = { kind: "hole", reason: `cwl:param-not-in-path:${p}`, line: lineNo };
       }
     }
     routes.push({
@@ -652,8 +661,19 @@ export function parseCwlModule(source, file) {
       earlyGuards,
       foreachBindings,
       attachmentHoles,
+      attachmentHoleLines,
       body,
     });
   }
-  return { moduleName, file, routes, moduleUses, moduleAuthUses, imports, components };
+  return {
+    moduleName,
+    moduleLine,
+    file,
+    routes,
+    moduleUses,
+    moduleAuthUses,
+    imports,
+    importLines,
+    components,
+  };
 }

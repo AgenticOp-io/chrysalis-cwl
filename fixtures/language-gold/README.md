@@ -50,12 +50,15 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 npm run test:language
 npm run test:ingest                 # needs npm run link:webir
 npm run smoke:cwl-ingest-matrix     # all language-gold/*/routes.cwl
-# npm run test:language:full        # language + ingest-roundtrip + matrix
+npm run smoke:cwl-runtime-gold      # execute 01-literals
+npm run smoke:cwl-runtime-matrix    # execute README runtime-ok + allowlist
+# npm run test:language:full        # language + ingest-roundtrip + ingest matrix + runtime matrix
 ```
 
 - **Round-trip:** parse → print → parse AST equality + print idempotence; multi-file + layout resolve  
 - **Diagnose:** no diagnose **errors** (warns OK for honest holes / hints); catalogued holes are **info**
 - **Ingest (optional):** CWL → WebIR; compares `expected-webir.json` when present
+- **Runtime execute (optional):** fixtures with **`runtime-ok`** in their README **and** checks in `scripts/cwl-runtime-smoke-lib.mjs` — API simulate only; no invented handlers
 
 ## Authoring rules
 

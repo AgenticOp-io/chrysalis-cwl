@@ -96,7 +96,7 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 - [x] Diagnose → LSP map + `test:cwl-lsp-map` ([`DNA-EVOLUTION-0.1.9.md`](./DNA-EVOLUTION-0.1.9.md))
 - [x] Editor push-diagnostics + format DocumentProvider (`editors/vscode`)
 - [x] CLI `--stdin` for unsaved buffers
-- [x] Minimal stdio Language Server (`cwl-lsp-server.mjs` + `test:cwl-lsp-server`) — diagnose/fmt/cheap hover; not full completion/rename ([`CWL-LSP.md`](../language/CWL-LSP.md), 0.1.10)
+- [x] Minimal stdio Language Server (`cwl-lsp-server.mjs` + `test:cwl-lsp-server`) — diagnose/fmt/cheap hover + completion v0 ([`CWL-LSP.md`](../language/CWL-LSP.md), 0.1.11)
 
 **Exit 0.6:** Authors get live diagnostics/fmt inside the private pillar without Convert.
 
@@ -104,11 +104,11 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ## Phase 1.0 — Published language (private registry)
 
-- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.10`) — metadata only; package stays `"private": true`
+- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.11`) — metadata only; package stays `"private": true`
 - [x] Pre-publish pin path documented: sibling workspace / `file:` / env `CHRYSALIS_CWL_ROOT` ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
 - [x] Convert + Secure **`file:` pin** `@chrysalis/cwl` (`npm run test:cwl-pin`)
 - [x] Publish **prep gate** `npm run test:cwl-publish-prep` (package stays `"private": true`)
-- [x] Editor + minimal stdio LSP + CI language workflow (completion/rename still open)
+- [x] Editor + minimal stdio LSP (completion v0) + CI language workflow (rename still open)
 - [x] Private-first registry decision documented (no public npm by default)
 - [ ] Private registry package version ≡ `LANGUAGE_VERSION.md` (**actual publish — still open**)
 - [ ] Convert pins a **private registry** CWL release (today: `file:` + junctions)
@@ -130,6 +130,8 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 ---
 
 ## How to pick the next slice
+
+Follow **Rosetta → Universal Translator → DNA** ([`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)). Short queue: [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md).
 
 1. Does it improve **spec, fixtures, or tooling** for the language? → do it here.  
 2. Is it convert product smoke / ST prove? → convert agent.  

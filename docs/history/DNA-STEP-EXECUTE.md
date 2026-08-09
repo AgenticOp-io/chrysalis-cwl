@@ -1,8 +1,8 @@
 # DNA step — Execute (runtime from language gold)
 
-**Slice:** language-owned execute smoke  
-**Date:** 2026-08-08  
-**Version:** additive under Unreleased / execute (no `LANGUAGE_VERSION` bump — LSP owns `0.1.10`)
+**Slice:** language-owned execute smoke + matrix  
+**Date:** 2026-08-09  
+**Version:** additive under Unreleased / execute (no `LANGUAGE_VERSION` bump)
 
 ## What “execute” means today
 
@@ -33,6 +33,30 @@ Default gold: [`fixtures/language-gold/01-literals/routes.cwl`](../../fixtures/l
 
 Script: [`scripts/smoke-cwl-runtime-gold.mjs`](../../scripts/smoke-cwl-runtime-gold.mjs)
 
+## Matrix (runtime-ok fixtures)
+
+```bash
+npm run smoke:cwl-runtime-matrix
+# → CWL_RUNTIME_MATRIX_OK
+```
+
+Discovery requires **both**:
+
+1. `runtime-ok` marker in `fixtures/language-gold/<name>/README.md`
+2. Allowlisted checks in [`scripts/cwl-runtime-smoke-lib.mjs`](../../scripts/cwl-runtime-smoke-lib.mjs) (`RUNTIME_GOLD_CHECKS`)
+
+Marker without checks (or checks without marker) fails — no silent invented handlers.
+
+| Fixture | Surface |
+| --- | --- |
+| `01-literals` | literal / object returns |
+| `02-path-params` | path `:param` → object |
+| `03-query-params` | `query` → object |
+| `06-response-status` | explicit `status` |
+| `12-multi-file` | `import` + literal returns |
+
+Wired into optional `npm run test:language:full` (stable / fast; needs WebIR + rewrite dists).
+
 ## Why Convert packages still appear
 
 Physical `@chrysalis/webir` / `@chrysalis/rewrite` / `@chrysalis/emit-shared` trees still live under `chrysalis-convert` until the WebIR ownership flip ([`WEBIR-FLIP-REQUESTED.md`](./WEBIR-FLIP-REQUESTED.md), Slice 3.4). Pillar `runtime-cwl` declares `workspace:*` but this repo has no full pnpm workspace for those packages, so bare imports fail without wiring.
@@ -41,7 +65,7 @@ The smoke **does not** invent a second runtime. It:
 
 1. Loads CWL via pillar `loadModuleFromCwlFile` → `export-cwl-webir.mjs`
 2. Registers ESM resolve hooks to sibling (or `packages/webir`) dist entries
-3. Calls pillar `createCwlRuntime` and asserts literal routes
+3. Calls pillar `createCwlRuntime` and asserts allowlisted routes
 
 Same honesty pattern as `link:webir` — convert holds physical IR/sim packages; language owns the gold + smoke contract.
 
@@ -51,14 +75,18 @@ Same honesty pattern as `link:webir` — convert holds physical IR/sim packages;
 | --- | --- |
 | `npm run smoke:cwl-ingest` | CWL → WebIR snapshot (no execute) |
 | `npm run smoke:cwl-emit` | WebIR → CWL round-trip (no execute) |
-| `npm run smoke:cwl-runtime-gold` | **Execute** literals via runtime-cwl |
+| `npm run smoke:cwl-runtime-gold` | **Execute** default literals gold |
+| `npm run smoke:cwl-runtime-matrix` | **Execute** all `runtime-ok` fixtures |
 | `npm run test:runtime-cwl` | Package vitest — **currently unwired** in pillar (no `test` script; hub-gold fixtures not in this tree) |
 
 ## Gaps (honest)
 
 1. **Dep wiring:** pillar cannot `import("@chrysalis/runtime-cwl")` without hooks / convert workspace — Slice 3.4 open.
 2. **`test:runtime-cwl`:** root script runs `npm test --prefix packages/runtime-cwl`, but package has no `test` script and tests reference convert `fixtures/hub-gold-cwl*` (absent here).
-3. **Coverage:** only `01-literals` asserted end-to-end; other language-golds may 501 on sim holes — expand later without façades.
+3. **Coverage:** API literal/object/status/path/query/multi-file only. Not yet marked:
+   - `04-request-context` — cookies bind; **headers** (`Authorization`, `Accept-Language`) return `null` (request headers not passed into `simulateHandler` input)
+   - `08-response-content-type` / `14-defaults-headers` — bodies/status often work; **response-header** / CWL `content-type` not honestly applied on `Response` (runtime invents CT from body shape)
+   - `05` body / `07` auth / pages / UI / holes — holes correctly **501**; pages/UI not claimed
 4. **Browser / worker / emit-runtime-cwl:** out of this slice.
 5. **No Convert emit required** for this execute path — Requested below is wiring/flip, not “must emit to run.”
 
@@ -67,3 +95,4 @@ Same honesty pattern as `link:webir` — convert holds physical IR/sim packages;
 - Keep `rewrite` + `emit-shared` + `webir` dists buildable for sibling consume.
 - When flipping WebIR / workspace: retarget pillar `runtime-cwl*` deps so `smoke:cwl-runtime-gold` can drop resolve hooks (or keep hooks as fallback).
 - Do not treat convert hub-gold runtime tests as language SoR — language gold is `fixtures/language-gold/`.
+- Optional later: pass request headers into simulate input so `04-request-context` can earn `runtime-ok`.

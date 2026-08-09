@@ -185,9 +185,10 @@ async function activate(context) {
         publishDiagnostics: {},
         hover: { contentFormat: ["markdown", "plaintext"] },
         formatting: {},
+        completion: { completionItem: { snippetSupport: false } },
       },
     },
-    clientInfo: { name: "cwl-vscode", version: "0.1.10" },
+    clientInfo: { name: "cwl-vscode", version: "0.1.11" },
   });
   client.notify("initialized", {});
 
@@ -308,6 +309,43 @@ async function activate(context) {
           }
         },
       },
+    ),
+  );
+
+  context.subscriptions.push(
+    vscode.languages.registerCompletionItemProvider(
+      { language: "cwl" },
+      {
+        async provideCompletionItems(doc, position) {
+          if (doc.languageId !== "cwl") return [];
+          try {
+            const result = await client.request("textDocument/completion", {
+              textDocument: { uri: doc.uri.toString() },
+              position: { line: position.line, character: position.character },
+            });
+            const items = Array.isArray(result)
+              ? result
+              : Array.isArray(result?.items)
+                ? result.items
+                : [];
+            return items.map((item) => {
+              const ci = new vscode.CompletionItem(
+                item.label,
+                item.kind === 14
+                  ? vscode.CompletionItemKind.Keyword
+                  : vscode.CompletionItemKind.Text,
+              );
+              if (item.detail) ci.detail = item.detail;
+              if (item.insertText) ci.insertText = item.insertText;
+              return ci;
+            });
+          } catch {
+            return [];
+          }
+        },
+      },
+      "@",
+      ".",
     ),
   );
 

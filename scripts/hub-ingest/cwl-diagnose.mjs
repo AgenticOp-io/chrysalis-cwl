@@ -12,6 +12,24 @@ export const CWL_DIAGNOSE_KIND = "chrysalis.cwl.diagnose";
 export const CWL_DIAGNOSE_SCHEMA_VERSION = 3;
 
 /**
+ * Prefer explicit 1-based `line`, else parse "line N" / "at N" from a message.
+ * @param {unknown} line
+ * @param {string} [message]
+ * @returns {number | undefined}
+ */
+export function resolveDiagLine(line, message) {
+  if (Number.isFinite(line) && /** @type {number} */ (line) >= 1) {
+    return Math.floor(/** @type {number} */ (line));
+  }
+  const m = String(message ?? "").match(/(?:line|at)\s+(\d+)/i);
+  if (m) {
+    const n = Number(m[1]);
+    if (Number.isFinite(n) && n >= 1) return Math.floor(n);
+  }
+  return undefined;
+}
+
+/**
  * @param {string} source
  * @param {string} [file]
  */
@@ -23,54 +41,92 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
   try {
     mod = parseCwlModule(source, file);
   } catch (e) {
-    diagnostics.push({
-      severity: "error",
-      code: "parse",
-      message: e instanceof Error ? e.message : String(e),
-    });
+    const message = e instanceof Error ? e.message : String(e);
+    const line = resolveDiagLine(undefined, message);
+    /** @type {{ severity: "error", code: string, message: string, line?: number }} */
+    const d = { severity: "error", code: "parse", message };
+    if (line != null) d.line = line;
+    diagnostics.push(d);
     return { kind: CWL_DIAGNOSE_KIND, schemaVersion: CWL_DIAGNOSE_SCHEMA_VERSION, ok: false, diagnostics };
   }
 
-  if (!mod.moduleName) {
-    diagnostics.push({ severity: "warn", code: "module-name", message: "missing module declaration" });
+  if (mod.moduleLine == null) {
+    diagnostics.push({
+      severity: "warn",
+      code: "module-name",
+      message: "missing module declaration",
+      line: 1,
+    });
+  }
+
+  const routeCount = mod.routes?.length ?? 0;
+  if (routeCount === 0 && (mod.components?.length ?? 0) === 0) {
+    diagnostics.push({
+      severity: "info",
+      code: "no-routes",
+      message: "module declares no routes or components",
+      line: mod.moduleLine ?? 1,
+    });
   }
 
   const seen = new Map();
   for (const r of mod.routes ?? []) {
     const key = `${r.method} ${r.path}`;
+    const routeLine = Number.isFinite(r.line) && r.line >= 1 ? r.line : undefined;
     if (seen.has(key)) {
-      diagnostics.push({
+      /** @type {{ severity: "warn", code: string, message: string, line?: number }} */
+      const d = {
         severity: "warn",
         code: "duplicate-route",
         message: `duplicate route surface ${key} (handlers ${seen.get(key)} and ${r.name})`,
-      });
+      };
+      if (routeLine != null) d.line = routeLine;
+      diagnostics.push(d);
     } else {
       seen.set(key, r.name);
     }
-    /** @type {string[]} */
-    const holeReasons = [];
-    for (const reason of r.attachmentHoles ?? []) {
-      holeReasons.push(String(reason));
+
+    /** @type {Array<{ reason: string, line?: number }>} */
+    const holeSites = [];
+    const att = r.attachmentHoles ?? [];
+    const attLines = r.attachmentHoleLines ?? [];
+    for (let hi = 0; hi < att.length; hi++) {
+      const reason = String(att[hi]);
+      const hl = attLines[hi];
+      holeSites.push({
+        reason,
+        line: Number.isFinite(hl) && hl >= 1 ? hl : routeLine,
+      });
     }
     if (r.body?.kind === "hole") {
       const reason = String(r.body.reason ?? "unknown");
-      if (!holeReasons.includes(reason)) holeReasons.push(reason);
-    }
-    for (const reason of holeReasons) {
-      if (isCataloguedFullstackHole(reason)) {
-        const entry = lookupFullstackHole(reason);
-        diagnostics.push({
-          severity: "info",
-          code: "catalogued-hole",
-          message: `${reason}: ${entry?.summary ?? "catalogued"}`,
-        });
-      } else {
-        diagnostics.push({
-          severity: "warn",
-          code: "uncatalogued-hole",
-          message: `hole ${reason} is not in the language hole catalog`,
+      if (!holeSites.some((h) => h.reason === reason)) {
+        const bl = r.body.line;
+        holeSites.push({
+          reason,
+          line: Number.isFinite(bl) && bl >= 1 ? bl : routeLine,
         });
       }
+    }
+    for (const site of holeSites) {
+      /** @type {{ severity: "info"|"warn", code: string, message: string, line?: number }} */
+      let d;
+      if (isCataloguedFullstackHole(site.reason)) {
+        const entry = lookupFullstackHole(site.reason);
+        d = {
+          severity: "info",
+          code: "catalogued-hole",
+          message: `${site.reason}: ${entry?.summary ?? "catalogued"}`,
+        };
+      } else {
+        d = {
+          severity: "warn",
+          code: "uncatalogued-hole",
+          message: `hole ${site.reason} is not in the language hole catalog`,
+        };
+      }
+      if (site.line != null) d.line = site.line;
+      diagnostics.push(d);
     }
   }
 
@@ -81,6 +137,13 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
   let effectRouteCount = 0;
   let holeRouteCount = 0;
   const layoutImports = (mod.imports ?? []).filter((imp) => /layout/i.test(imp));
+  const layoutImportLines = [];
+  for (let ii = 0; ii < (mod.imports ?? []).length; ii++) {
+    if (/layout/i.test(mod.imports[ii])) {
+      const il = mod.importLines?.[ii];
+      layoutImportLines.push(Number.isFinite(il) && il >= 1 ? il : undefined);
+    }
+  }
   for (const r of mod.routes ?? []) {
     if (r.surfaceKind === "page") pageRouteCount += 1;
     if (r.loadBody) loadRouteCount += 1;
@@ -131,12 +194,14 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
       severity: "warn",
       code: "layout-import-unused",
       message: `layout import(s) ${layoutImports.join(", ")} but no @page routes`,
+      line: layoutImportLines[0] ?? mod.moduleLine ?? 1,
     });
   } else if (layoutImports.length > 0) {
     diagnostics.push({
       severity: "info",
       code: "layout-import",
       message: `layout module(s): ${layoutImports.join(", ")}`,
+      line: layoutImportLines[0] ?? mod.moduleLine ?? 1,
     });
   }
 
@@ -147,7 +212,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
     kind: CWL_DIAGNOSE_KIND,
     schemaVersion: CWL_DIAGNOSE_SCHEMA_VERSION,
     ok: errors === 0,
-    routeCount: mod.routes?.length ?? 0,
+    routeCount,
     pageRouteCount,
     loadRouteCount,
     interpolationRouteCount,

@@ -7,7 +7,7 @@ import { spawn } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { hoverAt } from "./cwl-lsp-server.mjs";
+import { hoverAt, completionsAt } from "./cwl-lsp-server.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SERVER = join(ROOT, "scripts/cwl-lsp-server.mjs");
@@ -132,6 +132,16 @@ async function main() {
     failures.push("hover-route");
   }
 
+  // Unit: completion helper (no process) — empty prefix yields catalog
+  const compEmpty = completionsAt("", { line: 0, character: 0 });
+  if (!Array.isArray(compEmpty) || compEmpty.length < 1) {
+    failures.push("completion-empty-prefix");
+  }
+  const compAt = completionsAt("@", { line: 0, character: 1 });
+  if (!Array.isArray(compAt) || !compAt.some((i) => i.label === "@route")) {
+    failures.push("completion-at-route");
+  }
+
   const child = spawn(process.execPath, [SERVER], {
     cwd: ROOT,
     stdio: ["pipe", "pipe", "pipe"],
@@ -148,13 +158,19 @@ async function main() {
       processId: process.pid,
       rootUri: pathToFileURL(ROOT).href,
       capabilities: {},
-      clientInfo: { name: "gate-cwl-lsp-server", version: "0.1.10" },
+      clientInfo: { name: "gate-cwl-lsp-server", version: "0.1.11" },
     });
     if (!init?.capabilities?.textDocumentSync) {
       failures.push("missing-textDocumentSync");
     }
     if (!init?.capabilities?.documentFormattingProvider) {
       failures.push("missing-formatting");
+    }
+    if (!init?.capabilities?.completionProvider) {
+      failures.push("missing-completionProvider");
+    }
+    if (!init?.capabilities?.hoverProvider) {
+      failures.push("missing-hoverProvider");
     }
     if (!init?.serverInfo?.name) {
       failures.push("missing-serverInfo");
@@ -183,6 +199,19 @@ async function main() {
         failures.push("diag-bad-range");
       }
       if (!d0.message) failures.push("diag-empty-message");
+    }
+
+    const completion = await client.request("textDocument/completion", {
+      textDocument: { uri },
+      position: { line: 0, character: 0 },
+    });
+    const items = Array.isArray(completion)
+      ? completion
+      : Array.isArray(completion?.items)
+        ? completion.items
+        : [];
+    if (items.length < 1) {
+      failures.push("completion-empty");
     }
 
     await client.request("shutdown", null);
