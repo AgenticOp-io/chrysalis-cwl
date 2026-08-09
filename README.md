@@ -1,8 +1,10 @@
-# Chrysalis Web Language (CWL) — THE language of the web
+# Chrysalis Web Language (CWL) — DNA of the web
 
-**CWL · Convert · Secure** — this repo **owns** CWL. Convert translates into/out of it. Secure bridges to it. Neither redefines it.
+**Rosetta Stone** of web-app meaning · tongue for the **Universal Translator** (Convert) · **DNA** heritable across emit and Secure bridges.
 
-**Start here:** [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md)
+**CWL · Convert · Secure** — this repo **owns** the genome. Convert translates into/out of it. Secure bridges to it. Neither redefines it.
+
+**Start here:** [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md) · [`docs/language/ROSETTA-UT-PATH.md`](./docs/language/ROSETTA-UT-PATH.md)
 
 ## What’s here
 

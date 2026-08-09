@@ -1,5 +1,9 @@
 # CWL language changelog
 
+## Unreleased — thesis
+
+- Constitution reframed: **Rosetta Stone → Universal Translator → DNA of the web** (`CWL-PILLAR-HOME.md`, `ROSETTA-UT-PATH.md`); AGENTS / cursor rule / README aligned
+
 ## Unreleased / execute
 
 - DNA Execute slice: `smoke:cwl-runtime-gold` → `CWL_RUNTIME_GOLD_OK` on `fixtures/language-gold/01-literals` via `@chrysalis/runtime-cwl` + WebIR `simulateHandler` (not Convert emit)

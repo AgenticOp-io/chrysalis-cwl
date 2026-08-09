@@ -1,19 +1,20 @@
 ---
-description: CWL is THE language of the web — this repo/chat is CWL-only
+description: CWL is the DNA of the web (Rosetta + UT) — this repo/chat is CWL-only
 alwaysApply: true
 ---
 
-# CWL — THE language of the web
+# CWL — DNA of the web
 
-Canonical constitution: [`docs/language/CWL-PILLAR-HOME.md`](../../docs/language/CWL-PILLAR-HOME.md)
+Canonical constitution: [`docs/language/CWL-PILLAR-HOME.md`](../../docs/language/CWL-PILLAR-HOME.md)  
+Path: [`docs/language/ROSETTA-UT-PATH.md`](../../docs/language/ROSETTA-UT-PATH.md)
 
-CWL is not a side format. It is the **canonical web language** for Chrysalis: what a web app *is* (routes, pages, data, UI, effects, honest holes).
+CWL is not a side format. It is the **DNA of the web** for Chrysalis: Rosetta meaning (CWL ↔ WebIR) that the Universal Translator (Convert) hears and speaks — routes, pages, data, UI, effects, honest holes.
 
 | Pillar | Relationship to CWL |
 | --- | --- |
-| **This repo (`chrysalis-cwl`)** | Owns grammar, RFCs, parser/print, fixtures, versioning — **edit only here** |
-| **Convert** | Separate agent — translates origin ↔ WebIR/CWL ↔ emit; pulls language from here |
-| **Secure (Helix)** | Separate agent — traffic DNA; optional CWL bridge; does not fork the language |
+| **This repo (`chrysalis-cwl`)** | Owns the genome: grammar, RFCs, parser/print, fixtures, versioning — **edit only here** |
+| **Convert** | Universal Translator — origin ↔ WebIR/CWL ↔ emit; pulls language from here |
+| **Secure (Helix)** | Live DNA / phenotype check; optional CWL bridge; does not fork the language |
 
 ## Rules
 
@@ -23,5 +24,6 @@ CWL is not a side format. It is the **canonical web language** for Chrysalis: wh
 - Run `npm run test:language` before claiming done.
 - Do not implement Helix firewall features or Convert product gates here.
 - Do not let convert-only forks become the “real” CWL.
-- Judge work as a **language** (spec, fixtures, tooling), not a single customer POC.
+- Judge work as a **language / genome** (spec, fixtures, tooling), not a single customer POC.
+- Holes over invention — forged genes fail the Rosetta bar.
 - Cross-lane needs → Requested CHANGELOG for the other agent; stop.

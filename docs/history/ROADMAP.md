@@ -1,7 +1,7 @@
 # CWL pillar roadmap
 
-**North star:** [`docs/language/CWL-PILLAR-HOME.md`](../language/CWL-PILLAR-HOME.md)  
-CWL is **THE language of the web**. Convert and Secure pull; they do not own the grammar.
+**North star:** [`docs/language/CWL-PILLAR-HOME.md`](../language/CWL-PILLAR-HOME.md) · [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
+CWL is the **DNA of the web** (Rosetta meaning). Convert is the Universal Translator; Secure checks live DNA. They pull; they do not own the grammar.
 
 ---
 

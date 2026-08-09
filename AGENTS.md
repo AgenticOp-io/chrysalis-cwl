@@ -1,6 +1,6 @@
 # AGENTS.md — chrysalis-cwl
 
-You own **CWL — THE language of the web** for AgenticOps. Convert and Secure consume you; they do not redefine you.
+You own **CWL — the DNA of the web** (Rosetta inscription + tongue for the Universal Translator). Convert and Secure consume you; they do not redefine you.
 
 **This workspace / chat is CWL-only.** Separate agents own Convert (`chrysalis-convert`) and Secure (`chrysalis-security`). Do **not** edit those trees from here.
 
@@ -9,16 +9,17 @@ You own **CWL — THE language of the web** for AgenticOps. Convert and Secure c
 ## Read first
 
 1. [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md) — **constitution (full)**
-2. [`LANGUAGE_VERSION.md`](./LANGUAGE_VERSION.md)
-3. [`docs/history/ROADMAP.md`](./docs/history/ROADMAP.md)
-4. [`README.md`](./README.md)
-5. [`docs/language/CWL.md`](./docs/language/CWL.md)
-6. [`docs/language/CWL-PUBLISH.md`](./docs/language/CWL-PUBLISH.md) — publish later; Convert/Secure pin (`file:` vs registry)
-7. `AgenticOps/docs/THREE_PILLARS.md`
+2. [`docs/language/ROSETTA-UT-PATH.md`](./docs/language/ROSETTA-UT-PATH.md) — Rosetta → UT → DNA path
+3. [`LANGUAGE_VERSION.md`](./LANGUAGE_VERSION.md)
+4. [`docs/history/ROADMAP.md`](./docs/history/ROADMAP.md)
+5. [`README.md`](./README.md)
+6. [`docs/language/CWL.md`](./docs/language/CWL.md)
+7. [`docs/language/CWL-PUBLISH.md`](./docs/language/CWL-PUBLISH.md) — publish later; Convert/Secure pin (`file:` vs registry)
+8. `AgenticOps/docs/THREE_PILLARS.md`
 
 ## Mission
 
-Make CWL the **canonical** way to say what a web app is — so conversion, security bridges, runtimes, and emit all share one language bar (RFCs, fixtures, parse/print, versioning).
+Make CWL the **heritable identity** of web apps — so the Universal Translator (Convert), security bridges, runtimes, and emit all share one Rosetta bar (RFCs, fixtures, parse/print, versioning). Never invent what you cannot translate: `hole reason;`.
 
 ## Do
 
