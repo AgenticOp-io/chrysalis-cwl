@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.9 — 2026-08-09
+
+- RFC-0021: top-level `foreachBindings` → WebIR `data.foreach` (`appendForeachBindings`; empty-iter honesty)
+- RFC-0021: projectable `else` / `else if` (incl. same-line `} else`) → `ifElse.else`
+- Unshadow page early-exit HTML (`/post/:id`); gate else-if route; deeper `19` / `23` matrix
+
 ## 1.0.8 — 2026-08-09
 
 - RFC-0021: lower projectable early-exit / nested `if` to WebIR (`cwl-control-lower.mjs`); opaque `g_*` skipped

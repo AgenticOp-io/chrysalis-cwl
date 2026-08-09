@@ -9,7 +9,7 @@ import { liftCwlModuleMiddlewareToWebir } from "./hub-cwl-middleware.mjs";
 import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
 import { cwlEffectsToWebir, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
 import { cwlPathParamsForWebir } from "./hub-cwl-path-params.mjs";
-import { wrapWithEarlyGuards } from "./cwl-control-lower.mjs";
+import { appendForeachBindings, wrapWithEarlyGuards } from "./cwl-control-lower.mjs";
 
 /**
  * @param {string} language
@@ -297,6 +297,7 @@ export function liftCwlFileToWebir(opts) {
     }
     valueId = wrapCwlExecutableEffects({ data, webir, builder, file }, valueId, r.effects ?? [], loc);
     valueId = wrapWithEarlyGuards(ctx, valueId, r.earlyGuards ?? [], r, wrBuilders, lowerObjectEntriesBody);
+    valueId = appendForeachBindings(ctx, valueId, r.foreachBindings ?? [], r, wrBuilders, lowerObjectEntriesBody);
     const status = r.responseStatus ?? 200;
     const contentType =
       r.responseContentType ??

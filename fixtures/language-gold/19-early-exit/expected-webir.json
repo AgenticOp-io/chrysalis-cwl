@@ -270,12 +270,12 @@
     },
     {
       "attrs": {
-        "reason": "cwl:duplicate-route"
+        "value": "ok"
       },
       "dialect": "data",
       "effects": [],
       "id": "n18",
-      "op": "hole",
+      "op": "literal",
       "operands": [],
       "origin": {
         "column": 1,
@@ -284,30 +284,22 @@
       },
       "provenance": [
         {
-          "locator": "cwl:duplicate-route",
+          "locator": "cwl:object-key",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "contract": {
-          "input": {
-            "kind": "unknown"
-          },
-          "output": {
-            "kind": "unknown"
-          }
-        },
-        "kind": "hole"
+        "kind": "string"
       }
     },
     {
       "attrs": {
-        "name": "post"
+        "value": true
       },
       "dialect": "data",
       "effects": [],
       "id": "n19",
-      "op": "param",
+      "op": "literal",
       "operands": [],
       "origin": {
         "column": 1,
@@ -316,12 +308,12 @@
       },
       "provenance": [
         {
-          "locator": "cwl:early-exit-ident",
+          "locator": "cwl:object-val",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "kind": "unknown"
+        "kind": "bool"
       }
     },
     {
@@ -353,14 +345,116 @@
     },
     {
       "attrs": {
-        "operator": "!"
+        "value": "id"
       },
       "dialect": "data",
       "effects": [],
       "id": "n20",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 20
+      },
+      "provenance": [
+        {
+          "locator": "cwl:object-key",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "name": "id",
+        "source": "path"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n21",
+      "op": "request.field",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 20
+      },
+      "provenance": [
+        {
+          "locator": "cwl:path-param",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "callee": "__object_literal"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n22",
+      "op": "call",
+      "operands": [
+        "n18",
+        "n19",
+        "n20",
+        "n21"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 20
+      },
+      "provenance": [
+        {
+          "locator": "cwl:object",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "name": "post"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n23",
+      "op": "param",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 20
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-ident",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "operator": "!"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n24",
       "op": "unaryop",
       "operands": [
-        "n19"
+        "n23"
       ],
       "origin": {
         "column": 1,
@@ -383,7 +477,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n21",
+      "id": "n25",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -409,10 +503,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n22",
+      "id": "n26",
       "op": "response",
       "operands": [
-        "n21"
+        "n25"
       ],
       "origin": {
         "column": 1,
@@ -435,10 +529,10 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n23",
+      "id": "n27",
       "op": "call",
       "operands": [
-        "n21"
+        "n25"
       ],
       "origin": {
         "column": 1,
@@ -459,11 +553,11 @@
       "attrs": {},
       "dialect": "data",
       "effects": [],
-      "id": "n24",
+      "id": "n28",
       "op": "block",
       "operands": [
-        "n22",
-        "n23"
+        "n26",
+        "n27"
       ],
       "origin": {
         "column": 1,
@@ -486,11 +580,11 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n25",
+      "id": "n29",
       "op": "if",
       "operands": [
-        "n20",
-        "n24"
+        "n24",
+        "n28"
       ],
       "origin": {
         "column": 1,
@@ -505,122 +599,6 @@
       ],
       "type": {
         "kind": "void"
-      }
-    },
-    {
-      "attrs": {},
-      "dialect": "data",
-      "effects": [],
-      "id": "n26",
-      "op": "block",
-      "operands": [
-        "n25",
-        "n18"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 20
-      },
-      "provenance": [
-        {
-          "locator": "cwl:early-guards",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "unknown"
-      }
-    },
-    {
-      "attrs": {
-        "input": {
-          "kind": "unknown"
-        },
-        "name": "post_show",
-        "output": {
-          "kind": "unknown"
-        }
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n27",
-      "op": "handler",
-      "operands": [
-        "n26"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 20
-      },
-      "provenance": [
-        {
-          "locator": "hub-lift:cwl",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "unknown"
-      }
-    },
-    {
-      "attrs": {
-        "method": "GET",
-        "path": "/posts/:id",
-        "pathParams": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "string"
-            }
-          }
-        ]
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n28",
-      "op": "route",
-      "operands": [
-        "n27"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 20
-      },
-      "provenance": [
-        {
-          "locator": "route:cwl",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "void"
-      }
-    },
-    {
-      "attrs": {
-        "value": "<ul></ul>"
-      },
-      "dialect": "data",
-      "effects": [],
-      "id": "n29",
-      "op": "literal",
-      "operands": [],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 31
-      },
-      "provenance": [
-        {
-          "locator": "cwl-page-html-literal",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "string"
       }
     },
     {
@@ -649,31 +627,28 @@
       }
     },
     {
-      "attrs": {
-        "contentType": "text/html; charset=utf-8",
-        "kind": "html",
-        "status": 200
-      },
-      "dialect": "web.request",
+      "attrs": {},
+      "dialect": "data",
       "effects": [],
       "id": "n30",
-      "op": "response",
+      "op": "block",
       "operands": [
-        "n29"
+        "n29",
+        "n22"
       ],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 31
+        "line": 20
       },
       "provenance": [
         {
-          "locator": "cwl-page-html-response",
+          "locator": "cwl:early-guards",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "kind": "void"
+        "kind": "unknown"
       }
     },
     {
@@ -681,7 +656,7 @@
         "input": {
           "kind": "unknown"
         },
-        "name": "posts_list",
+        "name": "post_show",
         "output": {
           "kind": "unknown"
         }
@@ -696,7 +671,7 @@
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 31
+        "line": 20
       },
       "provenance": [
         {
@@ -711,8 +686,15 @@
     {
       "attrs": {
         "method": "GET",
-        "path": "/posts",
-        "pathParams": []
+        "path": "/posts/:id",
+        "pathParams": [
+          {
+            "name": "id",
+            "type": {
+              "kind": "string"
+            }
+          }
+        ]
       },
       "dialect": "web.request",
       "effects": [],
@@ -724,7 +706,7 @@
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 31
+        "line": 20
       },
       "provenance": [
         {
@@ -738,49 +720,93 @@
     },
     {
       "attrs": {
-        "reason": "cwl:duplicate-route"
+        "value": "ready"
       },
       "dialect": "data",
       "effects": [],
       "id": "n33",
-      "op": "hole",
+      "op": "literal",
       "operands": [],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 40
+        "line": 31
       },
       "provenance": [
         {
-          "locator": "cwl:duplicate-route",
+          "locator": "cwl:object-key",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "contract": {
-          "input": {
-            "kind": "unknown"
-          },
-          "output": {
-            "kind": "unknown"
-          }
-        },
-        "kind": "hole"
+        "kind": "string"
       }
     },
     {
       "attrs": {
-        "name": "post"
+        "value": true
       },
       "dialect": "data",
       "effects": [],
       "id": "n34",
-      "op": "param",
+      "op": "literal",
       "operands": [],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 40
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:object-val",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "bool"
+      }
+    },
+    {
+      "attrs": {
+        "callee": "__object_literal"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n35",
+      "op": "call",
+      "operands": [
+        "n33",
+        "n34"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:object",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "name": "mode",
+        "source": "query"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n36",
+      "op": "request.field",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
       },
       "provenance": [
         {
@@ -789,22 +815,22 @@
         }
       ],
       "type": {
-        "kind": "unknown"
+        "kind": "string"
       }
     },
     {
       "attrs": {
-        "value": null
+        "value": "off"
       },
       "dialect": "data",
       "effects": [],
-      "id": "n35",
+      "id": "n37",
       "op": "literal",
       "operands": [],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 40
+        "line": 31
       },
       "provenance": [
         {
@@ -813,7 +839,7 @@
         }
       ],
       "type": {
-        "kind": "unknown"
+        "kind": "string"
       }
     },
     {
@@ -822,16 +848,16 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n36",
+      "id": "n38",
       "op": "binop",
       "operands": [
-        "n34",
-        "n35"
+        "n36",
+        "n37"
       ],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 40
+        "line": 31
       },
       "provenance": [
         {
@@ -845,80 +871,27 @@
     },
     {
       "attrs": {
-        "value": "<p>missing</p>"
+        "name": "mode",
+        "source": "query"
       },
       "dialect": "data",
       "effects": [],
-      "id": "n37",
-      "op": "literal",
+      "id": "n39",
+      "op": "request.field",
       "operands": [],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 40
+        "line": 31
       },
       "provenance": [
         {
-          "locator": "cwl:early-exit-html",
+          "locator": "cwl:early-exit-ident",
           "source": "hub-ingest"
         }
       ],
       "type": {
         "kind": "string"
-      }
-    },
-    {
-      "attrs": {
-        "contentType": "text/html; charset=utf-8",
-        "kind": "html",
-        "status": 404
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n38",
-      "op": "response",
-      "operands": [
-        "n37"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 40
-      },
-      "provenance": [
-        {
-          "locator": "cwl:early-exit-response",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "void"
-      }
-    },
-    {
-      "attrs": {
-        "callee": "__return"
-      },
-      "dialect": "data",
-      "effects": [],
-      "id": "n39",
-      "op": "call",
-      "operands": [
-        "n37"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 40
-      },
-      "provenance": [
-        {
-          "locator": "cwl:early-exit-halt",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "unknown"
       }
     },
     {
@@ -946,19 +919,148 @@
       }
     },
     {
-      "attrs": {},
+      "attrs": {
+        "value": "maint"
+      },
       "dialect": "data",
       "effects": [],
       "id": "n40",
-      "op": "block",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-lit",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "operator": "=="
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n41",
+      "op": "binop",
       "operands": [
-        "n38",
-        "n39"
+        "n39",
+        "n40"
       ],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 40
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-cmp",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "bool"
+      }
+    },
+    {
+      "attrs": {
+        "value": "not ready"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n42",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-lit",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/plain; charset=utf-8",
+        "kind": "text",
+        "status": 503
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n43",
+      "op": "response",
+      "operands": [
+        "n42"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "callee": "__return"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n44",
+      "op": "call",
+      "operands": [
+        "n42"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-halt",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n45",
+      "op": "block",
+      "operands": [
+        "n43",
+        "n44"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
       },
       "provenance": [
         {
@@ -972,149 +1074,102 @@
     },
     {
       "attrs": {
-        "hasElse": false
+        "name": "mode",
+        "source": "query"
       },
       "dialect": "data",
       "effects": [],
-      "id": "n41",
-      "op": "if",
-      "operands": [
-        "n36",
-        "n40"
-      ],
+      "id": "n46",
+      "op": "request.field",
+      "operands": [],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 40
+        "line": 31
       },
       "provenance": [
         {
-          "locator": "cwl:early-guard",
+          "locator": "cwl:early-exit-ident",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "kind": "void"
+        "kind": "string"
       }
     },
     {
-      "attrs": {},
+      "attrs": {
+        "value": "maint"
+      },
       "dialect": "data",
       "effects": [],
-      "id": "n42",
-      "op": "block",
-      "operands": [
-        "n41",
-        "n33"
-      ],
+      "id": "n47",
+      "op": "literal",
+      "operands": [],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 40
+        "line": 31
       },
       "provenance": [
         {
-          "locator": "cwl:early-guards",
+          "locator": "cwl:early-exit-lit",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "kind": "unknown"
+        "kind": "string"
       }
     },
     {
       "attrs": {
-        "contentType": "text/html; charset=utf-8",
-        "kind": "html",
-        "status": 200
+        "operator": "=="
       },
-      "dialect": "web.request",
+      "dialect": "data",
       "effects": [],
-      "id": "n43",
-      "op": "response",
+      "id": "n48",
+      "op": "binop",
       "operands": [
-        "n42"
+        "n46",
+        "n47"
       ],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 40
+        "line": 31
       },
       "provenance": [
         {
-          "locator": "cwl:response-content-type",
+          "locator": "cwl:early-exit-cmp",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "kind": "void"
+        "kind": "bool"
       }
     },
     {
       "attrs": {
-        "input": {
-          "kind": "unknown"
-        },
-        "name": "post_view",
-        "output": {
-          "kind": "unknown"
-        }
+        "value": "maintenance"
       },
-      "dialect": "web.request",
+      "dialect": "data",
       "effects": [],
-      "id": "n44",
-      "op": "handler",
-      "operands": [
-        "n43"
-      ],
+      "id": "n49",
+      "op": "literal",
+      "operands": [],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 40
+        "line": 31
       },
       "provenance": [
         {
-          "locator": "hub-lift:cwl",
+          "locator": "cwl:early-exit-lit",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "kind": "unknown"
-      }
-    },
-    {
-      "attrs": {
-        "method": "GET",
-        "path": "/posts/:id",
-        "pathParams": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "string"
-            }
-          }
-        ]
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n45",
-      "op": "route",
-      "operands": [
-        "n44"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 40
-      },
-      "provenance": [
-        {
-          "locator": "route:cwl",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "void"
+        "kind": "string"
       }
     },
     {
@@ -1146,6 +1201,277 @@
     },
     {
       "attrs": {
+        "contentType": "text/plain; charset=utf-8",
+        "kind": "text",
+        "status": 503
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n50",
+      "op": "response",
+      "operands": [
+        "n49"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "callee": "__return"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n51",
+      "op": "call",
+      "operands": [
+        "n49"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-halt",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n52",
+      "op": "block",
+      "operands": [
+        "n50",
+        "n51"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "hasElse": false
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n53",
+      "op": "if",
+      "operands": [
+        "n48",
+        "n52"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-else-if",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "hasElse": true
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n54",
+      "op": "if",
+      "operands": [
+        "n38",
+        "n45",
+        "n53"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-guard",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n55",
+      "op": "block",
+      "operands": [
+        "n54",
+        "n35"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-guards",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "gate",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n56",
+      "op": "handler",
+      "operands": [
+        "n55"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/gate",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n57",
+      "op": "route",
+      "operands": [
+        "n56"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 31
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "value": "<ul></ul>"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n58",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 45
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-literal",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n59",
+      "op": "response",
+      "operands": [
+        "n58"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 45
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
         "name": "password",
         "source": "body"
       },
@@ -1162,6 +1488,270 @@
       "provenance": [
         {
           "locator": "cwl:early-exit-ident",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "name": "posts"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n60",
+      "op": "param",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 45
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-ident",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "value": "<li>post</li>"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n61",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 45
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-html",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n62",
+      "op": "response",
+      "operands": [
+        "n61"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 45
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "callee": "__return"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n63",
+      "op": "call",
+      "operands": [
+        "n61"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 45
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-halt",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n64",
+      "op": "block",
+      "operands": [
+        "n62",
+        "n63"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 45
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "keyName": null,
+        "valueName": "p"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n65",
+      "op": "foreach",
+      "operands": [
+        "n60",
+        "n64"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 45
+      },
+      "provenance": [
+        {
+          "locator": "cwl:foreach",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n66",
+      "op": "block",
+      "operands": [
+        "n59",
+        "n65"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 45
+      },
+      "provenance": [
+        {
+          "locator": "cwl:foreach-bindings",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "posts_list",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n67",
+      "op": "handler",
+      "operands": [
+        "n66"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 45
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/posts",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n68",
+      "op": "route",
+      "operands": [
+        "n67"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 45
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "value": "<article></article>"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n69",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-literal",
           "source": "hub-ingest"
         }
       ],
@@ -1195,6 +1785,264 @@
     },
     {
       "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n70",
+      "op": "response",
+      "operands": [
+        "n69"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "name": "post"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n71",
+      "op": "param",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-ident",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "value": null
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n72",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-lit",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "operator": "=="
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n73",
+      "op": "binop",
+      "operands": [
+        "n71",
+        "n72"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-cmp",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "bool"
+      }
+    },
+    {
+      "attrs": {
+        "value": "<p>missing</p>"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n74",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-html",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 404
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n75",
+      "op": "response",
+      "operands": [
+        "n74"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "callee": "__return"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n76",
+      "op": "call",
+      "operands": [
+        "n74"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-halt",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n77",
+      "op": "block",
+      "operands": [
+        "n75",
+        "n76"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "hasElse": false
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n78",
+      "op": "if",
+      "operands": [
+        "n73",
+        "n77"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-guard",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n79",
+      "op": "block",
+      "operands": [
+        "n78",
+        "n70"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-guards",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
         "operator": "=="
       },
       "dialect": "data",
@@ -1218,6 +2066,253 @@
       ],
       "type": {
         "kind": "bool"
+      }
+    },
+    {
+      "attrs": {
+        "name": "comments"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n80",
+      "op": "param",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-ident",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "value": "<li>comment</li>"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n81",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-html",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n82",
+      "op": "response",
+      "operands": [
+        "n81"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "callee": "__return"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n83",
+      "op": "call",
+      "operands": [
+        "n81"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit-halt",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n84",
+      "op": "block",
+      "operands": [
+        "n82",
+        "n83"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:early-exit",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "keyName": null,
+        "valueName": "c"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n85",
+      "op": "foreach",
+      "operands": [
+        "n80",
+        "n84"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:foreach",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n86",
+      "op": "block",
+      "operands": [
+        "n79",
+        "n85"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "cwl:foreach-bindings",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "post_view",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n87",
+      "op": "handler",
+      "operands": [
+        "n86"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/post/:id",
+        "pathParams": [
+          {
+            "name": "id",
+            "type": {
+              "kind": "string"
+            }
+          }
+        ]
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n88",
+      "op": "route",
+      "operands": [
+        "n87"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 54
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
       }
     },
     {
@@ -1250,8 +2345,9 @@
   ],
   "roots": [
     "n17",
-    "n28",
     "n32",
-    "n45"
+    "n57",
+    "n68",
+    "n88"
   ]
 }

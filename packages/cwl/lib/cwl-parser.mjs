@@ -31,6 +31,8 @@ const STATUS_RE = /^status\s+(\d{3})\s*;$/;
 const CONTENT_TYPE_RE = /^content-type\s+(.+?)\s*;$/i;
 const RESPONSE_HEADER_RE = /^response-header\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*(?:=\s*(.+?))?\s*;$/;
 const IF_GUARD_RE = /^if\s+(.+?)\s*\{$/;
+const ELSE_IF_RE = /^else\s+if\s+(.+?)\s*\{$/;
+const ELSE_RE = /^else\s*\{$/;
 const FOREACH_RE = /^foreach\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+as(?:\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=>)?\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\{$/;
 
 /**
@@ -270,6 +272,58 @@ function parseEffects(effectsRaw) {
 }
 
 /**
+ * After an `if` block’s closing `}`, consume `else if` / `else` tails.
+ * @param {string[]} lines
+ * @param {number} i
+ * @param {object} bindings
+ * @param {string | null} [firstLine] same-line `} else…` remainder already consumed with the close
+ * @returns {{ elseIfs: object[], elseStmts: object[] | null, elseStatus: number | null, elseBody: object | null, nextI: number }}
+ */
+function parseElseTail(lines, i, bindings, firstLine = null) {
+  /** @type {object[]} */
+  const elseIfs = [];
+  /** @type {object[] | null} */
+  let elseStmts = null;
+  /** @type {number | null} */
+  let elseStatus = null;
+  /** @type {object | null} */
+  let elseBody = null;
+  /** @type {string | null} */
+  let pending = firstLine;
+  while (i < lines.length || pending) {
+    const line = pending ?? lines[i].trim();
+    const fromPending = pending != null;
+    pending = null;
+    const elseIf = ELSE_IF_RE.exec(line);
+    if (elseIf) {
+      if (!fromPending) i += 1;
+      const nested = parseControlStmts(lines, i, bindings);
+      i = nested.nextI;
+      elseIfs.push({
+        condExpr: elseIf[1].trim(),
+        status: nested.status,
+        body: nested.body,
+        stmts: nested.stmts,
+      });
+      if (nested.trailingElse) pending = nested.trailingElse;
+      continue;
+    }
+    const elseOnly = ELSE_RE.exec(line);
+    if (elseOnly) {
+      if (!fromPending) i += 1;
+      const nested = parseControlStmts(lines, i, bindings);
+      i = nested.nextI;
+      elseStmts = nested.stmts;
+      elseStatus = nested.status;
+      elseBody = nested.body;
+      break;
+    }
+    break;
+  }
+  return { elseIfs, elseStmts, elseStatus, elseBody, nextI: i };
+}
+
+/**
  * Parse a control-block stmt list until the matching `}` that closes the block
  * opened on the caller’s `if` / `foreach` header line.
  *
@@ -279,7 +333,7 @@ function parseEffects(effectsRaw) {
  * @param {string[]} lines
  * @param {number} startI index of the first line inside the block
  * @param {{ path: string[], query: string[], header: string[], cookie: string[], body: string[], pathDefaults: Record<string, unknown>, queryDefaults: Record<string, unknown> }} bindings
- * @returns {{ stmts: object[], nextI: number, status: number | null, body: object | null }}
+ * @returns {{ stmts: object[], nextI: number, status: number | null, body: object | null, trailingElse?: string | null }}
  */
 function parseControlStmts(lines, startI, bindings) {
   /** @type {object[]} */
@@ -290,9 +344,18 @@ function parseControlStmts(lines, startI, bindings) {
   let body = null;
   let i = startI;
   let depth = 1;
+  /** @type {string | null} */
+  let trailingElse = null;
   while (i < lines.length && depth > 0) {
     const gline = lines[i].trim();
     i += 1;
+    // Same-line `} else` / `} else if` — close this block and hand else to caller.
+    const closeElse = /^\}\s+(else\b.*)$/.exec(gline);
+    if (closeElse && depth === 1) {
+      depth = 0;
+      trailingElse = closeElse[1].trim();
+      break;
+    }
     if (depth === 1 && gline && gline !== "}") {
       const gsm = STATUS_RE.exec(gline);
       if (gsm) {
@@ -322,12 +385,18 @@ function parseControlStmts(lines, startI, bindings) {
       if (ifGuard) {
         const nested = parseControlStmts(lines, i, bindings);
         i = nested.nextI;
+        const tail = parseElseTail(lines, i, bindings, nested.trailingElse ?? null);
+        i = tail.nextI;
         stmts.push({
           kind: "if",
           condExpr: ifGuard[1].trim(),
           status: nested.status,
           body: nested.body,
           stmts: nested.stmts,
+          elseIfs: tail.elseIfs,
+          elseStmts: tail.elseStmts,
+          elseStatus: tail.elseStatus,
+          elseBody: tail.elseBody,
         });
         continue;
       }
@@ -349,7 +418,7 @@ function parseControlStmts(lines, startI, bindings) {
     if (gline.endsWith("{")) depth += 1;
     if (gline === "}") depth -= 1;
   }
-  return { stmts, nextI: i, status, body };
+  return { stmts, nextI: i, status, body, trailingElse };
 }
 
 /**
@@ -617,16 +686,22 @@ export function parseCwlModule(source, file) {
         else loadBody = { kind: "hole", reason: `cwl:${parsed.error}` };
         continue;
       }
-      // Early-exit guards (RFC-0021): cond + stmt-list body (nested if/foreach ok).
+      // Early-exit guards (RFC-0021): cond + stmt-list body (nested if/foreach / else ok).
       const ifGuard = IF_GUARD_RE.exec(inner);
       if (ifGuard) {
         const nested = parseControlStmts(lines, i, handlerBindings());
         i = nested.nextI;
+        const tail = parseElseTail(lines, i, handlerBindings(), nested.trailingElse ?? null);
+        i = tail.nextI;
         earlyGuards.push({
           condExpr: ifGuard[1].trim(),
           status: nested.status,
           body: nested.body,
           stmts: nested.stmts,
+          elseIfs: tail.elseIfs,
+          elseStmts: tail.elseStmts,
+          elseStatus: tail.elseStatus,
+          elseBody: tail.elseBody,
         });
         continue;
       }

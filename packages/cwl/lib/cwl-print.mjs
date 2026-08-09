@@ -1,4 +1,33 @@
 /**
+ * Print `else if` / `else` tails for an if / earlyGuard node.
+ * @param {object} s
+ * @param {string} indent
+ * @param {string[]} lines
+ */
+function printElseTail(s, indent, lines) {
+  for (const ei of s.elseIfs ?? []) {
+    lines.push(`${indent}else if ${ei.condExpr} {`);
+    printControlStmts(controlStmtsOf(ei), `${indent}  `, lines);
+    lines.push(`${indent}}`);
+  }
+  if (Array.isArray(s.elseStmts) && s.elseStmts.length > 0) {
+    lines.push(`${indent}else {`);
+    printControlStmts(s.elseStmts, `${indent}  `, lines);
+    lines.push(`${indent}}`);
+  } else if (s.elseBody) {
+    lines.push(`${indent}else {`);
+    if (typeof s.elseStatus === "number") lines.push(`${indent}  status ${s.elseStatus};`);
+    if (s.elseBody?.kind === "html") {
+      lines.push(`${indent}  return html ${printCwlLiteral(s.elseBody.value)};`);
+    } else {
+      const expr = printCwlBodyExpr(s.elseBody);
+      if (expr != null) lines.push(`${indent}  return ${expr};`);
+    }
+    lines.push(`${indent}}`);
+  }
+}
+
+/**
  * Print control-block stmt lists (`status` / `return` / nested `if` / `foreach`).
  * Surface documentation only — no condition or loop evaluation.
  * @param {object[]} stmts
@@ -24,6 +53,7 @@ function printControlStmts(stmts, indent, lines) {
       lines.push(`${indent}if ${s.condExpr} {`);
       printControlStmts(s.stmts ?? [], `${indent}  `, lines);
       lines.push(`${indent}}`);
+      printElseTail(s, indent, lines);
       continue;
     }
     if (s.kind === "foreach") {
@@ -51,6 +81,15 @@ function controlStmtsOf(block) {
 /**
  * @param {object[] | null | undefined} stmts
  */
+function canonicalizeElseIfs(elseIfs) {
+  return (elseIfs ?? []).map((ei) => ({
+    condExpr: ei.condExpr,
+    status: ei.status ?? null,
+    body: canonicalizeBody(ei.body),
+    stmts: canonicalizeControlStmts(controlStmtsOf(ei)),
+  }));
+}
+
 function canonicalizeControlStmts(stmts) {
   return (stmts ?? []).map((s) => {
     if (s.kind === "status") return { kind: "status", status: s.status ?? null };
@@ -62,6 +101,10 @@ function canonicalizeControlStmts(stmts) {
         status: s.status ?? null,
         body: canonicalizeBody(s.body),
         stmts: canonicalizeControlStmts(s.stmts),
+        elseIfs: canonicalizeElseIfs(s.elseIfs),
+        elseStmts: canonicalizeControlStmts(s.elseStmts ?? []),
+        elseStatus: s.elseStatus ?? null,
+        elseBody: canonicalizeBody(s.elseBody),
       };
     }
     if (s.kind === "foreach") {
@@ -330,6 +373,7 @@ export function printCwlModule(mod, opts = {}) {
       lines.push(`  if ${g.condExpr} {`);
       printControlStmts(controlStmtsOf(g), "    ", lines);
       lines.push("  }");
+      printElseTail(g, "  ", lines);
     }
 
     if (route.loadBody) {
@@ -427,6 +471,10 @@ export function canonicalizeCwlModule(mod) {
         status: g.status ?? null,
         body: canonicalizeBody(g.body),
         stmts: canonicalizeControlStmts(controlStmtsOf(g)),
+        elseIfs: canonicalizeElseIfs(g.elseIfs),
+        elseStmts: canonicalizeControlStmts(g.elseStmts ?? []),
+        elseStatus: g.elseStatus ?? null,
+        elseBody: canonicalizeBody(g.elseBody),
       })),
       foreachBindings: (r.foreachBindings ?? []).map((fe) => ({
         collection: fe.collection,

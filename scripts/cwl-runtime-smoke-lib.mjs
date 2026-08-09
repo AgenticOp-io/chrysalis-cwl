@@ -268,8 +268,12 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       headers: { "content-type": "application/json" },
       body: '{"username":"a","password":"b"}',
     },
+    { path: "/gate?mode=off", expectStatus: 503, expectBody: "not ready" },
+    { path: "/gate?mode=maint", expectStatus: 503, expectBody: "maintenance" },
+    { path: "/gate", expectStatus: 200, expectBody: '{"ready":true}' },
     { path: "/posts", expectStatus: 200, expectBody: "<ul></ul>" },
     { path: "/posts/x", expectStatus: 404, expectBody: "Post not found" },
+    { path: "/post/x", expectStatus: 404, expectBody: "<p>missing</p>" },
   ]),
   "20-probes": Object.freeze([
     { path: "/search", expectStatus: 200, expectBody: "<p>search: </p>" },

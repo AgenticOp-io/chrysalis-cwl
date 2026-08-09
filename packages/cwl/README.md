@@ -1,7 +1,7 @@
 # Chrysalis Web Language (CWL)
 
 **Package:** `@chrysalis/cwl`  
-**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `1.0.8`)  
+**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `1.0.9`)  
 **Status:** Exit 1.0 lineage — packable for **GitHub Packages** (`publishConfig` restricted). Repos stay private. Not public npm.
 
 ## Purpose

@@ -2,7 +2,7 @@
 
 **Slice:** language-owned execute smoke + matrix  
 **Date:** 2026-08-09  
-**Version:** tip `1.0.8` — early-exit WebIR lowering + attachment soft-path
+**Version:** tip `1.0.9` — foreach IR + else/else-if + page early-exit HTML
 
 ## What “execute” means today
 
@@ -94,9 +94,9 @@ Language owns the gold + smoke contract; Convert owns rewrite/simulate honesty (
 
 1. **Dep wiring:** `packages/webir` is local; rewrite/emit-shared still need Convert sibling dists or hooks for full execute smokes.
 2. **`test:runtime-cwl`:** root script runs `npm test --prefix packages/runtime-cwl`, but package has no `test` script and tests reference convert `fixtures/hub-gold-cwl*` (absent here).
-3. **Coverage:** all language-gold (**25**) including projectable early-exit and attachment-hole HTML soft-path. Honest limits:
+3. **Coverage:** all language-gold (**25**) including projectable early-exit / else-if, foreach empty-iter IR, and attachment-hole HTML soft-path. Honest limits:
    - Opaque `g_*` / call verify not invented
-   - Foreach N-iteration not claimed (empty-iter / documentation IR)
+   - Foreach N-iteration not claimed (empty-iter IR only)
    - Browser island events not claimed
    - Pure `hole` handlers (no return) still **501**
    - Invented CT fallback when CWL omits `content-type`
