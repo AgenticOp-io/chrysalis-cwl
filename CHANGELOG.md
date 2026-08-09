@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.16 — 2026-08-09
+
+- CWL-owned DNA queue **CLOSED** — tip/doc handoff only
+- Align README / EXIT / PUBLISH / ecology / fleet / starter / ROADMAP to tip
+- Sibling Requested tip pin → `@agenticop-io/cwl@1.0.16`
+
 ## 1.0.15 — 2026-08-09
 
 - UT evidence: parse `LANGUAGE_VERSION.md` table (tip fidelity)

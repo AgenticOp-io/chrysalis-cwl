@@ -13,12 +13,13 @@
 | `LANGUAGE_VERSION.md` | Language semver + compatibility |
 | `CHANGELOG.md` | Language deltas |
 | `docs/language/CWL-PILLAR-HOME.md` | Constitution — ownership, sync, completeness |
-| `docs/language/CWL-PUBLISH.md` | Publish later + Convert/Secure pin (`file:` vs registry) — Phase 1.0 prep |
-| `docs/language/CWL-CLI.md` | Authoring CLI (`parse` / `print` / `fmt` / `diagnose` / `check`) |
+| `docs/language/CWL-PUBLISH.md` | GitHub Packages `@agenticop-io/cwl` + Convert/Secure pin |
+| `docs/language/CWL-CLI.md` | Authoring CLI (`parse` / `print` / `fmt` / `diagnose` / `check` / `emit-check`) |
 | `docs/language/CWL.md` | Language reference |
-| `docs/language/CWL-RFC.md` | RFC index (0001–0021) |
+| `docs/language/CWL-RFC.md` | RFC index (0001–0024) |
 | `docs/language/CWL-SURFACE-TAXONOMY.md` | Named surfaces |
-| `docs/history/ROADMAP.md` | Phased plan to 1.0 |
+| `docs/history/DNA-BUILD-NEXT.md` | DNA queue **CLOSED** — sibling waits only |
+| `docs/history/ROADMAP.md` | Phased plan (Exit 1.0 CWL-side complete) |
 | `fixtures/language-gold/` | Golden `.cwl` fixtures |
 | `packages/cwl` | Language package surface |
 | `packages/runtime-cwl*` | Runtimes |
@@ -31,11 +32,12 @@
 
 ## CLI
 
-Authoring commands (no WebIR): [`docs/language/CWL-CLI.md`](./docs/language/CWL-CLI.md)
+Authoring: [`docs/language/CWL-CLI.md`](./docs/language/CWL-CLI.md). Packable bin has no WebIR; pillar `emit-check` / `fmt --webir` need `npm run build:webir`.
 
 ```bash
 npm run cwl -- parse fixtures/language-gold/01-literals/routes.cwl
 npm run cwl -- check fixtures/language-gold
+npm run cwl -- emit-check fixtures/language-gold/19-early-exit/routes.cwl
 npm run check -- path/to/file-or-dir.cwl
 ```
 
@@ -44,8 +46,10 @@ npm run check -- path/to/file-or-dir.cwl
 Sibling checkout: `../chrysalis-convert`. Full sync story: [`CWL-PILLAR-HOME` §7](./docs/language/CWL-PILLAR-HOME.md#7-sync-protocol-convert-mirrors).
 
 ```bash
-npm run test:language     # round-trip + diagnose (+ DNA bridge)
-npm run setup:mirrors     # one-shot: recreate convert→cwl file symlinks (not fmt/ingest)
+npm run build:webir
+CWL_REQUIRE_WEBIR=1 npm run test:language
+npm run smoke:cwl-emit
+npm run setup:mirrors     # one-shot: recreate convert→cwl file symlinks
 npm run sync:convert      # copy when dest is a plain file; no-op if already a reparse point
 npm run test:cwl-mirrors  # hashes match OR convert path is a reparse point
 ```

@@ -1,6 +1,7 @@
 # CWL publish & consumer pin path
 
-**Status:** Exit **1.0.0 published** — `@agenticop-io/cwl@1.0.0` on GitHub Packages ([`EXIT-1.0.md`](../history/EXIT-1.0.md)).
+**Status:** Exit **1.0 published** — tip **`@agenticop-io/cwl@1.0.16`** on GitHub Packages (lineage from `1.0.0`; tags `cwl-v*`).  
+See [`EXIT-1.0.md`](../history/EXIT-1.0.md) · queue [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md) (**CLOSED**).
 
 Canonical version: [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md)  
 Local package: [`packages/cwl/package.json`](../../packages/cwl/package.json) (`@chrysalis/cwl`)  
@@ -12,11 +13,11 @@ Published package: **`@agenticop-io/cwl`** (org scope)
 
 | Gate | Status |
 | --- | --- |
-| `LANGUAGE_VERSION.md` ≡ package version (`1.0.0`) | Done |
+| `LANGUAGE_VERSION.md` ≡ package version (tip) | Done |
 | `npm run test:language` green | Done |
 | `npm pack --dry-run` includes `lib/` + `bin/` (`CWL_EXIT_1_0_PACK_OK`) | Done |
-| GitHub Packages publish | **Done** (`@agenticop-io/cwl@1.0.0`) |
-| Convert + Secure registry pins | Requested (`file:` still OK) |
+| GitHub Packages publish | **Done** (`cwl-v*` → `@agenticop-io/cwl`) |
+| Convert + Secure registry tip pin | **Requested** (`file:` still OK) |
 | Public npm | **Forbidden** |
 
 ## Install (outside monorepo)
@@ -27,7 +28,7 @@ Published package: **`@agenticop-io/cwl`** (org scope)
 ```
 
 ```bash
-npm install @agenticop-io/cwl@1.0.0
+npm install @agenticop-io/cwl@1.0.16
 ```
 
 Ecology / VSIX: [`CWL-ECOLOGY.md`](./CWL-ECOLOGY.md).
@@ -38,20 +39,13 @@ Ecology / VSIX: [`CWL-ECOLOGY.md`](./CWL-ECOLOGY.md).
 | --- | --- |
 | `@chrysalis/cwl` or `@agenticop-io/cwl` | `VERSION`, `pillarRoot`, `languageVersion` |
 | `…/diagnose` | diagnose helpers |
-| `…/lsp-map` | LSP map helpers |
+| `…/lsp-map` | editor diagnose map |
 | `…/parser` | `parseCwlModule` |
-| `…/print` | `printCwlModule`, `canonicalizeCwlModule` |
+| `…/print` | print / canonicalize |
+| `…/dna-seed` | RFC-0022/0023 draft DNA |
 
-## How Convert / Secure should pin
+Packable CLI: parse/print/fmt/diagnose/check/dna-seed — **no WebIR**. Pillar `npm run cwl -- emit-check` / `fmt --webir` for Rosetta reverse.
 
-### Transition
+## Sibling pin
 
-`file:../chrysalis-cwl/packages/cwl` (proven by `test:cwl-pin`).
-
-### Registry (preferred after Exit 1.0)
-
-```json
-"@agenticop-io/cwl": "1.0.0"
-```
-
-See [`EXIT-1.0.md`](../history/EXIT-1.0.md) · [`CONVERT-GRAVITY-REQUESTED.md`](../history/CONVERT-GRAVITY-REQUESTED.md) · [`SECURE-CUTOVER-REQUESTED.md`](../history/SECURE-CUTOVER-REQUESTED.md).
+Prefer tip registry version; `file:../chrysalis-cwl/packages/cwl` OK during cutover. See [`CONVERT-GRAVITY-REQUESTED.md`](../history/CONVERT-GRAVITY-REQUESTED.md) · [`SECURE-CUTOVER-REQUESTED.md`](../history/SECURE-CUTOVER-REQUESTED.md).

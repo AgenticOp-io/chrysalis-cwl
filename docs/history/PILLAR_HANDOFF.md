@@ -34,10 +34,16 @@ Moved into this repo (convert paths are junctions back here):
 
 Mature CWL as a language: specs/RFCs, parser/runtime stability, versioning, fixtures. Coordinate with convert via junctions; do not absorb Helix.
 
-## Subagent inventory note (2026-08-04)
+## Status (2026-08-09)
+
+- Tip **`1.0.16`** — CWL-owned DNA queue **CLOSED** ([`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md))
+- WebIR physical home in-pillar; RFCs through 0024; publish lineage `cwl-v*`
+- Remaining work is Convert/Secure sibling asks only
+
+## Subagent inventory note (2026-08-04) — historical
 
 - 5 packages + 11 core scripts + RFCs 0001–0021 present; convert junctions intact  
-- Gaps: `webir` still in convert; scripts still import convert-only hub helpers for ingest/fmt  
+- Gaps then: `webir` still in convert; convert-only hub helpers — **since closed**
 
 ## Slice landed (2026-08-04) — language bootstrap
 
@@ -49,7 +55,7 @@ Mature CWL as a language: specs/RFCs, parser/runtime stability, versioning, fixt
 - Parser retains path/query defaults; UI `on` events attach to enclosing element; element attrs captured correctly
 - `cwl-fmt` is local parse→print (convert WebIR fmt remains convert’s concern if still copied)
 
-**Next slice:** vendor/extract webir for ingest; prefer junctions over divergent `cwl-*.mjs` copies; sync convert parser capture; no Helix; don’t break junctions
+**Next (historical):** vendor/extract webir — **done.** Current: sibling tip pin + Convert gravity only.
 
 ## Slice 0.1.4 (2026-08-05) — constitution fleshed out
 

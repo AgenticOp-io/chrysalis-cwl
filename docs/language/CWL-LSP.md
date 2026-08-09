@@ -1,9 +1,9 @@
 # CWL editor / LSP path
 
-**Status:** stdio Language Server (**1.0.15**) — diagnose/fmt/hover/completion + definition/references/rename (RFC-0009 import graph) + column ranges  
+**Status:** stdio Language Server (**1.0.16**) — diagnose/fmt/hover/completion + definition/references/rename (RFC-0009 import graph) + column ranges  
 **Server:** [`scripts/cwl-lsp-server.mjs`](../../scripts/cwl-lsp-server.mjs)  
 **Extension:** [`editors/vscode/`](../../editors/vscode/) (thin spawn client, **zero npm deps**)  
-**Language version:** `1.0.15`  
+**Language version:** `1.0.16`  
 **Distribution:** private pillar — not VS Code Marketplace · pack with `npm run pack:cwl-vsix`
 
 ## Have now

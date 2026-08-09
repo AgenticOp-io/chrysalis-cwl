@@ -2,7 +2,7 @@
 
 **Slice:** language-owned execute smoke + matrix  
 **Date:** 2026-08-09  
-**Version:** tip `1.0.15` — tip hygiene + opaque-residual diagnose; execute matrix unchanged
+**Version:** tip `1.0.16` — DNA queue CLOSED; execute matrix unchanged
 
 ## What “execute” means today
 

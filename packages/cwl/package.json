@@ -1,6 +1,6 @@
 {
   "name": "@chrysalis/cwl",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "private": false,
   "description": "Chrysalis Web Language — DNA of the web (Rosetta meaning). Versioned language surface for Convert UT + Secure bridges.",
   "license": "Apache-2.0",

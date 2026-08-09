@@ -1,33 +1,22 @@
-# CWL near-term DNA authoring — complete
+# CWL near-term DNA authoring — complete (historical)
 
-**Tip:** `1.0.0` published (`@agenticop-io/cwl`) · physical WebIR home in-pillar  
-**Path:** [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md) · queue: [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) · roadmap: [`ROADMAP.md`](./ROADMAP.md)
+**Superseded by:** [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md) · tip **`1.0.16`** · queue [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) (**CLOSED**)
 
-## Complete means
+Near-term authoring (Phase 0.6) and Exit 1.0 publish landed. This file remains as history; do not treat tip `1.0.0` rows below as current.
 
-Near-term CWL DNA authoring is complete: rename + token end-columns + package exports + **Exit 1.0 publish** + **physical WebIR home**. Authors can check/fmt/diagnose, get live LSP diagnostics (completion + same-file rename), and install the private registry gene without Convert.
+## Complete means (met)
 
-| Piece | Status | Notes |
-| --- | --- | --- |
-| **Rename** | Done | Same-file `textDocument/rename` + `prepareRename` ([`CWL-LSP.md`](../language/CWL-LSP.md)) |
-| **Completion** | Done (v0) | Keyword / surface completion on stdio LSP |
-| **Package exports** | Done | diagnose / lsp-map / parser / print |
-| **Token end columns** | Done | Precise diagnostic end characters |
-| **Phase 0.6 exit** | Met | Private-first authoring gravity |
-| **Phase 1.0 exit (CWL)** | Met | `@agenticop-io/cwl@1.0.0` on GitHub Packages |
-| **WebIR physical home** | Met (CWL) | `packages/webir` — Convert reverse-home still Requested |
-| **Ecology bootstrap** | Met (private) | [`CWL-ECOLOGY.md`](../language/CWL-ECOLOGY.md) + `npm run pack:cwl-vsix` |
+| Piece | Status |
+| --- | --- |
+| Rename / completion / package exports / end columns | Done |
+| Phase 0.6 / 1.0 exit (CWL) | Met |
+| WebIR physical home | Met (`packages/webir`) |
+| Ecology bootstrap | Met ([`CWL-ECOLOGY.md`](../language/CWL-ECOLOGY.md)) |
 
-## Remaining — Requested / other owners
+## Remaining — sibling owners only
 
 | Owner | Ask | Doc |
 | --- | --- | --- |
-| **Convert** | Peel/emit gravity + registry pin + WebIR reverse-home | [`CONVERT-GRAVITY-REQUESTED.md`](./CONVERT-GRAVITY-REQUESTED.md) · [`WEBIR-FLIP-REQUESTED.md`](./WEBIR-FLIP-REQUESTED.md) |
-| **Convert** | Rewrite headers so `04-request-context` can earn `runtime-ok` | [`CONVERT-REWRITE-HEADERS-REQUESTED.md`](./CONVERT-REWRITE-HEADERS-REQUESTED.md) |
-| **Secure** | Cutover default = live DNA vs CWL surface + registry pin | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |
-
-## Honesty
-
-- Same-file rename is not cross-file / workspace rename.
-- Ecology is private (GH Packages + VSIX) — not public npm / Marketplace.
-- Convert gravity / Secure cutover remain sibling-owned.
+| **Convert** | Tip pin + peel/emit gravity | [`CONVERT-GRAVITY-REQUESTED.md`](./CONVERT-GRAVITY-REQUESTED.md) |
+| **Convert** | Rewrite headers (`04-request-context`) | [`CONVERT-REWRITE-HEADERS-REQUESTED.md`](./CONVERT-REWRITE-HEADERS-REQUESTED.md) |
+| **Secure** | Tip pin + cutover hygiene | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |
