@@ -7,7 +7,7 @@ import { spawn } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { hoverAt, completionsAt, definitionAt, documentSymbols, renameAt, prepareRenameAt } from "./cwl-lsp-server.mjs";
+import { hoverAt, completionsAt, definitionAt, documentSymbols, renameAt, prepareRenameAt, referencesAt } from "./cwl-lsp-server.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SERVER = join(ROOT, "scripts/cwl-lsp-server.mjs");
@@ -142,6 +142,26 @@ async function main() {
     failures.push("completion-at-route");
   }
 
+  // Unit: smarter completion — effects line → presets; AST handler names present
+  const effectsLine = "  effects: ";
+  const compEffects = completionsAt(effectsLine, { line: 0, character: effectsLine.length });
+  if (!Array.isArray(compEffects) || !compEffects.some((i) => i.label === "db.read")) {
+    failures.push("completion-effects-preset");
+  }
+  if (compEffects.some((i) => i.label === "@route")) {
+    failures.push("completion-effects-leaked-keyword");
+  }
+  const compHandlers = completionsAt(litSrc, { line: 4, character: 10 });
+  if (!Array.isArray(compHandlers) || !compHandlers.some((i) => i.label === "health")) {
+    failures.push("completion-same-file-handler");
+  }
+
+  // Unit: same-file references
+  const refs = referencesAt(litSrc, pathToFileURL(LITERALS).href, { line: 4, character: 10 }, true);
+  if (!Array.isArray(refs) || refs.length < 1) {
+    failures.push("references-handler-empty");
+  }
+
   // Unit: definition — handler name / path string → @route line (01-literals)
   const litUri = pathToFileURL(LITERALS).href;
   // `handler health` is line 4 (0-based); cursor on "health"
@@ -215,6 +235,9 @@ async function main() {
     }
     if (!init?.capabilities?.renameProvider) {
       failures.push("missing-renameProvider");
+    }
+    if (!init?.capabilities?.referencesProvider) {
+      failures.push("missing-referencesProvider");
     }
     if (!init?.serverInfo?.name) {
       failures.push("missing-serverInfo");
@@ -297,6 +320,15 @@ async function main() {
       [];
     if (!Array.isArray(renameEdits) || renameEdits.length < 1) {
       failures.push("rpc-rename-empty");
+    }
+
+    const refsRpc = await client.request("textDocument/references", {
+      textDocument: { uri: litUriRpc },
+      position: { line: 4, character: 10 },
+      context: { includeDeclaration: true },
+    });
+    if (!Array.isArray(refsRpc) || refsRpc.length < 1) {
+      failures.push("rpc-references-empty");
     }
 
     await client.request("shutdown", null);

@@ -108,16 +108,17 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ## Phase 1.0 — Published language (private registry)
 
-- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (**`1.0.0`**)
+- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (**`1.0.1`**)
 - [x] Packable artifact: staged `lib/` + `bin/cwl` + GitHub Packages `publishConfig` ([`EXIT-1.0.md`](./EXIT-1.0.md))
 - [x] Pre-publish pin path documented: sibling / `file:` / env ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
 - [x] Convert + Secure **`file:` pin** still proven (`npm run test:cwl-pin`) during transition
 - [x] Publish **prep + pack dry-run** → `CWL_EXIT_1_0_PACK_OK`
-- [x] Editor + stdio LSP authoring gravity ([`DNA-CWL-NEAR-COMPLETE.md`](./DNA-CWL-NEAR-COMPLETE.md))
+- [x] Editor + stdio LSP authoring gravity ([`DNA-CWL-NEAR-COMPLETE.md`](./DNA-CWL-NEAR-COMPLETE.md)) · polish **1.0.1** ([`CWL-LSP.md`](../language/CWL-LSP.md))
 - [x] Private-first registry decision (GitHub Packages; no public npm)
 - [x] **CI publish:** `@agenticop-io/cwl@1.0.0` on GitHub Packages (tag `cwl-v1.0.0`, workflow `publish-cwl`) — [`EXIT-1.0.md`](./EXIT-1.0.md)
-- [ ] Convert pins `@agenticop-io/cwl@1.0.0` from registry (today: `file:` OK)
-- [ ] Secure pins `@agenticop-io/cwl@1.0.0` from registry (today: `file:` OK)
+- [ ] Tag/publish patch `@agenticop-io/cwl@1.0.1` (LSP polish) when ready
+- [ ] Convert pins `@agenticop-io/cwl@1.0.0`+ from registry (today: `file:` OK)
+- [ ] Secure pins `@agenticop-io/cwl@1.0.0`+ from registry (today: `file:` OK)
 - [ ] **Requested (Convert):** peel/emit gravity — [CONVERT-GRAVITY-REQUESTED.md](./CONVERT-GRAVITY-REQUESTED.md)
 - [x] Ecology bootstrap (private VSIX + outsider install doc) — [`CWL-ECOLOGY.md`](../language/CWL-ECOLOGY.md)
 - [ ] Breaking changes require major bump + RFC migration notes

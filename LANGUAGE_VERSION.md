@@ -3,19 +3,19 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.0` |
-| **Status** | Exit 1.0 — packable private GitHub Packages artifact (Rosetta / DNA of the web) |
+| **Version** | `1.0.1` |
+| **Status** | Exit 1.0 + LSP polish (smarter completion, same-file references) |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`1.0.0` is the first **published** private-registry language release:
+`1.0.1` is a **patch** on the published private-registry language release:
 
-- Packable `@chrysalis/cwl` (published as `@agenticop-io/cwl@1.0.0` on GitHub Packages)
+- Packable `@chrysalis/cwl` (published lineage `@agenticop-io/cwl@1.0.0+` on GitHub Packages)
 - Staged `lib/` (parser/print/diagnose/lsp-map/fmt) + `bin/cwl`
 - Physical `@chrysalis/webir` home in `packages/webir` (Convert reverse-home still Requested)
+- LSP polish: context completion + same-file `textDocument/references` ([`CWL-LSP.md`](./docs/language/CWL-LSP.md))
 - Ecology bootstrap: private VSIX + outsider install ([`CWL-ECOLOGY.md`](./docs/language/CWL-ECOLOGY.md))
-- Convert/Secure may keep `file:` pins until they migrate (Requested)
 
 See `CHANGELOG.md`, `docs/language/CWL-PUBLISH.md`, `docs/history/EXIT-1.0.md`.
 

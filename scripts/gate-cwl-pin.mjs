@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Gate: LANGUAGE_VERSION ≡ @chrysalis/cwl version; Convert + Secure pin file: sibling when present.
+ * Gate: LANGUAGE_VERSION ≡ @chrysalis/cwl version; Convert + Secure pin
+ * either file: sibling or a GitHub Packages registry version (@agenticop-io/cwl / @chrysalis/cwl).
  * Missing sibling checkouts (CI of chrysalis-cwl alone) are skipped, not failed.
  */
 import { readFileSync, existsSync } from "node:fs";
@@ -10,22 +11,62 @@ import { languageVersion, VERSION, pillarRoot } from "../packages/cwl/index.mjs"
 const ROOT = pillarRoot();
 const CONVERT_PKG = resolve(ROOT, "../chrysalis-convert/package.json");
 const SECURE_PKG = resolve(ROOT, "../chrysalis-security/package.json");
-const PIN = "file:../chrysalis-cwl/packages/cwl";
+const FILE_PIN = "file:../chrysalis-cwl/packages/cwl";
 
 function readJson(p) {
   return JSON.parse(readFileSync(p, "utf8"));
 }
 
-function depPin(pkg) {
-  return (
-    pkg.dependencies?.["@chrysalis/cwl"] ||
-    pkg.dependencies?.["@agenticop-io/cwl"] ||
-    pkg.devDependencies?.["@chrysalis/cwl"] ||
-    pkg.devDependencies?.["@agenticop-io/cwl"] ||
-    pkg.optionalDependencies?.["@chrysalis/cwl"] ||
-    pkg.optionalDependencies?.["@agenticop-io/cwl"] ||
-    null
-  );
+/**
+ * @param {Record<string, unknown>} pkg
+ * @returns {string[]}
+ */
+function allCwlPins(pkg) {
+  const names = ["@chrysalis/cwl", "@agenticop-io/cwl"];
+  const bags = ["dependencies", "devDependencies", "optionalDependencies"];
+  /** @type {string[]} */
+  const out = [];
+  for (const bag of bags) {
+    const block = pkg[bag];
+    if (!block || typeof block !== "object") continue;
+    for (const name of names) {
+      const v = block[name];
+      if (typeof v === "string") out.push(v);
+    }
+  }
+  return out;
+}
+
+/**
+ * @param {string} pin
+ */
+function isFilePin(pin) {
+  return pin.startsWith("file:") && pin.includes("chrysalis-cwl/packages/cwl");
+}
+
+/**
+ * Registry pin compatible with current language major (1.x accepts 1.0.0 while tip is 1.0.1).
+ * @param {string} pin
+ * @param {string} version
+ */
+function isRegistryPinOk(pin, version) {
+  if (isFilePin(pin) || pin.startsWith("file:") || pin.startsWith("workspace:")) return false;
+  const bare = pin.replace(/^[\^~>=<\s]+/, "").split(/\s+/)[0];
+  if (!/^\d+\.\d+\.\d+$/.test(bare)) return false;
+  if (bare === version) return true;
+  const [maj] = bare.split(".");
+  const [wantMaj] = version.split(".");
+  return maj === wantMaj;
+}
+
+/**
+ * @param {string[]} pins
+ * @param {string} version
+ */
+function pinOk(pins, version) {
+  if (pins.length < 1) return false;
+  if (pins.some(isFilePin)) return true;
+  return pins.some((p) => isRegistryPinOk(p, version));
 }
 
 const failures = [];
@@ -43,19 +84,24 @@ for (const [name, path] of [
     checks.push({ consumer: name, pin: null, ok: true, skipped: true, detail: "sibling not checked out" });
     continue;
   }
-  const pin = depPin(readJson(path));
-  const ok = pin === PIN || (typeof pin === "string" && pin.includes("chrysalis-cwl/packages/cwl"));
+  const pins = allCwlPins(readJson(path));
+  const ok = pinOk(pins, VERSION);
+  const pin = pins.join(" | ") || null;
   checks.push({ consumer: name, pin, ok });
-  if (!ok) failures.push(`${name} must pin CWL as ${PIN} (got ${pin || "none"})`);
+  if (!ok) {
+    failures.push(
+      `${name} must pin CWL as ${FILE_PIN} and/or @agenticop-io/cwl@${VERSION} (same major) (got ${pin || "none"})`,
+    );
+  }
 }
 
 const report = {
   kind: "chrysalis.cwl.pin.gate",
-  schemaVersion: 2,
+  schemaVersion: 3,
   ok: failures.length === 0,
   languageVersion: lang,
   packageVersion: VERSION,
-  pinExpected: PIN,
+  pinExpected: `${FILE_PIN} | @agenticop-io/cwl@${VERSION} (same major)`,
   checks,
   failures,
 };

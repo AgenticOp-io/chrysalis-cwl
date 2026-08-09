@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.1 — 2026-08-09
+
+- LSP polish: context-aware completion (effects presets, HTTP methods, same-file handlers/paths)
+- Same-file `textDocument/references`; hover on handler name idents
+- Docs: `CWL-LSP.md`; private VSIX already via `pack:cwl-vsix`
+
 ## 1.0.0 — 2026-08-09
 
 - **Exit 1.0:** `@agenticop-io/cwl@1.0.0` **published** on GitHub Packages (tag `cwl-v1.0.0`); local name stays `@chrysalis/cwl`

@@ -1,7 +1,7 @@
 # DNA build — next queue
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.0`** published · physical WebIR in-pillar · LSP completion + rename shipped
+**Tip:** **`1.0.1`** · physical WebIR in-pillar · LSP completion v1 + same-file references
 
 Light queue only. No version bump implied by this doc.
 
@@ -10,15 +10,15 @@ Light queue only. No version bump implied by this doc.
 | Gap | Landing |
 | --- | --- |
 | WebIR physical home still Convert-linked | **CWL SoR** `packages/webir` — Convert reverse-home still Requested |
-| Private registry Exit 1.0 not published | **`@agenticop-io/cwl@1.0.0`** published |
-| LSP: no completion / rename yet | **Done** (completion v0 + rename v0) |
+| Private registry Exit 1.0 not published | **`@agenticop-io/cwl@1.0.0`** published (patch tip `1.0.1`) |
+| LSP: no completion / rename yet | **Done** + polish (completion v1, references v0, rename v0) |
 | Ecology outside AgenticOps ≈ zero | **Bootstrap** — [`CWL-ECOLOGY.md`](../language/CWL-ECOLOGY.md) + private VSIX |
 
 ## CWL-owned (optional polish)
 
 | Priority | Slice | Notes |
 | --- | --- | --- |
-| — | Smarter completion / cross-file rename | Only when import graph is honest |
+| — | Cross-file rename / references | Only when import graph is honest |
 | — | Marketplace / public npm | Forbidden while pillars private |
 
 ## Convert / Secure — Requested (not edited here)

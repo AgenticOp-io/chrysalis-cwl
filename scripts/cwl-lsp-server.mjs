@@ -12,15 +12,21 @@ import { mapDiagnoseSource } from "./hub-ingest/cwl-lsp-map.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 
 export const CWL_LSP_SERVER_KIND = "chrysalis.cwl.lsp-server";
-export const CWL_LSP_SERVER_VERSION = "1.0.0";
+export const CWL_LSP_SERVER_VERSION = "1.0.1";
 
 /** CompletionItemKind.Keyword */
 const KIND_KEYWORD = 14;
 /** CompletionItemKind.Text */
 const KIND_TEXT = 1;
+/** CompletionItemKind.Function */
+const KIND_FUNCTION = 3;
+/** CompletionItemKind.File */
+const KIND_FILE = 17;
+/** CompletionItemKind.EnumMember */
+const KIND_ENUM_MEMBER = 20;
 
 /**
- * v0 keyword / surface / effect catalog (context-light; no import or path smarts).
+ * Base keyword / surface / effect catalog.
  * @type {ReadonlyArray<{ label: string, kind: number, detail: string, insertText?: string }>}
  */
 export const CWL_COMPLETION_CATALOG = Object.freeze([
@@ -40,7 +46,10 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
   { label: "return", kind: KIND_KEYWORD, detail: "Handler return", insertText: "return " },
   { label: "load", kind: KIND_KEYWORD, detail: "Page data load", insertText: "load " },
   { label: "use", kind: KIND_KEYWORD, detail: "Module preset (json / auth / …)", insertText: "use " },
-  // Common effect presets (RFC-0007)
+]);
+
+/** @type {ReadonlyArray<{ label: string, kind: number, detail: string }>} */
+export const CWL_EFFECT_PRESETS = Object.freeze([
   { label: "none", kind: KIND_TEXT, detail: "Effect preset: none" },
   { label: "io", kind: KIND_TEXT, detail: "Effect preset: io" },
   { label: "db.read", kind: KIND_TEXT, detail: "Effect preset: db.read" },
@@ -54,6 +63,16 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
   { label: "cors.allow", kind: KIND_TEXT, detail: "Effect preset: cors.allow" },
   { label: "csrf.verify", kind: KIND_TEXT, detail: "Effect preset: csrf.verify" },
 ]);
+
+/** @type {ReadonlyArray<{ label: string, kind: number, detail: string, insertText?: string }>} */
+export const CWL_HTTP_METHODS = Object.freeze(
+  ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"].map((m) => ({
+    label: m,
+    kind: KIND_ENUM_MEMBER,
+    detail: `HTTP method ${m}`,
+    insertText: `${m} `,
+  })),
+);
 
 /** @type {Map<string, { uri: string, text: string, version: number }>} */
 const documents = new Map();
@@ -152,19 +171,45 @@ function completionPrefix(lineText, character) {
 }
 
 /**
- * Keyword / surface / effect completion (v0 — context-light).
- * @param {string} text
- * @param {{ line: number, character: number }} position
- * @returns {Array<{ label: string, kind: number, detail: string, insertText?: string }>}
+ * @param {string} lineText
+ * @param {number} character
  */
-export function completionsAt(text, position) {
-  const lines = text.split(/\r?\n/);
-  const lineText = lines[position.line] ?? "";
-  const prefix = completionPrefix(lineText, position.character);
+function lineContext(lineText, character) {
+  const before = lineText.slice(0, Math.max(0, character));
+  if (/^\s*effects\s*:/.test(before) || /\beffects\s*:\s*[^;]*$/.test(before)) {
+    return "effects";
+  }
+  if (/^\s*@(?:route|page)\s+$/.test(before) || /^\s*@(?:route|page)\s+[A-Za-z]*$/.test(before)) {
+    return "http-method";
+  }
+  if (/^\s*(?:handler|page)\s+$/.test(before) || /^\s*(?:handler|page)\s+[A-Za-z_][\w]*$/.test(before)) {
+    return "handler-name";
+  }
+  return "general";
+}
+
+/**
+ * @param {Array<{ label: string, kind: number, detail: string, insertText?: string }>} items
+ * @param {string} prefix
+ * @param {{ pathMode?: boolean }} [opts]
+ */
+function filterByPrefix(items, prefix, opts = {}) {
   const lower = prefix.toLowerCase();
-  const items = [];
-  for (const entry of CWL_COMPLETION_CATALOG) {
-    if (lower && !entry.label.toLowerCase().startsWith(lower)) continue;
+  /** @type {typeof items} */
+  const out = [];
+  /** @type {Set<string>} */
+  const seen = new Set();
+  for (const entry of items) {
+    if (lower) {
+      const lab = entry.label.toLowerCase();
+      if (opts.pathMode) {
+        if (!entry.label.startsWith(prefix)) continue;
+      } else if (!lab.startsWith(lower)) {
+        continue;
+      }
+    }
+    if (seen.has(entry.label)) continue;
+    seen.add(entry.label);
     /** @type {{ label: string, kind: number, detail: string, insertText?: string }} */
     const item = {
       label: entry.label,
@@ -172,9 +217,99 @@ export function completionsAt(text, position) {
       detail: entry.detail,
     };
     if (entry.insertText) item.insertText = entry.insertText;
-    items.push(item);
+    out.push(item);
   }
-  return items;
+  return out;
+}
+
+/**
+ * Keyword / surface / effect completion (v1 — same-file AST hints).
+ * @param {string} text
+ * @param {{ line: number, character: number }} position
+ * @param {string} [fileHint]
+ * @returns {Array<{ label: string, kind: number, detail: string, insertText?: string }>}
+ */
+export function completionsAt(text, position, fileHint = "buffer.cwl") {
+  const lines = text.split(/\r?\n/);
+  const lineText = lines[position.line] ?? "";
+  const prefix = completionPrefix(lineText, position.character);
+  const ctx = lineContext(lineText, position.character);
+
+  /** @type {Array<{ label: string, kind: number, detail: string, insertText?: string }>} */
+  let pool = [];
+
+  if (ctx === "effects") {
+    pool = [...CWL_EFFECT_PRESETS];
+  } else if (ctx === "http-method") {
+    pool = [...CWL_HTTP_METHODS];
+  } else if (ctx === "handler-name") {
+    try {
+      const ast = parseCwlModule(text, fileHint);
+      for (const r of ast.routes ?? []) {
+        if (!r?.name) continue;
+        pool.push({
+          label: r.name,
+          kind: KIND_FUNCTION,
+          detail: `Same-file ${r.surfaceKind === "page" ? "page" : "handler"} (${r.method} ${r.path})`,
+          insertText: `${r.name} `,
+        });
+      }
+    } catch {
+      /* catalog empty ok */
+    }
+  } else {
+    pool = [...CWL_COMPLETION_CATALOG, ...CWL_EFFECT_PRESETS, ...CWL_HTTP_METHODS];
+    try {
+      const ast = parseCwlModule(text, fileHint);
+      for (const r of ast.routes ?? []) {
+        if (r?.name) {
+          pool.push({
+            label: r.name,
+            kind: KIND_FUNCTION,
+            detail: `Handler ${r.method} ${r.path}`,
+          });
+        }
+        if (typeof r?.path === "string") {
+          pool.push({
+            label: r.path,
+            kind: KIND_FILE,
+            detail: `Path → ${r.name}`,
+            insertText: `"${r.path}"`,
+          });
+        }
+      }
+    } catch {
+      /* keep catalog */
+    }
+  }
+
+  // Path-prefix: if typing inside / after quote, also match path labels
+  const before = lineText.slice(0, Math.max(0, position.character));
+  const pathPrefix = /"([^"]*)$/.exec(before)?.[1];
+  if (pathPrefix !== undefined && ctx === "general") {
+    try {
+      const ast = parseCwlModule(text, fileHint);
+      for (const r of ast.routes ?? []) {
+        if (typeof r?.path === "string" && r.path.startsWith(pathPrefix)) {
+          pool.push({
+            label: r.path,
+            kind: KIND_FILE,
+            detail: `Path → ${r.name}`,
+            insertText: r.path,
+          });
+        }
+      }
+    } catch {
+      /* ignore */
+    }
+    return filterByPrefix(
+      pool.filter((i) => i.kind === KIND_FILE),
+      pathPrefix,
+      { pathMode: true },
+    );
+  }
+
+  return filterByPrefix(pool, prefix);
 }
 
 /**
@@ -426,6 +561,64 @@ export function renameAt(text, uri, position, newName) {
   }
 }
 
+/**
+ * Same-file find-references: handler name declarations and path surface lines only.
+ * Does not walk other files (import graph not claimed).
+ * @param {string} text
+ * @param {string} uri
+ * @param {{ line: number, character: number }} position
+ * @param {boolean} [includeDeclaration]
+ * @returns {Array<{ uri: string, range: object }>}
+ */
+export function referencesAt(text, uri, position, includeDeclaration = true) {
+  const file = uriToPath(uri);
+  const lines = text.split(/\r?\n/);
+  const lineText = lines[position.line] ?? "";
+  const tok = tokenAt(lineText, position.character);
+  if (!tok) return [];
+
+  try {
+    const ast = parseCwlModule(text, file);
+    const routes = ast.routes ?? [];
+    /** @type {Array<{ uri: string, range: object }>} */
+    const locs = [];
+    /** @type {Set<string>} */
+    const seen = new Set();
+
+    /**
+     * @param {{ uri: string, range: object }|null} loc
+     */
+    function push(loc) {
+      if (!loc) return;
+      const key = `${loc.range.start.line}:${loc.range.start.character}:${loc.range.end.character}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      locs.push(loc);
+    }
+
+    if (tok.kind === "path") {
+      for (const r of routes) {
+        if (r.path !== tok.value) continue;
+        push(routeSurfaceLocation(uri, text, r));
+      }
+      return locs;
+    }
+
+    if (NON_HANDLER_IDENTS.has(tok.value)) return [];
+    const matches = routes.filter((r) => r.name === tok.value && typeof r.line === "number");
+    for (const r of matches) {
+      const decl = handlerNameDeclRange(text, r);
+      if (decl && includeDeclaration) {
+        push({ uri, range: decl });
+      }
+      push(routeSurfaceLocation(uri, text, r));
+    }
+    return locs;
+  } catch {
+    return [];
+  }
+}
+
 /** SymbolKind.Function */
 const SYMBOL_KIND_FUNCTION = 12;
 
@@ -472,6 +665,7 @@ export function hoverAt(text, uri, position) {
   const line1 = line0 + 1;
   const lines = text.split(/\r?\n/);
   const lineText = lines[line0] ?? "";
+  const tok = tokenAt(lineText, position.character);
 
   try {
     const ast = parseCwlModule(text, file);
@@ -501,6 +695,23 @@ export function hoverAt(text, uri, position) {
           end: { line: line0, character: lineText.length },
         },
       };
+    }
+    // Handler / page name ident → same surface summary
+    if (tok?.kind === "ident" && !NON_HANDLER_IDENTS.has(tok.value)) {
+      const named = (ast.routes ?? []).find((r) => r.name === tok.value);
+      if (named) {
+        const surface = named.surfaceKind === "page" ? "@page" : "@route";
+        return {
+          contents: {
+            kind: "markdown",
+            value: `**${surface}** \`${named.method} ${named.path}\` → \`${named.name}\``,
+          },
+          range: {
+            start: { line: line0, character: tok.start },
+            end: { line: line0, character: tok.end },
+          },
+        };
+      }
     }
   } catch {
     return null;
@@ -556,10 +767,11 @@ function handleMessage(msg) {
           documentFormattingProvider: true,
           hoverProvider: true,
           completionProvider: {
-            triggerCharacters: ["@", "."],
+            triggerCharacters: ["@", ".", ":", '"', "/"],
             resolveProvider: false,
           },
           definitionProvider: true,
+          referencesProvider: true,
           documentSymbolProvider: true,
           renameProvider: {
             prepareProvider: true,
@@ -648,7 +860,18 @@ function handleMessage(msg) {
         respond(id ?? null, []);
         break;
       }
-      respond(id ?? null, completionsAt(doc.text, params.position));
+      respond(id ?? null, completionsAt(doc.text, params.position, uriToPath(uri)));
+      break;
+    }
+    case "textDocument/references": {
+      const uri = params?.textDocument?.uri;
+      const doc = uri ? documents.get(uri) : undefined;
+      if (!doc || !params?.position) {
+        respond(id ?? null, []);
+        break;
+      }
+      const includeDeclaration = params.context?.includeDeclaration !== false;
+      respond(id ?? null, referencesAt(doc.text, uri, params.position, includeDeclaration));
       break;
     }
     case "textDocument/definition": {
