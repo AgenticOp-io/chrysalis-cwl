@@ -1,20 +1,21 @@
 #!/usr/bin/env node
 /**
- * Dual-mode cwl-fmt gate: parse→print + opt-in --webir emit reverse.
+ * Dual-mode cwl-fmt gate: parse→print always; --webir when WebIR resolves.
  * Token: CWL_FMT_OK
  */
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join, resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { formatCwlSource, formatCwlSourceViaWebir } from "./hub-ingest/cwl-fmt.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 import { canonicalizeCwlModule } from "./hub-ingest/cwl-print.mjs";
+import { resolveWebirEntryPath } from "./hub-ingest/load-webir.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const GOLD = join(ROOT, "fixtures/language-gold/01-literals/routes.cwl");
 const CONTROL = join(ROOT, "fixtures/language-gold/19-early-exit/routes.cwl");
 
-/** @type {{ id: string, ok: boolean, detail?: string }[]} */
+/** @type {{ id: string, ok: boolean, detail?: string, skipped?: boolean }[]} */
 const checks = [];
 
 {
@@ -26,7 +27,16 @@ const checks = [];
   checks.push({ id: "parse-print-01", ok, detail: ok ? undefined : "ast mismatch" });
 }
 
-{
+const webirEntry = resolveWebirEntryPath();
+const webirReady = Boolean(webirEntry && existsSync(webirEntry));
+if (!webirReady) {
+  checks.push({
+    id: "webir-emit-19-else-if",
+    ok: true,
+    skipped: true,
+    detail: "webir dist absent — skip (run test:language:full / link:webir locally)",
+  });
+} else {
   const src = readFileSync(CONTROL, "utf8");
   const formatted = await formatCwlSourceViaWebir(src, CONTROL);
   const re = parseCwlModule(formatted, CONTROL);
