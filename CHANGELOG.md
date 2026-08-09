@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.8 — 2026-08-09
+
+- RFC-0021: lower projectable early-exit / nested `if` to WebIR (`cwl-control-lower.mjs`); opaque `g_*` skipped
+- RFC-0024: attachment-hole soft-path in `runtime-cwl` — HTML returns while hole IR remains
+- Deeper matrix checks for `19-early-exit`, `23-nested-control`, `25-island-kinds`
+
 ## 1.0.7 — 2026-08-09
 
 - Full language-gold **runtime-ok** matrix (**25**): middleware, probes, effects chains, DNA bridge routes, holes/form-action **501**, island-kind attachment-hole **501**

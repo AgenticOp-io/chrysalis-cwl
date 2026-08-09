@@ -252,8 +252,24 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
     },
   ]),
   "19-early-exit": Object.freeze([
-    // Guards / unbound symbols still hole or skip under simulate — list page is conclusive.
+    {
+      method: "POST",
+      path: "/login",
+      expectStatus: 400,
+      expectBody: "Missing credentials",
+      headers: { "content-type": "application/json" },
+      body: '{"username":"","password":""}',
+    },
+    {
+      method: "POST",
+      path: "/login",
+      expectStatus: 200,
+      expectBody: '{"ok":true}',
+      headers: { "content-type": "application/json" },
+      body: '{"username":"a","password":"b"}',
+    },
     { path: "/posts", expectStatus: 200, expectBody: "<ul></ul>" },
+    { path: "/posts/x", expectStatus: 404, expectBody: "Post not found" },
   ]),
   "20-probes": Object.freeze([
     { path: "/search", expectStatus: 200, expectBody: "<p>search: </p>" },
@@ -278,6 +294,30 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
     { method: "POST", path: "/admin/session", expectStatus: 200, expectBody: '{"ok":true}' },
   ]),
   "23-nested-control": Object.freeze([
+    {
+      method: "POST",
+      path: "/login",
+      expectStatus: 400,
+      expectBody: "Password required",
+      headers: { "content-type": "application/json" },
+      body: '{"username":"","password":""}',
+    },
+    {
+      method: "POST",
+      path: "/login",
+      expectStatus: 400,
+      expectBody: "Missing credentials",
+      headers: { "content-type": "application/json" },
+      body: '{"username":"","password":"b"}',
+    },
+    {
+      method: "POST",
+      path: "/login",
+      expectStatus: 404,
+      expectBody: "User not found",
+      headers: { "content-type": "application/json" },
+      body: '{"username":"a","password":"b"}',
+    },
     { path: "/posts", expectStatus: 200, expectBody: "<ul></ul>" },
     { path: "/threads", expectStatus: 200, expectBody: "<div></div>" },
   ]),
@@ -293,10 +333,21 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
   ]),
   "25-island-kinds": Object.freeze([
     { path: "/api/health", expectStatus: 200, expectBody: '{"ok":true}' },
-    // Attachment-hole pages: hole ops still 501 under simulate (IR present; rewrite conclusive miss).
-    { path: "/map", expectStatus: 501 },
-    { path: "/compute", expectStatus: 501 },
-    { path: "/legacy-script", expectStatus: 501 },
+    {
+      path: "/map",
+      expectStatus: 200,
+      expectBody: "<!doctype html><html><body><h1>Map</h1></body></html>",
+    },
+    {
+      path: "/compute",
+      expectStatus: 200,
+      expectBody: "<!doctype html><html><body><h1>Compute</h1></body></html>",
+    },
+    {
+      path: "/legacy-script",
+      expectStatus: 200,
+      expectBody: "<!doctype html><html><body><h1>Legacy</h1></body></html>",
+    },
   ]),
 });
 

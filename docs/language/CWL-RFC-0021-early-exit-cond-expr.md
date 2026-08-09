@@ -84,6 +84,17 @@ if g_verify_password {
 
 Member-path residual (no call): `$row['password']` / `$user->role` style conds project as `g_member_password` / `g_member_role` when keys are IDENT-safe; dynamic keys stay `gN`.
 
+## Authored CWL → WebIR evaluate (1.0.8)
+
+Pillar ingest (`cwl-control-lower.mjs` / `wrapWithEarlyGuards`) lowers **projectable** authored guards into WebIR for `simulateHandler`:
+
+- `IDENT ==|!= lit`, `!IDENT`, `&&` / `||` of those → `data.if` + `web.request.response` + `__return` halt
+- Nested stmt-list `if` inside guards
+- Opaque `g_*` residuals are **skipped** (no invented verify)
+- Unbound idents (e.g. `!post`) bind as `data.param` → simulate `null`
+
+Does not claim foreach N-iteration HTML or opaque call evaluate.
+
 ## Stmt-level `foreach` + collection binding
 
 When WebIR `data.foreach` iterable is a simple **param** and the item name is a valid IDENT, emit:

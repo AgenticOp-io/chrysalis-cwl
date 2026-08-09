@@ -128,6 +128,25 @@ type ResponseMeta = {
   headers?: Readonly<Record<string, string>>;
 };
 
+/** Walk route for RFC-0024 attachment-hole provenance. */
+function routeHasAttachmentHoles(module: Module, routeNodeId: string): boolean {
+  const route = module.nodes.get(routeNodeId as never);
+  if (!route) return false;
+  const seen = new Set<string>();
+  const stack = [...(route.operands ?? [])];
+  while (stack.length > 0) {
+    const id = stack.pop();
+    if (id === undefined || seen.has(id)) continue;
+    seen.add(id);
+    const n = module.nodes.get(id);
+    if (!n) continue;
+    const prov = n.provenance ?? [];
+    if (prov.some((p) => p?.locator === "cwl:attachment-holes")) return true;
+    for (const op of n.operands ?? []) stack.push(op);
+  }
+  return false;
+}
+
 /** Walk route → handler → body for authored `web.request.response` attrs. */
 function findResponseMeta(module: Module, routeNodeId: string): ResponseMeta | null {
   const route = module.nodes.get(routeNodeId as never);
@@ -296,7 +315,12 @@ export function createCwlRuntime(config: CwlRuntimeConfig): CwlRuntimeHandle {
     const post = parsePostBody(bodyText, headers.get("content-type") ?? undefined);
     const input = buildRequestInput(method, url, headers, match.pathParams, session, post);
     const sim = simulateHandler(config.module, match.route.routeNodeId, input, db);
-    if (sim.errors.length > 0) {
+    const attachmentSoft =
+      sim.errors.length > 0 &&
+      Boolean(sim.body) &&
+      sim.errors.every((e) => e.reason === "hit a hole") &&
+      routeHasAttachmentHoles(config.module, match.route.routeNodeId);
+    if (sim.errors.length > 0 && !attachmentSoft) {
       return new Response(
         JSON.stringify({ error: "cwl-runtime:simulation-inconclusive", errors: sim.errors }),
         { status: 501, headers: { "content-type": "application/json" } },

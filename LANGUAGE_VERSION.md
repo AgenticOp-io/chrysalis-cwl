@@ -3,15 +3,17 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.7` |
-| **Status** | Full language-gold execute matrix (**25**) — conclusive routes + honest 501 holes |
+| **Version** | `1.0.8` |
+| **Status** | Deep execute: RFC-0021 early-exit lowering + RFC-0024 attachment soft-path |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`1.0.7` closes the optional execute sweep: every `fixtures/language-gold/*/routes.cwl` is **runtime-ok** with allowlisted checks (including honest **501** for holes / form-action POST / attachment-hole pages).
+`1.0.8` goes deeper on evaluate honesty:
 
-Still not claimed: real auth/session gates, `if` early-exit evaluate, foreach iteration, browser island events, attachment-hole HTML body under simulate (IR present; rewrite hits `data.hole`).
+- **RFC-0021:** projectable `if` guards → WebIR `data.if` + response/`__return` halt (`cwl-control-lower.mjs`); nested stmt lists; opaque `g_*` skipped (no invent)
+- **RFC-0024:** attachment-hole pages return authored HTML when hole IR is present (`runtime-cwl` soft-path); pure holes still 501
+- Matrix **25** with deeper `19` / `23` / `25` checks
 
 ## Gate
 

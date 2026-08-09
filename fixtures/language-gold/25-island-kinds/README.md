@@ -1,5 +1,5 @@
 # `25-island-kinds` — RFC-0024
 
-**runtime-ok** — `/api/health` literal; attachment-hole pages honestly **501** under simulate (hole ops still inconclusive; IR keeps `cwl:attachment-holes`).
+**runtime-ok** — `/api/health` literal; attachment-hole pages return authored HTML under soft-path (hole IR kept; no Wasm/vendor invent).
 
-Does not invent Wasm/vendor runtimes.
+Pure hole handlers (no return body) still **501**.

@@ -1,5 +1,13 @@
 # `23-nested-control` — RFC-0021
 
-**runtime-ok** (partial) — nested foreach/if surfaces SSR empty shells.
+**runtime-ok** — nested `if` stmt lists under early-exit lower + simulate.
 
-Does not claim loop evaluation or nested early-exit verify.
+## Checks
+
+```text
+POST /login empty password → 400 Password required
+POST /login empty username only → 400 Missing credentials
+POST /login both set → 404 User not found (!user)
+GET /posts → <ul></ul>
+GET /threads → <div></div>
+```
