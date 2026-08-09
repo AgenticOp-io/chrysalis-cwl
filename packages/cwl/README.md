@@ -1,8 +1,8 @@
 # Chrysalis Web Language (CWL)
 
 **Package:** `@chrysalis/cwl`  
-**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `1.0.0`)  
-**Status:** Exit 1.0 — packable for **GitHub Packages** (`publishConfig` restricted). Repos stay private. Not public npm.
+**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `1.0.4`)  
+**Status:** Exit 1.0 lineage — packable for **GitHub Packages** (`publishConfig` restricted). Repos stay private. Not public npm.
 
 ## Purpose
 
@@ -15,7 +15,8 @@
 - **LSP map:** `import { mapDiagnoseSource, … } from '@chrysalis/cwl/lsp-map'`
 - **Parser:** `import { parseCwlModule } from '@chrysalis/cwl/parser'`
 - **Print:** `import { printCwlModule, canonicalizeCwlModule } from '@chrysalis/cwl/print'`
-- **CLI:** `npx cwl check path/to/file.cwl` (bin from this package)
+- **DNA seed:** `import { seedDraftDnaFromCwlPath, … } from '@chrysalis/cwl/dna-seed'`
+- **CLI:** `npx cwl check path/to/file.cwl` · `npx cwl dna-seed file.cwl [--profile …] [--holes-report]`
 - Constitution: [`CWL-PILLAR-HOME.md`](../../docs/language/CWL-PILLAR-HOME.md)
 - Publish: [`CWL-PUBLISH.md`](../../docs/language/CWL-PUBLISH.md) · [`EXIT-1.0.md`](../../docs/history/EXIT-1.0.md)
 
@@ -24,3 +25,7 @@ Canonical sources live in `scripts/hub-ingest/`; `npm run sync:cwl-package-lib` 
 ## Version rule
 
 `packages/cwl/package.json` `"version"` **≡** `LANGUAGE_VERSION.md`. Bump both together.
+
+## Registry consumers
+
+GitHub Packages name at publish: `@agenticop-io/cwl` (tag `cwl-v*`). Local / `file:` pin stays `@chrysalis/cwl`.

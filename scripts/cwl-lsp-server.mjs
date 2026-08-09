@@ -6,15 +6,15 @@
  * Usage: node scripts/cwl-lsp-server.mjs
  */
 import { pathToFileURL } from "node:url";
-import { existsSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { dirname, resolve, basename } from "node:path";
 import { formatCwlSource } from "./hub-ingest/cwl-fmt.mjs";
 import { mapDiagnoseSource } from "./hub-ingest/cwl-lsp-map.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 import { listCwlImportGraph } from "./hub-ingest/cwl-module-graph.mjs";
 
 export const CWL_LSP_SERVER_KIND = "chrysalis.cwl.lsp-server";
-export const CWL_LSP_SERVER_VERSION = "1.0.3";
+export const CWL_LSP_SERVER_VERSION = "1.0.4";
 
 /** CompletionItemKind.Keyword */
 const KIND_KEYWORD = 14;
@@ -178,6 +178,9 @@ function completionPrefix(lineText, character) {
  */
 function lineContext(lineText, character) {
   const before = lineText.slice(0, Math.max(0, character));
+  if (/^\s*import\s+"/.test(before) && !before.includes('";')) {
+    return "import-path";
+  }
   if (/^\s*effects\s*:/.test(before) || /\beffects\s*:\s*[^;]*$/.test(before)) {
     return "effects";
   }
@@ -188,6 +191,34 @@ function lineContext(lineText, character) {
     return "handler-name";
   }
   return "general";
+}
+
+/**
+ * Sibling .cwl files for `import "…"` completion (same directory).
+ * @param {string} fileHint
+ * @param {string} prefixInsideQuotes
+ */
+function importPathCompletions(fileHint, prefixInsideQuotes) {
+  /** @type {Array<{ label: string, kind: number, detail: string, insertText?: string }>} */
+  const items = [];
+  try {
+    const dir = dirname(resolve(fileHint));
+    if (!existsSync(dir)) return items;
+    const self = basename(resolve(fileHint));
+    for (const name of readdirSync(dir)) {
+      if (!name.endsWith(".cwl") || name === self) continue;
+      if (prefixInsideQuotes && !name.startsWith(prefixInsideQuotes)) continue;
+      items.push({
+        label: name,
+        kind: KIND_FILE,
+        detail: "CWL import (same directory)",
+        insertText: name,
+      });
+    }
+  } catch {
+    /* ignore */
+  }
+  return items;
 }
 
 /**
@@ -239,6 +270,13 @@ export function completionsAt(text, position, fileHint = "buffer.cwl") {
 
   /** @type {Array<{ label: string, kind: number, detail: string, insertText?: string }>} */
   let pool = [];
+
+  if (ctx === "import-path") {
+    const before = lineText.slice(0, Math.max(0, position.character));
+    const m = /import\s+"([^"]*)$/.exec(before);
+    const pathPrefix = m ? m[1] : "";
+    return importPathCompletions(fileHint, pathPrefix);
+  }
 
   if (ctx === "effects") {
     pool = [...CWL_EFFECT_PRESETS];

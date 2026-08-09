@@ -59,15 +59,15 @@ Wired into optional `npm run test:language:full` (stable / fast; needs WebIR + r
 
 ## Why Convert packages still appear
 
-Physical `@chrysalis/webir` / `@chrysalis/rewrite` / `@chrysalis/emit-shared` trees still live under `chrysalis-convert` until the WebIR ownership flip ([`WEBIR-FLIP-REQUESTED.md`](./WEBIR-FLIP-REQUESTED.md), Slice 3.4). Pillar `runtime-cwl` declares `workspace:*` but this repo has no full pnpm workspace for those packages, so bare imports fail without wiring.
+**WebIR** physical home is here (`packages/webir`); Convert reverse-homed (junction + `file:` — see [`packages/WEBIR.md`](../../packages/WEBIR.md)). **`@chrysalis/rewrite`** / **`@chrysalis/emit-shared`** remain Convert-owned. Pillar `runtime-cwl` may still need resolve hooks / sibling dists for simulate until Convert gravity cleans workspace pins.
 
 The smoke **does not** invent a second runtime. It:
 
 1. Loads CWL via pillar `loadModuleFromCwlFile` → `export-cwl-webir.mjs`
-2. Registers ESM resolve hooks to sibling (or `packages/webir`) dist entries
+2. Registers ESM resolve hooks to `packages/webir` (and Convert rewrite/emit-shared when needed)
 3. Calls pillar `createCwlRuntime` and asserts allowlisted routes
 
-Same honesty pattern as `link:webir` — convert holds physical IR/sim packages; language owns the gold + smoke contract.
+Language owns the gold + smoke contract; Convert owns rewrite/simulate honesty (e.g. headers).
 
 ## Related gates
 
@@ -81,7 +81,7 @@ Same honesty pattern as `link:webir` — convert holds physical IR/sim packages;
 
 ## Gaps (honest)
 
-1. **Dep wiring:** pillar cannot `import("@chrysalis/runtime-cwl")` without hooks / convert workspace — Slice 3.4 open.
+1. **Dep wiring:** `packages/webir` is local; rewrite/emit-shared still need Convert sibling dists or hooks for full execute smokes.
 2. **`test:runtime-cwl`:** root script runs `npm test --prefix packages/runtime-cwl`, but package has no `test` script and tests reference convert `fixtures/hub-gold-cwl*` (absent here).
 3. **Coverage:** API literal/object/status/path/query/multi-file only. Not yet marked:
    - `04-request-context` — **blocked on Convert `rewrite`**, not pillar smoke. Proven 2026-08-09: cookies bind (`sid`), query binds (`lang`), headers stay `null` (`auth` / `accept`). Root cause: sibling `@chrysalis/rewrite` `RequestInput` has no `headers` field and `pickBag(..., "header")` returns `{}`. Pillar `runtime-cwl` already sees HTTP `Headers` but cannot feed them honestly. Fixture README: [`fixtures/language-gold/04-request-context/README.md`](../../fixtures/language-gold/04-request-context/README.md). Requested: [`CONVERT-REWRITE-HEADERS-REQUESTED.md`](./CONVERT-REWRITE-HEADERS-REQUESTED.md). Do not allowlist until rewrite binds headers.

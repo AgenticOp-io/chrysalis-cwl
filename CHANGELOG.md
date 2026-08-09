@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.4 — 2026-08-09
+
+- CLI `dna-seed` / `--holes-report` on pillar + packable `bin/cwl`
+- LSP: `import "…"` sibling `.cwl` path completion
+- Gate `test:cwl-hole-catalog` (`CWL_HOLE_CATALOG_OK`) in `test:language`
+- CI Node 22; docs: package README + `DNA-STEP-EXECUTE` WebIR home truth
+
 ## 1.0.3 — 2026-08-09
 
 - Package export `@chrysalis/cwl/dna-seed` (RFC-0022/0023 seed helpers for Secure)

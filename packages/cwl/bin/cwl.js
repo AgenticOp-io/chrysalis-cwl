@@ -11,6 +11,7 @@ import { formatCwlFile, formatCwlSource } from "../lib/cwl-fmt.mjs";
 import { mapDiagnoseSource } from "../lib/cwl-lsp-map.mjs";
 import { parseCwlModule } from "../lib/cwl-parser.mjs";
 import { canonicalizeCwlModule, printCwlModule } from "../lib/cwl-print.mjs";
+import { seedDraftDnaFromCwlPath } from "../lib/cwl-dna-seed.mjs";
 
 const PKG = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ROOT = resolve(PKG, "../..");
@@ -24,10 +25,14 @@ Commands:
   diagnose <file.cwl>           Authoring diagnostics JSON
   diagnose --stdin [--lsp]      Diagnose buffer from stdin
   check <file-or-dir>           Round-trip + diagnose
+  dna-seed <file.cwl> [--profile <json>] [--holes-report]
+                                RFC-0022/0023 draft DNA JSON
 
 Options:
   -h, --help
   --stdin / --lsp / --name <path>
+  --profile <path>
+  --holes-report
 `;
 
 async function listCwlFiles(dir) {
@@ -104,6 +109,8 @@ function parseArgs(argv) {
     if (a === "-h" || a === "--help") flags.add("help");
     else if (a === "--name") opts.name = argv[++i] ?? "";
     else if (a.startsWith("--name=")) opts.name = a.slice("--name=".length);
+    else if (a === "--profile") opts.profile = argv[++i] ?? "";
+    else if (a.startsWith("--profile=")) opts.profile = a.slice("--profile=".length);
     else if (a.startsWith("--")) flags.add(a.slice(2));
     else positional.push(a);
   }
@@ -203,6 +210,20 @@ async function runCommand(cmd, positional, flags, opts = {}) {
         failures: failures.map((f) => ({ file: f.file, error: f.error })),
       });
       return failures.length === 0 ? 0 : 1;
+    }
+    case "dna-seed":
+    case "seed-dna": {
+      const file = positional[0];
+      if (!file) throw new Error("dna-seed requires <file.cwl>");
+      const abs = resolve(file);
+      printJson(
+        seedDraftDnaFromCwlPath(abs, {
+          profilePath: opts.profile ? resolve(opts.profile) : undefined,
+          fixture: relative(ROOT, abs).replace(/\\/g, "/"),
+          includeHolesReport: flags.has("holes-report"),
+        }),
+      );
+      return 0;
     }
     default:
       throw new Error(`unknown command: ${cmd}`);

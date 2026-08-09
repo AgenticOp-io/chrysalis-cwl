@@ -159,6 +159,11 @@ async function main() {
   if (!Array.isArray(compHandlers) || !compHandlers.some((i) => i.label === "health")) {
     failures.push("completion-same-file-handler");
   }
+  const importLine = 'import "';
+  const compImport = completionsAt(importLine, { line: 0, character: importLine.length }, MULTI);
+  if (!Array.isArray(compImport) || !compImport.some((i) => i.label === "health.cwl")) {
+    failures.push("completion-import-path");
+  }
 
   // Unit: same-file references
   const refs = referencesAt(litSrc, pathToFileURL(LITERALS).href, { line: 4, character: 10 }, true);

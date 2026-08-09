@@ -1,9 +1,9 @@
 # CWL editor / LSP path
 
-**Status:** stdio Language Server (**1.0.3**) — diagnose/fmt/hover/completion + definition/references/rename (RFC-0009 import graph) + column ranges  
+**Status:** stdio Language Server (**1.0.4**) — diagnose/fmt/hover/completion + definition/references/rename (RFC-0009 import graph) + column ranges  
 **Server:** [`scripts/cwl-lsp-server.mjs`](../../scripts/cwl-lsp-server.mjs)  
 **Extension:** [`editors/vscode/`](../../editors/vscode/) (thin spawn client, **zero npm deps**)  
-**Language version:** `1.0.3`  
+**Language version:** `1.0.4`  
 **Distribution:** private pillar — not VS Code Marketplace · pack with `npm run pack:cwl-vsix`
 
 ## Have now
@@ -13,7 +13,7 @@
 | TextMate grammar | `.cwl` highlighting |
 | Stdio LSP | Full initialize / sync / shutdown |
 | Diagnostics / Format / Hover | Via diagnose map + fmt + AST |
-| Completion (v1) | Keywords, HTTP methods, effects presets, same-file handlers/paths |
+| Completion (v1) | Keywords, HTTP methods, effects presets, same-file handlers/paths, sibling `import "…"` paths |
 | Definition / References / Rename | Same-file **and** RFC-0009 **import graph** |
 | Document symbols | `@route` / `@page` outline |
 | Private VSIX | `npm run pack:cwl-vsix` |

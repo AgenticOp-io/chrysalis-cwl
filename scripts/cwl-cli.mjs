@@ -11,6 +11,7 @@ import { formatCwlFile, formatCwlSource } from "./hub-ingest/cwl-fmt.mjs";
 import { mapDiagnoseSource } from "./hub-ingest/cwl-lsp-map.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 import { canonicalizeCwlModule, printCwlModule } from "./hub-ingest/cwl-print.mjs";
+import { seedDraftDnaFromCwlPath } from "./hub-ingest/cwl-dna-seed.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -25,6 +26,8 @@ Commands:
   diagnose --stdin [--lsp]      Diagnose buffer from stdin (optional LSP map)
   check <file-or-dir>           Round-trip AST equality + diagnose
                                 (recurses directories for *.cwl)
+  dna-seed <file.cwl> [--profile <deploy-profile.json>]
+                                RFC-0022/0023 draft DNA JSON (no Helix)
 
 Options:
   -h, --help                    Show this help
@@ -32,11 +35,14 @@ Options:
   --stdin                       Read source from stdin (diagnose/fmt)
   --lsp                         With diagnose: emit editor/LSP map shape
   --name <path>                 Virtual path for --stdin (default: stdin.cwl)
+  --profile <path>              Deploy profile for dna-seed (RFC-0023)
+  --holes-report                With dna-seed: include RFC-0022 §6 holes report
 
 Examples:
   npm run cwl -- parse fixtures/language-gold/01-literals/routes.cwl
   npm run cwl -- check fixtures/language-gold
   npm run cwl -- fmt path/to/app.cwl --stdout
+  npm run cwl -- dna-seed fixtures/language-gold/24-dna-bridge/routes.cwl --profile fixtures/language-gold/24-dna-bridge/deploy-profile-api.json
 `;
 
 /**
@@ -155,6 +161,10 @@ function parseArgs(argv) {
       opts.name = argv[++i] ?? "";
     } else if (a.startsWith("--name=")) {
       opts.name = a.slice("--name=".length);
+    } else if (a === "--profile") {
+      opts.profile = argv[++i] ?? "";
+    } else if (a.startsWith("--profile=")) {
+      opts.profile = a.slice("--profile=".length);
     } else if (a.startsWith("--")) flags.add(a.slice(2));
     else positional.push(a);
   }
@@ -299,6 +309,20 @@ async function runCommand(cmd, positional, flags, opts = {}) {
       };
       printJson(report);
       return report.ok ? 0 : 1;
+    }
+    case "dna-seed":
+    case "seed-dna": {
+      const file = positional[0];
+      if (!file) throw new Error("dna-seed requires <file.cwl>");
+      const abs = resolve(file);
+      const profilePath = opts.profile ? resolve(opts.profile) : undefined;
+      const draft = seedDraftDnaFromCwlPath(abs, {
+        profilePath,
+        fixture: relative(ROOT, abs).replace(/\\/g, "/"),
+        includeHolesReport: flags.has("holes-report"),
+      });
+      printJson(draft);
+      return 0;
     }
     default:
       throw new Error(`unknown command: ${cmd}`);

@@ -3,19 +3,20 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.3` |
-| **Status** | CWL pillar complete for Exit 1.0 lineage — dna-seed export + import-graph LSP |
+| **Version** | `1.0.4` |
+| **Status** | Pillar complete + tooling polish (CLI dna-seed, import-path LSP, hole-catalog gate, Node 22 CI) |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`1.0.3` closes remaining **CWL-owned** Exit/DNA queue items:
+`1.0.4` is optional **CWL-owned polish** after Exit/DNA complete (`1.0.3`):
 
-- `@chrysalis/cwl/dna-seed` package export (RFC-0022/0023 seed for Secure)
-- LSP definition / references / rename walk RFC-0009 import graphs
-- Multi-host DNA gold + holes bridge report (1.0.2); LSP polish (1.0.1); registry publish (1.0.0)
+- CLI `dna-seed` / `--holes-report` (pillar + packable `bin/cwl`)
+- LSP `import "…"` path completion from sibling `.cwl` files
+- Gate `test:cwl-hole-catalog` → `CWL_HOLE_CATALOG_OK` (wired into `test:language`)
+- CI Node **22**; docs: package README + `DNA-STEP-EXECUTE` WebIR home truth
 
-Convert peel gravity and Secure pin bumps remain sibling-owned — not language genome work.
+Convert peel gravity and Secure pin bumps remain sibling-owned.
 
 See `CHANGELOG.md`, `docs/history/DNA-CWL-COMPLETE.md`.
 
@@ -27,9 +28,8 @@ See `CHANGELOG.md`, `docs/history/DNA-CWL-COMPLETE.md`.
 
 Breaking changes must be versioned in this file **before** they land in parser/print.
 
-## Out of scope for language package `1.0.0`
+## Out of scope for language package `1.0.0+`
 
-- Convert reverse-home of WebIR (Convert still has a physical leftover until cutover)
 - Helix / Secure DNA firewall implementation / cutover default (Secure Requested)
 - Public npm / Marketplace distribution
 - Convert peel/emit gravity (Convert Requested)
@@ -39,6 +39,4 @@ Breaking changes must be versioned in this file **before** they land in parser/p
 ```bash
 npm run sync:cwl-package-lib
 npm run test:language
-npm run test:cwl-pack          # npm pack dry-run
-npm run build:webir && npm run smoke:webir
 ```
