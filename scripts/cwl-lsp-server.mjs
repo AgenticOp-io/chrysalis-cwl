@@ -14,7 +14,7 @@ import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 import { listCwlImportGraph } from "./hub-ingest/cwl-module-graph.mjs";
 
 export const CWL_LSP_SERVER_KIND = "chrysalis.cwl.lsp-server";
-export const CWL_LSP_SERVER_VERSION = "1.0.13";
+export const CWL_LSP_SERVER_VERSION = "1.0.14";
 
 /** CompletionItemKind.Keyword */
 const KIND_KEYWORD = 14;

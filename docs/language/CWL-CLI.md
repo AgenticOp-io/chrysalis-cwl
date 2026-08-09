@@ -38,7 +38,7 @@ Most commands need **no WebIR**. Dual-mode `fmt --webir` and `emit-check` need `
 | *(default)* | JSON report (`CWL_EMIT_CHECK_OK` / fail); exit `0` if reparse routes match |
 | `--stdout` | Also print emitted CWL after the JSON report |
 
-Honest emit holes remain holes (`holeReasons` lists catalogued `cwl:emit:*` / fixture holes). Full matrix: `npm run smoke:cwl-emit`.
+Honest emit holes remain holes (`holeReasons` lists catalogued `cwl:emit:*` / fixture holes). Full matrix: `npm run smoke:cwl-emit`. Gate: `npm run test:cwl-emit-check` (skipped without WebIR unless `CWL_REQUIRE_WEBIR=1`).
 
 ### `check` flags
 

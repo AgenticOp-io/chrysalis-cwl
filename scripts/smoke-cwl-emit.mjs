@@ -112,6 +112,24 @@ async function runOne(cwlPath, name) {
       throw new Error(`19 emit: gate else-if missing\n---\n${text}`);
     }
   }
+  if (name === "23-nested-control") {
+    const login = (reparsed.routes ?? []).find((r) => r.name === "login_nested");
+    const nestedIf = login?.earlyGuards?.[0]?.stmts?.find((s) => s.kind === "if");
+    if (!nestedIf?.elseBody && !(nestedIf?.elseStmts ?? []).length) {
+      throw new Error(`23 emit: login_nested nested else missing\n---\n${text}`);
+    }
+    const posts = (reparsed.routes ?? []).find((r) => r.name === "posts_nested_if");
+    const pIf = posts?.foreachBindings?.[0]?.stmts?.find((s) => s.kind === "if");
+    if (!pIf?.elseBody && !(pIf?.elseStmts ?? []).length) {
+      throw new Error(`23 emit: posts_nested_if foreach/else missing\n---\n${text}`);
+    }
+    const threads = (reparsed.routes ?? []).find((r) => r.name === "threads_nested_foreach");
+    const outer = threads?.foreachBindings?.[0];
+    const inner = outer?.stmts?.find((s) => s.kind === "foreach");
+    if (inner?.collection !== "comments" || inner?.item !== "c") {
+      throw new Error(`23 emit: nested foreach comments as c missing\n---\n${text}`);
+    }
+  }
 
   console.log("smoke:cwl-emit OK");
   console.log(`  ingest routes: ${lift.routeCount}`);

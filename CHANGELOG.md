@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.14 — 2026-08-09
+
+- Nested foreach after `return` kept as documentation IR + thin emit reverse (`23-nested-control`)
+- TextMate / language-config sync with LSP control/UI catalog; `test:cwl-grammar`
+- CLI `emit-check` gated (`test:cwl-emit-check`, WebIR-aware)
+
 ## 1.0.13 — 2026-08-09
 
 - CI: `build:webir` + `CWL_REQUIRE_WEBIR=1` language gate + emit smoke on language/publish workflows

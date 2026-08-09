@@ -18,5 +18,23 @@
     ["[", "]"],
     ["(", ")"],
     ["\"", "\""]
+  ],
+  "indentationRules": {
+    "increaseIndentPattern": "^.*\\{\\s*$",
+    "decreaseIndentPattern": "^\\s*\\}"
+  },
+  "onEnterRules": [
+    {
+      "beforeText": "^\\s*\\}\\s*else(\\s+if\\b.*)?\\s*\\{\\s*$",
+      "action": { "indent": "indent" }
+    },
+    {
+      "beforeText": "^.*\\{\\s*$",
+      "action": { "indent": "indent" }
+    },
+    {
+      "beforeText": "^\\s*\\}\\s*$",
+      "action": { "indent": "outdent" }
+    }
   ]
 }

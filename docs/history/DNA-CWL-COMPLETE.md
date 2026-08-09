@@ -1,7 +1,7 @@
 # CWL pillar — Exit / DNA queue complete
 
-**Status:** **Complete (CWL-owned)** as of **`1.0.3`** (2026-08-09); tip polish **`1.0.13`**  
-**Tip:** `@chrysalis/cwl@1.0.13` / published lineage `@agenticop-io/cwl@1.0.0`… (tag `cwl-v*` for tip)  
+**Status:** **Complete (CWL-owned)** as of **`1.0.3`** (2026-08-09); tip polish **`1.0.14`**  
+**Tip:** `@chrysalis/cwl@1.0.14` / published lineage `@agenticop-io/cwl@1.0.0`… (tag `cwl-v*` for tip)  
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) — DNA of the web ≠ all PLs
 
 ## What “complete” means here
@@ -22,7 +22,7 @@ The **language genome** is done for the Exit 1.0 path:
 | Owner | Remaining |
 | --- | --- |
 | **Convert** | Registry pin `@agenticop-io/cwl`; peel/emit gravity; rewrite headers (`04-request-context`) |
-| **Secure** | Pin tip `1.0.13`; apply multi-host profile at cutover; fill `dna_gaps` |
+| **Secure** | Pin tip `1.0.14`; apply multi-host profile at cutover; fill `dna_gaps` |
 
 Those do **not** reopen the language genome. Hand off via Requested docs — do not invent Convert/Secure work in this repo.
 

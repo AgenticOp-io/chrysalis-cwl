@@ -2,7 +2,7 @@
 
 **Slice:** language-owned execute smoke + matrix  
 **Date:** 2026-08-09  
-**Version:** tip `1.0.13` — CI WebIR + emit catalog/CLI + LSP snippets; execute matrix unchanged
+**Version:** tip `1.0.14` — nested foreach Rosetta docs IR; execute matrix unchanged
 
 ## What “execute” means today
 

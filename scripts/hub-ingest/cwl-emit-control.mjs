@@ -128,6 +128,15 @@ export function projectExitOrStmts(get, id) {
         if (child.dialect === "data" && child.op === "foreach") {
           const fe = projectForeachNode(get, opId);
           if (fe) stmts.push({ kind: "foreach", ...fe, stmts: fe.stmts });
+          continue;
+        }
+        // Nested early-exit / stmt blocks from return + trailing docs IR
+        if (child.dialect === "data" && child.op === "block") {
+          const nested = projectExitOrStmts(get, opId);
+          if (!nested) continue;
+          if (nested.status != null && status == null) status = nested.status;
+          if (nested.body && !body) body = nested.body;
+          if (nested.stmts?.length) stmts.push(...nested.stmts);
         }
       }
       return { status, body, stmts };
