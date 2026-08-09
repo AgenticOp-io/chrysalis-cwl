@@ -1,12 +1,12 @@
 # DNA build — next queue
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.14`** — nested foreach Rosetta + TextMate/LSP sync + emit-check gate  
+**Tip:** **`1.0.15`** — tip hygiene + nested-control gates + opaque-residual diagnose  
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md)
 
 ## CWL-owned
 
-*Queue empty for language genome polish.*
+*Queue empty for language genome polish.* Remaining work is Convert/Secure oracle or pin.
 
 ## Sibling wait (oracle / product)
 
@@ -15,4 +15,4 @@
 | Opaque `g_*` / DB evaluate | Convert |
 | Foreach N-iteration HTML | Convert |
 | Browser island event **execution** (emit surface exists) | Convert |
-| Tip pin **1.0.14** | Convert + Secure |
+| Tip pin **1.0.15** | Convert + Secure |

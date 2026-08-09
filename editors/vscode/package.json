@@ -2,7 +2,7 @@
   "name": "cwl-lsp",
   "displayName": "Chrysalis Web Language",
   "description": "CWL language support — TextMate, stdio LSP (diagnostics/fmt/hover/completion/definition/references/rename + token end columns), private pillar.",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "publisher": "agenticop",
   "private": true,
   "engines": {

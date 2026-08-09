@@ -14,6 +14,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const CLI = join(ROOT, "scripts/cwl-cli.mjs");
 const CONTROL = join(ROOT, "fixtures/language-gold/19-early-exit/routes.cwl");
 const HOLES = join(ROOT, "fixtures/language-gold/11-holes/routes.cwl");
+const NESTED = join(ROOT, "fixtures/language-gold/23-nested-control/routes.cwl");
 
 const webirEntry = resolveWebirEntryPath();
 const webirReady = Boolean(webirEntry && existsSync(webirEntry));
@@ -25,9 +26,10 @@ const checks = [];
 /**
  * @param {string} id
  * @param {string} file
- * @param {(report: object) => boolean} assertFn
+ * @param {(report: object, emittedText: string) => boolean} assertFn
+ * @param {{ stdout?: boolean }} [opts]
  */
-function runEmitCheck(id, file, assertFn) {
+function runEmitCheck(id, file, assertFn, opts = {}) {
   if (!webirReady) {
     checks.push({
       id,
@@ -39,22 +41,44 @@ function runEmitCheck(id, file, assertFn) {
     });
     return;
   }
-  const r = spawnSync(process.execPath, [CLI, "emit-check", file], {
+  const args = [CLI, "emit-check", file];
+  if (opts.stdout) args.push("--stdout");
+  const r = spawnSync(process.execPath, args, {
     cwd: ROOT,
     encoding: "utf8",
     timeout: 60_000,
   });
+  const out = r.stdout || "";
   let report = null;
+  let emittedText = "";
   try {
-    report = JSON.parse((r.stdout || "").trim().split(/\n(?=\{)/).pop() || "{}");
+    const start = out.indexOf("{");
+    if (start >= 0) {
+      let depth = 0;
+      let end = -1;
+      for (let i = start; i < out.length; i++) {
+        if (out[i] === "{") depth += 1;
+        else if (out[i] === "}") {
+          depth -= 1;
+          if (depth === 0) {
+            end = i;
+            break;
+          }
+        }
+      }
+      if (end >= 0) {
+        report = JSON.parse(out.slice(start, end + 1));
+        emittedText = out.slice(end + 1);
+      }
+    }
   } catch {
     report = null;
   }
-  const ok = r.status === 0 && report?.ok === true && assertFn(report);
+  const ok = r.status === 0 && report?.ok === true && assertFn(report, emittedText);
   checks.push({
     id,
     ok,
-    detail: ok ? undefined : (r.stderr || r.stdout || `exit=${r.status}`).slice(-300),
+    detail: ok ? undefined : (r.stderr || out || `exit=${r.status}`).slice(-300),
   });
 }
 
@@ -64,6 +88,18 @@ runEmitCheck("emit-check-19-else-if", CONTROL, (rep) => {
 runEmitCheck("emit-check-11-honest-holes", HOLES, (rep) => {
   return rep.token === "CWL_EMIT_CHECK_OK" && (rep.holeCount ?? 0) >= 1;
 });
+runEmitCheck(
+  "emit-check-23-nested-foreach",
+  NESTED,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /foreach\s+comments\s+as\s+c\s*\{/.test(text)
+    );
+  },
+  { stdout: true },
+);
 
 const ok = checks.every((c) => c.ok);
 const report = {

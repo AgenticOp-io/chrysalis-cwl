@@ -9,7 +9,10 @@ import { isCataloguedFullstackHole, lookupFullstackHole } from "./cwl-fullstack-
 import { parseCwlModule } from "./cwl-parser.mjs";
 
 export const CWL_DIAGNOSE_KIND = "chrysalis.cwl.diagnose";
-export const CWL_DIAGNOSE_SCHEMA_VERSION = 5;
+export const CWL_DIAGNOSE_SCHEMA_VERSION = 6;
+
+/** Exact opaque residual matching ingest `lowerCwlCondExpr` skip. */
+const OPAQUE_RESIDUAL_RE = /^g_[A-Za-z0-9_]+$/;
 
 /**
  * Prefer explicit 1-based `line`, else parse "line N" / "at N" from a message.
@@ -74,6 +77,29 @@ function attachCharacter(d, character, endCharacter) {
     d.endColumn = endCharacter;
   }
   return d;
+}
+
+/**
+ * Walk control stmts / guards for opaque `g_*` residuals (ingest skips; no invent).
+ * @param {unknown} node
+ * @param {(expr: string, line?: number) => void} visit
+ */
+function walkOpaqueResiduals(node, visit) {
+  if (!node || typeof node !== "object") return;
+  const n = /** @type {Record<string, unknown>} */ (node);
+  if (typeof n.condExpr === "string") {
+    const t = n.condExpr.trim();
+    if (OPAQUE_RESIDUAL_RE.test(t)) {
+      visit(t, Number.isFinite(n.line) ? /** @type {number} */ (n.line) : undefined);
+    }
+  }
+  for (const key of ["stmts", "elseStmts", "elseIfs", "earlyGuards", "foreachBindings"]) {
+    const arr = n[key];
+    if (Array.isArray(arr)) {
+      for (const child of arr) walkOpaqueResiduals(child, visit);
+    }
+  }
+  if (n.body && typeof n.body === "object") walkOpaqueResiduals(n.body, visit);
 }
 
 /**
@@ -202,6 +228,26 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
       attachCharacter(d, site.character, site.endCharacter);
       diagnostics.push(d);
     }
+
+    /** @type {Set<string>} */
+    const seenOpaque = new Set();
+    walkOpaqueResiduals(r, (expr, line) => {
+      const key = `${expr}@${line ?? routeLine ?? "?"}`;
+      if (seenOpaque.has(key)) return;
+      seenOpaque.add(key);
+      diagnostics.push(
+        attachCharacter(
+          {
+            severity: "info",
+            code: "opaque-residual",
+            message: `opaque residual ${expr} — ingest skips evaluate (no invent); Convert/oracle owns verify`,
+            line: line ?? routeLine,
+          },
+          routeChar,
+          routeEnd,
+        ),
+      );
+    });
   }
 
   let pageRouteCount = 0;

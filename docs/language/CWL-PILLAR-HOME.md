@@ -252,9 +252,9 @@ Convert product proves (complete-conversion, hub golds) are **consumer** gates �
 | Documented ownership + sync protocol | Yes (this file) |
 | Rosetta → UT → DNA path documented | Yes (`ROSETTA-UT-PATH.md`) |
 | Local fmt without WebIR | Yes |
-| Ingest/fmt via WebIR without convert checkout | Partial — `link:webir` + matrix; ownership flip still open |
-| Junctions instead of copies | In progress (0.2) — six always-sync hub-ingest scripts file-symlinked on Windows |
-| Published language version ≡ `LANGUAGE_VERSION.md` | Prep only (private) |
+| Ingest/fmt via WebIR without convert checkout | Yes — pillar `packages/webir` + `build:webir` / matrices (`link:webir` for Convert reverse-home) |
+| Junctions instead of copies | Yes (0.2) — hub-ingest mirrors / Convert consume |
+| Published language version ≡ `LANGUAGE_VERSION.md` | Yes — GitHub Packages `@agenticop-io/cwl` via `cwl-v*` |
 | DNA ↔ CWL bridge library in Secure | Contract here; enforce in Secure |
 
 ### Per-surface language bar

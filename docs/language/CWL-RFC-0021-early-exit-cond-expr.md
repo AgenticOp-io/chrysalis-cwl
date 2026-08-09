@@ -117,15 +117,21 @@ foreach posts as p {
 
 (Parser skips the block like `if` guards.) Outer page `return html` no longer unrolls the loop body once into the page chrome — binding documents the collection. Emit places `foreach` **after** the page return so ST/chrome extractors keep the outer HTML return as authority.
 
-### Remaining gap (next cheap subjects — not this slice)
+### Landed (pillar language-gold — tip 1.0.14+)
 
-Documented next gaps (ST must stay green; no invented verify):
+| Surface | Proof |
+| --- | --- |
+| Nested `if` / `else` inside guards + foreach | `fixtures/language-gold/23-nested-control` ingest + emit |
+| Nested `foreach` after `return` (docs IR) | Same gold — empty-iter honesty; no N-iteration HTML claim |
+| Opaque `g_*` | Skipped on lower; diagnose `opaque-residual` (info) |
+
+### Remaining gap (Convert / origin — not language invent)
 
 1. **Dynamic foreach leaves** — still omitted (D6442).
 2. **Body chrome** — **one** origin sample, not N iterations — no CWL/verify loop evaluate.
 3. **Non-param iterable** — falls back to prior “inline body once into outer HTML”.
-4. **Nested control** — authored `if` / nested control inside foreach remains future work (not cheap: needs stmt-list body + nested guard capture without inventing loop evaluate).
-5. **Nested foreach** — **skipped (2026-07-24 leadership):** tiny-blog origin has only **sibling** foreach pages (`posts_list` / `posts_view` comments) — no nested `foreach` inside `foreach` subject. A cheap honest slice would need an origin with nested loops; inventing a nested fixture or unrolling N×M into CWL would violate D6442/D6447. Keep documenting; do not ship until a real corpus subject appears.
+4. **Opaque call evaluate** (`g_verify_*`) — Convert / oracle; language keeps holes/skip.
+5. **Foreach N-iteration HTML** — Convert; language docs IR only.
 
 ### Related slice (laravel-min ST, 2026-07-24)
 

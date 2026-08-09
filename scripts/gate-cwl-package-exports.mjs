@@ -67,7 +67,7 @@ const pr = loaded.print;
 if (d) {
   if (typeof d.diagnoseCwlSource !== 'function') failures.push('diagnoseCwlSource-missing');
   if (d.CWL_DIAGNOSE_KIND !== 'chrysalis.cwl.diagnose') failures.push('diagnose-kind');
-  if (d.CWL_DIAGNOSE_SCHEMA_VERSION !== 5) failures.push('diagnose-schema');
+  if (d.CWL_DIAGNOSE_SCHEMA_VERSION !== 6) failures.push('diagnose-schema');
   try {
     const report = d.diagnoseCwlSource('module m;\n', 'gate.cwl');
     if (!report || report.kind !== d.CWL_DIAGNOSE_KIND) failures.push('diagnose-smoke');

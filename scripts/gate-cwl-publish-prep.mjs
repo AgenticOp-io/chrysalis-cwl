@@ -56,6 +56,33 @@ ok("lib-staged", existsSync(join(PKG, "lib/cwl-parser.mjs")));
 ok("lib-dna-seed-staged", existsSync(join(PKG, "lib/cwl-dna-seed.mjs")));
 ok("lib-module-graph-staged", existsSync(join(PKG, "lib/cwl-module-graph.mjs")));
 ok("bin-staged", existsSync(join(PKG, "bin/cwl.js")));
+
+{
+  const packBin = join(PKG, "bin/cwl.js");
+  const emit = spawnSync(process.execPath, [packBin, "emit-check", "x.cwl"], {
+    cwd: ROOT,
+    encoding: "utf8",
+    timeout: 15_000,
+  });
+  const emitMsg = `${emit.stderr || ""}${emit.stdout || ""}`;
+  ok(
+    "packable-cli-no-emit-check",
+    emit.status !== 0 && /pillar CLI|no WebIR/i.test(emitMsg),
+    emitMsg.slice(0, 200),
+  );
+  const webirFmt = spawnSync(process.execPath, [packBin, "fmt", "--webir", "x.cwl"], {
+    cwd: ROOT,
+    encoding: "utf8",
+    timeout: 15_000,
+  });
+  const fmtMsg = `${webirFmt.stderr || ""}${webirFmt.stdout || ""}`;
+  ok(
+    "packable-cli-no-fmt-webir",
+    webirFmt.status !== 0 && /pillar CLI|no WebIR/i.test(fmtMsg),
+    fmtMsg.slice(0, 200),
+  );
+}
+
 ok("publish-doc", existsSync(join(ROOT, "docs/language/CWL-PUBLISH.md")));
 ok("exit-1-0-doc", existsSync(join(ROOT, "docs/history/EXIT-1.0.md")));
 ok("private-pillars-doc", existsSync(join(ROOT, "docs/history/PRIVATE-PILLARS.md")));

@@ -18,10 +18,13 @@ const ROOT = resolve(PKG, "../..");
 
 const USAGE = `Usage: cwl <command> [options] <path>
 
+Packable CLI (parse/print/fmt/diagnose/check/dna-seed). No WebIR in this package.
+For emit-check / fmt --webir use the chrysalis-cwl pillar: npm run cwl -- …
+
 Commands:
   parse <file.cwl>              Parse and print AST JSON
   print <file.cwl>              Parse → print normalized source
-  fmt <file.cwl> [--write|--stdout]
+  fmt <file.cwl> [--write|--stdout|--check]
   diagnose <file.cwl>           Authoring diagnostics JSON
   diagnose --stdin [--lsp]      Diagnose buffer from stdin
   check <file-or-dir>           Round-trip + diagnose
@@ -146,6 +149,11 @@ async function runCommand(cmd, positional, flags, opts = {}) {
       return 0;
     }
     case "fmt": {
+      if (flags.has("webir")) {
+        throw new Error(
+          "fmt --webir requires the chrysalis-cwl pillar CLI (npm run cwl -- fmt … --webir); packable @chrysalis/cwl has no WebIR",
+        );
+      }
       if (flags.has("stdin")) {
         const formatted = formatCwlSource(await readStdin(), opts.name || "stdin.cwl");
         process.stdout.write(formatted.endsWith("\n") ? formatted : `${formatted}\n`);
@@ -168,6 +176,11 @@ async function runCommand(cmd, positional, flags, opts = {}) {
       }
       printJson(await formatCwlFile(abs, { write: true }));
       return 0;
+    }
+    case "emit-check": {
+      throw new Error(
+        "emit-check requires the chrysalis-cwl pillar CLI (npm run cwl -- emit-check …); packable @chrysalis/cwl has no WebIR",
+      );
     }
     case "diagnose": {
       if (flags.has("stdin")) {

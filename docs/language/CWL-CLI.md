@@ -88,5 +88,8 @@ Emitted by `cwl diagnose` / `cwl check` via `scripts/hub-ingest/cwl-diagnose.mjs
 | `param-unused` | warn | Declared path/query param unused in HTML body |
 | `layout-import-unused` | warn | Layout import present but no `@page` routes |
 | `layout-import` | info | Layout module(s) imported for page surfaces |
+| `opaque-residual` | info | Authored `g_*` cond skipped on ingest (no invent); Convert/oracle owns verify |
+
+**Packable vs pillar:** registry `@chrysalis/cwl` / `@agenticop-io/cwl` bin has no WebIR — `emit-check` and `fmt --webir` error with a pillar redirect. Use `npm run cwl -- …` in this repo for Rosetta reverse.
 
 Gates: `npm run test:language` still owns CI proof over `fixtures/language-gold`. This CLI is the authoring surface for the same parse/print/diagnose modules.

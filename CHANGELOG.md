@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.15 — 2026-08-09
+
+- UT evidence: parse `LANGUAGE_VERSION.md` table (tip fidelity)
+- Gates: nested foreach on `emit-check` / `fmt --webir` (`23`)
+- Diagnose `opaque-residual` info for authored `g_*`
+- Packable CLI rejects WebIR commands; constitution/RFC-0021 tip sync
+
 ## 1.0.14 — 2026-08-09
 
 - Nested foreach after `return` kept as documentation IR + thin emit reverse (`23-nested-control`)

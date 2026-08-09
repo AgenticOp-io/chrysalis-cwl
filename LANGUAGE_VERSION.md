@@ -3,18 +3,19 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.14` |
-| **Status** | Nested foreach Rosetta + TextMate/LSP sync + emit-check gate |
+| **Version** | `1.0.15` |
+| **Status** | Tip hygiene + nested-control gates + opaque-residual diagnose |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`1.0.14` closes authoring/Rosetta tip gaps after sibling pin of 1.0.13:
+`1.0.15` closes tip fidelity after sibling sync of 1.0.14:
 
-- **Nested foreach** after `return` lowers as documentation IR (empty-iter honesty) and reverse-emits
-- **TextMate** + language-config aligned with LSP control/UI catalog (`else` / `client` / …)
-- **Gates:** `test:cwl-grammar`, `test:cwl-emit-check` (WebIR-aware)
-- **Emit smoke** deep-asserts `23-nested-control` else + nested foreach
+- **UT evidence** reads `LANGUAGE_VERSION.md` table (`languageVersion` no longer `unknown`)
+- **Gates** cover nested foreach on `emit-check` / `fmt --webir` (`23`)
+- **Diagnose** `opaque-residual` info for authored `g_*` (ingest skip honesty)
+- **Packable CLI** honestly rejects `emit-check` / `fmt --webir` (pillar-only WebIR)
+- Constitution docs: gene bank + WebIR home + RFC-0021 nested control landed
 
 ## Gate
 
@@ -22,6 +23,5 @@
 npm run build:webir
 CWL_REQUIRE_WEBIR=1 npm run test:language
 npm run smoke:cwl-emit
-npm run smoke:cwl-ingest-matrix
-npm run test:runtime-cwl
+npm run smoke:ut-evidence
 ```
