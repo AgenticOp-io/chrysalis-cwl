@@ -3,22 +3,20 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.4` |
-| **Status** | Pillar complete + tooling polish (CLI dna-seed, import-path LSP, hole-catalog gate, Node 22 CI) |
+| **Version** | `1.0.5` |
+| **Status** | Execute honesty: body + content-type + response-header (matrix 9) |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`1.0.4` is optional **CWL-owned polish** after Exit/DNA complete (`1.0.3`):
+`1.0.5` advances **language-owned execute** after sibling 1.0.4 consume:
 
-- CLI `dna-seed` / `--holes-report` (pillar + packable `bin/cwl`)
-- LSP `import "…"` path completion from sibling `.cwl` files
-- Gate `test:cwl-hole-catalog` → `CWL_HOLE_CATALOG_OK` (wired into `test:language`)
-- CI Node **22**; docs: package README + `DNA-STEP-EXECUTE` WebIR home truth
+- `RequestInput.post` from JSON / urlencoded bodies (`05-request-body` runtime-ok)
+- Authored `content-type` from WebIR response attrs (`08-response-content-type` runtime-ok)
+- Ingest + apply CWL `response-header` (`14-defaults-headers` runtime-ok); WebIR `ResponseAttrs.headers`
+- Runtime matrix **9** fixtures → `CWL_RUNTIME_MATRIX_OK`
 
-Convert peel gravity and Secure pin bumps remain sibling-owned.
-
-See `CHANGELOG.md`, `docs/history/DNA-CWL-COMPLETE.md`.
+See `CHANGELOG.md`, `docs/history/DNA-STEP-EXECUTE.md`.
 
 ## Compatibility rules
 
@@ -28,15 +26,10 @@ See `CHANGELOG.md`, `docs/history/DNA-CWL-COMPLETE.md`.
 
 Breaking changes must be versioned in this file **before** they land in parser/print.
 
-## Out of scope for language package `1.0.0+`
-
-- Helix / Secure DNA firewall implementation / cutover default (Secure Requested)
-- Public npm / Marketplace distribution
-- Convert peel/emit gravity (Convert Requested)
-
 ## Gate
 
 ```bash
 npm run sync:cwl-package-lib
 npm run test:language
+npm run smoke:cwl-runtime-matrix
 ```

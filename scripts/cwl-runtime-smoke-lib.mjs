@@ -32,6 +32,8 @@ const DEP_ENTRIES = {
  *   expectStatus: number,
  *   expectBody?: string | null,
  *   headers?: Record<string, string>,
+ *   body?: string,
+ *   expectHeaders?: Record<string, string>,
  * }} RuntimeCheck
  */
 
@@ -78,14 +80,74 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       headers: { "accept-language": "en-US" },
     },
   ]),
+  "05-request-body": Object.freeze([
+    {
+      method: "POST",
+      path: "/items",
+      expectStatus: 200,
+      expectBody: '{"ok":true,"title":"Widget","qty":"3"}',
+      headers: { "content-type": "application/json" },
+      body: '{"title":"Widget","qty":3}',
+    },
+    {
+      method: "POST",
+      path: "/echo",
+      expectStatus: 200,
+      expectBody: '{"message":"hi"}',
+      headers: { "content-type": "application/json" },
+      body: '{"message":"hi"}',
+    },
+  ]),
   "06-response-status": Object.freeze([
     { method: "POST", path: "/items", expectStatus: 201, expectBody: '{"ok":true}' },
     { path: "/gone", expectStatus: 410, expectBody: '{"gone":true}' },
+  ]),
+  "08-response-content-type": Object.freeze([
+    {
+      path: "/json",
+      expectStatus: 200,
+      expectBody: '{"ok":true}',
+      expectHeaders: { "content-type": "application/json" },
+    },
+    {
+      path: "/plain",
+      expectStatus: 200,
+      expectBody: "",
+      expectHeaders: { "content-type": "text/plain; charset=utf-8" },
+    },
+    {
+      method: "POST",
+      path: "/items",
+      expectStatus: 201,
+      expectBody: '{"id":1}',
+      expectHeaders: { "content-type": "application/json" },
+    },
   ]),
   "12-multi-file": Object.freeze([
     { path: "/health", expectStatus: 200, expectBody: "true" },
     { path: "/ping", expectStatus: 200, expectBody: "42" },
     { path: "/meta", expectStatus: 200, expectBody: '{"ok":true,"version":1}' },
+  ]),
+  "14-defaults-headers": Object.freeze([
+    {
+      path: "/items/x",
+      expectStatus: 200,
+      expectBody: '{"id":"x","view":"full"}',
+      expectHeaders: { cache: "hit" },
+    },
+    {
+      path: "/items/x?view=short",
+      expectStatus: 200,
+      expectBody: '{"id":"x","view":"short"}',
+      expectHeaders: { cache: "hit" },
+    },
+    {
+      method: "POST",
+      path: "/redirect",
+      expectStatus: 302,
+      expectBody: '{"ok":true}',
+      expectHeaders: { location: "/items/1" },
+    },
   ]),
 });
 
@@ -216,10 +278,13 @@ export async function runRuntimeChecks(cwlPath, checks, runtimeApi) {
   const results = [];
   for (const check of checks) {
     const method = (check.method || "GET").toUpperCase();
+    /** @type {Record<string, string>} */
+    const reqHeaders = { ...(check.headers ?? {}) };
     const res = await runtime.fetch({
       method,
       url: `http://127.0.0.1${check.path}`,
-      headers: check.headers,
+      headers: reqHeaders,
+      body: check.body,
     });
     const body = await res.text();
     if (res.status !== check.expectStatus) {
@@ -231,6 +296,16 @@ export async function runRuntimeChecks(cwlPath, checks, runtimeApi) {
       throw new Error(
         `${method} ${check.path}: body ${JSON.stringify(body)} !== ${JSON.stringify(check.expectBody)}`,
       );
+    }
+    if (check.expectHeaders) {
+      for (const [name, want] of Object.entries(check.expectHeaders)) {
+        const got = res.headers.get(name);
+        if (got !== want) {
+          throw new Error(
+            `${method} ${check.path}: header ${name}=${JSON.stringify(got)} !== ${JSON.stringify(want)}`,
+          );
+        }
+      }
     }
     results.push({ method, path: check.path, status: res.status, body });
   }

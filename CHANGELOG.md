@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.5 — 2026-08-09
+
+- Execute: JSON/urlencoded body → `RequestInput.post` (`05-request-body` runtime-ok)
+- Execute: authored WebIR `content-type` on HTTP response (`08-response-content-type` runtime-ok)
+- Ingest + execute: CWL `response-header` → WebIR `ResponseAttrs.headers` (`14-defaults-headers` runtime-ok)
+- Runtime matrix **9** → `CWL_RUNTIME_MATRIX_OK`
+
 ## Unreleased — execute
 
 - Pass HTTP `Headers` → rewrite `RequestInput.headers` in `runtime-cwl` `buildRequestInput`

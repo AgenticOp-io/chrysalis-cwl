@@ -85,6 +85,36 @@
     },
     {
       "attrs": {
+        "headers": {
+          "cache": "hit"
+        },
+        "kind": "json",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n11",
+      "op": "response",
+      "operands": [
+        "n10"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 4
+      },
+      "provenance": [
+        {
+          "locator": "cwl:response-header",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
         "input": {
           "kind": "unknown"
         },
@@ -95,10 +125,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n11",
+      "id": "n12",
       "op": "handler",
       "operands": [
-        "n10"
+        "n11"
       ],
       "origin": {
         "column": 1,
@@ -130,10 +160,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n12",
+      "id": "n13",
       "op": "route",
       "operands": [
-        "n11"
+        "n12"
       ],
       "origin": {
         "column": 1,
@@ -156,7 +186,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n13",
+      "id": "n14",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -180,7 +210,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n14",
+      "id": "n15",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -204,11 +234,11 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n15",
+      "id": "n16",
       "op": "call",
       "operands": [
-        "n13",
-        "n14"
+        "n14",
+        "n15"
       ],
       "origin": {
         "column": 1,
@@ -227,15 +257,18 @@
     },
     {
       "attrs": {
+        "headers": {
+          "location": "/items/1"
+        },
         "kind": "json",
         "status": 302
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n16",
+      "id": "n17",
       "op": "response",
       "operands": [
-        "n15"
+        "n16"
       ],
       "origin": {
         "column": 1,
@@ -244,7 +277,7 @@
       },
       "provenance": [
         {
-          "locator": "cwl:response-status",
+          "locator": "cwl:response-header",
           "source": "hub-ingest"
         }
       ],
@@ -264,10 +297,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n17",
+      "id": "n18",
       "op": "handler",
       "operands": [
-        "n16"
+        "n17"
       ],
       "origin": {
         "column": 1,
@@ -292,10 +325,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n18",
+      "id": "n19",
       "op": "route",
       "operands": [
-        "n17"
+        "n18"
       ],
       "origin": {
         "column": 1,
@@ -513,7 +546,7 @@
     }
   ],
   "roots": [
-    "n12",
-    "n18"
+    "n13",
+    "n19"
   ]
 }

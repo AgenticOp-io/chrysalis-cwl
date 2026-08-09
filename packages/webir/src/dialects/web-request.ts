@@ -27,6 +27,11 @@ export interface HandlerAttrs {
 export interface ResponseAttrs {
   readonly status: number;
   readonly contentType?: string;
+  /**
+   * Explicit response headers from CWL `response-header name = value;`
+   * (lower-case keys). Omit when none — do not invent.
+   */
+  readonly headers?: Readonly<Record<string, string>>;
   /** `redirect` | `html` | `json` | `text` — drives the emit backend. */
   readonly kind: "redirect" | "html" | "json" | "text" | "unknown";
 }

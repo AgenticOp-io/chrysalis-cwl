@@ -25,7 +25,7 @@ Helix cutover’s **default** compares live `app-dna-v1` against the authored CW
 | ~~Multi-host deploy-profile gold~~ | **Done (CWL 1.0.2)** — `deploy-profile-api.json` |
 | ~~Optional RFC-0022 hole bridge report~~ | **Done (CWL 1.0.2)** — `cwlHolesBridgeReport` (`dna_gaps` filled by Secure) |
 | Secure mapping fallback vs pillar seed — keep single SoR | **Secure** |
-| Bump registry pin to `@agenticop-io/cwl@1.0.4` (tip) | **Secure** |
+| Bump registry pin to `@agenticop-io/cwl@1.0.5` (tip) | **Secure** |
 | Apply non-`default` host from profile at cutover using new gold | **Secure** |
 
 ## Reply shape (when Secure closes hygiene)

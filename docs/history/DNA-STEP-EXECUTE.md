@@ -53,8 +53,11 @@ Marker without checks (or checks without marker) fails — no silent invented ha
 | `02-path-params` | path `:param` → object |
 | `03-query-params` | `query` → object |
 | `04-request-context` | `header` + `cookie` + `query` |
+| `05-request-body` | JSON / urlencoded `body` |
 | `06-response-status` | explicit `status` |
+| `08-response-content-type` | authored `content-type` |
 | `12-multi-file` | `import` + literal returns |
+| `14-defaults-headers` | defaults + `response-header` |
 
 Wired into optional `npm run test:language:full` (stable / fast; needs WebIR + rewrite dists).
 
@@ -84,10 +87,9 @@ Language owns the gold + smoke contract; Convert owns rewrite/simulate honesty (
 
 1. **Dep wiring:** `packages/webir` is local; rewrite/emit-shared still need Convert sibling dists or hooks for full execute smokes.
 2. **`test:runtime-cwl`:** root script runs `npm test --prefix packages/runtime-cwl`, but package has no `test` script and tests reference convert `fixtures/hub-gold-cwl*` (absent here).
-3. **Coverage:** API literal/object/status/path/query/header/cookie/multi-file. Not yet marked:
-   - ~~`04-request-context`~~ — **Done:** Convert `RequestInput.headers` + pillar pass-through; fixture `runtime-ok`
-   - `08-response-content-type` / `14-defaults-headers` — bodies/status often work; **response-header** / CWL `content-type` not honestly applied on `Response` (runtime invents CT from body shape)
-   - `05` body / `07` auth / pages / UI / holes — holes correctly **501**; pages/UI not claimed
+3. **Coverage:** API literal/object/status/path/query/header/cookie/body/content-type/response-header/multi-file. Not yet marked:
+   - `07-auth-effects` / pages / UI / holes — holes correctly **501**; auth/pages/UI not claimed
+   - Invented CT fallback still used when CWL omits `content-type` (body-shape heuristic)
 4. **Browser / worker / emit-runtime-cwl:** out of this slice.
 5. **No Convert emit required** for this execute path — keep rewrite/emit-shared dists buildable for sibling consume.
 
