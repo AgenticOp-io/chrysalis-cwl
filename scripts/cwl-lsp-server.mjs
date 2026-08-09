@@ -12,7 +12,7 @@ import { mapDiagnoseSource } from "./hub-ingest/cwl-lsp-map.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 
 export const CWL_LSP_SERVER_KIND = "chrysalis.cwl.lsp-server";
-export const CWL_LSP_SERVER_VERSION = "0.1.14";
+export const CWL_LSP_SERVER_VERSION = "1.0.0";
 
 /** CompletionItemKind.Keyword */
 const KIND_KEYWORD = 14;

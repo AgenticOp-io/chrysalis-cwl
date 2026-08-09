@@ -1,0 +1,16 @@
+{
+  "kind": "chrysalis.cwl.package-lib",
+  "schemaVersion": 1,
+  "stagedAt": "2026-08-09T15:09:50.903Z",
+  "files": [
+    "cwl-parser.mjs",
+    "cwl-print.mjs",
+    "cwl-diagnose.mjs",
+    "cwl-lsp-map.mjs",
+    "cwl-fullstack-holes.mjs",
+    "cwl-fmt.mjs",
+    "cwl-ui-tree.mjs",
+    "hub-cwl-path-params.mjs",
+    "hub-t.mjs"
+  ]
+}

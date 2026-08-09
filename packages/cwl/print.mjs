@@ -1,8 +1,5 @@
 /**
- * @chrysalis/cwl/print — re-export CWL AST → source printer.
- * Canonical implementation: scripts/hub-ingest/cwl-print.mjs
+ * @chrysalis/cwl/print — re-export print helpers.
+ * Canonical source: scripts/hub-ingest/cwl-print.mjs (staged → ./lib).
  */
-export {
-  printCwlModule,
-  canonicalizeCwlModule,
-} from '../../scripts/hub-ingest/cwl-print.mjs';
+export { printCwlModule, canonicalizeCwlModule } from "./lib/cwl-print.mjs";

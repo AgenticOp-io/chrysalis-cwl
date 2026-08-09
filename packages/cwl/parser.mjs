@@ -1,5 +1,5 @@
 /**
- * @chrysalis/cwl/parser — re-export CWL module parser.
- * Canonical implementation: scripts/hub-ingest/cwl-parser.mjs
+ * @chrysalis/cwl/parser — re-export parseCwlModule.
+ * Canonical source: scripts/hub-ingest/cwl-parser.mjs (staged → ./lib).
  */
-export { parseCwlModule } from '../../scripts/hub-ingest/cwl-parser.mjs';
+export { parseCwlModule } from "./lib/cwl-parser.mjs";

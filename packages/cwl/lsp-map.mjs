@@ -1,6 +1,6 @@
 /**
- * @chrysalis/cwl/lsp-map — re-export diagnose → LSP diagnostic map helpers.
- * Canonical implementation: scripts/hub-ingest/cwl-lsp-map.mjs
+ * @chrysalis/cwl/lsp-map — re-export diagnose → LSP map helpers.
+ * Canonical source: scripts/hub-ingest/cwl-lsp-map.mjs (staged → ./lib).
  */
 export {
   CWL_LSP_MAP_KIND,
@@ -12,4 +12,4 @@ export {
   resolveEndCharacter0,
   mapDiagnoseDiagnostic,
   mapDiagnoseSource,
-} from '../../scripts/hub-ingest/cwl-lsp-map.mjs';
+} from "./lib/cwl-lsp-map.mjs";

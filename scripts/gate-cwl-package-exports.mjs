@@ -6,7 +6,7 @@
  * (Node package self-reference from packages/cwl).
  * Token: CWL_PACKAGE_EXPORTS_OK
  */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
@@ -21,8 +21,17 @@ function readJson(p) {
 }
 
 const pkg = readJson(join(PKG, 'package.json'));
-if (pkg.private !== true) failures.push('package-not-private');
 if (pkg.name !== '@chrysalis/cwl') failures.push(`bad-name:${pkg.name}`);
+const registry = pkg.publishConfig?.registry ?? '';
+const privateOk =
+  pkg.private === true ||
+  (pkg.private === false && String(registry).includes('npm.pkg.github.com'));
+if (!privateOk) {
+  failures.push('package-must-be-private-or-github-packages-restricted');
+}
+if (!existsSync(join(PKG, 'lib', 'cwl-parser.mjs'))) {
+  failures.push('lib-not-staged:run-npm-run-sync:cwl-package-lib');
+}
 
 const exportsMap = pkg.exports ?? {};
 for (const sub of ['./diagnose', './lsp-map', './parser', './print']) {

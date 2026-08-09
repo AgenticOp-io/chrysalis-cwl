@@ -3,42 +3,41 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `0.1.14` |
-| **Status** | Private-first DNA authoring: token end columns + parser/print package exports |
+| **Version** | `1.0.0` |
+| **Status** | Exit 1.0 — packable private GitHub Packages artifact (Rosetta / DNA of the web) |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`0.1.14` ships **token end columns** for cheap diagnostic sites (`module`, `@route`/`@page`, `hole`) and expands package subpaths:
+`1.0.0` is the first **registry-ready** language release:
 
-- Parser records exclusive keyword end characters alongside starts
-- Diagnose schema **v5** emits `endCharacter`/`endColumn` when cheap
-- LSP map schema **v2** uses end character when present (else line-end `1<<20`)
-- Gate: `test:cwl-lsp-map` asserts hole gold end characters are finite and `> start`
-- Package exports: `@chrysalis/cwl/parser` + `@chrysalis/cwl/print` (with diagnose/lsp-map from `0.1.13`)
-- Prior: package diagnose/lsp-map exports (`0.1.13`), column starts + definition/rename v0 (`0.1.12`)
+- Packable `@chrysalis/cwl` with staged `lib/` (parser/print/diagnose/lsp-map/fmt) + `bin/cwl`
+- `publishConfig.registry` = GitHub Packages (`npm.pkg.github.com`), `access: restricted` — **not** public npm
+- `"private": false` only so private-registry publish is allowed (repos stay private)
+- Convert/Secure may keep `file:` pins until they migrate (Requested)
+- WebIR physical flip still Convert-owned (not a language-package blocker)
 
-See `CHANGELOG.md` for deltas. Spec: [`docs/language/CWL-LSP.md`](./docs/language/CWL-LSP.md) · Publish: [`docs/language/CWL-PUBLISH.md`](./docs/language/CWL-PUBLISH.md)
+See `CHANGELOG.md`, `docs/language/CWL-PUBLISH.md`, `docs/history/EXIT-1.0.md`.
 
 ## Compatibility rules
 
-1. **Patch** (`0.1.x`) — bugfixes, fixture expansion, print/parser fidelity that does not change accepted programs; docs/ops completeness.
-2. **Minor** (`0.x.0`) — new optional syntax / RFCs that old programs still parse.
+1. **Patch** (`1.0.x`) — bugfixes, fixture expansion, print/parser fidelity that does not change accepted programs; docs/ops completeness.
+2. **Minor** (`1.x.0`) — new optional syntax / RFCs that old programs still parse.
 3. **Major** (`x.0.0`) — breaking grammar or semantics; bump here and call out migration in the RFC.
 
 Breaking changes must be versioned in this file **before** they land in parser/print.
 
-## Out of scope for `0.1.x`
+## Out of scope for language package `1.0.0`
 
-- WebIR physical package ownership flip (Convert-coordinated)
-- Full IDE LSP (cross-file rename / workspace symbols / smart import-path completion)
+- WebIR physical package ownership flip (Convert)
 - Helix / Secure DNA firewall implementation
-- Public npm / Marketplace — pillars stay private unless human reopens
+- Public npm distribution
+- Convert/Secure already switched to registry pins (Requested after publish)
 
 ## Gate
 
 ```bash
+npm run sync:cwl-package-lib
 npm run test:language
-npm run smoke:cwl-ingest-matrix   # needs link:webir
-npm run test:language:full
+npm run test:cwl-pack          # npm pack dry-run
 ```

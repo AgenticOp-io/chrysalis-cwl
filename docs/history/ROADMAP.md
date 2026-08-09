@@ -108,19 +108,20 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ## Phase 1.0 — Published language (private registry)
 
-- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.14`) — metadata only; package stays `"private": true`
-- [x] Pre-publish pin path documented: sibling workspace / `file:` / env `CHRYSALIS_CWL_ROOT` ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
-- [x] Convert + Secure **`file:` pin** `@chrysalis/cwl` (`npm run test:cwl-pin`)
-- [x] Publish **prep gate** `npm run test:cwl-publish-prep` (package stays `"private": true`)
-- [x] Editor + minimal stdio LSP (completion + column ranges + definition v0 + rename v0) + CI language workflow — authoring gravity closed; see [`DNA-CWL-NEAR-COMPLETE.md`](./DNA-CWL-NEAR-COMPLETE.md)
-- [x] Private-first registry decision documented (no public npm by default)
-- [ ] Private registry package version ≡ `LANGUAGE_VERSION.md` (**actual publish — still open**)
-- [ ] Convert pins a **private registry** CWL release (today: `file:` + junctions)
-- [ ] Secure pins a **private registry** CWL release (today: `file:` + sibling / env)
-- [ ] **Requested (Convert):** peel/emit gravity — honest CWL landings + `hub:cwl-helix-cutover-smoke` — [CONVERT-GRAVITY-REQUESTED.md](./CONVERT-GRAVITY-REQUESTED.md)
+- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (**`1.0.0`**)
+- [x] Packable artifact: staged `lib/` + `bin/cwl` + GitHub Packages `publishConfig` ([`EXIT-1.0.md`](./EXIT-1.0.md))
+- [x] Pre-publish pin path documented: sibling / `file:` / env ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
+- [x] Convert + Secure **`file:` pin** still proven (`npm run test:cwl-pin`) during transition
+- [x] Publish **prep + pack dry-run** → `CWL_EXIT_1_0_PACK_OK`
+- [x] Editor + stdio LSP authoring gravity ([`DNA-CWL-NEAR-COMPLETE.md`](./DNA-CWL-NEAR-COMPLETE.md))
+- [x] Private-first registry decision (GitHub Packages; no public npm)
+- [ ] **Human/CI:** `npm publish` from `packages/cwl` with Packages token
+- [ ] Convert pins `@chrysalis/cwl@1.0.0` from registry (today: `file:` OK)
+- [ ] Secure pins `@chrysalis/cwl@1.0.0` from registry (today: `file:` OK)
+- [ ] **Requested (Convert):** peel/emit gravity — [CONVERT-GRAVITY-REQUESTED.md](./CONVERT-GRAVITY-REQUESTED.md)
 - [ ] Breaking changes require major bump + RFC migration notes
 
-**Exit 1.0:** Consumers depend on a versioned **private** language artifact, not a random tree copy. **Not exited** — registry publish remains open (human); local `file:` pins are in place. Phase 0.6 authoring exit does **not** imply Phase 1.0.
+**Exit 1.0 (CWL-side):** Packable private-registry language artifact proven. **Actual publish + consumer registry pins** = human / Convert / Secure.
 
 ---
 

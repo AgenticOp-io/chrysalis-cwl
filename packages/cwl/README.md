@@ -1,50 +1,26 @@
 # Chrysalis Web Language (CWL)
 
 **Package:** `@chrysalis/cwl`  
-**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `0.1.14`)  
-**Status:** `private: true` — not published yet (Phase 1.0)
+**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `1.0.0`)  
+**Status:** Exit 1.0 — packable for **GitHub Packages** (`publishConfig` restricted). Repos stay private. Not public npm.
 
 ## Purpose
 
-**CWL** is THE language of the web for AgenticOps: a single surface syntax for routes, pages, data, UI, effects, and honest holes, mapped 1:1 to **WebIR**.
+**CWL** is the **DNA of the web** (Rosetta meaning) for AgenticOps: a single surface for routes, pages, data, UI, effects, and honest holes, mapped 1:1 to **WebIR**. Convert is the Universal Translator through it.
 
 ## Public API
 
 - **Pin package:** `import { VERSION, pillarRoot, languageVersion } from '@chrysalis/cwl'`
-- **Diagnose:** `import { diagnoseCwlSource, diagnoseCwlFile, … } from '@chrysalis/cwl/diagnose'`
-- **LSP map:** `import { mapDiagnoseSource, mapDiagnoseDiagnostic, … } from '@chrysalis/cwl/lsp-map'`
+- **Diagnose:** `import { diagnoseCwlSource, … } from '@chrysalis/cwl/diagnose'`
+- **LSP map:** `import { mapDiagnoseSource, … } from '@chrysalis/cwl/lsp-map'`
 - **Parser:** `import { parseCwlModule } from '@chrysalis/cwl/parser'`
 - **Print:** `import { printCwlModule, canonicalizeCwlModule } from '@chrysalis/cwl/print'`
-- Grammar and semantics: **`docs/language/CWL.md`**
-- Constitution: **`docs/language/CWL-PILLAR-HOME.md`**
-- CLI: **`docs/language/CWL-CLI.md`** (`npm run cwl -- …` from repo root)
-- Language version: **`LANGUAGE_VERSION.md`**
-- Publish / pin path: **`docs/language/CWL-PUBLISH.md`**
-- Golden fixtures: **`fixtures/language-gold/`**
-- Round-trip gate: **`npm run test:cwl-roundtrip`**
-- Package exports gate: **`npm run test:cwl-package-exports`**
-- **Runtime:** **`@chrysalis/runtime-cwl`** — in-process HTTP server via WebIR simulation (G154)
-- **Emit:** **`@chrysalis/emit-runtime-cwl`** — deployable Node project (`routes.cwl` + `webir.json` + server entry)
-- Ingest: **`scripts/hub-ingest/cwl-ingest.mjs`** (`.cwl` → WebIR)
-- Print (canonical script): **`scripts/hub-ingest/cwl-print.mjs`** (prefer `@chrysalis/cwl/print`)
-- Emit: **`scripts/hub-ingest/emit-cwl-from-hub.mjs`** (WebIR → `.cwl`)
-- Parser (canonical script): **`scripts/hub-ingest/cwl-parser.mjs`** (prefer `@chrysalis/cwl/parser`)
-- Diagnose (canonical script): **`scripts/hub-ingest/cwl-diagnose.mjs`** (prefer `@chrysalis/cwl/diagnose`)
-- LSP map (canonical script): **`scripts/hub-ingest/cwl-lsp-map.mjs`** (prefer `@chrysalis/cwl/lsp-map`)
+- **CLI:** `npx cwl check path/to/file.cwl` (bin from this package)
+- Constitution: [`CWL-PILLAR-HOME.md`](../../docs/language/CWL-PILLAR-HOME.md)
+- Publish: [`CWL-PUBLISH.md`](../../docs/language/CWL-PUBLISH.md) · [`EXIT-1.0.md`](../../docs/history/EXIT-1.0.md)
+
+Canonical sources live in `scripts/hub-ingest/`; `npm run sync:cwl-package-lib` stages them into `lib/` for packing.
 
 ## Version rule
 
-`packages/cwl/package.json` `"version"` **≡** `LANGUAGE_VERSION.md`. Bump both together when the language surface changes for consumers. Do not publish until Phase 1.0 exit criteria are met — see [`CWL-PUBLISH.md`](../../docs/language/CWL-PUBLISH.md).
-
-## Invariants
-
-- Every valid CWL route maps **directly** to WebIR without lossy regex lift.
-- Unsupported behavior uses explicit **`hole`** statements (same hole policy as DESIGN.md).
-- Generated targets still use **injected ctx** when emitting TypeScript frameworks.
-- **Runtime** uses `simulateHandler` (D19); inconclusive ops return **501**, not invented responses.
-
-## Non-goals
-
-- Replacing PHP, TypeScript, or Python in legacy codebases.
-- A full production runtime with real SQL/session (use emit + verify for migrations; runtime is for authoring/preview).
-- Helix firewall features (Secure owns DNA enforcement).
+`packages/cwl/package.json` `"version"` **≡** `LANGUAGE_VERSION.md`. Bump both together.

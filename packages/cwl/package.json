@@ -1,8 +1,8 @@
 {
   "name": "@chrysalis/cwl",
-  "version": "0.1.14",
-  "private": true,
-  "description": "Chrysalis Web Language — version pin + pillar root helpers. Thin subpath re-exports over hub-ingest; see LANGUAGE_VERSION.md.",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Chrysalis Web Language — DNA of the web (Rosetta meaning). Versioned language surface for Convert UT + Secure bridges.",
   "license": "Apache-2.0",
   "type": "module",
   "main": "./index.mjs",
@@ -15,7 +15,15 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "cwl": "../../scripts/cwl-cli.mjs"
+    "cwl": "./bin/cwl.js"
+  },
+  "scripts": {
+    "prepack": "node ../../scripts/sync-cwl-package-lib.mjs",
+    "prepublishOnly": "node ../../scripts/sync-cwl-package-lib.mjs"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
   },
   "repository": {
     "type": "git",
@@ -29,6 +37,8 @@
     "lsp-map.mjs",
     "parser.mjs",
     "print.mjs",
+    "bin/",
+    "lib/",
     "README.md",
     "package.json"
   ]

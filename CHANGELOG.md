@@ -1,5 +1,13 @@
 # CWL language changelog
 
+## 1.0.0 — 2026-08-09
+
+- **Exit 1.0 (CWL-side):** packable `@chrysalis/cwl@1.0.0` for GitHub Packages (`publishConfig` restricted; not public npm)
+- Stage `packages/cwl/lib/` from hub-ingest (`sync:cwl-package-lib`); packable `bin/cwl`
+- `"private": false` only so private-registry publish is allowed; pillar GitHub repos remain private
+- Publish-prep includes `npm pack --dry-run` → `CWL_EXIT_1_0_PACK_OK`
+- Docs: `docs/history/EXIT-1.0.md`; Convert/Secure registry pin still Requested (`file:` OK)
+
 ## Unreleased — thesis
 
 - Constitution reframed: **Rosetta Stone → Universal Translator → DNA of the web** (`CWL-PILLAR-HOME.md`, `ROSETTA-UT-PATH.md`); AGENTS / cursor rule / README aligned
