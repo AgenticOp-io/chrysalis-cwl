@@ -23,6 +23,8 @@ ok("version-align", langVer === pkg.version, `${langVer} ≡ ${pkg.version}`);
 ok("package-private", pkg.private === true, "must stay private until human opens Exit 1.0");
 ok("package-name", pkg.name === "@chrysalis/cwl");
 ok("package-exports", !!pkg.exports?.["."]);
+ok("package-export-diagnose", pkg.exports?.["./diagnose"] === "./diagnose.mjs");
+ok("package-export-lsp-map", pkg.exports?.["./lsp-map"] === "./lsp-map.mjs");
 ok("package-bin", !!pkg.bin?.cwl);
 ok("publish-doc", existsSync(join(ROOT, "docs/language/CWL-PUBLISH.md")));
 ok("private-pillars-doc", existsSync(join(ROOT, "docs/history/PRIVATE-PILLARS.md")));

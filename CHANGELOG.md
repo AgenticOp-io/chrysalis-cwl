@@ -4,6 +4,13 @@
 
 - Constitution reframed: **Rosetta Stone → Universal Translator → DNA of the web** (`CWL-PILLAR-HOME.md`, `ROSETTA-UT-PATH.md`); AGENTS / cursor rule / README aligned
 
+## Unreleased / DNA authoring
+
+- LSP rename v0: `textDocument/rename` + `prepareRename` for same-file `handler`/`page` **name** declaration (AST-visible only; not path strings / cross-file)
+- Gate: `test:cwl-lsp-server` asserts rename returns ≥1 edit on `01-literals`; advertise `renameProvider`
+- VS Code thin client: RenameProvider; docs `CWL-LSP.md` honesty (same-file only)
+- Language version bump owned separately (`0.1.13` package-exports) — not bumped here
+
 ## Unreleased / execute
 
 - DNA Execute slice: `smoke:cwl-runtime-gold` → `CWL_RUNTIME_GOLD_OK` on `fixtures/language-gold/01-literals` via `@chrysalis/runtime-cwl` + WebIR `simulateHandler` (not Convert emit)
@@ -14,7 +21,21 @@
 ### Requested (Convert) — execute
 
 - Keep sibling `webir` / `rewrite` / `emit-shared` dists buildable; Slice 3.4 dep retarget so pillar runtime imports need fewer resolve hooks
-- Optional: pass request headers into simulate input so `04-request-context` can earn `runtime-ok`
+- **Rewrite headers:** `RequestInput.headers` + `pickBag(..., "header")` so CWL can mark `04-request-context` `runtime-ok` and matrix goes to 6 — [`docs/history/CONVERT-REWRITE-HEADERS-REQUESTED.md`](./docs/history/CONVERT-REWRITE-HEADERS-REQUESTED.md)
+
+## 0.1.13 — 2026-08-09
+
+- Package exports: `@chrysalis/cwl/diagnose` and `@chrysalis/cwl/lsp-map` re-export hub-ingest helpers (no deep-link required)
+- Gate: `test:cwl-package-exports` → `CWL_PACKAGE_EXPORTS_OK` (wired into `test:language`)
+- Package / editor version `0.1.13`; pillars stay `"private": true`
+
+### Requested (Convert)
+
+- Pull `0.1.13` junctions after land; prefer package subpaths over `scripts/hub-ingest/cwl-diagnose.mjs` deep-links
+
+### Requested (Secure)
+
+- Keep `file:` pin; import diagnose/lsp-map via `@chrysalis/cwl/*` when bridging
 
 ## 0.1.12 — 2026-08-09
 

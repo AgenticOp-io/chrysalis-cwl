@@ -7,7 +7,7 @@ import { spawn } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { hoverAt, completionsAt, definitionAt, documentSymbols } from "./cwl-lsp-server.mjs";
+import { hoverAt, completionsAt, definitionAt, documentSymbols, renameAt, prepareRenameAt } from "./cwl-lsp-server.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SERVER = join(ROOT, "scripts/cwl-lsp-server.mjs");
@@ -164,6 +164,19 @@ async function main() {
     failures.push("documentSymbol-empty");
   }
 
+  // Unit: rename — handler name declaration on 01-literals → ≥1 edit
+  const prep = prepareRenameAt(litSrc, litUri, { line: 4, character: 10 });
+  if (!prep?.range || prep.placeholder !== "health") {
+    failures.push("prepareRename-handler-name");
+  }
+  const ren = renameAt(litSrc, litUri, { line: 4, character: 10 }, "healthz");
+  const renEdits = ren?.changes?.[litUri] ?? [];
+  if (!Array.isArray(renEdits) || renEdits.length < 1) {
+    failures.push("rename-handler-empty");
+  } else if (renEdits[0].newText !== "healthz") {
+    failures.push("rename-handler-wrong-text");
+  }
+
   const child = spawn(process.execPath, [SERVER], {
     cwd: ROOT,
     stdio: ["pipe", "pipe", "pipe"],
@@ -180,7 +193,7 @@ async function main() {
       processId: process.pid,
       rootUri: pathToFileURL(ROOT).href,
       capabilities: {},
-      clientInfo: { name: "gate-cwl-lsp-server", version: "0.1.12" },
+      clientInfo: { name: "gate-cwl-lsp-server", version: "0.1.13" },
     });
     if (!init?.capabilities?.textDocumentSync) {
       failures.push("missing-textDocumentSync");
@@ -199,6 +212,9 @@ async function main() {
     }
     if (!init?.capabilities?.documentSymbolProvider) {
       failures.push("missing-documentSymbolProvider");
+    }
+    if (!init?.capabilities?.renameProvider) {
+      failures.push("missing-renameProvider");
     }
     if (!init?.serverInfo?.name) {
       failures.push("missing-serverInfo");
@@ -268,6 +284,19 @@ async function main() {
     });
     if (!Array.isArray(symRpc) || symRpc.length < 1) {
       failures.push("rpc-documentSymbol-empty");
+    }
+
+    const renameRpc = await client.request("textDocument/rename", {
+      textDocument: { uri: litUriRpc },
+      position: { line: 4, character: 10 },
+      newName: "healthz",
+    });
+    const renameEdits =
+      renameRpc?.changes?.[litUriRpc] ??
+      renameRpc?.documentChanges?.flatMap((c) => c.edits ?? []) ??
+      [];
+    if (!Array.isArray(renameEdits) || renameEdits.length < 1) {
+      failures.push("rpc-rename-empty");
     }
 
     await client.request("shutdown", null);

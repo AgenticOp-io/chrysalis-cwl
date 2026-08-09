@@ -12,7 +12,7 @@ import { mapDiagnoseSource } from "./hub-ingest/cwl-lsp-map.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 
 export const CWL_LSP_SERVER_KIND = "chrysalis.cwl.lsp-server";
-export const CWL_LSP_SERVER_VERSION = "0.1.12";
+export const CWL_LSP_SERVER_VERSION = "0.1.13";
 
 /** CompletionItemKind.Keyword */
 const KIND_KEYWORD = 14;
@@ -242,6 +242,20 @@ function routeSurfaceLocation(uri, text, route) {
   };
 }
 
+/** Keywords that are never handler/route names. */
+const NON_HANDLER_IDENTS = new Set([
+  "handler",
+  "page",
+  "module",
+  "effects",
+  "return",
+  "load",
+  "hole",
+  "use",
+  "route",
+  "component",
+]);
+
 /**
  * Cheap go-to-definition: handler name or path string → @route/@page line.
  * @param {string} text
@@ -264,21 +278,7 @@ export function definitionAt(text, uri, position) {
     if (tok.kind === "path") {
       matches = routes.filter((r) => r.path === tok.value && typeof r.line === "number");
     } else {
-      // Skip common keywords that are not handler names
-      if (
-        tok.value === "handler" ||
-        tok.value === "page" ||
-        tok.value === "module" ||
-        tok.value === "effects" ||
-        tok.value === "return" ||
-        tok.value === "load" ||
-        tok.value === "hole" ||
-        tok.value === "use" ||
-        tok.value === "route" ||
-        tok.value === "component"
-      ) {
-        return [];
-      }
+      if (NON_HANDLER_IDENTS.has(tok.value)) return [];
       matches = routes.filter((r) => r.name === tok.value && typeof r.line === "number");
     }
     /** @type {Array<{ uri: string, range: { start: { line: number, character: number }, end: { line: number, character: number } } }>} */
@@ -290,6 +290,139 @@ export function definitionAt(text, uri, position) {
     return locs;
   } catch {
     return [];
+  }
+}
+
+/**
+ * Escape a string for use inside a RegExp source.
+ * @param {string} s
+ */
+function escapeRegExp(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Same-file range of the `handler`/`page` declaration name for a route (AST-visible only).
+ * AST stores `name` + `@route`/`@page` line; the name token lives on the following block line.
+ * @param {string} text
+ * @param {{ name?: string, line?: number, surfaceKind?: string }} route
+ * @returns {{ start: { line: number, character: number }, end: { line: number, character: number } }|null}
+ */
+export function handlerNameDeclRange(text, route) {
+  if (!route?.name || typeof route.line !== "number" || route.line < 1) return null;
+  const lines = text.split(/\r?\n/);
+  const kw = route.surfaceKind === "page" ? "page" : "handler";
+  const re = new RegExp(`^(\\s*${kw}\\s+)(${escapeRegExp(route.name)})\\b`);
+  // Parser requires the block line immediately after the surface; scan a few lines for resilience.
+  const startIdx = Math.max(0, route.line - 1);
+  const endIdx = Math.min(lines.length, startIdx + 6);
+  for (let i = startIdx; i < endIdx; i++) {
+    const m = re.exec(lines[i] ?? "");
+    if (!m) continue;
+    const startChar = m[1].length;
+    return {
+      start: { line: i, character: startChar },
+      end: { line: i, character: startChar + route.name.length },
+    };
+  }
+  return null;
+}
+
+/**
+ * @param {string} name
+ */
+function isValidHandlerName(name) {
+  return /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name);
+}
+
+/**
+ * prepareRename: handler/route `name` token only (same-file declaration).
+ * @param {string} text
+ * @param {string} uri
+ * @param {{ line: number, character: number }} position
+ * @returns {{ range: object, placeholder: string }|null}
+ */
+export function prepareRenameAt(text, uri, position) {
+  const file = uriToPath(uri);
+  const lines = text.split(/\r?\n/);
+  const lineText = lines[position.line] ?? "";
+  const tok = tokenAt(lineText, position.character);
+  if (!tok || tok.kind !== "ident" || NON_HANDLER_IDENTS.has(tok.value)) return null;
+
+  try {
+    const ast = parseCwlModule(text, file);
+    const matches = (ast.routes ?? []).filter(
+      (r) => r.name === tok.value && typeof r.line === "number",
+    );
+    if (matches.length < 1) return null;
+    // Prefer the declaration whose name range contains the cursor; else first AST match.
+    for (const r of matches) {
+      const range = handlerNameDeclRange(text, r);
+      if (!range) continue;
+      if (
+        position.line === range.start.line &&
+        position.character >= range.start.character &&
+        position.character <= range.end.character
+      ) {
+        return { range, placeholder: r.name };
+      }
+    }
+    const range = handlerNameDeclRange(text, matches[0]);
+    if (!range) return null;
+    // Cursor on a name ident that matches a route but not on the decl span — still allow rename of decl.
+    if (tok.value === matches[0].name) {
+      return { range, placeholder: matches[0].name };
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * textDocument/rename: same-file handler/route `name` declaration edits only.
+ * Does not rewrite path strings, cross-file refs, or non-AST occurrences.
+ * @param {string} text
+ * @param {string} uri
+ * @param {{ line: number, character: number }} position
+ * @param {string} newName
+ * @returns {{ changes: Record<string, Array<{ range: object, newText: string }>> }|null}
+ */
+export function renameAt(text, uri, position, newName) {
+  if (typeof newName !== "string" || !isValidHandlerName(newName)) return null;
+  const prepared = prepareRenameAt(text, uri, position);
+  if (!prepared) return null;
+
+  const file = uriToPath(uri);
+  const lines = text.split(/\r?\n/);
+  const lineText = lines[position.line] ?? "";
+  const tok = tokenAt(lineText, position.character);
+  if (!tok || tok.kind !== "ident") return null;
+  const oldName = tok.value;
+
+  try {
+    const ast = parseCwlModule(text, file);
+    const matches = (ast.routes ?? []).filter(
+      (r) => r.name === oldName && typeof r.line === "number",
+    );
+    if (matches.length < 1) return null;
+
+    /** @type {Array<{ range: object, newText: string }>} */
+    const edits = [];
+    /** @type {Set<string>} */
+    const seen = new Set();
+    for (const r of matches) {
+      const range = handlerNameDeclRange(text, r);
+      if (!range) continue;
+      const key = `${range.start.line}:${range.start.character}:${range.end.character}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      edits.push({ range, newText: newName });
+    }
+    if (edits.length < 1) return null;
+    return { changes: { [uri]: edits } };
+  } catch {
+    return null;
   }
 }
 
@@ -428,6 +561,9 @@ function handleMessage(msg) {
           },
           definitionProvider: true,
           documentSymbolProvider: true,
+          renameProvider: {
+            prepareProvider: true,
+          },
         },
         serverInfo: {
           name: "cwl-lsp-server",
@@ -534,6 +670,26 @@ function handleMessage(msg) {
         break;
       }
       respond(id ?? null, documentSymbols(doc.text, uri));
+      break;
+    }
+    case "textDocument/prepareRename": {
+      const uri = params?.textDocument?.uri;
+      const doc = uri ? documents.get(uri) : undefined;
+      if (!doc || !params?.position) {
+        respond(id ?? null, null);
+        break;
+      }
+      respond(id ?? null, prepareRenameAt(doc.text, uri, params.position));
+      break;
+    }
+    case "textDocument/rename": {
+      const uri = params?.textDocument?.uri;
+      const doc = uri ? documents.get(uri) : undefined;
+      if (!doc || !params?.position || typeof params?.newName !== "string") {
+        respond(id ?? null, null);
+        break;
+      }
+      respond(id ?? null, renameAt(doc.text, uri, params.position, params.newName));
       break;
     }
     case "$/cancelRequest":

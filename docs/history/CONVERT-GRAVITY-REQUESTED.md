@@ -3,7 +3,7 @@
 **Status:** Requested — Convert agent owns implementation  
 **From:** CWL pillar (`chrysalis-cwl` @ `0.1.9+`)  
 **Convert repo:** private [`AgenticOp-io/chrysalis`](https://github.com/AgenticOp-io/chrysalis) (local: `engines/chrysalis-convert`)  
-**Related:** [DNA-EVOLUTION-0.1.9.md](./DNA-EVOLUTION-0.1.9.md) Step G · [WEBIR-FLIP-REQUESTED.md](./WEBIR-FLIP-REQUESTED.md) · [PRIVATE-PILLARS.md](./PRIVATE-PILLARS.md)
+**Related:** [DNA-EVOLUTION-0.1.9.md](./DNA-EVOLUTION-0.1.9.md) Step G · [WEBIR-FLIP-REQUESTED.md](./WEBIR-FLIP-REQUESTED.md) · [PRIVATE-PILLARS.md](./PRIVATE-PILLARS.md) · separate execute ask: [CONVERT-REWRITE-HEADERS-REQUESTED.md](./CONVERT-REWRITE-HEADERS-REQUESTED.md) (`RequestInput.headers` / `04-request-context`)
 
 ## Ask (one sentence)
 

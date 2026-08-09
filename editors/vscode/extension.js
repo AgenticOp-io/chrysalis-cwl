@@ -188,9 +188,10 @@ async function activate(context) {
         completion: { completionItem: { snippetSupport: false } },
         definition: {},
         documentSymbol: {},
+        rename: { prepareSupport: true },
       },
     },
-    clientInfo: { name: "cwl-vscode", version: "0.1.11" },
+    clientInfo: { name: "cwl-vscode", version: "0.1.13" },
   });
   client.notify("initialized", {});
 
@@ -420,6 +421,71 @@ async function activate(context) {
             });
           } catch {
             return [];
+          }
+        },
+      },
+    ),
+  );
+
+  context.subscriptions.push(
+    vscode.languages.registerRenameProvider(
+      { language: "cwl" },
+      {
+        async prepareRename(doc, position) {
+          if (doc.languageId !== "cwl") throw new Error("not a CWL handler name");
+          try {
+            const result = await client.request("textDocument/prepareRename", {
+              textDocument: { uri: doc.uri.toString() },
+              position: { line: position.line, character: position.character },
+            });
+            if (!result?.range) throw new Error("not a renamable handler name");
+            return {
+              range: new vscode.Range(
+                result.range.start.line,
+                result.range.start.character,
+                result.range.end.line,
+                result.range.end.character,
+              ),
+              placeholder: result.placeholder || doc.getText(
+                new vscode.Range(
+                  result.range.start.line,
+                  result.range.start.character,
+                  result.range.end.line,
+                  result.range.end.character,
+                ),
+              ),
+            };
+          } catch (err) {
+            throw err instanceof Error ? err : new Error(String(err));
+          }
+        },
+        async provideRenameEdits(doc, position, newName) {
+          if (doc.languageId !== "cwl") return null;
+          try {
+            const result = await client.request("textDocument/rename", {
+              textDocument: { uri: doc.uri.toString() },
+              position: { line: position.line, character: position.character },
+              newName,
+            });
+            const uriKey = doc.uri.toString();
+            const edits = result?.changes?.[uriKey] ?? [];
+            if (!Array.isArray(edits) || edits.length < 1) return null;
+            const we = new vscode.WorkspaceEdit();
+            for (const e of edits) {
+              we.replace(
+                doc.uri,
+                new vscode.Range(
+                  e.range.start.line,
+                  e.range.start.character,
+                  e.range.end.line,
+                  e.range.end.character,
+                ),
+                e.newText,
+              );
+            }
+            return we;
+          } catch {
+            return null;
           }
         },
       },

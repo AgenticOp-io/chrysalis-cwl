@@ -1,7 +1,7 @@
 # Chrysalis Web Language (CWL)
 
 **Package:** `@chrysalis/cwl`  
-**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `0.1.12`)  
+**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `0.1.13`)  
 **Status:** `private: true` — not published yet (Phase 1.0)
 
 ## Purpose
@@ -11,6 +11,8 @@
 ## Public API
 
 - **Pin package:** `import { VERSION, pillarRoot, languageVersion } from '@chrysalis/cwl'`
+- **Diagnose:** `import { diagnoseCwlSource, diagnoseCwlFile, … } from '@chrysalis/cwl/diagnose'`
+- **LSP map:** `import { mapDiagnoseSource, mapDiagnoseDiagnostic, … } from '@chrysalis/cwl/lsp-map'`
 - Grammar and semantics: **`docs/language/CWL.md`**
 - Constitution: **`docs/language/CWL-PILLAR-HOME.md`**
 - CLI: **`docs/language/CWL-CLI.md`** (`npm run cwl -- …` from repo root)
@@ -18,12 +20,15 @@
 - Publish / pin path: **`docs/language/CWL-PUBLISH.md`**
 - Golden fixtures: **`fixtures/language-gold/`**
 - Round-trip gate: **`npm run test:cwl-roundtrip`**
+- Package exports gate: **`npm run test:cwl-package-exports`**
 - **Runtime:** **`@chrysalis/runtime-cwl`** — in-process HTTP server via WebIR simulation (G154)
 - **Emit:** **`@chrysalis/emit-runtime-cwl`** — deployable Node project (`routes.cwl` + `webir.json` + server entry)
 - Ingest: **`scripts/hub-ingest/cwl-ingest.mjs`** (`.cwl` → WebIR)
 - Print: **`scripts/hub-ingest/cwl-print.mjs`** (AST → `.cwl`, no WebIR)
 - Emit: **`scripts/hub-ingest/emit-cwl-from-hub.mjs`** (WebIR → `.cwl`)
 - Parser: **`scripts/hub-ingest/cwl-parser.mjs`**
+- Diagnose (canonical script): **`scripts/hub-ingest/cwl-diagnose.mjs`** (prefer `@chrysalis/cwl/diagnose`)
+- LSP map (canonical script): **`scripts/hub-ingest/cwl-lsp-map.mjs`** (prefer `@chrysalis/cwl/lsp-map`)
 
 ## Version rule
 
