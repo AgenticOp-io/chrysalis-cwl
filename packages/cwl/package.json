@@ -1,6 +1,6 @@
 {
   "name": "@chrysalis/cwl",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "description": "Chrysalis Web Language — DNA of the web (Rosetta meaning). Versioned language surface for Convert UT + Secure bridges.",
   "license": "Apache-2.0",
@@ -12,6 +12,7 @@
     "./lsp-map": "./lsp-map.mjs",
     "./parser": "./parser.mjs",
     "./print": "./print.mjs",
+    "./dna-seed": "./dna-seed.mjs",
     "./package.json": "./package.json"
   },
   "bin": {
@@ -37,6 +38,7 @@
     "lsp-map.mjs",
     "parser.mjs",
     "print.mjs",
+    "dna-seed.mjs",
     "bin/",
     "lib/",
     "README.md",

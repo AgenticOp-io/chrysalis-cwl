@@ -1,7 +1,7 @@
 # Exit 1.0 — private registry language release
 
-**Status:** **Published** — `@agenticop-io/cwl@1.0.0` on GitHub Packages (2026-08-09)  
-**Workflow:** [publish-cwl run 31320726984](https://github.com/AgenticOp-io/chrysalis-cwl/actions/runs/31320726984) · tag `cwl-v1.0.0`  
+**Status:** **Published** — `@agenticop-io/cwl@1.0.0`+ (tip **`1.0.3`**) on GitHub Packages  
+**CWL Exit/DNA queue:** **Complete** — [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md)  
 **Registry:** GitHub Packages only (`https://npm.pkg.github.com`) — **not** public npm  
 **Repos:** remain private ([`PRIVATE-PILLARS.md`](./PRIVATE-PILLARS.md))
 

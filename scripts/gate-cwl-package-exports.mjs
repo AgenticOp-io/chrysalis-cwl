@@ -34,7 +34,7 @@ if (!existsSync(join(PKG, 'lib', 'cwl-parser.mjs'))) {
 }
 
 const exportsMap = pkg.exports ?? {};
-for (const sub of ['./diagnose', './lsp-map', './parser', './print']) {
+for (const sub of ['./diagnose', './lsp-map', './parser', './print', './dna-seed']) {
   const target = exportsMap[sub];
   if (typeof target !== 'string' || !target.endsWith('.mjs')) {
     failures.push(`missing-or-bad-export:${sub}`);
@@ -49,6 +49,7 @@ for (const [sub, key] of [
   ['./lsp-map', 'lspMap'],
   ['./parser', 'parser'],
   ['./print', 'print'],
+  ['./dna-seed', 'dnaSeed'],
 ]) {
   const target = exportsMap[sub];
   if (typeof target !== 'string') continue;
@@ -107,6 +108,12 @@ if (pr) {
     failures.push(`print-smoke-throw:${e instanceof Error ? e.message : String(e)}`);
   }
 }
+const ds = loaded.dnaSeed;
+if (ds) {
+  if (typeof ds.seedDraftDnaFromCwlPath !== 'function') failures.push('seedDraftDnaFromCwlPath-missing');
+  if (typeof ds.loadDeployProfile !== 'function') failures.push('loadDeployProfile-missing');
+  if (typeof ds.cwlHolesBridgeReport !== 'function') failures.push('cwlHolesBridgeReport-missing');
+}
 
 // Package-name subpaths (consumer form) via Node self-reference from packages/cwl.
 const probe = `
@@ -114,10 +121,12 @@ const d = await import('@chrysalis/cwl/diagnose');
 const l = await import('@chrysalis/cwl/lsp-map');
 const p = await import('@chrysalis/cwl/parser');
 const pr = await import('@chrysalis/cwl/print');
+const ds = await import('@chrysalis/cwl/dna-seed');
 if (typeof d.diagnoseCwlSource !== 'function') { console.error('no-diagnose'); process.exit(2); }
 if (typeof l.mapDiagnoseSource !== 'function') { console.error('no-lsp-map'); process.exit(3); }
 if (typeof p.parseCwlModule !== 'function') { console.error('no-parser'); process.exit(6); }
 if (typeof pr.printCwlModule !== 'function') { console.error('no-print'); process.exit(7); }
+if (typeof ds.seedDraftDnaFromCwlPath !== 'function') { console.error('no-dna-seed'); process.exit(10); }
 const r = d.diagnoseCwlSource('module m;\\n', 't.cwl');
 if (!r || r.kind !== d.CWL_DIAGNOSE_KIND) { console.error('diagnose-kind'); process.exit(4); }
 const m = l.mapDiagnoseSource('module m;\\n', 't.cwl');
@@ -151,6 +160,7 @@ const report = {
     lspMap: '@chrysalis/cwl/lsp-map',
     parser: '@chrysalis/cwl/parser',
     print: '@chrysalis/cwl/print',
+    dnaSeed: '@chrysalis/cwl/dna-seed',
   },
   failures,
 };

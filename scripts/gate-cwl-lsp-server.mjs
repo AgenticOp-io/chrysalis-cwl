@@ -8,11 +8,15 @@ import { readFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { hoverAt, completionsAt, definitionAt, documentSymbols, renameAt, prepareRenameAt, referencesAt } from "./cwl-lsp-server.mjs";
+import { listCwlImportGraph } from "./hub-ingest/cwl-module-graph.mjs";
+import { readFileSync } from "node:fs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SERVER = join(ROOT, "scripts/cwl-lsp-server.mjs");
 const GOLD = join(ROOT, "fixtures/language-gold/11-holes/routes.cwl");
 const LITERALS = join(ROOT, "fixtures/language-gold/01-literals/routes.cwl");
+const MULTI = join(ROOT, "fixtures/language-gold/12-multi-file/routes.cwl");
+const MULTI_HEALTH = join(ROOT, "fixtures/language-gold/12-multi-file/health.cwl");
 
 /**
  * @param {import('node:child_process').ChildProcessWithoutNullStreams} child
@@ -160,6 +164,42 @@ async function main() {
   const refs = referencesAt(litSrc, pathToFileURL(LITERALS).href, { line: 4, character: 10 }, true);
   if (!Array.isArray(refs) || refs.length < 1) {
     failures.push("references-handler-empty");
+  }
+
+  // Unit: RFC-0009 import graph + cross-file rename/refs rooted at multi-file entry
+  const graph = listCwlImportGraph(MULTI);
+  if (!Array.isArray(graph) || graph.length < 3) {
+    failures.push("import-graph-too-small");
+  }
+  const healthSrc = readFileSync(MULTI_HEALTH, "utf8");
+  const healthUri = pathToFileURL(MULTI_HEALTH).href;
+  // handler health on line 4 (0-based) of health.cwl
+  const crossRefs = referencesAt(
+    healthSrc,
+    healthUri,
+    { line: 4, character: 10 },
+    true,
+    { graphEntry: MULTI },
+  );
+  if (!Array.isArray(crossRefs) || crossRefs.length < 1) {
+    failures.push("cross-file-references-empty");
+  }
+  const crossRen = renameAt(
+    healthSrc,
+    healthUri,
+    { line: 4, character: 10 },
+    "healthz",
+    { graphEntry: MULTI },
+  );
+  const crossEdits = crossRen?.changes?.[healthUri] ?? [];
+  if (!Array.isArray(crossEdits) || crossEdits.length < 1) {
+    failures.push("cross-file-rename-empty");
+  }
+  const crossDef = definitionAt(healthSrc, healthUri, { line: 4, character: 10 }, {
+    graphEntry: MULTI,
+  });
+  if (!Array.isArray(crossDef) || crossDef.length < 1) {
+    failures.push("cross-file-definition-empty");
   }
 
   // Unit: definition — handler name / path string → @route line (01-literals)

@@ -6,13 +6,15 @@
  * Usage: node scripts/cwl-lsp-server.mjs
  */
 import { pathToFileURL } from "node:url";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { formatCwlSource } from "./hub-ingest/cwl-fmt.mjs";
 import { mapDiagnoseSource } from "./hub-ingest/cwl-lsp-map.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
+import { listCwlImportGraph } from "./hub-ingest/cwl-module-graph.mjs";
 
 export const CWL_LSP_SERVER_KIND = "chrysalis.cwl.lsp-server";
-export const CWL_LSP_SERVER_VERSION = "1.0.1";
+export const CWL_LSP_SERVER_VERSION = "1.0.3";
 
 /** CompletionItemKind.Keyword */
 const KIND_KEYWORD = 14;
@@ -392,40 +394,81 @@ const NON_HANDLER_IDENTS = new Set([
 ]);
 
 /**
- * Cheap go-to-definition: handler name or path string → @route/@page line.
+ * Import-graph files for LSP (RFC-0009). Falls back to the current file only.
+ * @param {string} file
+ * @param {string} [graphEntry]
+ * @returns {string[]}
+ */
+function graphFilesFor(file, graphEntry) {
+  const entry = resolve(graphEntry || file);
+  if (!existsSync(entry)) return [resolve(file)];
+  try {
+    return listCwlImportGraph(entry);
+  } catch {
+    return [resolve(file)];
+  }
+}
+
+/**
+ * @param {string} absPath
+ * @param {string} currentFile
+ * @param {string} currentText
+ * @param {string} currentUri
+ */
+function textAndUriFor(absPath, currentFile, currentText, currentUri) {
+  const abs = resolve(absPath);
+  const cur = resolve(currentFile);
+  if (abs === cur) return { text: currentText, uri: currentUri };
+  return { text: readFileSync(abs, "utf8"), uri: pathToFileURL(abs).href };
+}
+
+/**
+ * Cheap go-to-definition: handler name or path string → @route/@page line
+ * (searches RFC-0009 import graph when on disk).
  * @param {string} text
  * @param {string} uri
  * @param {{ line: number, character: number }} position
+ * @param {{ graphEntry?: string }} [opts]
  * @returns {Array<{ uri: string, range: { start: { line: number, character: number }, end: { line: number, character: number } } }>}
  */
-export function definitionAt(text, uri, position) {
+export function definitionAt(text, uri, position, opts = {}) {
   const file = uriToPath(uri);
   const lines = text.split(/\r?\n/);
   const lineText = lines[position.line] ?? "";
   const tok = tokenAt(lineText, position.character);
   if (!tok) return [];
+  if (tok.kind === "ident" && NON_HANDLER_IDENTS.has(tok.value)) return [];
 
-  try {
-    const ast = parseCwlModule(text, file);
-    const routes = ast.routes ?? [];
-    /** @type {typeof routes} */
-    let matches = [];
-    if (tok.kind === "path") {
-      matches = routes.filter((r) => r.path === tok.value && typeof r.line === "number");
-    } else {
-      if (NON_HANDLER_IDENTS.has(tok.value)) return [];
-      matches = routes.filter((r) => r.name === tok.value && typeof r.line === "number");
+  /** @type {Array<{ uri: string, range: { start: { line: number, character: number }, end: { line: number, character: number } } }>} */
+  const locs = [];
+  /** @type {Set<string>} */
+  const seen = new Set();
+
+  for (const f of graphFilesFor(file, opts.graphEntry)) {
+    try {
+      const { text: t, uri: u } = textAndUriFor(f, file, text, uri);
+      const ast = parseCwlModule(t, f);
+      const routes = ast.routes ?? [];
+      /** @type {typeof routes} */
+      let matches = [];
+      if (tok.kind === "path") {
+        matches = routes.filter((r) => r.path === tok.value && typeof r.line === "number");
+      } else {
+        matches = routes.filter((r) => r.name === tok.value && typeof r.line === "number");
+      }
+      for (const r of matches) {
+        const loc = routeSurfaceLocation(u, t, r);
+        if (!loc) continue;
+        const key = `${loc.uri}:${loc.range.start.line}:${loc.range.start.character}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        locs.push(loc);
+      }
+    } catch {
+      /* skip unreadable fragment */
     }
-    /** @type {Array<{ uri: string, range: { start: { line: number, character: number }, end: { line: number, character: number } } }>} */
-    const locs = [];
-    for (const r of matches) {
-      const loc = routeSurfaceLocation(uri, text, r);
-      if (loc) locs.push(loc);
-    }
-    return locs;
-  } catch {
-    return [];
   }
+  return locs;
 }
 
 /**
@@ -515,15 +558,15 @@ export function prepareRenameAt(text, uri, position) {
 }
 
 /**
- * textDocument/rename: same-file handler/route `name` declaration edits only.
- * Does not rewrite path strings, cross-file refs, or non-AST occurrences.
+ * textDocument/rename: handler/route `name` declarations across the import graph.
  * @param {string} text
  * @param {string} uri
  * @param {{ line: number, character: number }} position
  * @param {string} newName
+ * @param {{ graphEntry?: string }} [opts]
  * @returns {{ changes: Record<string, Array<{ range: object, newText: string }>> }|null}
  */
-export function renameAt(text, uri, position, newName) {
+export function renameAt(text, uri, position, newName, opts = {}) {
   if (typeof newName !== "string" || !isValidHandlerName(newName)) return null;
   const prepared = prepareRenameAt(text, uri, position);
   if (!prepared) return null;
@@ -535,88 +578,90 @@ export function renameAt(text, uri, position, newName) {
   if (!tok || tok.kind !== "ident") return null;
   const oldName = tok.value;
 
-  try {
-    const ast = parseCwlModule(text, file);
-    const matches = (ast.routes ?? []).filter(
-      (r) => r.name === oldName && typeof r.line === "number",
-    );
-    if (matches.length < 1) return null;
-
-    /** @type {Array<{ range: object, newText: string }>} */
-    const edits = [];
-    /** @type {Set<string>} */
-    const seen = new Set();
-    for (const r of matches) {
-      const range = handlerNameDeclRange(text, r);
-      if (!range) continue;
-      const key = `${range.start.line}:${range.start.character}:${range.end.character}`;
-      if (seen.has(key)) continue;
-      seen.add(key);
-      edits.push({ range, newText: newName });
+  /** @type {Record<string, Array<{ range: object, newText: string }>>} */
+  const changes = {};
+  for (const f of graphFilesFor(file, opts.graphEntry)) {
+    try {
+      const { text: t, uri: u } = textAndUriFor(f, file, text, uri);
+      const ast = parseCwlModule(t, f);
+      const matches = (ast.routes ?? []).filter(
+        (r) => r.name === oldName && typeof r.line === "number",
+      );
+      /** @type {Set<string>} */
+      const seen = new Set();
+      for (const r of matches) {
+        const range = handlerNameDeclRange(t, r);
+        if (!range) continue;
+        const key = `${range.start.line}:${range.start.character}:${range.end.character}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        if (!changes[u]) changes[u] = [];
+        changes[u].push({ range, newText: newName });
+      }
+    } catch {
+      /* skip */
     }
-    if (edits.length < 1) return null;
-    return { changes: { [uri]: edits } };
-  } catch {
-    return null;
   }
+  if (Object.keys(changes).length < 1) return null;
+  return { changes };
 }
 
 /**
- * Same-file find-references: handler name declarations and path surface lines only.
- * Does not walk other files (import graph not claimed).
+ * Find-references across the RFC-0009 import graph (handler name / path surfaces).
  * @param {string} text
  * @param {string} uri
  * @param {{ line: number, character: number }} position
  * @param {boolean} [includeDeclaration]
+ * @param {{ graphEntry?: string }} [opts]
  * @returns {Array<{ uri: string, range: object }>}
  */
-export function referencesAt(text, uri, position, includeDeclaration = true) {
+export function referencesAt(text, uri, position, includeDeclaration = true, opts = {}) {
   const file = uriToPath(uri);
   const lines = text.split(/\r?\n/);
   const lineText = lines[position.line] ?? "";
   const tok = tokenAt(lineText, position.character);
   if (!tok) return [];
+  if (tok.kind === "ident" && NON_HANDLER_IDENTS.has(tok.value)) return [];
 
-  try {
-    const ast = parseCwlModule(text, file);
-    const routes = ast.routes ?? [];
-    /** @type {Array<{ uri: string, range: object }>} */
-    const locs = [];
-    /** @type {Set<string>} */
-    const seen = new Set();
+  /** @type {Array<{ uri: string, range: object }>} */
+  const locs = [];
+  /** @type {Set<string>} */
+  const seen = new Set();
 
-    /**
-     * @param {{ uri: string, range: object }|null} loc
-     */
-    function push(loc) {
-      if (!loc) return;
-      const key = `${loc.range.start.line}:${loc.range.start.character}:${loc.range.end.character}`;
-      if (seen.has(key)) return;
-      seen.add(key);
-      locs.push(loc);
-    }
-
-    if (tok.kind === "path") {
-      for (const r of routes) {
-        if (r.path !== tok.value) continue;
-        push(routeSurfaceLocation(uri, text, r));
-      }
-      return locs;
-    }
-
-    if (NON_HANDLER_IDENTS.has(tok.value)) return [];
-    const matches = routes.filter((r) => r.name === tok.value && typeof r.line === "number");
-    for (const r of matches) {
-      const decl = handlerNameDeclRange(text, r);
-      if (decl && includeDeclaration) {
-        push({ uri, range: decl });
-      }
-      push(routeSurfaceLocation(uri, text, r));
-    }
-    return locs;
-  } catch {
-    return [];
+  /**
+   * @param {{ uri: string, range: object }|null} loc
+   */
+  function push(loc) {
+    if (!loc) return;
+    const key = `${loc.uri}:${loc.range.start.line}:${loc.range.start.character}:${loc.range.end.character}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    locs.push(loc);
   }
+
+  for (const f of graphFilesFor(file, opts.graphEntry)) {
+    try {
+      const { text: t, uri: u } = textAndUriFor(f, file, text, uri);
+      const ast = parseCwlModule(t, f);
+      const routes = ast.routes ?? [];
+      if (tok.kind === "path") {
+        for (const r of routes) {
+          if (r.path !== tok.value) continue;
+          push(routeSurfaceLocation(u, t, r));
+        }
+        continue;
+      }
+      const matches = routes.filter((r) => r.name === tok.value && typeof r.line === "number");
+      for (const r of matches) {
+        const decl = handlerNameDeclRange(t, r);
+        if (decl && includeDeclaration) push({ uri: u, range: decl });
+        push(routeSurfaceLocation(u, t, r));
+      }
+    } catch {
+      /* skip */
+    }
+  }
+  return locs;
 }
 
 /** SymbolKind.Function */

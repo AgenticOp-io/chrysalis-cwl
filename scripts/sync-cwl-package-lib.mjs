@@ -22,6 +22,8 @@ const FILES = [
   "cwl-ui-tree.mjs",
   "hub-cwl-path-params.mjs",
   "hub-t.mjs",
+  "cwl-module-graph.mjs",
+  "cwl-dna-seed.mjs",
 ];
 
 mkdirSync(LIB, { recursive: true });

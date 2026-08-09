@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.3 — 2026-08-09
+
+- Package export `@chrysalis/cwl/dna-seed` (RFC-0022/0023 seed helpers for Secure)
+- LSP import-graph (RFC-0009) definition / references / rename; `listCwlImportGraph`
+- **CWL pillar Exit/DNA queue complete** — [`DNA-CWL-COMPLETE.md`](./docs/history/DNA-CWL-COMPLETE.md)
+
 ## 1.0.2 — 2026-08-09
 
 - DNA bridge: RFC-0023 multi-host seed gold (`deploy-profile-api.json` / `expected-dna-api.json`)

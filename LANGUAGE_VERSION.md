@@ -3,19 +3,21 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.2` |
-| **Status** | Exit 1.0 + DNA multi-host profile gold (RFC-0023) + holes bridge report |
+| **Version** | `1.0.3` |
+| **Status** | CWL pillar complete for Exit 1.0 lineage — dna-seed export + import-graph LSP |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`1.0.2` is a **patch** on the published private-registry language release:
+`1.0.3` closes remaining **CWL-owned** Exit/DNA queue items:
 
-- Packable `@chrysalis/cwl` (published lineage `@agenticop-io/cwl@1.0.0+`)
-- DNA bridge: multi-host deploy profile seed (`deploy-profile-api.json`) + `cwlHolesBridgeReport`
-- Physical `@chrysalis/webir` home; LSP polish from 1.0.1
+- `@chrysalis/cwl/dna-seed` package export (RFC-0022/0023 seed for Secure)
+- LSP definition / references / rename walk RFC-0009 import graphs
+- Multi-host DNA gold + holes bridge report (1.0.2); LSP polish (1.0.1); registry publish (1.0.0)
 
-See `CHANGELOG.md`, `docs/language/CWL-PUBLISH.md`, `docs/history/EXIT-1.0.md`.
+Convert peel gravity and Secure pin bumps remain sibling-owned — not language genome work.
+
+See `CHANGELOG.md`, `docs/history/DNA-CWL-COMPLETE.md`.
 
 ## Compatibility rules
 
