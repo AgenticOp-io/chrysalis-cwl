@@ -1,7 +1,7 @@
 # Chrysalis Web Language (CWL)
 
 **Package:** `@chrysalis/cwl`  
-**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `0.1.7`)  
+**Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `0.1.10`)  
 **Status:** `private: true` — not published yet (Phase 1.0)
 
 ## Purpose

@@ -1,5 +1,31 @@
 # CWL language changelog
 
+## Unreleased / execute
+
+- DNA Execute slice: `smoke:cwl-runtime-gold` → `CWL_RUNTIME_GOLD_OK` on `fixtures/language-gold/01-literals` via `@chrysalis/runtime-cwl` + WebIR `simulateHandler` (not Convert emit)
+- Plan/honesty: `docs/history/DNA-STEP-EXECUTE.md`
+- No language version bump (LSP owns `0.1.10`)
+
+### Requested (Convert) — execute
+
+- Keep sibling `webir` / `rewrite` / `emit-shared` dists buildable; Slice 3.4 dep retarget so pillar runtime imports need fewer resolve hooks
+
+## 0.1.10 — 2026-08-08
+
+- Minimal stdio Language Server: `scripts/cwl-lsp-server.mjs` (JSON-RPC `Content-Length`) — initialize/shutdown, doc sync → `publishDiagnostics` via `mapDiagnoseSource`, `textDocument/formatting` via `formatCwlSource`, cheap hover (module / route surface)
+- VS Code extension: thin spawn client (zero npm deps; no `vscode-languageclient`)
+- `npm run test:cwl-lsp-server` → `CWL_LSP_SERVER_OK` (wired into `test:language`)
+- Docs: `CWL-LSP.md` honesty update; ROADMAP Phase 0.6 stdio LSP checkbox
+- Package / editor version `0.1.10`; pillars stay private (no Marketplace)
+
+### Requested (Convert)
+
+- Pull `0.1.10` junctions after land; WebIR flip still open
+
+### Requested (Secure)
+
+- Keep `file:` pin; no grammar forks
+
 ## 0.1.9 — 2026-08-08
 
 - **Private pillars:** GitHub `chrysalis-cwl`, `chrysalis` (Convert), `chrysalis-security` set private; docs in `PRIVATE-PILLARS.md`
@@ -12,10 +38,13 @@
 ### Requested (Convert)
 
 - WebIR physical flip still open (`WEBIR-FLIP-REQUESTED.md`); pull `0.1.9` junctions after land; repo is now **private**
+- **DNA Step E:** actionable flip checklist + acceptance/prove commands in `WEBIR-FLIP-REQUESTED.md` / `DNA-STEP-E-WEBIR.md` — Convert can execute without guessing; CWL will re-run `smoke:webir` + `test:ingest` + `test:language:full` after SHA reply
+- **Step G gravity:** every peel/emit lands honest CWL (no façades); consume junctions + `hub:cwl-helix-cutover-smoke` — [`CONVERT-GRAVITY-REQUESTED.md`](./docs/history/CONVERT-GRAVITY-REQUESTED.md)
 
 ### Requested (Secure)
 
 - Keep `file:` pin; repo is now **private**; no grammar forks
+- **Step G cutover default:** live DNA vs CWL surface (RFC-0022/0023); `cwl-bridge-smoke` / `cutover-smoke` — [`SECURE-CUTOVER-REQUESTED.md`](./docs/history/SECURE-CUTOVER-REQUESTED.md)
 
 ## 0.1.8 — 2026-08-07
 

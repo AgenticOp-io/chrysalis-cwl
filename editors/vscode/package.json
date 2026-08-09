@@ -1,8 +1,8 @@
 {
   "name": "cwl-lsp",
   "displayName": "Chrysalis Web Language",
-  "description": "CWL language support — TextMate, push diagnostics, format (private pillar).",
-  "version": "0.1.9",
+  "description": "CWL language support — TextMate, stdio LSP (diagnostics/fmt/hover), private pillar.",
+  "version": "0.1.10",
   "publisher": "agenticop",
   "private": true,
   "engines": {

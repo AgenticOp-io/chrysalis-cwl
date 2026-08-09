@@ -1,6 +1,6 @@
 {
   "name": "@chrysalis/cwl",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": true,
   "description": "Chrysalis Web Language — version pin + pillar root helpers. Parser/fmt remain in scripts until extracted; see LANGUAGE_VERSION.md.",
   "license": "Apache-2.0",

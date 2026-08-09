@@ -16,7 +16,8 @@
     "test:cwl-pin": "node scripts/gate-cwl-pin.mjs",
     "test:cwl-publish-prep": "node scripts/gate-cwl-publish-prep.mjs",
     "test:cwl-lsp-map": "node scripts/gate-cwl-lsp-map.mjs",
-    "test:language": "npm run test:cwl-roundtrip && npm run test:cwl-diagnose && npm run test:cwl-dna-bridge && npm run test:cwl-pin && npm run test:cwl-publish-prep && npm run test:cwl-lsp-map",
+    "test:cwl-lsp-server": "node scripts/gate-cwl-lsp-server.mjs",
+    "test:language": "npm run test:cwl-roundtrip && npm run test:cwl-diagnose && npm run test:cwl-dna-bridge && npm run test:cwl-pin && npm run test:cwl-publish-prep && npm run test:cwl-lsp-map && npm run test:cwl-lsp-server",
     "smoke:ut-spine": "node scripts/smoke-ut-spine.mjs",
     "smoke:ut-spine:helix": "node scripts/smoke-ut-spine.mjs --require-helix",
     "smoke:ut-evidence": "node scripts/ut-evidence-pack.mjs",
@@ -33,6 +34,7 @@
     "link:webir": "node scripts/link-webir.mjs",
     "smoke:webir": "node scripts/smoke-webir-resolve.mjs",
     "smoke:cwl-ingest": "node scripts/smoke-cwl-ingest.mjs",
-    "smoke:cwl-emit": "node scripts/smoke-cwl-emit.mjs"
+    "smoke:cwl-emit": "node scripts/smoke-cwl-emit.mjs",
+    "smoke:cwl-runtime-gold": "node scripts/smoke-cwl-runtime-gold.mjs"
   }
 }

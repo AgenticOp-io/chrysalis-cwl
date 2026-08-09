@@ -84,6 +84,7 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 - [x] UT spine + evidence pack (`smoke:ut-spine` / `smoke:ut-evidence`) — Convert consumes via `hub:cwl-helix-cutover-smoke` only
 - [x] RFC-0023 deploy/DNA profiles + gold profile on `24-dna-bridge`
 - [x] RFC-0024 island kinds vocabulary + `25-island-kinds`
+- [ ] **Requested (Secure):** cutover default = live DNA vs CWL surface — [SECURE-CUTOVER-REQUESTED.md](./SECURE-CUTOVER-REQUESTED.md)
 
 **Exit 0.5:** Documented, fixture-backed bridge contract; Helix owns enforcement.
 
@@ -95,7 +96,7 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 - [x] Diagnose → LSP map + `test:cwl-lsp-map` ([`DNA-EVOLUTION-0.1.9.md`](./DNA-EVOLUTION-0.1.9.md))
 - [x] Editor push-diagnostics + format DocumentProvider (`editors/vscode`)
 - [x] CLI `--stdin` for unsaved buffers
-- [ ] Full stdio Language Server (completion / hover)
+- [x] Minimal stdio Language Server (`cwl-lsp-server.mjs` + `test:cwl-lsp-server`) — diagnose/fmt/cheap hover; not full completion/rename ([`CWL-LSP.md`](../language/CWL-LSP.md), 0.1.10)
 
 **Exit 0.6:** Authors get live diagnostics/fmt inside the private pillar without Convert.
 
@@ -103,15 +104,16 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ## Phase 1.0 — Published language (private registry)
 
-- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.9`) — metadata only; package stays `"private": true`
+- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.10`) — metadata only; package stays `"private": true`
 - [x] Pre-publish pin path documented: sibling workspace / `file:` / env `CHRYSALIS_CWL_ROOT` ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
 - [x] Convert + Secure **`file:` pin** `@chrysalis/cwl` (`npm run test:cwl-pin`)
 - [x] Publish **prep gate** `npm run test:cwl-publish-prep` (package stays `"private": true`)
-- [x] Editor diagnostics v0 + CI language workflow (full LSP server still open)
+- [x] Editor + minimal stdio LSP + CI language workflow (completion/rename still open)
 - [x] Private-first registry decision documented (no public npm by default)
 - [ ] Private registry package version ≡ `LANGUAGE_VERSION.md` (**actual publish — still open**)
 - [ ] Convert pins a **private registry** CWL release (today: `file:` + junctions)
 - [ ] Secure pins a **private registry** CWL release (today: `file:` + sibling / env)
+- [ ] **Requested (Convert):** peel/emit gravity — honest CWL landings + `hub:cwl-helix-cutover-smoke` — [CONVERT-GRAVITY-REQUESTED.md](./CONVERT-GRAVITY-REQUESTED.md)
 - [ ] Breaking changes require major bump + RFC migration notes
 
 **Exit 1.0:** Consumers depend on a versioned **private** language artifact, not a random tree copy. **Not exited** — registry publish remains open; local `file:` pins are in place.

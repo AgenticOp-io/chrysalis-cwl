@@ -3,22 +3,21 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `0.1.9` |
-| **Status** | Private-first DNA authoring: editor push-diagnostics + fmt, LSP map gate |
+| **Version** | `0.1.10` |
+| **Status** | Private-first DNA authoring: minimal stdio LSP (diagnose/fmt/hover) |
 | **Date** | 2026-08-08 |
 
 ## What this version means
 
-`0.1.9` advances **authoring gravity** under a private pillar posture:
+`0.1.10` adds a **minimal stdio Language Server** wrapping the 0.1.9 diagnose/fmt map:
 
-- GitHub pillars private (`chrysalis-cwl`, `chrysalis`, `chrysalis-security`) — see [`docs/history/PRIVATE-PILLARS.md`](./docs/history/PRIVATE-PILLARS.md)
-- Editor diagnostics v0: diagnose → LSP map → VS Code `DiagnosticCollection`
-- `cwl diagnose|fmt --stdin` for unsaved buffers; `diagnose --lsp` map shape
-- `npm run test:cwl-lsp-map` → `CWL_LSP_MAP_OK` (wired into `test:language`)
-- Format DocumentProvider in `editors/vscode` (still not Marketplace)
-- Plan: [`docs/history/DNA-EVOLUTION-0.1.9.md`](./docs/history/DNA-EVOLUTION-0.1.9.md)
+- `scripts/cwl-lsp-server.mjs` — JSON-RPC over stdio (`initialize`, doc sync, diagnostics, formatting, cheap hover)
+- VS Code extension: thin spawn client (no `vscode-languageclient` / zero extension npm deps)
+- `npm run test:cwl-lsp-server` → `CWL_LSP_SERVER_OK` (wired into `test:language`)
+- Pillars stay private — no Marketplace / public npm
+- Prior: editor DiagnosticCollection + `cwl diagnose --stdin --lsp` + map gate (`0.1.9`)
 
-See `CHANGELOG.md` for deltas.
+See `CHANGELOG.md` for deltas. Spec: [`docs/language/CWL-LSP.md`](./docs/language/CWL-LSP.md)
 
 ## Compatibility rules
 
@@ -31,7 +30,7 @@ Breaking changes must be versioned in this file **before** they land in parser/p
 ## Out of scope for `0.1.x`
 
 - WebIR physical package ownership flip (Convert-coordinated)
-- Full stdio Language Server (completion / hover / rename)
+- Full IDE LSP (completion / rename / workspace symbols)
 - Helix / Secure DNA firewall implementation
 - Public npm / Marketplace — pillars stay private unless human reopens
 

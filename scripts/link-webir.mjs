@@ -19,12 +19,19 @@ const TARGET = resolve(ROOT, "../chrysalis-convert/packages/webir");
 function main() {
   if (!existsSync(TARGET)) {
     console.error(`target missing: ${TARGET}`);
-    console.error("Need sibling chrysalis-convert with packages/webir (and built dist/).");
+    console.error("");
+    console.error("link:webir needs a sibling Convert checkout with physical packages/webir.");
+    console.error("  Clone private repo AgenticOp-io/chrysalis next to chrysalis-cwl");
+    console.error("  (local folder name is usually chrysalis-convert).");
+    console.error("  Until Convert flips ownership, WebIR lives there — see packages/WEBIR.md");
+    console.error("  and docs/history/WEBIR-FLIP-REQUESTED.md (DNA Step E).");
     process.exit(1);
   }
   if (!existsSync(join(TARGET, "dist/index.js"))) {
     console.error(`webir dist missing: ${join(TARGET, "dist/index.js")}`);
-    console.error("Build convert webir first: pnpm --filter @chrysalis/webir build");
+    console.error("Build Convert webir first (from Convert root):");
+    console.error("  pnpm --filter @chrysalis/webir build");
+    console.error("Then re-run: npm run link:webir");
     process.exit(1);
   }
 
@@ -36,7 +43,9 @@ function main() {
     if (existsSync(join(LINK, "dist/index.js"))) {
       console.log(`ok: pillar home packages/webir resolves dist`);
       console.log(`    ${LINK} → ${TARGET}`);
-      console.log("    next: convert flip (convert packages/webir → this tree) — see packages/WEBIR.md");
+      console.log("    policy: link-until-pnpm (physical SoR still Convert)");
+      console.log("    next: Convert ownership flip — docs/history/WEBIR-FLIP-REQUESTED.md");
+      console.log("    prove: npm run smoke:webir");
       return;
     }
     if (st.isSymbolicLink() || (process.platform === "win32" && !st.isFile())) {

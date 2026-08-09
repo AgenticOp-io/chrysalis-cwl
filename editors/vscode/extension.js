@@ -1,6 +1,6 @@
 /**
- * CWL editor: TextMate + push diagnostics (diagnose map) + format (cwl fmt).
- * Full stdio Language Server is a later slice — see docs/language/CWL-LSP.md.
+ * CWL editor: TextMate + thin stdio LSP client (zero npm deps).
+ * Spawns pillar `scripts/cwl-lsp-server.mjs` — see docs/language/CWL-LSP.md.
  */
 const vscode = require("vscode");
 const { spawn } = require("child_process");
@@ -12,157 +12,303 @@ function pillarRoot() {
 }
 
 /**
- * @param {string[]} args
- * @param {{ input?: string, cwd?: string }} [opts]
- * @returns {Promise<{ code: number|null, stdout: string, stderr: string }>}
+ * Minimal LSP client over Content-Length framed stdio.
  */
-function runNode(args, opts = {}) {
-  return new Promise((resolvePromise) => {
-    const child = spawn(process.execPath, args, {
-      cwd: opts.cwd || pillarRoot(),
+class ThinLspClient {
+  /**
+   * @param {string} serverPath
+   * @param {string} cwd
+   */
+  constructor(serverPath, cwd) {
+    this._nextId = 1;
+    /** @type {Map<number, { resolve: (v: any) => void, reject: (e: Error) => void }>} */
+    this._pending = new Map();
+    /** @type {((method: string, params: any) => void)[]} */
+    this._handlers = [];
+    this._buf = Buffer.alloc(0);
+    this._child = spawn(process.execPath, [serverPath], {
+      cwd,
+      stdio: ["pipe", "pipe", "pipe"],
     });
-    let stdout = "";
-    let stderr = "";
-    child.stdout.on("data", (d) => {
-      stdout += d.toString();
+    this._child.stdout.on("data", (chunk) => this._onData(chunk));
+    this._child.stderr.on("data", (d) => {
+      // Keep quiet unless debugging; surface parse failures via diagnostics.
+      if (process.env.CWL_LSP_DEBUG) console.error(String(d));
     });
-    child.stderr.on("data", (d) => {
-      stderr += d.toString();
+    this._child.on("exit", (code) => {
+      if (process.env.CWL_LSP_DEBUG) console.error(`cwl-lsp-server exited ${code}`);
     });
-    if (opts.input != null) {
-      child.stdin.write(opts.input);
-      child.stdin.end();
+  }
+
+  /**
+   * @param {(method: string, params: any) => void} fn
+   */
+  onNotification(fn) {
+    this._handlers.push(fn);
+  }
+
+  /**
+   * @param {Buffer} chunk
+   */
+  _onData(chunk) {
+    this._buf = Buffer.concat([this._buf, chunk]);
+    while (true) {
+      const headerEnd = this._buf.indexOf("\r\n\r\n");
+      if (headerEnd < 0) return;
+      const header = this._buf.slice(0, headerEnd).toString("utf8");
+      const m = /Content-Length:\s*(\d+)/i.exec(header);
+      if (!m) {
+        this._buf = this._buf.slice(headerEnd + 4);
+        continue;
+      }
+      const length = Number(m[1]);
+      const total = headerEnd + 4 + length;
+      if (this._buf.length < total) return;
+      const body = this._buf.slice(headerEnd + 4, total).toString("utf8");
+      this._buf = this._buf.slice(total);
+      let msg;
+      try {
+        msg = JSON.parse(body);
+      } catch {
+        continue;
+      }
+      if (msg.id !== undefined && (msg.result !== undefined || msg.error !== undefined)) {
+        const p = this._pending.get(msg.id);
+        if (p) {
+          this._pending.delete(msg.id);
+          if (msg.error) p.reject(new Error(msg.error.message || JSON.stringify(msg.error)));
+          else p.resolve(msg.result);
+        }
+      } else if (msg.method) {
+        for (const h of this._handlers) h(msg.method, msg.params);
+      }
     }
-    child.on("close", (code) => resolvePromise({ code, stdout, stderr }));
-  });
+  }
+
+  /**
+   * @param {unknown} msg
+   */
+  _write(msg) {
+    const body = Buffer.from(JSON.stringify(msg), "utf8");
+    this._child.stdin.write(`Content-Length: ${body.length}\r\n\r\n`);
+    this._child.stdin.write(body);
+  }
+
+  /**
+   * @param {string} method
+   * @param {unknown} [params]
+   */
+  request(method, params) {
+    const id = this._nextId++;
+    return new Promise((resolvePromise, reject) => {
+      this._pending.set(id, { resolve: resolvePromise, reject });
+      this._write({ jsonrpc: "2.0", id, method, params });
+      setTimeout(() => {
+        if (this._pending.has(id)) {
+          this._pending.delete(id);
+          reject(new Error(`LSP timeout: ${method}`));
+        }
+      }, 15000);
+    });
+  }
+
+  /**
+   * @param {string} method
+   * @param {unknown} [params]
+   */
+  notify(method, params) {
+    this._write({ jsonrpc: "2.0", method, params });
+  }
+
+  async dispose() {
+    try {
+      await this.request("shutdown", null);
+      this.notify("exit");
+    } catch {
+      /* ignore */
+    }
+    try {
+      this._child.kill();
+    } catch {
+      /* ignore */
+    }
+  }
 }
 
 /**
- * @param {string} severity
+ * @param {number} severity
  * @returns {vscode.DiagnosticSeverity}
  */
 function toVsSeverity(severity) {
-  if (severity === "Error") return vscode.DiagnosticSeverity.Error;
-  if (severity === "Warning") return vscode.DiagnosticSeverity.Warning;
-  if (severity === "Hint") return vscode.DiagnosticSeverity.Hint;
+  if (severity === 1) return vscode.DiagnosticSeverity.Error;
+  if (severity === 2) return vscode.DiagnosticSeverity.Warning;
+  if (severity === 4) return vscode.DiagnosticSeverity.Hint;
   return vscode.DiagnosticSeverity.Information;
 }
 
 /**
  * @param {import('vscode').ExtensionContext} context
  */
-function activate(context) {
+async function activate(context) {
   const collection = vscode.languages.createDiagnosticCollection("cwl");
   context.subscriptions.push(collection);
 
-  const cli = path.join(pillarRoot(), "scripts/cwl-cli.mjs");
-  /** @type {NodeJS.Timeout|undefined} */
-  let debounce;
+  const serverPath = path.join(pillarRoot(), "scripts/cwl-lsp-server.mjs");
+  const client = new ThinLspClient(serverPath, pillarRoot());
+  context.subscriptions.push({ dispose: () => client.dispose() });
 
-  /**
-   * @param {import('vscode').TextDocument} doc
-   */
-  async function refreshDiagnostics(doc) {
-    if (doc.languageId !== "cwl") return;
-    const uri = doc.uri.toString();
-    const result = await runNode([cli, "diagnose", "--stdin", "--lsp", "--name", doc.uri.fsPath], {
-      input: doc.getText(),
-    });
-    let report;
-    try {
-      report = JSON.parse(result.stdout);
-    } catch {
-      collection.set(doc.uri, [
-        new vscode.Diagnostic(
-          new vscode.Range(0, 0, 0, 1),
-          `CWL diagnose failed to parse JSON (${result.code}). ${result.stderr || result.stdout}`.trim(),
-          vscode.DiagnosticSeverity.Error,
-        ),
-      ]);
-      return;
-    }
-    const mapped = report.diagnostics ?? report.raw?.diagnostics ?? [];
-    // Prefer lsp-map when CLI returns mapped shape; else map client-side from diagnose
+  client.onNotification((method, params) => {
+    if (method !== "textDocument/publishDiagnostics") return;
+    const uri = vscode.Uri.parse(params.uri);
     /** @type {vscode.Diagnostic[]} */
     const diags = [];
-    if (report.kind === "chrysalis.cwl.lsp-map" || (mapped[0] && mapped[0].range)) {
-      for (const d of mapped) {
-        const start = d.range?.start ?? { line: 0, character: 0 };
-        const end = d.range?.end ?? { line: start.line, character: 1000 };
-        const vs = new vscode.Diagnostic(
-          new vscode.Range(start.line, start.character, end.line, Math.min(end.character, 1000)),
-          d.message,
-          toVsSeverity(d.severity),
-        );
-        vs.code = d.code;
-        vs.source = d.source || "cwl";
-        diags.push(vs);
-      }
-    } else {
-      for (const d of report.diagnostics ?? []) {
-        const line = Math.max(0, (d.line ?? 1) - 1);
-        const vs = new vscode.Diagnostic(
-          new vscode.Range(line, 0, line, 1000),
-          d.message,
-          d.severity === "error"
-            ? vscode.DiagnosticSeverity.Error
-            : d.severity === "warn"
-              ? vscode.DiagnosticSeverity.Warning
-              : vscode.DiagnosticSeverity.Information,
-        );
-        vs.code = d.code;
-        vs.source = "cwl";
-        diags.push(vs);
-      }
+    for (const d of params.diagnostics ?? []) {
+      const start = d.range?.start ?? { line: 0, character: 0 };
+      const end = d.range?.end ?? { line: start.line, character: 1000 };
+      const vs = new vscode.Diagnostic(
+        new vscode.Range(start.line, start.character, end.line, Math.min(end.character, 1000)),
+        d.message,
+        toVsSeverity(d.severity),
+      );
+      vs.code = d.code;
+      vs.source = d.source || "cwl";
+      diags.push(vs);
     }
-    collection.set(doc.uri, diags);
-    void uri;
-  }
+    collection.set(uri, diags);
+  });
+
+  await client.request("initialize", {
+    processId: process.pid,
+    rootUri: vscode.workspace.workspaceFolders?.[0]?.uri?.toString() ?? null,
+    capabilities: {
+      textDocument: {
+        publishDiagnostics: {},
+        hover: { contentFormat: ["markdown", "plaintext"] },
+        formatting: {},
+      },
+    },
+    clientInfo: { name: "cwl-vscode", version: "0.1.10" },
+  });
+  client.notify("initialized", {});
 
   /**
    * @param {import('vscode').TextDocument} doc
    */
-  function schedule(doc) {
+  function openDoc(doc) {
+    if (doc.languageId !== "cwl") return;
+    client.notify("textDocument/didOpen", {
+      textDocument: {
+        uri: doc.uri.toString(),
+        languageId: "cwl",
+        version: doc.version,
+        text: doc.getText(),
+      },
+    });
+  }
+
+  /** @type {NodeJS.Timeout|undefined} */
+  let debounce;
+  /**
+   * @param {import('vscode').TextDocument} doc
+   */
+  function changeDoc(doc) {
     if (doc.languageId !== "cwl") return;
     clearTimeout(debounce);
     debounce = setTimeout(() => {
-      refreshDiagnostics(doc).catch((e) => {
-        console.error(e);
+      client.notify("textDocument/didChange", {
+        textDocument: { uri: doc.uri.toString(), version: doc.version },
+        contentChanges: [{ text: doc.getText() }],
       });
-    }, 300);
+    }, 250);
   }
 
   context.subscriptions.push(
-    vscode.workspace.onDidOpenTextDocument(schedule),
-    vscode.workspace.onDidChangeTextDocument((e) => schedule(e.document)),
-    vscode.workspace.onDidCloseTextDocument((doc) => collection.delete(doc.uri)),
+    vscode.workspace.onDidOpenTextDocument(openDoc),
+    vscode.workspace.onDidChangeTextDocument((e) => changeDoc(e.document)),
+    vscode.workspace.onDidCloseTextDocument((doc) => {
+      if (doc.languageId !== "cwl") return;
+      client.notify("textDocument/didClose", {
+        textDocument: { uri: doc.uri.toString() },
+      });
+      collection.delete(doc.uri);
+    }),
   );
 
-  for (const doc of vscode.workspace.textDocuments) schedule(doc);
+  for (const doc of vscode.workspace.textDocuments) openDoc(doc);
 
-  const fmtProvider = {
-    /**
-     * @param {import('vscode').TextDocument} doc
-     */
-    async provideDocumentFormattingEdits(doc) {
-      if (doc.languageId !== "cwl") return [];
-      const result = await runNode([cli, "fmt", "--stdin", "--stdout"], {
-        input: doc.getText(),
-      });
-      if (result.code !== 0) {
-        vscode.window.showErrorMessage("CWL fmt failed. See Output → CWL.");
-        const ch = vscode.window.createOutputChannel("CWL");
-        ch.appendLine(result.stderr || result.stdout);
-        ch.show(true);
-        return [];
-      }
-      const formatted = result.stdout;
-      const full = new vscode.Range(doc.positionAt(0), doc.positionAt(doc.getText().length));
-      return [vscode.TextEdit.replace(full, formatted)];
-    },
-  };
   context.subscriptions.push(
-    vscode.languages.registerDocumentFormattingEditProvider({ language: "cwl" }, fmtProvider),
+    vscode.languages.registerDocumentFormattingEditProvider(
+      { language: "cwl" },
+      {
+        async provideDocumentFormattingEdits(doc) {
+          if (doc.languageId !== "cwl") return [];
+          // Ensure server has latest buffer
+          client.notify("textDocument/didChange", {
+            textDocument: { uri: doc.uri.toString(), version: doc.version },
+            contentChanges: [{ text: doc.getText() }],
+          });
+          try {
+            const edits = await client.request("textDocument/formatting", {
+              textDocument: { uri: doc.uri.toString() },
+              options: { tabSize: 2, insertSpaces: true },
+            });
+            return (edits ?? []).map(
+              (e) =>
+                new vscode.TextEdit(
+                  new vscode.Range(
+                    e.range.start.line,
+                    e.range.start.character,
+                    e.range.end.line,
+                    e.range.end.character,
+                  ),
+                  e.newText,
+                ),
+            );
+          } catch (err) {
+            vscode.window.showErrorMessage(`CWL fmt failed: ${err.message || err}`);
+            return [];
+          }
+        },
+      },
+    ),
+  );
+
+  context.subscriptions.push(
+    vscode.languages.registerHoverProvider(
+      { language: "cwl" },
+      {
+        async provideHover(doc, position) {
+          if (doc.languageId !== "cwl") return null;
+          try {
+            const result = await client.request("textDocument/hover", {
+              textDocument: { uri: doc.uri.toString() },
+              position: { line: position.line, character: position.character },
+            });
+            if (!result?.contents) return null;
+            const value =
+              typeof result.contents === "string"
+                ? result.contents
+                : result.contents.value || "";
+            const md = new vscode.MarkdownString(value);
+            md.isTrusted = false;
+            if (result.range) {
+              return new vscode.Hover(
+                md,
+                new vscode.Range(
+                  result.range.start.line,
+                  result.range.start.character,
+                  result.range.end.line,
+                  result.range.end.character,
+                ),
+              );
+            }
+            return new vscode.Hover(md);
+          } catch {
+            return null;
+          }
+        },
+      },
+    ),
   );
 
   const cmd = vscode.commands.registerCommand("cwl.checkActive", async () => {
@@ -173,17 +319,32 @@ function activate(context) {
     }
     await ed.document.save();
     const file = ed.document.uri.fsPath;
-    const result = await runNode([cli, "check", file]);
-    if (result.code === 0) {
-      vscode.window.showInformationMessage(`CWL check OK: ${path.basename(file)}`);
-    } else {
-      vscode.window.showErrorMessage(`CWL check failed (${result.code}). See output.`);
-      const ch = vscode.window.createOutputChannel("CWL");
-      ch.appendLine(result.stdout);
-      ch.appendLine(result.stderr);
-      ch.show(true);
-    }
-    await refreshDiagnostics(ed.document);
+    const cli = path.join(pillarRoot(), "scripts/cwl-cli.mjs");
+    const { spawn: sp } = require("child_process");
+    await new Promise((resolvePromise) => {
+      const child = sp(process.execPath, [cli, "check", file], { cwd: pillarRoot() });
+      let stdout = "";
+      let stderr = "";
+      child.stdout.on("data", (d) => {
+        stdout += d;
+      });
+      child.stderr.on("data", (d) => {
+        stderr += d;
+      });
+      child.on("close", (code) => {
+        if (code === 0) {
+          vscode.window.showInformationMessage(`CWL check OK: ${path.basename(file)}`);
+        } else {
+          vscode.window.showErrorMessage(`CWL check failed (${code}). See output.`);
+          const ch = vscode.window.createOutputChannel("CWL");
+          ch.appendLine(stdout);
+          ch.appendLine(stderr);
+          ch.show(true);
+        }
+        resolvePromise(undefined);
+      });
+    });
+    changeDoc(ed.document);
   });
   context.subscriptions.push(cmd);
 }
