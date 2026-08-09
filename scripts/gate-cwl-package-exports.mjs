@@ -113,6 +113,11 @@ if (ds) {
   if (typeof ds.seedDraftDnaFromCwlPath !== 'function') failures.push('seedDraftDnaFromCwlPath-missing');
   if (typeof ds.loadDeployProfile !== 'function') failures.push('loadDeployProfile-missing');
   if (typeof ds.cwlHolesBridgeReport !== 'function') failures.push('cwlHolesBridgeReport-missing');
+  if (typeof ds.pathTemplateShapeEqual !== 'function') failures.push('pathTemplateShapeEqual-missing');
+  if (typeof ds.responseKeyFingerprint !== 'function') failures.push('responseKeyFingerprint-missing');
+  else if (ds.responseKeyFingerprint({ ok: true, meta: { v: 1 } }) !== 'meta,meta.v,ok') {
+    failures.push('responseKeyFingerprint-depth2');
+  }
 }
 
 // Package-name subpaths (consumer form) via Node self-reference from packages/cwl.

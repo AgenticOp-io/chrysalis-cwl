@@ -1,13 +1,13 @@
 # Convert gravity — Requested (DNA evolution Step G)
 
 **Status:** Requested — Convert agent owns implementation  
-**From:** CWL pillar (`chrysalis-cwl` tip **`1.0.16`** — DNA queue **CLOSED**)  
+**From:** CWL pillar (`chrysalis-cwl` tip **`1.0.17`** — DNA queue **CLOSED**; Helix seed parity)  
 **Convert repo:** private [`AgenticOp-io/chrysalis`](https://github.com/AgenticOp-io/chrysalis) (local: `engines/chrysalis-convert`)  
 **Related:** [DNA-EVOLUTION-0.1.9.md](./DNA-EVOLUTION-0.1.9.md) Step G · [WEBIR-FLIP-REQUESTED.md](./WEBIR-FLIP-REQUESTED.md) · [PRIVATE-PILLARS.md](./PRIVATE-PILLARS.md) · [EXIT-1.0.md](./EXIT-1.0.md) · separate execute ask: [CONVERT-REWRITE-HEADERS-REQUESTED.md](./CONVERT-REWRITE-HEADERS-REQUESTED.md) (`RequestInput.headers` / `04-request-context`)
 
 ## Ask (one sentence)
 
-Make every Convert peel/emit path land **honest CWL** (typed holes, no façades), prove cutover smokes, **pin tip `@agenticop-io/cwl@1.0.16`**, and keep WebIR reverse-homed to chrysalis-cwl.
+Make every Convert peel/emit path land **honest CWL** (typed holes, no façades), prove cutover smokes, **pin tip `@agenticop-io/cwl@1.0.17`**, and keep WebIR reverse-homed to chrysalis-cwl.
 
 ## Why
 
@@ -23,7 +23,7 @@ CWL is the genetic identity of web programs. Convert’s product gravity is wort
 ## Convert must do
 
 1. **Honest landings** — Every peel → WebIR/CWL → emit path must preserve unsupported work as catalogued `hole …;` (or equivalent WebIR hole). No silent stubs, no “looks green” façades that hide missing behavior.
-2. **Pin tip `1.0.16`** — Prefer `"@agenticop-io/cwl": "1.0.16"` from GitHub Packages; `file:../chrysalis-cwl/packages/cwl` OK during cutover. Refresh junctions / mirrors; no convert-only parser/print forks.
+2. **Pin tip `1.0.17`** — Prefer `"@agenticop-io/cwl": "1.0.17"` from GitHub Packages; `file:../chrysalis-cwl/packages/cwl` OK during cutover. Refresh junctions / mirrors; no convert-only parser/print forks.
 3. **Cutover proof** — Keep `pnpm run hub:cwl-helix-cutover-smoke` green against the sibling CWL tree (and language pillar smoke as today). Prefer CWL golds over inventing a second golden tree.
 4. **Private repo** — Work in private `AgenticOp-io/chrysalis`.
 5. **WebIR reverse-home** — CWL already has physical `packages/webir`; Convert must junction/`file:` → CWL: [WEBIR-FLIP-REQUESTED.md](./WEBIR-FLIP-REQUESTED.md).
@@ -37,7 +37,7 @@ CWL is the genetic identity of web programs. Convert’s product gravity is wort
 ## Acceptance checklist
 
 - [ ] Peel/emit paths under review emit or preserve honest CWL holes (no façade stubs)
-- [ ] Pin `@agenticop-io/cwl@1.0.16` (or `file:` ≡ tip) + WebIR reverse-home checklist started
+- [ ] Pin `@agenticop-io/cwl@1.0.17` (or `file:` ≡ tip) + WebIR reverse-home checklist started
 - [ ] `pnpm run hub:cwl-language-pillar-smoke` green
 - [ ] `pnpm run hub:cwl-helix-cutover-smoke` green (consumes CWL UT spine contract)
 - [ ] No convert-only grammar fork; parser/print match pillar (or are reparse-point junctions)

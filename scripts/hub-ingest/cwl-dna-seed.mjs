@@ -7,13 +7,104 @@ import { parseCwlModule } from "./cwl-parser.mjs";
 import { resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";
 
 /**
- * Sorted top-level object keys (Helix responseKeyFingerprint for objects).
+ * Sorted JSON key paths (depth ≤ 2) — matches Helix `dna-core` responseKeyFingerprint.
+ * Flat `{a,b}` → `a,b`. Nested `{data:{x:1}}` → `data,data.x`.
  * @param {unknown} value
+ * @param {{ maxDepth?: number }} [opts]
  */
-export function responseKeyFingerprint(value) {
+export function responseKeyFingerprint(value, opts = {}) {
   if (value == null) return null;
   if (typeof value !== "object" || Array.isArray(value)) return "scalar";
-  return Object.keys(value).sort().join(",");
+  const maxDepth = opts.maxDepth == null ? 2 : Number(opts.maxDepth);
+  /** @type {string[]} */
+  const paths = [];
+  collectKeyPaths(/** @type {Record<string, unknown>} */ (value), "", 1, maxDepth, paths);
+  return paths.sort().join(",");
+}
+
+/**
+ * @param {Record<string, unknown>} obj
+ * @param {string} prefix
+ * @param {number} depth 1 = top-level
+ * @param {number} maxDepth
+ * @param {string[]} out
+ */
+function collectKeyPaths(obj, prefix, depth, maxDepth, out) {
+  for (const k of Object.keys(obj)) {
+    const path = prefix ? `${prefix}.${k}` : k;
+    out.push(path);
+    if (depth >= maxDepth) continue;
+    const v = obj[k];
+    if (v != null && typeof v === "object" && !Array.isArray(v)) {
+      collectKeyPaths(/** @type {Record<string, unknown>} */ (v), path, depth + 1, maxDepth, out);
+    }
+  }
+}
+
+/**
+ * Segment-shape equality: `:param` aligns with `:id`; statics exact.
+ * Language SoR for RFC-0022 §5 (Secure bridge may thin-wrap).
+ * @param {unknown} a
+ * @param {unknown} b
+ */
+export function pathTemplateShapeEqual(a, b) {
+  const left = String(a || "/");
+  const right = String(b || "/");
+  if (left === right) return true;
+  const seg = (p) => {
+    const parts = String(p).split("/");
+    if (parts[0] === "") parts.shift();
+    return parts;
+  };
+  const sa = seg(left);
+  const sb = seg(right);
+  if (sa.length !== sb.length) return false;
+  for (let i = 0; i < sa.length; i++) {
+    const x = sa[i];
+    const y = sb[i];
+    if (x.startsWith(":") && y.startsWith(":")) continue;
+    if (x !== y) return false;
+  }
+  return true;
+}
+
+/**
+ * Sorted unique query/body *names* (values ignored).
+ * @param {unknown} names
+ */
+export function namesKeyFingerprint(names) {
+  if (!Array.isArray(names) || names.length === 0) return null;
+  const set = new Set(
+    names.map((n) => String(n || "").trim()).filter((n) => /^[A-Za-z_][A-Za-z0-9_]*$/.test(n)),
+  );
+  if (set.size === 0) return null;
+  return [...set].sort().join(",");
+}
+
+/**
+ * @param {unknown} node
+ * @returns {unknown}
+ */
+function valueNodeToPlain(node) {
+  if (!node || typeof node !== "object") return true;
+  const n = /** @type {Record<string, unknown>} */ (node);
+  if (n.kind === "literal") {
+    const v = n.value;
+    if (v != null && typeof v === "object" && !Array.isArray(v)) return v;
+    return true;
+  }
+  if (n.kind === "object" && Array.isArray(n.entries)) {
+    /** @type {Record<string, unknown>} */
+    const out = {};
+    for (const e of n.entries) {
+      if (!e || typeof e !== "object") continue;
+      const key = /** @type {{ key?: string, value?: unknown }} */ (e).key;
+      if (!key) continue;
+      out[key] = valueNodeToPlain(/** @type {{ key?: string, value?: unknown }} */ (e).value);
+    }
+    return out;
+  }
+  return true;
 }
 
 /**
@@ -26,12 +117,10 @@ function objectEntriesToPlain(body) {
     return body.value;
   }
   if (body.kind === "object" && Array.isArray(body.entries)) {
-    /** @type {Record<string, unknown>} */
-    const out = {};
-    for (const e of body.entries) {
-      if (e?.key) out[e.key] = true; // key presence only for fingerprint
-    }
-    return out;
+    const plain = valueNodeToPlain(body);
+    return plain && typeof plain === "object" && !Array.isArray(plain)
+      ? /** @type {Record<string, unknown>} */ (plain)
+      : null;
   }
   return null;
 }
@@ -185,8 +274,11 @@ export function cwlSurfaceToDraftDna(mod, opts = {}) {
     const obj = objectEntriesToPlain(body);
     const response_key_fingerprint =
       content_class === "json" && obj ? responseKeyFingerprint(obj) : null;
+    const request_key_fingerprint = namesKeyFingerprint(r.handlerBodyParams);
+    const query_key_fingerprint = namesKeyFingerprint(r.handlerQueryParams);
 
-    routes.push({
+    /** @type {Record<string, unknown>} */
+    const route = {
       host,
       method,
       path_template,
@@ -195,7 +287,10 @@ export function cwlSurfaceToDraftDna(mod, opts = {}) {
         ? [Math.floor(r.responseStatus / 100) * 100]
         : [],
       response_key_fingerprint,
-    });
+    };
+    if (request_key_fingerprint) route.request_key_fingerprint = request_key_fingerprint;
+    if (query_key_fingerprint) route.query_key_fingerprint = query_key_fingerprint;
+    routes.push(route);
 
     annotations.push({
       method,

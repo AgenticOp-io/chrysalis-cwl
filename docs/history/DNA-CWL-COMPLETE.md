@@ -1,7 +1,7 @@
 # CWL pillar — Exit / DNA queue complete
 
-**Status:** **CLOSED (CWL-owned)** — tip **`1.0.16`** (2026-08-09)  
-**Tip:** `@chrysalis/cwl@1.0.16` / published `@agenticop-io/cwl@1.0.0`…`1.0.16` (tag `cwl-v*`)  
+**Status:** **CLOSED (CWL-owned)** — tip **`1.0.17`** (2026-08-09)  
+**Tip:** `@chrysalis/cwl@1.0.17` / published `@agenticop-io/cwl@1.0.0`…`1.0.17` (tag `cwl-v*`)  
 **Queue:** [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) — **no further CWL invent**  
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) — DNA of the web ≠ all PLs
 
@@ -24,8 +24,8 @@ The **language genome** is done for the Exit 1.0 path:
 
 | Owner | Remaining |
 | --- | --- |
-| **Convert** | Tip pin `1.0.16`; peel/emit gravity; rewrite headers; `g_*` / N-iter / island **execution** |
-| **Secure** | Tip pin `1.0.16`; multi-host profile at cutover; fill `dna_gaps` |
+| **Convert** | Tip pin `1.0.17`; peel/emit gravity; rewrite headers; `g_*` / N-iter / island **execution** |
+| **Secure** | Tip pin `1.0.17`; thin-wrap `pathTemplateShapeEqual`; multi-host profile at cutover |
 
 Those do **not** reopen the language genome. Hand off via Requested docs — do not invent Convert/Secure work in this repo.
 

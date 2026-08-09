@@ -21,7 +21,7 @@ Read in order:
 7. docs/language/CWL.md
 8. AgenticOps/docs/THREE_PILLARS.md
 
-Mission: keep the genome honest. CWL-owned Exit/DNA queue is CLOSED at tip 1.0.16.
+Mission: keep the genome honest. CWL-owned Exit/DNA queue is CLOSED at tip 1.0.17.
 Do not invent Convert oracle work (g_* evaluate, foreach N-iter HTML, browser event execution).
 Land language fixes here only when siblings need a genome change; npm run test:language; hand off pins.
 Do not edit chrysalis-convert or chrysalis-security from this chat.

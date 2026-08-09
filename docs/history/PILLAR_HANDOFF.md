@@ -36,7 +36,7 @@ Mature CWL as a language: specs/RFCs, parser/runtime stability, versioning, fixt
 
 ## Status (2026-08-09)
 
-- Tip **`1.0.16`** — CWL-owned DNA queue **CLOSED** ([`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md))
+- Tip **`1.0.17`** — CWL-owned DNA queue **CLOSED**; Helix seed parity ([`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md))
 - WebIR physical home in-pillar; RFCs through 0024; publish lineage `cwl-v*`
 - Remaining work is Convert/Secure sibling asks only
 

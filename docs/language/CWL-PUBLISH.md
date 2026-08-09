@@ -1,6 +1,6 @@
 # CWL publish & consumer pin path
 
-**Status:** Exit **1.0 published** — tip **`@agenticop-io/cwl@1.0.16`** on GitHub Packages (lineage from `1.0.0`; tags `cwl-v*`).  
+**Status:** Exit **1.0 published** — tip **`@agenticop-io/cwl@1.0.17`** on GitHub Packages (lineage from `1.0.0`; tags `cwl-v*`).  
 See [`EXIT-1.0.md`](../history/EXIT-1.0.md) · queue [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md) (**CLOSED**).
 
 Canonical version: [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md)  
@@ -28,7 +28,7 @@ Published package: **`@agenticop-io/cwl`** (org scope)
 ```
 
 ```bash
-npm install @agenticop-io/cwl@1.0.16
+npm install @agenticop-io/cwl@1.0.17
 ```
 
 Ecology / VSIX: [`CWL-ECOLOGY.md`](./CWL-ECOLOGY.md).

@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.17 — 2026-08-09
+
+- DNA seed Helix parity: fingerprint depth ≤ 2, `pathTemplateShapeEqual`, request/query name FPs
+- `24-dna-bridge` gold: nested JSON, `status`, body/query bindings
+- Sync `cwl-control-lower.mjs` into Convert helper list
+- RFC-0022 SoR updates; sibling tip ask → 1.0.17
+
 ## 1.0.16 — 2026-08-09
 
 - CWL-owned DNA queue **CLOSED** — tip/doc handoff only

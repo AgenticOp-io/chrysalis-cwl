@@ -1,7 +1,7 @@
 # CWL ecology outside AgenticOps
 
 **Status:** bootstrap (Exit 1.0) — private registry + private editor; not Marketplace / public npm  
-**Package:** tip `@agenticop-io/cwl@1.0.16` on GitHub Packages (lineage from `1.0.0`)  
+**Package:** tip `@agenticop-io/cwl@1.0.17` on GitHub Packages (lineage from `1.0.0`)  
 **Editor:** `editors/vscode` → private VSIX (`npm run pack:cwl-vsix`)
 
 Ecology outside the AgenticOps monorepo starts here: a versioned language artifact + installable editor support that do **not** require Convert or Secure checkouts.
@@ -15,7 +15,7 @@ Needs a GitHub token with `read:packages` for org `AgenticOp-io`.
 @agenticop-io:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 
-npm install @agenticop-io/cwl@1.0.16
+npm install @agenticop-io/cwl@1.0.17
 ```
 
 ```js
@@ -37,7 +37,7 @@ npm run pack:cwl-vsix
 # → dist-editors/cwl-lsp-<tip>.vsix
 ```
 
-Install: Extensions → `Install from VSIX…` (or `code --install-extension dist-editors/cwl-lsp-1.0.16.vsix`).
+Install: Extensions → `Install from VSIX…` (or `code --install-extension dist-editors/cwl-lsp-1.0.17.vsix`).
 
 Extension spawns `scripts/cwl-lsp-server.mjs` from the chrysalis-cwl checkout above `editors/vscode`. For a machine without the full pillar, clone this private repo (or set path in extension settings when added).
 

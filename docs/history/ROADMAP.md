@@ -108,14 +108,14 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ## Phase 1.0 — Published language (private registry)
 
-- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (tip **`1.0.16`**)
+- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (tip **`1.0.17`**)
 - [x] Packable artifact: staged `lib/` + `bin/cwl` + GitHub Packages `publishConfig` ([`EXIT-1.0.md`](./EXIT-1.0.md))
 - [x] Pre-publish pin path documented: sibling / `file:` / env ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
 - [x] Convert + Secure **`file:` / registry** pins proven (`npm run test:cwl-pin`) during transition
 - [x] Publish **prep + pack dry-run** → `CWL_EXIT_1_0_PACK_OK`
 - [x] Editor + stdio LSP ([`CWL-LSP.md`](../language/CWL-LSP.md)) including import-graph refs/rename
 - [x] Private-first registry decision (GitHub Packages; no public npm)
-- [x] **CI publish:** `@agenticop-io/cwl@1.0.0`… tip tags `cwl-v*` through **`cwl-v1.0.16`**
+- [x] **CI publish:** `@agenticop-io/cwl@1.0.0`… tip tags `cwl-v*` through **`cwl-v1.0.17`**
 - [x] Package `dna-seed` export + multi-host DNA gold + holes report
 - [x] Ecology bootstrap — [`CWL-ECOLOGY.md`](../language/CWL-ECOLOGY.md)
 - [x] **CWL-owned Exit/DNA complete** — [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md)

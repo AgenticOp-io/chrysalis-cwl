@@ -191,7 +191,7 @@ async function activate(context) {
         rename: { prepareSupport: true },
       },
     },
-    clientInfo: { name: "cwl-vscode", version: "1.0.16" },
+    clientInfo: { name: "cwl-vscode", version: "1.0.17" },
   });
   client.notify("initialized", {});
 

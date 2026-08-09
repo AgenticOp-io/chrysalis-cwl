@@ -15,6 +15,8 @@ import {
   loadDeployProfile,
   resolveHostFromProfile,
   cwlHolesBridgeReport,
+  pathTemplateShapeEqual,
+  responseKeyFingerprint,
 } from "./hub-ingest/cwl-dna-seed.mjs";
 import { resolveCwlModuleFromPath } from "./hub-ingest/cwl-module-graph.mjs";
 
@@ -86,10 +88,36 @@ async function main() {
     failures.push("holes-report-dna-gaps-should-start-empty");
   }
 
+  if (!pathTemplateShapeEqual("/items/:id", "/items/:userId")) {
+    failures.push("path-shape-named-params");
+  }
+  if (pathTemplateShapeEqual("/items/:id", "/items/x")) {
+    failures.push("path-shape-static-mismatch-should-fail");
+  }
+  const nestedFp = responseKeyFingerprint({ ok: true, meta: { v: 1 } });
+  if (nestedFp !== "meta,meta.v,ok") {
+    failures.push(`response-fp-depth2-got-${nestedFp}`);
+  }
+  const health = (actual.routes ?? []).find(
+    (r) => r.method === "GET" && r.path_template === "/api/health",
+  );
+  if (!health?.status_classes?.includes(200)) {
+    failures.push("status-classes-health-200");
+  }
+  if (health?.response_key_fingerprint !== "meta,meta.v,ok,surface") {
+    failures.push("nested-fp-health");
+  }
+  const login = (actual.routes ?? []).find(
+    (r) => r.method === "POST" && r.path_template === "/login",
+  );
+  if (login?.request_key_fingerprint !== "password,username") {
+    failures.push("request-fp-login");
+  }
+
   const ok = failures.length === 0;
   const report = {
     kind: "chrysalis.cwl.dna-bridge.gate",
-    schemaVersion: 2,
+    schemaVersion: 3,
     ok,
     rfc: ["0022", "0023"],
     token: ok ? "CWL_DNA_BRIDGE_OK" : "CWL_DNA_BRIDGE_FAIL",
@@ -98,6 +126,9 @@ async function main() {
       defaultHost: !failures.includes("default-host-seed-mismatch"),
       multiHostApi: !failures.includes("api-host-seed-mismatch"),
       hostsValidation: !failures.includes("unknown-host-should-throw"),
+      pathShape: !failures.some((f) => f.startsWith("path-shape")),
+      fingerprintDepth: !failures.some((f) => f.includes("fp") || f.includes("nested")),
+      statusClasses: !failures.includes("status-classes-health-200"),
       holesBridgeReport: !failures.includes("holes-report-empty"),
     },
     actualRoutes: actual.routes?.length ?? 0,

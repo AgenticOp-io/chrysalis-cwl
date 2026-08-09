@@ -1,7 +1,7 @@
 # CWL finish fleet — **CLOSED**
 
 Root: `C:\Users\david\AgenticOps\engines\chrysalis-cwl`  
-**Status:** Agents A–L (0.1 → 1.0.15) landed. Tip **`1.0.16`** closes the CWL-owned DNA queue.
+**Status:** Agents A–L (0.1 → 1.0.15) landed. Tip **`1.0.17`** = Helix seed parity + convert sync; queue stays CLOSED.
 
 | Era | Outcome |
 | --- | --- |
@@ -10,6 +10,7 @@ Root: `C:\Users\david\AgenticOps\engines\chrysalis-cwl`
 | K–L | Convert loadWebir / Exit 1.0 publish path |
 | 1.0.8–1.0.15 | Control / emit / LSP / CI / tip hygiene |
 | **1.0.16** | Queue closed — tip/doc handoff only |
+| **1.0.17** | Helix fingerprint depth + path-shape SoR; `cwl-control-lower` convert sync |
 
 ## Do not spawn
 

@@ -1,6 +1,6 @@
 # CWL near-term DNA authoring — complete (historical)
 
-**Superseded by:** [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md) · tip **`1.0.16`** · queue [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) (**CLOSED**)
+**Superseded by:** [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md) · tip **`1.0.17`** · queue [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) (**CLOSED**)
 
 Near-term authoring (Phase 0.6) and Exit 1.0 publish landed. This file remains as history; do not treat tip `1.0.0` rows below as current.
 

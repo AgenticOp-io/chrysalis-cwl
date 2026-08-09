@@ -4,6 +4,8 @@
  */
 export {
   responseKeyFingerprint,
+  pathTemplateShapeEqual,
+  namesKeyFingerprint,
   contentClassFromBody,
   loadDeployProfile,
   resolveHostFromProfile,

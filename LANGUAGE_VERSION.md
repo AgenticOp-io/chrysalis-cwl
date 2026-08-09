@@ -3,17 +3,18 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.16` |
-| **Status** | CWL-owned DNA queue **CLOSED** |
+| **Version** | `1.0.17` |
+| **Status** | DNA seed Helix parity + control-lower convert sync |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`1.0.16` finishes the queue: tip/doc handoff only — no new language invent.
+Built from sibling consume surfaces (Convert sync gap + Secure DNA bridge depth):
 
-- Constitution / README / EXIT / PUBLISH / fleet / starter aligned to tip
-- Sibling Requested pins → **`@agenticop-io/cwl@1.0.16`**
-- [`DNA-BUILD-NEXT.md`](./docs/history/DNA-BUILD-NEXT.md) marked **CLOSED**
+- **`cwl-control-lower.mjs`** in convert helper sync list (fat ingest SoR)
+- DNA seed: Helix-matching fingerprint depth ≤ 2, `pathTemplateShapeEqual`, request/query name FPs, `status N;` → `status_classes`
+- Gold `24-dna-bridge` exercises nested JSON / status / body+query bindings
+- RFC-0022 updated; Secure Requested tip → **1.0.17**
 
 ## Gate
 
@@ -21,4 +22,5 @@
 npm run build:webir
 CWL_REQUIRE_WEBIR=1 npm run test:language
 npm run smoke:cwl-emit
+npm run smoke:cwl-ingest-matrix
 ```

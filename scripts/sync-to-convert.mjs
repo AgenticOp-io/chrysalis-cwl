@@ -59,6 +59,7 @@ export const CWL_WEBIR_HELPERS = [
   "hub-cwl-middleware.mjs",
   "hub-cwl-auth-presets.mjs",
   "hub-cwl-effects.mjs",
+  "cwl-control-lower.mjs",
 ];
 
 /**
