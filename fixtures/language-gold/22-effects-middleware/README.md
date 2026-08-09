@@ -1,5 +1,5 @@
 # `22-effects-middleware` — RFC-0020
 
-**Parseable now:** `effects: auth.require, cors.allow, csrf.verify;` (comma-separated dotted names) and mixes with `session.write`.
+**runtime-ok** — dotted effect chains (`auth.require`, `cors.allow`, `csrf.verify`, …) stay conclusive for literal returns under simulate.
 
-**Not in this gold:** WebIR/Hono lowering of `__cwl_middleware_*` helpers — convert/runtime verify suites own that depth.
+Does not claim real auth/CORS/CSRF enforcement.

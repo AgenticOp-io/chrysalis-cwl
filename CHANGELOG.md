@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.7 — 2026-08-09
+
+- Full language-gold **runtime-ok** matrix (**25**): middleware, probes, effects chains, DNA bridge routes, holes/form-action **501**, island-kind attachment-hole **501**
+- Partial surfaces documented honestly (`19` list page; `23` empty shells; no invented auth/loops)
+
 ## 1.0.6 — 2026-08-09
 
 - Fix HTML ingest double-response wrap (single body for `@page` / `return html`)

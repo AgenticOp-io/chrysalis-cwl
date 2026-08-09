@@ -149,10 +149,18 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       expectHeaders: { "content-type": "text/html; charset=utf-8" },
     },
   ]),
+  "11-holes": Object.freeze([
+    { path: "/legacy", expectStatus: 501 },
+    { method: "POST", path: "/todo", expectStatus: 501 },
+  ]),
   "12-multi-file": Object.freeze([
     { path: "/health", expectStatus: 200, expectBody: "true" },
     { path: "/ping", expectStatus: 200, expectBody: "42" },
     { path: "/meta", expectStatus: 200, expectBody: '{"ok":true,"version":1}' },
+  ]),
+  "13-middleware": Object.freeze([
+    { path: "/ready", expectStatus: 200, expectBody: '{"ready":true}' },
+    { method: "POST", path: "/echo", expectStatus: 200, expectBody: '{"ok":true}' },
   ]),
   "14-defaults-headers": Object.freeze([
     {
@@ -242,6 +250,53 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       expectBody:
         '<section><p>Ada</p><div data-cwl-island="client"><button data-cwl-on-click="navigate">Go</button></div></section>',
     },
+  ]),
+  "19-early-exit": Object.freeze([
+    // Guards / unbound symbols still hole or skip under simulate — list page is conclusive.
+    { path: "/posts", expectStatus: 200, expectBody: "<ul></ul>" },
+  ]),
+  "20-probes": Object.freeze([
+    { path: "/search", expectStatus: 200, expectBody: "<p>search: </p>" },
+    {
+      path: "/blog/x",
+      expectStatus: 200,
+      expectBody:
+        '<h1>Blog</h1><p>x: x</p>\n<script type="application/json" id="cwl-page-load">{"slug":"x","source":"page-server"}</script>',
+    },
+  ]),
+  "21-form-action": Object.freeze([
+    {
+      path: "/notify",
+      expectStatus: 200,
+      expectBody: '<form method="post" action="/notify"><button>Notify</button></form>',
+    },
+    { method: "POST", path: "/notify", expectStatus: 501 },
+  ]),
+  "22-effects-middleware": Object.freeze([
+    { path: "/admin", expectStatus: 200, expectBody: '{"ok":true}' },
+    { path: "/admin/me", expectStatus: 200, expectBody: '{"ok":true,"surface":"admin"}' },
+    { method: "POST", path: "/admin/session", expectStatus: 200, expectBody: '{"ok":true}' },
+  ]),
+  "23-nested-control": Object.freeze([
+    { path: "/posts", expectStatus: 200, expectBody: "<ul></ul>" },
+    { path: "/threads", expectStatus: 200, expectBody: "<div></div>" },
+  ]),
+  "24-dna-bridge": Object.freeze([
+    {
+      path: "/",
+      expectStatus: 200,
+      expectBody: "<!doctype html><html><body><h1>Home</h1></body></html>",
+    },
+    { method: "POST", path: "/login", expectStatus: 200, expectBody: '{"ok":true}' },
+    { path: "/api/health", expectStatus: 200, expectBody: '{"ok":true,"surface":"api"}' },
+    { path: "/items/x", expectStatus: 200, expectBody: '{"ok":true,"id":"x"}' },
+  ]),
+  "25-island-kinds": Object.freeze([
+    { path: "/api/health", expectStatus: 200, expectBody: '{"ok":true}' },
+    // Attachment-hole pages: hole ops still 501 under simulate (IR present; rewrite conclusive miss).
+    { path: "/map", expectStatus: 501 },
+    { path: "/compute", expectStatus: 501 },
+    { path: "/legacy-script", expectStatus: 501 },
   ]),
 });
 

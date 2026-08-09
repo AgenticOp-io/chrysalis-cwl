@@ -2,7 +2,7 @@
 
 **Slice:** language-owned execute smoke + matrix  
 **Date:** 2026-08-09  
-**Version:** tip `1.0.4` + Unreleased execute (`04-request-context` runtime-ok; no language package bump)
+**Version:** tip `1.0.7` — full language-gold execute matrix (25)
 
 ## What “execute” means today
 
@@ -94,10 +94,10 @@ Language owns the gold + smoke contract; Convert owns rewrite/simulate honesty (
 
 1. **Dep wiring:** `packages/webir` is local; rewrite/emit-shared still need Convert sibling dists or hooks for full execute smokes.
 2. **`test:runtime-cwl`:** root script runs `npm test --prefix packages/runtime-cwl`, but package has no `test` script and tests reference convert `fixtures/hub-gold-cwl*` (absent here).
-3. **Coverage:** API + pages + UI SSR (matrix 16). Not claimed:
-   - Real session/auth gates (07 only proves conclusive effect wrappers)
-   - Browser island event execution (18 emits markers only)
-   - Holes / form-action / middleware depth / nested control as execute golds
+3. **Coverage:** all `fixtures/language-gold` with routes (**25** runtime-ok). Honest limits:
+   - Holes / form-action POST / attachment-hole pages → **501** (not invented HTML)
+   - No real auth/session/CORS enforcement; no foreach iteration; no browser island events
+   - `19` / `23` early-exit / nested `if` evaluate not claimed under simulate
    - Invented CT fallback when CWL omits `content-type`
 4. **Browser / worker / emit-runtime-cwl:** out of this slice.
 5. **No Convert emit required** for this execute path — keep rewrite/emit-shared dists buildable for sibling consume.
