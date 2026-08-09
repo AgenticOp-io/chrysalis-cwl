@@ -47,16 +47,16 @@ CWL is the **DNA of the web** (Rosetta meaning). Convert is the Universal Transl
 
 **Plan:** [`WEBIR-EXTRACT-PLAN.md`](./WEBIR-EXTRACT-PLAN.md) · home story: [`packages/WEBIR.md`](../../packages/WEBIR.md)
 
-- [x] **Ownership (homeable):** `@chrysalis/webir` resolves from this pillar via `packages/webir` junction + `load-webir.mjs` (`npm run link:webir` / `npm run smoke:webir`) — no convert `cwd` hack for resolve; committed story in `packages/WEBIR.md`
+- [x] **Ownership (homeable → physical):** `@chrysalis/webir` lives in `packages/webir` (`npm run build:webir` / `smoke:webir`); story in `packages/WEBIR.md`
 - [x] **Partial (Agent G):** CWL WebIR helpers in-pillar — `hub-t.mjs`, `hub-cwl-{middleware,auth-presets,effects}.mjs`, `cwlPathParamsForWebir` (no hub-lift); synced via `CWL_WEBIR_HELPERS`
 - [x] **Partial (Agent H):** thin `hub-lift-cwl-webir.mjs` (CWL-only; no COBOL/fat lift); `cwl-ingest` + `export-cwl-webir` use local helpers/`load-webir`; `npm run smoke:cwl-ingest` green on `01-literals`
 - [x] **Partial (Agent I):** `test:ingest` (= `smoke:cwl-ingest`) + `01-literals/expected-webir.json`; `test:language` stays WebIR-free; optional `test:language:full`
 - [x] **Partial (Agent J / Slice 4):** thin `hub-emit-cwl-webir.mjs` WebIR→CWL; `npm run smoke:cwl-emit` + `test:ingest-roundtrip` on `01-literals`; pillar `cwl-fmt` stays parse→print (dual-mode deferred)
 - [x] **Ingest matrix:** all `language-gold/*/routes.cwl` + `expected-webir.json` (`npm run smoke:cwl-ingest-matrix`)
 - [x] **UT evidence pack:** `npm run smoke:ut-evidence` → `reports/ut-spine/EVIDENCE.md`
-- [ ] **Convert flip:** physical tree in chrysalis-cwl — **Requested:** [`WEBIR-FLIP-REQUESTED.md`](./WEBIR-FLIP-REQUESTED.md)
+- [ ] **Convert reverse-home:** Convert `packages/webir` → junction/`file:` at CWL — **Requested:** [`WEBIR-FLIP-REQUESTED.md`](./WEBIR-FLIP-REQUESTED.md)
 - [ ] Dual-mode `cwl-fmt` (explicit with convert; do not overwrite convert WebIR fmt)
-- [ ] Convert depends on shared webir package (not a private fork)
+- [ ] Convert depends on shared webir via reverse pin (not a private fork)
 
 **Exit 0.3:** Parse, print, ingest, and at least one WebIR round-trip path runnable from `chrysalis-cwl` alone.  
 **Round-trip path (met):** `smoke:cwl-emit` / `test:ingest-roundtrip` from this pillar with linked `@chrysalis/webir`.
@@ -115,13 +115,14 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 - [x] Publish **prep + pack dry-run** → `CWL_EXIT_1_0_PACK_OK`
 - [x] Editor + stdio LSP authoring gravity ([`DNA-CWL-NEAR-COMPLETE.md`](./DNA-CWL-NEAR-COMPLETE.md))
 - [x] Private-first registry decision (GitHub Packages; no public npm)
-- [ ] **Human/CI:** `npm publish` from `packages/cwl` with Packages token
-- [ ] Convert pins `@chrysalis/cwl@1.0.0` from registry (today: `file:` OK)
-- [ ] Secure pins `@chrysalis/cwl@1.0.0` from registry (today: `file:` OK)
+- [x] **CI publish:** `@agenticop-io/cwl@1.0.0` on GitHub Packages (tag `cwl-v1.0.0`, workflow `publish-cwl`) — [`EXIT-1.0.md`](./EXIT-1.0.md)
+- [ ] Convert pins `@agenticop-io/cwl@1.0.0` from registry (today: `file:` OK)
+- [ ] Secure pins `@agenticop-io/cwl@1.0.0` from registry (today: `file:` OK)
 - [ ] **Requested (Convert):** peel/emit gravity — [CONVERT-GRAVITY-REQUESTED.md](./CONVERT-GRAVITY-REQUESTED.md)
+- [x] Ecology bootstrap (private VSIX + outsider install doc) — [`CWL-ECOLOGY.md`](../language/CWL-ECOLOGY.md)
 - [ ] Breaking changes require major bump + RFC migration notes
 
-**Exit 1.0 (CWL-side):** Packable private-registry language artifact proven. **Actual publish + consumer registry pins** = human / Convert / Secure.
+**Exit 1.0 (CWL-side):** Packable private-registry language artifact **published**. Consumer registry pins + Convert gravity / Secure cutover = sibling agents.
 
 ---
 

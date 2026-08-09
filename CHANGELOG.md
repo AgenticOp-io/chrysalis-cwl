@@ -2,11 +2,12 @@
 
 ## 1.0.0 — 2026-08-09
 
-- **Exit 1.0 (CWL-side):** packable `@chrysalis/cwl@1.0.0` for GitHub Packages (`publishConfig` restricted; not public npm)
+- **Exit 1.0:** `@agenticop-io/cwl@1.0.0` **published** on GitHub Packages (tag `cwl-v1.0.0`); local name stays `@chrysalis/cwl`
 - Stage `packages/cwl/lib/` from hub-ingest (`sync:cwl-package-lib`); packable `bin/cwl`
-- `"private": false` only so private-registry publish is allowed; pillar GitHub repos remain private
-- Publish-prep includes `npm pack --dry-run` → `CWL_EXIT_1_0_PACK_OK`
-- Docs: `docs/history/EXIT-1.0.md`; Convert/Secure registry pin still Requested (`file:` OK)
+- **WebIR physical home** in `packages/webir` (Convert reverse-home still Requested)
+- Ecology bootstrap: `docs/language/CWL-ECOLOGY.md` + `npm run pack:cwl-vsix`
+- LSP completion + same-file rename already in stdio server (`CWL-LSP.md`)
+- Docs: `EXIT-1.0.md`; Convert gravity / Secure cutover Requested at `1.0.0`
 
 ## Unreleased — thesis
 

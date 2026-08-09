@@ -1,0 +1,30 @@
+{
+  "name": "@chrysalis/webir",
+  "version": "2.0.2",
+  "private": true,
+  "description": "Chrysalis WebIR — multi-dialect, typed, effect-aware intermediate representation for web applications. Physical home: chrysalis-cwl (Rosetta twin of CWL).",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./dialects/web-request": "./dist/dialects/web-request.js",
+    "./dialects/effect": "./dist/dialects/effect.js",
+    "./dialects/data": "./dist/dialects/data.js"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true}); require('fs').rmSync('tsconfig.tsbuildinfo',{force:true})\""
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "~5.6.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AgenticOp-io/chrysalis-cwl.git",
+    "directory": "packages/webir"
+  }
+}

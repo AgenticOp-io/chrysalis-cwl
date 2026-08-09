@@ -9,13 +9,13 @@
 
 ## What this version means
 
-`1.0.0` is the first **registry-ready** language release:
+`1.0.0` is the first **published** private-registry language release:
 
-- Packable `@chrysalis/cwl` with staged `lib/` (parser/print/diagnose/lsp-map/fmt) + `bin/cwl`
-- `publishConfig.registry` = GitHub Packages (`npm.pkg.github.com`), `access: restricted` — **not** public npm
-- `"private": false` only so private-registry publish is allowed (repos stay private)
+- Packable `@chrysalis/cwl` (published as `@agenticop-io/cwl@1.0.0` on GitHub Packages)
+- Staged `lib/` (parser/print/diagnose/lsp-map/fmt) + `bin/cwl`
+- Physical `@chrysalis/webir` home in `packages/webir` (Convert reverse-home still Requested)
+- Ecology bootstrap: private VSIX + outsider install ([`CWL-ECOLOGY.md`](./docs/language/CWL-ECOLOGY.md))
 - Convert/Secure may keep `file:` pins until they migrate (Requested)
-- WebIR physical flip still Convert-owned (not a language-package blocker)
 
 See `CHANGELOG.md`, `docs/language/CWL-PUBLISH.md`, `docs/history/EXIT-1.0.md`.
 
@@ -29,10 +29,10 @@ Breaking changes must be versioned in this file **before** they land in parser/p
 
 ## Out of scope for language package `1.0.0`
 
-- WebIR physical package ownership flip (Convert)
-- Helix / Secure DNA firewall implementation
-- Public npm distribution
-- Convert/Secure already switched to registry pins (Requested after publish)
+- Convert reverse-home of WebIR (Convert still has a physical leftover until cutover)
+- Helix / Secure DNA firewall implementation / cutover default (Secure Requested)
+- Public npm / Marketplace distribution
+- Convert peel/emit gravity (Convert Requested)
 
 ## Gate
 
@@ -40,4 +40,5 @@ Breaking changes must be versioned in this file **before** they land in parser/p
 npm run sync:cwl-package-lib
 npm run test:language
 npm run test:cwl-pack          # npm pack dry-run
+npm run build:webir && npm run smoke:webir
 ```

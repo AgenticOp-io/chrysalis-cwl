@@ -1,80 +1,67 @@
 # WebIR ownership flip — Requested: Convert
 
-**Status:** CWL ready; **physical flip = Convert agent only**  
-**Policy:** link-until-pnpm (locked 2026-08-05) until Convert proves consumers after reverse junction / `file:`  
-**Repos:** private — Convert GitHub is `AgenticOp-io/chrysalis` (not a public npm/WebIR fork)  
+**Status:** CWL physical SoR **landed** (`packages/webir` in chrysalis-cwl). **Convert must reverse-home.**  
+**Repos:** private — Convert GitHub is `AgenticOp-io/chrysalis` (local: `engines/chrysalis-convert`)  
 **One-pager:** [`DNA-STEP-E-WEBIR.md`](./DNA-STEP-E-WEBIR.md) · plan: [`WEBIR-EXTRACT-PLAN.md`](./WEBIR-EXTRACT-PLAN.md) · home: [`packages/WEBIR.md`](../../packages/WEBIR.md)  
-**Refreshed:** 2026-08-08 (DNA Step E — CWL handoff; no second WebIR)
+**Refreshed:** 2026-08-09 (CWL took physical tree; Convert cutover remaining)
 
 ---
 
 ## Do not
 
 - Invent a second `@chrysalis/webir` under Convert
-- Leave physical trees in both pillars (one SoR only)
-- Flip without retargeting Convert `workspace:*` consumers
-- Expect CWL to `git mv` out of Convert
+- Leave Convert’s physical tree as SoR after cutover (edit CWL copy only)
+- Flip Convert consumers without retargeting `workspace:*`
+- Expect CWL to edit Convert from this lane
 
 ---
 
-## CWL already proved (no Convert cwd)
+## CWL done
 
-| Proof | Command (from `chrysalis-cwl`) |
+| Proof | Command / path |
 | --- | --- |
-| Junction home | `npm run link:webir` → `packages/webir` → sibling convert |
+| Physical package | `packages/webir` (src + package.json; `dist/` built via `npm run build:webir`) |
+| Workspace member | `pnpm-workspace.yaml` → `packages/webir` |
 | Resolve + ModuleBuilder | `npm run smoke:webir` |
 | Thin ingest + golds | `npm run test:ingest` / `smoke:cwl-ingest-matrix` |
-| Language + ingest matrix | `npm run test:language:full` |
-| Pillar workspace stub | `pnpm-workspace.yaml` comments future `packages/webir` |
 | Loader order | `scripts/hub-ingest/load-webir.mjs` (pillar → sibling → package) |
-
-Convert Slice 3.3 (`loadWebir` without cwd-only hack) is already done on Convert side.
 
 ---
 
-## Convert checklist (execute in order)
+## Convert checklist (execute now)
 
-- [ ] **1. Coordinate move** — From Convert (`AgenticOp-io/chrysalis`): `git mv packages/webir` into `chrysalis-cwl/packages/webir` (or copy + delete with history note). CWL does not perform this move.
-- [ ] **2. Reverse home** — Convert `packages/webir` becomes junction / symlink / `"@chrysalis/webir": "file:../chrysalis-cwl/packages/webir"` pointing **at CWL**. Remove any leftover physical duplicate.
-- [ ] **3. Retarget workspace** — Update Convert pnpm `packages/*` / ~14 `"@chrysalis/webir": "workspace:*"` consumers so resolve stays green (workspace protocol or `file:` — pick one, document it).
-- [ ] **4. Pillar workspace (with CWL)** — Uncomment / enable `packages/webir` in CWL `pnpm-workspace.yaml` if using `workspace:*` from CWL `runtime-cwl*`; else set those deps to `file:../webir`. Coordinate — do not leave broken `workspace:*` with no workspace member.
-- [ ] **5. Retire leftovers** — Drop PHP_converter / legacy webir junctions as source of truth (Slice 3.5).
-- [ ] **6. Prove Convert** — Run acceptance commands below; reply with Convert SHA + what path consumers use (`workspace:*` vs `file:`).
-- [ ] **7. Hand back** — CWL agent re-runs prove commands (below) from `chrysalis-cwl` cwd only.
+- [ ] **1. Reverse home** — Replace Convert `packages/webir` with junction / symlink / `"@chrysalis/webir": "file:../chrysalis-cwl/packages/webir"`. Delete Convert’s physical duplicate after consumers resolve.
+- [ ] **2. Retarget workspace** — Update Convert pnpm `packages/*` / `"@chrysalis/webir": "workspace:*"` consumers so resolve stays green (`workspace:*` only if Convert lists the CWL path, else `file:`).
+- [ ] **3. Retire leftovers** — Drop PHP_converter / legacy webir junctions as SoR.
+- [ ] **4. Prove Convert** — Acceptance commands below; reply with Convert SHA + consumer mode.
+- [ ] **5. Pin language** — Prefer registry `@agenticop-io/cwl@1.0.0` (or keep `file:` for CWL language package) — see [`EXIT-1.0.md`](./EXIT-1.0.md).
 
 ---
 
 ## Acceptance commands (Convert must run)
 
-From **Convert** root after flip:
+From **Convert** root after reverse home:
 
 ```bash
-# WebIR package builds and resolves for hub
-pnpm --filter @chrysalis/webir build
-# Prefer the lane’s existing language-pillar smoke (name may match your scripts):
+pnpm --filter @chrysalis/webir build   # or build via CWL path
 pnpm run hub:cwl-language-pillar-smoke
-# Plus at least one ST / hub sample that imports @chrysalis/webir (your usual GCE/full prove path)
 ```
 
 Must show:
 
-1. `import("@chrysalis/webir")` (or workspace link) works **without** `process.cwd()` == Convert root hacks beyond Slice 3.3 fallbacks.
-2. No second physical `packages/webir` tree under Convert (only junction/`file:` → CWL).
-3. Hub ST / language-pillar smoke green.
+1. `import("@chrysalis/webir")` resolves **without** a second physical Convert tree as SoR.
+2. Hub ST / language-pillar smoke green.
 
 ---
 
-## CWL prove commands (after Convert replies)
-
-From **`chrysalis-cwl`** (physical `packages/webir` or refreshed link — **not** Convert cwd):
+## CWL prove (already green path)
 
 ```bash
+npm run build:webir
+npm run link:webir
 npm run smoke:webir
 npm run test:ingest
-npm run test:language:full
 ```
-
-Expected: pillar home resolves `packages/webir/dist` first; ingest golds + matrix green; language gates unchanged.
 
 ---
 
@@ -87,5 +74,3 @@ Consumer mode: workspace:* | file:../chrysalis-cwl/packages/webir
 Convert prove: hub:cwl-language-pillar-smoke <ok|fail>
 PHP_converter webir retired: <yes|no>
 ```
-
-CWL then runs the three prove commands and closes Step E in the DNA note.

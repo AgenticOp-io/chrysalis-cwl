@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 /**
- * Home `@chrysalis/webir` under the CWL pillar via junction/symlink:
- *   packages/webir → ../chrysalis-convert/packages/webir
+ * Ensure `@chrysalis/webir` is usable from the CWL pillar.
  *
- * Idempotent. Does not modify convert (flip convert→cwl is Slice 3 — see
- * docs/history/WEBIR-EXTRACT-PLAN.md and packages/WEBIR.md).
+ * Preferred: physical `packages/webir` in this repo (Phase 0.3 flip — CWL SoR).
+ * Fallback: junction → sibling Convert (legacy link-until-pnpm) when physical
+ * tree is absent (fresh clone without package, or pre-flip checkout).
+ *
+ * Convert must still reverse-junction / file: pin at CWL — see
+ * docs/history/WEBIR-FLIP-REQUESTED.md.
  */
 import { existsSync, lstatSync, mkdirSync, rmSync, symlinkSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
@@ -15,39 +18,60 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const PACKAGES = join(ROOT, "packages");
 const LINK = join(PACKAGES, "webir");
 const TARGET = resolve(ROOT, "../chrysalis-convert/packages/webir");
+const PKG = join(LINK, "package.json");
+const DIST = join(LINK, "dist/index.js");
+
+function physicalHome() {
+  if (!existsSync(PKG)) return false;
+  try {
+    const st = lstatSync(LINK);
+    if (st.isSymbolicLink()) return false;
+  } catch {
+    return false;
+  }
+  // Windows junction still exposes target package.json — detect reparse
+  if (process.platform === "win32") {
+    const r = spawnSync("fsutil", ["reparsepoint", "query", LINK], { encoding: "utf8" });
+    if (r.status === 0) return false;
+  }
+  return true;
+}
 
 function main() {
+  mkdirSync(PACKAGES, { recursive: true });
+
+  if (physicalHome()) {
+    if (!existsSync(DIST)) {
+      console.error(`physical packages/webir present but dist missing: ${DIST}`);
+      console.error("Build in-pillar:");
+      console.error("  npm run build:webir");
+      process.exit(1);
+    }
+    console.log(`ok: physical WebIR home ${LINK}`);
+    console.log("    SoR: chrysalis-cwl (Convert must reverse-junction — WEBIR-FLIP-REQUESTED.md)");
+    console.log("    prove: npm run smoke:webir");
+    return;
+  }
+
   if (!existsSync(TARGET)) {
     console.error(`target missing: ${TARGET}`);
-    console.error("");
-    console.error("link:webir needs a sibling Convert checkout with physical packages/webir.");
-    console.error("  Clone private repo AgenticOp-io/chrysalis next to chrysalis-cwl");
-    console.error("  (local folder name is usually chrysalis-convert).");
-    console.error("  Until Convert flips ownership, WebIR lives there — see packages/WEBIR.md");
-    console.error("  and docs/history/WEBIR-FLIP-REQUESTED.md (DNA Step E).");
+    console.error("Need either committed packages/webir in this repo, or sibling Convert webir.");
+    console.error("See packages/WEBIR.md");
     process.exit(1);
   }
   if (!existsSync(join(TARGET, "dist/index.js"))) {
     console.error(`webir dist missing: ${join(TARGET, "dist/index.js")}`);
-    console.error("Build Convert webir first (from Convert root):");
-    console.error("  pnpm --filter @chrysalis/webir build");
-    console.error("Then re-run: npm run link:webir");
+    console.error("Build Convert webir first, or prefer in-pillar: npm run build:webir");
     process.exit(1);
   }
 
-  mkdirSync(PACKAGES, { recursive: true });
-
   if (existsSync(LINK)) {
-    const st = lstatSync(LINK);
-    // Already a reparse / symlink — leave alone if it points at a usable dist
-    if (existsSync(join(LINK, "dist/index.js"))) {
-      console.log(`ok: pillar home packages/webir resolves dist`);
+    if (existsSync(DIST)) {
+      console.log(`ok: packages/webir resolves dist (legacy link)`);
       console.log(`    ${LINK} → ${TARGET}`);
-      console.log("    policy: link-until-pnpm (physical SoR still Convert)");
-      console.log("    next: Convert ownership flip — docs/history/WEBIR-FLIP-REQUESTED.md");
-      console.log("    prove: npm run smoke:webir");
       return;
     }
+    const st = lstatSync(LINK);
     if (st.isSymbolicLink() || (process.platform === "win32" && !st.isFile())) {
       rmSync(LINK, { recursive: true, force: true });
     } else {
@@ -65,8 +89,8 @@ function main() {
   } else {
     symlinkSync(TARGET, LINK, "dir");
   }
-  console.log(`linked: pillar home ${LINK} → ${TARGET}`);
-  console.log("run: npm run smoke:webir");
+  console.log(`linked (legacy): ${LINK} → ${TARGET}`);
+  console.log("Prefer physical home in chrysalis-cwl — see WEBIR-FLIP-REQUESTED.md");
 }
 
 main();
