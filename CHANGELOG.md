@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.11 — 2026-08-09
+
+- Thin emit: response chrome (`status` / `content-type` / `response-header`), executable effects peel, page-load
+- Param/query defaults + hyphenated header idents on emit reverse
+- Emit smoke matrix **15** golds → `CWL_EMIT_SMOKE_OK`
+
 ## 1.0.10 — 2026-08-09
 
 - Thin emit Rosetta reverse: projectable early-guards / else / else-if / foreach (`cwl-emit-control.mjs`)

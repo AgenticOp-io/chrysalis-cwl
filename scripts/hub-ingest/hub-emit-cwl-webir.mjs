@@ -109,10 +109,14 @@ export function cwlValueOfThin(get, id) {
   if (n.dialect === "data" && n.op === "hole") {
     return { t: "hole", reason: String(n.attrs?.reason ?? "cwl:emit:hole") };
   }
-  // Path/query/body field as bare ident in object / return (authored binding)
+  // Path/query defaults (`??`) project as the binding ident (default emitted on param/query decl)
+  if (n.dialect === "data" && (n.op === "binop" || n.op === "binOp") && n.attrs?.operator === "??") {
+    return cwlValueOfThin(get, n.operands?.[0]);
+  }
+  // Path/query/body/header field as bare ident (headers may include `-`)
   if (n.dialect === "data" && (n.op === "request.field" || n.op === "requestField" || n.op === "param")) {
     const name = String(n.attrs?.name ?? "");
-    if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) return { t: "ident", name };
+    if (/^[A-Za-z_][A-Za-z0-9_-]*$/.test(name)) return { t: "ident", name };
   }
   return { t: "hole", reason: `cwl:emit:unsupported:${n.dialect}.${n.op}` };
 }
@@ -124,46 +128,80 @@ export function cwlValueOfThin(get, id) {
  */
 export function walkCwlHandlerBodyThin(get, bodyId) {
   const peeled = peelCwlControlBody(get, bodyId);
-  const value = cwlValueOfThin(get, peeled.successId);
-  const isPage = value.t === "html";
-  if (value.t === "hole" && peeled.earlyGuards.length === 0 && peeled.foreachBindings.length === 0) {
+  let value = cwlValueOfThin(get, peeled.successId);
+  /** @type {object | null} */
+  let loadValue = null;
+  if (peeled.loadBody?.kind === "object-ref" && peeled.loadBody.id) {
+    const lv = cwlValueOfThin(get, peeled.loadBody.id);
+    if (lv.t === "obj" || lv.t === "lit") loadValue = lv;
+  }
+  const isPage = value.t === "html" || loadValue != null;
+  const hasControl =
+    peeled.earlyGuards.length > 0 ||
+    peeled.foreachBindings.length > 0 ||
+    (peeled.effects?.length && peeled.effects[0] !== "none") ||
+    loadValue != null ||
+    peeled.status != null ||
+    peeled.contentType != null ||
+    (peeled.responseHeaders?.length ?? 0) > 0;
+
+  if (value.t === "hole" && !hasControl) {
     return {
-      status: null,
+      status: peeled.status,
+      contentType: peeled.contentType,
+      responseHeaders: peeled.responseHeaders,
       params: peeled.bindings.path,
+      pathDefaults: peeled.bindings.pathDefaults,
       queryParams: peeled.bindings.query,
+      queryDefaults: peeled.bindings.queryDefaults,
       bodyParams: peeled.bindings.body,
+      headerParams: peeled.bindings.header,
+      cookieParams: peeled.bindings.cookie,
       value: null,
+      loadValue: null,
       holeReason: value.reason,
-      effects: ["none"],
+      effects: peeled.effects ?? ["none"],
       earlyGuards: [],
       foreachBindings: [],
       surfaceKind: "api",
     };
   }
-  // Object returns that embed path fields still project as objects via __object_literal
-  // — if hole only because success unwrap failed but we have control, keep hole honest.
   if (value.t === "hole") {
     return {
-      status: null,
+      status: peeled.status,
+      contentType: peeled.contentType,
+      responseHeaders: peeled.responseHeaders,
       params: peeled.bindings.path,
+      pathDefaults: peeled.bindings.pathDefaults,
       queryParams: peeled.bindings.query,
+      queryDefaults: peeled.bindings.queryDefaults,
       bodyParams: peeled.bindings.body,
+      headerParams: peeled.bindings.header,
+      cookieParams: peeled.bindings.cookie,
       value: null,
+      loadValue,
       holeReason: value.reason,
-      effects: ["none"],
+      effects: peeled.effects ?? ["none"],
       earlyGuards: peeled.earlyGuards,
       foreachBindings: peeled.foreachBindings,
       surfaceKind: isPage ? "page" : "api",
     };
   }
   return {
-    status: null,
+    status: peeled.status,
+    contentType: peeled.contentType,
+    responseHeaders: peeled.responseHeaders,
     params: peeled.bindings.path,
+    pathDefaults: peeled.bindings.pathDefaults,
     queryParams: peeled.bindings.query,
+    queryDefaults: peeled.bindings.queryDefaults,
     bodyParams: peeled.bindings.body,
+    headerParams: peeled.bindings.header,
+    cookieParams: peeled.bindings.cookie,
     value,
+    loadValue,
     holeReason: null,
-    effects: ["none"],
+    effects: peeled.effects ?? ["none"],
     earlyGuards: peeled.earlyGuards,
     foreachBindings: peeled.foreachBindings,
     surfaceKind: isPage ? "page" : "api",
@@ -294,11 +332,42 @@ export function renderCwlRoutes(routes, opts = {}) {
     lines.push(`${block} ${handlerIdent} {`);
     const effectTags = Array.isArray(r.effects) && r.effects.length > 0 ? r.effects : ["none"];
     lines.push(`  effects: ${effectTags.join(", ")};`);
-    for (const name of r.params ?? []) lines.push(`  param ${name};`);
-    for (const name of r.queryParams ?? []) lines.push(`  query ${name};`);
+    const pathDefaults = r.pathDefaults ?? {};
+    for (const name of r.params ?? []) {
+      if (Object.prototype.hasOwnProperty.call(pathDefaults, name)) {
+        lines.push(`  param ${name} = ${cwlRenderLiteral(pathDefaults[name])};`);
+      } else {
+        lines.push(`  param ${name};`);
+      }
+    }
+    const queryDefaults = r.queryDefaults ?? {};
+    for (const name of r.queryParams ?? []) {
+      if (Object.prototype.hasOwnProperty.call(queryDefaults, name)) {
+        lines.push(`  query ${name} = ${cwlRenderLiteral(queryDefaults[name])};`);
+      } else {
+        lines.push(`  query ${name};`);
+      }
+    }
+    for (const name of r.headerParams ?? []) lines.push(`  header ${name};`);
+    for (const name of r.cookieParams ?? []) lines.push(`  cookie ${name};`);
     for (const name of r.bodyParams ?? []) lines.push(`  body ${name};`);
+    for (const h of r.responseHeaders ?? []) {
+      if (Object.prototype.hasOwnProperty.call(h, "default")) {
+        lines.push(`  response-header ${h.name} = ${cwlRenderLiteral(h.default)};`);
+      } else {
+        lines.push(`  response-header ${h.name};`);
+      }
+    }
 
-    if (r.holeReason && !(r.earlyGuards?.length || r.foreachBindings?.length || r.value)) {
+    const hasSurface =
+      r.earlyGuards?.length ||
+      r.foreachBindings?.length ||
+      r.value ||
+      r.loadValue ||
+      (typeof r.status === "number" && r.status !== 200) ||
+      r.contentType ||
+      r.responseHeaders?.length;
+    if (r.holeReason && !hasSurface) {
       holeCount += 1;
       const reason = String(r.holeReason);
       lines.push(
@@ -315,6 +384,13 @@ export function renderCwlRoutes(routes, opts = {}) {
 
     if (typeof r.status === "number" && r.status !== 200) {
       lines.push(`  status ${r.status};`);
+    }
+    if (r.contentType) {
+      lines.push(`  content-type ${JSON.stringify(String(r.contentType))};`);
+    }
+
+    if (r.loadValue) {
+      lines.push(`  load ${cwlRenderValue(r.loadValue)};`);
     }
 
     if (r.value) {

@@ -262,10 +262,10 @@ export function projectForeachNode(get, id) {
 }
 
 /**
- * Collect binding names from projectable control / success IR.
+ * Collect binding names + defaults from projectable IR.
  * @param {(id: string) => object | undefined} get
  * @param {string} id
- * @param {{ path: string[], query: string[], body: string[] }} acc
+ * @param {{ path: string[], query: string[], body: string[], pathDefaults: Record<string, unknown>, queryDefaults: Record<string, unknown> }} acc
  * @param {Set<string>} seen
  */
 function collectBindings(get, id, acc, seen) {
@@ -273,20 +273,71 @@ function collectBindings(get, id, acc, seen) {
   seen.add(id);
   const n = get(id);
   if (!n) return;
+  if (n.dialect === "data" && (n.op === "binop" || n.op === "binOp") && n.attrs?.operator === "??") {
+    const left = get(n.operands?.[0]);
+    const rightId = n.operands?.[1];
+    let defVal = undefined;
+    let r = get(rightId);
+    // default often wrapped in literal-return block
+    while (r?.op === "block" && (r.operands ?? []).length === 1) r = get(r.operands[0]);
+    if (r?.op === "literal") defVal = r.attrs?.value;
+    if (left && (left.op === "request.field" || left.op === "requestField")) {
+      const name = String(left.attrs?.name ?? "");
+      const src = String(left.attrs?.source ?? "");
+      if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) {
+        if (src === "path") {
+          if (!acc.path.includes(name)) acc.path.push(name);
+          if (defVal !== undefined) acc.pathDefaults[name] = defVal;
+        }
+        if (src === "query") {
+          if (!acc.query.includes(name)) acc.query.push(name);
+          if (defVal !== undefined) acc.queryDefaults[name] = defVal;
+        }
+      }
+    }
+  }
   if (n.dialect === "data" && (n.op === "request.field" || n.op === "requestField")) {
     const name = String(n.attrs?.name ?? "");
     const src = String(n.attrs?.source ?? "");
-    if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) {
+    const identOk =
+      src === "header"
+        ? /^[A-Za-z_][A-Za-z0-9_-]*$/.test(name)
+        : /^[A-Za-z_][A-Za-z0-9_]*$/.test(name);
+    if (identOk) {
       if (src === "path" && !acc.path.includes(name)) acc.path.push(name);
       if (src === "query" && !acc.query.includes(name)) acc.query.push(name);
       if (src === "body" && !acc.body.includes(name)) acc.body.push(name);
+      if (src === "header" && !acc.header.includes(name)) acc.header.push(name);
+      if (src === "cookie" && !acc.cookie.includes(name)) acc.cookie.push(name);
     }
   }
   for (const op of n.operands ?? []) collectBindings(get, op, acc, seen);
 }
 
 /**
- * Peel ingest-shaped control wrappers from a handler body id.
+ * Map executable effect nodes → CWL effect tags (presets only).
+ * @param {(id: string) => object | undefined} get
+ * @param {string[]} stmtIds
+ * @returns {string[]}
+ */
+function effectsFromExecutableStmts(get, stmtIds) {
+  /** @type {string[]} */
+  const tags = [];
+  for (const sid of stmtIds) {
+    const n = get(sid);
+    if (!n) continue;
+    const loc = cwlEmitLocator(n);
+    if (loc === "cwl:executable-session-read") tags.push("session.read");
+    else if (loc === "cwl:executable-session-write") tags.push("session.write");
+    else if (loc === "cwl:executable-auth-require") tags.push("auth.require");
+    else if (loc === "cwl:executable-cors-allow") tags.push("cors.allow");
+    else if (loc === "cwl:executable-csrf-verify") tags.push("csrf.verify");
+  }
+  return tags.length ? tags : ["none"];
+}
+
+/**
+ * Peel ingest-shaped wrappers from a handler body id (outer → inner).
  * @param {(id: string) => object | undefined} get
  * @param {string} bodyId
  */
@@ -295,33 +346,119 @@ export function peelCwlControlBody(get, bodyId) {
   let earlyGuards = [];
   /** @type {object[]} */
   let foreachBindings = [];
+  /** @type {string[]} */
+  let effects = ["none"];
+  /** @type {number | null} */
+  let status = null;
+  /** @type {string | null} */
+  let contentType = null;
+  /** @type {Array<{ name: string, default?: unknown }>} */
+  let responseHeaders = [];
+  /** @type {object | null} */
+  let loadBody = null;
   let id = bodyId;
   let n = get(id);
 
-  if (n?.dialect === "data" && n.op === "block" && cwlEmitLocator(n) === "cwl:foreach-bindings") {
-    const ops = n.operands ?? [];
-    id = ops[0];
-    for (let i = 1; i < ops.length; i++) {
-      const fe = projectForeachNode(get, ops[i]);
-      if (fe) foreachBindings.push(fe);
+  // Peel known wrappers repeatedly (ingest nests response → foreach → guards → effects → value)
+  for (let step = 0; step < 8 && n; step++) {
+    const loc = cwlEmitLocator(n);
+
+    if (n.dialect === "web.request" && n.op === "response") {
+      const chrome =
+        loc === "cwl:response-status" ||
+        loc === "cwl:response-content-type" ||
+        loc === "cwl:response-header";
+      const pageHtml = loc === "cwl-page-html-response" || loc.includes("html");
+      if (chrome || pageHtml) {
+        if (typeof n.attrs?.status === "number") status = n.attrs.status;
+        if (typeof n.attrs?.contentType === "string" && chrome) contentType = n.attrs.contentType;
+        if (n.attrs?.headers && typeof n.attrs.headers === "object") {
+          responseHeaders = Object.entries(n.attrs.headers).map(([name, v]) => ({
+            name,
+            default: v,
+          }));
+        }
+        // Page HTML response: keep as success value (don't peel to bare literal only via value project)
+        if (pageHtml && !chrome) break;
+        id = n.operands?.[0];
+        n = get(id);
+        continue;
+      }
+      break;
     }
-    n = get(id);
+
+    if (n.dialect === "data" && n.op === "block" && loc === "cwl:foreach-bindings") {
+      const ops = n.operands ?? [];
+      id = ops[0];
+      for (let i = 1; i < ops.length; i++) {
+        const fe = projectForeachNode(get, ops[i]);
+        if (fe) foreachBindings.push(fe);
+      }
+      n = get(id);
+      continue;
+    }
+
+    if (n.dialect === "data" && n.op === "block" && loc === "cwl:early-guards") {
+      const ops = n.operands ?? [];
+      const successId = ops[ops.length - 1];
+      for (let i = 0; i < ops.length - 1; i++) {
+        const g = projectIfNode(get, ops[i]);
+        if (g) earlyGuards.push(g);
+      }
+      id = successId;
+      n = get(id);
+      continue;
+    }
+
+    if (n.dialect === "data" && n.op === "block" && loc === "cwl:executable-effects-block") {
+      const ops = n.operands ?? [];
+      if (ops.length >= 1) {
+        effects = effectsFromExecutableStmts(get, ops.slice(0, -1));
+        id = ops[ops.length - 1];
+        n = get(id);
+        continue;
+      }
+    }
+
+    if (n.dialect === "data" && n.op === "block" && loc === "cwl-page-load-html") {
+      const ops = n.operands ?? [];
+      // [__page_load(call), html response]
+      const loadCall = get(ops[0]);
+      if (loadCall?.op === "call" && loadCall.attrs?.callee === "__page_load") {
+        const loadObjId = loadCall.operands?.[0];
+        // Reuse thin object projection via recursive peel of object call only
+        loadBody = { kind: "object-ref", id: loadObjId };
+      }
+      id = ops[1] ?? ops[0];
+      n = get(id);
+      continue;
+    }
+
+    break;
   }
 
-  if (n?.dialect === "data" && n.op === "block" && cwlEmitLocator(n) === "cwl:early-guards") {
-    const ops = n.operands ?? [];
-    const successId = ops[ops.length - 1];
-    for (let i = 0; i < ops.length - 1; i++) {
-      const g = projectIfNode(get, ops[i]);
-      if (g) earlyGuards.push(g);
-    }
-    id = successId;
-    n = get(id);
-  }
-
-  /** @type {{ path: string[], query: string[], body: string[] }} */
-  const bindings = { path: [], query: [], body: [] };
+  /** @type {{ path: string[], query: string[], body: string[], header: string[], cookie: string[], pathDefaults: Record<string, unknown>, queryDefaults: Record<string, unknown> }} */
+  const bindings = {
+    path: [],
+    query: [],
+    body: [],
+    header: [],
+    cookie: [],
+    pathDefaults: {},
+    queryDefaults: {},
+  };
   collectBindings(get, bodyId, bindings, new Set());
 
-  return { successId: id, successNode: n, earlyGuards, foreachBindings, bindings };
+  return {
+    successId: id,
+    successNode: n,
+    earlyGuards,
+    foreachBindings,
+    effects,
+    status,
+    contentType,
+    responseHeaders,
+    loadBody,
+    bindings,
+  };
 }

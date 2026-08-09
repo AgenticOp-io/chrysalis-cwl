@@ -3,17 +3,19 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.10` |
-| **Status** | Rosetta reverse: thin emit early-guards / else / foreach + authored CT only |
+| **Version** | `1.0.11` |
+| **Status** | Thin emit Rosetta: response chrome + effects + page-load |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`1.0.10` closes the thin emit Rosetta gap after 1.0.8–1.0.9 forward lower:
+`1.0.11` widens thin emit reverse beyond control:
 
-- **Thin emit reverse** (`cwl-emit-control.mjs` / `hub-emit-cwl-webir.mjs`): projectable `if` / `else` / `else if` / `foreach` from ingest-tagged WebIR — never invents `g_*`
-- **runtime-cwl:** drop body-sniff content-type invent; authored WebIR CT only (UI shell wrap may set HTML CT)
-- Emit smoke defaults cover `01` + `19` + `23`
+- **Response chrome:** `status` / `content-type` / `response-header` from ingest-tagged `web.request.response`
+- **Effects peel:** `session.*` / `auth.require` / `cors.allow` / `csrf.verify` from executable-effects blocks
+- **Page-load:** `load { … }` + HTML return
+- **Defaults / headers:** param/query `=` defaults + hyphenated header idents
+- Emit smoke matrix: **15** golds hole-free (`CWL_EMIT_SMOKE_OK`)
 
 ## Gate
 

@@ -2,7 +2,7 @@
 
 **Slice:** language-owned execute smoke + matrix  
 **Date:** 2026-08-09  
-**Version:** tip `1.0.10` — thin emit control reverse + authored CT only
+**Version:** tip `1.0.11` — thin emit chrome/effects/page-load
 
 ## What “execute” means today
 
