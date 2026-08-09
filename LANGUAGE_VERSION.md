@@ -3,19 +3,17 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.1` |
-| **Status** | Exit 1.0 + LSP polish (smarter completion, same-file references) |
+| **Version** | `1.0.2` |
+| **Status** | Exit 1.0 + DNA multi-host profile gold (RFC-0023) + holes bridge report |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`1.0.1` is a **patch** on the published private-registry language release:
+`1.0.2` is a **patch** on the published private-registry language release:
 
-- Packable `@chrysalis/cwl` (published lineage `@agenticop-io/cwl@1.0.0+` on GitHub Packages)
-- Staged `lib/` (parser/print/diagnose/lsp-map/fmt) + `bin/cwl`
-- Physical `@chrysalis/webir` home in `packages/webir` (Convert reverse-home still Requested)
-- LSP polish: context completion + same-file `textDocument/references` ([`CWL-LSP.md`](./docs/language/CWL-LSP.md))
-- Ecology bootstrap: private VSIX + outsider install ([`CWL-ECOLOGY.md`](./docs/language/CWL-ECOLOGY.md))
+- Packable `@chrysalis/cwl` (published lineage `@agenticop-io/cwl@1.0.0+`)
+- DNA bridge: multi-host deploy profile seed (`deploy-profile-api.json`) + `cwlHolesBridgeReport`
+- Physical `@chrysalis/webir` home; LSP polish from 1.0.1
 
 See `CHANGELOG.md`, `docs/language/CWL-PUBLISH.md`, `docs/history/EXIT-1.0.md`.
 

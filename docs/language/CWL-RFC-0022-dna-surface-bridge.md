@@ -129,6 +129,8 @@ Live DNA may **override** after learn (e.g. JSON that returns HTML error pages).
 
 Do **not** auto-copy CWL holes into DNA `holes`. They are different vocabularies. A bridge report may *list* CWL holes next to DNA gaps for operators; schemas stay separate.
 
+Language helper: `cwlHolesBridgeReport(mod)` in `scripts/hub-ingest/cwl-dna-seed.mjs` (optional on seed via `includeHolesReport: true`). Gate proves it on `11-holes`.
+
 ## What this RFC does not change
 
 - No new CWL syntax.
@@ -140,9 +142,12 @@ Do **not** auto-copy CWL holes into DNA `holes`. They are different vocabularies
 | Path | Role |
 | --- | --- |
 | `fixtures/language-gold/24-dna-bridge/routes.cwl` | Minimal valid CWL (round-trip / diagnose) |
-| `fixtures/language-gold/24-dna-bridge/expected-dna.json` | Documented seed/compare shape for Helix |
+| `fixtures/language-gold/24-dna-bridge/expected-dna.json` | Default-host seed/compare shape |
+| `fixtures/language-gold/24-dna-bridge/deploy-profile.json` | RFC-0023 profile (`hosts.default` + `hosts.api`) |
+| `fixtures/language-gold/24-dna-bridge/deploy-profile-api.json` | Multi-host seed (`host: "api"`) |
+| `fixtures/language-gold/24-dna-bridge/expected-dna-api.json` | Multi-host contract gold |
 
-Gate: `npm run test:language` covers the `.cwl` only. The JSON is a **contract gold** for Secure agents — not executed by the language parser.
+Gate: `npm run test:cwl-dna-bridge` → `CWL_DNA_BRIDGE_OK` (default + multi-host + holes report).
 
 ## Helix follow-up (blockers / handoff)
 

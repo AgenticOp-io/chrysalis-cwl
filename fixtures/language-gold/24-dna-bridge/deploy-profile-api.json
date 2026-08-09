@@ -1,7 +1,7 @@
 {
   "schema": "cwl-deploy-profile-v1",
   "app_id": "dna-bridge-gold",
-  "host": "default",
+  "host": "api",
   "hosts": {
     "default": {
       "public_origin": "https://example.test"

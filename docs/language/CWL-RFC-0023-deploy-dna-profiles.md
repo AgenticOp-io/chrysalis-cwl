@@ -37,8 +37,22 @@ CWL modules have no host or environment at authoring time. Live DNA keys include
 
 1. CWL source does **not** embed deploy profiles (keeps grammar free of ops).
 2. Profile is an **external** artifact beside the module (CI, Helix, evidence pack).
-3. Gold fixture for the default profile: `fixtures/language-gold/24-dna-bridge/deploy-profile.json`.
-4. `npm run smoke:ut-spine` may read the gold profile when present; absence → host `"default"`.
+3. Gold fixtures:
+   - default: `fixtures/language-gold/24-dna-bridge/deploy-profile.json` (`host: "default"`, `hosts.default` + `hosts.api`)
+   - multi-host: `fixtures/language-gold/24-dna-bridge/deploy-profile-api.json` + `expected-dna-api.json` (`host: "api"`)
+4. `npm run test:cwl-dna-bridge` proves default seed, multi-host seed, `hosts{}` validation, and RFC-0022 §6 holes bridge report.
+5. `npm run smoke:ut-spine` may read the gold profile when present; absence → host `"default"`.
+
+## Seed API (language pillar)
+
+```js
+import { seedDraftDnaFromCwlPath, loadDeployProfile } from "./cwl-dna-seed.mjs";
+
+seedDraftDnaFromCwlPath("app.cwl", { profilePath: "deploy-profile-api.json" });
+// → routes[].host === "api"
+```
+
+Unknown `host` not present in `hosts{}` throws (honest fail).
 
 ## Ownership
 

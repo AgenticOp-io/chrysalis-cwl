@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.2 — 2026-08-09
+
+- DNA bridge: RFC-0023 multi-host seed gold (`deploy-profile-api.json` / `expected-dna-api.json`)
+- `loadDeployProfile` / `resolveHostFromProfile` / `cwlHolesBridgeReport` in `cwl-dna-seed.mjs`
+- Gate `test:cwl-dna-bridge` → `CWL_DNA_BRIDGE_OK` (default + api host + hosts{} validation + holes report)
+
 ## 1.0.1 — 2026-08-09
 
 - LSP polish: context-aware completion (effects presets, HTTP methods, same-file handlers/paths)

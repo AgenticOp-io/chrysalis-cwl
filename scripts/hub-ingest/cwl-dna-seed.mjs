@@ -1,7 +1,8 @@
 /**
- * RFC-0022 — CWL surface → draft app-dna-v1 seed (contract only).
+ * RFC-0022 / RFC-0023 — CWL surface → draft app-dna-v1 seed (contract only).
  * Helix owns certify/sign/enforce; this module only maps authored surface → draft DNA shape.
  */
+import { readFileSync, existsSync } from "node:fs";
 import { parseCwlModule } from "./cwl-parser.mjs";
 import { resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";
 
@@ -65,13 +66,108 @@ function effectsList(effects) {
 }
 
 /**
+ * Load RFC-0023 deploy profile JSON (external artifact; not CWL grammar).
+ * @param {string} profilePath
+ */
+export function loadDeployProfile(profilePath) {
+  if (!existsSync(profilePath)) {
+    throw new Error(`deploy profile missing: ${profilePath}`);
+  }
+  const profile = JSON.parse(readFileSync(profilePath, "utf8"));
+  if (profile?.schema !== "cwl-deploy-profile-v1") {
+    throw new Error(`deploy profile schema must be cwl-deploy-profile-v1 (got ${profile?.schema})`);
+  }
+  return profile;
+}
+
+/**
+ * Resolve DNA host label from RFC-0023 profile.
+ * Prefer explicit `hostOverride`, else profile.host, else "default".
+ * When hosts{} is present, the chosen key must exist.
+ * @param {object | null | undefined} profile
+ * @param {string} [hostOverride]
+ */
+export function resolveHostFromProfile(profile, hostOverride) {
+  const host =
+    (typeof hostOverride === "string" && hostOverride) ||
+    (typeof profile?.host === "string" && profile.host) ||
+    "default";
+  const hosts = profile?.hosts;
+  if (hosts && typeof hosts === "object" && !Array.isArray(hosts)) {
+    const keys = Object.keys(hosts);
+    if (keys.length > 0 && !(host in hosts)) {
+      throw new Error(
+        `deploy profile host "${host}" not in hosts{} (${keys.join(", ")})`,
+      );
+    }
+  }
+  return host;
+}
+
+/**
+ * RFC-0022 §6 — side-by-side report only (does not merge into DNA holes[]).
  * @param {ReturnType<typeof parseCwlModule>} mod
- * @param {{ app_id?: string, host?: string, created_at?: string, fixture?: string }} [opts]
+ * @param {{ fixture?: string }} [opts]
+ */
+export function cwlHolesBridgeReport(mod, opts = {}) {
+  /** @type {Array<{ reason: string, line?: number, surface?: string }>} */
+  const cwl_holes = [];
+  for (const h of mod.holes ?? []) {
+    cwl_holes.push({
+      reason: String(h.reason || h.message || "hole"),
+      ...(typeof h.line === "number" ? { line: h.line } : {}),
+    });
+  }
+  for (const r of mod.routes ?? []) {
+    const body = r.body;
+    if (body?.kind === "hole") {
+      cwl_holes.push({
+        reason: String(body.reason || "hole"),
+        surface: `${r.method} ${r.path}`,
+        ...(typeof r.line === "number" ? { line: r.line } : {}),
+      });
+    }
+    const stmts = body?.stmts || body?.statements || r.stmts;
+    if (Array.isArray(stmts)) {
+      for (const s of stmts) {
+        if (s?.kind === "hole") {
+          cwl_holes.push({
+            reason: String(s.reason || "hole"),
+            surface: `${r.method} ${r.path}`,
+            ...(typeof s.line === "number" ? { line: s.line } : {}),
+          });
+        }
+      }
+    }
+  }
+  return {
+    kind: "chrysalis.cwl.holes-bridge-report",
+    schemaVersion: 1,
+    rfc: "0022",
+    fixture: opts.fixture ?? null,
+    module: mod.moduleName || null,
+    cwl_holes,
+    dna_gaps: [],
+    note: "CWL holes and DNA gaps are separate honesty domains — do not auto-merge.",
+  };
+}
+
+/**
+ * @param {ReturnType<typeof parseCwlModule>} mod
+ * @param {{
+ *   app_id?: string,
+ *   host?: string,
+ *   created_at?: string,
+ *   fixture?: string,
+ *   profile?: object,
+ *   includeHolesReport?: boolean,
+ * }} [opts]
  */
 export function cwlSurfaceToDraftDna(mod, opts = {}) {
-  const host = opts.host || "default";
-  const appId = opts.app_id || mod.moduleName || "cwl-seed";
+  const host = resolveHostFromProfile(opts.profile, opts.host);
+  const appId = opts.app_id || opts.profile?.app_id || mod.moduleName || "cwl-seed";
   const createdAt = opts.created_at || new Date().toISOString();
+  const contentFromCwl = opts.profile?.content_class_from_cwl !== false;
 
   /** @type {object[]} */
   const routes = [];
@@ -83,7 +179,9 @@ export function cwlSurfaceToDraftDna(mod, opts = {}) {
     const path_template = String(r.path || "/");
     const surfaceKind = r.surfaceKind || "api";
     const body = r.body;
-    const content_class = contentClassFromBody(body, surfaceKind);
+    const content_class = contentFromCwl
+      ? contentClassFromBody(body, surfaceKind)
+      : "other";
     const obj = objectEntriesToPlain(body);
     const response_key_fingerprint =
       content_class === "json" && obj ? responseKeyFingerprint(obj) : null;
@@ -118,7 +216,8 @@ export function cwlSurfaceToDraftDna(mod, opts = {}) {
     return ka.localeCompare(kb);
   });
 
-  return {
+  /** @type {Record<string, unknown>} */
+  const draft = {
     schema: "app-dna-v1",
     app_id: appId,
     created_at: createdAt,
@@ -132,20 +231,48 @@ export function cwlSurfaceToDraftDna(mod, opts = {}) {
       fixture: opts.fixture || null,
       rfc: "0022",
       identity_key: "`${host} ${METHOD} ${path_template}`",
+      ...(opts.profile?.schema
+        ? {
+            deploy_host: host,
+            deploy_profile: {
+              schema: opts.profile.schema,
+              host,
+              path_shape_equality: opts.profile.path_shape_equality !== false,
+            },
+          }
+        : {}),
       annotations,
     },
   };
+
+  if (opts.includeHolesReport) {
+    draft.bridge.holes_report = cwlHolesBridgeReport(mod, { fixture: opts.fixture });
+  }
+
+  return draft;
 }
 
 /**
  * Seed draft DNA from a `.cwl` path (resolves imports).
  * @param {string} cwlPath
- * @param {{ app_id?: string, host?: string, created_at?: string, fixture?: string }} [opts]
+ * @param {{
+ *   app_id?: string,
+ *   host?: string,
+ *   created_at?: string,
+ *   fixture?: string,
+ *   profile?: object,
+ *   profilePath?: string,
+ *   includeHolesReport?: boolean,
+ * }} [opts]
  */
 export function seedDraftDnaFromCwlPath(cwlPath, opts = {}) {
   const mod = resolveCwlModuleFromPath(cwlPath);
+  const profile =
+    opts.profile ||
+    (opts.profilePath ? loadDeployProfile(opts.profilePath) : undefined);
   return cwlSurfaceToDraftDna(mod, {
     ...opts,
+    profile,
     fixture: opts.fixture ?? cwlPath,
     app_id: opts.app_id,
   });

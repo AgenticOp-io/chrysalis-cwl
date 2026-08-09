@@ -1,30 +1,28 @@
 # DNA build — next queue
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.1`** · WebIR reverse-home verified · Secure cutover verified · LSP polish shipped  
+**Tip:** **`1.0.2`** · multi-host DNA gold + holes bridge report  
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) — DNA of the web ≠ all PLs
 
-## Sibling verify (2026-08-09)
+## Shipped this slice
 
-| Sibling | Following CWL? | Notes |
+| Slice | Landing |
+| --- | --- |
+| Multi-host DNA gold (RFC-0023) | `deploy-profile-api.json` + `expected-dna-api.json`; seed via profile |
+| Holes bridge report (RFC-0022 §6) | `cwlHolesBridgeReport` — side-channel only |
+
+## CWL-owned (optional next)
+
+| Priority | Slice | Notes |
 | --- | --- | --- |
-| **Convert** | **Yes** (grammar) | Junctions + `file:` @ 1.0.1; WebIR reverse-home done; no parser fork. Registry pin + peel gravity still open. |
-| **Secure** | **Yes** (cutover) | `@agenticop-io/cwl@1.0.0`; cutover = CWL ⊆ DNA; protect DNA-only. Pin tip 1.0.1 + profile completeness open. |
-
-## CWL improvements (from sibling pressure)
-
-| Priority | Slice | Why |
-| --- | --- | --- |
-| 1 | Multi-host DNA gold (RFC-0023 `hosts{}`) | Secure applies host at seed; gold is single-`default` only |
-| 2 | Optional hole↔DNA gap report (RFC-0022 §6) | Cutover honesty side-channel |
-| 3 | Hole-catalog growth when Convert peels need new named reasons | Language-owned vocabulary |
+| — | Hole-catalog growth when Convert peels need new named reasons | Language-owned vocabulary |
 | — | Cross-file LSP rename | Only when import graph is honest |
-| — | “Add all programming languages” | **Non-goal** — see language scope |
+| — | “Add all programming languages” | **Non-goal** |
 
-## Convert / Secure remaining (not CWL grammar)
+## Convert / Secure remaining
 
 | Sibling | Ask | Doc |
 | --- | --- | --- |
 | **Convert** | Registry pin `@agenticop-io/cwl` + peel/emit gravity | [`CONVERT-GRAVITY-REQUESTED.md`](./CONVERT-GRAVITY-REQUESTED.md) |
 | **Convert** | Rewrite headers — `04-request-context` → `runtime-ok` | [`CONVERT-REWRITE-HEADERS-REQUESTED.md`](./CONVERT-REWRITE-HEADERS-REQUESTED.md) |
-| **Secure** | Bump pin to 1.0.1; drop mapping fallback drift | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |
+| **Secure** | Consume multi-host profile gold; bump pin to 1.0.2; fill `dna_gaps` in holes report at cutover | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |
