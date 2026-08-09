@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.10 — 2026-08-09
+
+- Thin emit Rosetta reverse: projectable early-guards / else / else-if / foreach (`cwl-emit-control.mjs`)
+- `runtime-cwl`: authored content-type only (no body-sniff invent)
+- Emit smoke defaults: `01` + `19` + `23`
+
 ## 1.0.9 — 2026-08-09
 
 - RFC-0021: top-level `foreachBindings` → WebIR `data.foreach` (`appendForeachBindings`; empty-iter honesty)

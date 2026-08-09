@@ -233,17 +233,13 @@ function simToResponse(
   const looksHtml = trimmed.startsWith("<");
   const authoredCt = responseMeta?.contentType;
 
+  // Authored WebIR content-type only — no body-sniff invent (DNA-STEP-EXECUTE honesty).
   if (authoredCt) {
     headers.set("content-type", authoredCt);
-  } else if (trimmed.startsWith("{") || trimmed.startsWith("[") || trimmed === "true" || trimmed === "false") {
-    headers.set("content-type", "application/json; charset=utf-8");
-  } else if (looksHtml) {
-    headers.set("content-type", "text/html; charset=utf-8");
-  } else if (/^-?\d+(\.\d+)?$/.test(trimmed)) {
-    headers.set("content-type", "application/json; charset=utf-8");
   }
 
   if (looksHtml && uiAssets !== undefined && uiAssets.wrapHtmlDocuments !== false) {
+    // UI asset shell wrap implies HTML document; set CT only when wrapping.
     if (!headers.has("content-type")) {
       headers.set("content-type", "text/html; charset=utf-8");
     }

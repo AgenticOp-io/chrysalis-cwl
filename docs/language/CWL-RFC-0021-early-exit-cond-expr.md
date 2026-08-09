@@ -99,6 +99,10 @@ Pillar ingest (`cwl-control-lower.mjs` / `wrapWithEarlyGuards`) lowers **project
 - Top-level `foreachBindings` → `data.foreach` after success chrome (`appendForeachBindings`); empty/non-array iterable skips under simulate
 - Page early-exit HTML proved on unshadowed path (`/post/:id`)
 
+### 1.0.10 thin emit reverse
+
+Pillar `hub-emit-cwl-webir.mjs` + `cwl-emit-control.mjs` project ingest-tagged control back to CWL (`if` / `else` / `foreach`). Opaque `g_*` never re-invented (absent from IR after forward skip).
+
 Does not claim foreach N-iteration HTML or opaque call evaluate.
 
 ## Stmt-level `foreach` + collection binding

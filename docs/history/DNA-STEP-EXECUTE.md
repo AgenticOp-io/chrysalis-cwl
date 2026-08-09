@@ -2,7 +2,7 @@
 
 **Slice:** language-owned execute smoke + matrix  
 **Date:** 2026-08-09  
-**Version:** tip `1.0.9` — foreach IR + else/else-if + page early-exit HTML
+**Version:** tip `1.0.10` — thin emit control reverse + authored CT only
 
 ## What “execute” means today
 
