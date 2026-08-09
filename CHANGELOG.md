@@ -4,25 +4,34 @@
 
 - Constitution reframed: **Rosetta Stone → Universal Translator → DNA of the web** (`CWL-PILLAR-HOME.md`, `ROSETTA-UT-PATH.md`); AGENTS / cursor rule / README aligned
 
-## Unreleased / diagnose ranges
-
-- Diagnose attaches 1-based `line` for holes (statement site), duplicate routes, layout imports, missing module, parse messages; parser records `attachmentHoleLines` / hole `body.line` / `moduleLine` / `importLines`
-- `no-routes` info when module has zero routes and zero components (parser rarely throws)
-- `test:cwl-lsp-map` asserts holes gold mapped ranges at LSP lines 6 and 12 (not line 0)
-- No LANGUAGE_VERSION bump (0.1.11 agent owns that)
-
 ## Unreleased / execute
 
 - DNA Execute slice: `smoke:cwl-runtime-gold` → `CWL_RUNTIME_GOLD_OK` on `fixtures/language-gold/01-literals` via `@chrysalis/runtime-cwl` + WebIR `simulateHandler` (not Convert emit)
 - Runtime matrix: `smoke:cwl-runtime-matrix` → `CWL_RUNTIME_MATRIX_OK` over `runtime-ok` fixtures (`01-literals`, `02-path-params`, `03-query-params`, `06-response-status`, `12-multi-file`); allowlist in `scripts/cwl-runtime-smoke-lib.mjs` (no invented handlers)
 - Wired into optional `test:language:full` (stable/fast)
 - Plan/honesty: `docs/history/DNA-STEP-EXECUTE.md`
-- No language version bump for execute (LSP owns `0.1.11`)
 
 ### Requested (Convert) — execute
 
 - Keep sibling `webir` / `rewrite` / `emit-shared` dists buildable; Slice 3.4 dep retarget so pillar runtime imports need fewer resolve hooks
 - Optional: pass request headers into simulate input so `04-request-context` can earn `runtime-ok`
+
+## 0.1.12 — 2026-08-09
+
+- Diagnostic column ranges v1: parser records 0-based keyword starts for `module`, `@route`/`@page`, `hole`; diagnose schema v4 emits `character`/`column` when cheap
+- LSP map: `range.start.character` from `character`/`column` (default 0); end still line-granular (`1<<20`)
+- Gate: `test:cwl-lsp-map` asserts ≥1 mapped diagnostic with `character > 0` (holes gold indent + synthetic)
+- Line sites folded in: holes / duplicates / layout / module → accurate LSP lines
+- Definition v0 + document symbols: `textDocument/definition` / `documentSymbol` (same-file surface); VS Code providers; server gate asserts ≥1 each
+- Package / editor / LSP server version `0.1.12`; pillars stay private
+
+### Requested (Convert)
+
+- Pull `0.1.12` junctions after land; WebIR flip still open
+
+### Requested (Secure)
+
+- Keep `file:` pin; no grammar forks
 
 ## 0.1.11 — 2026-08-09
 

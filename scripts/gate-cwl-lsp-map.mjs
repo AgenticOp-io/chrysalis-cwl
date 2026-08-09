@@ -38,6 +38,7 @@ async function main() {
   }
 
   // Gold: hole stmts at 1-based lines 7 and 13 → LSP 0-based 6 and 12.
+  // Indented `  hole …` → keyword start character 2 (> 0).
   const holeDiags = (mapped.diagnostics ?? []).filter((d) => d.code === "catalogued-hole");
   if (holeDiags.length < 2) {
     failures.push("expected-two-catalogued-hole-diags");
@@ -49,16 +50,30 @@ async function main() {
     if (lines0.every((n) => n === 0)) failures.push("hole-ranges-all-line-0");
   }
 
+  const hasCharGt0 = (mapped.diagnostics ?? []).some(
+    (d) => typeof d.range?.start?.character === "number" && d.range.start.character > 0,
+  );
+  if (!hasCharGt0) {
+    failures.push("expected-at-least-one-diagnostic-character-gt-0");
+  }
+
   if (toLspSeverity("error") !== "Error") failures.push("severity-error");
   if (toLspSeverity("warn") !== "Warning") failures.push("severity-warn");
   if (toLspSeverity("info") !== "Information") failures.push("severity-info");
 
   const synthetic = mapDiagnoseDiagnostic(
-    { severity: "error", code: "parse", message: "boom at line 3", line: 3 },
+    { severity: "error", code: "parse", message: "boom at line 3", line: 3, character: 4 },
     "file:///synth.cwl",
   );
   if (synthetic.severity !== "Error") failures.push("synthetic-severity");
   if (synthetic.range.start.line !== 2) failures.push("synthetic-line0");
+  if (synthetic.range.start.character !== 4) failures.push("synthetic-character");
+
+  const syntheticCol = mapDiagnoseDiagnostic(
+    { severity: "warn", code: "x", message: "col alias", line: 1, column: 7 },
+    "file:///synth-col.cwl",
+  );
+  if (syntheticCol.range.start.character !== 7) failures.push("synthetic-column-alias");
 
   const report = {
     kind: "chrysalis.cwl.lsp-map.gate",
@@ -70,6 +85,10 @@ async function main() {
     holeRangeLines0: (mapped.diagnostics ?? [])
       .filter((d) => d.code === "catalogued-hole")
       .map((d) => d.range.start.line),
+    holeRangeCharacters0: (mapped.diagnostics ?? [])
+      .filter((d) => d.code === "catalogued-hole")
+      .map((d) => d.range.start.character),
+    hasCharacterGt0: hasCharGt0,
     failures,
   };
   process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);

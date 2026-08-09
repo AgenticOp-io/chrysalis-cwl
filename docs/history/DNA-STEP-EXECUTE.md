@@ -84,15 +84,15 @@ Same honesty pattern as `link:webir` — convert holds physical IR/sim packages;
 1. **Dep wiring:** pillar cannot `import("@chrysalis/runtime-cwl")` without hooks / convert workspace — Slice 3.4 open.
 2. **`test:runtime-cwl`:** root script runs `npm test --prefix packages/runtime-cwl`, but package has no `test` script and tests reference convert `fixtures/hub-gold-cwl*` (absent here).
 3. **Coverage:** API literal/object/status/path/query/multi-file only. Not yet marked:
-   - `04-request-context` — cookies bind; **headers** (`Authorization`, `Accept-Language`) return `null` (request headers not passed into `simulateHandler` input)
+   - `04-request-context` — **blocked on Convert `rewrite`**, not pillar smoke. Proven 2026-08-09: cookies bind (`sid`), query binds (`lang`), headers stay `null` (`auth` / `accept`). Root cause: sibling `@chrysalis/rewrite` `RequestInput` has no `headers` field and `pickBag(..., "header")` returns `{}`. Pillar `runtime-cwl` already sees HTTP `Headers` but cannot feed them honestly. Fixture README: [`fixtures/language-gold/04-request-context/README.md`](../../fixtures/language-gold/04-request-context/README.md). Do not allowlist until rewrite binds headers.
    - `08-response-content-type` / `14-defaults-headers` — bodies/status often work; **response-header** / CWL `content-type` not honestly applied on `Response` (runtime invents CT from body shape)
    - `05` body / `07` auth / pages / UI / holes — holes correctly **501**; pages/UI not claimed
 4. **Browser / worker / emit-runtime-cwl:** out of this slice.
-5. **No Convert emit required** for this execute path — Requested below is wiring/flip, not “must emit to run.”
+5. **No Convert emit required** for this execute path — Requested below is wiring/flip / simulate honesty, not “must emit to run.”
 
 ## Requested (Convert)
 
 - Keep `rewrite` + `emit-shared` + `webir` dists buildable for sibling consume.
 - When flipping WebIR / workspace: retarget pillar `runtime-cwl*` deps so `smoke:cwl-runtime-gold` can drop resolve hooks (or keep hooks as fallback).
 - Do not treat convert hub-gold runtime tests as language SoR — language gold is `fixtures/language-gold/`.
-- Optional later: pass request headers into simulate input so `04-request-context` can earn `runtime-ok`.
+- **`04-request-context` / RFC-0004 headers:** extend `@chrysalis/rewrite` `RequestInput` with a `headers` bag and make `pickBag` `case "header"` read it (name-case policy documented). After that lands, CWL pillar can pass `Headers` → bag in `buildRequestInput`, mark `runtime-ok`, and allowlist — no Convert emit invent required for that gate.

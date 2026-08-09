@@ -33,6 +33,17 @@ const RESPONSE_HEADER_RE = /^response-header\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*(?:=\s
 const IF_GUARD_RE = /^if\s+(.+?)\s*\{$/;
 const FOREACH_RE = /^foreach\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+as(?:\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=>)?\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\{$/;
 
+/**
+ * 0-based column of the first non-whitespace on a raw source line.
+ * Cheap site for anchored keywords (`module`, `@route`/`@page`, `hole`, …) after trim-match.
+ * @param {string} rawLine
+ * @returns {number}
+ */
+export function keywordStartCharacter0(rawLine) {
+  const idx = String(rawLine ?? "").search(/\S/);
+  return idx >= 0 ? idx : 0;
+}
+
 /** @param {string} raw */
 export function normalizeCwlContentType(raw) {
   let v = raw.trim();
@@ -338,6 +349,8 @@ export function parseCwlModule(source, file) {
   let moduleName = "main";
   /** @type {number | null} 1-based line of `module …;` when present */
   let moduleLine = null;
+  /** @type {number | null} 0-based column of `module` keyword when present */
+  let moduleCharacter = null;
   /** @type {Array<"express.json"|"express.urlencoded">} */
   const moduleUses = [];
   /** @type {Array<"chrysalis.auth.session"|"chrysalis.auth.bearer">} */
@@ -348,11 +361,12 @@ export function parseCwlModule(source, file) {
   const importLines = [];
   /** @type {Array<{ name: string, props: string[], tree: object, line: number }>} */
   const components = [];
-  /** @type {Array<{ method: string, path: string, pathParams: string[], name: string, line: number, effects: string[], handlerPathParams: string[], handlerQueryParams: string[], handlerHeaders: string[], handlerCookies: string[], handlerBodyParams: string[], responseStatus: number | null, body: object }>} */
+  /** @type {Array<{ method: string, path: string, pathParams: string[], name: string, line: number, character?: number, effects: string[], handlerPathParams: string[], handlerQueryParams: string[], handlerHeaders: string[], handlerCookies: string[], handlerBodyParams: string[], responseStatus: number | null, body: object }>} */
   const routes = [];
   let i = 0;
   while (i < lines.length) {
-    const line = lines[i].trim();
+    const rawLine = lines[i];
+    const line = rawLine.trim();
     const lineNo = i + 1;
     i += 1;
     if (!line || line.startsWith("#") || line.startsWith("//")) continue;
@@ -360,6 +374,7 @@ export function parseCwlModule(source, file) {
     if (mod) {
       moduleName = mod[1];
       moduleLine = lineNo;
+      moduleCharacter = keywordStartCharacter0(rawLine);
       continue;
     }
     const useM = USE_PRESET_RE.exec(line);
@@ -422,6 +437,7 @@ export function parseCwlModule(source, file) {
     if (!rm) continue;
     const method = rm[1].toUpperCase();
     const path = rm[2];
+    const routeCharacter = keywordStartCharacter0(rawLine);
     if (i >= lines.length) break;
     const hline = lines[i].trim();
     const blockRe = surfaceKind === "page" ? PAGE_BLOCK_RE : HANDLER_RE;
@@ -453,7 +469,9 @@ export function parseCwlModule(source, file) {
     const attachmentHoles = [];
     /** @type {number[]} 1-based lines parallel to `attachmentHoles` (hole statement sites). */
     const attachmentHoleLines = [];
-    let body = { kind: "hole", reason: "cwl:empty-handler", line: lineNo };
+    /** @type {number[]} 0-based columns of `hole` keyword, parallel to `attachmentHoles`. */
+    const attachmentHoleCharacters = [];
+    let body = { kind: "hole", reason: "cwl:empty-handler", line: lineNo, character: routeCharacter };
     let sawReturn = false;
     const handlerBindings = () => ({
       path: handlerPathParams,
@@ -623,20 +641,27 @@ export function parseCwlModule(source, file) {
       const hol = HOLE_RE.exec(inner);
       if (hol) {
         const reason = hol[1];
+        const holeCharacter = keywordStartCharacter0(lines[i - 1] ?? "");
         attachmentHoles.push(reason);
         attachmentHoleLines.push(i);
+        attachmentHoleCharacters.push(holeCharacter);
         // Keep hole as body only until an explicit return/html/ui replaces it (RFC-0024 attachments).
         if (!sawReturn) {
-          body = { kind: "hole", reason, line: i };
+          body = { kind: "hole", reason, line: i, character: holeCharacter };
         }
         continue;
       }
-      body = { kind: "hole", reason: "cwl:unknown-statement", line: i };
+      body = {
+        kind: "hole",
+        reason: "cwl:unknown-statement",
+        line: i,
+        character: keywordStartCharacter0(lines[i - 1] ?? ""),
+      };
     }
     const pathParams = extractPathParamsFromCwlPath(path);
     for (const p of handlerPathParams) {
       if (!pathParams.includes(p)) {
-        body = { kind: "hole", reason: `cwl:param-not-in-path:${p}`, line: lineNo };
+        body = { kind: "hole", reason: `cwl:param-not-in-path:${p}`, line: lineNo, character: routeCharacter };
       }
     }
     routes.push({
@@ -645,6 +670,7 @@ export function parseCwlModule(source, file) {
       pathParams,
       name,
       line: lineNo,
+      character: routeCharacter,
       surfaceKind,
       effects,
       handlerPathParams,
@@ -662,12 +688,14 @@ export function parseCwlModule(source, file) {
       foreachBindings,
       attachmentHoles,
       attachmentHoleLines,
+      attachmentHoleCharacters,
       body,
     });
   }
   return {
     moduleName,
     moduleLine,
+    moduleCharacter,
     file,
     routes,
     moduleUses,

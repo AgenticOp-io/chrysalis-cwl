@@ -34,11 +34,27 @@ export function resolveLine0(message, line) {
 }
 
 /**
- * @param {{ severity: string, code?: string, message: string, line?: number }} d
+ * Prefer diagnose `character`, else alias `column`. Default 0 when missing.
+ * @param {number|undefined} character
+ * @param {number|undefined} column
+ * @returns {number} 0-based character
+ */
+export function resolveCharacter0(character, column) {
+  for (const v of [character, column]) {
+    if (Number.isFinite(v) && /** @type {number} */ (v) >= 0) {
+      return Math.floor(/** @type {number} */ (v));
+    }
+  }
+  return 0;
+}
+
+/**
+ * @param {{ severity: string, code?: string, message: string, line?: number, character?: number, column?: number }} d
  * @param {string} [uri]
  */
 export function mapDiagnoseDiagnostic(d, uri = "file:///input.cwl") {
   const line0 = resolveLine0(d.message, d.line);
+  const character0 = resolveCharacter0(d.character, d.column);
   return {
     uri,
     severity: toLspSeverity(/** @type {"error"|"warn"|"info"} */ (d.severity)),
@@ -46,7 +62,7 @@ export function mapDiagnoseDiagnostic(d, uri = "file:///input.cwl") {
     message: d.message,
     source: "cwl",
     range: {
-      start: { line: line0, character: 0 },
+      start: { line: line0, character: character0 },
       end: { line: line0, character: 1 << 20 },
     },
   };

@@ -12,7 +12,7 @@ import { mapDiagnoseSource } from "./hub-ingest/cwl-lsp-map.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 
 export const CWL_LSP_SERVER_KIND = "chrysalis.cwl.lsp-server";
-export const CWL_LSP_SERVER_VERSION = "0.1.11";
+export const CWL_LSP_SERVER_VERSION = "0.1.12";
 
 /** CompletionItemKind.Keyword */
 const KIND_KEYWORD = 14;
@@ -178,6 +178,156 @@ export function completionsAt(text, position) {
 }
 
 /**
+ * Identifier or path-string token under the cursor (cheap; line-local).
+ * @param {string} lineText
+ * @param {number} character
+ * @returns {{ kind: "ident"|"path", value: string, start: number, end: number }|null}
+ */
+export function tokenAt(lineText, character) {
+  const ch = Math.max(0, Math.min(character, lineText.length));
+  // Prefer string literal when cursor is inside "…"
+  for (let i = 0; i < lineText.length; i++) {
+    if (lineText[i] !== '"') continue;
+    let j = i + 1;
+    let value = "";
+    while (j < lineText.length) {
+      const c = lineText[j];
+      if (c === '"') break;
+      if (c === "\\" && j + 1 < lineText.length) {
+        value += lineText[j + 1];
+        j += 2;
+        continue;
+      }
+      value += c;
+      j += 1;
+    }
+    if (j >= lineText.length) break;
+    // Inclusive of closing quote so click on trailing " still resolves
+    if (ch >= i && ch <= j) {
+      return { kind: "path", value, start: i, end: j + 1 };
+    }
+    i = j;
+  }
+  let start = ch;
+  let end = ch;
+  while (start > 0 && /[A-Za-z0-9_]/.test(lineText[start - 1])) start -= 1;
+  while (end < lineText.length && /[A-Za-z0-9_]/.test(lineText[end])) end += 1;
+  if (start === end) return null;
+  if (!/^[A-Za-z_]/.test(lineText[start])) return null;
+  return {
+    kind: "ident",
+    value: lineText.slice(start, end),
+    start,
+    end,
+  };
+}
+
+/**
+ * Location of a route/page surface line (AST `line` is 1-based).
+ * @param {string} uri
+ * @param {string} text
+ * @param {{ line?: number, path?: string, method?: string, name?: string }} route
+ */
+function routeSurfaceLocation(uri, text, route) {
+  if (typeof route.line !== "number" || route.line < 1) return null;
+  const lines = text.split(/\r?\n/);
+  const line0 = route.line - 1;
+  const lineText = lines[line0] ?? "";
+  return {
+    uri,
+    range: {
+      start: { line: line0, character: 0 },
+      end: { line: line0, character: lineText.length },
+    },
+  };
+}
+
+/**
+ * Cheap go-to-definition: handler name or path string → @route/@page line.
+ * @param {string} text
+ * @param {string} uri
+ * @param {{ line: number, character: number }} position
+ * @returns {Array<{ uri: string, range: { start: { line: number, character: number }, end: { line: number, character: number } } }>}
+ */
+export function definitionAt(text, uri, position) {
+  const file = uriToPath(uri);
+  const lines = text.split(/\r?\n/);
+  const lineText = lines[position.line] ?? "";
+  const tok = tokenAt(lineText, position.character);
+  if (!tok) return [];
+
+  try {
+    const ast = parseCwlModule(text, file);
+    const routes = ast.routes ?? [];
+    /** @type {typeof routes} */
+    let matches = [];
+    if (tok.kind === "path") {
+      matches = routes.filter((r) => r.path === tok.value && typeof r.line === "number");
+    } else {
+      // Skip common keywords that are not handler names
+      if (
+        tok.value === "handler" ||
+        tok.value === "page" ||
+        tok.value === "module" ||
+        tok.value === "effects" ||
+        tok.value === "return" ||
+        tok.value === "load" ||
+        tok.value === "hole" ||
+        tok.value === "use" ||
+        tok.value === "route" ||
+        tok.value === "component"
+      ) {
+        return [];
+      }
+      matches = routes.filter((r) => r.name === tok.value && typeof r.line === "number");
+    }
+    /** @type {Array<{ uri: string, range: { start: { line: number, character: number }, end: { line: number, character: number } } }>} */
+    const locs = [];
+    for (const r of matches) {
+      const loc = routeSurfaceLocation(uri, text, r);
+      if (loc) locs.push(loc);
+    }
+    return locs;
+  } catch {
+    return [];
+  }
+}
+
+/** SymbolKind.Function */
+const SYMBOL_KIND_FUNCTION = 12;
+
+/**
+ * Document outline: @route/@page surfaces from parse AST (when lines exist).
+ * @param {string} text
+ * @param {string} uri
+ * @returns {Array<{ name: string, detail?: string, kind: number, range: object, selectionRange: object }>}
+ */
+export function documentSymbols(text, uri) {
+  const file = uriToPath(uri);
+  try {
+    const ast = parseCwlModule(text, file);
+    const routes = ast.routes ?? [];
+    /** @type {Array<{ name: string, detail?: string, kind: number, range: object, selectionRange: object }>} */
+    const symbols = [];
+    for (const r of routes) {
+      const loc = routeSurfaceLocation(uri, text, r);
+      if (!loc) continue;
+      const surface = r.surfaceKind === "page" ? "@page" : "@route";
+      symbols.push({
+        name: `${r.method} ${r.path}`,
+        detail: `${surface} → ${r.name}`,
+        kind: SYMBOL_KIND_FUNCTION,
+        range: loc.range,
+        selectionRange: loc.range,
+      });
+    }
+    return symbols;
+  } catch {
+    return [];
+  }
+}
+
+/**
  * Cheap hover from parse AST: module name or @route/@page surface.
  * @param {string} text
  * @param {string} uri
@@ -276,6 +426,8 @@ function handleMessage(msg) {
             triggerCharacters: ["@", "."],
             resolveProvider: false,
           },
+          definitionProvider: true,
+          documentSymbolProvider: true,
         },
         serverInfo: {
           name: "cwl-lsp-server",
@@ -361,6 +513,27 @@ function handleMessage(msg) {
         break;
       }
       respond(id ?? null, completionsAt(doc.text, params.position));
+      break;
+    }
+    case "textDocument/definition": {
+      const uri = params?.textDocument?.uri;
+      const doc = uri ? documents.get(uri) : undefined;
+      if (!doc || !params?.position) {
+        respond(id ?? null, null);
+        break;
+      }
+      const locs = definitionAt(doc.text, uri, params.position);
+      respond(id ?? null, locs.length === 0 ? null : locs.length === 1 ? locs[0] : locs);
+      break;
+    }
+    case "textDocument/documentSymbol": {
+      const uri = params?.textDocument?.uri;
+      const doc = uri ? documents.get(uri) : undefined;
+      if (!doc) {
+        respond(id ?? null, []);
+        break;
+      }
+      respond(id ?? null, documentSymbols(doc.text, uri));
       break;
     }
     case "$/cancelRequest":

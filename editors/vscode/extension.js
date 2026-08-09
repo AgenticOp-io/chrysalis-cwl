@@ -186,6 +186,8 @@ async function activate(context) {
         hover: { contentFormat: ["markdown", "plaintext"] },
         formatting: {},
         completion: { completionItem: { snippetSupport: false } },
+        definition: {},
+        documentSymbol: {},
       },
     },
     clientInfo: { name: "cwl-vscode", version: "0.1.11" },
@@ -346,6 +348,81 @@ async function activate(context) {
       },
       "@",
       ".",
+    ),
+  );
+
+  context.subscriptions.push(
+    vscode.languages.registerDefinitionProvider(
+      { language: "cwl" },
+      {
+        async provideDefinition(doc, position) {
+          if (doc.languageId !== "cwl") return null;
+          try {
+            const result = await client.request("textDocument/definition", {
+              textDocument: { uri: doc.uri.toString() },
+              position: { line: position.line, character: position.character },
+            });
+            const locs = Array.isArray(result) ? result : result ? [result] : [];
+            if (locs.length < 1) return null;
+            return locs.map(
+              (loc) =>
+                new vscode.Location(
+                  vscode.Uri.parse(loc.uri),
+                  new vscode.Range(
+                    loc.range.start.line,
+                    loc.range.start.character,
+                    loc.range.end.line,
+                    loc.range.end.character,
+                  ),
+                ),
+            );
+          } catch {
+            return null;
+          }
+        },
+      },
+    ),
+  );
+
+  context.subscriptions.push(
+    vscode.languages.registerDocumentSymbolProvider(
+      { language: "cwl" },
+      {
+        async provideDocumentSymbols(doc) {
+          if (doc.languageId !== "cwl") return [];
+          try {
+            const result = await client.request("textDocument/documentSymbol", {
+              textDocument: { uri: doc.uri.toString() },
+            });
+            if (!Array.isArray(result)) return [];
+            return result.map((s) => {
+              const range = new vscode.Range(
+                s.range.start.line,
+                s.range.start.character,
+                s.range.end.line,
+                s.range.end.character,
+              );
+              const sel = s.selectionRange
+                ? new vscode.Range(
+                    s.selectionRange.start.line,
+                    s.selectionRange.start.character,
+                    s.selectionRange.end.line,
+                    s.selectionRange.end.character,
+                  )
+                : range;
+              return new vscode.DocumentSymbol(
+                s.name,
+                s.detail || "",
+                vscode.SymbolKind.Function,
+                range,
+                sel,
+              );
+            });
+          } catch {
+            return [];
+          }
+        },
+      },
     ),
   );
 

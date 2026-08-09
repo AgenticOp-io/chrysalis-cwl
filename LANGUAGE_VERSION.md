@@ -3,18 +3,20 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `0.1.11` |
-| **Status** | Private-first DNA authoring: stdio LSP + completion v0 |
+| **Version** | `0.1.12` |
+| **Status** | Private-first DNA authoring: column ranges v1 + definition v0 |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`0.1.11` adds **completion v0** on the 0.1.10 stdio Language Server:
+`0.1.12` adds **column-aware diagnostic ranges** and folds in **definition v0** on the stdio Language Server:
 
-- `textDocument/completion` — keywords / surface starters (`module`, `@route`, `@page`, `@component`, `handler`, `effects`, `hole`, `return`, `load`) + common effect presets; prefix filter only (no import/path smarts)
-- Gate asserts completion returns ≥1 item (`CWL_LSP_SERVER_OK`)
-- VS Code thin client registers CompletionItemProvider (`@` / `.` triggers)
-- Prior: diagnose/fmt/cheap hover (`0.1.10`)
+- Parser records 0-based keyword starts for `module`, `@route`/`@page`, and `hole` (cheap indent/site)
+- Diagnose emits optional `character` / `column` (schema v4)
+- LSP map sets `range.start.character` from `character`/`column` (default 0)
+- Gate asserts ≥1 mapped diagnostic with `character > 0` (holes gold indent + synthetic)
+- `textDocument/definition` + `documentSymbol` (same-file surface jump / outline)
+- Prior: completion v0 (`0.1.11`), diagnose/fmt/cheap hover (`0.1.10`)
 
 See `CHANGELOG.md` for deltas. Spec: [`docs/language/CWL-LSP.md`](./docs/language/CWL-LSP.md)
 

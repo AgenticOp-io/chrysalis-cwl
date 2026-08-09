@@ -7,7 +7,7 @@ import { spawn } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { hoverAt, completionsAt } from "./cwl-lsp-server.mjs";
+import { hoverAt, completionsAt, definitionAt, documentSymbols } from "./cwl-lsp-server.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SERVER = join(ROOT, "scripts/cwl-lsp-server.mjs");
@@ -142,6 +142,28 @@ async function main() {
     failures.push("completion-at-route");
   }
 
+  // Unit: definition — handler name / path string → @route line (01-literals)
+  const litUri = pathToFileURL(LITERALS).href;
+  // `handler health` is line 4 (0-based); cursor on "health"
+  const defByName = definitionAt(litSrc, litUri, { line: 4, character: 10 });
+  if (!Array.isArray(defByName) || defByName.length < 1) {
+    failures.push("definition-handler-name");
+  } else if (defByName[0].range?.start?.line !== 3) {
+    // @route GET "/health" is line 4 (1-based) → LSP line 3
+    failures.push("definition-handler-name-wrong-line");
+  }
+  // path string on @route line
+  const defByPath = definitionAt(litSrc, litUri, { line: 3, character: 14 });
+  if (!Array.isArray(defByPath) || defByPath.length < 1) {
+    failures.push("definition-path-string");
+  }
+
+  // Unit: documentSymbol ≥1 on 01-literals
+  const syms = documentSymbols(litSrc, litUri);
+  if (!Array.isArray(syms) || syms.length < 1) {
+    failures.push("documentSymbol-empty");
+  }
+
   const child = spawn(process.execPath, [SERVER], {
     cwd: ROOT,
     stdio: ["pipe", "pipe", "pipe"],
@@ -158,7 +180,7 @@ async function main() {
       processId: process.pid,
       rootUri: pathToFileURL(ROOT).href,
       capabilities: {},
-      clientInfo: { name: "gate-cwl-lsp-server", version: "0.1.11" },
+      clientInfo: { name: "gate-cwl-lsp-server", version: "0.1.12" },
     });
     if (!init?.capabilities?.textDocumentSync) {
       failures.push("missing-textDocumentSync");
@@ -171,6 +193,12 @@ async function main() {
     }
     if (!init?.capabilities?.hoverProvider) {
       failures.push("missing-hoverProvider");
+    }
+    if (!init?.capabilities?.definitionProvider) {
+      failures.push("missing-definitionProvider");
+    }
+    if (!init?.capabilities?.documentSymbolProvider) {
+      failures.push("missing-documentSymbolProvider");
     }
     if (!init?.serverInfo?.name) {
       failures.push("missing-serverInfo");
@@ -212,6 +240,34 @@ async function main() {
         : [];
     if (items.length < 1) {
       failures.push("completion-empty");
+    }
+
+    // RPC: definition + documentSymbol on 01-literals (prove ≥1 location / symbol)
+    const litUriRpc = pathToFileURL(LITERALS).href;
+    client.notify("textDocument/didOpen", {
+      textDocument: {
+        uri: litUriRpc,
+        languageId: "cwl",
+        version: 1,
+        text: litSrc,
+      },
+    });
+    await client.waitNotify("textDocument/publishDiagnostics");
+
+    const defRpc = await client.request("textDocument/definition", {
+      textDocument: { uri: litUriRpc },
+      position: { line: 4, character: 10 },
+    });
+    const defLocs = Array.isArray(defRpc) ? defRpc : defRpc ? [defRpc] : [];
+    if (defLocs.length < 1) {
+      failures.push("rpc-definition-empty");
+    }
+
+    const symRpc = await client.request("textDocument/documentSymbol", {
+      textDocument: { uri: litUriRpc },
+    });
+    if (!Array.isArray(symRpc) || symRpc.length < 1) {
+      failures.push("rpc-documentSymbol-empty");
     }
 
     await client.request("shutdown", null);
