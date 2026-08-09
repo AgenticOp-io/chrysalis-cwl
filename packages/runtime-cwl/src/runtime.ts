@@ -78,6 +78,18 @@ function parseCookies(header: string | undefined): Record<string, string> {
   return out;
 }
 
+/**
+ * HTTP Headers → rewrite `RequestInput.headers` bag (lower-case keys per Convert contract).
+ * Missing names bind null in simulate — do not invent values here.
+ */
+function headersToBag(headers: Headers): Record<string, string> {
+  const out: Record<string, string> = {};
+  headers.forEach((value, key) => {
+    out[key.toLowerCase()] = value;
+  });
+  return out;
+}
+
 function contentTypeForAsset(fileName: string): string {
   const lower = fileName.toLowerCase();
   if (lower.endsWith(".css")) return "text/css; charset=utf-8";
@@ -166,6 +178,7 @@ function buildRequestInput(
     query: parseQuery(url.search),
     post: {},
     cookies: parseCookies(headers.get("cookie") ?? undefined),
+    headers: headersToBag(headers),
     session: { ...session },
     pathParams,
   };

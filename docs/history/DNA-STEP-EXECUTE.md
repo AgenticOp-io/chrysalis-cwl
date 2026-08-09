@@ -2,7 +2,7 @@
 
 **Slice:** language-owned execute smoke + matrix  
 **Date:** 2026-08-09  
-**Version:** additive under Unreleased / execute (no `LANGUAGE_VERSION` bump)
+**Version:** tip `1.0.4` + Unreleased execute (`04-request-context` runtime-ok; no language package bump)
 
 ## What “execute” means today
 
@@ -52,6 +52,7 @@ Marker without checks (or checks without marker) fails — no silent invented ha
 | `01-literals` | literal / object returns |
 | `02-path-params` | path `:param` → object |
 | `03-query-params` | `query` → object |
+| `04-request-context` | `header` + `cookie` + `query` |
 | `06-response-status` | explicit `status` |
 | `12-multi-file` | `import` + literal returns |
 
@@ -83,16 +84,16 @@ Language owns the gold + smoke contract; Convert owns rewrite/simulate honesty (
 
 1. **Dep wiring:** `packages/webir` is local; rewrite/emit-shared still need Convert sibling dists or hooks for full execute smokes.
 2. **`test:runtime-cwl`:** root script runs `npm test --prefix packages/runtime-cwl`, but package has no `test` script and tests reference convert `fixtures/hub-gold-cwl*` (absent here).
-3. **Coverage:** API literal/object/status/path/query/multi-file only. Not yet marked:
-   - `04-request-context` — **blocked on Convert `rewrite`**, not pillar smoke. Proven 2026-08-09: cookies bind (`sid`), query binds (`lang`), headers stay `null` (`auth` / `accept`). Root cause: sibling `@chrysalis/rewrite` `RequestInput` has no `headers` field and `pickBag(..., "header")` returns `{}`. Pillar `runtime-cwl` already sees HTTP `Headers` but cannot feed them honestly. Fixture README: [`fixtures/language-gold/04-request-context/README.md`](../../fixtures/language-gold/04-request-context/README.md). Requested: [`CONVERT-REWRITE-HEADERS-REQUESTED.md`](./CONVERT-REWRITE-HEADERS-REQUESTED.md). Do not allowlist until rewrite binds headers.
+3. **Coverage:** API literal/object/status/path/query/header/cookie/multi-file. Not yet marked:
+   - ~~`04-request-context`~~ — **Done:** Convert `RequestInput.headers` + pillar pass-through; fixture `runtime-ok`
    - `08-response-content-type` / `14-defaults-headers` — bodies/status often work; **response-header** / CWL `content-type` not honestly applied on `Response` (runtime invents CT from body shape)
    - `05` body / `07` auth / pages / UI / holes — holes correctly **501**; pages/UI not claimed
 4. **Browser / worker / emit-runtime-cwl:** out of this slice.
-5. **No Convert emit required** for this execute path — Requested below is wiring/flip / simulate honesty, not “must emit to run.”
+5. **No Convert emit required** for this execute path — keep rewrite/emit-shared dists buildable for sibling consume.
 
 ## Requested (Convert)
 
-- Keep `rewrite` + `emit-shared` + `webir` dists buildable for sibling consume.
-- When flipping WebIR / workspace: retarget pillar `runtime-cwl*` deps so `smoke:cwl-runtime-gold` can drop resolve hooks (or keep hooks as fallback).
+- Keep `rewrite` + `emit-shared` dists buildable for sibling consume.
+- When flipping workspace pins: retarget pillar `runtime-cwl*` deps so smokes can drop resolve hooks (or keep hooks as fallback).
 - Do not treat convert hub-gold runtime tests as language SoR — language gold is `fixtures/language-gold/`.
-- **`04-request-context` / RFC-0004 headers:** extend `@chrysalis/rewrite` `RequestInput` with a `headers` bag and make `pickBag` `case "header"` read it (name-case policy documented). After that lands, CWL pillar can pass `Headers` → bag in `buildRequestInput`, mark `runtime-ok`, and allowlist — no Convert emit invent required for that gate. Full ask: [`CONVERT-REWRITE-HEADERS-REQUESTED.md`](./CONVERT-REWRITE-HEADERS-REQUESTED.md).
+- ~~**`04-request-context` / RFC-0004 headers**~~ — **Done** ([`CONVERT-REWRITE-HEADERS-REQUESTED.md`](./CONVERT-REWRITE-HEADERS-REQUESTED.md)).

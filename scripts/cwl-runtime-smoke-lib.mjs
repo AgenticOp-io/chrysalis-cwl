@@ -64,6 +64,20 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       expectBody: '{"page":"2","limit":"10"}',
     },
   ]),
+  "04-request-context": Object.freeze([
+    {
+      path: "/auth",
+      expectStatus: 200,
+      expectBody: '{"auth":"Bearer tok","sid":"abc"}',
+      headers: { authorization: "Bearer tok", cookie: "session_id=abc" },
+    },
+    {
+      path: "/locale?lang=en",
+      expectStatus: 200,
+      expectBody: '{"accept":"en-US","lang":"en"}',
+      headers: { "accept-language": "en-US" },
+    },
+  ]),
   "06-response-status": Object.freeze([
     { method: "POST", path: "/items", expectStatus: 201, expectBody: '{"ok":true}' },
     { path: "/gone", expectStatus: 410, expectBody: '{"gone":true}' },

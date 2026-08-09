@@ -1,32 +1,23 @@
 # `04-request-context` — RFC-0004
 
-Ingest / parse gold for `header` + `cookie` bindings. **Not `runtime-ok`.**
+**runtime-ok** — `header` + `cookie` + `query` bind under `simulateHandler` via rewrite `RequestInput.headers` (Convert) + pillar `buildRequestInput` pass-through.
 
-## Reproduce (headers → null)
+## Checks
 
 ```text
 GET /auth  Cookie: session_id=abc  Authorization: Bearer tok
-→ 200 {"auth":null,"sid":"abc"}
+→ 200 {"auth":"Bearer tok","sid":"abc"}
 
 GET /locale?lang=en  Accept-Language: en-US
-→ 200 {"accept":null,"lang":"en"}
+→ 200 {"accept":"en-US","lang":"en"}
 ```
 
-| Binding | Execute today |
+| Binding | Execute |
 | --- | --- |
 | `cookie session_id` | binds (`sid`) |
 | `query lang` | binds |
-| `header Authorization` / `Accept-Language` | always `null` |
+| `header Authorization` / `Accept-Language` | binds (lower-case bag keys) |
 
-## Why not runtime-ok
+Missing header names bind `null` — no invented echo.
 
-Honesty: fixture claims request **headers**, and `@chrysalis/rewrite` `simulateHandler` does not read them.
-
-| Layer | Fact |
-| --- | --- |
-| Pillar `runtime-cwl` | Has HTTP `Headers`; passes **cookies** into `RequestInput`; no `headers` bag on that contract |
-| Convert `@chrysalis/rewrite` | `RequestInput` has no `headers` field; `pickBag(..., "header")` returns `{}` |
-
-Do **not** mark `runtime-ok` or allowlist this fixture until Convert feeds headers through simulate (then a thin pillar pass-through in `buildRequestInput`). No invented header echo in the smoke harness.
-
-See [`docs/history/DNA-STEP-EXECUTE.md`](../../../docs/history/DNA-STEP-EXECUTE.md) § Gaps / Requested.
+See [`docs/history/DNA-STEP-EXECUTE.md`](../../../docs/history/DNA-STEP-EXECUTE.md).

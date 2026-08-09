@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## Unreleased — execute
+
+- Pass HTTP `Headers` → rewrite `RequestInput.headers` in `runtime-cwl` `buildRequestInput`
+- Mark `04-request-context` **`runtime-ok`**; runtime matrix **6** → `CWL_RUNTIME_MATRIX_OK`
+- Convert rewrite-headers Requested → **Verified**
+
 ## 1.0.4 — 2026-08-09
 
 - CLI `dna-seed` / `--holes-report` on pillar + packable `bin/cwl`

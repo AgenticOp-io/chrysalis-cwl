@@ -25,9 +25,9 @@ for (const [pkg, entry] of Object.entries(depMap)) {
 }
 
 const fixtures = discoverRuntimeOkFixtures();
-if (fixtures.length < 4) {
+if (fixtures.length < 6) {
   throw new Error(
-    `expected >= 4 runtime-ok fixtures (01/02/03/06+), got ${fixtures.length}: ${fixtures.join(", ")}`,
+    `expected >= 6 runtime-ok fixtures (01/02/03/04/06/12), got ${fixtures.length}: ${fixtures.join(", ")}`,
   );
 }
 
