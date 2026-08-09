@@ -5,7 +5,10 @@
 import { diagnoseCwlSource } from "./cwl-diagnose.mjs";
 
 export const CWL_LSP_MAP_KIND = "chrysalis.cwl.lsp-map";
-export const CWL_LSP_MAP_SCHEMA_VERSION = 1;
+export const CWL_LSP_MAP_SCHEMA_VERSION = 2;
+
+/** Line-end fallback when diagnose omits a precise end character. */
+export const CWL_LSP_LINE_END_CHARACTER = 1 << 20;
 
 /** @typedef {"Error"|"Warning"|"Information"|"Hint"} LspSeverity */
 
@@ -49,12 +52,30 @@ export function resolveCharacter0(character, column) {
 }
 
 /**
- * @param {{ severity: string, code?: string, message: string, line?: number, character?: number, column?: number }} d
+ * Prefer diagnose `endCharacter`, else alias `endColumn`.
+ * Falls back to line-end sentinel when missing or not after start.
+ * @param {number|undefined} endCharacter
+ * @param {number|undefined} endColumn
+ * @param {number} startCharacter0
+ * @returns {number} 0-based exclusive end character
+ */
+export function resolveEndCharacter0(endCharacter, endColumn, startCharacter0 = 0) {
+  for (const v of [endCharacter, endColumn]) {
+    if (Number.isFinite(v) && /** @type {number} */ (v) > startCharacter0) {
+      return Math.floor(/** @type {number} */ (v));
+    }
+  }
+  return CWL_LSP_LINE_END_CHARACTER;
+}
+
+/**
+ * @param {{ severity: string, code?: string, message: string, line?: number, character?: number, column?: number, endCharacter?: number, endColumn?: number }} d
  * @param {string} [uri]
  */
 export function mapDiagnoseDiagnostic(d, uri = "file:///input.cwl") {
   const line0 = resolveLine0(d.message, d.line);
   const character0 = resolveCharacter0(d.character, d.column);
+  const endCharacter0 = resolveEndCharacter0(d.endCharacter, d.endColumn, character0);
   return {
     uri,
     severity: toLspSeverity(/** @type {"error"|"warn"|"info"} */ (d.severity)),
@@ -63,7 +84,7 @@ export function mapDiagnoseDiagnostic(d, uri = "file:///input.cwl") {
     source: "cwl",
     range: {
       start: { line: line0, character: character0 },
-      end: { line: line0, character: 1 << 20 },
+      end: { line: line0, character: endCharacter0 },
     },
   };
 }

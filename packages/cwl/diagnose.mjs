@@ -7,6 +7,7 @@ export {
   CWL_DIAGNOSE_SCHEMA_VERSION,
   resolveDiagLine,
   resolveDiagCharacter,
+  resolveDiagEndCharacter,
   diagnoseCwlSource,
   diagnoseCwlFile,
 } from '../../scripts/hub-ingest/cwl-diagnose.mjs';

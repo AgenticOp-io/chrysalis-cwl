@@ -118,6 +118,9 @@ export function installRuntimeDepHooks() {
 }
 
 /**
+ * Positive marker only: a line that is (or starts with) `**runtime-ok**`.
+ * Mentions like "Not runtime-ok" / "Why not runtime-ok" must not match.
+ *
  * @param {string} fixtureName
  * @returns {boolean}
  */
@@ -125,7 +128,7 @@ export function fixtureHasRuntimeOkMarker(fixtureName) {
   const readme = join(GOLD_ROOT, fixtureName, "README.md");
   if (!existsSync(readme)) return false;
   const text = readFileSync(readme, "utf8");
-  return new RegExp(`\\b${RUNTIME_OK_MARKER}\\b`, "i").test(text);
+  return /^\s*\*\*runtime-ok\*\*/im.test(text);
 }
 
 /**

@@ -96,21 +96,23 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 - [x] Diagnose → LSP map + `test:cwl-lsp-map` ([`DNA-EVOLUTION-0.1.9.md`](./DNA-EVOLUTION-0.1.9.md))
 - [x] Editor push-diagnostics + format DocumentProvider (`editors/vscode`)
 - [x] CLI `--stdin` for unsaved buffers
-- [x] Minimal stdio Language Server (`cwl-lsp-server.mjs` + `test:cwl-lsp-server`) — diagnose/fmt/cheap hover + completion v0 + column ranges v1 + definition v0 ([`CWL-LSP.md`](../language/CWL-LSP.md), 0.1.13)
-- [x] Runtime matrix + line/column diagnose ranges (0.1.12) — next: rename / token end columns ([`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md))
-- [x] Package diagnose/lsp-map exports (`@chrysalis/cwl/diagnose`, `@chrysalis/cwl/lsp-map`) + `test:cwl-package-exports` (0.1.13)
+- [x] Minimal stdio Language Server (`cwl-lsp-server.mjs` + `test:cwl-lsp-server`) — diagnose/fmt/cheap hover + completion v0 + column ranges v1 + token end columns v1 + definition v0 + rename v0 ([`CWL-LSP.md`](../language/CWL-LSP.md), 0.1.14)
+- [x] Runtime matrix + line/column diagnose ranges (0.1.12); token end columns (**0.1.14**) ([`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md))
+- [x] Package diagnose/lsp-map exports (`0.1.13`); parser + print exports (**0.1.14**) + `test:cwl-package-exports`
+- [x] Same-file LSP rename (`textDocument/rename` + `prepareRename`) — tip `0b824de` / `0.1.13`
 
-**Exit 0.6:** Authors get live diagnostics/fmt inside the private pillar without Convert.
+**Exit 0.6:** Authors get live diagnostics/fmt inside the private pillar without Convert.  
+**Exit met** — LSP rename + package exports (diagnose/lsp-map; parser on sibling 0.1.14) close near-term authoring gravity. Status: [`DNA-CWL-NEAR-COMPLETE.md`](./DNA-CWL-NEAR-COMPLETE.md). Optional polish only on the CWL queue.
 
 ---
 
 ## Phase 1.0 — Published language (private registry)
 
-- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.13`) — metadata only; package stays `"private": true`
+- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.14`) — metadata only; package stays `"private": true`
 - [x] Pre-publish pin path documented: sibling workspace / `file:` / env `CHRYSALIS_CWL_ROOT` ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
 - [x] Convert + Secure **`file:` pin** `@chrysalis/cwl` (`npm run test:cwl-pin`)
 - [x] Publish **prep gate** `npm run test:cwl-publish-prep` (package stays `"private": true`)
-- [x] Editor + minimal stdio LSP (completion + column ranges + definition v0) + CI language workflow (rename still open — [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md))
+- [x] Editor + minimal stdio LSP (completion + column ranges + definition v0 + rename v0) + CI language workflow — authoring gravity closed; see [`DNA-CWL-NEAR-COMPLETE.md`](./DNA-CWL-NEAR-COMPLETE.md)
 - [x] Private-first registry decision documented (no public npm by default)
 - [ ] Private registry package version ≡ `LANGUAGE_VERSION.md` (**actual publish — still open**)
 - [ ] Convert pins a **private registry** CWL release (today: `file:` + junctions)
@@ -118,7 +120,7 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 - [ ] **Requested (Convert):** peel/emit gravity — honest CWL landings + `hub:cwl-helix-cutover-smoke` — [CONVERT-GRAVITY-REQUESTED.md](./CONVERT-GRAVITY-REQUESTED.md)
 - [ ] Breaking changes require major bump + RFC migration notes
 
-**Exit 1.0:** Consumers depend on a versioned **private** language artifact, not a random tree copy. **Not exited** — registry publish remains open; local `file:` pins are in place.
+**Exit 1.0:** Consumers depend on a versioned **private** language artifact, not a random tree copy. **Not exited** — registry publish remains open (human); local `file:` pins are in place. Phase 0.6 authoring exit does **not** imply Phase 1.0.
 
 ---
 
@@ -133,7 +135,7 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ## How to pick the next slice
 
-Follow **Rosetta → Universal Translator → DNA** ([`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)). Short queue: [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md).
+Follow **Rosetta → Universal Translator → DNA** ([`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)). Near-term authoring status: [`DNA-CWL-NEAR-COMPLETE.md`](./DNA-CWL-NEAR-COMPLETE.md). Short queue: [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) (CWL-owned near-term queue empty — optional polish only).
 
 1. Does it improve **spec, fixtures, or tooling** for the language? → do it here.  
 2. Is it convert product smoke / ST prove? → convert agent.  

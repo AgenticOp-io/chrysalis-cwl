@@ -6,6 +6,7 @@ import { readFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
+  CWL_LSP_LINE_END_CHARACTER,
   mapDiagnoseDiagnostic,
   mapDiagnoseSource,
   toLspSeverity,
@@ -38,7 +39,7 @@ async function main() {
   }
 
   // Gold: hole stmts at 1-based lines 7 and 13 → LSP 0-based 6 and 12.
-  // Indented `  hole …` → keyword start character 2 (> 0).
+  // Indented `  hole …` → keyword start character 2 (> 0); end = start + "hole".length (6).
   const holeDiags = (mapped.diagnostics ?? []).filter((d) => d.code === "catalogued-hole");
   if (holeDiags.length < 2) {
     failures.push("expected-two-catalogued-hole-diags");
@@ -57,6 +58,18 @@ async function main() {
     failures.push("expected-at-least-one-diagnostic-character-gt-0");
   }
 
+  for (const d of holeDiags) {
+    const start = d.range?.start?.character;
+    const end = d.range?.end?.character;
+    if (!Number.isFinite(end)) {
+      failures.push(`hole-end-character-not-finite:${d.message}`);
+    } else if (!(/** @type {number} */ (end) > /** @type {number} */ (start))) {
+      failures.push(`hole-end-character-not-gt-start:${start}->${end}`);
+    } else if (end === CWL_LSP_LINE_END_CHARACTER) {
+      failures.push("hole-end-character-still-line-sentinel");
+    }
+  }
+
   if (toLspSeverity("error") !== "Error") failures.push("severity-error");
   if (toLspSeverity("warn") !== "Warning") failures.push("severity-warn");
   if (toLspSeverity("info") !== "Information") failures.push("severity-info");
@@ -68,6 +81,9 @@ async function main() {
   if (synthetic.severity !== "Error") failures.push("synthetic-severity");
   if (synthetic.range.start.line !== 2) failures.push("synthetic-line0");
   if (synthetic.range.start.character !== 4) failures.push("synthetic-character");
+  if (synthetic.range.end.character !== CWL_LSP_LINE_END_CHARACTER) {
+    failures.push("synthetic-missing-end-should-line-sentinel");
+  }
 
   const syntheticCol = mapDiagnoseDiagnostic(
     { severity: "warn", code: "x", message: "col alias", line: 1, column: 7 },
@@ -75,9 +91,22 @@ async function main() {
   );
   if (syntheticCol.range.start.character !== 7) failures.push("synthetic-column-alias");
 
+  const syntheticEnd = mapDiagnoseDiagnostic(
+    {
+      severity: "info",
+      code: "catalogued-hole",
+      message: "end char",
+      line: 2,
+      character: 2,
+      endCharacter: 6,
+    },
+    "file:///synth-end.cwl",
+  );
+  if (syntheticEnd.range.end.character !== 6) failures.push("synthetic-end-character");
+
   const report = {
     kind: "chrysalis.cwl.lsp-map.gate",
-    schemaVersion: 1,
+    schemaVersion: 2,
     ok: failures.length === 0,
     token: failures.length === 0 ? "CWL_LSP_MAP_OK" : "CWL_LSP_MAP_FAIL",
     gold: GOLD,
@@ -88,6 +117,9 @@ async function main() {
     holeRangeCharacters0: (mapped.diagnostics ?? [])
       .filter((d) => d.code === "catalogued-hole")
       .map((d) => d.range.start.character),
+    holeRangeEndCharacters0: (mapped.diagnostics ?? [])
+      .filter((d) => d.code === "catalogued-hole")
+      .map((d) => d.range.end.character),
     hasCharacterGt0: hasCharGt0,
     failures,
   };

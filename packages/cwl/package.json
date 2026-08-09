@@ -1,8 +1,8 @@
 {
   "name": "@chrysalis/cwl",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "private": true,
-  "description": "Chrysalis Web Language — version pin + pillar root helpers. Parser/fmt remain in scripts until extracted; see LANGUAGE_VERSION.md.",
+  "description": "Chrysalis Web Language — version pin + pillar root helpers. Thin subpath re-exports over hub-ingest; see LANGUAGE_VERSION.md.",
   "license": "Apache-2.0",
   "type": "module",
   "main": "./index.mjs",
@@ -10,6 +10,8 @@
     ".": "./index.mjs",
     "./diagnose": "./diagnose.mjs",
     "./lsp-map": "./lsp-map.mjs",
+    "./parser": "./parser.mjs",
+    "./print": "./print.mjs",
     "./package.json": "./package.json"
   },
   "bin": {
@@ -25,6 +27,8 @@
     "index.mjs",
     "diagnose.mjs",
     "lsp-map.mjs",
+    "parser.mjs",
+    "print.mjs",
     "README.md",
     "package.json"
   ]

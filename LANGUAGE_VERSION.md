@@ -3,19 +3,20 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `0.1.13` |
-| **Status** | Private-first DNA authoring: package diagnose/lsp-map exports |
+| **Version** | `0.1.14` |
+| **Status** | Private-first DNA authoring: token end columns + parser/print package exports |
 | **Date** | 2026-08-09 |
 
 ## What this version means
 
-`0.1.13` exposes **diagnose** and **lsp-map** helpers as `@chrysalis/cwl` package subpaths (no deep-link into `scripts/hub-ingest/`):
+`0.1.14` ships **token end columns** for cheap diagnostic sites (`module`, `@route`/`@page`, `hole`) and expands package subpaths:
 
-- `import { diagnoseCwlSource, … } from '@chrysalis/cwl/diagnose'`
-- `import { mapDiagnoseSource, … } from '@chrysalis/cwl/lsp-map'`
-- Thin re-exports over canonical `scripts/hub-ingest/cwl-diagnose.mjs` / `cwl-lsp-map.mjs`
-- Gate: `test:cwl-package-exports` → `CWL_PACKAGE_EXPORTS_OK` (wired into `test:language`)
-- Prior: column ranges + definition v0 (`0.1.12`), completion v0 (`0.1.11`)
+- Parser records exclusive keyword end characters alongside starts
+- Diagnose schema **v5** emits `endCharacter`/`endColumn` when cheap
+- LSP map schema **v2** uses end character when present (else line-end `1<<20`)
+- Gate: `test:cwl-lsp-map` asserts hole gold end characters are finite and `> start`
+- Package exports: `@chrysalis/cwl/parser` + `@chrysalis/cwl/print` (with diagnose/lsp-map from `0.1.13`)
+- Prior: package diagnose/lsp-map exports (`0.1.13`), column starts + definition/rename v0 (`0.1.12`)
 
 See `CHANGELOG.md` for deltas. Spec: [`docs/language/CWL-LSP.md`](./docs/language/CWL-LSP.md) · Publish: [`docs/language/CWL-PUBLISH.md`](./docs/language/CWL-PUBLISH.md)
 
@@ -30,7 +31,7 @@ Breaking changes must be versioned in this file **before** they land in parser/p
 ## Out of scope for `0.1.x`
 
 - WebIR physical package ownership flip (Convert-coordinated)
-- Full IDE LSP (rename / go-to-def / workspace symbols / smart import-path completion)
+- Full IDE LSP (cross-file rename / workspace symbols / smart import-path completion)
 - Helix / Secure DNA firewall implementation
 - Public npm / Marketplace — pillars stay private unless human reopens
 

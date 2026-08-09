@@ -6,10 +6,7 @@
 
 ## Unreleased / DNA authoring
 
-- LSP rename v0: `textDocument/rename` + `prepareRename` for same-file `handler`/`page` **name** declaration (AST-visible only; not path strings / cross-file)
-- Gate: `test:cwl-lsp-server` asserts rename returns ≥1 edit on `01-literals`; advertise `renameProvider`
-- VS Code thin client: RenameProvider; docs `CWL-LSP.md` honesty (same-file only)
-- Language version bump owned separately (`0.1.13` package-exports) — not bumped here
+- *(cleared into 0.1.14)*
 
 ## Unreleased / execute
 
@@ -22,6 +19,23 @@
 
 - Keep sibling `webir` / `rewrite` / `emit-shared` dists buildable; Slice 3.4 dep retarget so pillar runtime imports need fewer resolve hooks
 - **Rewrite headers:** `RequestInput.headers` + `pickBag(..., "header")` so CWL can mark `04-request-context` `runtime-ok` and matrix goes to 6 — [`docs/history/CONVERT-REWRITE-HEADERS-REQUESTED.md`](./docs/history/CONVERT-REWRITE-HEADERS-REQUESTED.md)
+
+## 0.1.14 — 2026-08-09
+
+- Token end columns v1: parser records exclusive keyword ends for `module`, `@route`/`@page`, `hole`
+- Diagnose schema **v5**: emits `endCharacter`/`endColumn` on those cheap sites
+- LSP map schema **v2**: `range.end.character` from end fields when present (else line-end `1<<20`)
+- Gate: `test:cwl-lsp-map` asserts holes gold end characters are finite and `> start` (not line sentinel)
+- Package exports: `@chrysalis/cwl/parser` + `@chrysalis/cwl/print` (gate extended; docs in `CWL-PUBLISH.md`)
+- Package / editor / LSP server version `0.1.14`; pillars stay `"private": true`
+
+### Requested (Convert)
+
+- Pull `0.1.14` junctions after land; prefer package subpaths over hub-ingest deep-links
+
+### Requested (Secure)
+
+- Keep `file:` pin; import diagnose/lsp-map/parser/print via `@chrysalis/cwl/*` when bridging
 
 ## 0.1.13 — 2026-08-09
 

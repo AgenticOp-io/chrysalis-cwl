@@ -5,9 +5,11 @@
 export {
   CWL_LSP_MAP_KIND,
   CWL_LSP_MAP_SCHEMA_VERSION,
+  CWL_LSP_LINE_END_CHARACTER,
   toLspSeverity,
   resolveLine0,
   resolveCharacter0,
+  resolveEndCharacter0,
   mapDiagnoseDiagnostic,
   mapDiagnoseSource,
 } from '../../scripts/hub-ingest/cwl-lsp-map.mjs';

@@ -1,9 +1,9 @@
 # CWL editor / LSP path
 
-**Status:** stdio Language Server (0.1.13) — diagnose/fmt/hover/completion + column ranges v1 + definition v0 + rename v0 (same-file)  
+**Status:** stdio Language Server (0.1.14) — diagnose/fmt/hover/completion + column ranges v1 + token end columns v1 + definition v0 + rename v0 (same-file)  
 **Server:** [`scripts/cwl-lsp-server.mjs`](../../scripts/cwl-lsp-server.mjs)  
 **Extension:** [`editors/vscode/`](../../editors/vscode/) (thin spawn client, **zero npm deps**)  
-**Language version:** `0.1.13`  
+**Language version:** `0.1.14`  
 **Distribution:** private pillar — not VS Code Marketplace
 
 ## Have now
@@ -18,6 +18,7 @@
 | Hover (cheap) | module name; `@route` / `@page` method+path+handler |
 | Completion (v0) | keywords / surface starters + common effect presets; prefix filter only |
 | Column ranges (v1) | `character`/`column` on hole / `@route`/`@page` / `module` sites → LSP `range.start.character` |
+| Token end columns (v1) | `endCharacter`/`endColumn` (keyword length) on those sites → LSP `range.end.character` when present |
 | Definition (v0) | `textDocument/definition` — handler name / path → `@route`/`@page` surface line |
 | Document symbols (v0) | `textDocument/documentSymbol` — `METHOD path` outline |
 | Rename (v0) | `textDocument/rename` (+ `prepareRename`) — same-file `handler`/`page` **name** declaration only |
@@ -38,7 +39,7 @@ JSON-RPC 2.0 with LSP `Content-Length` framing on stdin/stdout. VS Code extensio
 - **Not** a full IDE language server — no cross-file rename/imports, workspace symbols index, or incremental parse
 - **Rename v0** is **same-file only**: renames the AST-visible `handler`/`page` declaration name; does **not** rewrite path strings, comments, or references in other files
 - **Completion v0** is catalog + prefix only — **no** smart import/path, symbol table, or AST-scoped suggestions
-- Diagnostic **columns** are keyword-start only for cheap sites (`module`, `@route`/`@page`, `hole`); other diags may still be character `0`; end character remains line-end (`1<<20`), not token-precise
+- Diagnostic **columns** are keyword-start + keyword-end for cheap sites (`module`, `@route`/`@page`, `hole`); other diags may still be character `0` with line-end (`1<<20`) when end is omitted
 - **Definition v0** is same-file surface jump only (handler name or path string → route/`@page` line) — not a full symbol table
 - Hover only on `module` / `@route` / `@page` lines (AST surface), not identifiers in handlers
 - Extension needs the chrysalis-cwl checkout above `editors/vscode` (spawns pillar Node script)
@@ -47,9 +48,8 @@ JSON-RPC 2.0 with LSP `Content-Length` framing on stdin/stdout. VS Code extensio
 
 ## Next (still CWL-owned)
 
-1. Token-precise end columns / more statement sites
-2. Smarter completion (route paths, handler names, import/path — optional)
-3. Cross-file rename / references (only when import graph is honest)
-4. Private VSIX for internal installs (optional)
+1. More statement end sites / smarter completion (route paths, handler names, import/path — optional)
+2. Cross-file rename / references (only when import graph is honest)
+3. Private VSIX for internal installs (optional)
 
 CWL CLI remains source of truth: `npm run check -- path/to/file.cwl`.

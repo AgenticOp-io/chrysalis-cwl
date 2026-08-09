@@ -9,7 +9,7 @@ import { isCataloguedFullstackHole, lookupFullstackHole } from "./cwl-fullstack-
 import { parseCwlModule } from "./cwl-parser.mjs";
 
 export const CWL_DIAGNOSE_KIND = "chrysalis.cwl.diagnose";
-export const CWL_DIAGNOSE_SCHEMA_VERSION = 4;
+export const CWL_DIAGNOSE_SCHEMA_VERSION = 5;
 
 /**
  * Prefer explicit 1-based `line`, else parse "line N" / "at N" from a message.
@@ -45,13 +45,33 @@ export function resolveDiagCharacter(character, column) {
 }
 
 /**
- * @param {{ severity: "error"|"warn"|"info", code: string, message: string, line?: number, character?: number, column?: number }} d
- * @param {number | undefined} character
+ * Prefer 0-based exclusive `endCharacter`, else alias `endColumn`.
+ * @param {unknown} endCharacter
+ * @param {unknown} [endColumn]
+ * @returns {number | undefined}
  */
-function attachCharacter(d, character) {
+export function resolveDiagEndCharacter(endCharacter, endColumn) {
+  for (const v of [endCharacter, endColumn]) {
+    if (Number.isFinite(v) && /** @type {number} */ (v) >= 0) {
+      return Math.floor(/** @type {number} */ (v));
+    }
+  }
+  return undefined;
+}
+
+/**
+ * @param {{ severity: "error"|"warn"|"info", code: string, message: string, line?: number, character?: number, column?: number, endCharacter?: number, endColumn?: number }} d
+ * @param {number | undefined} character
+ * @param {number | undefined} [endCharacter]
+ */
+function attachCharacter(d, character, endCharacter) {
   if (character != null) {
     d.character = character;
     d.column = character;
+  }
+  if (endCharacter != null) {
+    d.endCharacter = endCharacter;
+    d.endColumn = endCharacter;
   }
   return d;
 }
@@ -61,7 +81,7 @@ function attachCharacter(d, character) {
  * @param {string} [file]
  */
 export function diagnoseCwlSource(source, file = "input.cwl") {
-  /** @type {Array<{ severity: "error"|"warn"|"info", code: string, message: string, line?: number, character?: number, column?: number }>} */
+  /** @type {Array<{ severity: "error"|"warn"|"info", code: string, message: string, line?: number, character?: number, column?: number, endCharacter?: number, endColumn?: number }>} */
   const diagnostics = [];
 
   let mod;
@@ -70,7 +90,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
     const line = resolveDiagLine(undefined, message);
-    /** @type {{ severity: "error", code: string, message: string, line?: number, character?: number, column?: number }} */
+    /** @type {{ severity: "error", code: string, message: string, line?: number, character?: number, column?: number, endCharacter?: number, endColumn?: number }} */
     const d = { severity: "error", code: "parse", message };
     if (line != null) d.line = line;
     diagnostics.push(d);
@@ -78,6 +98,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
   }
 
   const moduleChar = resolveDiagCharacter(mod.moduleCharacter);
+  const moduleEnd = resolveDiagEndCharacter(mod.moduleEndCharacter);
 
   if (mod.moduleLine == null) {
     diagnostics.push({
@@ -87,6 +108,8 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
       line: 1,
       character: 0,
       column: 0,
+      endCharacter: 0,
+      endColumn: 0,
     });
   }
 
@@ -101,6 +124,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
           line: mod.moduleLine ?? 1,
         },
         moduleChar ?? 0,
+        moduleEnd ?? (moduleChar != null ? moduleChar + "module".length : 0),
       ),
     );
   }
@@ -110,33 +134,37 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
     const key = `${r.method} ${r.path}`;
     const routeLine = Number.isFinite(r.line) && r.line >= 1 ? r.line : undefined;
     const routeChar = resolveDiagCharacter(r.character, r.column);
+    const routeEnd = resolveDiagEndCharacter(r.endCharacter, r.endColumn);
     if (seen.has(key)) {
-      /** @type {{ severity: "warn", code: string, message: string, line?: number, character?: number, column?: number }} */
+      /** @type {{ severity: "warn", code: string, message: string, line?: number, character?: number, column?: number, endCharacter?: number, endColumn?: number }} */
       const d = {
         severity: "warn",
         code: "duplicate-route",
         message: `duplicate route surface ${key} (handlers ${seen.get(key)} and ${r.name})`,
       };
       if (routeLine != null) d.line = routeLine;
-      attachCharacter(d, routeChar);
+      attachCharacter(d, routeChar, routeEnd);
       diagnostics.push(d);
     } else {
       seen.set(key, r.name);
     }
 
-    /** @type {Array<{ reason: string, line?: number, character?: number }>} */
+    /** @type {Array<{ reason: string, line?: number, character?: number, endCharacter?: number }>} */
     const holeSites = [];
     const att = r.attachmentHoles ?? [];
     const attLines = r.attachmentHoleLines ?? [];
     const attChars = r.attachmentHoleCharacters ?? [];
+    const attEnds = r.attachmentHoleEndCharacters ?? [];
     for (let hi = 0; hi < att.length; hi++) {
       const reason = String(att[hi]);
       const hl = attLines[hi];
       const hc = resolveDiagCharacter(attChars[hi]);
+      const he = resolveDiagEndCharacter(attEnds[hi]);
       holeSites.push({
         reason,
         line: Number.isFinite(hl) && hl >= 1 ? hl : routeLine,
         character: hc ?? routeChar,
+        endCharacter: he ?? (hc != null ? hc + "hole".length : routeEnd),
       });
     }
     if (r.body?.kind === "hole") {
@@ -144,15 +172,17 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
       if (!holeSites.some((h) => h.reason === reason)) {
         const bl = r.body.line;
         const bc = resolveDiagCharacter(r.body.character, r.body.column);
+        const be = resolveDiagEndCharacter(r.body.endCharacter, r.body.endColumn);
         holeSites.push({
           reason,
           line: Number.isFinite(bl) && bl >= 1 ? bl : routeLine,
           character: bc ?? routeChar,
+          endCharacter: be ?? (bc != null ? bc + "hole".length : routeEnd),
         });
       }
     }
     for (const site of holeSites) {
-      /** @type {{ severity: "info"|"warn", code: string, message: string, line?: number, character?: number, column?: number }} */
+      /** @type {{ severity: "info"|"warn", code: string, message: string, line?: number, character?: number, column?: number, endCharacter?: number, endColumn?: number }} */
       let d;
       if (isCataloguedFullstackHole(site.reason)) {
         const entry = lookupFullstackHole(site.reason);
@@ -169,7 +199,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
         };
       }
       if (site.line != null) d.line = site.line;
-      attachCharacter(d, site.character);
+      attachCharacter(d, site.character, site.endCharacter);
       diagnostics.push(d);
     }
   }
@@ -190,6 +220,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
   }
   for (const r of mod.routes ?? []) {
     const routeChar = resolveDiagCharacter(r.character, r.column);
+    const routeEnd = resolveDiagEndCharacter(r.endCharacter, r.endColumn);
     if (r.surfaceKind === "page") pageRouteCount += 1;
     if (r.loadBody) loadRouteCount += 1;
     const effects = r.effects ?? [];
@@ -210,6 +241,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
             line: r.line,
           },
           routeChar,
+          routeEnd,
         ),
       );
     }
@@ -223,6 +255,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
             line: r.line,
           },
           routeChar,
+          routeEnd,
         ),
       );
     }
@@ -242,6 +275,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
                 line: r.line,
               },
               routeChar,
+              routeEnd,
             ),
           );
         }
@@ -259,6 +293,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
           line: layoutImportLines[0] ?? mod.moduleLine ?? 1,
         },
         moduleChar,
+        moduleEnd,
       ),
     );
   } else if (layoutImports.length > 0) {
@@ -271,6 +306,7 @@ export function diagnoseCwlSource(source, file = "input.cwl") {
           line: layoutImportLines[0] ?? mod.moduleLine ?? 1,
         },
         moduleChar,
+        moduleEnd,
       ),
     );
   }

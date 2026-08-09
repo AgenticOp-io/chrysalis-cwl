@@ -38,7 +38,7 @@ Agents do **not** run `npm publish` by default. When Exit 1.0 is intentionally o
 
 Parser/scripts may still live in-repo at 1.0; the published package is the **versioned language surface** consumers pin. Expanding `files` / exports (parser extract) can follow without changing the pin rule.
 
-### Package subpath exports (0.1.13+)
+### Package subpath exports (0.1.13+; parser/print 0.1.14+)
 
 While `"private": true`, consumers with a `file:` / sibling pin can import helpers without deep-linking `scripts/hub-ingest/`:
 
@@ -47,6 +47,8 @@ While `"private": true`, consumers with a `file:` / sibling pin can import helpe
 | `@chrysalis/cwl` | `VERSION`, `pillarRoot`, `languageVersion` |
 | `@chrysalis/cwl/diagnose` | `diagnoseCwlSource`, `diagnoseCwlFile`, schema constants |
 | `@chrysalis/cwl/lsp-map` | `mapDiagnoseSource`, `mapDiagnoseDiagnostic`, severity helpers |
+| `@chrysalis/cwl/parser` | `parseCwlModule` |
+| `@chrysalis/cwl/print` | `printCwlModule`, `canonicalizeCwlModule` |
 
 Thin wrappers re-export canonical scripts under `scripts/hub-ingest/`. Gate: `npm run test:cwl-package-exports` → `CWL_PACKAGE_EXPORTS_OK`.
 

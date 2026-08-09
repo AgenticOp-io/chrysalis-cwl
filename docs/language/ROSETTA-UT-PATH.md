@@ -40,12 +40,12 @@ Rosetta proves one decree in many scripts.
 
 ## Path checklist
 
-1. **Inscription** — RFCs + language-gold: every surface is a gene that round-trips.
-2. **Translation** — Convert origin → CWL → emit; façades fail the bar.
-3. **Hearing / speaking** — ingest matrix + emit + runtime gold prove the decree survives.
-4. **Live match** — Secure: traffic DNA ↔ CWL surface (RFC-0022/0023).
-5. **Authoring** — humans/agents edit `.cwl` as the readable genome (LSP / check / fmt).
-6. **Gene bank** — versioned private `@chrysalis/cwl` pins (not a random tree copy).
+1. [x] **Inscription** — RFCs + language-gold: every surface is a gene that round-trips. *(CWL — gates + golds in-pillar)*
+2. [ ] **Translation** — Convert origin → CWL → emit; façades fail the bar. *(Convert — [`CONVERT-GRAVITY-REQUESTED.md`](../history/CONVERT-GRAVITY-REQUESTED.md))*
+3. [x] **Hearing / speaking** — ingest matrix + emit + runtime gold prove the decree survives. *(CWL spine/matrix landed; Convert keeps dists buildable — [`DNA-STEP-EXECUTE.md`](../history/DNA-STEP-EXECUTE.md))*
+4. [ ] **Live match** — Secure: traffic DNA ↔ CWL surface (RFC-0022/0023). *(Secure — [`SECURE-CUTOVER-REQUESTED.md`](../history/SECURE-CUTOVER-REQUESTED.md))*
+5. [x] **Authoring** — humans/agents edit `.cwl` as the readable genome (LSP / check / fmt). *(Phase 0.6 exit met — rename + exports; end-columns with sibling 0.1.14 — [`DNA-CWL-NEAR-COMPLETE.md`](../history/DNA-CWL-NEAR-COMPLETE.md))*
+6. [ ] **Gene bank** — versioned private `@chrysalis/cwl` pins (not a random tree copy). *(Phase 1.0 — registry publish still open; `file:` pins today)*
 
 ## Honesty law (anti-mutation)
 
@@ -55,5 +55,7 @@ Guessing is a forged gene. Silent stubs are cancer.
 ## Related
 
 - Constitution: [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md)
+- Near-term authoring complete: [`../history/DNA-CWL-NEAR-COMPLETE.md`](../history/DNA-CWL-NEAR-COMPLETE.md)
+- DNA queue: [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 - DNA evolution: [`../history/DNA-EVOLUTION-0.1.9.md`](../history/DNA-EVOLUTION-0.1.9.md)
 - Portfolio: `AgenticOps/docs/THREE_PILLARS.md`
