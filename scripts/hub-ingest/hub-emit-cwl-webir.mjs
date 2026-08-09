@@ -8,6 +8,7 @@
  * @see docs/history/WEBIR-EXTRACT-PLAN.md Slice 4
  */
 import { cwlEmitLocator, peelCwlControlBody } from "./cwl-emit-control.mjs";
+import { printEmitUiTree, projectHtmlTemplateOrLiteral, projectUiTreeValue } from "./cwl-emit-ui.mjs";
 
 /**
  * @param {unknown} value
@@ -66,18 +67,22 @@ export function cwlValueOfThin(get, id) {
   const n = get(id);
   if (!n) return { t: "hole", reason: "cwl:emit:missing-value" };
 
-  // Authored HTML / text response chrome (page or early-exit success)
+  // Authored HTML / UI response chrome (page or early-exit success)
   if (n.dialect === "web.request" && n.op === "response") {
     const val = get(n.operands?.[0]);
-    if (val?.op === "literal") {
+    if (!val) return { t: "hole", reason: "cwl:emit:unsupported-response" };
+    if (val.dialect === "data" && val.op === "ui.tree") return projectUiTreeValue(get, val);
+    if (val.dialect === "data" && (val.op === "html.template" || val.op === "literal")) {
       const kind = String(n.attrs?.kind ?? "");
-      if (kind === "html" || cwlEmitLocator(n).includes("html")) {
-        return { t: "html", value: val.attrs?.value };
+      if (kind === "html" || cwlEmitLocator(n).includes("html") || val.op === "html.template") {
+        return projectHtmlTemplateOrLiteral(get, val);
       }
-      return { t: "lit", value: val.attrs?.value };
+      if (val.op === "literal") return { t: "lit", value: val.attrs?.value };
     }
     return { t: "hole", reason: "cwl:emit:unsupported-response" };
   }
+  if (n.dialect === "data" && n.op === "ui.tree") return projectUiTreeValue(get, n);
+  if (n.dialect === "data" && n.op === "html.template") return projectHtmlTemplateOrLiteral(get, n);
 
   if (n.dialect === "data" && n.op === "literal") {
     return { t: "lit", value: n.attrs?.value };
@@ -135,7 +140,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
     const lv = cwlValueOfThin(get, peeled.loadBody.id);
     if (lv.t === "obj" || lv.t === "lit") loadValue = lv;
   }
-  const isPage = value.t === "html" || loadValue != null;
+  const isPage = value.t === "html" || value.t === "ui" || loadValue != null;
   const hasControl =
     peeled.earlyGuards.length > 0 ||
     peeled.foreachBindings.length > 0 ||
@@ -143,7 +148,8 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
     loadValue != null ||
     peeled.status != null ||
     peeled.contentType != null ||
-    (peeled.responseHeaders?.length ?? 0) > 0;
+    (peeled.responseHeaders?.length ?? 0) > 0 ||
+    (peeled.attachmentHoles?.length ?? 0) > 0;
 
   if (value.t === "hole" && !hasControl) {
     return {
@@ -163,6 +169,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
       effects: peeled.effects ?? ["none"],
       earlyGuards: [],
       foreachBindings: [],
+      attachmentHoles: peeled.attachmentHoles ?? [],
       surfaceKind: "api",
     };
   }
@@ -184,6 +191,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
       effects: peeled.effects ?? ["none"],
       earlyGuards: peeled.earlyGuards,
       foreachBindings: peeled.foreachBindings,
+      attachmentHoles: peeled.attachmentHoles ?? [],
       surfaceKind: isPage ? "page" : "api",
     };
   }
@@ -204,6 +212,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
     effects: peeled.effects ?? ["none"],
     earlyGuards: peeled.earlyGuards,
     foreachBindings: peeled.foreachBindings,
+    attachmentHoles: peeled.attachmentHoles ?? [],
     surfaceKind: isPage ? "page" : "api",
   };
 }
@@ -385,15 +394,31 @@ export function renderCwlRoutes(routes, opts = {}) {
     if (typeof r.status === "number" && r.status !== 200) {
       lines.push(`  status ${r.status};`);
     }
-    if (r.contentType) {
+    // Skip default page HTML CT (ingest always sets it); keep authored non-default CT.
+    const defaultPageCt = "text/html; charset=utf-8";
+    if (
+      r.contentType &&
+      !(surface === "page" && String(r.contentType) === defaultPageCt) &&
+      !(r.value?.t === "html" && String(r.contentType) === defaultPageCt) &&
+      !(r.value?.t === "ui" && String(r.contentType) === defaultPageCt)
+    ) {
       lines.push(`  content-type ${JSON.stringify(String(r.contentType))};`);
+    }
+
+    for (const reason of r.attachmentHoles ?? []) {
+      const rs = String(reason);
+      lines.push(
+        /^[A-Za-z0-9_:.-]+$/.test(rs) ? `  hole ${rs};` : `  hole legacy ${JSON.stringify(rs)};`,
+      );
     }
 
     if (r.loadValue) {
       lines.push(`  load ${cwlRenderValue(r.loadValue)};`);
     }
 
-    if (r.value) {
+    if (r.value?.t === "ui") {
+      printEmitUiTree(r.value.tree, "  ", lines);
+    } else if (r.value) {
       lines.push(`  return ${cwlRenderValue(r.value)};`);
     } else if (r.holeReason) {
       holeCount += 1;

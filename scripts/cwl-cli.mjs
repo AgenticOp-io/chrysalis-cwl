@@ -7,7 +7,7 @@ import { readdir, readFile, stat } from "node:fs/promises";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { diagnoseCwlSource } from "./hub-ingest/cwl-diagnose.mjs";
-import { formatCwlFile, formatCwlSource } from "./hub-ingest/cwl-fmt.mjs";
+import { formatCwlFile, formatCwlSource, formatCwlSourceViaWebir } from "./hub-ingest/cwl-fmt.mjs";
 import { mapDiagnoseSource } from "./hub-ingest/cwl-lsp-map.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 import { canonicalizeCwlModule, printCwlModule } from "./hub-ingest/cwl-print.mjs";
@@ -20,8 +20,9 @@ const USAGE = `Usage: cwl <command> [options] <path>
 Commands:
   parse <file.cwl>              Parse and print AST JSON
   print <file.cwl>              Parse → print normalized source to stdout
-  fmt <file.cwl> [--write|--stdout]
-                                Format via parse→print (default: --write)
+  fmt <file.cwl> [--write|--stdout] [--webir]
+                                Format via parse→print (default: --write);
+                                --webir = ingest→thin emit reverse (needs WebIR)
   diagnose <file.cwl>           Authoring diagnostics JSON
   diagnose --stdin [--lsp]      Diagnose buffer from stdin (optional LSP map)
   check <file-or-dir>           Round-trip AST equality + diagnose
@@ -214,10 +215,13 @@ async function runCommand(cmd, positional, flags, opts = {}) {
       return 0;
     }
     case "fmt": {
+      const webir = flags.has("webir");
       if (flags.has("stdin")) {
         const name = opts.name || "stdin.cwl";
         const source = await readStdin();
-        const formatted = formatCwlSource(source, name);
+        const formatted = webir
+          ? await formatCwlSourceViaWebir(source, name)
+          : formatCwlSource(source, name);
         process.stdout.write(formatted.endsWith("\n") ? formatted : `${formatted}\n`);
         return 0;
       }
@@ -227,25 +231,29 @@ async function runCommand(cmd, positional, flags, opts = {}) {
       const write = flags.has("write") || (!flags.has("stdout") && !flags.has("check"));
       if (flags.has("stdout")) {
         const source = await readFile(abs, "utf8");
-        const formatted = formatCwlSource(source, abs);
+        const formatted = webir
+          ? await formatCwlSourceViaWebir(source, abs)
+          : formatCwlSource(source, abs);
         process.stdout.write(formatted.endsWith("\n") ? formatted : `${formatted}\n`);
         return 0;
       }
       if (flags.has("check")) {
         const source = await readFile(abs, "utf8");
-        const formatted = formatCwlSource(source, abs);
+        const formatted = webir
+          ? await formatCwlSourceViaWebir(source, abs)
+          : formatCwlSource(source, abs);
         const changed = formatted !== source;
         printJson({
           kind: "chrysalis.cwl.fmt",
-          schemaVersion: 2,
+          schemaVersion: 3,
           ok: !changed,
           path: abs,
           changed,
-          mode: "parse-print",
+          mode: webir ? "webir-emit" : "parse-print",
         });
         return changed ? 1 : 0;
       }
-      const report = await formatCwlFile(abs, { write });
+      const report = await formatCwlFile(abs, { write, webir });
       printJson(report);
       return 0;
     }

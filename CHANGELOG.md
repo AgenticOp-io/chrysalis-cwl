@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.12 — 2026-08-09
+
+- Thin emit: HTML templates, UI trees, `client ui` islands/events (SSR), attachment-hole pages
+- Emit smoke covers all language-gold (honest holes on `11` / `21`)
+- `test:runtime-cwl` → language-gold gate (`CWL_RUNTIME_CWL_OK`)
+- Dual-mode `cwl-fmt` (`--webir`) + `CWL_FMT_OK`
+
 ## 1.0.11 — 2026-08-09
 
 - Thin emit: response chrome (`status` / `content-type` / `response-header`), executable effects peel, page-load

@@ -55,7 +55,7 @@ CWL is the **DNA of the web** (Rosetta meaning). Convert is the Universal Transl
 - [x] **Ingest matrix:** all `language-gold/*/routes.cwl` + `expected-webir.json` (`npm run smoke:cwl-ingest-matrix`)
 - [x] **UT evidence pack:** `npm run smoke:ut-evidence` → `reports/ut-spine/EVIDENCE.md`
 - [x] **Convert reverse-home:** Convert `packages/webir` → junction/`file:` at CWL — verified ([`WEBIR-FLIP-REQUESTED.md`](./WEBIR-FLIP-REQUESTED.md))
-- [ ] Dual-mode `cwl-fmt` (explicit with convert; do not overwrite convert WebIR fmt)
+- [x] Dual-mode `cwl-fmt` (default parse→print; `--webir` thin emit reverse; convert WebIR fmt untouched)
 - [x] Convert depends on shared webir via reverse pin (junction + `file:`)
 
 **Exit 0.3:** Parse, print, ingest, and at least one WebIR round-trip path runnable from `chrysalis-cwl` alone.  

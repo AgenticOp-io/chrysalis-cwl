@@ -356,12 +356,25 @@ export function peelCwlControlBody(get, bodyId) {
   let responseHeaders = [];
   /** @type {object | null} */
   let loadBody = null;
+  /** @type {string[]} */
+  let attachmentHoles = [];
   let id = bodyId;
   let n = get(id);
 
   // Peel known wrappers repeatedly (ingest nests response → foreach → guards → effects → value)
-  for (let step = 0; step < 8 && n; step++) {
+  for (let step = 0; step < 10 && n; step++) {
     const loc = cwlEmitLocator(n);
+
+    if (n.dialect === "data" && n.op === "block" && loc === "cwl:attachment-holes") {
+      const ops = n.operands ?? [];
+      for (let i = 0; i < ops.length - 1; i++) {
+        const h = get(ops[i]);
+        if (h?.op === "hole") attachmentHoles.push(String(h.attrs?.reason ?? "cwl:hole"));
+      }
+      id = ops[ops.length - 1];
+      n = get(id);
+      continue;
+    }
 
     if (n.dialect === "web.request" && n.op === "response") {
       const chrome =
@@ -420,13 +433,16 @@ export function peelCwlControlBody(get, bodyId) {
       }
     }
 
-    if (n.dialect === "data" && n.op === "block" && loc === "cwl-page-load-html") {
+    if (
+      n.dialect === "data" &&
+      n.op === "block" &&
+      (loc === "cwl-page-load-html" || loc === "cwl-page-load-ui")
+    ) {
       const ops = n.operands ?? [];
-      // [__page_load(call), html response]
+      // [__page_load(call), html response | ui tree]
       const loadCall = get(ops[0]);
       if (loadCall?.op === "call" && loadCall.attrs?.callee === "__page_load") {
         const loadObjId = loadCall.operands?.[0];
-        // Reuse thin object projection via recursive peel of object call only
         loadBody = { kind: "object-ref", id: loadObjId };
       }
       id = ops[1] ?? ops[0];
@@ -459,6 +475,7 @@ export function peelCwlControlBody(get, bodyId) {
     contentType,
     responseHeaders,
     loadBody,
+    attachmentHoles,
     bindings,
   };
 }

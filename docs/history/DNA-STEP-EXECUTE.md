@@ -2,7 +2,7 @@
 
 **Slice:** language-owned execute smoke + matrix  
 **Date:** 2026-08-09  
-**Version:** tip `1.0.11` — thin emit chrome/effects/page-load
+**Version:** tip `1.0.12` — full thin-emit Rosetta + dual-mode fmt + runtime-cwl language-gold
 
 ## What “execute” means today
 
