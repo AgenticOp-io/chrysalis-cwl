@@ -5,6 +5,7 @@
 - LSP polish: context-aware completion (effects presets, HTTP methods, same-file handlers/paths)
 - Same-file `textDocument/references`; hover on handler name idents
 - Docs: `CWL-LSP.md`; private VSIX already via `pack:cwl-vsix`
+- Sibling verify: Convert WebIR reverse-home + Secure cutover done; [`CWL-LANGUAGE-SCOPE.md`](./docs/language/CWL-LANGUAGE-SCOPE.md) (DNA ≠ all PLs)
 
 ## 1.0.0 — 2026-08-09
 
