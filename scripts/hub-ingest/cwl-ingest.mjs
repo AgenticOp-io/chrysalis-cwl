@@ -318,7 +318,14 @@ export function liftCwlFileToWebir(opts) {
     let bodyId = valueId;
     const pageLoadHtml = Boolean(r.loadBody && r.body.kind === "html");
     const pageLoadUi = Boolean(r.loadBody && r.body.kind === "ui");
-    if (!pageLoadHtml && !pageLoadUi && (status !== 200 || contentType || hasResponseHeaders)) {
+    // `lowerCwlHtmlTemplateBody` / page-load HTML already emit `web.request.response` —
+    // do not wrap again (double echo). UI trees still need the outer response for CT.
+    const htmlAlreadyResponded = r.body.kind === "html" || pageLoadHtml;
+    if (
+      !htmlAlreadyResponded &&
+      !pageLoadUi &&
+      (status !== 200 || contentType || hasResponseHeaders)
+    ) {
       bodyId = wrBuilders.response({
         attrs: {
           status,

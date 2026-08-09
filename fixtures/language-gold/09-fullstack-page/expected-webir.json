@@ -59,18 +59,14 @@
     },
     {
       "attrs": {
-        "input": {
-          "kind": "unknown"
-        },
-        "name": "health",
-        "output": {
-          "kind": "unknown"
-        }
+        "method": "GET",
+        "path": "/api/health",
+        "pathParams": []
       },
       "dialect": "web.request",
       "effects": [],
       "id": "n10",
-      "op": "handler",
+      "op": "route",
       "operands": [
         "n9"
       ],
@@ -81,63 +77,7 @@
       },
       "provenance": [
         {
-          "locator": "hub-lift:cwl",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "unknown"
-      }
-    },
-    {
-      "attrs": {
-        "method": "GET",
-        "path": "/api/health",
-        "pathParams": []
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n11",
-      "op": "route",
-      "operands": [
-        "n10"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 10
-      },
-      "provenance": [
-        {
           "locator": "route:cwl",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "void"
-      }
-    },
-    {
-      "attrs": {
-        "contentType": "text/html; charset=utf-8",
-        "kind": "html",
-        "status": 200
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n2",
-      "op": "response",
-      "operands": [
-        "n1"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 4
-      },
-      "provenance": [
-        {
-          "locator": "cwl:response-content-type",
           "source": "hub-ingest"
         }
       ],
@@ -157,10 +97,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n3",
+      "id": "n2",
       "op": "handler",
       "operands": [
-        "n2"
+        "n1"
       ],
       "origin": {
         "column": 1,
@@ -185,10 +125,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n4",
+      "id": "n3",
       "op": "route",
       "operands": [
-        "n3"
+        "n2"
       ],
       "origin": {
         "column": 1,
@@ -211,7 +151,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n5",
+      "id": "n4",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -235,7 +175,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n6",
+      "id": "n5",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -259,7 +199,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n7",
+      "id": "n6",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -283,7 +223,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n8",
+      "id": "n7",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -307,13 +247,13 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n9",
+      "id": "n8",
       "op": "call",
       "operands": [
+        "n4",
         "n5",
         "n6",
-        "n7",
-        "n8"
+        "n7"
       ],
       "origin": {
         "column": 1,
@@ -329,10 +269,42 @@
       "type": {
         "kind": "unknown"
       }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "health",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n9",
+      "op": "handler",
+      "operands": [
+        "n8"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 10
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
     }
   ],
   "roots": [
-    "n4",
-    "n11"
+    "n3",
+    "n10"
   ]
 }

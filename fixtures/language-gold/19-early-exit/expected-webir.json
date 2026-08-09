@@ -55,34 +55,6 @@
     },
     {
       "attrs": {
-        "contentType": "text/html; charset=utf-8",
-        "kind": "html",
-        "status": 200
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n10",
-      "op": "response",
-      "operands": [
-        "n9"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 31
-      },
-      "provenance": [
-        {
-          "locator": "cwl:response-content-type",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "void"
-      }
-    },
-    {
-      "attrs": {
         "input": {
           "kind": "unknown"
         },
@@ -93,10 +65,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n11",
+      "id": "n10",
       "op": "handler",
       "operands": [
-        "n10"
+        "n9"
       ],
       "origin": {
         "column": 1,
@@ -121,10 +93,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n12",
+      "id": "n11",
       "op": "route",
       "operands": [
-        "n11"
+        "n10"
       ],
       "origin": {
         "column": 1,
@@ -147,7 +119,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n13",
+      "id": "n12",
       "op": "hole",
       "operands": [],
       "origin": {
@@ -181,10 +153,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n14",
+      "id": "n13",
       "op": "response",
       "operands": [
-        "n13"
+        "n12"
       ],
       "origin": {
         "column": 1,
@@ -213,10 +185,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n15",
+      "id": "n14",
       "op": "handler",
       "operands": [
-        "n14"
+        "n13"
       ],
       "origin": {
         "column": 1,
@@ -248,10 +220,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n16",
+      "id": "n15",
       "op": "route",
       "operands": [
-        "n15"
+        "n14"
       ],
       "origin": {
         "column": 1,
@@ -510,7 +482,7 @@
   "roots": [
     "n4",
     "n7",
-    "n12",
-    "n16"
+    "n11",
+    "n15"
   ]
 }

@@ -55,48 +55,16 @@
     },
     {
       "attrs": {
-        "input": {
-          "kind": "unknown"
-        },
-        "name": "map_view",
-        "output": {
-          "kind": "unknown"
-        }
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n10",
-      "op": "handler",
-      "operands": [
-        "n9"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 11
-      },
-      "provenance": [
-        {
-          "locator": "hub-lift:cwl",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "unknown"
-      }
-    },
-    {
-      "attrs": {
         "method": "GET",
         "path": "/map",
         "pathParams": []
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n11",
+      "id": "n10",
       "op": "route",
       "operands": [
-        "n10"
+        "n9"
       ],
       "origin": {
         "column": 1,
@@ -119,7 +87,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n12",
+      "id": "n11",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -145,10 +113,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n13",
+      "id": "n12",
       "op": "response",
       "operands": [
-        "n12"
+        "n11"
       ],
       "origin": {
         "column": 1,
@@ -171,7 +139,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n14",
+      "id": "n13",
       "op": "hole",
       "operands": [],
       "origin": {
@@ -201,11 +169,11 @@
       "attrs": {},
       "dialect": "data",
       "effects": [],
-      "id": "n15",
+      "id": "n14",
       "op": "block",
       "operands": [
-        "n14",
-        "n13"
+        "n13",
+        "n12"
       ],
       "origin": {
         "column": 1,
@@ -224,34 +192,6 @@
     },
     {
       "attrs": {
-        "contentType": "text/html; charset=utf-8",
-        "kind": "html",
-        "status": 200
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n16",
-      "op": "response",
-      "operands": [
-        "n15"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 18
-      },
-      "provenance": [
-        {
-          "locator": "cwl:response-content-type",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "void"
-      }
-    },
-    {
-      "attrs": {
         "input": {
           "kind": "unknown"
         },
@@ -262,10 +202,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n17",
+      "id": "n15",
       "op": "handler",
       "operands": [
-        "n16"
+        "n14"
       ],
       "origin": {
         "column": 1,
@@ -290,10 +230,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n18",
+      "id": "n16",
       "op": "route",
       "operands": [
-        "n17"
+        "n15"
       ],
       "origin": {
         "column": 1,
@@ -316,7 +256,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n19",
+      "id": "n17",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -332,6 +272,66 @@
       ],
       "type": {
         "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n18",
+      "op": "response",
+      "operands": [
+        "n17"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 25
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "reason": "unsupported:opaque-script"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n19",
+      "op": "hole",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 25
+      },
+      "provenance": [
+        {
+          "locator": "unsupported:opaque-script",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "contract": {
+          "input": {
+            "kind": "unknown"
+          },
+          "output": {
+            "kind": "unknown"
+          }
+        },
+        "kind": "hole"
       }
     },
     {
@@ -362,74 +362,14 @@
       }
     },
     {
-      "attrs": {
-        "contentType": "text/html; charset=utf-8",
-        "kind": "html",
-        "status": 200
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n20",
-      "op": "response",
-      "operands": [
-        "n19"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 25
-      },
-      "provenance": [
-        {
-          "locator": "cwl-page-html-response",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "void"
-      }
-    },
-    {
-      "attrs": {
-        "reason": "unsupported:opaque-script"
-      },
-      "dialect": "data",
-      "effects": [],
-      "id": "n21",
-      "op": "hole",
-      "operands": [],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 25
-      },
-      "provenance": [
-        {
-          "locator": "unsupported:opaque-script",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "contract": {
-          "input": {
-            "kind": "unknown"
-          },
-          "output": {
-            "kind": "unknown"
-          }
-        },
-        "kind": "hole"
-      }
-    },
-    {
       "attrs": {},
       "dialect": "data",
       "effects": [],
-      "id": "n22",
+      "id": "n20",
       "op": "block",
       "operands": [
-        "n21",
-        "n20"
+        "n19",
+        "n18"
       ],
       "origin": {
         "column": 1,
@@ -448,34 +388,6 @@
     },
     {
       "attrs": {
-        "contentType": "text/html; charset=utf-8",
-        "kind": "html",
-        "status": 200
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n23",
-      "op": "response",
-      "operands": [
-        "n22"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 25
-      },
-      "provenance": [
-        {
-          "locator": "cwl:response-content-type",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "void"
-      }
-    },
-    {
-      "attrs": {
         "input": {
           "kind": "unknown"
         },
@@ -486,10 +398,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n24",
+      "id": "n21",
       "op": "handler",
       "operands": [
-        "n23"
+        "n20"
       ],
       "origin": {
         "column": 1,
@@ -514,10 +426,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n25",
+      "id": "n22",
       "op": "route",
       "operands": [
-        "n24"
+        "n21"
       ],
       "origin": {
         "column": 1,
@@ -705,14 +617,18 @@
     },
     {
       "attrs": {
-        "contentType": "text/html; charset=utf-8",
-        "kind": "html",
-        "status": 200
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "map_view",
+        "output": {
+          "kind": "unknown"
+        }
       },
       "dialect": "web.request",
       "effects": [],
       "id": "n9",
-      "op": "response",
+      "op": "handler",
       "operands": [
         "n8"
       ],
@@ -723,19 +639,19 @@
       },
       "provenance": [
         {
-          "locator": "cwl:response-content-type",
+          "locator": "hub-lift:cwl",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "kind": "void"
+        "kind": "unknown"
       }
     }
   ],
   "roots": [
     "n4",
-    "n11",
-    "n18",
-    "n25"
+    "n10",
+    "n16",
+    "n22"
   ]
 }

@@ -1,19 +1,16 @@
 # DNA build — next queue
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.5`** — execute matrix 9 (body / content-type / response-header)  
+**Tip:** **`1.0.6`** — execute matrix **16** (API + pages + UI SSR)  
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md)
 
 ## CWL-owned
 
-*None required.* Optional next execute honesty:
-
-- `07-auth-effects` / pages / UI — only when simulate can prove them
-- Response CT invent fallback remains for routes without authored `content-type`
+*None required.* Remaining golds stay ingest/diagnose-only until simulate can prove them (holes, form-action, middleware depth, nested control, DNA bridge).
 
 ## Convert / Secure (not this lane)
 
 | Sibling | Ask | Doc |
 | --- | --- | --- |
-| **Convert** | Tip pin **1.0.5** (file: already tracks); keep rewrite/emit-shared dists | [`CONVERT-GRAVITY-REQUESTED.md`](./CONVERT-GRAVITY-REQUESTED.md) |
-| **Secure** | Tip pin **1.0.5** | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |
+| **Convert** | Tip pin **1.0.6** | [`CONVERT-GRAVITY-REQUESTED.md`](./CONVERT-GRAVITY-REQUESTED.md) |
+| **Secure** | Tip pin **1.0.6** | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |

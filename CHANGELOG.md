@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.6 — 2026-08-09
+
+- Fix HTML ingest double-response wrap (single body for `@page` / `return html`)
+- Execute optional: `07` auth effects, `09` fullstack page, `10` page-load, `15` HTML interp, `16` layout, `17` UI v0, `18` UI v1
+- Runtime matrix **16** → `CWL_RUNTIME_MATRIX_OK`
+
 ## 1.0.5 — 2026-08-09
 
 - Execute: JSON/urlencoded body → `RequestInput.post` (`05-request-body` runtime-ok)

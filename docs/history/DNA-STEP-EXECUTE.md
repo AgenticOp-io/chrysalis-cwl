@@ -55,9 +55,16 @@ Marker without checks (or checks without marker) fails — no silent invented ha
 | `04-request-context` | `header` + `cookie` + `query` |
 | `05-request-body` | JSON / urlencoded `body` |
 | `06-response-status` | explicit `status` |
+| `07-auth-effects` | session effect wrappers + literals |
 | `08-response-content-type` | authored `content-type` |
+| `09-fullstack-page` | `@page` HTML + API |
+| `10-page-load` | `load` + HTML + `#cwl-page-load` |
 | `12-multi-file` | `import` + literal returns |
 | `14-defaults-headers` | defaults + `response-header` |
+| `15-html-interpolation` | HTML path/load bindings |
+| `16-layout` | layout import + page + API |
+| `17-ui-v0` | `return ui` + `@component` |
+| `18-ui-v1` | islands / events (SSR markers) |
 
 Wired into optional `npm run test:language:full` (stable / fast; needs WebIR + rewrite dists).
 
@@ -87,9 +94,11 @@ Language owns the gold + smoke contract; Convert owns rewrite/simulate honesty (
 
 1. **Dep wiring:** `packages/webir` is local; rewrite/emit-shared still need Convert sibling dists or hooks for full execute smokes.
 2. **`test:runtime-cwl`:** root script runs `npm test --prefix packages/runtime-cwl`, but package has no `test` script and tests reference convert `fixtures/hub-gold-cwl*` (absent here).
-3. **Coverage:** API literal/object/status/path/query/header/cookie/body/content-type/response-header/multi-file. Not yet marked:
-   - `07-auth-effects` / pages / UI / holes — holes correctly **501**; auth/pages/UI not claimed
-   - Invented CT fallback still used when CWL omits `content-type` (body-shape heuristic)
+3. **Coverage:** API + pages + UI SSR (matrix 16). Not claimed:
+   - Real session/auth gates (07 only proves conclusive effect wrappers)
+   - Browser island event execution (18 emits markers only)
+   - Holes / form-action / middleware depth / nested control as execute golds
+   - Invented CT fallback when CWL omits `content-type`
 4. **Browser / worker / emit-runtime-cwl:** out of this slice.
 5. **No Convert emit required** for this execute path — keep rewrite/emit-shared dists buildable for sibling consume.
 

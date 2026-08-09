@@ -102,6 +102,10 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
     { method: "POST", path: "/items", expectStatus: 201, expectBody: '{"ok":true}' },
     { path: "/gone", expectStatus: 410, expectBody: '{"gone":true}' },
   ]),
+  "07-auth-effects": Object.freeze([
+    { path: "/me", expectStatus: 200, expectBody: '{"ok":true}' },
+    { method: "POST", path: "/login", expectStatus: 200, expectBody: '{"ok":true}' },
+  ]),
   "08-response-content-type": Object.freeze([
     {
       path: "/json",
@@ -121,6 +125,28 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       expectStatus: 201,
       expectBody: '{"id":1}',
       expectHeaders: { "content-type": "application/json" },
+    },
+  ]),
+  "09-fullstack-page": Object.freeze([
+    {
+      path: "/",
+      expectStatus: 200,
+      expectBody: "<!doctype html><html><body><h1>Home</h1></body></html>",
+      expectHeaders: { "content-type": "text/html; charset=utf-8" },
+    },
+    {
+      path: "/api/health",
+      expectStatus: 200,
+      expectBody: '{"ok":true,"surface":"api"}',
+    },
+  ]),
+  "10-page-load": Object.freeze([
+    {
+      path: "/blog/hello",
+      expectStatus: 200,
+      expectBody:
+        '<h1>Blog</h1>\n<script type="application/json" id="cwl-page-load">{"slug":"hello","source":"page-server"}</script>',
+      expectHeaders: { "content-type": "text/html; charset=utf-8" },
     },
   ]),
   "12-multi-file": Object.freeze([
@@ -147,6 +173,74 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       expectStatus: 302,
       expectBody: '{"ok":true}',
       expectHeaders: { location: "/items/1" },
+    },
+  ]),
+  "15-html-interpolation": Object.freeze([
+    {
+      path: "/docs/x",
+      expectStatus: 200,
+      expectBody: "<p>x: x</p>",
+      expectHeaders: { "content-type": "text/html; charset=utf-8" },
+    },
+    {
+      path: "/blog/y",
+      expectStatus: 200,
+      expectBody:
+        '<p>y: y flagship: flagship</p>\n<script type="application/json" id="cwl-page-load">{"slug":"y","source":"flagship"}</script>',
+    },
+  ]),
+  "16-layout": Object.freeze([
+    {
+      path: "/about",
+      expectStatus: 200,
+      expectBody: "<html><body><h1>About</h1></body></html>",
+    },
+    {
+      path: "/docs/x",
+      expectStatus: 200,
+      expectBody: "<html><body><h1>Doc</h1><p>x: x</p></body></html>",
+    },
+    {
+      path: "/api/docs/x",
+      expectStatus: 200,
+      expectBody: '{"ok":true,"slug":"x"}',
+    },
+  ]),
+  "17-ui-v0": Object.freeze([
+    {
+      path: "/ui-v0",
+      expectStatus: 200,
+      expectBody: '<main class="demo"><h1>CWL UI v0</h1><p>Server-rendered element tree.</p></main>',
+      expectHeaders: { "content-type": "text/html; charset=utf-8" },
+    },
+    {
+      path: "/ui-v0/card",
+      expectStatus: 200,
+      expectBody: '<div class="card"><h2>Component reuse</h2></div>',
+    },
+    {
+      path: "/ui-v0/Ada",
+      expectStatus: 200,
+      expectBody: '<div class="card"><h2>Ada</h2></div>',
+    },
+  ]),
+  "18-ui-v1": Object.freeze([
+    {
+      path: "/ui-v1",
+      expectStatus: 200,
+      expectBody:
+        '<main class="demo"><h1>CWL UI v1</h1><div data-cwl-island="client"><button id="add" data-cwl-on-click="increment">Add</button></div></main>',
+    },
+    {
+      path: "/ui-v1/load-ui",
+      expectStatus: 200,
+      expectBody: "<main><p>loaded</p></main>",
+    },
+    {
+      path: "/ui-v1/Ada",
+      expectStatus: 200,
+      expectBody:
+        '<section><p>Ada</p><div data-cwl-island="client"><button data-cwl-on-click="navigate">Go</button></div></section>',
     },
   ]),
 });

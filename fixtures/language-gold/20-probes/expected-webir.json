@@ -72,43 +72,14 @@
     },
     {
       "attrs": {
-        "callee": "__object_literal"
+        "callee": "__page_load"
       },
       "dialect": "data",
       "effects": [],
       "id": "n10",
       "op": "call",
       "operands": [
-        "n6",
-        "n7",
-        "n8",
         "n9"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 13
-      },
-      "provenance": [
-        {
-          "locator": "cwl:object",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "unknown"
-      }
-    },
-    {
-      "attrs": {
-        "callee": "__page_load"
-      },
-      "dialect": "data",
-      "effects": [],
-      "id": "n11",
-      "op": "call",
-      "operands": [
-        "n10"
       ],
       "origin": {
         "column": 1,
@@ -132,7 +103,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n12",
+      "id": "n11",
       "op": "request.field",
       "operands": [],
       "origin": {
@@ -157,7 +128,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n13",
+      "id": "n12",
       "op": "request.field",
       "operands": [],
       "origin": {
@@ -204,11 +175,11 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n14",
+      "id": "n13",
       "op": "html.template",
       "operands": [
-        "n12",
-        "n13"
+        "n11",
+        "n12"
       ],
       "origin": {
         "column": 1,
@@ -233,10 +204,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n15",
+      "id": "n14",
       "op": "response",
       "operands": [
-        "n14"
+        "n13"
       ],
       "origin": {
         "column": 1,
@@ -257,11 +228,11 @@
       "attrs": {},
       "dialect": "data",
       "effects": [],
-      "id": "n16",
+      "id": "n15",
       "op": "block",
       "operands": [
-        "n11",
-        "n15"
+        "n10",
+        "n14"
       ],
       "origin": {
         "column": 1,
@@ -290,10 +261,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n17",
+      "id": "n16",
       "op": "handler",
       "operands": [
-        "n16"
+        "n15"
       ],
       "origin": {
         "column": 1,
@@ -325,10 +296,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n18",
+      "id": "n17",
       "op": "route",
       "operands": [
-        "n17"
+        "n16"
       ],
       "origin": {
         "column": 1,
@@ -375,34 +346,6 @@
     },
     {
       "attrs": {
-        "contentType": "text/html; charset=utf-8",
-        "kind": "html",
-        "status": 200
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n3",
-      "op": "response",
-      "operands": [
-        "n2"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 6
-      },
-      "provenance": [
-        {
-          "locator": "cwl:response-content-type",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "void"
-      }
-    },
-    {
-      "attrs": {
         "input": {
           "kind": "unknown"
         },
@@ -413,10 +356,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n4",
+      "id": "n3",
       "op": "handler",
       "operands": [
-        "n3"
+        "n2"
       ],
       "origin": {
         "column": 1,
@@ -441,10 +384,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n5",
+      "id": "n4",
       "op": "route",
       "operands": [
-        "n4"
+        "n3"
       ],
       "origin": {
         "column": 1,
@@ -467,7 +410,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n6",
+      "id": "n5",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -492,7 +435,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n7",
+      "id": "n6",
       "op": "request.field",
       "operands": [],
       "origin": {
@@ -516,7 +459,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n8",
+      "id": "n7",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -540,7 +483,7 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n9",
+      "id": "n8",
       "op": "literal",
       "operands": [],
       "origin": {
@@ -557,10 +500,39 @@
       "type": {
         "kind": "string"
       }
+    },
+    {
+      "attrs": {
+        "callee": "__object_literal"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n9",
+      "op": "call",
+      "operands": [
+        "n5",
+        "n6",
+        "n7",
+        "n8"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 13
+      },
+      "provenance": [
+        {
+          "locator": "cwl:object",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
     }
   ],
   "roots": [
-    "n5",
-    "n18"
+    "n4",
+    "n17"
   ]
 }
