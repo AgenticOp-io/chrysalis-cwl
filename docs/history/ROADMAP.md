@@ -54,9 +54,9 @@ CWL is the **DNA of the web** (Rosetta meaning). Convert is the Universal Transl
 - [x] **Partial (Agent J / Slice 4):** thin `hub-emit-cwl-webir.mjs` WebIR→CWL; `npm run smoke:cwl-emit` + `test:ingest-roundtrip` on `01-literals`; pillar `cwl-fmt` stays parse→print (dual-mode deferred)
 - [x] **Ingest matrix:** all `language-gold/*/routes.cwl` + `expected-webir.json` (`npm run smoke:cwl-ingest-matrix`)
 - [x] **UT evidence pack:** `npm run smoke:ut-evidence` → `reports/ut-spine/EVIDENCE.md`
-- [ ] **Convert reverse-home:** Convert `packages/webir` → junction/`file:` at CWL — **Requested:** [`WEBIR-FLIP-REQUESTED.md`](./WEBIR-FLIP-REQUESTED.md)
+- [x] **Convert reverse-home:** Convert `packages/webir` → junction/`file:` at CWL — verified ([`WEBIR-FLIP-REQUESTED.md`](./WEBIR-FLIP-REQUESTED.md))
 - [ ] Dual-mode `cwl-fmt` (explicit with convert; do not overwrite convert WebIR fmt)
-- [ ] Convert depends on shared webir via reverse pin (not a private fork)
+- [x] Convert depends on shared webir via reverse pin (junction + `file:`)
 
 **Exit 0.3:** Parse, print, ingest, and at least one WebIR round-trip path runnable from `chrysalis-cwl` alone.  
 **Round-trip path (met):** `smoke:cwl-emit` / `test:ingest-roundtrip` from this pillar with linked `@chrysalis/webir`.
@@ -84,7 +84,7 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 - [x] UT spine + evidence pack (`smoke:ut-spine` / `smoke:ut-evidence`) — Convert consumes via `hub:cwl-helix-cutover-smoke` only
 - [x] RFC-0023 deploy/DNA profiles + gold profile on `24-dna-bridge`
 - [x] RFC-0024 island kinds vocabulary + `25-island-kinds`
-- [ ] **Requested (Secure):** cutover default = live DNA vs CWL surface — [SECURE-CUTOVER-REQUESTED.md](./SECURE-CUTOVER-REQUESTED.md)
+- [x] **Secure cutover default** = live DNA vs CWL surface — verified ([SECURE-CUTOVER-REQUESTED.md](./SECURE-CUTOVER-REQUESTED.md)); protect stays DNA-only
 
 **Exit 0.5:** Documented, fixture-backed bridge contract; Helix owns enforcement.
 

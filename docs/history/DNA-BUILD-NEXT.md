@@ -1,30 +1,30 @@
 # DNA build — next queue
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.1`** · physical WebIR in-pillar · LSP completion v1 + same-file references
+**Tip:** **`1.0.1`** · WebIR reverse-home verified · Secure cutover verified · LSP polish shipped  
+**Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) — DNA of the web ≠ all PLs
 
-Light queue only. No version bump implied by this doc.
+## Sibling verify (2026-08-09)
 
-## Shipped (CWL) — closed vs prior gap list
-
-| Gap | Landing |
-| --- | --- |
-| WebIR physical home still Convert-linked | **CWL SoR** `packages/webir` — Convert reverse-home still Requested |
-| Private registry Exit 1.0 not published | **`@agenticop-io/cwl@1.0.0`** published (patch tip `1.0.1`) |
-| LSP: no completion / rename yet | **Done** + polish (completion v1, references v0, rename v0) |
-| Ecology outside AgenticOps ≈ zero | **Bootstrap** — [`CWL-ECOLOGY.md`](../language/CWL-ECOLOGY.md) + private VSIX |
-
-## CWL-owned (optional polish)
-
-| Priority | Slice | Notes |
+| Sibling | Following CWL? | Notes |
 | --- | --- | --- |
-| — | Cross-file rename / references | Only when import graph is honest |
-| — | Marketplace / public npm | Forbidden while pillars private |
+| **Convert** | **Yes** (grammar) | Junctions + `file:` @ 1.0.1; WebIR reverse-home done; no parser fork. Registry pin + peel gravity still open. |
+| **Secure** | **Yes** (cutover) | `@agenticop-io/cwl@1.0.0`; cutover = CWL ⊆ DNA; protect DNA-only. Pin tip 1.0.1 + profile completeness open. |
 
-## Convert / Secure — Requested (not edited here)
+## CWL improvements (from sibling pressure)
+
+| Priority | Slice | Why |
+| --- | --- | --- |
+| 1 | Multi-host DNA gold (RFC-0023 `hosts{}`) | Secure applies host at seed; gold is single-`default` only |
+| 2 | Optional hole↔DNA gap report (RFC-0022 §6) | Cutover honesty side-channel |
+| 3 | Hole-catalog growth when Convert peels need new named reasons | Language-owned vocabulary |
+| — | Cross-file LSP rename | Only when import graph is honest |
+| — | “Add all programming languages” | **Non-goal** — see language scope |
+
+## Convert / Secure remaining (not CWL grammar)
 
 | Sibling | Ask | Doc |
 | --- | --- | --- |
-| **Convert** | Peel/emit gravity + `@agenticop-io/cwl@1.0.0` pin + WebIR reverse-home | [`CONVERT-GRAVITY-REQUESTED.md`](./CONVERT-GRAVITY-REQUESTED.md) · [`WEBIR-FLIP-REQUESTED.md`](./WEBIR-FLIP-REQUESTED.md) |
+| **Convert** | Registry pin `@agenticop-io/cwl` + peel/emit gravity | [`CONVERT-GRAVITY-REQUESTED.md`](./CONVERT-GRAVITY-REQUESTED.md) |
 | **Convert** | Rewrite headers — `04-request-context` → `runtime-ok` | [`CONVERT-REWRITE-HEADERS-REQUESTED.md`](./CONVERT-REWRITE-HEADERS-REQUESTED.md) |
-| **Secure** | Cutover default + registry pin | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |
+| **Secure** | Bump pin to 1.0.1; drop mapping fallback drift | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |

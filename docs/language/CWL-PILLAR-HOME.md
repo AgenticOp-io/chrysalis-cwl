@@ -313,6 +313,8 @@ Starter paste: [`docs/history/NEW_AGENT_STARTER.md`](../history/NEW_AGENT_STARTE
 | Doc | Role |
 | --- | --- |
 | [`ROSETTA-UT-PATH.md`](./ROSETTA-UT-PATH.md) | Rosetta → UT → DNA of the web |
+| [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) | DNA ≠ all programming languages |
+| [`CWL.md`](./CWL.md) | Language overview |
 | [`CWL.md`](./CWL.md) | Language reference |
 | [`CWL-RFC.md`](./CWL-RFC.md) | RFC index |
 | [`CWL-SURFACE-TAXONOMY.md`](./CWL-SURFACE-TAXONOMY.md) | Named surfaces |
