@@ -14,8 +14,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Language gates (no WebIR)
+      - name: Build WebIR (pillar home)
+        run: npm run build:webir
+      - name: Language gates
+        env:
+          CWL_REQUIRE_WEBIR: "1"
         run: npm run test:language
+      - name: Emit smoke (WebIR reverse)
+        run: npm run smoke:cwl-emit
       - name: Publish prep (no publish)
         run: npm run test:cwl-publish-prep
       - name: CLI check golds

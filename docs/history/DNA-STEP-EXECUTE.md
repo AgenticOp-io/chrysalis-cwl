@@ -2,7 +2,7 @@
 
 **Slice:** language-owned execute smoke + matrix  
 **Date:** 2026-08-09  
-**Version:** tip `1.0.12` — full thin-emit Rosetta + dual-mode fmt + runtime-cwl language-gold
+**Version:** tip `1.0.13` — CI WebIR + emit catalog/CLI + LSP snippets; execute matrix unchanged
 
 ## What “execute” means today
 
@@ -88,13 +88,12 @@ Language owns the gold + smoke contract; Convert owns rewrite/simulate honesty (
 | `npm run smoke:cwl-emit` | WebIR → CWL round-trip (no execute) |
 | `npm run smoke:cwl-runtime-gold` | **Execute** default literals gold |
 | `npm run smoke:cwl-runtime-matrix` | **Execute** all `runtime-ok` fixtures |
-| `npm run test:runtime-cwl` | Package vitest — **currently unwired** in pillar (no `test` script; hub-gold fixtures not in this tree) |
+| `npm run test:runtime-cwl` | Package gate → language-gold (`CWL_RUNTIME_CWL_OK`) |
 
 ## Gaps (honest)
 
 1. **Dep wiring:** `packages/webir` is local; rewrite/emit-shared still need Convert sibling dists or hooks for full execute smokes.
-2. **`test:runtime-cwl`:** root script runs `npm test --prefix packages/runtime-cwl`, but package has no `test` script and tests reference convert `fixtures/hub-gold-cwl*` (absent here).
-3. **Coverage:** all language-gold (**25**) including projectable early-exit / else-if, foreach empty-iter IR, and attachment-hole HTML soft-path. Honest limits:
+2. **Coverage:** all language-gold (**25**) including projectable early-exit / else-if, foreach empty-iter IR, and attachment-hole HTML soft-path. Honest limits:
    - Opaque `g_*` / call verify not invented
    - Foreach N-iteration not claimed (empty-iter IR only)
    - Browser island events not claimed

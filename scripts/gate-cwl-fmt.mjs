@@ -29,12 +29,15 @@ const checks = [];
 
 const webirEntry = resolveWebirEntryPath();
 const webirReady = Boolean(webirEntry && existsSync(webirEntry));
+const requireWebir = process.env.CWL_REQUIRE_WEBIR === "1" || process.env.CWL_REQUIRE_WEBIR === "true";
 if (!webirReady) {
   checks.push({
     id: "webir-emit-19-else-if",
-    ok: true,
-    skipped: true,
-    detail: "webir dist absent — skip (run test:language:full / link:webir locally)",
+    ok: !requireWebir,
+    skipped: !requireWebir,
+    detail: requireWebir
+      ? "webir dist required (CWL_REQUIRE_WEBIR=1) — run npm run build:webir"
+      : "webir dist absent — skip (set CWL_REQUIRE_WEBIR=1 after build:webir)",
   });
 } else {
   const src = readFileSync(CONTROL, "utf8");

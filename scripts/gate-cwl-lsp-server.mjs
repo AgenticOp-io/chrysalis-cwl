@@ -141,6 +141,11 @@ async function main() {
   if (!Array.isArray(compEmpty) || compEmpty.length < 1) {
     failures.push("completion-empty-prefix");
   }
+  for (const need of ["if", "foreach", "else if", "client ui", "return ui"]) {
+    if (!compEmpty.some((i) => i.label === need)) {
+      failures.push(`completion-catalog-${need.replace(/\s+/g, "-")}`);
+    }
+  }
   const compAt = completionsAt("@", { line: 0, character: 1 });
   if (!Array.isArray(compAt) || !compAt.some((i) => i.label === "@route")) {
     failures.push("completion-at-route");

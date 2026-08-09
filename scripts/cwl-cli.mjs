@@ -2,6 +2,7 @@
 /**
  * Chrysalis Web Language CLI (pillar-owned).
  * parse | print | fmt | diagnose | check — no WebIR required.
+ * fmt --webir | emit-check — need WebIR dist (`npm run build:webir`).
  */
 import { readdir, readFile, stat } from "node:fs/promises";
 import { dirname, join, relative, resolve } from "node:path";
@@ -27,6 +28,9 @@ Commands:
   diagnose --stdin [--lsp]      Diagnose buffer from stdin (optional LSP map)
   check <file-or-dir>           Round-trip AST equality + diagnose
                                 (recurses directories for *.cwl)
+  emit-check <file.cwl> [--stdout]
+                                CWL → WebIR → thin emit reverse report
+                                (needs WebIR; holes stay honest)
   dna-seed <file.cwl> [--profile <deploy-profile.json>]
                                 RFC-0022/0023 draft DNA JSON (no Helix)
 
@@ -38,11 +42,14 @@ Options:
   --name <path>                 Virtual path for --stdin (default: stdin.cwl)
   --profile <path>              Deploy profile for dna-seed (RFC-0023)
   --holes-report                With dna-seed: include RFC-0022 §6 holes report
+  --stdout                      With emit-check: print emitted CWL after JSON
+  --webir                       With fmt: ingest→thin emit reverse
 
 Examples:
   npm run cwl -- parse fixtures/language-gold/01-literals/routes.cwl
   npm run cwl -- check fixtures/language-gold
   npm run cwl -- fmt path/to/app.cwl --stdout
+  npm run cwl -- emit-check fixtures/language-gold/19-early-exit/routes.cwl
   npm run cwl -- dna-seed fixtures/language-gold/24-dna-bridge/routes.cwl --profile fixtures/language-gold/24-dna-bridge/deploy-profile-api.json
 `;
 
@@ -317,6 +324,59 @@ async function runCommand(cmd, positional, flags, opts = {}) {
       };
       printJson(report);
       return report.ok ? 0 : 1;
+    }
+    case "emit-check": {
+      const file = positional[0];
+      if (!file) throw new Error("emit-check requires <file.cwl>");
+      const abs = resolve(file);
+      const source = await readFile(abs, "utf8");
+      const { liftCwlFileToWebir } = await import("./hub-ingest/cwl-ingest.mjs");
+      const { emitCwlFromWebirModule } = await import("./hub-ingest/hub-emit-cwl-webir.mjs");
+      const { loadWebir, resolveWebirEntryPath } = await import("./hub-ingest/load-webir.mjs");
+      const webir = await loadWebir();
+      const builder = new webir.ModuleBuilder({ sourceApp: "cwl-emit-check" });
+      const wr = webir.webRequest.builders(builder);
+      const lift = liftCwlFileToWebir({
+        webir,
+        builder,
+        wr,
+        source,
+        file: abs,
+        entryPath: abs,
+        language: "cwl",
+      });
+      const module = builder.finish();
+      const { text, holeCount, routeCount } = emitCwlFromWebirModule(module, {
+        header: "# Chrysalis Web Language — emit-check",
+        moduleName: "emit_check",
+      });
+      const reparsed = parseCwlModule(text, `${abs}.emit-check`);
+      const reparseRoutes = (reparsed.routes ?? []).length;
+      /** @type {string[]} */
+      const holeReasons = [];
+      const holeRe = /\bhole\s+([a-zA-Z0-9_.:-]+)\s*;/g;
+      let hm;
+      while ((hm = holeRe.exec(text))) holeReasons.push(hm[1]);
+      const ok =
+        (lift.routeCount ?? 0) >= 1 && routeCount >= 1 && reparseRoutes === routeCount;
+      const report = {
+        kind: "chrysalis.cwl.emit-check",
+        schemaVersion: 1,
+        ok,
+        path: abs,
+        webir: resolveWebirEntryPath() ?? "(package import)",
+        ingestRoutes: lift.routeCount ?? 0,
+        emitRoutes: routeCount,
+        reparseRoutes,
+        holeCount,
+        holeReasons: [...new Set(holeReasons)].sort(),
+        token: ok ? "CWL_EMIT_CHECK_OK" : "CWL_EMIT_CHECK_FAIL",
+      };
+      printJson(report);
+      if (flags.has("stdout")) {
+        process.stdout.write(text.endsWith("\n") ? text : `${text}\n`);
+      }
+      return ok ? 0 : 1;
     }
     case "dna-seed":
     case "seed-dna": {

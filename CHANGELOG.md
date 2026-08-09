@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.13 — 2026-08-09
+
+- CI: `build:webir` + `CWL_REQUIRE_WEBIR=1` language gate + emit smoke on language/publish workflows
+- Catalogued thin-emit hole reasons (`cwl:emit:*`) in fullstack hole catalog
+- CLI `emit-check` (CWL → WebIR → thin emit reverse report; `--stdout` optional)
+- LSP snippets: `if` / `else` / `else if` / `foreach` / `return ui` / `client ui` (+ gate asserts)
+
 ## 1.0.12 — 2026-08-09
 
 - Thin emit: HTML templates, UI trees, `client ui` islands/events (SSR), attachment-hole pages

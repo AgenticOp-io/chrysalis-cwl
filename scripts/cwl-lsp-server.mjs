@@ -14,10 +14,12 @@ import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 import { listCwlImportGraph } from "./hub-ingest/cwl-module-graph.mjs";
 
 export const CWL_LSP_SERVER_KIND = "chrysalis.cwl.lsp-server";
-export const CWL_LSP_SERVER_VERSION = "1.0.12";
+export const CWL_LSP_SERVER_VERSION = "1.0.13";
 
 /** CompletionItemKind.Keyword */
 const KIND_KEYWORD = 14;
+/** CompletionItemKind.Snippet */
+const KIND_SNIPPET = 15;
 /** CompletionItemKind.Text */
 const KIND_TEXT = 1;
 /** CompletionItemKind.Function */
@@ -26,6 +28,8 @@ const KIND_FUNCTION = 3;
 const KIND_FILE = 17;
 /** CompletionItemKind.EnumMember */
 const KIND_ENUM_MEMBER = 20;
+/** InsertTextFormat.Snippet */
+const INSERT_SNIPPET = 2;
 
 /**
  * Base keyword / surface / effect catalog.
@@ -48,6 +52,81 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
   { label: "return", kind: KIND_KEYWORD, detail: "Handler return", insertText: "return " },
   { label: "load", kind: KIND_KEYWORD, detail: "Page data load", insertText: "load " },
   { label: "use", kind: KIND_KEYWORD, detail: "Module preset (json / auth / …)", insertText: "use " },
+  // RFC-0021 control (snippets)
+  {
+    label: "if",
+    kind: KIND_SNIPPET,
+    detail: "Early-exit / nested guard (RFC-0021)",
+    insertText: "if ${1:cond} {\n  $0\n}",
+  },
+  {
+    label: "else",
+    kind: KIND_SNIPPET,
+    detail: "Else branch after if (RFC-0021)",
+    insertText: "else {\n  $0\n}",
+  },
+  {
+    label: "else if",
+    kind: KIND_SNIPPET,
+    detail: "Else-if chain (RFC-0021)",
+    insertText: "else if ${1:cond} {\n  $0\n}",
+  },
+  {
+    label: "foreach",
+    kind: KIND_SNIPPET,
+    detail: "Collection binding (empty-iter / docs; RFC-0021)",
+    insertText: "foreach ${1:items} as ${2:item} {\n  $0\n}",
+  },
+  { label: "status", kind: KIND_SNIPPET, detail: "Response status", insertText: "status ${1:400};" },
+  {
+    label: "content-type",
+    kind: KIND_SNIPPET,
+    detail: "Authored response content-type",
+    insertText: 'content-type "${1:application/json}";',
+  },
+  {
+    label: "response-header",
+    kind: KIND_SNIPPET,
+    detail: "Authored response header",
+    insertText: 'response-header ${1:name} = "${2:value}";',
+  },
+  // UI / islands (SSR surface)
+  {
+    label: "return ui",
+    kind: KIND_SNIPPET,
+    detail: "UI tree return (RFC-0017)",
+    insertText: 'return ui {\n  element "${1:div}" {\n    $0\n  }\n};',
+  },
+  {
+    label: "return html",
+    kind: KIND_SNIPPET,
+    detail: "HTML string return",
+    insertText: 'return html "${1:<p></p>}";',
+  },
+  {
+    label: "client ui",
+    kind: KIND_SNIPPET,
+    detail: "Client island (SSR markers; no event invent)",
+    insertText: "client ui {\n  $0\n}",
+  },
+  {
+    label: "element",
+    kind: KIND_SNIPPET,
+    detail: "UI element node",
+    insertText: 'element "${1:div}" {\n  $0\n}',
+  },
+  { label: "text", kind: KIND_SNIPPET, detail: "UI text node", insertText: 'text "${1:}";' },
+  {
+    label: "on click",
+    kind: KIND_SNIPPET,
+    detail: "Island event surface (action name only)",
+    insertText: 'on click { action "${1:noop}"; }',
+  },
+  { label: "param", kind: KIND_KEYWORD, detail: "Path param binding", insertText: "param " },
+  { label: "query", kind: KIND_KEYWORD, detail: "Query binding", insertText: "query " },
+  { label: "body", kind: KIND_KEYWORD, detail: "Body field binding", insertText: "body " },
+  { label: "header", kind: KIND_KEYWORD, detail: "Request header binding", insertText: "header " },
+  { label: "cookie", kind: KIND_KEYWORD, detail: "Cookie binding", insertText: "cookie " },
 ]);
 
 /** @type {ReadonlyArray<{ label: string, kind: number, detail: string }>} */
@@ -243,13 +322,18 @@ function filterByPrefix(items, prefix, opts = {}) {
     }
     if (seen.has(entry.label)) continue;
     seen.add(entry.label);
-    /** @type {{ label: string, kind: number, detail: string, insertText?: string }} */
+    /** @type {{ label: string, kind: number, detail: string, insertText?: string, insertTextFormat?: number }} */
     const item = {
       label: entry.label,
       kind: entry.kind,
       detail: entry.detail,
     };
-    if (entry.insertText) item.insertText = entry.insertText;
+    if (entry.insertText) {
+      item.insertText = entry.insertText;
+      if (entry.kind === KIND_SNIPPET || /\$\{\d|\$\d/.test(entry.insertText)) {
+        item.insertTextFormat = INSERT_SNIPPET;
+      }
+    }
     out.push(item);
   }
   return out;

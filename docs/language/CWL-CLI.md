@@ -1,10 +1,13 @@
 # CWL CLI
 
-Pillar-owned authoring CLI for Chrysalis Web Language. No WebIR or convert monorepo required.
+Pillar-owned authoring CLI for Chrysalis Web Language.
 
 **Entry:** `scripts/cwl-cli.mjs`  
 **Invoke:** `npm run cwl -- <command> …` or `node scripts/cwl-cli.mjs …`  
-**Bin (after link):** `cwl <command> …`
+**Bin (after link):** `cwl <command> …`  
+**Packable bin:** `packages/cwl/bin/cwl.js` (parse/print/fmt/diagnose/check/dna-seed — no WebIR)
+
+Most commands need **no WebIR**. Dual-mode `fmt --webir` and `emit-check` need `npm run build:webir`.
 
 ## Commands
 
@@ -13,8 +16,11 @@ Pillar-owned authoring CLI for Chrysalis Web Language. No WebIR or convert monor
 | `parse <file.cwl>` | Parse → AST JSON |
 | `print <file.cwl>` | Parse → normalized source on stdout |
 | `fmt <file.cwl>` | Parse → print format (default writes file) |
+| `fmt <file.cwl> --webir` | Ingest → thin emit reverse (needs WebIR) |
 | `diagnose <file.cwl>` | Authoring diagnostics JSON |
 | `check <file\|dir>` | Round-trip AST equality + diagnose (recurses `*.cwl`) |
+| `emit-check <file.cwl>` | CWL → WebIR → thin emit reverse report (needs WebIR) |
+| `dna-seed <file.cwl>` | RFC-0022/0023 draft DNA JSON |
 
 ### `fmt` flags
 
@@ -23,6 +29,16 @@ Pillar-owned authoring CLI for Chrysalis Web Language. No WebIR or convert monor
 | *(default)* / `--write` | Write formatted source if changed |
 | `--stdout` | Print formatted source; do not write |
 | `--check` | Exit `1` if file would change (CI-style) |
+| `--webir` | Format via ingest→emit (Rosetta reverse) |
+
+### `emit-check` flags
+
+| Flag | Behavior |
+| --- | --- |
+| *(default)* | JSON report (`CWL_EMIT_CHECK_OK` / fail); exit `0` if reparse routes match |
+| `--stdout` | Also print emitted CWL after the JSON report |
+
+Honest emit holes remain holes (`holeReasons` lists catalogued `cwl:emit:*` / fixture holes). Full matrix: `npm run smoke:cwl-emit`.
 
 ### `check` flags
 
@@ -44,6 +60,11 @@ npm run cwl -- diagnose fixtures/language-gold/11-holes/routes.cwl
 npm run cwl -- fmt path/to/app.cwl
 npm run cwl -- fmt path/to/app.cwl --stdout
 npm run cwl -- fmt path/to/app.cwl --check
+
+# Thin emit reverse (after build:webir)
+npm run build:webir
+npm run cwl -- emit-check fixtures/language-gold/19-early-exit/routes.cwl
+npm run cwl -- fmt fixtures/language-gold/01-literals/routes.cwl --webir --stdout
 
 # Round-trip + diagnose (file or directory)
 npm run cwl -- check fixtures/language-gold/01-literals/routes.cwl

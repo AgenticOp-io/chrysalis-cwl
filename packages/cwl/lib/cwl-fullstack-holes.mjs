@@ -93,6 +93,50 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     summary: "Unclassified browser script — honest hole until a catalogued island kind applies.",
   },
 
+  // Thin emit reverse residuals (WebIR → CWL; never invent semantics)
+  "cwl:emit:missing-value": {
+    rfc: "0012",
+    origin: "cwl",
+    surface: "emit",
+    summary: "Thin emit: WebIR value node missing.",
+  },
+  "cwl:emit:unsupported-response": {
+    rfc: "0012",
+    origin: "cwl",
+    surface: "emit",
+    summary: "Thin emit: response shape not projectable (keep hole).",
+  },
+  "cwl:emit:multi-statement-body": {
+    rfc: "0012",
+    origin: "cwl",
+    surface: "emit",
+    summary: "Thin emit: multi-statement block without known peel wrapper.",
+  },
+  "cwl:emit:unsupported-html": {
+    rfc: "0014",
+    origin: "cwl",
+    surface: "emit",
+    summary: "Thin emit: HTML template/literal not reconstructable.",
+  },
+  "cwl:emit:ui-hole": {
+    rfc: "0017",
+    origin: "cwl",
+    surface: "emit",
+    summary: "Thin emit: UI tree node not projectable.",
+  },
+  "cwl:emit:ui-text-binding": {
+    rfc: "0017",
+    origin: "cwl",
+    surface: "emit",
+    summary: "Thin emit: UI text binding operand missing name.",
+  },
+  "cwl:emit:not-ui-tree": {
+    rfc: "0017",
+    origin: "cwl",
+    surface: "emit",
+    summary: "Thin emit: expected data.ui.tree node.",
+  },
+
   "hub-next:page-component": {
     rfc: "0012",
     origin: "nextjs",

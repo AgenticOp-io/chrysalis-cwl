@@ -23,8 +23,11 @@ jobs:
           scope: "@agenticop-io"
       - name: Sync lib + language gate
         run: |
+          npm run build:webir
           npm run sync:cwl-package-lib
-          npm run test:language
+          CWL_REQUIRE_WEBIR=1 npm run test:language
+      - name: Emit smoke (WebIR reverse)
+        run: npm run smoke:cwl-emit
       - name: Publish to GitHub Packages
         working-directory: packages/cwl
         env:
