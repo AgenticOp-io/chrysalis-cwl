@@ -16,9 +16,9 @@
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | e9eb29a | pillar-sync bus |
-| **Convert** | `candidate/wptp-convert-orbit` | `56a75d35` | ALWAYS mirrors ≡ 1.0.17 |
-| **Secure** | `candidate/live-match-step4` | *(update after pull)* | tip / wrap open |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | `181bcd2` | pillar-sync bus |
+| **Convert** | `candidate/wptp-convert-orbit` | `b88c811a` | mirrors + OUTBOX ack |
+| **Secure** | `candidate/live-match-step4` | `1e26c2f` | OUTBOX ack; tip wrap open |
 
 ## Who builds next
 
