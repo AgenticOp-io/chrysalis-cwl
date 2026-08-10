@@ -1,14 +1,15 @@
 # Convert agent — execute plan (from CWL consume scan)
 
-**Status:** **Ready to execute** (Convert lane only)  
+**Status:** Phase 1 **DONE** (`56a75d35`) — Convert executes Phase 2–3 via **pillar-sync**  
+**Sync bus:** [`AgenticOps/docs/pillar-sync/convert/INBOX.md`](../../../../docs/pillar-sync/convert/INBOX.md) · [`BOARD.md`](../../../../docs/pillar-sync/BOARD.md)  
 **Date:** 2026-08-10  
-**From:** CWL pillar tip **`1.0.17`** · CWL commit **`03633b1`**  
-**Convert tip today:** detached / `candidate/wptp-convert-orbit` @ **`95f3e13d`**  
+**From:** CWL pillar tip **`1.0.17`** · CWL commit **`5e60d41`**  
+**Convert tip:** `candidate/wptp-convert-orbit` @ **`56a75d35`** (mirrors)  
 **Related:** [`CONVERT-MIRRORS-REQUESTED.md`](./CONVERT-MIRRORS-REQUESTED.md) · [`CONVERT-WHOLE-SYSTEM-NOTIFIED.md`](./CONVERT-WHOLE-SYSTEM-NOTIFIED.md) · Convert [`STRATEGIC-PLAN.md`](../../../chrysalis-convert/docs/STRATEGIC-PLAN.md) §12 · [`CONVERT-WHOLE-SYSTEM.md`](../../../chrysalis-convert/docs/CONVERT-WHOLE-SYSTEM.md)
 
 ## One sentence
 
-Stabilize git + land CWL tip mirrors, prove whole-system cohesion, then resume **dual primary** (COBOL residual **or** one dialect deepen) — do not invent CWL DNA or fold WPTP into engines.
+Prove whole-system cohesion (Phase 2), then resume **dual primary** (COBOL residual **or** one dialect deepen) — do not invent CWL DNA or fold WPTP into engines. Report via pillar-sync BOARD + CWL INBOX.
 
 ---
 
