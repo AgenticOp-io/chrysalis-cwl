@@ -20,4 +20,5 @@
 | Browser island event **execution** | Convert | RFC-0024 |
 | Peel/emit gravity | Convert | **Done** — Convert `docs/CONVERT-GRAVITY.md` / `hub:convert-gravity-smoke` |
 | Whole-system cohesion (WPTP orbit + one-shot gate) | Convert | **Notified** — [`CONVERT-WHOLE-SYSTEM-NOTIFIED.md`](./CONVERT-WHOLE-SYSTEM-NOTIFIED.md) (`95f3e13d`) |
+| **Execute plan (mirrors → prove → dual primary)** | Convert | [`CONVERT-AGENT-EXECUTE-PLAN.md`](./CONVERT-AGENT-EXECUTE-PLAN.md) |
 | Thin-wrap `pathTemplateShapeEqual` from package | Secure | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |
