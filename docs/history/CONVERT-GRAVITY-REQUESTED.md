@@ -1,6 +1,6 @@
 # Convert gravity — Requested (DNA evolution Step G)
 
-**Status:** Requested — Convert agent owns implementation  
+**Status:** **Done** (Convert 2026-08-09) — `hub:convert-gravity-smoke` → CONVERT_GRAVITY_OK; tip **1.0.17**  
 **From:** CWL pillar (`chrysalis-cwl` tip **`1.0.17`** — DNA queue **CLOSED**; Helix seed parity)  
 **Convert repo:** private [`AgenticOp-io/chrysalis`](https://github.com/AgenticOp-io/chrysalis) (local: `engines/chrysalis-convert`)  
 **Related:** [DNA-EVOLUTION-0.1.9.md](./DNA-EVOLUTION-0.1.9.md) Step G · [WEBIR-FLIP-REQUESTED.md](./WEBIR-FLIP-REQUESTED.md) · [PRIVATE-PILLARS.md](./PRIVATE-PILLARS.md) · [EXIT-1.0.md](./EXIT-1.0.md) · separate execute ask: [CONVERT-REWRITE-HEADERS-REQUESTED.md](./CONVERT-REWRITE-HEADERS-REQUESTED.md) (`RequestInput.headers` / `04-request-context`)
@@ -36,19 +36,24 @@ CWL is the genetic identity of web programs. Convert’s product gravity is wort
 
 ## Acceptance checklist
 
-- [ ] Peel/emit paths under review emit or preserve honest CWL holes (no façade stubs)
-- [ ] Pin `@agenticop-io/cwl@1.0.17` (or `file:` ≡ tip) + WebIR reverse-home checklist started
-- [ ] `pnpm run hub:cwl-language-pillar-smoke` green
-- [ ] `pnpm run hub:cwl-helix-cutover-smoke` green (consumes CWL UT spine contract)
-- [ ] No convert-only grammar fork; parser/print match pillar (or are reparse-point junctions)
-- [ ] Reply with Convert SHA + smoke markers to orchestrator / CWL agent
+- [x] Peel/emit paths under review emit or preserve honest CWL holes (no façade stubs)
+- [x] Pin `@agenticop-io/cwl@1.0.17` (or `file:` ≡ tip) + WebIR reverse-home checklist started
+- [x] `pnpm run hub:cwl-language-pillar-smoke` green
+- [x] `pnpm run hub:cwl-helix-cutover-smoke` green (consumes CWL UT spine contract)
+- [x] No convert-only grammar fork; parser/print match pillar (or are reparse-point junctions)
+- [x] Reply with Convert SHA + smoke markers to orchestrator / CWL agent
+
+## Convert closeout
+
+See Convert [`docs/CONVERT-GRAVITY.md`](../../../chrysalis-convert/docs/CONVERT-GRAVITY.md) · gate `pnpm run hub:convert-gravity-smoke`.
 
 ## Reply shape
 
 ```text
 CONVERT_GRAVITY: ok
 SHA: <convert commit>
-CWL_PIN: @agenticop-io/cwl@1.0.0 | file:1.0.0
-WEBIR: reverse-home <ok|pending>
-SMOKES: hub:cwl-language-pillar-smoke · hub:cwl-helix-cutover-smoke
+CWL_PIN: file:1.0.17
+WEBIR: reverse-home ok
+SMOKES: hub:convert-gravity-smoke
+PATH_STEP_2: Translation closed
 ```

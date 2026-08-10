@@ -17,5 +17,5 @@
 | Opaque `g_*` / DB evaluate | Convert | RFC-0021 |
 | Foreach N-iteration HTML | Convert | RFC-0021 |
 | Browser island event **execution** | Convert | RFC-0024 |
-| Peel/emit gravity | Convert | [`CONVERT-GRAVITY-REQUESTED.md`](./CONVERT-GRAVITY-REQUESTED.md) |
+| Peel/emit gravity | Convert | **Done** — Convert `docs/CONVERT-GRAVITY.md` / `hub:convert-gravity-smoke` |
 | Thin-wrap `pathTemplateShapeEqual` from package | Secure | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |
