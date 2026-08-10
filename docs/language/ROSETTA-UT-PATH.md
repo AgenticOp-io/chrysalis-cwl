@@ -57,5 +57,6 @@ Guessing is a forged gene. Silent stubs are cancer.
 - Constitution: [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md)
 - Near-term authoring complete: [`../history/DNA-CWL-NEAR-COMPLETE.md`](../history/DNA-CWL-NEAR-COMPLETE.md)
 - DNA queue: [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
+- Convert whole-system notify (WPTP orbit, no DNA fork): [`../history/CONVERT-WHOLE-SYSTEM-NOTIFIED.md`](../history/CONVERT-WHOLE-SYSTEM-NOTIFIED.md)
 - DNA evolution: [`../history/DNA-EVOLUTION-0.1.9.md`](../history/DNA-EVOLUTION-0.1.9.md)
 - Portfolio: `AgenticOps/docs/THREE_PILLARS.md`

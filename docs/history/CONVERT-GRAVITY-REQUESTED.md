@@ -47,6 +47,8 @@ CWL is the genetic identity of web programs. Convert’s product gravity is wort
 
 See Convert [`docs/CONVERT-GRAVITY.md`](../../../chrysalis-convert/docs/CONVERT-GRAVITY.md) · gate `pnpm run hub:convert-gravity-smoke`.
 
+**Follow-on (Convert → CWL notify):** whole-system / WPTP orbit cohesion — [`CONVERT-WHOLE-SYSTEM-NOTIFIED.md`](./CONVERT-WHOLE-SYSTEM-NOTIFIED.md).
+
 ## Reply shape
 
 ```text

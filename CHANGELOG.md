@@ -1,5 +1,9 @@
 # CWL language changelog
 
+## History — 2026-08-10
+
+- Convert notify: whole-system / WPTP orbit cohesion (no DNA tip bump) — [`docs/history/CONVERT-WHOLE-SYSTEM-NOTIFIED.md`](./docs/history/CONVERT-WHOLE-SYSTEM-NOTIFIED.md)
+
 ## 1.0.17 — 2026-08-09
 
 - DNA seed Helix parity: fingerprint depth ≤ 2, `pathTemplateShapeEqual`, request/query name FPs

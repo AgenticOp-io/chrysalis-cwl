@@ -18,4 +18,5 @@
 | Foreach N-iteration HTML | Convert | RFC-0021 |
 | Browser island event **execution** | Convert | RFC-0024 |
 | Peel/emit gravity | Convert | **Done** — Convert `docs/CONVERT-GRAVITY.md` / `hub:convert-gravity-smoke` |
+| Whole-system cohesion (WPTP orbit + one-shot gate) | Convert | **Notified** — [`CONVERT-WHOLE-SYSTEM-NOTIFIED.md`](./CONVERT-WHOLE-SYSTEM-NOTIFIED.md) |
 | Thin-wrap `pathTemplateShapeEqual` from package | Secure | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |
