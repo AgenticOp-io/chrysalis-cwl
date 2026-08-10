@@ -13,9 +13,9 @@
 
 | Item | Owner | Doc |
 | --- | --- | --- |
-| Tip pin **`@agenticop-io/cwl@1.0.17`** | Convert + Secure | Requested docs |
+| Tip pin **@agenticop-io/cwl@1.0.17** | Convert + Secure | **Done** (Convert file: · Secure registry) |
 | Opaque `g_*` / DB evaluate | Convert | RFC-0021 |
 | Foreach N-iteration HTML | Convert | RFC-0021 |
 | Browser island event **execution** | Convert | RFC-0024 |
 | Peel/emit gravity | Convert | **Done** — Convert `docs/CONVERT-GRAVITY.md` / `hub:convert-gravity-smoke` |
-| Thin-wrap `pathTemplateShapeEqual` from package | Secure | [`SECURE-CUTOVER-REQUESTED.md`](./SECURE-CUTOVER-REQUESTED.md) |
+| Thin-wrap pathTemplateShapeEqual from package | Secure | **Done** — LIVE-MATCH.md / live-match-smoke |
