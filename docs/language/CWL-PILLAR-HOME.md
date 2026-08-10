@@ -199,8 +199,15 @@ Language behavior is edited **here**. Convert copies are mirrors until junctions
 
 ### Sync carefully
 
-- `hub-cwl-path-params.mjs` — keep `extractPathParamsFromCwlPath` identical; convert may retain `cwlPathParamsForWebir`
-- Do **not** overwrite convert `cwl-fmt.mjs` with pillar local fmt without an explicit dual-mode decision
+- `hub-t.mjs`, `hub-cwl-path-params.mjs`, `hub-cwl-middleware.mjs`, `hub-cwl-auth-presets.mjs`, `hub-cwl-effects.mjs` — copy helpers (`CWL_WEBIR_HELPERS`); keep `extractPathParamsFromCwlPath` identical; convert may retain `cwlPathParamsForWebir`
+
+### Do not overwrite from pillar
+
+| File | Reason |
+| --- | --- |
+| `cwl-fmt.mjs` | Convert keeps WebIR fmt; pillar fmt is parse→print |
+| `cwl-ingest.mjs` | Convert fat hub-lift; pillar thin `hub-lift-cwl-webir` |
+| `cwl-control-lower.mjs` | Convert fat `hub-lift-webir-route` + nested foreach docs IR; pillar thin lift — dual-mode (Convert `CWL-SCRIPTS-CANONICAL.md`) |
 
 ### Procedure
 

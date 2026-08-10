@@ -11,10 +11,11 @@
 
 Built from sibling consume surfaces (Convert sync gap + Secure DNA bridge depth):
 
-- **`cwl-control-lower.mjs`** in convert helper sync list (fat ingest SoR)
 - DNA seed: Helix-matching fingerprint depth ≤ 2, `pathTemplateShapeEqual`, request/query name FPs, `status N;` → `status_classes`
 - Gold `24-dna-bridge` exercises nested JSON / status / body+query bindings
 - RFC-0022 updated; Secure Requested tip → **1.0.17**
+- `cwl-control-lower.mjs` remains **dual-mode** (pillar thin lift; Convert fat `hub-lift-webir-route`) — **not** overwritten by `sync:convert` (see Convert `CWL-SCRIPTS-CANONICAL.md`)
+- Convert ALWAYS hub-ingest mirrors: sibling must re-sync — [`docs/history/CONVERT-MIRRORS-REQUESTED.md`](./docs/history/CONVERT-MIRRORS-REQUESTED.md)
 
 ## Gate
 

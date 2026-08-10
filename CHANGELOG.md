@@ -2,7 +2,8 @@
 
 ## History — 2026-08-10
 
-- Convert notify: whole-system / WPTP orbit cohesion (no DNA tip bump) — [`docs/history/CONVERT-WHOLE-SYSTEM-NOTIFIED.md`](./docs/history/CONVERT-WHOLE-SYSTEM-NOTIFIED.md)
+- Convert consume scan: whole-system tip **`95f3e13d`**; dual-mode skip for `cwl-control-lower` in `sync:convert`; ALWAYS mirrors re-synced into Convert working tree (`test:cwl-mirrors` green) — Convert must commit — [`docs/history/CONVERT-MIRRORS-REQUESTED.md`](./docs/history/CONVERT-MIRRORS-REQUESTED.md) · [`docs/history/CONVERT-WHOLE-SYSTEM-NOTIFIED.md`](./docs/history/CONVERT-WHOLE-SYSTEM-NOTIFIED.md)
+- Convert notify: whole-system / WPTP orbit cohesion (no DNA tip bump)
 
 ## 1.0.17 — 2026-08-09
 
