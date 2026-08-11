@@ -2,7 +2,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | tick 6 |
+| **CWL** | coordinating | 3708cfa | tick 6 |
 | **Convert** | dispatched | `f486a0be` | open: public-claim |
 | **Secure** | working | `a75255b`+ | schema-drift dirty / placeholder SHA |
 

@@ -13,7 +13,7 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | tick 6 |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 3708cfa | tick 6 |
 | **Convert** | `candidate/wptp-convert-orbit` | `f486a0be` | OSS scrub **done** |
 | **Secure** | `candidate/live-match-step4` | `a75255b`+ | schema-drift **finishing** |
 
