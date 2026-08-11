@@ -13,7 +13,7 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 3a02189 | coordinator |
 | **Convert** | `candidate/wptp-convert-orbit` | `397a0deb` | Rails filters honesty **dispatched** |
 | **Secure** | `candidate/live-match-step4` | `ba3c886` | soak-preflight **done** |
 
