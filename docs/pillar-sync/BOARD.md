@@ -1,8 +1,14 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · Convert dual-primary EXTFMAP residual honesty closed  
-**Protocol:** [`PROTOCOL.md`](./PROTOCOL.md)  
+**Updated:** 2026-08-11 · Fleet mode ON · scheduled commits every 5m  
+**Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Rule:** `git pull` all three engines before trusting this file; CWL refreshes SHAs after sibling pushes.
+
+```text
+FLEET_MODE: on
+CWL_FLEET_IDLE: no
+COMMIT_CADENCE: 5m tick flush (2m if P0 open)
+```
 
 ## Tips / pins
 
@@ -16,40 +22,33 @@
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 9fac3b9 | BOARD stamp |
-| **Convert** | `candidate/wptp-convert-orbit` | `af72d8ae` | G10127 EXTFMAP residual honesty |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush stamp)* | fleet bus |
+| **Convert** | `candidate/wptp-convert-orbit` | `af72d8ae` | G10127 EXTFMAP honesty |
 | **Secure** | `candidate/live-match-step4` | `8f64f13` | Mode B L2 deepen |
 
 ## Who builds next
 
 | Priority | Owner | Work | See |
 | --- | --- | --- | --- |
-| **P0** | **Operator / Convert** | Close EXTFMAP for real — licensed drop **or** `CHRYSALIS_EXTFMAP_ABSENT=1` after ZD&T (no invent) | Convert OUTBOX · EXTFMAP-RESIDUAL.md |
-| **P1** | **Secure** | Prove L2 deepen on GCE **or** cutover multi-host hygiene **or** soak runbook | paste in Secure chat · SOAK.md |
-| **—** | **Convert agent** | Idle invent — LiveView/Flutter 20/20 only with explicit charter | — |
-| **—** | **CWL** | **Idle invent** — tip bump only on contract gaps | — |
-
-## Conversion suite
-
-Owned by **Convert**. Dual-primary §12 EXTFMAP **honesty** gate **done** (`EXTFMAP_RESIDUAL_HONEST_OK`). Residual itself still open until operator close.
+| **P1** | **Secure** | **open** — GCE prove L2 deepen tokens (`gce-sync -WithL2`) | OUTBOX `secure-gce-l2-prove` |
+| **P2** | **Convert** | **open** — fleet standby heartbeat only (EXTFMAP = operator) | OUTBOX `convert-fleet-standby` |
+| **—** | **CWL** | Coordinator ticks; invent only on INBOX contract gaps | COORDINATOR.md |
 
 ## Open cross-asks
 
 | ID | From → To | Status |
 | --- | --- | --- |
+| secure-gce-l2-prove | CWL → Secure | **open** |
+| convert-fleet-standby | CWL → Convert | **open** (heartbeat / no invent) |
 | sync-convert-execute | CWL → Convert | **done** (`bc7d43e2`) |
-| convert-dual-primary-extfmap | BOARD → Convert | **done** honesty (`af72d8ae` / G10127); **open** operator close |
-| sync-secure-tip-wrap | CWL → Secure | **done** (`bf399ac` / `177dce0`) |
+| convert-dual-primary-extfmap | BOARD → Convert | honesty **done**; operator close still open |
+| sync-secure-tip-wrap | CWL → Secure | **done** |
 | mode-b-l2-deepen | user → Secure | **done** (`8f64f13`) |
 
 ## Closed recently
 
 | ID | Note |
 | --- | --- |
-| convert G10127 EXTFMAP residual honesty | `01ea3870` / stamp `af72d8ae` · `EXTFMAP_RESIDUAL_HONEST_OK` |
-| mode-b-l2-deepen | nft divert + fail-closed + teardown · `8f64f13` |
-| convert-mirrors-1.0.17 | `56a75d35` |
-| convert-whole-system / gravity | Done |
-| convert Phase 3A G10124 COPY REPLACING | `6bf75015` |
-| secure dna-seed wrap | `pathTemplateShapeEqual` from package |
+| convert G10127 | `af72d8ae` · `EXTFMAP_RESIDUAL_HONEST_OK` |
+| mode-b-l2-deepen | `8f64f13` |
 | cwl-dna-queue | CLOSED @ 1.0.17 |

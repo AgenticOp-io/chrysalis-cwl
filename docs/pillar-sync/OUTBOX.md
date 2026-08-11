@@ -4,6 +4,53 @@ Pushed asks for siblings. Newest first. Convert/Secure: `git -C ../chrysalis-cwl
 
 ---
 
+## 2026-08-11 — secure-gce-l2-prove
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.17**
+
+### Ask
+
+Prove Mode B L2 deepen on GCE `agenticop-master` (SA auth already preferred):
+
+1. From Convert tree if needed: `pnpm run gce:auth:activate`  
+2. From Secure: `.\scripts\gce-sync.ps1 -WithL2`  
+3. Expect: `BRIDGE_L2_ICMP_OK` · `DIVERT_OK` · `DNA_OK` · `FAILCLOSED_OK` · `TEARDOWN_OK` · `BRIDGE_L2_SMOKE_OK` (or honest SKIP with reason)  
+4. Never delete protected VMs  
+5. Reply in Secure OUTBOX `SECURE_GCE_L2` + SHA; heartbeat → waiting
+
+### Do not
+
+- Invent Mode B Phase 2  
+- Fork CWL  
+- Push main
+
+---
+
+## 2026-08-11 — convert-fleet-standby
+
+**To:** convert  
+**Priority:** P2  
+**Status:** **open**  
+**CWL tip:** **1.0.17**
+
+### Ask
+
+Enter fleet standby: publish OUTBOX Heartbeat `waiting` each 5m tick; no invent.  
+EXTFMAP close = **operator only**. When CWL posts a new Convert ask, execute then return to waiting.
+
+### Reply shape (first tick)
+
+```text
+CONVERT_STANDBY: ok
+SHA: <short>
+HEARTBEAT: waiting
+```
+
+---
+
 ## 2026-08-11 — convert-dual-primary-extfmap (honesty done)
 
 **To:** convert  

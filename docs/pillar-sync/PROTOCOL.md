@@ -87,3 +87,40 @@ git pull all three engines (ff-only).
 Read chrysalis-cwl/docs/pillar-sync/BOARD.md + all three OUTBOX.md files.
 Write only your lane's docs/pillar-sync/; commit+push candidate before ending turn.
 ```
+
+## Fleet mode (timed check-ins)
+
+Agents cannot DM across Cursor chats. Coordination = **git bus** + **per-chat `/loop` timers**.
+
+| Doc | Role |
+| --- | --- |
+| [`COORDINATOR.md`](./COORDINATOR.md) | CWL chat runs the orchestra |
+| [`HEARTBEAT.md`](./HEARTBEAT.md) | CWL snapshot of who is waiting / working |
+| [`STANDING-PASTE.md`](./STANDING-PASTE.md) | Paste into Convert + Secure chats |
+| [`INBOX.md`](./INBOX.md) | Sibling → CWL contract gaps |
+
+### Heartbeat block (every pillar OUTBOX, top)
+
+```markdown
+## Heartbeat
+
+**STATUS:** waiting | working | blocked
+**LAST:** 2026-08-11T00:00:00Z
+**SHA:** <short>
+**NOTE:** …
+```
+
+### Stop
+
+When CWL invent is CLOSED, no open asks remain, and Convert+Secure are `waiting` with nothing to assign → BOARD + HEARTBEAT set `CWL_FLEET_IDLE: yes` and all loops stop.
+
+## Commit schedule (fleet)
+
+**Authority:** CWL coordinator sets cadence ([`COORDINATOR.md`](./COORDINATOR.md)). Default:
+
+- **Every 5m tick end** → if dirty, commit + push `candidate/*` (no empty commits)
+- **Ask complete mid-tick** → commit immediately; still flush at tick end if more dirt
+- **Never** leave `docs/pillar-sync/` dirty across a tick — siblings only see pushed bus
+
+CWL: `pwsh scripts/pillar-sync-flush.ps1`  
+Siblings: same rule on own OUTBOX + finished ask work.
