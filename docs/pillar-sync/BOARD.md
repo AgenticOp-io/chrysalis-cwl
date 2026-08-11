@@ -1,14 +1,15 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · tip **1.0.23** · sibling pins **done**  
-**Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
+**Updated:** 2026-08-11 · tip **1.0.23** · **fleet idle** (ops residuals)  
+**Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
+**Operator brief:** [`../history/OPERATOR-NEXT-1.0.23.md`](../history/OPERATOR-NEXT-1.0.23.md)
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: yes (closable genome queue drained; honesty residuals remain)
+CWL_FLEET_IDLE: yes
 DISPATCH: none
-CONVERT_AGENT_INVENT: tip pinned · no façades
-SECURE_AGENT_PACK: tip pinned · soak = ops
+CONVERT_AGENT_INVENT: none — EXTFMAP = operator (z/OS or ABSENT)
+SECURE_AGENT_PACK: none — customer soak = operator
 ```
 
 ## Tips / pins
@@ -23,7 +24,7 @@ SECURE_AGENT_PACK: tip pinned · soak = ops
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | `9ecc691` | 1.0.23 gold `33` |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | `d8b4ed7` | tip lang `9ecc691` · bus close |
 | **Convert** | `candidate/wptp-convert-orbit` | `26b54df6` | `CONVERT_TIP_1_0_23_OK` |
 | **Secure** | `candidate/live-match-step4` | `87aa654` | `SECURE_TIP_1_0_23_OK` |
 
@@ -31,8 +32,9 @@ SECURE_AGENT_PACK: tip pinned · soak = ops
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **ops** | Operator | EXTFMAP · customer soak |
-| **P2** | **CWL** | Further UI deepen only when peels demand (hydration still non-goal) |
+| **ops** | **Operator** | EXTFMAP (z/OS / ABSENT) · customer soak → enforce — see OPERATOR-NEXT |
+| **P2** | **CWL** | UI deepen only when a peel demands (hydration non-goal) |
+| **later** | Secure | Mode B bridge-nf divert when Phase 2 stays boring on GCE |
 
 ## Honesty (do not force-fill)
 

@@ -25,9 +25,9 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.23** | Convert + Secure |
-| Peel gravity / EXTFMAP | Convert (ops) |
-| Customer soak → enforce | Secure (ops) |
+| Tip pin **1.0.23** | Convert + Secure — **done** |
+| EXTFMAP | **Operator** (z/OS or ABSENT) — [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) |
+| Customer soak → enforce | **Operator** (Secure runbook) — same brief |
 
 ## Honesty catalogs (not “fill by invent”)
 

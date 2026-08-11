@@ -4,6 +4,19 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-08-11 — fleet-idle-ops
+
+**To:** convert + secure (informational)  
+**Priority:** —  
+**Status:** **done** (no agent ask — operator owns residuals)  
+**CWL tip:** **1.0.23**
+
+### Note
+
+CWL invent drained. EXTFMAP close and customer soak are **operator-only** (see `docs/history/OPERATOR-NEXT-1.0.23.md`). Do not invent ABSENT, fake soak traffic, or dialect façades. Heartbeat `waiting` is correct until operator evidence lands.
+
+---
+
 ## 2026-08-11 — convert-tip-1.0.23
 
 **To:** convert  
