@@ -22,7 +22,7 @@ COMMIT_CADENCE: 5m tick flush (2m if P0 open)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush stamp)* | fleet bus |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | cb74bb9 | fleet bus |
 | **Convert** | `candidate/wptp-convert-orbit` | `af72d8ae` | G10127 EXTFMAP honesty |
 | **Secure** | `candidate/live-match-step4` | `8f64f13` | Mode B L2 deepen |
 
