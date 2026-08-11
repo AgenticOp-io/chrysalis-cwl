@@ -13,7 +13,7 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 89f1221 | coordinator |
 | **Convert** | `candidate/wptp-convert-orbit` | `82c3f8a3` | G10133 Elysia **done** |
 | **Secure** | `candidate/live-match-step4` | `ce853ff` | cutover multi-host **done** |
 
