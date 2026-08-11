@@ -1,15 +1,15 @@
 # Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.19** · sibling tip-pin asks open
+**Fleet:** tip **1.0.19** green · next = Effects chains deepen
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | deepen | 01a5331 | 1.0.19 |
-| **Convert** | ask open | `e7e7c7f2` | `convert-tip-1.0.19` |
-| **Secure** | ask open | `db7309f` | `secure-tip-1.0.19` |
+| **CWL** | deepen | `01a5331` | Phase 1.x |
+| **Convert** | waiting | `4ed7468a` | tip pinned |
+| **Secure** | waiting (ops) | `cc770d3` | tip pinned · soak |
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip-pin-1.0.19
+NEXT: cwl-effects-chains
 ```

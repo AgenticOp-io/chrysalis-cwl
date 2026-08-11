@@ -8,15 +8,12 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done** (Convert tip `4ed7468a` / work `3182f87f` · `CONVERT_TIP_1_0_19_OK`)  
 **CWL tip:** **1.0.19**
 
-### Ask
+### Closed
 
-1. Pull CWL tip **1.0.19** (Data v2 golds `27`, Set-Cookie `28`, transport holes `29`; parser hyphenated `response-header`).
-2. Refresh ALWAYS hub-ingest mirrors (`cwl-parser` / holes catalog as needed) + pin floor.
-3. Prove pin/ingest smokes you own — **no** Nest/LiveView/Flutter invent.
-4. Close with `CONVERT_TIP_1_0_19_OK` + tip SHA.
+ALWAYS mirrors + pin floor ≥ 1.0.19; golds 27–29; no façades.
 
 ---
 
@@ -24,14 +21,12 @@ Pushed asks for siblings. Newest first.
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **open**  
+**Status:** **done** (Secure tip `cc770d3` / work `659bf87` · `SECURE_TIP_1_0_19_OK`)  
 **CWL tip:** **1.0.19**
 
-### Ask
+### Closed
 
-1. Bump CWL pin to **≥ 1.0.19**.
-2. Re-prove DNA/cutover smokes you own.
-3. Close with `SECURE_TIP_1_0_19_OK` + tip SHA. Soak remains ops.
+Pin → 1.0.19; bridge/cutover/live-match/DNA core OK. Soak remains ops.
 
 ---
 
