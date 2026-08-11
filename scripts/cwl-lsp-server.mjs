@@ -110,6 +110,12 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: "client ui {\n  $0\n}",
   },
   {
+    label: 'client ui "name"',
+    kind: KIND_SNIPPET,
+    detail: "Named client island (RFC-0028)",
+    insertText: 'client ui "${1:island}" {\n  $0\n}',
+  },
+  {
     label: "element",
     kind: KIND_SNIPPET,
     detail: "UI element node",
@@ -121,6 +127,18 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     kind: KIND_SNIPPET,
     detail: "Island event surface (action name only)",
     insertText: 'on click { action "${1:noop}"; }',
+  },
+  {
+    label: "on change",
+    kind: KIND_SNIPPET,
+    detail: "Change event metadata (RFC-0028)",
+    insertText: 'on change { action "${1:changed}"; }',
+  },
+  {
+    label: "on submit",
+    kind: KIND_SNIPPET,
+    detail: "Submit event metadata (RFC-0028)",
+    insertText: 'on submit { action "${1:save}"; }',
   },
   { label: "param", kind: KIND_KEYWORD, detail: "Path param binding", insertText: "param " },
   { label: "query", kind: KIND_KEYWORD, detail: "Query binding", insertText: "query " },

@@ -40,6 +40,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `30-effects-executable` | Effects beyond session presets (executable) | 0020 |
 | `31-multipart-binding` | Multipart field/file part bindings | 0026 |
 | `32-stream-sse` | SSE single-shot `stream sse;` | 0027 |
+| `33-ui-island-contracts` | Named client islands + form events | 0028 |
 
 ## Parseable subset notes (0.1.8)
 

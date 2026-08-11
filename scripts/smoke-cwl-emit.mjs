@@ -46,6 +46,7 @@ const HOLE_FREE = new Set([
   "30-effects-executable",
   "31-multipart-binding",
   "32-stream-sse",
+  "33-ui-island-contracts",
 ]);
 
 /** Honest remaining emit holes (catalogued / form-action). */

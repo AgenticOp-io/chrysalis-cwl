@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.23 — 2026-08-11
+
+- RFC-0028 named client islands + form event contracts; gold `33-ui-island-contracts`
+- WebSocket duplex kept as honest hole (no invent)
+- Still forbidden: Nest / LiveView / Flutter façades; silent React/Svelte lowering
+
 ## 1.0.22 — 2026-08-11
 
 - RFC-0027 SSE single-shot `stream sse;`; gold `32-stream-sse`

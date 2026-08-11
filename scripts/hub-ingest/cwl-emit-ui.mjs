@@ -50,6 +50,7 @@ function deserialiseUiNode(get, node, operands) {
     return {
       kind: "island",
       client: true,
+      name: node.name ? String(node.name) : null,
       children: (node.children ?? []).map((c) => deserialiseUiNode(get, c, operands)),
     };
   }
@@ -135,7 +136,8 @@ function printUiNode(node, indent, lines) {
     return;
   }
   if (node.kind === "island") {
-    lines.push(`${indent}client ui {`);
+    if (node.name) lines.push(`${indent}client ui ${JSON.stringify(String(node.name))} {`);
+    else lines.push(`${indent}client ui {`);
     for (const child of node.children ?? []) printUiNode(child, `${indent}  `, lines);
     lines.push(`${indent}}`);
     return;

@@ -415,6 +415,20 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       expectHeaders: { "content-type": "text/event-stream" },
     },
   ]),
+  "33-ui-island-contracts": Object.freeze([
+    {
+      path: "/signup",
+      expectStatus: 200,
+      expectBody:
+        '<main><h1>Signup</h1><div data-cwl-island="client" data-cwl-island-id="signup"><form><input name="email" data-cwl-on-change="email.changed"></input><button data-cwl-on-click="signup.save">Save</button></form></div></main>',
+    },
+    {
+      path: "/anon",
+      expectStatus: 200,
+      expectBody:
+        '<section><div data-cwl-island="client"><button data-cwl-on-click="ping">Ping</button></div></section>',
+    },
+  ]),
 });
 
 function resolveDepEntry(pkg) {
