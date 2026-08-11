@@ -13,7 +13,7 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 9614cad | coordinator |
 | **Convert** | `candidate/wptp-convert-orbit` | `568e76c4` | G10135 Polka **done** |
 | **Secure** | `candidate/live-match-step4` | `28b8971`+ | gce-smoke-pack **working** |
 

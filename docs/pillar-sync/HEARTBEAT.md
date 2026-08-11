@@ -2,7 +2,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | dispatch |
+| **CWL** | coordinating | 9614cad | dispatch |
 | **Convert** | dispatched | `568e76c4` | open: nest-di-honesty |
 | **Secure** | working | `28b8971`+ | gce-smoke.mjs dirty |
 
