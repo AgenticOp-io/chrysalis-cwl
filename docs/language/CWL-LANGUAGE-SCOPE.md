@@ -16,11 +16,11 @@ CWL is the **DNA of the web**: the heritable identity of a **web application** (
 
 Convert peels may hear PHP, Express, Python, Go, Java, C#, Ruby, Rust, frameworks, COBOL layouts, etc. Those peels **map into** this genome (or leave catalogued holes). They do **not** expand the genome into those languages.
 
-## What is in the genome (RFCs ≈ 0001–0024)
+## What is in the genome (RFCs 0001–0025 (deepen open))
 
-Modeled surfaces: `@route` / `@page`, request/response shapes, effects, modules, UI trees / islands, control (`if` / `foreach`), holes, DNA bridge (0022/0023), island **kinds** vocabulary (0024).
+Modeled surfaces: `@route` / `@page`, request/response shapes, effects, modules, UI trees / islands, control (`if` / `foreach`), nested structured literals (RFC-0025), holes, DNA bridge (0022/0023), island **kinds** vocabulary (0024).
 
-Language golds: `fixtures/language-gold/01`–`25`.
+Language golds: `fixtures/language-gold/01`–`26`.
 
 ## What stays holes / out of scope
 

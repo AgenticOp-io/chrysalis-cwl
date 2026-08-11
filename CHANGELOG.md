@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.18 — 2026-08-11
+
+- **Genome deepen reopened** (Exit 1.0.17 = bootstrap, not full web-app DNA)
+- RFC-0025 nested structured object/array literals (parser/print/ingest/emit)
+- Gold `26-nested-literals`; `24-dna-bridge` nested `meta` runtime JSON
+- Docs: `CWL-GENOME-DEEPEN.md`, `DNA-BUILD-NEXT.md` queue
+
 ## History — 2026-08-10
 
 - Git-backed pillar sync: `docs/pillar-sync/` in each engine (pull all three every turn; commit+push OUTBOX) — [`docs/pillar-sync/PROTOCOL.md`](./docs/pillar-sync/PROTOCOL.md)

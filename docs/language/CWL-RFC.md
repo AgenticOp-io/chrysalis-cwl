@@ -28,6 +28,7 @@ CWL evolves by **RFC**: each proposal must cite cross-language evidence (path kn
 | [0022](CWL-RFC-0022-dna-surface-bridge.md) | CWL `@route`/`@page` surface ↔ `app-dna-v1` route identity (Secure bridge contract) | accepted (contract only) |
 | [0023](CWL-RFC-0023-deploy-dna-profiles.md) | Deploy / DNA surface profiles (`cwl-deploy-profile-v1`) | accepted (normative) |
 | [0024](CWL-RFC-0024-island-kinds.md) | Island kinds (Wasm / vendor / opaque) — declare, don’t absorb | accepted (vocabulary) |
+| [0025](CWL-RFC-0025-nested-structured-literals.md) | Nested structured object/array literals | accepted |
 
 **Process**
 

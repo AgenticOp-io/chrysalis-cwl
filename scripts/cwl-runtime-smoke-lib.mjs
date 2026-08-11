@@ -332,7 +332,7 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       expectBody: "<!doctype html><html><body><h1>Home</h1></body></html>",
     },
     { method: "POST", path: "/login", expectStatus: 201, expectBody: '{"ok":true}' },
-    { path: "/api/health", expectStatus: 200, expectBody: '{"ok":true,"surface":"api","meta":"{unknown-literal}"}' },
+    { path: "/api/health", expectStatus: 200, expectBody: '{"ok":true,"surface":"api","meta":{"v":1}}' },
     { path: "/items/x", expectStatus: 200, expectBody: '{"ok":true,"id":"x"}' },
   ]),
   "25-island-kinds": Object.freeze([
@@ -352,6 +352,10 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       expectStatus: 200,
       expectBody: "<!doctype html><html><body><h1>Legacy</h1></body></html>",
     },
+  ]),
+  "26-nested-literals": Object.freeze([
+    { path: "/api/nested", expectStatus: 200, expectBody: '{"ok":true,"meta":{"v":1,"tags":["a","b"]}}' },
+    { path: "/api/pair", expectStatus: 200, expectBody: '{"outer":{"inner":{"n":2}},"list":[1,2,3]}' },
   ]),
 });
 

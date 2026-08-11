@@ -39,6 +39,9 @@ function cwlRenderValue(v) {
     const ent = v.entries.map((e) => `${e.key}: ${cwlRenderValue(e.value)}`);
     return `{ ${ent.join(", ")} }`;
   }
+  if (v.t === "arr") {
+    return `[${(v.elements ?? []).map((el) => cwlRenderValue(el)).join(", ")}]`;
+  }
   return '""';
 }
 
@@ -108,6 +111,17 @@ export function cwlValueOfThin(get, id) {
         entries.push({ key, value });
       }
       return { t: "obj", entries };
+    }
+    if (callee === "__array_literal") {
+      const ops = n.operands ?? [];
+      /** @type {object[]} */
+      const elements = [];
+      for (const op of ops) {
+        const value = cwlValueOfThin(get, op);
+        if (value.t === "hole") return value;
+        elements.push(value);
+      }
+      return { t: "arr", elements };
     }
     return { t: "hole", reason: `cwl:emit:unsupported-call:${callee}` };
   }

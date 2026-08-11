@@ -3,25 +3,25 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.17` |
-| **Status** | DNA seed Helix parity + control-lower convert sync |
-| **Date** | 2026-08-09 |
+| **Version** | `1.0.18` |
+| **Status** | Genome deepen — nested structured literals (RFC-0025) |
+| **Date** | 2026-08-11 |
 
 ## What this version means
 
-Built from sibling consume surfaces (Convert sync gap + Secure DNA bridge depth):
+Bootstrap Exit **1.0.17** is not the full web-app genome. Phase **1.x** reopens honest deepen:
 
-- DNA seed: Helix-matching fingerprint depth ≤ 2, `pathTemplateShapeEqual`, request/query name FPs, `status N;` → `status_classes`
-- Gold `24-dna-bridge` exercises nested JSON / status / body+query bindings
-- RFC-0022 updated; Secure Requested tip → **1.0.17**
-- `cwl-control-lower.mjs` remains **dual-mode** (pillar thin lift; Convert fat `hub-lift-webir-route`) — **not** overwritten by `sync:convert` (see Convert `CWL-SCRIPTS-CANONICAL.md`)
-- Convert ALWAYS hub-ingest mirrors: sibling must re-sync — [`docs/history/CONVERT-MIRRORS-REQUESTED.md`](./docs/history/CONVERT-MIRRORS-REQUESTED.md)
+- **RFC-0025** — nested `{ }` / `[ ]` keep structured AST (no collapsed JSON blobs → `{unknown-literal}`)
+- Language gold `26-nested-literals`; `24-dna-bridge` nested `meta` executes as JSON
+- Queue: [`DNA-BUILD-NEXT.md`](./docs/history/DNA-BUILD-NEXT.md) · [`CWL-GENOME-DEEPEN.md`](./docs/language/CWL-GENOME-DEEPEN.md)
+
+Still forbidden: Nest / LiveView / Flutter / onion façades; origin PLs as CWL dialects.
 
 ## Gate
 
 ```bash
 npm run build:webir
 CWL_REQUIRE_WEBIR=1 npm run test:language
-npm run smoke:cwl-emit
 npm run smoke:cwl-ingest-matrix
+npm run smoke:cwl-runtime-matrix
 ```

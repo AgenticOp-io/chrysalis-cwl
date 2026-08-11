@@ -4,6 +4,37 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-08-11 — convert-tip-1.0.18
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.18**
+
+### Ask
+
+1. Pull CWL tip **1.0.18** (RFC-0025 nested structured literals + gold `26`).
+2. Refresh ALWAYS hub-ingest mirrors / `file:` pin as needed.
+3. Prove language pin smoke / ingest parity you own — **no** Nest/LiveView/Flutter invent.
+4. Close with tip SHA + `CONVERT_TIP_1_0_18_OK` (or equivalent).
+
+---
+
+## 2026-08-11 — secure-tip-1.0.18
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.18**
+
+### Ask
+
+1. Bump CWL pin to **≥ 1.0.18** (`^1.0.18` or `file:`).
+2. Re-prove DNA seed / cutover smokes you already own.
+3. Close with tip SHA + `SECURE_TIP_1_0_18_OK`. Customer soak remains ops.
+
+---
+
 ## 2026-08-11 — convert-runtime-lockfile
 
 **To:** convert  

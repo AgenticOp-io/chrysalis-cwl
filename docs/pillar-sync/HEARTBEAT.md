@@ -1,14 +1,15 @@
 # Fleet HEARTBEAT
 
-**Fleet stopped:** `CWL_FLEET_IDLE: yes`
+**Fleet:** tip **1.0.18** deepen · sibling tip-pin asks open
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | idle | 5f09147 | tip 1.0.17 · runtimes green |
-| **Convert** | waiting (ops) | `ca3c06de` | lockfile OK · EXTFMAP operator |
-| **Secure** | waiting (ops) | `60b875c` | customer soak operator |
+| **CWL** | building | (stamp after push) | RFC-0025 · Phase 1.x |
+| **Convert** | ask open | `ca3c06de` | `convert-tip-1.0.18` |
+| **Secure** | ask open | `60b875c` | `secure-tip-1.0.18` |
 
 ```text
-FLEET_MODE: off
-CWL_FLEET_IDLE: yes
+FLEET_MODE: on
+CWL_FLEET_IDLE: no
+DISPATCH: tip-pin-1.0.18
 ```

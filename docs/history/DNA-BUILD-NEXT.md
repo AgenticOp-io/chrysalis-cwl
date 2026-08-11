@@ -1,25 +1,34 @@
-# DNA build — queue **CLOSED** (maintenance tips only)
+# DNA build — Phase 1.x genome deepen (REOPENED)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.17`** — DNA seed Helix parity + control-lower convert sync  
-**Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md)  
-**Complete:** [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md)  
-**Sibling sync:** [`docs/pillar-sync/BOARD.md`](../pillar-sync/BOARD.md) — `git pull` all three engines every turn
+**Tip:** **`1.0.18`** — nested structured literals (RFC-0025)  
+**Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · deepen program: [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
-## CWL-owned
+Exit **1.0.17** closed the *bootstrap* genome (RFCs 0001–0024, golds 01–25, package/LSP/DNA bridge). That is **not** the full DNA of web-app meaning — only the Exit-1.0 bar.
 
-**No invent queue.** Tip bumps only when siblings expose contract/sync gaps (as 1.0.17). Post gaps to `docs/pillar-sync/cwl/INBOX.md`.
+## Reopen rule
 
-## Sibling wait (not this repo)
+| Allowed | Forbidden |
+| --- | --- |
+| New **surfaces** with RFC + language gold | Origin PL dialects as CWL grammar |
+| Named hole catalog growth | Nest / LiveView / Flutter / onion **façades** |
+| Deeper Data / Effects / UI genes | Silent invent to make smokes green |
 
-| Item | Owner | Doc |
+## Queue (CWL-owned)
+
+| Pri | Item | Status |
 | --- | --- | --- |
-| Tip pin **`@agenticop-io/cwl@1.0.17`** | Convert + Secure | **Done** (Convert file: · Secure ^1.0.17) |
-| **ALWAYS hub-ingest mirrors ≡ tip** | Convert | **Done** `56a75d35` |
-| Opaque `g_*` / DB evaluate | Convert | RFC-0021 (honest hole / oracle) |
-| Foreach N-iteration HTML | Convert | RFC-0021 |
-| Browser island event **execution** | Convert | RFC-0024 |
-| Peel/emit gravity | Convert | **Done** |
-| Whole-system cohesion | Convert | **Done** |
-| **Execute plan Phase 2–3** | Convert | **Done** `bc7d43e2` (3A COBOL) — next dual-primary wave on Convert |
-| Thin-wrap `pathTemplateShapeEqual` | Secure | **Done** `bf399ac` |
+| P0 | **RFC-0025** nested object/array literals + gold `26` | **done** (`1.0.18`) |
+| P1 | **Data v2 golds** — `load` redirect / error / cookie (RFC-0013 v2) | next |
+| P1 | Response cookies / richer headers on returns | open |
+| P2 | Streaming / SSE / WebSocket — gene or catalogued hole | open |
+| P2 | Multipart / file upload — hole → gene when honest | open |
+
+## Sibling
+
+| Item | Owner |
+| --- | --- |
+| Peel gravity / EXTFMAP | Convert (ops / peels — not genome invent) |
+| Customer soak → enforce | Secure (ops) |
+
+Post contract gaps to `docs/pillar-sync/cwl/INBOX.md`.

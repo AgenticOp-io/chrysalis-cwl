@@ -110,7 +110,49 @@ function lowerObjectEntriesBody(ctx, entries, loc) {
       );
       continue;
     }
+    if (value.kind === "object" && Array.isArray(value.entries)) {
+      flat.push(lowerObjectEntriesBody(ctx, value.entries, loc));
+      continue;
+    }
+    if (value.kind === "array" && Array.isArray(value.elements)) {
+      const arrayArgs = value.elements.map((el) => {
+        if (el?.kind === "object" && Array.isArray(el.entries)) {
+          return lowerObjectEntriesBody(ctx, el.entries, loc);
+        }
+        if (el?.kind === "array" && Array.isArray(el.elements)) {
+          // Flatten one level via recursive object-entries shape: reuse array call
+          const nested = el.elements.map((inner) => {
+            if (inner?.kind === "object" && Array.isArray(inner.entries)) {
+              return lowerObjectEntriesBody(ctx, inner.entries, loc);
+            }
+            return lowerHubLiteral(ctx, inner?.value ?? null, loc);
+          });
+          return data.call({
+            callee: "__array_literal",
+            args: nested,
+            type: HUB_T.unknown,
+            origin,
+            provenance: [webir.provenance("hub-ingest", "cwl:array")],
+          });
+        }
+        return lowerHubLiteral(ctx, el?.value ?? null, loc);
+      });
+      flat.push(
+        data.call({
+          callee: "__array_literal",
+          args: arrayArgs,
+          type: HUB_T.unknown,
+          origin,
+          provenance: [webir.provenance("hub-ingest", "cwl:array")],
+        }),
+      );
+      continue;
+    }
     const val = value.value;
+    if (val && typeof val === "object" && !Array.isArray(val)) {
+      flat.push(lowerObjectBody(ctx, val, loc));
+      continue;
+    }
     if (Array.isArray(val)) {
       const arrayArgs = val.map((item) =>
         data.literal({

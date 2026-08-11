@@ -102,13 +102,13 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 - [x] Same-file LSP rename (`textDocument/rename` + `prepareRename`) — tip `0b824de` / `0.1.13`
 
 **Exit 0.6:** Authors get live diagnostics/fmt inside the private pillar without Convert.  
-**Exit met** — LSP rename + package exports close near-term authoring gravity. Historical: [`DNA-CWL-NEAR-COMPLETE.md`](./DNA-CWL-NEAR-COMPLETE.md). Queue: [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) (**CLOSED**).
+**Exit met** — LSP rename + package exports close near-term authoring gravity. Historical: [`DNA-CWL-NEAR-COMPLETE.md`](./DNA-CWL-NEAR-COMPLETE.md). Queue: [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) (**Phase 1.x deepen OPEN**).
 
 ---
 
 ## Phase 1.0 — Published language (private registry)
 
-- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (tip **`1.0.17`**)
+- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (tip **`1.0.18`**)
 - [x] Packable artifact: staged `lib/` + `bin/cwl` + GitHub Packages `publishConfig` ([`EXIT-1.0.md`](./EXIT-1.0.md))
 - [x] Pre-publish pin path documented: sibling / `file:` / env ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
 - [x] Convert + Secure **`file:` / registry** pins proven (`npm run test:cwl-pin`) during transition
@@ -139,9 +139,9 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ## How to pick the next slice
 
-Follow **Rosetta → Universal Translator → DNA** ([`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)). Queue: [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) (**CLOSED**). Complete: [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md).
+Follow **Rosetta → Universal Translator → DNA** ([`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)). Queue: [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) (**Phase 1.x deepen OPEN**). Complete: [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md).
 
-1. Does it improve **spec, fixtures, or tooling** for the language? → do it here (rare — genome closed).  
+1. Does it improve **spec, fixtures, or tooling** for the language? → do it here (Phase 1.x deepen — see CWL-GENOME-DEEPEN.md).  
 2. Is it convert product smoke / ST prove? → convert agent.  
 3. Is it DNA learn/enforce? → secure agent.  
 4. Does convert need a parser fix? → fix here, sync, then re-run convert gates.
