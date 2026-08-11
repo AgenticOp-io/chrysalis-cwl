@@ -16,7 +16,7 @@
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(this push)* | BOARD closeout |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | `1503913` | BOARD closeout |
 | **Convert** | `candidate/wptp-convert-orbit` | `bc7d43e2` | Phase 2+3A closed |
 | **Secure** | `candidate/live-match-step4` | `177dce0` | tip wrap + SECURE_SYNC |
 
