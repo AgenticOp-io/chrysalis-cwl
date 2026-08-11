@@ -36,7 +36,7 @@ Polka honesty catalog + smoke; pass-through ceiling held.
 
 ---
 
-## 2026-08-11 — secure-gce-smoke-pack
+## 2026-08-11 — secure-sign-fixture
 
 **To:** secure  
 **Priority:** P1  
@@ -45,11 +45,25 @@ Polka honesty catalog + smoke; pass-through ceiling held.
 
 ### Ask
 
-Unify new fixture smokes into the ship pack:
+DNA **sign/promote** fixture deepen:
 
-1. Ensure `soak-preflight-smoke`, `siem-fixture-smoke`, `reload-fixture-smoke` run from `gce-smoke` / `test:dna` (or honest documented SKIP on win32)  
-2. Docs one-liner in GCE.md / ROADMAP  
-3. Reply `SECURE_GCE_SMOKE_PACK` + SHA  
+1. Extend or add smoke proving signed promote / reject unsigned (honest fixture keys)  
+2. Token e.g. `SIGN_FIXTURE_OK`; wire into test:dna / gce-smoke if missing  
+3. Docs brief; D5 DNA-only  
+4. Reply `SECURE_SIGN_FIXTURE` + SHA  
+
+---
+
+## 2026-08-11 — secure-gce-smoke-pack
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **done** (tip `3c2c154` / work `ca0d379` · `GCE_SMOKE_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+soak/siem/reload fixtures wired into `gce-smoke.mjs`; win32 green.
 
 ---
 
