@@ -2,7 +2,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | dispatch mode |
+| **CWL** | coordinating | f55515d | dispatch mode |
 | **Convert** | dispatched next | `588dfd34` | open: `convert-flutter-honesty` |
 | **Secure** | working | `39dbaf0`+ | `secure-mode-b-phase2` (local dirty) |
 

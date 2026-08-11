@@ -23,7 +23,7 @@ DISPATCH: task-agents (no human paste)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | f55515d | coordinator |
 | **Convert** | `candidate/wptp-convert-orbit` | `588dfd34` | G10128 LiveView honesty **done** |
 | **Secure** | `candidate/live-match-step4` | `39dbaf0`+ | Mode B P2 **working** (uncommitted) |
 
