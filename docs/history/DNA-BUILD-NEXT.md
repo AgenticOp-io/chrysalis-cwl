@@ -14,12 +14,12 @@
 
 | Item | Owner | Doc |
 | --- | --- | --- |
-| Tip pin **`@agenticop-io/cwl@1.0.17`** | Convert + Secure | pillar-sync INBOXes |
-| **ALWAYS hub-ingest mirrors ≡ tip** | Convert | **Done** `56a75d35` — [`CONVERT-MIRRORS-REQUESTED.md`](./CONVERT-MIRRORS-REQUESTED.md) |
-| Opaque `g_*` / DB evaluate | Convert | RFC-0021 |
+| Tip pin **`@agenticop-io/cwl@1.0.17`** | Convert + Secure | **Done** (Convert file: · Secure ^1.0.17) |
+| **ALWAYS hub-ingest mirrors ≡ tip** | Convert | **Done** `56a75d35` |
+| Opaque `g_*` / DB evaluate | Convert | RFC-0021 (honest hole / oracle) |
 | Foreach N-iteration HTML | Convert | RFC-0021 |
 | Browser island event **execution** | Convert | RFC-0024 |
 | Peel/emit gravity | Convert | **Done** |
-| Whole-system cohesion | Convert | **Notified** |
-| **Execute plan Phase 2–3** | Convert | [`CONVERT-AGENT-EXECUTE-PLAN.md`](./CONVERT-AGENT-EXECUTE-PLAN.md) · CWL [`OUTBOX.md`](../pillar-sync/OUTBOX.md) |
-| Thin-wrap `pathTemplateShapeEqual` | Secure | CWL [`OUTBOX.md`](../pillar-sync/OUTBOX.md) · Secure OUTBOX |
+| Whole-system cohesion | Convert | **Done** |
+| **Execute plan Phase 2–3** | Convert | **Done** `bc7d43e2` (3A COBOL) — next dual-primary wave on Convert |
+| Thin-wrap `pathTemplateShapeEqual` | Secure | **Done** `bf399ac` |

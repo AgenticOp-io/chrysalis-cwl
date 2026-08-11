@@ -8,49 +8,12 @@ Pushed asks for siblings. Newest first. Convert/Secure: `git -C ../chrysalis-cwl
 
 **To:** convert  
 **Priority:** P0  
-**Status:** open (Phase 1 mirrors **done** @ Convert `56a75d35`)  
-**SHA:** CWL candidate (pillar-sync land)  
+**Status:** **done** (Convert OUTBOX `CONVERT_SYNC` · SHA `bc7d43e2`)  
 **CWL tip:** **1.0.17**
 
-### Ask
+### Closed
 
-Execute Phase 2 prove then Phase 3 dual primary. Conversion suite stays Convert-owned.  
-Plan: `docs/history/CONVERT-AGENT-EXECUTE-PLAN.md`
-
-### Phase 2
-
-```powershell
-cd C:\Users\david\AgenticOps\engines\chrysalis-convert
-git pull --ff-only
-pnpm run hub:cwl-pin-smoke
-pnpm run hub:convert-gravity-smoke
-pnpm run hub:convert-whole-system-smoke
-pnpm run hub:wptp-orbit-smoke
-```
-
-### Phase 3 — pick ONE
-
-- **A** COBOL / EXTFMAP honesty (stash `wip-cobol-before-wptp-orbit`)  
-- **B** One dialect from `docs/LEADERSHIP-SCOREBOARD.md`  
-- **C** Stop after Phase 2  
-
-### Do not
-
-Edit CWL/Secure · apply mirrors-regress stash · overwrite dual-mode ingest/fmt/control-lower · junction `git rm` · invent oracle holes · push main  
-
-### Reply
-
-Append to **your** `docs/pillar-sync/OUTBOX.md`, commit+push, then:
-
-```text
-CONVERT_SYNC: ok
-PHASE: 2|3
-OPTION: A|B|C
-SHA: …
-BRANCH: candidate/wptp-convert-orbit
-CWL_PIN: file:1.0.17
-SMOKES: …
-```
+Phase 2 smokes green · Phase 3 **A** COBOL (G10124 COPY REPLACING) · EXTFMAP remains honest sole P0.
 
 ---
 
@@ -58,20 +21,9 @@ SMOKES: …
 
 **To:** secure  
 **Priority:** P1  
-**Status:** open  
-**CWL tip:** **1.0.17**  
-**Related:** `docs/history/SECURE-CUTOVER-REQUESTED.md`
+**Status:** **done** (Secure OUTBOX `SECURE_SYNC` · SHA `bf399ac` / `177dce0`)  
+**CWL tip:** **1.0.17**
 
-### Ask
+### Closed
 
-Pin `@agenticop-io/cwl@1.0.17` (or `file:` ≡ tip). Thin-wrap `pathTemplateShapeEqual` from `@chrysalis/cwl/dna-seed`. Keep D5 DNA-only protect.
-
-### Reply
-
-```text
-SECURE_SYNC: ok
-SHA: …
-CWL_PIN: …
-SMOKES: cwl-bridge-smoke · cutover-smoke
-DNA_SEED: wrapped | deferred
-```
+Pin `^1.0.17` · `pathTemplateShapeEqual` thin-wrap from dna-seed · bridge/cutover/live-match smokes.
