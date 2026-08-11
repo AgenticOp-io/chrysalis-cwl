@@ -2,9 +2,9 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | c755fcb | tick 3 |
-| **Convert** | dispatched | `7a7c2198` | open: elysia-honesty |
-| **Secure** | working | `9af2c0e`+ | cutover-smoke.mjs dirty |
+| **CWL** | coordinating | *(flush)* | dispatch |
+| **Convert** | dispatched | `82c3f8a3` | open: restify-honesty |
+| **Secure** | dispatched | `ce853ff` | open: reload-fixture |
 
 ```text
 FLEET_MODE: on

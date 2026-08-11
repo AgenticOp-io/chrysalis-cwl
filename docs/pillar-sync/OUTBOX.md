@@ -4,7 +4,7 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-08-11 — convert-l1-elysia-honesty
+## 2026-08-11 — convert-l1-restify-honesty
 
 **To:** convert  
 **Priority:** P0  
@@ -13,12 +13,43 @@ Pushed asks for siblings. Newest first.
 
 ### Ask
 
-L1 **Elysia** honest-hole peel (Koa G10132 / Hono G10131 pattern):
+L1 **Restify** honest-hole peel (Elysia/Koa/Hono pattern):
 
-1. Expand Elysia residual honesty catalog + smoke  
-2. No lifecycle/onion invent; keep empty-lifecycle pass-through ceiling  
+1. Expand Restify residual honesty catalog + smoke  
+2. No plugin/onion invent; keep pass-through ceiling  
 3. Scoreboard + DO-NOT-INVENT; EXTFMAP untouched  
-4. Reply `CONVERT_L1_ELYSIA_HONESTY` + SHA  
+4. Reply `CONVERT_L1_RESTIFY_HONESTY` + SHA  
+
+---
+
+## 2026-08-11 — secure-reload-fixture
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.17**
+
+### Ask
+
+Helix **`POST /__helix/reload`** fixture smoke:
+
+1. Prove DNA reload picks up promoted draft without process restart (fixture path)  
+2. Token e.g. `RELOAD_FIXTURE_OK`; docs brief  
+3. D5 DNA-only; no CWL fork  
+4. Reply `SECURE_RELOAD_FIXTURE` + SHA  
+
+---
+
+## 2026-08-11 — convert-l1-elysia-honesty
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** (tip `82c3f8a3` / work `f1845ed6` · G10133 `ELYSIA_HONESTY_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Elysia honesty catalog + smoke; empty-lifecycle ceiling held.
 
 ---
 
@@ -39,17 +70,12 @@ Koa honesty residual catalog + smoke; G9959/G10005 ceiling held.
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **open**  
+**Status:** **done** (tip `ce853ff` / work `72b2e16` · `CUTOVER_MULTIHOST_OK`)  
 **CWL tip:** **1.0.17**
 
-### Ask
+### Closed
 
-Cutover **multi-host profile** hygiene (SECURE-CUTOVER optional item):
-
-1. Prove cutover applies non-`default` host from deploy DNA profile (RFC-0023)  
-2. Smoke token; extend cutover-smoke or sibling  
-3. Protect stays DNA-only (D5); no CWL fork  
-4. Reply `SECURE_CUTOVER_MULTIHOST` + SHA  
+Non-`default` host=`api` cutover profile prove; CUTOVER_SMOKE_OK.
 
 ---
 
