@@ -4,28 +4,36 @@ Pushed asks for siblings. Newest first. Convert/Secure: `git -C ../chrysalis-cwl
 
 ---
 
-## 2026-08-11 — secure-gce-l2-prove
+## 2026-08-11 — secure-fleet-standby
 
 **To:** secure  
-**Priority:** P1  
+**Priority:** P2  
 **Status:** **open**  
 **CWL tip:** **1.0.17**
 
 ### Ask
 
-Prove Mode B L2 deepen on GCE `agenticop-master` (SA auth already preferred):
+GCE L2 prove is **done**. Enter fleet standby: Heartbeat `waiting` each 5m tick; scheduled commit if dirty.  
+Do **not** start Mode B Phase 2 or soak invent until a new open ask. Reply:
 
-1. From Convert tree if needed: `pnpm run gce:auth:activate`  
-2. From Secure: `.\scripts\gce-sync.ps1 -WithL2`  
-3. Expect: `BRIDGE_L2_ICMP_OK` · `DIVERT_OK` · `DNA_OK` · `FAILCLOSED_OK` · `TEARDOWN_OK` · `BRIDGE_L2_SMOKE_OK` (or honest SKIP with reason)  
-4. Never delete protected VMs  
-5. Reply in Secure OUTBOX `SECURE_GCE_L2` + SHA; heartbeat → waiting
+```text
+SECURE_STANDBY: ok
+SHA: <short>
+HEARTBEAT: waiting
+```
 
-### Do not
+---
 
-- Invent Mode B Phase 2  
-- Fork CWL  
-- Push main
+## 2026-08-11 — secure-gce-l2-prove
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **done** (Secure OUTBOX `SECURE_NEXT` · SHA `6c2d624` / `95fbd21`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+`BRIDGE_L2_*` + `GCE_SYNC_OK` on agenticop-master; `gce-sync` packs sibling CWL + `@agenticop-io/cwl` link.
 
 ---
 

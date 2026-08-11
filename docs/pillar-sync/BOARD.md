@@ -1,13 +1,13 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · Fleet mode ON · scheduled commits every 5m  
+**Updated:** 2026-08-11 · Secure GCE L2 prove closed · fleet ON  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
-**Rule:** `git pull` all three engines before trusting this file; CWL refreshes SHAs after sibling pushes.
+**Rule:** `git pull` all three engines before trusting this file.
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-COMMIT_CADENCE: 5m tick flush (2m if P0 open)
+COMMIT_CADENCE: 5m tick flush
 ```
 
 ## Tips / pins
@@ -16,39 +16,37 @@ COMMIT_CADENCE: 5m tick flush (2m if P0 open)
 | --- | --- |
 | **CWL tip** | **`1.0.17`** — invent queue **CLOSED** |
 | Convert pin | `file:../chrysalis-cwl/packages/cwl` ≡ 1.0.17 |
-| Secure pin | `@agenticop-io/cwl@^1.0.17` (resolved 1.0.17) · dna-seed wrap **done** |
+| Secure pin | `@agenticop-io/cwl@^1.0.17` · dna-seed wrap **done** |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | cb74bb9 | fleet bus |
-| **Convert** | `candidate/wptp-convert-orbit` | `af72d8ae` | G10127 EXTFMAP honesty |
-| **Secure** | `candidate/live-match-step4` | `8f64f13` | Mode B L2 deepen |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | fleet bus |
+| **Convert** | `candidate/wptp-convert-orbit` | `af72d8ae` | awaiting standby heartbeat |
+| **Secure** | `candidate/live-match-step4` | `6c2d624` | GCE L2 prove green |
 
 ## Who builds next
 
 | Priority | Owner | Work | See |
 | --- | --- | --- | --- |
-| **P1** | **Secure** | **open** — GCE prove L2 deepen tokens (`gce-sync -WithL2`) | OUTBOX `secure-gce-l2-prove` |
-| **P2** | **Convert** | **open** — fleet standby heartbeat only (EXTFMAP = operator) | OUTBOX `convert-fleet-standby` |
-| **—** | **CWL** | Coordinator ticks; invent only on INBOX contract gaps | COORDINATOR.md |
+| **P2** | **Convert** | **open** — fleet standby heartbeat (no invent; EXTFMAP = operator) | `convert-fleet-standby` |
+| **P2** | **Secure** | **open** — fleet standby; Phase 2 only when asked | `secure-fleet-standby` |
+| **—** | **CWL** | Coordinator; invent only on INBOX contract gaps | invent CLOSED |
 
 ## Open cross-asks
 
 | ID | From → To | Status |
 | --- | --- | --- |
-| secure-gce-l2-prove | CWL → Secure | **open** |
-| convert-fleet-standby | CWL → Convert | **open** (heartbeat / no invent) |
-| sync-convert-execute | CWL → Convert | **done** (`bc7d43e2`) |
-| convert-dual-primary-extfmap | BOARD → Convert | honesty **done**; operator close still open |
-| sync-secure-tip-wrap | CWL → Secure | **done** |
-| mode-b-l2-deepen | user → Secure | **done** (`8f64f13`) |
+| convert-fleet-standby | CWL → Convert | **open** |
+| secure-fleet-standby | CWL → Secure | **open** |
+| secure-gce-l2-prove | CWL → Secure | **done** (`6c2d624` / `95fbd21`) |
 
 ## Closed recently
 
 | ID | Note |
 | --- | --- |
-| convert G10127 | `af72d8ae` · `EXTFMAP_RESIDUAL_HONEST_OK` |
+| secure-gce-l2-prove | full L2 token chain + `GCE_SYNC_OK`; gce-sync packs CWL |
+| convert G10127 | `af72d8ae` |
 | mode-b-l2-deepen | `8f64f13` |
 | cwl-dna-queue | CLOSED @ 1.0.17 |
