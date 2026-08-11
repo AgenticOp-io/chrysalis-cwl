@@ -4,7 +4,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | deepen | (stamp after push) | 1.0.19 |
+| **CWL** | deepen | 01a5331 | 1.0.19 |
 | **Convert** | ask open | `e7e7c7f2` | `convert-tip-1.0.19` |
 | **Secure** | ask open | `db7309f` | `secure-tip-1.0.19` |
 
