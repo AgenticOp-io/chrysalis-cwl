@@ -25,9 +25,9 @@ for (const [pkg, entry] of Object.entries(depMap)) {
 }
 
 const fixtures = discoverRuntimeOkFixtures();
-if (fixtures.length < 29) {
+if (fixtures.length < 30) {
   throw new Error(
-    `expected >= 29 runtime-ok fixtures (all language-gold with routes), got ${fixtures.length}: ${fixtures.join(", ")}`,
+    `expected >= 30 runtime-ok fixtures (all language-gold with routes), got ${fixtures.length}: ${fixtures.join(", ")}`,
   );
 }
 

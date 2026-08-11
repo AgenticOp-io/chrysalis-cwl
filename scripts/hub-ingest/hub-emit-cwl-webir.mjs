@@ -175,6 +175,8 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
       queryParams: peeled.bindings.query,
       queryDefaults: peeled.bindings.queryDefaults,
       bodyParams: peeled.bindings.body,
+      multipartFields: peeled.bindings.multipartFields,
+      multipartFiles: peeled.bindings.multipartFiles,
       headerParams: peeled.bindings.header,
       cookieParams: peeled.bindings.cookie,
       value: null,
@@ -197,6 +199,8 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
       queryParams: peeled.bindings.query,
       queryDefaults: peeled.bindings.queryDefaults,
       bodyParams: peeled.bindings.body,
+      multipartFields: peeled.bindings.multipartFields,
+      multipartFiles: peeled.bindings.multipartFiles,
       headerParams: peeled.bindings.header,
       cookieParams: peeled.bindings.cookie,
       value: null,
@@ -218,6 +222,8 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
     queryParams: peeled.bindings.query,
     queryDefaults: peeled.bindings.queryDefaults,
     bodyParams: peeled.bindings.body,
+    multipartFields: peeled.bindings.multipartFields,
+    multipartFiles: peeled.bindings.multipartFiles,
     headerParams: peeled.bindings.header,
     cookieParams: peeled.bindings.cookie,
     value,
@@ -373,6 +379,8 @@ export function renderCwlRoutes(routes, opts = {}) {
     }
     for (const name of r.headerParams ?? []) lines.push(`  header ${name};`);
     for (const name of r.cookieParams ?? []) lines.push(`  cookie ${name};`);
+    for (const name of r.multipartFields ?? []) lines.push(`  multipart field ${name};`);
+    for (const name of r.multipartFiles ?? []) lines.push(`  multipart file ${name};`);
     for (const name of r.bodyParams ?? []) lines.push(`  body ${name};`);
     for (const h of r.responseHeaders ?? []) {
       if (Object.prototype.hasOwnProperty.call(h, "default")) {

@@ -188,103 +188,10 @@
       "type": {
         "kind": "void"
       }
-    },
-    {
-      "attrs": {
-        "reason": "unsupported:multipart"
-      },
-      "dialect": "data",
-      "effects": [],
-      "id": "n6",
-      "op": "hole",
-      "operands": [],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 15
-      },
-      "provenance": [
-        {
-          "locator": "unsupported:multipart",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "contract": {
-          "input": {
-            "kind": "unknown"
-          },
-          "output": {
-            "kind": "unknown"
-          }
-        },
-        "kind": "hole"
-      }
-    },
-    {
-      "attrs": {
-        "input": {
-          "kind": "unknown"
-        },
-        "name": "upload",
-        "output": {
-          "kind": "unknown"
-        }
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n7",
-      "op": "handler",
-      "operands": [
-        "n6"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 15
-      },
-      "provenance": [
-        {
-          "locator": "hub-lift:cwl",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "unknown"
-      }
-    },
-    {
-      "attrs": {
-        "method": "POST",
-        "path": "/upload",
-        "pathParams": []
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n8",
-      "op": "route",
-      "operands": [
-        "n7"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 15
-      },
-      "provenance": [
-        {
-          "locator": "route:cwl",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "void"
-      }
     }
   ],
   "roots": [
     "n2",
-    "n5",
-    "n8"
+    "n5"
   ]
 }

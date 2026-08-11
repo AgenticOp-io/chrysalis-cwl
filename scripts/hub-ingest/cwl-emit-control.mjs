@@ -308,6 +308,7 @@ function collectBindings(get, id, acc, seen) {
   if (n.dialect === "data" && (n.op === "request.field" || n.op === "requestField")) {
     const name = String(n.attrs?.name ?? "");
     const src = String(n.attrs?.source ?? "");
+    const loc = cwlEmitLocator(n);
     const identOk =
       src === "header"
         ? /^[A-Za-z_][A-Za-z0-9_-]*$/.test(name)
@@ -315,7 +316,15 @@ function collectBindings(get, id, acc, seen) {
     if (identOk) {
       if (src === "path" && !acc.path.includes(name)) acc.path.push(name);
       if (src === "query" && !acc.query.includes(name)) acc.query.push(name);
-      if (src === "body" && !acc.body.includes(name)) acc.body.push(name);
+      if (src === "body") {
+        if (loc === "cwl:multipart-file") {
+          if (!acc.multipartFiles.includes(name)) acc.multipartFiles.push(name);
+        } else if (loc === "cwl:multipart-field") {
+          if (!acc.multipartFields.includes(name)) acc.multipartFields.push(name);
+        } else if (!acc.body.includes(name)) {
+          acc.body.push(name);
+        }
+      }
       if (src === "header" && !acc.header.includes(name)) acc.header.push(name);
       if (src === "cookie" && !acc.cookie.includes(name)) acc.cookie.push(name);
     }
@@ -469,13 +478,15 @@ export function peelCwlControlBody(get, bodyId) {
     break;
   }
 
-  /** @type {{ path: string[], query: string[], body: string[], header: string[], cookie: string[], pathDefaults: Record<string, unknown>, queryDefaults: Record<string, unknown> }} */
+  /** @type {{ path: string[], query: string[], body: string[], header: string[], cookie: string[], multipartFields: string[], multipartFiles: string[], pathDefaults: Record<string, unknown>, queryDefaults: Record<string, unknown> }} */
   const bindings = {
     path: [],
     query: [],
     body: [],
     header: [],
     cookie: [],
+    multipartFields: [],
+    multipartFiles: [],
     pathDefaults: {},
     queryDefaults: {},
   };

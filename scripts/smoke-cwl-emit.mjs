@@ -44,13 +44,14 @@ const HOLE_FREE = new Set([
   "27-data-v2",
   "28-response-cookie",
   "30-effects-executable",
+  "31-multipart-binding",
 ]);
 
 /** Honest remaining emit holes (catalogued / form-action). */
 const HONEST_HOLES = {
   "11-holes": { min: 1 },
   "21-form-action": { min: 1 },
-  "29-transport-holes": { min: 3 },
+  "29-transport-holes": { min: 2 },
 };
 
 /**

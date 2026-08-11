@@ -11,9 +11,3 @@ handler ws {
   effects: none;
   hole unsupported:websocket;
 }
-
-@route POST "/upload"
-handler upload {
-  effects: none;
-  hole unsupported:multipart;
-}

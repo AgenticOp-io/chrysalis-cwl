@@ -125,6 +125,8 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
   { label: "param", kind: KIND_KEYWORD, detail: "Path param binding", insertText: "param " },
   { label: "query", kind: KIND_KEYWORD, detail: "Query binding", insertText: "query " },
   { label: "body", kind: KIND_KEYWORD, detail: "Body field binding", insertText: "body " },
+  { label: "multipart field", kind: KIND_SNIPPET, detail: "Multipart form field (RFC-0026)", insertText: "multipart field ${1:name};" },
+  { label: "multipart file", kind: KIND_SNIPPET, detail: "Multipart file part (RFC-0026)", insertText: "multipart file ${1:name};" },
   { label: "header", kind: KIND_KEYWORD, detail: "Request header binding", insertText: "header " },
   { label: "cookie", kind: KIND_KEYWORD, detail: "Cookie binding", insertText: "cookie " },
 ]);

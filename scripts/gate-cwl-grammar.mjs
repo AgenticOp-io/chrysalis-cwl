@@ -23,6 +23,8 @@ const LABEL_TO_WORDS = {
   "on click": ["on"],
   "content-type": ["content-type"],
   "response-header": ["response-header"],
+  "multipart field": ["multipart"],
+  "multipart file": ["multipart"],
 };
 
 const tm = JSON.parse(readFileSync(TM, "utf8"));

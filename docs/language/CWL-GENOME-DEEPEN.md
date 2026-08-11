@@ -1,7 +1,7 @@
 # CWL genome deepen — Phase 1.x
 
 **Status:** active (reopened 2026-08-11)  
-**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.20**  
+**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.21**  
 **Authority:** [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md) · [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) · [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ## Thesis
@@ -21,7 +21,8 @@ Convert still **hears** origin stacks; Secure still **checks** live DNA. Neither
 | **Response headers** | Hyphenated `Set-Cookie` (`28`) — done |
 | **Transport** | SSE / WebSocket / multipart catalogued holes (`29`) — done |
 | **CWL Effects** | Executable chains beyond session presets (`30`) — done |
-| **Streaming / multipart genes** | Replace transport holes when RFCd |
+| **Multipart** | Field/file part bindings (`31`, RFC-0026) — done |
+| **Streaming / duplex genes** | Replace SSE/WebSocket holes when RFCd |
 | **CWL UI** | Richer island contracts without silent React/Svelte lower |
 | **Holes** | More precise `unsupported:*` / `cwl:*` reasons as peels demand |
 

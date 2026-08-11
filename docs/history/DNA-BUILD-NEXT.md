@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.20`** — executable Effects beyond session presets  
+**Tip:** **`1.0.21`** — multipart field/file bindings  
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -21,15 +21,15 @@
 | P0 | Response `Set-Cookie` hyphenated headers (`28`) | **done** (`1.0.19`) |
 | P0 | Transport holes SSE / WebSocket / multipart (`29`) | **done** (`1.0.19`) |
 | P0 | Executable Effects chains beyond session presets (`30`) | **done** (`1.0.20`) |
-| P1 | Streaming / duplex **genes** (replace holes when RFCd) | open |
-| P1 | Multipart **binding** gene (replace hole when RFCd) | open |
+| P0 | Multipart **binding** gene (`31`, RFC-0026) | **done** (`1.0.21`) |
+| P1 | Streaming / duplex **genes** (replace SSE/WebSocket holes when RFCd) | open |
 | P2 | Richer UI island contracts without silent React/Svelte lower | open |
 
 ## Sibling
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.20** | Convert + Secure |
+| Tip pin **1.0.21** | Convert + Secure |
 | Peel gravity / EXTFMAP | Convert (ops) |
 | Customer soak → enforce | Secure (ops) |
 

@@ -21,7 +21,7 @@
       "patterns": [
         {
           "name": "keyword.control.cwl",
-          "match": "\\b(module|import|use|handler|page|load|effects|param|query|body|header|cookie|status|return|html|ui|client|element|text|on|action|hole|if|else|foreach|as|none)\\b"
+          "match": "\\b(module|import|use|handler|page|load|effects|param|query|body|multipart|header|cookie|status|return|html|ui|client|element|text|on|action|hole|if|else|foreach|as|none)\\b"
         },
         {
           "name": "keyword.control.cwl",

@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.21 — 2026-08-11
+
+- RFC-0026 multipart field/file bindings; gold `31-multipart-binding`
+- Transport gold `29` keeps SSE/WebSocket holes only (multipart named parts are genes)
+- Still forbidden: Nest / LiveView / Flutter façades; inventing upload middleware
+
 ## 1.0.20 — 2026-08-11
 
 - RFC-0020 deepen: executable Effects beyond session presets (`time.now`, `random`, `mail.send`, `db.read`/`db.write`, `io`, `rate.limit`)

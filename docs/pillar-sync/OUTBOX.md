@@ -4,19 +4,47 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-08-11 — convert-tip-1.0.20
+## 2026-08-11 — convert-tip-1.0.21
 
 **To:** convert  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.20**
+**CWL tip:** **1.0.21**
 
 ### Ask
 
-1. ALWAYS mirrors / pin floor ≥ **1.0.20** (`file:` sibling OK).
-2. Prove ingest/runtime gravity still green with gold `30-effects-executable`.
-3. Simulate stubs for effect callees already landed (`8e85963d`) — keep; do not invent Nest/LiveView/Flutter façades.
-4. Stamp OUTBOX **done** + `CONVERT_TIP_1_0_20_OK`.
+1. ALWAYS mirrors / pin floor ≥ **1.0.21** (`file:` sibling OK).
+2. Prove ingest/runtime gravity with gold `31-multipart-binding`.
+3. No Nest/LiveView/Flutter façades.
+4. Stamp OUTBOX **done** + `CONVERT_TIP_1_0_21_OK`.
+
+---
+
+## 2026-08-11 — secure-tip-1.0.21
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.21**
+
+### Ask
+
+1. Pin → **1.0.21**; bridge/cutover/live-match/DNA core OK.
+2. Soak remains ops.
+3. Stamp OUTBOX **done** + `SECURE_TIP_1_0_21_OK`.
+
+---
+
+## 2026-08-11 — convert-tip-1.0.20
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** (Convert tip `fa254370` / work `cefd7a15` · `CONVERT_TIP_1_0_20_OK`)  
+**CWL tip:** **1.0.20**
+
+### Closed
+
+ALWAYS mirrors + pin floor ≥ 1.0.20; gold 30; simulate stubs kept; no façades.
 
 ---
 
@@ -24,14 +52,12 @@ Pushed asks for siblings. Newest first.
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **open**  
+**Status:** **done** (Secure tip `bb083a8` / work `b06f773` · `SECURE_TIP_1_0_20_OK`)  
 **CWL tip:** **1.0.20**
 
-### Ask
+### Closed
 
-1. Pin → **1.0.20**; bridge/cutover/live-match/DNA core OK.
-2. Soak remains ops.
-3. Stamp OUTBOX **done** + `SECURE_TIP_1_0_20_OK`.
+Pin → 1.0.20; bridge/cutover/live-match/DNA core OK. Soak remains ops.
 
 ---
 

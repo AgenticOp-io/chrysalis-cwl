@@ -389,6 +389,24 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
     { path: "/catalog", expectStatus: 200, expectBody: '{"ok":true,"surface":"catalog"}' },
     { method: "POST", path: "/write", expectStatus: 200, expectBody: '{"ok":true,"surface":"write"}' },
   ]),
+  "31-multipart-binding": Object.freeze([
+    {
+      method: "POST",
+      path: "/upload",
+      expectStatus: 200,
+      expectBody: '{"ok":true,"title":"shot","avatar":"a.png"}',
+      headers: { "content-type": "application/json" },
+      body: '{"title":"shot","avatar":"a.png"}',
+    },
+    {
+      method: "POST",
+      path: "/meta-only",
+      expectStatus: 200,
+      expectBody: '{"ok":true,"label":"x"}',
+      headers: { "content-type": "application/json" },
+      body: '{"label":"x"}',
+    },
+  ]),
 });
 
 function resolveDepEntry(pkg) {
