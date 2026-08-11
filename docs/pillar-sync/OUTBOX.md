@@ -55,7 +55,7 @@ Phoenix LiveView honesty residual catalog + `hub:phoenix-liveview-honesty-smoke`
 
 ---
 
-## 2026-08-11 — secure-soak-preflight
+## 2026-08-11 — secure-mode-a-failclosed
 
 **To:** secure  
 **Priority:** P1  
@@ -64,19 +64,32 @@ Phoenix LiveView honesty residual catalog + `hub:phoenix-liveview-honesty-smoke`
 
 ### Ask
 
-Soak **preflight** (ops path without inventing customer traffic):
+Mode A host-redirect **fail-closed** deepen (mirror Mode B L2 FAILCLOSED/TEARDOWN tokens):
 
-1. Codify SOAK.md gates into a runnable smoke (`soak-preflight-smoke` or extend `ready` prove)  
-2. Prove learn→report→shadow→ready path with **fixture** shadow log (exit 0 / honest fail) — no fake live customers  
-3. Document how operators move to enforce after preflight green  
-4. Reply `SECURE_SOAK_PREFLIGHT` + SHA; heartbeat waiting  
+1. Extend nft/host-redirect smoke: divert on + Helix down → no silent allow  
+2. Teardown divert → path restored  
+3. Win32 = honest SKIP; GCE Linux green if reachable  
+4. Docs: INSTALL-MODE-A / GCE as needed  
+5. Reply `SECURE_MODE_A_FAILCLOSED` + SHA  
 
 ### Do not
 
-- Fake production soak traffic  
+- Fake soak traffic  
 - Delete GCE VMs  
 - Edit CWL/Convert  
-- Push main  
+
+---
+
+## 2026-08-11 — secure-soak-preflight
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **done** (Secure OUTBOX · tip `ba3c886` / work `92f80d8` · `SOAK_PREFLIGHT_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Fixture learn→report→promote→shadow→ready preflight; dirty fail / clean ok; SOAK.md operator path.
 
 ---
 

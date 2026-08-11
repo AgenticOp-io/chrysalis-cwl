@@ -1,6 +1,6 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · Flutter honesty done · next Rails filters honesty · Secure soak-preflight in flight  
+**Updated:** 2026-08-11 · Soak preflight done · Mode A fail-closed next · Rails honesty in flight  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
@@ -13,21 +13,22 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | cfe0a16 | coordinator |
-| **Convert** | `candidate/wptp-convert-orbit` | `397a0deb` | G10129 Flutter **done** |
-| **Secure** | `candidate/live-match-step4` | `d26c10a` | soak-preflight **dispatched** |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **Convert** | `candidate/wptp-convert-orbit` | `397a0deb` | Rails filters honesty **dispatched** |
+| **Secure** | `candidate/live-match-step4` | `ba3c886` | soak-preflight **done** |
 
 ## Who builds next
 
 | Priority | Owner | Work | Ask |
 | --- | --- | --- | --- |
-| **P0** | **Convert** | Rails filters/resources **honesty** (no invent) | `convert-rails-filters-honesty` **open** |
-| **P1** | **Secure** | Soak preflight (in flight) | `secure-soak-preflight` |
+| **P0** | **Convert** | Rails filters honesty (in flight) | `convert-rails-filters-honesty` |
+| **P1** | **Secure** | Mode A divert **fail-closed** prove (mirror L2 deepen) | `secure-mode-a-failclosed` **open** |
 
 ## Closed recently
 
 | ID | Note |
 | --- | --- |
-| convert-flutter-honesty | G10129 `397a0deb` |
-| convert-liveview-honesty | G10128 `588dfd34` |
+| secure-soak-preflight | `ba3c886` / `SOAK_PREFLIGHT_OK` |
+| convert-flutter-honesty | G10129 |
 | secure-mode-b-phase2 | `d26c10a` |
+| convert-liveview-honesty | G10128 |
