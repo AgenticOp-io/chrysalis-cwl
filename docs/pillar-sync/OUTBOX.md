@@ -4,6 +4,37 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-08-11 — convert-tip-1.0.20
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.20**
+
+### Ask
+
+1. ALWAYS mirrors / pin floor ≥ **1.0.20** (`file:` sibling OK).
+2. Prove ingest/runtime gravity still green with gold `30-effects-executable`.
+3. Simulate stubs for effect callees already landed (`8e85963d`) — keep; do not invent Nest/LiveView/Flutter façades.
+4. Stamp OUTBOX **done** + `CONVERT_TIP_1_0_20_OK`.
+
+---
+
+## 2026-08-11 — secure-tip-1.0.20
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.20**
+
+### Ask
+
+1. Pin → **1.0.20**; bridge/cutover/live-match/DNA core OK.
+2. Soak remains ops.
+3. Stamp OUTBOX **done** + `SECURE_TIP_1_0_20_OK`.
+
+---
+
 ## 2026-08-11 — convert-tip-1.0.19
 
 **To:** convert  

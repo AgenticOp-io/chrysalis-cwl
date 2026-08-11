@@ -341,6 +341,13 @@ function effectsFromExecutableStmts(get, stmtIds) {
     else if (loc === "cwl:executable-auth-require") tags.push("auth.require");
     else if (loc === "cwl:executable-cors-allow") tags.push("cors.allow");
     else if (loc === "cwl:executable-csrf-verify") tags.push("csrf.verify");
+    else if (loc === "cwl:executable-rate-limit") tags.push("rate.limit");
+    else if (loc === "cwl:executable-time-now") tags.push("time.now");
+    else if (loc === "cwl:executable-random") tags.push("random");
+    else if (loc === "cwl:executable-mail-send") tags.push("mail.send");
+    else if (loc === "cwl:executable-db-read") tags.push("db.read");
+    else if (loc === "cwl:executable-db-write") tags.push("db.write");
+    else if (loc === "cwl:executable-io") tags.push("io");
   }
   return tags.length ? tags : ["none"];
 }

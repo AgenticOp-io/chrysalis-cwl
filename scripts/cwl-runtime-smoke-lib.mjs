@@ -382,6 +382,13 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       expectHeaders: { "set-cookie": "session_id=xyz; Path=/; HttpOnly" },
     },
   ]),
+  "30-effects-executable": Object.freeze([
+    { path: "/clock", expectStatus: 200, expectBody: '{"ok":true,"surface":"clock"}' },
+    { path: "/roll", expectStatus: 200, expectBody: '{"ok":true,"surface":"roll"}' },
+    { method: "POST", path: "/notify", expectStatus: 200, expectBody: '{"ok":true,"surface":"notify"}' },
+    { path: "/catalog", expectStatus: 200, expectBody: '{"ok":true,"surface":"catalog"}' },
+    { method: "POST", path: "/write", expectStatus: 200, expectBody: '{"ok":true,"surface":"write"}' },
+  ]),
 });
 
 function resolveDepEntry(pkg) {

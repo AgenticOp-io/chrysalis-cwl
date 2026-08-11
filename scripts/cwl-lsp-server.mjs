@@ -143,6 +143,7 @@ export const CWL_EFFECT_PRESETS = Object.freeze([
   { label: "auth.require", kind: KIND_TEXT, detail: "Effect preset: auth.require" },
   { label: "cors.allow", kind: KIND_TEXT, detail: "Effect preset: cors.allow" },
   { label: "csrf.verify", kind: KIND_TEXT, detail: "Effect preset: csrf.verify" },
+  { label: "rate.limit", kind: KIND_TEXT, detail: "Effect preset: rate.limit" },
 ]);
 
 /** @type {ReadonlyArray<{ label: string, kind: number, detail: string, insertText?: string }>} */

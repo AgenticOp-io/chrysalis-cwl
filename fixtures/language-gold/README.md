@@ -33,6 +33,11 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `23-nested-control` | nested `if` / `foreach` stmt lists | 0021 |
 | `24-dna-bridge` | CWL surface ↔ `app-dna-v1` (+ `expected-dna.json` + `expected-webir.json` + `deploy-profile.json`) | 0022/0023 |
 | `25-island-kinds` | Wasm/vendor/opaque attachment holes (+ return shell) | 0024 |
+| `26-nested-literals` | Nested object/array literals | 0025 |
+| `27-data-v2` | Load redirect / error / cookie | 0013 |
+| `28-response-cookie` | Hyphenated `Set-Cookie` response-header | headers |
+| `29-transport-holes` | SSE / WebSocket / multipart catalogued holes | holes |
+| `30-effects-executable` | Effects beyond session presets (executable) | 0020 |
 
 ## Parseable subset notes (0.1.8)
 

@@ -40,12 +40,17 @@ const HOLE_FREE = new Set([
   "23-nested-control",
   "24-dna-bridge",
   "25-island-kinds",
+  "26-nested-literals",
+  "27-data-v2",
+  "28-response-cookie",
+  "30-effects-executable",
 ]);
 
 /** Honest remaining emit holes (catalogued / form-action). */
 const HONEST_HOLES = {
   "11-holes": { min: 1 },
   "21-form-action": { min: 1 },
+  "29-transport-holes": { min: 3 },
 };
 
 /**

@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.20 — 2026-08-11
+
+- RFC-0020 deepen: executable Effects beyond session presets (`time.now`, `random`, `mail.send`, `db.read`/`db.write`, `io`, `rate.limit`)
+- Gold `30-effects-executable`; emit peel recovers new effect tags
+- Still forbidden: Nest / LiveView / Flutter façades; inventing mail/SQL/rate engines
+
 ## 1.0.19 — 2026-08-11
 
 - Data v2 language gold `27-data-v2` (load redirect / error / cookie) — RFC-0013 v2

@@ -112,6 +112,55 @@
     },
     {
       "attrs": {
+        "callee": "__cwl_effect_io"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n12",
+      "op": "call",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 13
+      },
+      "provenance": [
+        {
+          "locator": "cwl:executable-io",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n13",
+      "op": "block",
+      "operands": [
+        "n12",
+        "n11"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 13
+      },
+      "provenance": [
+        {
+          "locator": "cwl:executable-effects-block",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
         "input": {
           "kind": "unknown"
         },
@@ -126,10 +175,10 @@
           "kind": "http.fetch"
         }
       ],
-      "id": "n12",
+      "id": "n14",
       "op": "handler",
       "operands": [
-        "n11"
+        "n13"
       ],
       "origin": {
         "column": 1,
@@ -158,10 +207,10 @@
           "kind": "http.fetch"
         }
       ],
-      "id": "n13",
+      "id": "n15",
       "op": "route",
       "operands": [
-        "n12"
+        "n14"
       ],
       "origin": {
         "column": 1,
@@ -396,6 +445,6 @@
     "n1",
     "n3",
     "n8",
-    "n13"
+    "n15"
   ]
 }
