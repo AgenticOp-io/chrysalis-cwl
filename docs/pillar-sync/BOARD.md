@@ -1,6 +1,6 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · **CWL_FLEET_IDLE** — agent invent exhausted  
+**Updated:** 2026-08-11 · runtimes built · Convert lockfile hygiene **done** · back to idle  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
@@ -24,8 +24,8 @@ SECURE_AGENT_PACK: exhausted (customer soak = ops)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 666bf2f | idle |
-| **Convert** | `candidate/wptp-convert-orbit` | `3c6a62e3` | public-claim done · EXTFMAP ops |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | (stamp after push) | typeRoots + bus; tip 1.0.17 |
+| **Convert** | `candidate/wptp-convert-orbit` | `ca3c06de` | `CONVERT_RUNTIME_LOCKFILE_OK` |
 | **Secure** | `candidate/live-match-step4` | `60b875c` | static-smoke **done** |
 
 ## Who builds next
@@ -40,9 +40,9 @@ SECURE_AGENT_PACK: exhausted (customer soak = ops)
 
 | ID | Note |
 | --- | --- |
+| convert-runtime-lockfile | `ca3c06de` · recursive runtime build via pnpmfile |
+| cwl-runtime-build | `b176e04` · runtime-cwl matrix + tsc |
 | secure-static-smoke-pack | `60b875c` |
 | convert-public-claim | `3c6a62e3` |
-| Honesty L1 wave | LiveView→Polka + Nest DI |
-| Secure packs | Mode B P2, soak, SIEM, reload, sign, schema-drift, static, GCE pack |
 
 Re-arm: set `FLEET_MODE: on` / `CWL_FLEET_IDLE: no`, open OUTBOX asks, dispatch Task agents.

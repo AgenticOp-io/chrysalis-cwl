@@ -4,6 +4,20 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-08-11 — convert-runtime-lockfile
+
+**To:** convert  
+**Priority:** P1  
+**Status:** **done** (Convert tip `ca3c06de` / OUTBOX stamp `d9d99e70` · `CONVERT_RUNTIME_LOCKFILE_OK`)  
+**CWL tip:** **1.0.17**  
+**CWL SHA:** `b176e04`
+
+### Closed
+
+Convert `.pnpmfile.cjs` + junction link scripts; recursive runtime/emit build exit 0 from Convert workspace.
+
+---
+
 ## 2026-08-11 — convert-public-claim
 
 **To:** convert  

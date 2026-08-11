@@ -5,6 +5,11 @@
     "moduleResolution": "NodeNext",
     "lib": ["ES2022"],
     "types": ["node"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./packages/webir/node_modules/@types",
+      "../chrysalis-convert/node_modules/@types"
+    ],
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
