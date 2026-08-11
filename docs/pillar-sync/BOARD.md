@@ -24,7 +24,7 @@ SECURE_AGENT_PACK: exhausted (customer soak = ops)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | (stamp after push) | typeRoots + bus; tip 1.0.17 |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 5f09147 | typeRoots + bus; tip 1.0.17 |
 | **Convert** | `candidate/wptp-convert-orbit` | `ca3c06de` | `CONVERT_RUNTIME_LOCKFILE_OK` |
 | **Secure** | `candidate/live-match-step4` | `60b875c` | static-smoke **done** |
 
