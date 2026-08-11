@@ -13,7 +13,7 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 3a95bf7 | coordinator |
 | **Convert** | `candidate/wptp-convert-orbit` | `f455ed7b`+ | Koa L1 **working** |
 | **Secure** | `candidate/live-match-step4` | `9af2c0e` | SIEM fixture **done** |
 
