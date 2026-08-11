@@ -2,7 +2,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | dispatch |
+| **CWL** | coordinating | 6ed55f8 | dispatch |
 | **Convert** | dispatched | `56d0b585` | open: polka-honesty |
 | **Secure** | working | `ce853ff`+ | reload-fixture dirty / SHA TBD |
 
