@@ -13,7 +13,7 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 317f549 | coordinator |
 | **Convert** | `candidate/wptp-convert-orbit` | `1f85dcc1` | G10136 Nest DI **done** |
 | **Secure** | `candidate/live-match-step4` | `3c2c154`+ | sign-fixture **working** |
 
