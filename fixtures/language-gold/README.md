@@ -39,6 +39,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `29-transport-holes` | SSE / WebSocket / multipart catalogued holes | holes |
 | `30-effects-executable` | Effects beyond session presets (executable) | 0020 |
 | `31-multipart-binding` | Multipart field/file part bindings | 0026 |
+| `32-stream-sse` | SSE single-shot `stream sse;` | 0027 |
 
 ## Parseable subset notes (0.1.8)
 

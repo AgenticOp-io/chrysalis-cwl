@@ -169,6 +169,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
     return {
       status: peeled.status,
       contentType: peeled.contentType,
+      streamKind: peeled.streamKind,
       responseHeaders: peeled.responseHeaders,
       params: peeled.bindings.path,
       pathDefaults: peeled.bindings.pathDefaults,
@@ -193,6 +194,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
     return {
       status: peeled.status,
       contentType: peeled.contentType,
+      streamKind: peeled.streamKind,
       responseHeaders: peeled.responseHeaders,
       params: peeled.bindings.path,
       pathDefaults: peeled.bindings.pathDefaults,
@@ -216,6 +218,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
   return {
     status: peeled.status,
     contentType: peeled.contentType,
+    streamKind: peeled.streamKind,
     responseHeaders: peeled.responseHeaders,
     params: peeled.bindings.path,
     pathDefaults: peeled.bindings.pathDefaults,
@@ -418,7 +421,9 @@ export function renderCwlRoutes(routes, opts = {}) {
     }
     // Skip default page HTML CT (ingest always sets it); keep authored non-default CT.
     const defaultPageCt = "text/html; charset=utf-8";
-    if (
+    if (r.streamKind === "sse" || r.contentType === "text/event-stream") {
+      lines.push(`  stream sse;`);
+    } else if (
       r.contentType &&
       !(surface === "page" && String(r.contentType) === defaultPageCt) &&
       !(r.value?.t === "html" && String(r.contentType) === defaultPageCt) &&

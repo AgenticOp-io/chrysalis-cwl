@@ -407,6 +407,14 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       body: '{"label":"x"}',
     },
   ]),
+  "32-stream-sse": Object.freeze([
+    {
+      path: "/events",
+      expectStatus: 200,
+      expectBody: '{"ok":true,"tick":1}',
+      expectHeaders: { "content-type": "text/event-stream" },
+    },
+  ]),
 });
 
 function resolveDepEntry(pkg) {

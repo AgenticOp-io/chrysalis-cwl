@@ -7,7 +7,7 @@
   "nodes": [
     {
       "attrs": {
-        "reason": "unsupported:sse"
+        "reason": "unsupported:websocket"
       },
       "dialect": "data",
       "effects": [],
@@ -18,98 +18,6 @@
         "column": 1,
         "file": "routes.cwl",
         "line": 3
-      },
-      "provenance": [
-        {
-          "locator": "unsupported:sse",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "contract": {
-          "input": {
-            "kind": "unknown"
-          },
-          "output": {
-            "kind": "unknown"
-          }
-        },
-        "kind": "hole"
-      }
-    },
-    {
-      "attrs": {
-        "input": {
-          "kind": "unknown"
-        },
-        "name": "events",
-        "output": {
-          "kind": "unknown"
-        }
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n1",
-      "op": "handler",
-      "operands": [
-        "n0"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 3
-      },
-      "provenance": [
-        {
-          "locator": "hub-lift:cwl",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "unknown"
-      }
-    },
-    {
-      "attrs": {
-        "method": "GET",
-        "path": "/events",
-        "pathParams": []
-      },
-      "dialect": "web.request",
-      "effects": [],
-      "id": "n2",
-      "op": "route",
-      "operands": [
-        "n1"
-      ],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 3
-      },
-      "provenance": [
-        {
-          "locator": "route:cwl",
-          "source": "hub-ingest"
-        }
-      ],
-      "type": {
-        "kind": "void"
-      }
-    },
-    {
-      "attrs": {
-        "reason": "unsupported:websocket"
-      },
-      "dialect": "data",
-      "effects": [],
-      "id": "n3",
-      "op": "hole",
-      "operands": [],
-      "origin": {
-        "column": 1,
-        "file": "routes.cwl",
-        "line": 9
       },
       "provenance": [
         {
@@ -141,15 +49,15 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n4",
+      "id": "n1",
       "op": "handler",
       "operands": [
-        "n3"
+        "n0"
       ],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 9
+        "line": 3
       },
       "provenance": [
         {
@@ -169,15 +77,15 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n5",
+      "id": "n2",
       "op": "route",
       "operands": [
-        "n4"
+        "n1"
       ],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 9
+        "line": 3
       },
       "provenance": [
         {
@@ -191,7 +99,6 @@
     }
   ],
   "roots": [
-    "n2",
-    "n5"
+    "n2"
   ]
 }

@@ -25,6 +25,7 @@ const LABEL_TO_WORDS = {
   "response-header": ["response-header"],
   "multipart field": ["multipart"],
   "multipart file": ["multipart"],
+  "stream sse": ["stream"],
 };
 
 const tm = JSON.parse(readFileSync(TM, "utf8"));

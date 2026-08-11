@@ -381,6 +381,7 @@ export function liftCwlFileToWebir(opts) {
       !pageLoadUi &&
       (status !== 200 || contentType || hasResponseHeaders)
     ) {
+      const streamSse = r.streamKind === "sse" || contentType === "text/event-stream";
       bodyId = wrBuilders.response({
         attrs: {
           status,
@@ -393,11 +394,13 @@ export function liftCwlFileToWebir(opts) {
         provenance: [
           webir.provenance(
             "hub-ingest",
-            contentType
-              ? "cwl:response-content-type"
-              : hasResponseHeaders
-                ? "cwl:response-header"
-                : "cwl:response-status",
+            streamSse
+              ? "cwl:stream-sse"
+              : contentType
+                ? "cwl:response-content-type"
+                : hasResponseHeaders
+                  ? "cwl:response-header"
+                  : "cwl:response-status",
           ),
         ],
       });

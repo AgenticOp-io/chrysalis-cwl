@@ -377,6 +377,8 @@ export function peelCwlControlBody(get, bodyId) {
   let status = null;
   /** @type {string | null} */
   let contentType = null;
+  /** @type {string | null} */
+  let streamKind = null;
   /** @type {Array<{ name: string, default?: unknown }>} */
   let responseHeaders = [];
   /** @type {object | null} */
@@ -405,11 +407,13 @@ export function peelCwlControlBody(get, bodyId) {
       const chrome =
         loc === "cwl:response-status" ||
         loc === "cwl:response-content-type" ||
-        loc === "cwl:response-header";
+        loc === "cwl:response-header" ||
+        loc === "cwl:stream-sse";
       const pageHtml = loc === "cwl-page-html-response" || loc.includes("html");
       if (chrome || pageHtml) {
         if (typeof n.attrs?.status === "number") status = n.attrs.status;
         if (typeof n.attrs?.contentType === "string" && chrome) contentType = n.attrs.contentType;
+        if (loc === "cwl:stream-sse") streamKind = "sse";
         if (n.attrs?.headers && typeof n.attrs.headers === "object") {
           responseHeaders = Object.entries(n.attrs.headers).map(([name, v]) => ({
             name,
@@ -500,6 +504,7 @@ export function peelCwlControlBody(get, bodyId) {
     effects,
     status,
     contentType,
+    streamKind,
     responseHeaders,
     loadBody,
     attachmentHoles,

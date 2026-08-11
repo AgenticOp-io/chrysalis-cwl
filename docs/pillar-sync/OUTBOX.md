@@ -8,15 +8,12 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done** (Convert tip `77eb576b` / work `d1de17be` · `CONVERT_TIP_1_0_21_OK`)  
 **CWL tip:** **1.0.21**
 
-### Ask
+### Closed
 
-1. ALWAYS mirrors / pin floor ≥ **1.0.21** (`file:` sibling OK).
-2. Prove ingest/runtime gravity with gold `31-multipart-binding`.
-3. No Nest/LiveView/Flutter façades.
-4. Stamp OUTBOX **done** + `CONVERT_TIP_1_0_21_OK`.
+ALWAYS mirrors + pin floor ≥ 1.0.21; gold 31; no façades.
 
 ---
 
@@ -24,14 +21,12 @@ Pushed asks for siblings. Newest first.
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **open**  
+**Status:** **done** (Secure tip `970e160` / work `a159514` · `SECURE_TIP_1_0_21_OK`)  
 **CWL tip:** **1.0.21**
 
-### Ask
+### Closed
 
-1. Pin → **1.0.21**; bridge/cutover/live-match/DNA core OK.
-2. Soak remains ops.
-3. Stamp OUTBOX **done** + `SECURE_TIP_1_0_21_OK`.
+Pin → 1.0.21; bridge/cutover/live-match/DNA core OK. Soak remains ops.
 
 ---
 

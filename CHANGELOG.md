@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.22 — 2026-08-11
+
+- RFC-0027 SSE single-shot `stream sse;`; gold `32-stream-sse`
+- Transport gold `29` keeps WebSocket hole only
+- Still forbidden: Nest / LiveView / Flutter façades; inventing EventSource runtimes
+
 ## 1.0.21 — 2026-08-11
 
 - RFC-0026 multipart field/file bindings; gold `31-multipart-binding`
