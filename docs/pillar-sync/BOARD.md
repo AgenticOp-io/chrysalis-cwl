@@ -13,7 +13,7 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | ad605d7 | coordinator |
 | **Convert** | `candidate/wptp-convert-orbit` | `588dfd34` | LiveView done; Flutter **dispatched** |
 | **Secure** | `candidate/live-match-step4` | `d26c10a` | Mode B P2 **done** |
 

@@ -2,7 +2,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | dispatch |
+| **CWL** | coordinating | ad605d7 | dispatch |
 | **Convert** | working | `588dfd34` | Flutter honesty Task |
 | **Secure** | dispatched next | `d26c10a` | open: soak-preflight |
 
