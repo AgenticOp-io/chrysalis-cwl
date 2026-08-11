@@ -1,6 +1,6 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · Hono L1 + Mode A fail-closed done · next Koa L1 + SIEM fixture  
+**Updated:** 2026-08-11 · SIEM fixture done · cutover multi-host next · Koa L1 in flight  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
@@ -13,22 +13,21 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 39ded4c | coordinator |
-| **Convert** | `candidate/wptp-convert-orbit` | `f455ed7b` | G10131 Hono L1 **done** |
-| **Secure** | `candidate/live-match-step4` | `d6cd4ae` | Mode A fail-closed **done** |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **Convert** | `candidate/wptp-convert-orbit` | `f455ed7b`+ | Koa L1 **working** |
+| **Secure** | `candidate/live-match-step4` | `9af2c0e` | SIEM fixture **done** |
 
 ## Who builds next
 
 | Priority | Owner | Work | Ask |
 | --- | --- | --- | --- |
-| **P0** | **Convert** | L1 Koa honest-hole peel | `convert-l1-koa-honesty` **open** |
-| **P1** | **Secure** | SIEM_LOG fixture smoke (no vendor invent) | `secure-siem-fixture` **open** |
+| **P0** | **Convert** | L1 Koa honesty (in flight) | `convert-l1-koa-honesty` |
+| **P1** | **Secure** | Cutover multi-host profile hygiene | `secure-cutover-multihost` **open** |
 
 ## Closed recently
 
 | ID | Note |
 | --- | --- |
-| convert-l1-honest-peels | G10131 Hono `f455ed7b` |
-| secure-mode-a-failclosed | `d6cd4ae` / `MODE_A_FAILCLOSED_OK` |
-| convert-rails-filters-honesty | G10130 |
-| secure-soak-preflight | `ba3c886` |
+| secure-siem-fixture | `9af2c0e` / `SIEM_FIXTURE_OK` |
+| secure-mode-a-failclosed | `48db1cf` |
+| convert-l1-honest-peels | G10131 Hono |
