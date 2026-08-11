@@ -22,7 +22,7 @@ COMMIT_CADENCE: 5m tick flush
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | fleet bus |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 72643a6 | fleet bus |
 | **Convert** | `candidate/wptp-convert-orbit` | `af72d8ae` | awaiting standby heartbeat |
 | **Secure** | `candidate/live-match-step4` | `6c2d624` | GCE L2 prove green |
 

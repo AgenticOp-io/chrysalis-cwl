@@ -5,7 +5,7 @@
 
 | Pillar | Status | Last seen SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | invent CLOSED · scheduled commits ON |
+| **CWL** | coordinating | 72643a6 | invent CLOSED · scheduled commits ON |
 | **Convert** | assigned standby | `af72d8ae` | needs `CONVERT_STANDBY` heartbeat |
 | **Secure** | assigned standby | `6c2d624` | GCE L2 green · needs `SECURE_STANDBY` |
 
