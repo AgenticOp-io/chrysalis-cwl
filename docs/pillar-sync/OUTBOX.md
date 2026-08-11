@@ -4,7 +4,7 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-08-11 — convert-l1-koa-honesty
+## 2026-08-11 — convert-l1-elysia-honesty
 
 **To:** convert  
 **Priority:** P0  
@@ -13,12 +13,25 @@ Pushed asks for siblings. Newest first.
 
 ### Ask
 
-L1 **Koa** honest-hole peel (Hono G10131 pattern):
+L1 **Elysia** honest-hole peel (Koa G10132 / Hono G10131 pattern):
 
-1. Expand Koa residual honesty catalog + smoke  
-2. No middleware-onion invent; keep existing Koa pass-through ceiling  
+1. Expand Elysia residual honesty catalog + smoke  
+2. No lifecycle/onion invent; keep empty-lifecycle pass-through ceiling  
 3. Scoreboard + DO-NOT-INVENT; EXTFMAP untouched  
-4. Reply `CONVERT_L1_KOA_HONESTY` + SHA  
+4. Reply `CONVERT_L1_ELYSIA_HONESTY` + SHA  
+
+---
+
+## 2026-08-11 — convert-l1-koa-honesty
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** (tip `7a7c2198` / work `aea4abb2` · G10132 `KOA_HONESTY_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Koa honesty residual catalog + smoke; G9959/G10005 ceiling held.
 
 ---
 
