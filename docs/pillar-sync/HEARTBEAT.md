@@ -2,7 +2,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | tick 3 |
+| **CWL** | coordinating | c755fcb | tick 3 |
 | **Convert** | dispatched | `7a7c2198` | open: elysia-honesty |
 | **Secure** | working | `9af2c0e`+ | cutover-smoke.mjs dirty |
 
