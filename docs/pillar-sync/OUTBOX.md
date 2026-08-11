@@ -4,28 +4,40 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-08-11 — convert-rails-filters-honesty
+## 2026-08-11 — convert-l1-honest-peels
 
 **To:** convert  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.17**  
-**Charter:** yes (scoreboard — Rails filters/resources)
+**CWL tip:** **1.0.17**
 
 ### Ask
 
-Rails **filters/resources honesty** (G10115 route-table already closed):
+**L1** cheap honest-hole peel inside one **already-closed** secondary (scoreboard L1):
 
-1. Honest residual catalog for `before_action` / `resources` / AR surfaces — holes over façades  
-2. No inventing filter/AR runtime  
-3. Smoke + scoreboard; refuse force-close as full Rails 20/20  
-4. EXTFMAP operator-only  
-5. Reply `CONVERT_RAILS_FILTERS_HONESTY` + SHA  
+1. Pick one closed dialect (e.g. Koa / Hono / Restify / Polka / Elysia pass-through ceiling)  
+2. Add one honest residual deepen + smoke — **no** middleware-onion invent  
+3. Scoreboard + DO-NOT-INVENT line; EXTFMAP untouched  
+4. Reply `CONVERT_L1_HONEST_PEELS` + SHA + which dialect  
 
 ### Do not
 
-- Invent Rails middleware/AR runtime  
+- Invent plugin/onion runtimes  
+- Start a new dialect wave  
 - Edit CWL/Secure  
+
+---
+
+## 2026-08-11 — convert-rails-filters-honesty
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** (Convert OUTBOX · tip `b3e2ae02` / work `e00600c5` · G10130 `RAILS_FILTERS_HONESTY_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Rails filters/resources honesty catalog; G10115 remains sole Rails ST gold.
 
 ---
 
