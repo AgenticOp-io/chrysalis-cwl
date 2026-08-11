@@ -35,17 +35,13 @@ G10109 OSS scrub smoke hardened with `OSS_SCRUB_OK`.
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **open**  
+**Status:** **done** (tip `60b875c` / work `6c15fc8` · `STATIC_SMOKE_OK`)  
 **CWL tip:** **1.0.17**
 
-### Ask
+### Closed
 
-**Static DNA** smoke pack harden (`static-smoke`):
-
-1. Prove/deepen static content DNA checks; ensure in test:dna / gce-smoke  
-2. Token `STATIC_SMOKE_OK`; docs brief  
-3. D5 DNA-only  
-4. Reply `SECURE_STATIC_SMOKE_PACK` + SHA  
+Static DNA learn/collapse JS+CSS + deny; in gce-smoke.  
+**Fleet idle** — Secure agent pack exhausted; customer soak = operator.
 
 ---
 

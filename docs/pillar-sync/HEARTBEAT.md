@@ -1,13 +1,14 @@
 # Fleet HEARTBEAT
 
+**Fleet stopped:** `CWL_FLEET_IDLE: yes`
+
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | ab56b35 | invent CLOSED |
-| **Convert** | waiting (ops) | `3c6a62e3` | agent invent exhausted · EXTFMAP operator |
-| **Secure** | working | `a6fca96`+ | static-smoke-pack |
+| **CWL** | idle | *(flush)* | invent CLOSED |
+| **Convert** | waiting (ops) | `3c6a62e3` | EXTFMAP operator |
+| **Secure** | waiting (ops) | `60b875c` | customer soak operator |
 
 ```text
-FLEET_MODE: on
-CWL_FLEET_IDLE: no
-CONVERT_AGENT_INVENT: exhausted
+FLEET_MODE: off
+CWL_FLEET_IDLE: yes
 ```
