@@ -19,19 +19,27 @@ Needs **live z/OS ZD&T** hunt on `B5C551` / SDFHCOB **or** operator ABSENT attes
 
 ## 2. Secure — customer soak → enforce
 
-Preflight already green (`soak-preflight-smoke`). Real soak is **live customer/shadow traffic**, not fixtures.
+| Attempt (2026-08-11) | Result |
+| --- | --- |
+| `npm run soak-preflight-smoke` | **green** → `SOAK_PREFLIGHT_OK` (tooling path) |
+| Live customer soak → enforce | **blocked** — no customer/shadow traffic available to agents; SOAK.md forbids synthetic traffic |
 
-| Step | Action |
+| Step (ops) | Action |
 | --- | --- |
 | Runbook | `chrysalis-security/docs/SOAK.md` |
-| Gate | `MODE=shadow` on the same placement that will enforce |
+| Need from you | App host already behind Helix + durable `SHADOW_LOG` path + soak window |
 | Exit | `helix ready --target enforce --shadow-log <path> --max-shadow-holes 0` → exit 0 only |
 | Then | `MODE=enforce` + `POST /__helix/reload` |
-| Not soak | GCE L2 / lab divert (`gce-sync -WithL2`) |
+| Not soak | GCE L2 / lab divert (`gce-sync -WithL2`) · fixture preflight |
 
 ## 3. CWL — further UI
 
-Only when a **Convert peel** demands a new island/event gene. Hydration / React-Svelte silent lower remain non-goals. Tip stays **1.0.23** until then.
+| Attempt (2026-08-11) | Result |
+| --- | --- |
+| Convert peel demand for new island/event gene | **none** — tip **1.0.23** already consumed (gold 33 / D6568); no peel asks for props/slots/hydration |
+| Tip bump / invent | **refused** — hydration / silent React-Svelte lower remain non-goals |
+
+Reopen when Convert names a missing contract (e.g. peel emits anonymous island but needs named id / event metadata).
 
 ## Fleet
 

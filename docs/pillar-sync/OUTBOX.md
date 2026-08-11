@@ -4,6 +4,24 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-08-11 — try-soak-and-ui
+
+**To:** secure + convert (informational)  
+**Priority:** —  
+**Status:** **done** (agent attempt — both blocked honestly)  
+**CWL tip:** **1.0.23**
+
+### Tried
+
+1. **Soak (#2):** re-ran `soak-preflight-smoke` → `SOAK_PREFLIGHT_OK`. Live soak→enforce still needs operator customer traffic + `SHADOW_LOG` (no fake traffic).
+2. **UI (#3):** scanned Convert consume — no peel demand beyond RFC-0028 / gold 33. No CWL tip bump.
+
+### Still operator
+
+EXTFMAP · customer soak host/log · named peel demand for next UI gene.
+
+---
+
 ## 2026-08-11 — fleet-idle-ops
 
 **To:** convert + secure (informational)  
