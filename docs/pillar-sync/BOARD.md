@@ -1,6 +1,6 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · Polka L1 done · Nest DI honesty next · GCE smoke pack in flight  
+**Updated:** 2026-08-11 · GCE smoke pack done · sign fixture next · Nest DI in flight  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
@@ -13,21 +13,21 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 9614cad | coordinator |
-| **Convert** | `candidate/wptp-convert-orbit` | `568e76c4` | G10135 Polka **done** |
-| **Secure** | `candidate/live-match-step4` | `28b8971`+ | gce-smoke-pack **working** |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **Convert** | `candidate/wptp-convert-orbit` | `568e76c4` | Nest DI **dispatched** |
+| **Secure** | `candidate/live-match-step4` | `3c2c154` | GCE smoke pack **done** |
 
 ## Who builds next
 
 | Priority | Owner | Work | Ask |
 | --- | --- | --- | --- |
-| **P0** | **Convert** | Nest DI **honesty** catalog (no DI runtime invent) | `convert-nest-di-honesty` **open** |
-| **P1** | **Secure** | GCE smoke pack unify (in flight) | `secure-gce-smoke-pack` |
+| **P0** | **Convert** | Nest DI honesty (in flight) | `convert-nest-di-honesty` |
+| **P1** | **Secure** | DNA sign/promote fixture deepen | `secure-sign-fixture` **open** |
 
 ## Closed recently
 
 | ID | Note |
 | --- | --- |
-| convert-l1-polka-honesty | G10135 `568e76c4` |
-| convert-l1-restify-honesty | G10134 |
+| secure-gce-smoke-pack | `3c2c154` / `GCE_SMOKE_OK` |
+| convert-l1-polka-honesty | G10135 |
 | secure-reload-fixture | `28b8971` |
