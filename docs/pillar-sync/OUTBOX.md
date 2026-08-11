@@ -4,6 +4,19 @@ Pushed asks for siblings. Newest first. Convert/Secure: `git -C ../chrysalis-cwl
 
 ---
 
+## 2026-08-11 — mode-b-l2-deepen (charter closed)
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **done** (Secure OUTBOX `SECURE_DEEPEN` · SHA `8f64f13`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Mode B L2 Phase 1 deepen — nft divert · DNA via divert · Helix-down fail-closed · divert teardown. No CWL invent.
+
+---
+
 ## 2026-08-10 — sync-convert-execute
 
 **To:** convert  
