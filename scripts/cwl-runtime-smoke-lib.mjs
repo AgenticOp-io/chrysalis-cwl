@@ -357,6 +357,31 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
     { path: "/api/nested", expectStatus: 200, expectBody: '{"ok":true,"meta":{"v":1,"tags":["a","b"]}}' },
     { path: "/api/pair", expectStatus: 200, expectBody: '{"outer":{"inner":{"n":2}},"list":[1,2,3]}' },
   ]),
+  "27-data-v2": Object.freeze([
+    {
+      path: "/go",
+      expectStatus: 302,
+      expectBody: "",
+      expectHeaders: { Location: "/landed" },
+    },
+    { path: "/missing", expectStatus: 404, expectBody: "" },
+    {
+      path: "/who",
+      expectStatus: 200,
+      headers: { cookie: "session_id=abc" },
+      expectBody:
+        "<p>who</p>\n<script type=\"application/json\" id=\"cwl-page-load\">{\"sessionId\":\"abc\",\"source\":\"data-v2\"}</script>",
+    },
+  ]),
+  "28-response-cookie": Object.freeze([
+    {
+      path: "/login",
+      method: "POST",
+      expectStatus: 200,
+      expectBody: '{"ok":true}',
+      expectHeaders: { "set-cookie": "session_id=xyz; Path=/; HttpOnly" },
+    },
+  ]),
 });
 
 function resolveDepEntry(pkg) {

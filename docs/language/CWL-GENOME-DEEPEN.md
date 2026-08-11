@@ -16,7 +16,7 @@ Convert still **hears** origin stacks; Secure still **checks** live DNA. Neither
 
 | Layer | Deepen direction |
 | --- | --- |
-| **Literals / values** | Nested objects/arrays (RFC-0025) — done |
+| **Literals / values** | Nested objects/arrays (RFC-0025) — done |`n| **CWL Data** | Load redirect / error / cookie golds (`27`) — done |`n| **Response headers** | Hyphenated `Set-Cookie` (`28`) — done |`n| **Transport** | SSE / WebSocket / multipart catalogued holes (`29`) — done |
 | **CWL Data** | Load redirect / error / cookie golds (RFC-0013 v2) |
 | **CWL Effects** | Executable chains beyond session presets |
 | **CWL UI** | Richer island contracts without silent React/Svelte lower |

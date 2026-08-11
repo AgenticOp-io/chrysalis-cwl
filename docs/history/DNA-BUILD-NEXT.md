@@ -1,10 +1,8 @@
-# DNA build — Phase 1.x genome deepen (REOPENED)
+# DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.18`** — nested structured literals (RFC-0025)  
-**Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · deepen program: [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
-
-Exit **1.0.17** closed the *bootstrap* genome (RFCs 0001–0024, golds 01–25, package/LSP/DNA bridge). That is **not** the full DNA of web-app meaning — only the Exit-1.0 bar.
+**Tip:** **`1.0.19`** — Data v2 loads + Set-Cookie + transport holes  
+**Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
 
@@ -19,16 +17,17 @@ Exit **1.0.17** closed the *bootstrap* genome (RFCs 0001–0024, golds 01–25, 
 | Pri | Item | Status |
 | --- | --- | --- |
 | P0 | **RFC-0025** nested object/array literals + gold `26` | **done** (`1.0.18`) |
-| P1 | **Data v2 golds** — `load` redirect / error / cookie (RFC-0013 v2) | next |
-| P1 | Response cookies / richer headers on returns | open |
-| P2 | Streaming / SSE / WebSocket — gene or catalogued hole | open |
-| P2 | Multipart / file upload — hole → gene when honest | open |
+| P0 | **Data v2 golds** — load redirect / error / cookie (`27`) | **done** (`1.0.19`) |
+| P0 | Response `Set-Cookie` hyphenated headers (`28`) | **done** (`1.0.19`) |
+| P0 | Transport holes SSE / WebSocket / multipart (`29`) | **done** (`1.0.19`) |
+| P1 | Executable Effects chains beyond session presets | open |
+| P2 | Streaming / duplex **genes** (replace holes when RFCd) | open |
+| P2 | Multipart **binding** gene (replace hole when RFCd) | open |
 
 ## Sibling
 
 | Item | Owner |
 | --- | --- |
-| Peel gravity / EXTFMAP | Convert (ops / peels — not genome invent) |
+| Tip pin **1.0.19** | Convert + Secure |
+| Peel gravity / EXTFMAP | Convert (ops) |
 | Customer soak → enforce | Secure (ops) |
-
-Post contract gaps to `docs/pillar-sync/cwl/INBOX.md`.

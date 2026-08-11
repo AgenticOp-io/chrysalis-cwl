@@ -1,15 +1,15 @@
 # Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.18** green · next = CWL Data v2 golds
+**Fleet:** tip **1.0.19** · sibling tip-pin asks open
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | deepen | `16fc42a` | Phase 1.x open |
-| **Convert** | waiting | `e7e7c7f2` | tip pinned |
-| **Secure** | waiting (ops) | `db7309f` | tip pinned · soak |
+| **CWL** | deepen | (stamp after push) | 1.0.19 |
+| **Convert** | ask open | `e7e7c7f2` | `convert-tip-1.0.19` |
+| **Secure** | ask open | `db7309f` | `secure-tip-1.0.19` |
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-NEXT: cwl-data-v2-golds
+DISPATCH: tip-pin-1.0.19
 ```

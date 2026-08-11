@@ -3,19 +3,20 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.18` |
-| **Status** | Genome deepen — nested structured literals (RFC-0025) |
+| **Version** | `1.0.19` |
+| **Status** | Genome deepen — Data v2 loads + Set-Cookie headers + transport holes |
 | **Date** | 2026-08-11 |
 
 ## What this version means
 
-Bootstrap Exit **1.0.17** is not the full web-app genome. Phase **1.x** reopens honest deepen:
+Phase **1.x** deepen continues (no Nest / LiveView / Flutter façades; no origin-PL dialects):
 
-- **RFC-0025** — nested `{ }` / `[ ]` keep structured AST (no collapsed JSON blobs → `{unknown-literal}`)
-- Language gold `26-nested-literals`; `24-dna-bridge` nested `meta` executes as JSON
-- Queue: [`DNA-BUILD-NEXT.md`](./docs/history/DNA-BUILD-NEXT.md) · [`CWL-GENOME-DEEPEN.md`](./docs/language/CWL-GENOME-DEEPEN.md)
+- **RFC-0013 v2 golds** — `27-data-v2`: `load` redirect / error / cookie → runtime 302 / 404 / page-load
+- **Richer response headers** — hyphenated `response-header Set-Cookie` (`28-response-cookie`)
+- **Transport holes** — `unsupported:sse` / `websocket` / `multipart` catalogued (`29-transport-holes`)
+- Prior: RFC-0025 nested literals (`1.0.18`)
 
-Still forbidden: Nest / LiveView / Flutter / onion façades; origin PLs as CWL dialects.
+Queue: [`DNA-BUILD-NEXT.md`](./docs/history/DNA-BUILD-NEXT.md) · [`CWL-GENOME-DEEPEN.md`](./docs/language/CWL-GENOME-DEEPEN.md)
 
 ## Gate
 

@@ -4,6 +4,37 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-08-11 — convert-tip-1.0.19
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.19**
+
+### Ask
+
+1. Pull CWL tip **1.0.19** (Data v2 golds `27`, Set-Cookie `28`, transport holes `29`; parser hyphenated `response-header`).
+2. Refresh ALWAYS hub-ingest mirrors (`cwl-parser` / holes catalog as needed) + pin floor.
+3. Prove pin/ingest smokes you own — **no** Nest/LiveView/Flutter invent.
+4. Close with `CONVERT_TIP_1_0_19_OK` + tip SHA.
+
+---
+
+## 2026-08-11 — secure-tip-1.0.19
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.19**
+
+### Ask
+
+1. Bump CWL pin to **≥ 1.0.19**.
+2. Re-prove DNA/cutover smokes you own.
+3. Close with `SECURE_TIP_1_0_19_OK` + tip SHA. Soak remains ops.
+
+---
+
 ## 2026-08-11 — convert-tip-1.0.18
 
 **To:** convert  

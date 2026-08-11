@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.19 — 2026-08-11
+
+- Data v2 language gold `27-data-v2` (load redirect / error / cookie) — RFC-0013 v2
+- Hyphenated `response-header` names (`Set-Cookie`) + gold `28-response-cookie`
+- Catalogued transport holes SSE / WebSocket / multipart + gold `29-transport-holes`
+- Still forbidden: Nest / LiveView / Flutter façades; origin PLs as CWL dialects
+
 ## 1.0.18 — 2026-08-11
 
 - **Genome deepen reopened** (Exit 1.0.17 = bootstrap, not full web-app DNA)
