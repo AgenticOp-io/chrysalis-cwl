@@ -1,13 +1,12 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · Secure GCE L2 prove closed · fleet ON  
-**Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
-**Rule:** `git pull` all three engines before trusting this file.
+**Updated:** 2026-08-11 · **CWL_FLEET_IDLE**  
+**Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
-FLEET_MODE: on
-CWL_FLEET_IDLE: no
-COMMIT_CADENCE: 5m tick flush
+FLEET_MODE: off
+CWL_FLEET_IDLE: yes
+COMMIT_CADENCE: stopped (was 5m)
 ```
 
 ## Tips / pins
@@ -22,31 +21,30 @@ COMMIT_CADENCE: 5m tick flush
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 72643a6 | fleet bus |
-| **Convert** | `candidate/wptp-convert-orbit` | `af72d8ae` | awaiting standby heartbeat |
-| **Secure** | `candidate/live-match-step4` | `6c2d624` | GCE L2 prove green |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | fleet idle |
+| **Convert** | `candidate/wptp-convert-orbit` | `8355f992` | `CONVERT_STANDBY` waiting |
+| **Secure** | `candidate/live-match-step4` | `191cd19` | `SECURE_STANDBY` waiting |
 
 ## Who builds next
 
-| Priority | Owner | Work | See |
-| --- | --- | --- | --- |
-| **P2** | **Convert** | **open** — fleet standby heartbeat (no invent; EXTFMAP = operator) | `convert-fleet-standby` |
-| **P2** | **Secure** | **open** — fleet standby; Phase 2 only when asked | `secure-fleet-standby` |
-| **—** | **CWL** | Coordinator; invent only on INBOX contract gaps | invent CLOSED |
+| Priority | Owner | Work |
+| --- | --- | --- |
+| **—** | **CWL** | **Nothing to invent** — tip only on INBOX contract gaps |
+| **ops** | **Operator** | EXTFMAP licensed drop / ZD&T ABSENT (Convert) |
+| **ops** | **Operator** | Customer soak when ready (Secure) |
 
 ## Open cross-asks
 
-| ID | From → To | Status |
-| --- | --- | --- |
-| convert-fleet-standby | CWL → Convert | **open** |
-| secure-fleet-standby | CWL → Secure | **open** |
-| secure-gce-l2-prove | CWL → Secure | **done** (`6c2d624` / `95fbd21`) |
+| ID | Status |
+| --- | --- |
+| _(none)_ | — |
 
-## Closed recently
+## Closed this tick
 
 | ID | Note |
 | --- | --- |
-| secure-gce-l2-prove | full L2 token chain + `GCE_SYNC_OK`; gce-sync packs CWL |
+| convert-fleet-standby | `CONVERT_STANDBY: ok` · `8355f992` / `50b6baca` |
+| secure-fleet-standby | `SECURE_STANDBY: ok` · `191cd19` / `9250541` |
+| secure-gce-l2-prove | `6c2d624` |
 | convert G10127 | `af72d8ae` |
-| mode-b-l2-deepen | `8f64f13` |
 | cwl-dna-queue | CLOSED @ 1.0.17 |

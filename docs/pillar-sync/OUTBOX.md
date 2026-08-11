@@ -8,19 +8,12 @@ Pushed asks for siblings. Newest first. Convert/Secure: `git -C ../chrysalis-cwl
 
 **To:** secure  
 **Priority:** P2  
-**Status:** **open**  
+**Status:** **done** (Secure OUTBOX `SECURE_STANDBY` · SHA `191cd19` / `9250541`)  
 **CWL tip:** **1.0.17**
 
-### Ask
+### Closed
 
-GCE L2 prove is **done**. Enter fleet standby: Heartbeat `waiting` each 5m tick; scheduled commit if dirty.  
-Do **not** start Mode B Phase 2 or soak invent until a new open ask. Reply:
-
-```text
-SECURE_STANDBY: ok
-SHA: <short>
-HEARTBEAT: waiting
-```
+Heartbeat waiting · no Phase 2/soak invent. Fleet idle declared.
 
 ---
 
@@ -41,21 +34,12 @@ HEARTBEAT: waiting
 
 **To:** convert  
 **Priority:** P2  
-**Status:** **open**  
+**Status:** **done** (Convert OUTBOX `CONVERT_STANDBY` · SHA `8355f992` / `50b6baca`)  
 **CWL tip:** **1.0.17**
 
-### Ask
+### Closed
 
-Enter fleet standby: publish OUTBOX Heartbeat `waiting` each 5m tick; no invent.  
-EXTFMAP close = **operator only**. When CWL posts a new Convert ask, execute then return to waiting.
-
-### Reply shape (first tick)
-
-```text
-CONVERT_STANDBY: ok
-SHA: <short>
-HEARTBEAT: waiting
-```
+Standby heartbeat waiting · no invent · EXTFMAP operator-only. Fleet idle declared.
 
 ---
 

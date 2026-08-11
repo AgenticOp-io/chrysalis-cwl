@@ -1,16 +1,17 @@
 # Fleet HEARTBEAT (CWL-owned snapshot)
 
-**Updated by:** CWL coordinator each tick  
-**Commit cadence:** every **5m** tick flush (dirty → commit+push `candidate/*`)
+**Fleet stopped:** `CWL_FLEET_IDLE: yes` (2026-08-11 coordinator tick)
 
 | Pillar | Status | Last seen SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | 72643a6 | invent CLOSED · scheduled commits ON |
-| **Convert** | assigned standby | `af72d8ae` | needs `CONVERT_STANDBY` heartbeat |
-| **Secure** | assigned standby | `6c2d624` | GCE L2 green · needs `SECURE_STANDBY` |
+| **CWL** | idle | *(flush)* | invent CLOSED — nothing left to build |
+| **Convert** | waiting | `8355f992` | standby ok · EXTFMAP = operator |
+| **Secure** | waiting | `191cd19` | standby ok · Phase 2 only on new ask |
 
 ```text
-FLEET_MODE: on
-CWL_FLEET_IDLE: no
-COMMIT_CADENCE: 5m
+FLEET_MODE: off
+CWL_FLEET_IDLE: yes
+COMMIT_CADENCE: stopped
 ```
+
+Re-arm fleet: set `FLEET_MODE: on` / `CWL_FLEET_IDLE: no`, open asks in OUTBOX, paste [`STANDING-PASTE.md`](./STANDING-PASTE.md).
