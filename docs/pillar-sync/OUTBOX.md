@@ -4,7 +4,7 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-08-11 — convert-l1-restify-honesty
+## 2026-08-11 — convert-l1-polka-honesty
 
 **To:** convert  
 **Priority:** P0  
@@ -13,12 +13,25 @@ Pushed asks for siblings. Newest first.
 
 ### Ask
 
-L1 **Restify** honest-hole peel (Elysia/Koa/Hono pattern):
+L1 **Polka** honest-hole peel (Restify/Elysia/Koa/Hono pattern):
 
-1. Expand Restify residual honesty catalog + smoke  
+1. Expand Polka residual honesty catalog + smoke  
 2. No plugin/onion invent; keep pass-through ceiling  
 3. Scoreboard + DO-NOT-INVENT; EXTFMAP untouched  
-4. Reply `CONVERT_L1_RESTIFY_HONESTY` + SHA  
+4. Reply `CONVERT_L1_POLKA_HONESTY` + SHA  
+
+---
+
+## 2026-08-11 — convert-l1-restify-honesty
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** (tip `56d0b585` / work `315b812e` · G10134 `RESTIFY_HONESTY_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Restify honesty catalog + smoke; pass-through ceiling held.
 
 ---
 

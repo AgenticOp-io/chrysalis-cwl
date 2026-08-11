@@ -2,9 +2,9 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | 89f1221 | dispatch |
-| **Convert** | dispatched | `82c3f8a3` | open: restify-honesty |
-| **Secure** | dispatched | `ce853ff` | open: reload-fixture |
+| **CWL** | coordinating | *(flush)* | dispatch |
+| **Convert** | dispatched | `56d0b585` | open: polka-honesty |
+| **Secure** | working | `ce853ff`+ | reload-fixture dirty / SHA TBD |
 
 ```text
 FLEET_MODE: on
