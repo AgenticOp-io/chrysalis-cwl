@@ -4,7 +4,7 @@
 
 | Pillar | Status | Last seen SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | invent CLOSED · posts next asks each tick |
+| **CWL** | coordinating | 1ca6010 | invent CLOSED · posts next asks each tick |
 | **Convert** | assigned | `8355f992` | open: `convert-liveview-honesty` |
 | **Secure** | assigned | `191cd19` | open: `secure-mode-b-phase2` |
 

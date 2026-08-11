@@ -22,7 +22,7 @@ BUILD_LOOP: on — coordinator posts next ask when siblings finish; do not idle 
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | re-armed |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 1ca6010 | re-armed |
 | **Convert** | `candidate/wptp-convert-orbit` | `8355f992` | was standby — new ask open |
 | **Secure** | `candidate/live-match-step4` | `191cd19` | was idle-stop — new ask open |
 
