@@ -1,6 +1,6 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · Pilot Kit + sign fixture done · next OSS scrub + schema-drift pack  
+**Updated:** 2026-08-11 · OSS scrub done · public-claim next · schema-drift finishing  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
@@ -13,22 +13,21 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 3146957 | coordinator |
-| **Convert** | `candidate/wptp-convert-orbit` | `098efbd1` | Pilot Kit **done** |
-| **Secure** | `candidate/live-match-step4` | `a75255b` | sign fixture **done** |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | tick 6 |
+| **Convert** | `candidate/wptp-convert-orbit` | `f486a0be` | OSS scrub **done** |
+| **Secure** | `candidate/live-match-step4` | `a75255b`+ | schema-drift **finishing** |
 
 ## Who builds next
 
 | Priority | Owner | Work | Ask |
 | --- | --- | --- | --- |
-| **P0** | **Convert** | OSS scrub tracked-tree gate maintain (G10109) | `convert-oss-scrub` **open** |
-| **P1** | **Secure** | Schema-drift smoke pack/docs harden | `secure-schema-drift-pack` **open** |
+| **P0** | **Convert** | Public engine claim checklist harden | `convert-public-claim` **open** |
+| **P1** | **Secure** | Schema-drift pack (in flight) | `secure-schema-drift-pack` |
 
 ## Closed recently
 
 | ID | Note |
 | --- | --- |
-| convert-pilot-kit | `098efbd1` / `PILOT_KIT_OK` |
-| secure-sign-fixture | `a75255b` / `SIGN_FIXTURE_OK` |
-| convert-nest-di-honesty | G10136 |
-| secure-gce-smoke-pack | `3c2c154` |
+| convert-oss-scrub | `f486a0be` / `OSS_SCRUB_OK` |
+| convert-pilot-kit | `098efbd1` |
+| secure-sign-fixture | `a75255b` |

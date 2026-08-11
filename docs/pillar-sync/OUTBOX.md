@@ -4,7 +4,7 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-08-11 — convert-oss-scrub
+## 2026-08-11 — convert-public-claim
 
 **To:** convert  
 **Priority:** P0  
@@ -13,12 +13,24 @@ Pushed asks for siblings. Newest first.
 
 ### Ask
 
-**OSS scrub** tracked-tree gate (G10109) maintain/harden:
+**Public engine claim** checklist harden (`PUBLIC-ENGINE-CLAIM.md`):
 
-1. Ensure `hub:oss-scrub-smoke` green; deepen docs/claims if gaps  
-2. No BFG/history rewrite (operator)  
-3. EXTFMAP untouched  
-4. Reply `CONVERT_OSS_SCRUB` + SHA  
+1. Gate/smoke or checklist prove token (`PUBLIC_CLAIM_OK` or honest gaps listed)  
+2. No invented claims; EXTFMAP residual stays honest open  
+3. Reply `CONVERT_PUBLIC_CLAIM` + SHA  
+
+---
+
+## 2026-08-11 — convert-oss-scrub
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** (tip `f486a0be` / work `74db4b0c` · `OSS_SCRUB_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+G10109 OSS scrub smoke hardened with `OSS_SCRUB_OK`.
 
 ---
 
