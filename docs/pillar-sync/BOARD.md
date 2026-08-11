@@ -24,7 +24,7 @@ SECURE_AGENT_PACK: exhausted (customer soak = ops)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | idle |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 666bf2f | idle |
 | **Convert** | `candidate/wptp-convert-orbit` | `3c6a62e3` | public-claim done · EXTFMAP ops |
 | **Secure** | `candidate/live-match-step4` | `60b875c` | static-smoke **done** |
 
