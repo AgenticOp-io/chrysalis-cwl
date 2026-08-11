@@ -34,7 +34,7 @@ G10109 OSS scrub smoke hardened with `OSS_SCRUB_OK`.
 
 ---
 
-## 2026-08-11 — secure-schema-drift-pack
+## 2026-08-11 — secure-static-smoke-pack
 
 **To:** secure  
 **Priority:** P1  
@@ -43,12 +43,25 @@ G10109 OSS scrub smoke hardened with `OSS_SCRUB_OK`.
 
 ### Ask
 
-**Schema-drift** smoke pack harden:
+**Static DNA** smoke pack harden (`static-smoke`):
 
-1. Prove `schema-drift-smoke` in test:dna / gce-smoke; deepen fixture case if thin  
-2. Token `SCHEMA_DRIFT_SMOKE_OK`; docs brief  
+1. Prove/deepen static content DNA checks; ensure in test:dna / gce-smoke  
+2. Token `STATIC_SMOKE_OK`; docs brief  
 3. D5 DNA-only  
-4. Reply `SECURE_SCHEMA_DRIFT_PACK` + SHA  
+4. Reply `SECURE_STATIC_SMOKE_PACK` + SHA  
+
+---
+
+## 2026-08-11 — secure-schema-drift-pack
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **done** (tip `a6fca96` / work `7c53afd` · `SCHEMA_DRIFT_SMOKE_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Schema-drift unit/fixture/enforce/shadow deepen; in gce-smoke.
 
 ---
 
