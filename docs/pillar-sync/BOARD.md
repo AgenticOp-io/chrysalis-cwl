@@ -23,7 +23,7 @@ SECURE_AGENT_PACK: tip pin · soak = ops
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(this tip)* | 1.0.22 gold `32` |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 0587743 | 1.0.22 gold `32` |
 | **Convert** | `candidate/wptp-convert-orbit` | `77eb576b` | was 1.0.21 |
 | **Secure** | `candidate/live-match-step4` | `970e160` | was 1.0.21 |
 
