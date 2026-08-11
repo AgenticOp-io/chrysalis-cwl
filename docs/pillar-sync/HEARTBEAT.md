@@ -2,9 +2,9 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | ad605d7 | dispatch |
-| **Convert** | working | `588dfd34` | Flutter honesty Task |
-| **Secure** | dispatched next | `d26c10a` | open: soak-preflight |
+| **CWL** | coordinating | *(flush)* | dispatch |
+| **Convert** | dispatched next | `397a0deb` | open: rails-filters-honesty |
+| **Secure** | working | `d26c10a` | soak-preflight Task |
 
 ```text
 FLEET_MODE: on

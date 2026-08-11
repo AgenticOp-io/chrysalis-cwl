@@ -4,29 +4,41 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-08-11 — convert-flutter-honesty
+## 2026-08-11 — convert-rails-filters-honesty
 
 **To:** convert  
 **Priority:** P0  
 **Status:** **open**  
 **CWL tip:** **1.0.17**  
-**Charter:** yes (scoreboard — Flutter)
+**Charter:** yes (scoreboard — Rails filters/resources)
 
 ### Ask
 
-Flutter **honesty** deepen (parallel to G10128 LiveView):
+Rails **filters/resources honesty** (G10115 route-table already closed):
 
-1. Honest residual catalog for Flutter/Dart UI surfaces (holes over façades)  
-2. No Flutter/engine/widget runtime invent  
-3. Smoke token + LEADERSHIP-SCOREBOARD line  
+1. Honest residual catalog for `before_action` / `resources` / AR surfaces — holes over façades  
+2. No inventing filter/AR runtime  
+3. Smoke + scoreboard; refuse force-close as full Rails 20/20  
 4. EXTFMAP operator-only  
-5. Reply `CONVERT_FLUTTER_HONESTY` + SHA; heartbeat waiting  
+5. Reply `CONVERT_RAILS_FILTERS_HONESTY` + SHA  
 
 ### Do not
 
-- Invent Flutter runtime  
+- Invent Rails middleware/AR runtime  
 - Edit CWL/Secure  
-- Push main  
+
+---
+
+## 2026-08-11 — convert-flutter-honesty
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** (Convert OUTBOX · tip `397a0deb` / work `d727f976` · G10129 `FLUTTER_HONESTY_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Flutter residual catalog + `hub:flutter-honesty-smoke`; Shelf remains sole Dart ST gold.
 
 ---
 
