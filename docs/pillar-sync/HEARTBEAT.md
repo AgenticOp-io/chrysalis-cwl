@@ -2,7 +2,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | dispatch |
+| **CWL** | coordinating | 3146957 | dispatch |
 | **Convert** | dispatched | `098efbd1` | open: oss-scrub |
 | **Secure** | dispatched | `a75255b` | open: schema-drift-pack |
 

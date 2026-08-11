@@ -13,7 +13,7 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 3146957 | coordinator |
 | **Convert** | `candidate/wptp-convert-orbit` | `098efbd1` | Pilot Kit **done** |
 | **Secure** | `candidate/live-match-step4` | `a75255b` | sign fixture **done** |
 
