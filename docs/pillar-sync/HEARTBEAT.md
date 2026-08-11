@@ -2,7 +2,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | dispatch |
+| **CWL** | coordinating | aa9b44e | dispatch |
 | **Convert** | dispatched next | `b3e2ae02` | open: l1-honest-peels |
 | **Secure** | working | `ba3c886` | mode-a-failclosed Task |
 

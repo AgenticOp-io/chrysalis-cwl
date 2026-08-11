@@ -13,7 +13,7 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | aa9b44e | coordinator |
 | **Convert** | `candidate/wptp-convert-orbit` | `b3e2ae02` | G10130 Rails filters **done** |
 | **Secure** | `candidate/live-match-step4` | `ba3c886` | Mode A fail-closed **dispatched** |
 
