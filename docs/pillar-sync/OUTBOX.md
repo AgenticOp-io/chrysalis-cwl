@@ -4,22 +4,34 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-08-11 — convert-nest-di-honesty
+## 2026-08-11 — convert-pilot-kit
 
 **To:** convert  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.17**  
-**Charter:** yes (Nest DI — holes over invent)
+**CWL tip:** **1.0.17**
 
 ### Ask
 
-Nest **DI honesty** catalog (D6442 / DO-NOT-INVENT):
+**Cursor Pilot Kit** 15-minute path harden (scoreboard GTM):
 
-1. Honest residual catalog for Nest DI / modules / providers — no DI runtime invent  
-2. Smoke refusing force-close as Nest DI 20/20; keep existing Nest route-surface gold if any  
-3. Scoreboard + DO-NOT-INVENT; EXTFMAP untouched  
-4. Reply `CONVERT_NEST_DI_HONESTY` + SHA  
+1. Prove/docs path in CURSOR-PILOT-KIT.md is runnable without invent  
+2. Smoke or checklist gate token if missing (`PILOT_KIT_OK` or honest SKIP)  
+3. EXTFMAP untouched; no CWL edits  
+4. Reply `CONVERT_PILOT_KIT` + SHA  
+
+---
+
+## 2026-08-11 — convert-nest-di-honesty
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** (tip `1f85dcc1` / work `dce503bb` · G10136 `NEST_DI_HONESTY_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Nest DI honesty catalog + smoke; refuse DI runtime 20/20; nestjs route-surface gold held.
 
 ---
 

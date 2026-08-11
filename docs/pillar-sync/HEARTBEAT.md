@@ -2,9 +2,9 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | e9bca68 | dispatch |
-| **Convert** | working | `568e76c4` | nest-di-honesty Task |
-| **Secure** | dispatched | `3c2c154` | open: sign-fixture |
+| **CWL** | coordinating | *(flush)* | tick 5 |
+| **Convert** | dispatched | `1f85dcc1` | open: pilot-kit |
+| **Secure** | working | `3c2c154`+ | fixtures/sign/ dirty |
 
 ```text
 FLEET_MODE: on

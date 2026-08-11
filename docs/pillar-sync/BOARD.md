@@ -1,6 +1,6 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · GCE smoke pack done · sign fixture next · Nest DI in flight  
+**Updated:** 2026-08-11 · Nest DI honesty done · Pilot Kit next · sign fixture in flight  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
@@ -13,21 +13,21 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | e9bca68 | coordinator |
-| **Convert** | `candidate/wptp-convert-orbit` | `568e76c4` | Nest DI **dispatched** |
-| **Secure** | `candidate/live-match-step4` | `3c2c154` | GCE smoke pack **done** |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **Convert** | `candidate/wptp-convert-orbit` | `1f85dcc1` | G10136 Nest DI **done** |
+| **Secure** | `candidate/live-match-step4` | `3c2c154`+ | sign-fixture **working** |
 
 ## Who builds next
 
 | Priority | Owner | Work | Ask |
 | --- | --- | --- | --- |
-| **P0** | **Convert** | Nest DI honesty (in flight) | `convert-nest-di-honesty` |
-| **P1** | **Secure** | DNA sign/promote fixture deepen | `secure-sign-fixture` **open** |
+| **P0** | **Convert** | Cursor Pilot Kit 15-min path harden | `convert-pilot-kit` **open** |
+| **P1** | **Secure** | Sign fixture (in flight) | `secure-sign-fixture` |
 
 ## Closed recently
 
 | ID | Note |
 | --- | --- |
-| secure-gce-smoke-pack | `3c2c154` / `GCE_SMOKE_OK` |
+| convert-nest-di-honesty | G10136 `1f85dcc1` |
+| secure-gce-smoke-pack | `3c2c154` |
 | convert-l1-polka-honesty | G10135 |
-| secure-reload-fixture | `28b8971` |
