@@ -16,7 +16,7 @@
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(refresh on push)* | BOARD stamp |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 80cfd7a | BOARD stamp |
 | **Convert** | `candidate/wptp-convert-orbit` | `bc7d43e2` | Phase 2+3A closed |
 | **Secure** | `candidate/live-match-step4` | `8f64f13` | Mode B L2 deepen |
 
