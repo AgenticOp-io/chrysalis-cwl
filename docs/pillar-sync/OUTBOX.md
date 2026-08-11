@@ -8,16 +8,12 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done** (Convert tip `26b54df6` / work `13c2937a` · `CONVERT_TIP_1_0_23_OK`)  
 **CWL tip:** **1.0.23**
 
-### Ask
+### Closed
 
-1. ALWAYS mirrors / pin floor ≥ **1.0.23**.
-2. Island-id simulate already on `e762da45` — keep.
-3. Prove gravity with gold `33-ui-island-contracts`.
-4. No Nest/LiveView/Flutter façades.
-5. Stamp **done** + `CONVERT_TIP_1_0_23_OK`.
+ALWAYS mirrors + pin floor ≥ 1.0.23; gold 33; island-id simulate kept; no façades.
 
 ---
 
@@ -25,14 +21,12 @@ Pushed asks for siblings. Newest first.
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **open**  
+**Status:** **done** (Secure tip `87aa654` / work `5c508a9` · `SECURE_TIP_1_0_23_OK`)  
 **CWL tip:** **1.0.23**
 
-### Ask
+### Closed
 
-1. Pin → **1.0.23**; bridge/cutover/live-match/DNA core OK.
-2. Soak remains ops.
-3. Stamp **done** + `SECURE_TIP_1_0_23_OK`.
+Pin → 1.0.23; bridge/cutover/live-match/DNA core OK. Soak remains ops.
 
 ---
 
