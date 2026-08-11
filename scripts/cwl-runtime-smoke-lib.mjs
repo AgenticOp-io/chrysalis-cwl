@@ -331,8 +331,8 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       expectStatus: 200,
       expectBody: "<!doctype html><html><body><h1>Home</h1></body></html>",
     },
-    { method: "POST", path: "/login", expectStatus: 200, expectBody: '{"ok":true}' },
-    { path: "/api/health", expectStatus: 200, expectBody: '{"ok":true,"surface":"api"}' },
+    { method: "POST", path: "/login", expectStatus: 201, expectBody: '{"ok":true}' },
+    { path: "/api/health", expectStatus: 200, expectBody: '{"ok":true,"surface":"api","meta":"{unknown-literal}"}' },
     { path: "/items/x", expectStatus: 200, expectBody: '{"ok":true,"id":"x"}' },
   ]),
   "25-island-kinds": Object.freeze([

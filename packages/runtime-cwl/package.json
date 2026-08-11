@@ -20,5 +20,8 @@
     "@chrysalis/emit-shared": "workspace:*",
     "@chrysalis/rewrite": "workspace:*",
     "@chrysalis/webir": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.41"
   }
 }

@@ -141,7 +141,21 @@ function routeHasAttachmentHoles(module: Module, routeNodeId: string): boolean {
     const n = module.nodes.get(id);
     if (!n) continue;
     const prov = n.provenance ?? [];
-    if (prov.some((p) => p?.locator === "cwl:attachment-holes")) return true;
+    if (
+      prov.some((p: { locator?: unknown }) => {
+        const loc = p?.locator as unknown;
+        // Fat ingest may stamp locator as the string "cwl:attachment-holes"
+        // (see Convert hub-cwl-attachment-holes-smoke); also accept synthetic Locator.
+        if (loc === "cwl:attachment-holes") return true;
+        return (
+          typeof loc === "object" &&
+          loc !== null &&
+          (loc as { kind?: string; reason?: string }).kind === "synthetic" &&
+          (loc as { reason?: string }).reason === "cwl:attachment-holes"
+        );
+      })
+    )
+      return true;
     for (const op of n.operands ?? []) stack.push(op);
   }
   return false;
@@ -164,10 +178,10 @@ function findResponseMeta(module: Module, routeNodeId: string): ResponseMeta | n
         contentType?: string;
         headers?: Readonly<Record<string, string>>;
       };
-      return {
-        contentType: typeof attrs.contentType === "string" ? attrs.contentType : undefined,
-        headers: attrs.headers,
-      };
+      const meta: ResponseMeta = {};
+      if (typeof attrs.contentType === "string") meta.contentType = attrs.contentType;
+      if (attrs.headers) meta.headers = attrs.headers;
+      return meta;
     }
     for (const op of n.operands ?? []) stack.push(op);
   }
@@ -314,7 +328,7 @@ export function createCwlRuntime(config: CwlRuntimeConfig): CwlRuntimeHandle {
     const attachmentSoft =
       sim.errors.length > 0 &&
       Boolean(sim.body) &&
-      sim.errors.every((e) => e.reason === "hit a hole") &&
+      sim.errors.every((e: { reason: string }) => e.reason === "hit a hole") &&
       routeHasAttachmentHoles(config.module, match.route.routeNodeId);
     if (sim.errors.length > 0 && !attachmentSoft) {
       return new Response(
