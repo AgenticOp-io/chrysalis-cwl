@@ -1,6 +1,6 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · OSS scrub done · public-claim next · schema-drift finishing  
+**Updated:** 2026-08-11 · Schema-drift done · static-smoke pack next · public-claim in flight  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
@@ -13,21 +13,21 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 3708cfa | tick 6 |
-| **Convert** | `candidate/wptp-convert-orbit` | `f486a0be` | OSS scrub **done** |
-| **Secure** | `candidate/live-match-step4` | `a75255b`+ | schema-drift **finishing** |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **Convert** | `candidate/wptp-convert-orbit` | `f486a0be` | public-claim **dispatched** |
+| **Secure** | `candidate/live-match-step4` | `a6fca96` | schema-drift **done** |
 
 ## Who builds next
 
 | Priority | Owner | Work | Ask |
 | --- | --- | --- | --- |
-| **P0** | **Convert** | Public engine claim checklist harden | `convert-public-claim` **open** |
-| **P1** | **Secure** | Schema-drift pack (in flight) | `secure-schema-drift-pack` |
+| **P0** | **Convert** | Public claim (in flight) | `convert-public-claim` |
+| **P1** | **Secure** | Static DNA smoke pack harden | `secure-static-smoke-pack` **open** |
 
 ## Closed recently
 
 | ID | Note |
 | --- | --- |
-| convert-oss-scrub | `f486a0be` / `OSS_SCRUB_OK` |
-| convert-pilot-kit | `098efbd1` |
+| secure-schema-drift-pack | `a6fca96` / `SCHEMA_DRIFT_SMOKE_OK` |
+| convert-oss-scrub | `f486a0be` |
 | secure-sign-fixture | `a75255b` |

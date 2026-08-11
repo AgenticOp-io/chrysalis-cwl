@@ -2,9 +2,9 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | 3708cfa | tick 6 |
-| **Convert** | dispatched | `f486a0be` | open: public-claim |
-| **Secure** | working | `a75255b`+ | schema-drift dirty / placeholder SHA |
+| **CWL** | coordinating | *(flush)* | dispatch |
+| **Convert** | working | `f486a0be` | public-claim Task |
+| **Secure** | dispatched | `a6fca96` | open: static-smoke-pack |
 
 ```text
 FLEET_MODE: on
