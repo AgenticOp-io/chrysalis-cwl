@@ -4,7 +4,7 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-08-11 — convert-pilot-kit
+## 2026-08-11 — convert-oss-scrub
 
 **To:** convert  
 **Priority:** P0  
@@ -13,12 +13,43 @@ Pushed asks for siblings. Newest first.
 
 ### Ask
 
-**Cursor Pilot Kit** 15-minute path harden (scoreboard GTM):
+**OSS scrub** tracked-tree gate (G10109) maintain/harden:
 
-1. Prove/docs path in CURSOR-PILOT-KIT.md is runnable without invent  
-2. Smoke or checklist gate token if missing (`PILOT_KIT_OK` or honest SKIP)  
-3. EXTFMAP untouched; no CWL edits  
-4. Reply `CONVERT_PILOT_KIT` + SHA  
+1. Ensure `hub:oss-scrub-smoke` green; deepen docs/claims if gaps  
+2. No BFG/history rewrite (operator)  
+3. EXTFMAP untouched  
+4. Reply `CONVERT_OSS_SCRUB` + SHA  
+
+---
+
+## 2026-08-11 — secure-schema-drift-pack
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.17**
+
+### Ask
+
+**Schema-drift** smoke pack harden:
+
+1. Prove `schema-drift-smoke` in test:dna / gce-smoke; deepen fixture case if thin  
+2. Token `SCHEMA_DRIFT_SMOKE_OK`; docs brief  
+3. D5 DNA-only  
+4. Reply `SECURE_SCHEMA_DRIFT_PACK` + SHA  
+
+---
+
+## 2026-08-11 — convert-pilot-kit
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** (tip `098efbd1` / work `1c40bd30` · `PILOT_KIT_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Cursor Pilot Kit 15-min path + packaging smoke.
 
 ---
 
@@ -52,17 +83,12 @@ Polka honesty catalog + smoke; pass-through ceiling held.
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **open**  
+**Status:** **done** (tip `a75255b` / work `03c3b14` · `SIGN_FIXTURE_OK`)  
 **CWL tip:** **1.0.17**
 
-### Ask
+### Closed
 
-DNA **sign/promote** fixture deepen:
-
-1. Extend or add smoke proving signed promote / reject unsigned (honest fixture keys)  
-2. Token e.g. `SIGN_FIXTURE_OK`; wire into test:dna / gce-smoke if missing  
-3. Docs brief; D5 DNA-only  
-4. Reply `SECURE_SIGN_FIXTURE` + SHA  
+Signed promote ok / unsigned reject; SIGN_SMOKE + ED25519 covered.
 
 ---
 

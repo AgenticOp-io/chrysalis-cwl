@@ -1,6 +1,6 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · Nest DI honesty done · Pilot Kit next · sign fixture in flight  
+**Updated:** 2026-08-11 · Pilot Kit + sign fixture done · next OSS scrub + schema-drift pack  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
@@ -13,21 +13,22 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 317f549 | coordinator |
-| **Convert** | `candidate/wptp-convert-orbit` | `1f85dcc1` | G10136 Nest DI **done** |
-| **Secure** | `candidate/live-match-step4` | `3c2c154`+ | sign-fixture **working** |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **Convert** | `candidate/wptp-convert-orbit` | `098efbd1` | Pilot Kit **done** |
+| **Secure** | `candidate/live-match-step4` | `a75255b` | sign fixture **done** |
 
 ## Who builds next
 
 | Priority | Owner | Work | Ask |
 | --- | --- | --- | --- |
-| **P0** | **Convert** | Cursor Pilot Kit 15-min path harden | `convert-pilot-kit` **open** |
-| **P1** | **Secure** | Sign fixture (in flight) | `secure-sign-fixture` |
+| **P0** | **Convert** | OSS scrub tracked-tree gate maintain (G10109) | `convert-oss-scrub` **open** |
+| **P1** | **Secure** | Schema-drift smoke pack/docs harden | `secure-schema-drift-pack` **open** |
 
 ## Closed recently
 
 | ID | Note |
 | --- | --- |
-| convert-nest-di-honesty | G10136 `1f85dcc1` |
+| convert-pilot-kit | `098efbd1` / `PILOT_KIT_OK` |
+| secure-sign-fixture | `a75255b` / `SIGN_FIXTURE_OK` |
+| convert-nest-di-honesty | G10136 |
 | secure-gce-smoke-pack | `3c2c154` |
-| convert-l1-polka-honesty | G10135 |
