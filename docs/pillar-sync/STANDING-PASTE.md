@@ -1,6 +1,8 @@
-# Standing pastes — sibling standby loops
+# Standing pastes — **optional fallback only**
 
-Paste into the **Convert** or **Secure** Cursor chat. Keep that chat open. The CWL coordinator posts work on the git bus; you wake on a timer, pull, and either execute or wait.
+**Primary path:** CWL coordinator dispatches Convert/Secure **Task agents** from this chat. You do **not** need to paste into sibling windows.
+
+Use the blocks below only if you want a long-lived sibling Cursor chat as a manual backup.
 
 ---
 

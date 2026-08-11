@@ -56,7 +56,19 @@ Siblings flush their own `docs/pillar-sync/` (+ finished lane work for the open 
 - Heartbeat block on own OUTBOX each tick  
 - **Commit+push on the schedule above** so CWL can see you
 
-## Pastes
+## Dispatch (no human paste)
 
-- Convert / Secure: [`STANDING-PASTE.md`](./STANDING-PASTE.md)  
-- Protocol: [`PROTOCOL.md`](./PROTOCOL.md)
+**Primary:** CWL coordinator **launches sibling Task agents** each tick with the open OUTBOX ask baked into the prompt. Human paste into Convert/Secure chats is **optional fallback only**.
+
+| Path | Who runs work |
+| --- | --- |
+| **Default** | CWL chat → Task agent (Convert lane) + Task agent (Secure lane) |
+| Fallback | Human pastes [`STANDING-PASTE.md`](./STANDING-PASTE.md) into sibling Cursor chats |
+
+Each dispatch:
+
+1. Write/refresh open ask in CWL `OUTBOX.md` + BOARD  
+2. `pillar-sync-flush.ps1` (siblings must see pushed bus)  
+3. Launch Task with absolute engine path + ask id + acceptance bar  
+4. On Task done → pull sibling OUTBOX → close ask → **post next ask** → dispatch again  
+5. Never require the user to copy/paste between windows
