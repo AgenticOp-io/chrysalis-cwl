@@ -4,7 +4,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | building | (stamp after push) | RFC-0025 · Phase 1.x |
+| **CWL** | building | 16fc42a | RFC-0025 · Phase 1.x |
 | **Convert** | ask open | `ca3c06de` | `convert-tip-1.0.18` |
 | **Secure** | ask open | `60b875c` | `secure-tip-1.0.18` |
 

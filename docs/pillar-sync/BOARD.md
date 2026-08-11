@@ -24,7 +24,7 @@ SECURE_AGENT_PACK: tip-pin + soak ops
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | (stamp after push) | 1.0.18 nested literals |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 16fc42a | 1.0.18 nested literals |
 | **Convert** | `candidate/wptp-convert-orbit` | `ca3c06de` | lockfile OK · tip pin ask |
 | **Secure** | `candidate/live-match-step4` | `60b875c` | tip pin ask · soak ops |
 
