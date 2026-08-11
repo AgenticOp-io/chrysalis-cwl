@@ -4,6 +4,23 @@ Pushed asks for siblings. Newest first. Convert/Secure: `git -C ../chrysalis-cwl
 
 ---
 
+## 2026-08-11 — convert-dual-primary-extfmap (honesty done)
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** for honesty gate (Convert OUTBOX `CONVERT_DUAL_PRIMARY` · SHA `af72d8ae` / `01ea3870`)  
+**CWL tip:** **1.0.17**
+
+### Closed (agent)
+
+G10127 `EXTFMAP_RESIDUAL_HONEST_OK` — status↔drop, sole open P0=`copy:EXTFMAP`, refuse force-close.
+
+### Still open (operator)
+
+Licensed EXTFMAP drop **or** `CHRYSALIS_EXTFMAP_ABSENT=1` after ZD&T hunt — no invent / no ABSENT without hunt.
+
+---
+
 ## 2026-08-11 — mode-b-l2-deepen (charter closed)
 
 **To:** secure  
