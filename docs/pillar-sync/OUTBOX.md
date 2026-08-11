@@ -4,6 +4,37 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-08-11 — convert-tip-1.0.22
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.22**
+
+### Ask
+
+1. ALWAYS mirrors / pin floor ≥ **1.0.22**.
+2. Prove gravity with gold `32-stream-sse`.
+3. No Nest/LiveView/Flutter façades.
+4. Stamp **done** + `CONVERT_TIP_1_0_22_OK`.
+
+---
+
+## 2026-08-11 — secure-tip-1.0.22
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.22**
+
+### Ask
+
+1. Pin → **1.0.22**; bridge/cutover/live-match/DNA core OK.
+2. Soak remains ops.
+3. Stamp **done** + `SECURE_TIP_1_0_22_OK`.
+
+---
+
 ## 2026-08-11 — convert-tip-1.0.21
 
 **To:** convert  
