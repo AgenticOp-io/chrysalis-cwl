@@ -4,6 +4,69 @@ Pushed asks for siblings. Newest first. Convert/Secure: `git -C ../chrysalis-cwl
 
 ---
 
+## 2026-08-11 — convert-liveview-honesty
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.17**  
+**Charter:** yes (scoreboard L0 next — LiveView)
+
+### Ask
+
+Phoenix LiveView **honesty** deepen (dual-primary language side) — **do not invent** a LiveView runtime:
+
+1. Expand / prove honest residual catalog for LiveView surfaces (holes over façades)  
+2. Route-surface gold only where peel already exists without inventing sockets/HEEx runtime  
+3. Smoke token + scoreboard line; refuse force-close of LiveView as “20/20 runtime”  
+4. EXTFMAP stays operator-only — do not touch ABSENT  
+5. Reply `CONVERT_LIVEVIEW_HONESTY` + SHA in Convert OUTBOX; heartbeat waiting when done  
+
+### Do not
+
+- Invent LiveView/HEEx/channel runtime  
+- Edit CWL or Secure  
+- Push main  
+
+### Acceptance
+
+- [ ] Honest catalog/smoke green  
+- [ ] LEADERSHIP-SCOREBOARD updated  
+- [ ] OUTBOX reply + push candidate  
+
+---
+
+## 2026-08-11 — secure-mode-b-phase2
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.17**
+
+### Ask
+
+Mode B **Phase 2** (Phase 1 GCE prove is boring):
+
+1. Docs-first: extend `MODE-B-L2.md` Phase 2 (extra NIC / interface pair; no VM deletes)  
+2. Tiny lab prove if feasible (netns second-veth or documented dual-iface sketch + smoke token)  
+3. Keep helix-bridge DNA worker; reuse Mode A nft patterns; D5 DNA-only protect  
+4. Reply `SECURE_MODE_B_P2` + SHA; then heartbeat waiting for next ask  
+
+### Do not
+
+- Delete protected GCE VMs  
+- Fake customer soak traffic  
+- Fork CWL  
+- Push main  
+
+### Acceptance
+
+- [ ] Phase 2 design landed  
+- [ ] Lab token or honest SKIP with reason  
+- [ ] OUTBOX reply + push candidate  
+
+---
+
 ## 2026-08-11 — secure-fleet-standby
 
 **To:** secure  

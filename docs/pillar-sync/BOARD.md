@@ -1,50 +1,51 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · **CWL_FLEET_IDLE**  
+**Updated:** 2026-08-11 · Fleet **RE-ARMED** — build loop (not idle standby)  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
-FLEET_MODE: off
-CWL_FLEET_IDLE: yes
-COMMIT_CADENCE: stopped (was 5m)
+FLEET_MODE: on
+CWL_FLEET_IDLE: no
+COMMIT_CADENCE: 5m tick flush
+BUILD_LOOP: on — coordinator posts next ask when siblings finish; do not idle on heartbeat alone
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.17`** — invent queue **CLOSED** |
+| **CWL tip** | **`1.0.17`** — invent queue **CLOSED** (hygiene/coordinator only) |
 | Convert pin | `file:../chrysalis-cwl/packages/cwl` ≡ 1.0.17 |
-| Secure pin | `@agenticop-io/cwl@^1.0.17` · dna-seed wrap **done** |
+| Secure pin | `@agenticop-io/cwl@^1.0.17` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 01306aa | fleet idle |
-| **Convert** | `candidate/wptp-convert-orbit` | `8355f992` | `CONVERT_STANDBY` waiting |
-| **Secure** | `candidate/live-match-step4` | `191cd19` | `SECURE_STANDBY` waiting |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | re-armed |
+| **Convert** | `candidate/wptp-convert-orbit` | `8355f992` | was standby — new ask open |
+| **Secure** | `candidate/live-match-step4` | `191cd19` | was idle-stop — new ask open |
 
 ## Who builds next
 
-| Priority | Owner | Work |
-| --- | --- | --- |
-| **—** | **CWL** | **Nothing to invent** — tip only on INBOX contract gaps |
-| **ops** | **Operator** | EXTFMAP licensed drop / ZD&T ABSENT (Convert) |
-| **ops** | **Operator** | Customer soak when ready (Secure) |
+| Priority | Owner | Work | Ask ID |
+| --- | --- | --- | --- |
+| **P0** | **Convert** | Charter: Phoenix LiveView **honesty** (catalog + gold skips; **no** LiveView runtime invent) | `convert-liveview-honesty` |
+| **P1** | **Secure** | Mode B **Phase 2** sketch (docs + tiny dual-NIC/lab prove; Phase 1 already boring on GCE) | `secure-mode-b-phase2` |
+| **—** | **CWL** | Coordinator ticks; tip only on INBOX contract gaps | — |
 
 ## Open cross-asks
 
-| ID | Status |
-| --- | --- |
-| _(none)_ | — |
+| ID | From → To | Status |
+| --- | --- | --- |
+| convert-liveview-honesty | CWL → Convert | **open** |
+| secure-mode-b-phase2 | CWL → Secure | **open** |
 
-## Closed this tick
+## Closed recently
 
 | ID | Note |
 | --- | --- |
-| convert-fleet-standby | `CONVERT_STANDBY: ok` · `8355f992` / `50b6baca` |
-| secure-fleet-standby | `SECURE_STANDBY: ok` · `191cd19` / `9250541` |
+| convert/secure fleet-standby | closed — wrong stop; re-armed with build asks |
 | secure-gce-l2-prove | `6c2d624` |
 | convert G10127 | `af72d8ae` |
 | cwl-dna-queue | CLOSED @ 1.0.17 |

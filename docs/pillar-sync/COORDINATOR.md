@@ -1,7 +1,9 @@
 # Fleet coordinator (CWL chat owns)
 
 **Mode:** git bus + timed check-ins (no chat-to-chat messaging)  
-**Stop when:** CWL invent CLOSED **and** no open OUTBOX asks **and** Convert+Secure HEARTBEAT = `waiting` with nothing assigned → declare `CWL_FLEET_IDLE`
+**Stop when:** CWL invent CLOSED **and** Convert+Secure have **no agent-doable** portfolio work left (operator-only residuals do not count as “keep building”) **and** both HEARTBEAT = `waiting` with an empty open-ask queue → `CWL_FLEET_IDLE`
+
+**Do not stop** just because siblings answered a standby heartbeat. Standby is a pause between asks — the coordinator’s job is to **post the next real ask** on each tick until the portfolio queue is empty.
 
 ## Roles
 
@@ -39,11 +41,13 @@ Siblings flush their own `docs/pillar-sync/` (+ finished lane work for the open 
 
 1. `git pull --ff-only` all three engines  
 2. `pwsh scripts/pillar-sync-checkin.ps1`  
-3. Sibling **done** → close ask on BOARD, post **next** or idle  
-4. Sibling **waiting** + work exists → ensure **open** ask in CWL OUTBOX  
+3. Sibling **done** → close ask on BOARD → **immediately post the next real build ask** (not standby)  
+4. Sibling **waiting** with empty queue → if portfolio still has agent-doable work → open that ask; else only then consider idle  
 5. CWL contract gap → land hygiene here, then ask siblings to consume  
 6. **Flush commit+push** (`pillar-sync-flush.ps1`)  
-7. Stop condition → `CWL_FLEET_IDLE: yes` → flush → **stop loop**
+7. Stop **only** when invent CLOSED **and** no agent-doable Convert/Secure work remains → `CWL_FLEET_IDLE`
+
+**Forbidden:** declaring idle after a standby heartbeat while Convert/Secure still have scoreboard/roadmap agent work.
 
 ## Sibling waiting contract
 

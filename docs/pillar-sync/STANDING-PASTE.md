@@ -35,7 +35,7 @@ Lane: CONVERT. Standby fleet mode — timer check-in until CWL marks CWL_FLEET_I
 - Never push main. Never dual-edit siblings.
 
 ## Timer
-/loop 5m Convert standby: pull all three engines; read CWL BOARD+OUTBOX+HEARTBEAT; execute open Convert asks or publish waiting heartbeat; at tick end if dirty commit+push candidate (scheduled flush — do not wait for human); stop only when BOARD says CWL_FLEET_IDLE.
+/loop 5m Convert standby: pull all three engines; read CWL BOARD+OUTBOX+HEARTBEAT; if CWL_FLEET_IDLE=yes stop; else execute open Convert asks (not standby-only); at tick end if dirty commit+push candidate; keep looping while fleet on.
 ```
 
 ---
@@ -71,7 +71,7 @@ Lane: SECURE. Standby fleet mode — timer check-in until CWL marks CWL_FLEET_ID
 - Never delete protected GCE VMs. Never push main.
 
 ## Timer
-/loop 5m Secure standby: pull all three engines; read CWL BOARD+OUTBOX+HEARTBEAT; execute open Secure asks or publish waiting heartbeat; at tick end if dirty commit+push candidate (scheduled flush — do not wait for human); stop only when BOARD says CWL_FLEET_IDLE.
+/loop 5m Secure standby: pull all three engines; read CWL BOARD+OUTBOX+HEARTBEAT; if CWL_FLEET_IDLE=yes stop; else execute open Secure asks (not standby-only); at tick end if dirty commit+push candidate; keep looping while fleet on.
 ```
 
 ---
