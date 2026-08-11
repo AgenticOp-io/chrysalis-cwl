@@ -1,6 +1,32 @@
 # CWL OUTBOX (git)
 
-Pushed asks for siblings. Newest first. Convert/Secure: `git -C ../chrysalis-cwl pull` then read this file.
+Pushed asks for siblings. Newest first.
+
+---
+
+## 2026-08-11 — convert-flutter-honesty
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.17**  
+**Charter:** yes (scoreboard — Flutter)
+
+### Ask
+
+Flutter **honesty** deepen (parallel to G10128 LiveView):
+
+1. Honest residual catalog for Flutter/Dart UI surfaces (holes over façades)  
+2. No Flutter/engine/widget runtime invent  
+3. Smoke token + LEADERSHIP-SCOREBOARD line  
+4. EXTFMAP operator-only  
+5. Reply `CONVERT_FLUTTER_HONESTY` + SHA; heartbeat waiting  
+
+### Do not
+
+- Invent Flutter runtime  
+- Edit CWL/Secure  
+- Push main  
 
 ---
 
@@ -8,31 +34,12 @@ Pushed asks for siblings. Newest first. Convert/Secure: `git -C ../chrysalis-cwl
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip:** **1.0.17**  
-**Charter:** yes (scoreboard L0 next — LiveView)
+**Status:** **done** (Convert OUTBOX · SHA `588dfd34` / `3d5a8ade` · G10128 `LIVEVIEW_HONESTY_OK`)  
+**CWL tip:** **1.0.17**
 
-### Ask
+### Closed
 
-Phoenix LiveView **honesty** deepen (dual-primary language side) — **do not invent** a LiveView runtime:
-
-1. Expand / prove honest residual catalog for LiveView surfaces (holes over façades)  
-2. Route-surface gold only where peel already exists without inventing sockets/HEEx runtime  
-3. Smoke token + scoreboard line; refuse force-close of LiveView as “20/20 runtime”  
-4. EXTFMAP stays operator-only — do not touch ABSENT  
-5. Reply `CONVERT_LIVEVIEW_HONESTY` + SHA in Convert OUTBOX; heartbeat waiting when done  
-
-### Do not
-
-- Invent LiveView/HEEx/channel runtime  
-- Edit CWL or Secure  
-- Push main  
-
-### Acceptance
-
-- [ ] Honest catalog/smoke green  
-- [ ] LEADERSHIP-SCOREBOARD updated  
-- [ ] OUTBOX reply + push candidate  
+Phoenix LiveView honesty residual catalog + `hub:phoenix-liveview-honesty-smoke`; refuse full runtime 20/20 force-close.
 
 ---
 

@@ -1,51 +1,43 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · Fleet **RE-ARMED** — build loop (not idle standby)  
+**Updated:** 2026-08-11 · build-loop tick — Convert LiveView done; next Flutter; Secure P2 in flight  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-COMMIT_CADENCE: 5m tick flush
-BUILD_LOOP: on — coordinator posts next ask when siblings finish; do not idle on heartbeat alone
+COMMIT_CADENCE: 5m
+BUILD_LOOP: on
+DISPATCH: task-agents (no human paste)
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.17`** — invent queue **CLOSED** (hygiene/coordinator only) |
-| Convert pin | `file:../chrysalis-cwl/packages/cwl` ≡ 1.0.17 |
-| Secure pin | `@agenticop-io/cwl@^1.0.17` |
+| **CWL tip** | **`1.0.17`** — invent CLOSED |
+| Convert pin | `file:` ≡ 1.0.17 |
+| Secure pin | `^1.0.17` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 1ca6010 | re-armed |
-| **Convert** | `candidate/wptp-convert-orbit` | `8355f992` | was standby — new ask open |
-| **Secure** | `candidate/live-match-step4` | `191cd19` | was idle-stop — new ask open |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **Convert** | `candidate/wptp-convert-orbit` | `588dfd34` | G10128 LiveView honesty **done** |
+| **Secure** | `candidate/live-match-step4` | `39dbaf0`+ | Mode B P2 **working** (uncommitted) |
 
 ## Who builds next
 
-| Priority | Owner | Work | Ask ID |
+| Priority | Owner | Work | Ask |
 | --- | --- | --- | --- |
-| **P0** | **Convert** | Charter: Phoenix LiveView **honesty** (catalog + gold skips; **no** LiveView runtime invent) | `convert-liveview-honesty` |
-| **P1** | **Secure** | Mode B **Phase 2** sketch (docs + tiny dual-NIC/lab prove; Phase 1 already boring on GCE) | `secure-mode-b-phase2` |
-| **—** | **CWL** | Coordinator ticks; tip only on INBOX contract gaps | — |
+| **P0** | **Convert** | Flutter **honesty** catalog (no Flutter runtime invent) | `convert-flutter-honesty` **open** |
+| **P1** | **Secure** | Mode B Phase 2 (in flight) | `secure-mode-b-phase2` **open** |
 
 ## Open cross-asks
 
-| ID | From → To | Status |
-| --- | --- | --- |
-| convert-liveview-honesty | CWL → Convert | **open** |
-| secure-mode-b-phase2 | CWL → Secure | **open** |
-
-## Closed recently
-
-| ID | Note |
+| ID | Status |
 | --- | --- |
-| convert/secure fleet-standby | closed — wrong stop; re-armed with build asks |
-| secure-gce-l2-prove | `6c2d624` |
-| convert G10127 | `af72d8ae` |
-| cwl-dna-queue | CLOSED @ 1.0.17 |
+| convert-flutter-honesty | **open** |
+| secure-mode-b-phase2 | **open** (worker dirty tree) |
+| convert-liveview-honesty | **done** (`588dfd34` / G10128) |
