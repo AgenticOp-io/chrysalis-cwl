@@ -22,7 +22,7 @@ L1 **Koa** honest-hole peel (Hono G10131 pattern):
 
 ---
 
-## 2026-08-11 — secure-siem-fixture
+## 2026-08-11 — secure-cutover-multihost
 
 **To:** secure  
 **Priority:** P1  
@@ -31,12 +31,25 @@ L1 **Koa** honest-hole peel (Hono G10131 pattern):
 
 ### Ask
 
-**SIEM_LOG fixture smoke** (generic file/log sink — no vendor connector invent):
+Cutover **multi-host profile** hygiene (SECURE-CUTOVER optional item):
 
-1. Runnable smoke proving shadow/enforce holes append to SIEM_LOG fixture path  
-2. Token e.g. `SIEM_FIXTURE_OK`; docs pointer in SOAK/PRODUCT  
-3. D5 DNA-only; no CWL fork  
-4. Reply `SECURE_SIEM_FIXTURE` + SHA  
+1. Prove cutover applies non-`default` host from deploy DNA profile (RFC-0023)  
+2. Smoke token; extend cutover-smoke or sibling  
+3. Protect stays DNA-only (D5); no CWL fork  
+4. Reply `SECURE_CUTOVER_MULTIHOST` + SHA  
+
+---
+
+## 2026-08-11 — secure-siem-fixture
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **done** (tip `9af2c0e` / work `7a04388` · `SIEM_FIXTURE_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Generic SIEM_LOG file sink smoke (shadow + enforce); no vendor invent.
 
 ---
 
