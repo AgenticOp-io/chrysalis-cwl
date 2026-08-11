@@ -16,7 +16,7 @@
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(refresh on push)* | BOARD stamp |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 9fac3b9 | BOARD stamp |
 | **Convert** | `candidate/wptp-convert-orbit` | `af72d8ae` | G10127 EXTFMAP residual honesty |
 | **Secure** | `candidate/live-match-step4` | `8f64f13` | Mode B L2 deepen |
 
