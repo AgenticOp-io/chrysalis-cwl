@@ -4,7 +4,7 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-08-11 — convert-l1-honest-peels
+## 2026-08-11 — convert-l1-koa-honesty
 
 **To:** convert  
 **Priority:** P0  
@@ -13,18 +13,56 @@ Pushed asks for siblings. Newest first.
 
 ### Ask
 
-**L1** cheap honest-hole peel inside one **already-closed** secondary (scoreboard L1):
+L1 **Koa** honest-hole peel (Hono G10131 pattern):
 
-1. Pick one closed dialect (e.g. Koa / Hono / Restify / Polka / Elysia pass-through ceiling)  
-2. Add one honest residual deepen + smoke — **no** middleware-onion invent  
-3. Scoreboard + DO-NOT-INVENT line; EXTFMAP untouched  
-4. Reply `CONVERT_L1_HONEST_PEELS` + SHA + which dialect  
+1. Expand Koa residual honesty catalog + smoke  
+2. No middleware-onion invent; keep existing Koa pass-through ceiling  
+3. Scoreboard + DO-NOT-INVENT; EXTFMAP untouched  
+4. Reply `CONVERT_L1_KOA_HONESTY` + SHA  
 
-### Do not
+---
 
-- Invent plugin/onion runtimes  
-- Start a new dialect wave  
-- Edit CWL/Secure  
+## 2026-08-11 — secure-siem-fixture
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.17**
+
+### Ask
+
+**SIEM_LOG fixture smoke** (generic file/log sink — no vendor connector invent):
+
+1. Runnable smoke proving shadow/enforce holes append to SIEM_LOG fixture path  
+2. Token e.g. `SIEM_FIXTURE_OK`; docs pointer in SOAK/PRODUCT  
+3. D5 DNA-only; no CWL fork  
+4. Reply `SECURE_SIEM_FIXTURE` + SHA  
+
+---
+
+## 2026-08-11 — convert-l1-honest-peels
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** (tip `f455ed7b` / work `245ea296` · G10131 Hono `HONO_HONESTY_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Hono L1 honesty peel; refuse middleware/RPC/JSX 20/20.
+
+---
+
+## 2026-08-11 — secure-mode-a-failclosed
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **done** (tip `d6cd4ae` / work `a7c2976` · `MODE_A_FAILCLOSED_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Mode A divert DNA + Helix-down fail-closed + teardown; GCE `NFT_SMOKE_OK` / `GCE_SYNC_OK`.
 
 ---
 

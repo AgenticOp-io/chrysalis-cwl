@@ -2,9 +2,9 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | aa9b44e | dispatch |
-| **Convert** | dispatched next | `b3e2ae02` | open: l1-honest-peels |
-| **Secure** | working | `ba3c886` | mode-a-failclosed Task |
+| **CWL** | coordinating | *(flush)* | dispatch |
+| **Convert** | dispatched | `f455ed7b` | open: l1-koa-honesty |
+| **Secure** | dispatched | `d6cd4ae` | open: siem-fixture |
 
 ```text
 FLEET_MODE: on
