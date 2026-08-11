@@ -2,7 +2,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | invent CLOSED |
+| **CWL** | coordinating | ab56b35 | invent CLOSED |
 | **Convert** | waiting (ops) | `3c6a62e3` | agent invent exhausted · EXTFMAP operator |
 | **Secure** | working | `a6fca96`+ | static-smoke-pack |
 

@@ -14,7 +14,7 @@ CONVERT_AGENT_INVENT: exhausted (EXTFMAP = operator only)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | ab56b35 | coordinator |
 | **Convert** | `candidate/wptp-convert-orbit` | `3c6a62e3` | public-claim **done** · waiting operator EXTFMAP |
 | **Secure** | `candidate/live-match-step4` | `a6fca96`+ | static-smoke **working** |
 
