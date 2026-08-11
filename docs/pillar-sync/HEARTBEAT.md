@@ -2,7 +2,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | *(flush)* | dispatch |
+| **CWL** | coordinating | cfe0a16 | dispatch |
 | **Convert** | dispatched next | `397a0deb` | open: rails-filters-honesty |
 | **Secure** | working | `d26c10a` | soak-preflight Task |
 

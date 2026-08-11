@@ -13,7 +13,7 @@ DISPATCH: task-agents
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | cfe0a16 | coordinator |
 | **Convert** | `candidate/wptp-convert-orbit` | `397a0deb` | G10129 Flutter **done** |
 | **Secure** | `candidate/live-match-step4` | `d26c10a` | soak-preflight **dispatched** |
 
