@@ -43,7 +43,7 @@ Phoenix LiveView honesty residual catalog + `hub:phoenix-liveview-honesty-smoke`
 
 ---
 
-## 2026-08-11 — secure-mode-b-phase2
+## 2026-08-11 — secure-soak-preflight
 
 **To:** secure  
 **Priority:** P1  
@@ -52,25 +52,32 @@ Phoenix LiveView honesty residual catalog + `hub:phoenix-liveview-honesty-smoke`
 
 ### Ask
 
-Mode B **Phase 2** (Phase 1 GCE prove is boring):
+Soak **preflight** (ops path without inventing customer traffic):
 
-1. Docs-first: extend `MODE-B-L2.md` Phase 2 (extra NIC / interface pair; no VM deletes)  
-2. Tiny lab prove if feasible (netns second-veth or documented dual-iface sketch + smoke token)  
-3. Keep helix-bridge DNA worker; reuse Mode A nft patterns; D5 DNA-only protect  
-4. Reply `SECURE_MODE_B_P2` + SHA; then heartbeat waiting for next ask  
+1. Codify SOAK.md gates into a runnable smoke (`soak-preflight-smoke` or extend `ready` prove)  
+2. Prove learn→report→shadow→ready path with **fixture** shadow log (exit 0 / honest fail) — no fake live customers  
+3. Document how operators move to enforce after preflight green  
+4. Reply `SECURE_SOAK_PREFLIGHT` + SHA; heartbeat waiting  
 
 ### Do not
 
-- Delete protected GCE VMs  
-- Fake customer soak traffic  
-- Fork CWL  
+- Fake production soak traffic  
+- Delete GCE VMs  
+- Edit CWL/Convert  
 - Push main  
 
-### Acceptance
+---
 
-- [ ] Phase 2 design landed  
-- [ ] Lab token or honest SKIP with reason  
-- [ ] OUTBOX reply + push candidate  
+## 2026-08-11 — secure-mode-b-phase2
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **done** (Secure OUTBOX `SECURE_MODE_B_P2` · tip `d26c10a` / work `9bc2cd9`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Mode B Phase 2 dual-iface lab + GCE `BRIDGE_L2_P2_*` + `GCE_SYNC_OK`; win32 honest SKIP.
 
 ---
 
