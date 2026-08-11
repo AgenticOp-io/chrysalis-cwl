@@ -2,9 +2,9 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | 97b027c | dispatch |
-| **Convert** | working | `56d0b585` | polka-honesty Task |
-| **Secure** | dispatched | `28b8971` | open: gce-smoke-pack |
+| **CWL** | coordinating | *(flush)* | dispatch |
+| **Convert** | dispatched | `568e76c4` | open: nest-di-honesty |
+| **Secure** | working | `28b8971`+ | gce-smoke.mjs dirty |
 
 ```text
 FLEET_MODE: on

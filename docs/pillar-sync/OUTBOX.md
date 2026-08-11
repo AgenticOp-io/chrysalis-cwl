@@ -4,21 +4,35 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-08-11 — convert-l1-polka-honesty
+## 2026-08-11 — convert-nest-di-honesty
 
 **To:** convert  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.17**
+**CWL tip:** **1.0.17**  
+**Charter:** yes (Nest DI — holes over invent)
 
 ### Ask
 
-L1 **Polka** honest-hole peel (Restify/Elysia/Koa/Hono pattern):
+Nest **DI honesty** catalog (D6442 / DO-NOT-INVENT):
 
-1. Expand Polka residual honesty catalog + smoke  
-2. No plugin/onion invent; keep pass-through ceiling  
+1. Honest residual catalog for Nest DI / modules / providers — no DI runtime invent  
+2. Smoke refusing force-close as Nest DI 20/20; keep existing Nest route-surface gold if any  
 3. Scoreboard + DO-NOT-INVENT; EXTFMAP untouched  
-4. Reply `CONVERT_L1_POLKA_HONESTY` + SHA  
+4. Reply `CONVERT_NEST_DI_HONESTY` + SHA  
+
+---
+
+## 2026-08-11 — convert-l1-polka-honesty
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **done** (tip `568e76c4` / work `6a666d7f` · G10135 `POLKA_HONESTY_OK`)  
+**CWL tip:** **1.0.17**
+
+### Closed
+
+Polka honesty catalog + smoke; pass-through ceiling held.
 
 ---
 
