@@ -4,7 +4,7 @@
 
 | Pillar | Status | Last seen SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | idle | *(flush)* | invent CLOSED — nothing left to build |
+| **CWL** | idle | 01306aa | invent CLOSED — nothing left to build |
 | **Convert** | waiting | `8355f992` | standby ok · EXTFMAP = operator |
 | **Secure** | waiting | `191cd19` | standby ok · Phase 2 only on new ask |
 

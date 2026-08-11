@@ -21,7 +21,7 @@ COMMIT_CADENCE: stopped (was 5m)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | fleet idle |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 01306aa | fleet idle |
 | **Convert** | `candidate/wptp-convert-orbit` | `8355f992` | `CONVERT_STANDBY` waiting |
 | **Secure** | `candidate/live-match-step4` | `191cd19` | `SECURE_STANDBY` waiting |
 
