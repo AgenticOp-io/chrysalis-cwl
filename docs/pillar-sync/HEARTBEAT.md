@@ -2,11 +2,12 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | 8e6d0bb | dispatch |
-| **Convert** | working | `f486a0be` | public-claim Task |
-| **Secure** | dispatched | `a6fca96` | open: static-smoke-pack |
+| **CWL** | coordinating | *(flush)* | invent CLOSED |
+| **Convert** | waiting (ops) | `3c6a62e3` | agent invent exhausted · EXTFMAP operator |
+| **Secure** | working | `a6fca96`+ | static-smoke-pack |
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
+CONVERT_AGENT_INVENT: exhausted
 ```

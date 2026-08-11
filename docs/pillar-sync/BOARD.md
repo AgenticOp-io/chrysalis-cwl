@@ -1,33 +1,35 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · Schema-drift done · static-smoke pack next · public-claim in flight  
+**Updated:** 2026-08-11 · Public claim done · Convert agent invent exhausted · Secure static in flight  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
 DISPATCH: task-agents
+CONVERT_AGENT_INVENT: exhausted (EXTFMAP = operator only)
 ```
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 8e6d0bb | coordinator |
-| **Convert** | `candidate/wptp-convert-orbit` | `f486a0be` | public-claim **dispatched** |
-| **Secure** | `candidate/live-match-step4` | `a6fca96` | schema-drift **done** |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(flush)* | coordinator |
+| **Convert** | `candidate/wptp-convert-orbit` | `3c6a62e3` | public-claim **done** · waiting operator EXTFMAP |
+| **Secure** | `candidate/live-match-step4` | `a6fca96`+ | static-smoke **working** |
 
 ## Who builds next
 
 | Priority | Owner | Work | Ask |
 | --- | --- | --- | --- |
-| **P0** | **Convert** | Public claim (in flight) | `convert-public-claim` |
-| **P1** | **Secure** | Static DNA smoke pack harden | `secure-static-smoke-pack` **open** |
+| **ops** | **Operator / Convert** | EXTFMAP licensed drop or ZD&T ABSENT | EXTFMAP-RESIDUAL.md |
+| **P1** | **Secure** | Static smoke pack (in flight) | `secure-static-smoke-pack` |
+| **—** | **Convert agent** | **No invent dispatch** until operator EXTFMAP or new charter | — |
 
 ## Closed recently
 
 | ID | Note |
 | --- | --- |
-| secure-schema-drift-pack | `a6fca96` / `SCHEMA_DRIFT_SMOKE_OK` |
+| convert-public-claim | `3c6a62e3` / `PUBLIC_CLAIM_OK` |
 | convert-oss-scrub | `f486a0be` |
-| secure-sign-fixture | `a75255b` |
+| secure-schema-drift-pack | `a6fca96` |

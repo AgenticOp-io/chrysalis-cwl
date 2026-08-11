@@ -8,16 +8,13 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done** (tip `3c6a62e3` / work `e9133baf` · `PUBLIC_CLAIM_OK`)  
 **CWL tip:** **1.0.17**
 
-### Ask
+### Closed
 
-**Public engine claim** checklist harden (`PUBLIC-ENGINE-CLAIM.md`):
-
-1. Gate/smoke or checklist prove token (`PUBLIC_CLAIM_OK` or honest gaps listed)  
-2. No invented claims; EXTFMAP residual stays honest open  
-3. Reply `CONVERT_PUBLIC_CLAIM` + SHA  
+Public claim smoke/gate; honest gaps listed (visibility, BFG, brand CTA, EXTFMAP, counsel).  
+**Convert agent invent queue exhausted** — next Convert build needs operator EXTFMAP or a new charter.
 
 ---
 
