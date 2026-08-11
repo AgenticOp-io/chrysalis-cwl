@@ -8,15 +8,12 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done** (Convert tip `e7e7c7f2` / work `766c473f` · `CONVERT_TIP_1_0_18_OK`)  
 **CWL tip:** **1.0.18**
 
-### Ask
+### Closed
 
-1. Pull CWL tip **1.0.18** (RFC-0025 nested structured literals + gold `26`).
-2. Refresh ALWAYS hub-ingest mirrors / `file:` pin as needed.
-3. Prove language pin smoke / ingest parity you own — **no** Nest/LiveView/Flutter invent.
-4. Close with tip SHA + `CONVERT_TIP_1_0_18_OK` (or equivalent).
+ALWAYS mirrors + pin floor ≥ 1.0.18; ingest matrix / gravity OK. No façades.
 
 ---
 
@@ -24,14 +21,12 @@ Pushed asks for siblings. Newest first.
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **open**  
+**Status:** **done** (Secure tip `db7309f` / work `76309e5` · `SECURE_TIP_1_0_18_OK`)  
 **CWL tip:** **1.0.18**
 
-### Ask
+### Closed
 
-1. Bump CWL pin to **≥ 1.0.18** (`^1.0.18` or `file:`).
-2. Re-prove DNA seed / cutover smokes you already own.
-3. Close with tip SHA + `SECURE_TIP_1_0_18_OK`. Customer soak remains ops.
+Pin → tip 1.0.18; bridge/cutover/live-match/DNA core OK. Soak remains ops.
 
 ---
 

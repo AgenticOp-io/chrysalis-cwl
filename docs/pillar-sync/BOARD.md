@@ -1,46 +1,45 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-11 · **tip 1.0.18** — genome deepen reopened (RFC-0025)  
+**Updated:** 2026-08-11 · tip **1.0.18** landed · sibling tip pins **done** · deepen continues  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
 COMMIT_CADENCE: on-ask
-DISPATCH: convert-tip-pin-1.0.18
-CONVERT_AGENT_INVENT: tip-pin only (no façades)
-SECURE_AGENT_PACK: tip-pin + soak ops
+DISPATCH: cwl-data-v2-golds (next)
+CONVERT_AGENT_INVENT: tip pinned (no façades)
+SECURE_AGENT_PACK: tip pinned · soak = ops
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.18`** — Phase 1.x deepen **OPEN** (RFC-0025) |
-| Convert | file: → bump / sync for **1.0.18** |
-| Secure | pin ≥ **1.0.18** · DNA packs green · soak = ops |
+| **CWL tip** | **`1.0.18`** — Phase 1.x deepen **OPEN** |
+| Convert | file: ≡ **1.0.18** |
+| Secure | file: ≡ **1.0.18** · soak = ops |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | 16fc42a | 1.0.18 nested literals |
-| **Convert** | `candidate/wptp-convert-orbit` | `ca3c06de` | lockfile OK · tip pin ask |
-| **Secure** | `candidate/live-match-step4` | `60b875c` | tip pin ask · soak ops |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | `16fc42a` | RFC-0025 · gold `26` |
+| **Convert** | `candidate/wptp-convert-orbit` | `e7e7c7f2` | `CONVERT_TIP_1_0_18_OK` |
+| **Secure** | `candidate/live-match-step4` | `db7309f` | `SECURE_TIP_1_0_18_OK` |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | **Convert** | Tip pin / mirrors for **1.0.18** (OUTBOX `convert-tip-1.0.18`) — no Nest façades |
-| **P1** | **Secure** | Tip pin ≥ **1.0.18** (OUTBOX `secure-tip-1.0.18`) |
-| **P1** | **CWL** | Next deepen: Data v2 load golds (RFC-0013 v2) |
+| **P1** | **CWL** | Data v2 load golds (RFC-0013 v2 redirect/error/cookie) |
 | **ops** | **Operator** | EXTFMAP · customer soak → enforce |
+| **—** | Convert/Secure | Waiting on ops / next CWL tip |
 
-## Closed this wave (sample)
+## Closed this wave
 
 | ID | Note |
 | --- | --- |
-| RFC-0025 nested literals | tip **1.0.18** · gold `26` |
-| convert-runtime-lockfile | `ca3c06de` |
-| cwl-runtime-build | `b176e04` |
+| RFC-0025 | tip **1.0.18** |
+| convert-tip-1.0.18 | `e7e7c7f2` |
+| secure-tip-1.0.18 | `db7309f` |
