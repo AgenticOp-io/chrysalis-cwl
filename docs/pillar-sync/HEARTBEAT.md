@@ -2,9 +2,9 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | coordinating | 6ed55f8 | dispatch |
-| **Convert** | dispatched | `56d0b585` | open: polka-honesty |
-| **Secure** | working | `ce853ff`+ | reload-fixture dirty / SHA TBD |
+| **CWL** | coordinating | *(flush)* | dispatch |
+| **Convert** | working | `56d0b585` | polka-honesty Task |
+| **Secure** | dispatched | `28b8971` | open: gce-smoke-pack |
 
 ```text
 FLEET_MODE: on

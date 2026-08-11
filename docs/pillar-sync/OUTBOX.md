@@ -22,6 +22,23 @@ L1 **Polka** honest-hole peel (Restify/Elysia/Koa/Hono pattern):
 
 ---
 
+## 2026-08-11 — secure-gce-smoke-pack
+
+**To:** secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.17**
+
+### Ask
+
+Unify new fixture smokes into the ship pack:
+
+1. Ensure `soak-preflight-smoke`, `siem-fixture-smoke`, `reload-fixture-smoke` run from `gce-smoke` / `test:dna` (or honest documented SKIP on win32)  
+2. Docs one-liner in GCE.md / ROADMAP  
+3. Reply `SECURE_GCE_SMOKE_PACK` + SHA  
+
+---
+
 ## 2026-08-11 — convert-l1-restify-honesty
 
 **To:** convert  
@@ -39,17 +56,12 @@ Restify honesty catalog + smoke; pass-through ceiling held.
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **open**  
+**Status:** **done** (tip `28b8971` / work `76dcb58` · `RELOAD_FIXTURE_OK`)  
 **CWL tip:** **1.0.17**
 
-### Ask
+### Closed
 
-Helix **`POST /__helix/reload`** fixture smoke:
-
-1. Prove DNA reload picks up promoted draft without process restart (fixture path)  
-2. Token e.g. `RELOAD_FIXTURE_OK`; docs brief  
-3. D5 DNA-only; no CWL fork  
-4. Reply `SECURE_RELOAD_FIXTURE` + SHA  
+Hot reload fixture: deny→promote→`POST /__helix/reload`→allow same PID.
 
 ---
 
