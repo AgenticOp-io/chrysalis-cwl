@@ -429,6 +429,28 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
         '<section><div data-cwl-island="client"><button data-cwl-on-click="ping">Ping</button></div></section>',
     },
   ]),
+  "34-dna-bridge-surfaces": Object.freeze([
+    {
+      path: "/events",
+      expectStatus: 200,
+      expectBody: '{"ok":true,"tick":1}',
+      expectHeaders: { "content-type": "text/event-stream" },
+    },
+    {
+      method: "POST",
+      path: "/upload",
+      expectStatus: 200,
+      expectBody: '{"ok":true}',
+      headers: { "content-type": "application/json" },
+      body: '{"title":"shot","avatar":"a.png"}',
+    },
+    {
+      method: "HEAD",
+      path: "/api/health",
+      expectStatus: 200,
+      expectBody: '{"ok":true}',
+    },
+  ]),
 });
 
 function resolveDepEntry(pkg) {

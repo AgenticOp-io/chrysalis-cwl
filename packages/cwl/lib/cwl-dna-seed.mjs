@@ -128,8 +128,11 @@ function objectEntriesToPlain(body) {
 /**
  * @param {object | null | undefined} body
  * @param {"api"|"page"|string} surfaceKind
+ * @param {{ streamKind?: string | null }} [opts]
  */
-export function contentClassFromBody(body, surfaceKind) {
+export function contentClassFromBody(body, surfaceKind, opts = {}) {
+  // SSE wire is text/event-stream — not certified JSON traffic DNA (RFC-0022 deepen 1.0.24).
+  if (opts.streamKind === "sse") return "other";
   if (body?.kind === "html" || body?.kind === "ui") return "html";
   if (body?.kind === "object") return "json";
   if (body?.kind === "literal" && body.value && typeof body.value === "object" && !Array.isArray(body.value)) {
@@ -268,13 +271,19 @@ export function cwlSurfaceToDraftDna(mod, opts = {}) {
     const path_template = String(r.path || "/");
     const surfaceKind = r.surfaceKind || "api";
     const body = r.body;
+    const streamKind = r.streamKind ?? null;
     const content_class = contentFromCwl
-      ? contentClassFromBody(body, surfaceKind)
+      ? contentClassFromBody(body, surfaceKind, { streamKind })
       : "other";
     const obj = objectEntriesToPlain(body);
     const response_key_fingerprint =
       content_class === "json" && obj ? responseKeyFingerprint(obj) : null;
-    const request_key_fingerprint = namesKeyFingerprint(r.handlerBodyParams);
+    // Union JSON body names with multipart field/file part names (RFC-0026).
+    const request_key_fingerprint = namesKeyFingerprint([
+      ...(Array.isArray(r.handlerBodyParams) ? r.handlerBodyParams : []),
+      ...(Array.isArray(r.handlerMultipartFields) ? r.handlerMultipartFields : []),
+      ...(Array.isArray(r.handlerMultipartFiles) ? r.handlerMultipartFiles : []),
+    ]);
     const query_key_fingerprint = namesKeyFingerprint(r.handlerQueryParams);
 
     /** @type {Record<string, unknown>} */
@@ -292,12 +301,19 @@ export function cwlSurfaceToDraftDna(mod, opts = {}) {
     if (query_key_fingerprint) route.query_key_fingerprint = query_key_fingerprint;
     routes.push(route);
 
-    annotations.push({
+    /** @type {Record<string, unknown>} */
+    const ann = {
       method,
       path_template,
       cwl_surface: surfaceKind === "page" ? "page" : "route",
       cwl_effects: effectsList(r.effects),
-    });
+    };
+    if (streamKind === "sse") ann.cwl_stream = "sse";
+    const mpFields = Array.isArray(r.handlerMultipartFields) ? r.handlerMultipartFields : [];
+    const mpFiles = Array.isArray(r.handlerMultipartFiles) ? r.handlerMultipartFiles : [];
+    if (mpFields.length) ann.cwl_multipart_fields = [...mpFields];
+    if (mpFiles.length) ann.cwl_multipart_files = [...mpFiles];
+    annotations.push(ann);
   }
 
   routes.sort((a, b) => {

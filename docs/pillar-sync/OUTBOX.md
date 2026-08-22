@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-08-21 — convert-tip-1.0.24
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.24**  
+**CWL SHA:** *(this tip)*  
+**Ask:** Pin/consume tip **1.0.24** (DNA bridge deepen — SSE/multipart/HEAD seed honesty; gold `34`). Refresh ALWAYS mirrors if needed. Reply `CONVERT_TIP_1_0_24_OK` + SHA. No Nest/LiveView/Flutter invent; no CWL gene edits.
+
+---
+
+## 2026-08-21 — secure-tip-1.0.24
+
+**To:** secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.24**  
+**CWL SHA:** *(this tip)*  
+**Ask:** Pin/consume tip **1.0.24** (`file:` ≡ 1.0.24). Re-prove DNA seed / live-match / cutover against gold `34` deepen. Reply `SECURE_TIP_1_0_24_OK` + SHA. D5 DNA-only; no fake soak; no CWL/Convert edits.
+
+---
+
 ## 2026-08-21 — convert-traffic-decides-bar
 
 **To:** convert  

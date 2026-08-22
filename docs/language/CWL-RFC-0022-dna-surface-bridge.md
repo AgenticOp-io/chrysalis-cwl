@@ -96,6 +96,7 @@ Effects describe **declared** behavior in CWL. DNA proves **observed** traffic. 
 | --- | --- |
 | `return html …` or `@page` with HTML body | `html` |
 | `return { … }` object literal / JSON body | `json` |
+| `stream sse;` (RFC-0027) | `other` — wire is `text/event-stream`; JSON payload is not certified traffic class |
 | string / opaque / hole-only body | `other` (or omit seed fingerprint) |
 
 Live DNA may **override** after learn (e.g. JSON that returns HTML error pages). Compare of identity uses method+path(+host); content_class drift is a DNA/Helix concern, not a CWL grammar change.
@@ -106,9 +107,18 @@ Live DNA may **override** after learn (e.g. JSON that returns HTML error pages).
 | --- | --- | --- |
 | `status_classes` | If handler declares `status N;`, seed `[floor(N/100)*100]`; else `[]` | Traffic learn may widen |
 | `response_key_fingerprint` | JSON object/literal: sorted key **paths** depth ≤ 2 (`a,b` / `data,data.x`) | Matches Helix `dna-core` `responseKeyFingerprint`; `null` for html/other |
-| `request_key_fingerprint` | Optional: sorted `body` binding names | Omit when none declared |
+| `request_key_fingerprint` | Optional: sorted union of `body` + `multipart field` + `multipart file` names | Omit when none declared |
 | `query_key_fingerprint` | Optional: sorted `query` binding names | Omit when none declared |
 | `mode` / `app_id` / `created_at` / `parent_hash` / `signature` | Profile / Helix | Not derived from CWL syntax |
+
+Bridge envelope annotations (not certified DNA route fields):
+
+| Annotation | From CWL |
+| --- | --- |
+| `cwl_effects` | Declared effects list |
+| `cwl_surface` | `page` vs `route` |
+| `cwl_stream` | `"sse"` when `stream sse;` |
+| `cwl_multipart_fields` / `cwl_multipart_files` | Named multipart part bindings |
 
 ### 5. Path templates
 
@@ -148,8 +158,9 @@ Language helper: `cwlHolesBridgeReport(mod)` in `scripts/hub-ingest/cwl-dna-seed
 | `fixtures/language-gold/24-dna-bridge/deploy-profile.json` | RFC-0023 profile (`hosts.default` + `hosts.api`) |
 | `fixtures/language-gold/24-dna-bridge/deploy-profile-api.json` | Multi-host seed (`host: "api"`) |
 | `fixtures/language-gold/24-dna-bridge/expected-dna-api.json` | Multi-host contract gold |
+| `fixtures/language-gold/34-dna-bridge-surfaces/` | Deepen 1.0.24 — SSE / multipart / HEAD seed honesty |
 
-Gate: `npm run test:cwl-dna-bridge` → `CWL_DNA_BRIDGE_OK` (default + multi-host + holes report).
+Gate: `npm run test:cwl-dna-bridge` → `CWL_DNA_BRIDGE_OK` (default + multi-host + holes report + surfaces deepen).
 
 ## Helix follow-up (blockers / handoff)
 

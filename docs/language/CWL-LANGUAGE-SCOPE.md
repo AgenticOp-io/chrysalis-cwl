@@ -18,9 +18,9 @@ Convert peels may hear PHP, Express, Python, Go, Java, C#, Ruby, Rust, framework
 
 ## What is in the genome (RFCs 0001–0025 (deepen open))
 
-Modeled surfaces: `@route` / `@page`, request/response shapes, effects, modules, UI trees / islands, control (`if` / `foreach`), nested structured literals (RFC-0025), holes, DNA bridge (0022/0023), island **kinds** vocabulary (0024).
+Modeled surfaces: `@route` / `@page`, request/response shapes, effects, modules, UI trees / islands, control (`if` / `foreach`), nested structured literals (RFC-0025), multipart (0026), SSE (0027), named UI islands (0028), holes, DNA bridge (0022/0023 deepen through tip **1.0.24**), island **kinds** vocabulary (0024).
 
-Language golds: `fixtures/language-gold/01`–`26`.
+Language golds: `fixtures/language-gold/01`–`34`.
 
 ## What stays holes / out of scope
 

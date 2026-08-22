@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.24 — 2026-08-21
+
+- RFC-0022 deepen: DNA seed honesty for SSE (`content_class: other` + `cwl_stream`), multipart field/file fingerprints, HEAD identity
+- Gold `34-dna-bridge-surfaces`; gate schemaVersion 4
+- Emit honesty: `27-data-v2` load redirect/error remain catalogued emit holes (not forged reverse)
+- Still forbidden: Nest / LiveView / Flutter façades; WebSocket duplex invent; synthetic soak traffic
+
 ## 1.0.23 — 2026-08-11
 
 - RFC-0028 named client islands + form event contracts; gold `33-ui-island-contracts`
