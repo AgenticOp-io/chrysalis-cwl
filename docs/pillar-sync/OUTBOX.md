@@ -4,6 +4,44 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-08-21 — convert-traffic-decides-bar
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.23**  
+**Program:** [`../history/TRAFFIC-DECIDES-BAR.md`](../history/TRAFFIC-DECIDES-BAR.md)
+
+### Ask
+
+1. Add `hub:traffic-decides-bar-smoke` that **composes** (no façades):
+   - Dispose Plane refuse-without-gate (`hub:dispose-plane-smoke` or import)
+   - Verify-gated apply refuse without confirm + green gate
+   - One real oracle product smoke (PHP flagship / existing green pair)
+2. Emit token **`TRAFFIC_DECIDES_CONVERT_OK`** only when all sub-gates pass.
+3. Doc one paragraph in AI-ASSIST / UT canon pointer: propose ≠ dispose; recorded traffic/oracle decides.
+4. Reply this OUTBOX **done** + SHA. No Nest/LiveView/Flutter invent. No CWL gene edits.
+
+---
+
+## 2026-08-21 — secure-traffic-decides-bar
+
+**To:** secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.23**  
+**Program:** [`../history/TRAFFIC-DECIDES-BAR.md`](../history/TRAFFIC-DECIDES-BAR.md)
+
+### Ask
+
+1. Add `npm run traffic-decides-bar-smoke` composing:
+   - `soak-preflight-smoke` → `SOAK_PREFLIGHT_OK`
+   - `live-match-smoke` → `LIVE_MATCH_OK` (CWL tip ≥ 1.0.23)
+2. Emit **`TRAFFIC_DECIDES_SECURE_OK`**. Doc: bar ≠ customer soak; enforce still needs ops `SHADOW_LOG`.
+3. Reply OUTBOX **done** + SHA. D5 DNA-only default; no fake customer traffic; no CWL/Convert edits.
+
+---
+
 ## 2026-08-11 — try-soak-and-ui
 
 **To:** secure + convert (informational)  
