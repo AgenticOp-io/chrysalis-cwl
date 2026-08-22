@@ -7,9 +7,9 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: convert-traffic-decides-bar · secure-traffic-decides-bar
-CONVERT_AGENT_INVENT: TRAFFIC_DECIDES_CONVERT_OK (dispose + oracle)
-SECURE_AGENT_PACK: TRAFFIC_DECIDES_SECURE_OK (soak-preflight + live-match)
+DISPATCH: convert-traffic-decides-bar
+CONVERT_AGENT_INVENT: TRAFFIC_DECIDES_CONVERT_OK (dispose + oracle) — still open
+SECURE_AGENT_PACK: TRAFFIC_DECIDES_SECURE_OK — done
 ```
 
 ## Tips / pins
@@ -18,24 +18,24 @@ SECURE_AGENT_PACK: TRAFFIC_DECIDES_SECURE_OK (soak-preflight + live-match)
 | --- | --- |
 | **CWL tip** | **`1.0.23`** |
 | Convert | file: ≡ **1.0.23** |
-| Secure | file: ≡ **1.0.23** · soak = ops (customer enforce still ops) |
+| Secure | file: ≡ **1.0.23** · bar smoke green · soak = ops |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(this tip)* | TRAFFIC-DECIDES-BAR program |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | `69554a3` | TRAFFIC-DECIDES-BAR program |
 | **Convert** | `candidate/wptp-convert-orbit` | `26b54df6` | awaiting bar smoke |
-| **Secure** | `candidate/live-match-step4` | `87aa654` | awaiting bar smoke |
+| **Secure** | `candidate/live-match-step4` | `7db986f` | `TRAFFIC_DECIDES_SECURE_OK` |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
 | **P0** | **Convert** | `hub:traffic-decides-bar-smoke` → `TRAFFIC_DECIDES_CONVERT_OK` |
-| **P0** | **Secure** | `traffic-decides-bar-smoke` → `TRAFFIC_DECIDES_SECURE_OK` |
 | **ops** | Operator | EXTFMAP · live customer soak → enforce |
-| **brand** | Site | proof.html bar copy (recorded traffic) |
+| **done** | Secure | traffic-decides-bar-smoke @ `7db986f` |
+| **done** | Brand | proof.html bar on `candidate/traffic-decides-proof` |
 
 ## Honesty (do not force-fill)
 
@@ -46,6 +46,7 @@ No synthetic customer soak traffic.
 
 | ID | Note |
 | --- | --- |
+| secure-traffic-decides-bar | `7db986f` · `TRAFFIC_DECIDES_SECURE_OK` |
 | convert-tip-1.0.23 | `26b54df6` |
 | secure-tip-1.0.23 | `87aa654` |
 | 1.0.23 UI island contracts | `9ecc691` |

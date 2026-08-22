@@ -28,17 +28,13 @@ Pushed asks for siblings. Newest first.
 
 **To:** secure  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done** (Secure tip `7db986f` / work `d7cb765` · `TRAFFIC_DECIDES_SECURE_OK`)  
 **CWL tip:** **1.0.23**  
 **Program:** [`../history/TRAFFIC-DECIDES-BAR.md`](../history/TRAFFIC-DECIDES-BAR.md)
 
-### Ask
+### Closed
 
-1. Add `npm run traffic-decides-bar-smoke` composing:
-   - `soak-preflight-smoke` → `SOAK_PREFLIGHT_OK`
-   - `live-match-smoke` → `LIVE_MATCH_OK` (CWL tip ≥ 1.0.23)
-2. Emit **`TRAFFIC_DECIDES_SECURE_OK`**. Doc: bar ≠ customer soak; enforce still needs ops `SHADOW_LOG`.
-3. Reply OUTBOX **done** + SHA. D5 DNA-only default; no fake customer traffic; no CWL/Convert edits.
+`npm run traffic-decides-bar-smoke` → `SOAK_PREFLIGHT_OK` · `LIVE_MATCH_OK` · `TRAFFIC_DECIDES_SECURE_OK`. Customer soak→enforce remains ops.
 
 ---
 
