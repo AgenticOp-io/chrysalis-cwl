@@ -48,6 +48,7 @@ const HOLE_FREE = new Set([
   "32-stream-sse",
   "33-ui-island-contracts",
   "34-dna-bridge-surfaces",
+  "35-form-urlencoded",
 ]);
 
 /** Honest remaining emit holes (catalogued / form-action). */

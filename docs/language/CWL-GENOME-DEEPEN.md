@@ -1,7 +1,7 @@
 # CWL genome deepen — Phase 1.x
 
 **Status:** active (reopened 2026-08-11)  
-**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.25**  
+**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.26**  
 **Authority:** [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md) · [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) · [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ## Thesis
@@ -26,6 +26,7 @@ Convert still **hears** origin stacks; Secure still **checks** live DNA. Neither
 | **UI islands** | Named `client ui "…"` + form events (`33`, RFC-0028) — done |
 | **DNA bridge** | SSE / multipart / HEAD seed honesty (`34`, RFC-0022 deepen) — done |
 | **Emit reverse** | Load redirect / http.error (`27`) — done (`1.0.25`) |
+| **HTML shell + forms** | Redirect/error shell preserve + urlencoded POST (`35`) — done (`1.0.26`) |
 | **WebSocket duplex** | Kept honest hole (`unsupported:websocket`) |
 | **CWL UI** | Hydration / silent React-Svelte lower remain non-goals |
 | **Holes** | More precise `unsupported:*` / `cwl:*` reasons as peels demand |

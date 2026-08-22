@@ -4,6 +4,55 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-08-21 — convert-tip-1.0.26 + next
+
+**To:** convert  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.26**  
+**CWL SHA:** *(this tip)*
+
+### Ask (tip pin)
+
+1. Pin `file:` ≡ **1.0.26**.
+2. Refresh ALWAYS mirrors if hub-ingest emit/lift/ingest changed (redirect/error HTML shell blocks).
+3. Re-prove pin floor ≥ 1.0.26 + language-pillar (gold `35`) / gravity / ingest.
+4. Reply `CONVERT_TIP_1_0_26_OK` + SHA.
+
+### Standing next (after pin)
+
+| Pri | Work |
+| --- | --- |
+| P1 | Keep `TRAFFIC_DECIDES_CONVERT_OK` |
+| P1 | Peels: urlencoded forms → `use urlencoded` + `body`; redirect/error pages keep HTML shell |
+| — | No Nest / LiveView / Flutter invent |
+
+---
+
+## 2026-08-21 — secure-tip-1.0.26 + next
+
+**To:** secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.26**  
+**CWL SHA:** *(this tip)*
+
+### Ask (tip pin)
+
+1. Pin `file:` ≡ **1.0.26**.
+2. Re-prove DNA / cutover / live-match + `TRAFFIC_DECIDES_SECURE_OK`.
+3. Reply `SECURE_TIP_1_0_26_OK` + SHA.
+
+### Standing next (after pin)
+
+| Pri | Work |
+| --- | --- |
+| P1 | Honor `cwl_stream` / multipart fingerprints in cutover |
+| **ops** | EXTFMAP · customer soak → enforce — operator only |
+| — | D5 DNA-only; no fake soak |
+
+---
+
 ## 2026-08-21 — convert-tip-1.0.25 + next
 
 **To:** convert  

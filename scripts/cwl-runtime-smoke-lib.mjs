@@ -451,6 +451,24 @@ export const RUNTIME_GOLD_CHECKS = Object.freeze({
       expectBody: '{"ok":true}',
     },
   ]),
+  "35-form-urlencoded": Object.freeze([
+    {
+      method: "POST",
+      path: "/signup",
+      expectStatus: 200,
+      expectBody: '{"ok":true,"email":"a@b.co","name":"Ada"}',
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: "email=a%40b.co&name=Ada",
+    },
+    {
+      method: "POST",
+      path: "/login",
+      expectStatus: 200,
+      expectBody: '{"ok":true,"username":"ada"}',
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: "username=ada&password=secret",
+    },
+  ]),
 });
 
 function resolveDepEntry(pkg) {

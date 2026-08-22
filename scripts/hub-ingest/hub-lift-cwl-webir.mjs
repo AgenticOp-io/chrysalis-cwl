@@ -134,6 +134,37 @@ export function lowerHubPageWithLoadAndUiBody(ctx, loadValueId, tree, loc, bindi
 }
 
 /**
+ * Redirect / http.error load with authored HTML shell preserved for emit reverse.
+ * Runtime evaluates effect first and halts (shell is IR-only chrome).
+ * @param {object} ctx
+ * @param {string} effectId
+ * @param {string} html
+ * @param {{ file: string, line?: number }} loc
+ * @param {object} wr
+ * @param {{ path?: string[], query?: string[], load?: string[] } | null} [bindings]
+ * @param {"cwl-load-redirect-html"|"cwl-load-error-html"} provenanceLocator
+ */
+export function lowerHubPageWithEffectAndHtmlBody(
+  ctx,
+  effectId,
+  html,
+  loc,
+  wr,
+  bindings,
+  provenanceLocator,
+) {
+  const { data, webir } = ctx;
+  const origin = hubOrigin(loc.file, loc.line ?? 1);
+  const responseId = lowerHubHtmlPageBody(ctx, html, loc, wr, bindings);
+  return data.block({
+    statements: [effectId, responseId],
+    type: HUB_T.unknown,
+    origin,
+    provenance: [webir.provenance("hub-ingest", provenanceLocator)],
+  });
+}
+
+/**
  * @param {object} ctx
  * @param {string} reason
  * @param {{ file: string, line?: number }} loc

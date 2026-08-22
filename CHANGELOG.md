@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.26 — 2026-08-21
+
+- Ingest preserves authored HTML shell with `load { redirect|error }` (`cwl-load-*-html` blocks); emit recovers exact shell
+- Gold `35-form-urlencoded` — native urlencoded form POST + `body` bindings
+- Still forbidden: Nest / LiveView / Flutter façades; WebSocket duplex invent
+
 ## 1.0.25 — 2026-08-21
 
 - Emit reverse: `effect.redirect` / `effect.http.error` → `load { redirect|error … }` (gold `27-data-v2` hole-free)

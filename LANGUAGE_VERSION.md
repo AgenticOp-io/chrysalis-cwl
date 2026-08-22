@@ -3,18 +3,18 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.25` |
-| **Status** | Genome deepen — emit reverse for load redirect / http.error |
+| **Version** | `1.0.26` |
+| **Status** | Genome deepen — redirect/error HTML shell + urlencoded form POST |
 | **Date** | 2026-08-21 |
 
 ## What this version means
 
 Phase **1.x** deepen continues (no Nest / LiveView / Flutter façades; no origin-PL dialects):
 
-- **Emit reverse** — `effect.redirect` / `effect.http.error` → `load { redirect|error }` (gold `27` hole-free emit)
-- Prior: DNA bridge surfaces (`1.0.24`), UI islands (`1.0.23`), SSE (`1.0.22`), multipart (`1.0.21`)
-- **WebSocket** — remains honest hole (`unsupported:websocket`); duplex not forged
-- Note: redirect/error ingest still drops HTML shell; emit recovers load + empty `return html ""`
+- **HTML shell preserve** — ingest keeps authored `return html` beside `load { redirect|error }` for emit reverse (gold `27` exact shell)
+- **Urlencoded form POST** — gold `35-form-urlencoded` (`use urlencoded;` + `body` bindings)
+- Prior: emit reverse (`1.0.25`), DNA bridge (`1.0.24`), UI islands (`1.0.23`)
+- **WebSocket** — remains honest hole (`unsupported:websocket`)
 
 Queue: [`DNA-BUILD-NEXT.md`](./docs/history/DNA-BUILD-NEXT.md) · [`CWL-GENOME-DEEPEN.md`](./docs/language/CWL-GENOME-DEEPEN.md)
 

@@ -42,6 +42,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `32-stream-sse` | SSE single-shot `stream sse;` | 0027 |
 | `33-ui-island-contracts` | Named client islands + form events | 0028 |
 | `34-dna-bridge-surfaces` | DNA seed deepen — SSE / multipart / HEAD | 0022 |
+| `35-form-urlencoded` | Urlencoded form POST + `body` bindings | 0005 + 0001 |
 
 ## Parseable subset notes (0.1.8)
 

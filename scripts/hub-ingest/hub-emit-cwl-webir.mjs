@@ -174,8 +174,23 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
   if (peeled.loadBody?.kind === "object-ref" && peeled.loadBody.id) {
     const lv = cwlValueOfThin(get, peeled.loadBody.id);
     if (lv.t === "obj" || lv.t === "lit") loadValue = lv;
+  } else if (peeled.loadBody?.kind === "effect-ref" && peeled.loadBody.id) {
+    const ev = cwlValueOfThin(get, peeled.loadBody.id);
+    if (ev.t === "load-redirect") {
+      loadValue = {
+        t: "obj",
+        entries: [{ key: "redirect", value: { t: "lit", value: ev.location } }],
+      };
+    } else if (ev.t === "load-error") {
+      /** @type {Array<{ key: string, value: object }>} */
+      const entries = [{ key: "error", value: { t: "lit", value: ev.status } }];
+      if (typeof ev.message === "string") {
+        entries.push({ key: "message", value: { t: "lit", value: ev.message } });
+      }
+      loadValue = { t: "obj", entries };
+    }
   }
-  // Ingest discards HTML shell for redirect/error loads — recover load + minimal page chrome.
+  // Legacy IR: bare redirect/error as success (pre-1.0.26) — recover load + empty shell.
   if (value.t === "load-redirect") {
     loadValue = {
       t: "obj",

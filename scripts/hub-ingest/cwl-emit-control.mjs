@@ -479,6 +479,19 @@ export function peelCwlControlBody(get, bodyId) {
       continue;
     }
 
+    if (
+      n.dialect === "data" &&
+      n.op === "block" &&
+      (loc === "cwl-load-redirect-html" || loc === "cwl-load-error-html")
+    ) {
+      const ops = n.operands ?? [];
+      // [effect.redirect|http.error, html shell]
+      if (ops[0]) loadBody = { kind: "effect-ref", id: ops[0] };
+      id = ops[1] ?? ops[0];
+      n = get(id);
+      continue;
+    }
+
     break;
   }
 

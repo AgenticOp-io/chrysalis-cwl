@@ -1,7 +1,7 @@
 /**
  * CWL → WebIR ingest (direct; no lossy lift).
  */
-import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lowerHubPageWithLoadBody, lowerHubPageWithLoadAndUiBody } from "./hub-lift-cwl-webir.mjs";
+import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lowerHubPageWithLoadBody, lowerHubPageWithLoadAndUiBody, lowerHubPageWithEffectAndHtmlBody } from "./hub-lift-cwl-webir.mjs";
 import { lowerCwlHtmlTemplateBody } from "./cwl-html-template.mjs";
 import { lowerCwlUiTreeBody, resolveCwlUiComponent } from "./cwl-ui-tree.mjs";
 import { parseCwlModuleResolved, resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";
@@ -269,21 +269,39 @@ export function liftCwlFileToWebir(opts) {
       const errorEntry = r.loadBody.entries.find((e) => e.key === "error");
       if (redirectEntry?.value?.kind === "literal") {
         const locId = lowerHubLiteral(ctx, redirectEntry.value.value, loc);
-        valueId = effect.redirect({
+        const effectId = effect.redirect({
           location: locId,
           origin: hubOrigin(file, r.line ?? 1),
           provenance: [webir.provenance("hub-ingest", "cwl-load-redirect")],
         });
+        valueId = lowerHubPageWithEffectAndHtmlBody(
+          ctx,
+          effectId,
+          r.body.value,
+          loc,
+          wrBuilders,
+          htmlBindings,
+          "cwl-load-redirect-html",
+        );
       } else if (errorEntry?.value?.kind === "literal") {
         const msgEntry = r.loadBody.entries.find((e) => e.key === "message");
         const msgId =
           msgEntry?.value?.kind === "literal" ? lowerHubLiteral(ctx, msgEntry.value.value, loc) : null;
-        valueId = effect.httpError({
+        const effectId = effect.httpError({
           status: Number(errorEntry.value.value),
           message: msgId,
           origin: hubOrigin(file, r.line ?? 1),
           provenance: [webir.provenance("hub-ingest", "cwl-load-error")],
         });
+        valueId = lowerHubPageWithEffectAndHtmlBody(
+          ctx,
+          effectId,
+          r.body.value,
+          loc,
+          wrBuilders,
+          htmlBindings,
+          "cwl-load-error-html",
+        );
       } else {
         const loadValueId = lowerObjectEntriesBody(ctx, r.loadBody.entries, loc);
         valueId = lowerHubPageWithLoadBody(ctx, loadValueId, r.body.value, loc, wrBuilders, htmlBindings);
