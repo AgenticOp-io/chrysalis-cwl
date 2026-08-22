@@ -128,6 +128,27 @@ export function cwlValueOfThin(get, id) {
   if (n.dialect === "data" && n.op === "hole") {
     return { t: "hole", reason: String(n.attrs?.reason ?? "cwl:emit:hole") };
   }
+  // RFC-0013 v2 load redirect / http.error (ingest lowers these as effect nodes)
+  if (n.dialect === "effect" && n.op === "redirect") {
+    const loc = cwlValueOfThin(get, n.operands?.[0]);
+    if (loc.t === "lit" && typeof loc.value === "string") {
+      return { t: "load-redirect", location: loc.value };
+    }
+    return { t: "hole", reason: "cwl:emit:unsupported:effect.redirect" };
+  }
+  if (n.dialect === "effect" && (n.op === "http.error" || n.op === "httpError")) {
+    const status = Number(n.attrs?.status);
+    if (!Number.isFinite(status)) {
+      return { t: "hole", reason: "cwl:emit:unsupported:effect.http.error" };
+    }
+    /** @type {{ t: "load-error", status: number, message?: string }} */
+    const out = { t: "load-error", status };
+    if (n.operands?.[0]) {
+      const msg = cwlValueOfThin(get, n.operands[0]);
+      if (msg.t === "lit" && typeof msg.value === "string") out.message = msg.value;
+    }
+    return out;
+  }
   // Path/query defaults (`??`) project as the binding ident (default emitted on param/query decl)
   if (n.dialect === "data" && (n.op === "binop" || n.op === "binOp") && n.attrs?.operator === "??") {
     return cwlValueOfThin(get, n.operands?.[0]);
@@ -153,6 +174,22 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
   if (peeled.loadBody?.kind === "object-ref" && peeled.loadBody.id) {
     const lv = cwlValueOfThin(get, peeled.loadBody.id);
     if (lv.t === "obj" || lv.t === "lit") loadValue = lv;
+  }
+  // Ingest discards HTML shell for redirect/error loads — recover load + minimal page chrome.
+  if (value.t === "load-redirect") {
+    loadValue = {
+      t: "obj",
+      entries: [{ key: "redirect", value: { t: "lit", value: value.location } }],
+    };
+    value = { t: "html", value: "" };
+  } else if (value.t === "load-error") {
+    /** @type {Array<{ key: string, value: object }>} */
+    const entries = [{ key: "error", value: { t: "lit", value: value.status } }];
+    if (typeof value.message === "string") {
+      entries.push({ key: "message", value: { t: "lit", value: value.message } });
+    }
+    loadValue = { t: "obj", entries };
+    value = { t: "html", value: "" };
   }
   const isPage = value.t === "html" || value.t === "ui" || loadValue != null;
   const hasControl =

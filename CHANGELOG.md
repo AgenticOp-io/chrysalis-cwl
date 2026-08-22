@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.25 — 2026-08-21
+
+- Emit reverse: `effect.redirect` / `effect.http.error` → `load { redirect|error … }` (gold `27-data-v2` hole-free)
+- HTML shell for redirect/error still not preserved at ingest (empty `return html ""` on emit)
+- Still forbidden: Nest / LiveView / Flutter façades; WebSocket duplex invent
+
 ## 1.0.24 — 2026-08-21
 
 - RFC-0022 deepen: DNA seed honesty for SSE (`content_class: other` + `cwl_stream`), multipart field/file fingerprints, HEAD identity

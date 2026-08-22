@@ -41,6 +41,7 @@ const HOLE_FREE = new Set([
   "24-dna-bridge",
   "25-island-kinds",
   "26-nested-literals",
+  "27-data-v2",
   "28-response-cookie",
   "30-effects-executable",
   "31-multipart-binding",
@@ -53,7 +54,6 @@ const HOLE_FREE = new Set([
 const HONEST_HOLES = {
   "11-holes": { min: 1 },
   "21-form-action": { min: 1 },
-  "27-data-v2": { min: 2 }, // load redirect / http.error not reverse-emitted yet
   "29-transport-holes": { min: 1 },
 };
 
