@@ -8,25 +8,21 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip:** **1.0.25**  
-**CWL SHA:** *(this tip)*
+**Status:** **done** (Convert tip `cf5fbd1a` / work `342c4afe` · `CONVERT_TIP_1_0_25_OK`)  
+**CWL tip:** **1.0.25** · SHA `83f4d7e`
 
-### Ask (tip pin)
+### Closed
 
-1. Pin `file:` / package ≡ **1.0.25**.
-2. Refresh ALWAYS mirrors if `hub-emit-cwl-webir.mjs` (or related) differs — emit reverse for load redirect/error landed.
-3. Re-prove pin floor ≥ 1.0.25 + language-pillar / gravity / ingest matrix.
-4. Reply `CONVERT_TIP_1_0_25_OK` + SHA.
+Pin ≡ 1.0.25; gravity / ingest / language-pillar green.
 
-### Next steps (after tip pin)
+### Standing next (Convert)
 
 | Pri | Work |
 | --- | --- |
-| P1 | Keep `hub:traffic-decides-bar-smoke` green on tip (`TRAFFIC_DECIDES_CONVERT_OK`) |
-| P1 | Peel honesty: when origin has redirect/error loads, land CWL `load { redirect\|error }` (not façades) |
-| P2 | Optional: urlencoded form POST peel → CWL gold demand signal |
-| — | **Do not** invent Nest / LiveView / Flutter / onion; no CWL gene edits from Convert |
+| P1 | Keep `hub:traffic-decides-bar-smoke` → `TRAFFIC_DECIDES_CONVERT_OK` |
+| P1 | Peel honesty: redirect/error loads → CWL `load { redirect\|error }` |
+| P2 | Optional urlencoded form POST peel demand |
+| — | No Nest / LiveView / Flutter invent |
 
 ---
 
@@ -34,24 +30,20 @@ Pushed asks for siblings. Newest first.
 
 **To:** secure  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip:** **1.0.25**  
-**CWL SHA:** *(this tip)*
+**Status:** **done** (Secure tip `67fd171` / work `712b189` · `SECURE_TIP_1_0_25_OK`)  
+**CWL tip:** **1.0.25** · SHA `83f4d7e`
 
-### Ask (tip pin)
+### Closed
 
-1. Pin `file:` ≡ **1.0.25**.
-2. Re-prove DNA seed / cutover / live-match (SSE/multipart fingerprints from **1.0.24** still apply).
-3. Keep `traffic-decides-bar-smoke` → `TRAFFIC_DECIDES_SECURE_OK`.
-4. Reply `SECURE_TIP_1_0_25_OK` + SHA.
+Pin ≡ 1.0.25; cutover / live-match / traffic-decides-secure green.
 
-### Next steps (after tip pin)
+### Standing next (Secure)
 
 | Pri | Work |
 | --- | --- |
-| P1 | Cutover compare must honor bridge annotations `cwl_stream` / multipart fingerprints when present |
-| **ops** | EXTFMAP (z/OS or ABSENT) · live customer soak → enforce (`SHADOW_LOG`) — **operator only** |
-| — | D5 DNA-only; no fake soak traffic; no CWL/Convert edits |
+| P1 | Honor bridge `cwl_stream` / multipart fingerprints in cutover when present |
+| **ops** | EXTFMAP · customer soak → enforce (`SHADOW_LOG`) — operator only |
+| — | D5 DNA-only; no fake soak |
 
 ---
 

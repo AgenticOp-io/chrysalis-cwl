@@ -1,42 +1,42 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-21 · tip **1.0.25** · tip-pin asks **open** · PRs to main requested  
+**Updated:** 2026-08-21 · tip **1.0.25** · tip pins **closed** · merge via PR (no agent push to main)  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: no
-DISPATCH: convert-tip-1.0.25 · secure-tip-1.0.25
-CONVERT_NEXT: pin 1.0.25 + keep traffic-decides-bar; honest redirect/error peels
-SECURE_NEXT: pin 1.0.25 + keep traffic-decides-bar; ops soak residual
+CWL_FLEET_IDLE: yes
+DISPATCH: standing sibling next (see OUTBOX) · ops soak residual · human merge PRs→main
+CONVERT_NEXT: traffic-decides keep-green · honest redirect/error peels
+SECURE_NEXT: bridge annotation honor · ops EXTFMAP/soak
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.25`** — emit reverse load redirect/error |
-| Convert | tip pin **open** (was ≡ 1.0.24) |
-| Secure | tip pin **open** (was ≡ 1.0.24) · soak = ops |
+| **CWL tip** | **`1.0.25`** |
+| Convert | file: ≡ **1.0.25** |
+| Secure | file: ≡ **1.0.25** · soak = ops |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(this tip)* | 1.0.25 |
-| **Convert** | `candidate/wptp-convert-orbit` | `74133d97` | awaiting 1.0.25 pin |
-| **Secure** | `candidate/live-match-step4` | `6f6f3dd` | awaiting 1.0.25 pin |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | `83f4d7e` | tip 1.0.25 |
+| **Convert** | `candidate/wptp-convert-orbit` | `cf5fbd1a` | `CONVERT_TIP_1_0_25_OK` |
+| **Secure** | `candidate/live-match-step4` | `67fd171` | `SECURE_TIP_1_0_25_OK` |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | **Convert** | tip **1.0.25** → `CONVERT_TIP_1_0_25_OK` + next steps in OUTBOX |
-| **P0** | **Secure** | tip **1.0.25** → `SECURE_TIP_1_0_25_OK` + next steps in OUTBOX |
+| **standing** | Convert | keep traffic-decides-bar; honest redirect/error peels |
+| **standing** | Secure | honor `cwl_stream`/multipart in cutover; ops soak |
 | **ops** | Operator | EXTFMAP · live customer soak → enforce |
-| **human** | Merge | PR candidate → **main** (agents do not push main) |
-| **done** | CWL | 1.0.24 DNA bridge · 1.0.25 emit reverse |
+| **human** | Merge | PRs candidate → **main** |
+| **done** | All | tip 1.0.25 pins |
 
 ## Honesty (do not force-fill)
 
@@ -47,9 +47,10 @@ No synthetic customer soak traffic.
 
 | ID | Note |
 | --- | --- |
+| convert-tip-1.0.25 | `cf5fbd1a` |
+| secure-tip-1.0.25 | `67fd171` |
+| 1.0.25 emit reverse | `83f4d7e` |
 | convert-tip-1.0.24 | `74133d97` |
 | secure-tip-1.0.24 | `6f6f3dd` |
-| 1.0.24 DNA bridge surfaces | gold `34` |
-| convert-traffic-decides-bar | `5d9c39b4` |
-| secure-traffic-decides-bar | `7db986f` |
+| traffic-decides agent bar | Convert + Secure |
 | WebSocket | kept hole |
