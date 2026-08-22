@@ -1,42 +1,41 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-08-21 · tip **1.0.24** · DNA bridge deepen shipped  
+**Updated:** 2026-08-21 · tip **1.0.24** · tip pins **closed**  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
-**Program:** [`../history/TRAFFIC-DECIDES-BAR.md`](../history/TRAFFIC-DECIDES-BAR.md) · [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
+**Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: no
-DISPATCH: convert-tip-1.0.24 · secure-tip-1.0.24
-CONVERT_AGENT_INVENT: pin 1.0.24
-SECURE_AGENT_PACK: pin 1.0.24
+CWL_FLEET_IDLE: yes
+DISPATCH: ops-only (EXTFMAP · customer soak→enforce) · optional emit-reverse-27
+CONVERT_AGENT_INVENT: tip 1.0.24 — done
+SECURE_AGENT_PACK: tip 1.0.24 — done
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.24`** — DNA bridge SSE/multipart/HEAD |
-| Convert | pin ask **open** (was ≡ 1.0.23) |
-| Secure | pin ask **open** (was ≡ 1.0.23) · soak = ops |
+| **CWL tip** | **`1.0.24`** |
+| Convert | file: ≡ **1.0.24** |
+| Secure | file: ≡ **1.0.24** · soak = ops |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | *(this tip)* | 1.0.24 |
-| **Convert** | `candidate/wptp-convert-orbit` | `5d9c39b4` | awaiting tip pin |
-| **Secure** | `candidate/live-match-step4` | `7db986f` | awaiting tip pin |
+| **CWL** | `candidate/cwl-ingest-matrix-comment-fix` | `5982a9b` | tip 1.0.24 |
+| **Convert** | `candidate/wptp-convert-orbit` | `74133d97` | `CONVERT_TIP_1_0_24_OK` |
+| **Secure** | `candidate/live-match-step4` | `6f6f3dd` | `SECURE_TIP_1_0_24_OK` |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | **Convert** | tip pin **1.0.24** → `CONVERT_TIP_1_0_24_OK` |
-| **P0** | **Secure** | tip pin **1.0.24** → `SECURE_TIP_1_0_24_OK` |
 | **ops** | Operator | EXTFMAP · live customer soak → enforce |
-| **done** | CWL | DNA bridge deepen gold `34` |
-| **done** | Convert/Secure | traffic-decides agent bar |
+| **P2** | CWL | emit reverse for `27` load redirect / http.error |
+| **P2** | CWL | urlencoded form POST gold (if peel demand) |
+| **done** | CWL / Convert / Secure | 1.0.24 tip + traffic-decides agent bar |
 
 ## Honesty (do not force-fill)
 
@@ -48,9 +47,9 @@ No synthetic customer soak traffic.
 
 | ID | Note |
 | --- | --- |
-| convert-traffic-decides-bar | `5d9c39b4` · `TRAFFIC_DECIDES_CONVERT_OK` |
-| secure-traffic-decides-bar | `7db986f` · `TRAFFIC_DECIDES_SECURE_OK` |
-| 1.0.24 DNA bridge surfaces | gold `34` |
-| convert-tip-1.0.23 | `26b54df6` |
-| secure-tip-1.0.23 | `87aa654` |
+| convert-tip-1.0.24 | `74133d97` |
+| secure-tip-1.0.24 | `6f6f3dd` |
+| 1.0.24 DNA bridge surfaces | `5982a9b` · gold `34` |
+| convert-traffic-decides-bar | `5d9c39b4` |
+| secure-traffic-decides-bar | `7db986f` |
 | WebSocket | kept hole |

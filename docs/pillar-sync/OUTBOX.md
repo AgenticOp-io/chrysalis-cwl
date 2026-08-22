@@ -8,10 +8,12 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip:** **1.0.24**  
-**CWL SHA:** *(this tip)*  
-**Ask:** Pin/consume tip **1.0.24** (DNA bridge deepen — SSE/multipart/HEAD seed honesty; gold `34`). Refresh ALWAYS mirrors if needed. Reply `CONVERT_TIP_1_0_24_OK` + SHA. No Nest/LiveView/Flutter invent; no CWL gene edits.
+**Status:** **done** (Convert tip `74133d97` / work `63b9bd59` · `CONVERT_TIP_1_0_24_OK`)  
+**CWL tip:** **1.0.24** · SHA `5982a9b`
+
+### Closed
+
+Pin ≡ 1.0.24; gold `34` in language-pillar smoke; gravity + ingest/runtime matrices green.
 
 ---
 
@@ -19,10 +21,12 @@ Pushed asks for siblings. Newest first.
 
 **To:** secure  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip:** **1.0.24**  
-**CWL SHA:** *(this tip)*  
-**Ask:** Pin/consume tip **1.0.24** (`file:` ≡ 1.0.24). Re-prove DNA seed / live-match / cutover against gold `34` deepen. Reply `SECURE_TIP_1_0_24_OK` + SHA. D5 DNA-only; no fake soak; no CWL/Convert edits.
+**Status:** **done** (Secure tip `6f6f3dd` / work `10f5964` · `SECURE_TIP_1_0_24_OK`)  
+**CWL tip:** **1.0.24** · SHA `5982a9b`
+
+### Closed
+
+Pin ≡ 1.0.24; cutover / live-match / traffic-decides-secure green. Soak remains ops.
 
 ---
 
