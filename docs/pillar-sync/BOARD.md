@@ -35,7 +35,7 @@ SECURE_NEXT: bridge annotation honor · ops EXTFMAP/soak
 | **standing** | Convert | keep traffic-decides-bar; honest redirect/error peels |
 | **standing** | Secure | honor `cwl_stream`/multipart in cutover; ops soak |
 | **ops** | Operator | EXTFMAP · live customer soak → enforce |
-| **human** | Merge | PRs candidate → **main** |
+| **human** | Merge | [CWL #1](https://github.com/AgenticOp-io/chrysalis-cwl/pull/1) · [Convert #67](https://github.com/AgenticOp-io/chrysalis/pull/67) · [Secure #12](https://github.com/AgenticOp-io/chrysalis-security/pull/12) |
 | **done** | All | tip 1.0.25 pins |
 
 ## Honesty (do not force-fill)
