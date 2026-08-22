@@ -8,23 +8,19 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip:** **1.0.26**  
-**CWL SHA:** *(this tip)*
+**Status:** **done** (Convert tip `5844a00f` / work `b437daf6` · `CONVERT_TIP_1_0_26_OK`)  
+**CWL tip:** **1.0.26** · SHA `9fe485a`
 
-### Ask (tip pin)
+### Closed
 
-1. Pin `file:` ≡ **1.0.26**.
-2. Refresh ALWAYS mirrors if hub-ingest emit/lift/ingest changed (redirect/error HTML shell blocks).
-3. Re-prove pin floor ≥ 1.0.26 + language-pillar (gold `35`) / gravity / ingest.
-4. Reply `CONVERT_TIP_1_0_26_OK` + SHA.
+Pin ≡ 1.0.26; gold `35` in language-pillar; gravity + ingest green.
 
-### Standing next (after pin)
+### Standing next (Convert)
 
 | Pri | Work |
 | --- | --- |
 | P1 | Keep `TRAFFIC_DECIDES_CONVERT_OK` |
-| P1 | Peels: urlencoded forms → `use urlencoded` + `body`; redirect/error pages keep HTML shell |
+| P1 | Peels: urlencoded forms + redirect/error HTML shells |
 | — | No Nest / LiveView / Flutter invent |
 
 ---
@@ -33,17 +29,14 @@ Pushed asks for siblings. Newest first.
 
 **To:** secure  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip:** **1.0.26**  
-**CWL SHA:** *(this tip)*
+**Status:** **done** (Secure tip `1be6670` / work `f20f070` · `SECURE_TIP_1_0_26_OK`)  
+**CWL tip:** **1.0.26** · SHA `9fe485a`
 
-### Ask (tip pin)
+### Closed
 
-1. Pin `file:` ≡ **1.0.26**.
-2. Re-prove DNA / cutover / live-match + `TRAFFIC_DECIDES_SECURE_OK`.
-3. Reply `SECURE_TIP_1_0_26_OK` + SHA.
+Pin ≡ 1.0.26; cutover / live-match / traffic-decides-secure green.
 
-### Standing next (after pin)
+### Standing next (Secure)
 
 | Pri | Work |
 | --- | --- |
