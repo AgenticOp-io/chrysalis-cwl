@@ -8,19 +8,13 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done** (Convert tip `5d9c39b4` / work `d85dde6d` · `TRAFFIC_DECIDES_CONVERT_OK`)  
 **CWL tip:** **1.0.23**  
 **Program:** [`../history/TRAFFIC-DECIDES-BAR.md`](../history/TRAFFIC-DECIDES-BAR.md)
 
-### Ask
+### Closed
 
-1. Add `hub:traffic-decides-bar-smoke` that **composes** (no façades):
-   - Dispose Plane refuse-without-gate (`hub:dispose-plane-smoke` or import)
-   - Verify-gated apply refuse without confirm + green gate
-   - One real oracle product smoke (PHP flagship / existing green pair)
-2. Emit token **`TRAFFIC_DECIDES_CONVERT_OK`** only when all sub-gates pass.
-3. Doc one paragraph in AI-ASSIST / UT canon pointer: propose ≠ dispose; recorded traffic/oracle decides.
-4. Reply this OUTBOX **done** + SHA. No Nest/LiveView/Flutter invent. No CWL gene edits.
+`pnpm run hub:traffic-decides-bar-smoke` → dispose + verify-gated apply + `verify:flagship` oracle → `TRAFFIC_DECIDES_CONVERT_OK`.
 
 ---
 
