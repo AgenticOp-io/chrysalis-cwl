@@ -4,6 +4,19 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-03 — public-pillars (informational)
+
+**To:** convert + secure  
+**Priority:** —  
+**Status:** **done** (GitHub visibility flip)  
+**CWL tip:** **1.0.26**
+
+### Note
+
+`AgenticOp-io/chrysalis-cwl`, `AgenticOp-io/chrysalis`, and `AgenticOp-io/chrysalis-security` are **public**. Update any “private repo” copy in sibling docs. Public npm still not default — Packages / `file:` pins. Do not commit counsel/patent drafts without clearance.
+
+---
+
 ## 2026-08-21 — convert-tip-1.0.26 + next
 
 **To:** convert  

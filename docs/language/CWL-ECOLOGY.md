@@ -1,8 +1,8 @@
 # CWL ecology outside AgenticOps
 
-**Status:** bootstrap (Exit 1.0) — private registry + private editor; not Marketplace / public npm  
-**Package:** tip `@agenticop-io/cwl@1.0.17` on GitHub Packages (lineage from `1.0.0`)  
-**Editor:** `editors/vscode` → private VSIX (`npm run pack:cwl-vsix`)
+**Status:** bootstrap (Exit 1.0) — public GitHub pillars; GitHub Packages / `file:` pin; local VSIX (not Marketplace / public npm by default)  
+**Package:** tip `@agenticop-io/cwl` / `@chrysalis/cwl` ≡ **1.0.26** (Packages lineage from `1.0.0`; siblings often `file:`)  
+**Editor:** `editors/vscode` → VSIX (`npm run pack:cwl-vsix`)
 
 Ecology outside the AgenticOps monorepo starts here: a versioned language artifact + installable editor support that do **not** require Convert or Secure checkouts.
 
@@ -39,16 +39,17 @@ npm run pack:cwl-vsix
 
 Install: Extensions → `Install from VSIX…` (or `code --install-extension dist-editors/cwl-lsp-1.0.17.vsix`).
 
-Extension spawns `scripts/cwl-lsp-server.mjs` from the chrysalis-cwl checkout above `editors/vscode`. For a machine without the full pillar, clone this private repo (or set path in extension settings when added).
+Extension spawns `scripts/cwl-lsp-server.mjs` from the chrysalis-cwl checkout above `editors/vscode`. For a machine without the full pillar, clone this public repo (or set path in extension settings when added).
 
-**Not** on VS Code Marketplace while pillars are private.
+**Not** on VS Code Marketplace by default (local VSIX).
+
 
 ## 3. Minimal outsider loop (no Convert)
 
 1. Install `@agenticop-io/cwl@1.0.0`
 2. Author `.cwl` with holes for unknowns
 3. `cwl check` / `cwl fmt`
-4. Optional: private VSIX for diagnostics / completion / same-file rename
+4. Optional: local VSIX for diagnostics / completion / same-file rename
 
 WebIR ingest/emit and UT peels remain Convert-owned. Secure DNA cutover remains Secure-owned.
 
@@ -56,10 +57,11 @@ WebIR ingest/emit and UT peels remain Convert-owned. Secure DNA cutover remains 
 
 | Have | Do not claim |
 | --- | --- |
-| Private GH Packages gene | Public npm |
-| Private VSIX | Marketplace listing |
+| Public GitHub pillars + GH Packages gene | Public npm by default |
+| Local VSIX | Marketplace listing |
 | Stdio LSP (completion + rename v0) | Full IDE / cross-file rename |
 | RFCs + language golds in this repo | Convert peel gravity finished |
+| Tip **1.0.26** deepen | Framework façades (Nest / LiveView / Flutter) |
 
 ## Related
 

@@ -3,7 +3,9 @@
 **Status:** **Published** — `@agenticop-io/cwl@1.0.0`+ (tip **`1.0.17`**) on GitHub Packages  
 **CWL Exit/DNA queue:** **CLOSED** — [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md) · [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md)  
 **Registry:** GitHub Packages only (`https://npm.pkg.github.com`) — **not** public npm  
-**Repos:** remain private ([`PRIVATE-PILLARS.md`](./PRIVATE-PILLARS.md))
+**REPOS:** public ([`PRIVATE-PILLARS.md`](./PRIVATE-PILLARS.md))  
+**Tip language:** **1.0.26**
+
 
 ## What 1.0.0 is
 

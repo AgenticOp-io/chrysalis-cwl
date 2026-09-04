@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## Docs / ops — 2026-09-03
+
+- Pillar GitHub repos flipped **public** (`chrysalis-cwl`, `chrysalis`, `chrysalis-security`) — see [`PRIVATE-PILLARS.md`](./docs/history/PRIVATE-PILLARS.md)
+- Tip remains **1.0.26** (redirect/error HTML shell + urlencoded form gold)
+
 ## 1.0.26 — 2026-08-21
 
 - Ingest preserves authored HTML shell with `load { redirect|error }` (`cwl-load-*-html` blocks); emit recovers exact shell

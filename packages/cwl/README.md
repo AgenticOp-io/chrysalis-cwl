@@ -2,7 +2,7 @@
 
 **Package:** `@chrysalis/cwl`  
 **Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `1.0.17`)  
-**Status:** Exit 1.0 lineage — packable for **GitHub Packages** (`publishConfig` restricted). Repos stay private. Not public npm.
+**Status:** Exit 1.0 lineage — packable for **GitHub Packages** (`publishConfig` restricted). GitHub repos are **public**; package install still prefers Packages / `file:` — not public npm by default.
 
 ## Purpose
 

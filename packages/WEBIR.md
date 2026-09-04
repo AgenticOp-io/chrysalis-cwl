@@ -2,7 +2,7 @@
 
 **Canonical home:** this language pillar (`chrysalis-cwl`) — physical `packages/webir`.  
 **Convert:** reverse-homed (junction + `file:` → here) — verified ([`WEBIR-FLIP-REQUESTED.md`](../docs/history/WEBIR-FLIP-REQUESTED.md)).  
-**Policy:** one WebIR SoR. CWL does not ship a fork. Pillars remain private.
+**Policy:** one WebIR SoR. CWL does not ship a fork. Pillar GitHub repos are public (see `PRIVATE-PILLARS.md`).
 
 ## Why here
 

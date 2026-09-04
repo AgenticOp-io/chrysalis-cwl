@@ -16,10 +16,11 @@
 | `docs/language/CWL-PUBLISH.md` | GitHub Packages `@agenticop-io/cwl` + Convert/Secure pin |
 | `docs/language/CWL-CLI.md` | Authoring CLI (`parse` / `print` / `fmt` / `diagnose` / `check` / `emit-check`) |
 | `docs/language/CWL.md` | Language reference |
-| `docs/language/CWL-RFC.md` | RFC index (0001–0024) |
+| `docs/language/CWL-RFC.md` | RFC index (0001–0028) |
 | `docs/language/CWL-SURFACE-TAXONOMY.md` | Named surfaces |
-| `docs/history/DNA-BUILD-NEXT.md` | DNA queue **CLOSED** — sibling waits only |
-| `docs/history/ROADMAP.md` | Phased plan (Exit 1.0 CWL-side complete) |
+| `docs/history/DNA-BUILD-NEXT.md` | Phase 1.x genome deepen queue (tip **1.0.26**) |
+| `docs/history/ROADMAP.md` | Phased plan (Exit 1.0 CWL-side complete; deepen open) |
+| `docs/history/PRIVATE-PILLARS.md` | GitHub visibility (public as of 2026-09-03) |
 | `fixtures/language-gold/` | Golden `.cwl` fixtures |
 | `packages/cwl` | Language package surface |
 | `packages/runtime-cwl*` | Runtimes |
