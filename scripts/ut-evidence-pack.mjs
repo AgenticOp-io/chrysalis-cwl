@@ -75,10 +75,17 @@ steps.push({
 
 const ok = steps.every((s) => s.ok);
 const generatedAt = new Date().toISOString();
-const version = existsSync(join(ROOT, "LANGUAGE_VERSION.md"))
-  ? readFileSync(join(ROOT, "LANGUAGE_VERSION.md"), "utf8").match(/^\s*(\d+\.\d+\.\d+)/m)?.[1] ||
-    "unknown"
-  : "unknown";
+function readLanguageVersion() {
+  const path = join(ROOT, "LANGUAGE_VERSION.md");
+  if (!existsSync(path)) return "unknown";
+  const md = readFileSync(path, "utf8");
+  // Table form: | **Version** | `1.0.14` |
+  const table = md.match(/\|\s*\*\*Version\*\*\s*\|\s*`([^`]+)`/);
+  if (table) return table[1];
+  const bare = md.match(/^\s*(\d+\.\d+\.\d+)/m);
+  return bare?.[1] || "unknown";
+}
+const version = readLanguageVersion();
 
 const evidence = {
   kind: "chrysalis.cwl.ut-evidence",

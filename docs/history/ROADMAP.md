@@ -1,7 +1,7 @@
 # CWL pillar roadmap
 
-**North star:** [`docs/language/CWL-PILLAR-HOME.md`](../language/CWL-PILLAR-HOME.md)  
-CWL is **THE language of the web**. Convert and Secure pull; they do not own the grammar.
+**North star:** [`docs/language/CWL-PILLAR-HOME.md`](../language/CWL-PILLAR-HOME.md) · [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
+CWL is the **DNA of the web** (Rosetta meaning). Convert is the Universal Translator; Secure checks live DNA. They pull; they do not own the grammar.
 
 ---
 
@@ -47,16 +47,16 @@ CWL is **THE language of the web**. Convert and Secure pull; they do not own the
 
 **Plan:** [`WEBIR-EXTRACT-PLAN.md`](./WEBIR-EXTRACT-PLAN.md) · home story: [`packages/WEBIR.md`](../../packages/WEBIR.md)
 
-- [x] **Ownership (homeable):** `@chrysalis/webir` resolves from this pillar via `packages/webir` junction + `load-webir.mjs` (`npm run link:webir` / `npm run smoke:webir`) — no convert `cwd` hack for resolve; committed story in `packages/WEBIR.md`
+- [x] **Ownership (homeable → physical):** `@chrysalis/webir` lives in `packages/webir` (`npm run build:webir` / `smoke:webir`); story in `packages/WEBIR.md`
 - [x] **Partial (Agent G):** CWL WebIR helpers in-pillar — `hub-t.mjs`, `hub-cwl-{middleware,auth-presets,effects}.mjs`, `cwlPathParamsForWebir` (no hub-lift); synced via `CWL_WEBIR_HELPERS`
 - [x] **Partial (Agent H):** thin `hub-lift-cwl-webir.mjs` (CWL-only; no COBOL/fat lift); `cwl-ingest` + `export-cwl-webir` use local helpers/`load-webir`; `npm run smoke:cwl-ingest` green on `01-literals`
 - [x] **Partial (Agent I):** `test:ingest` (= `smoke:cwl-ingest`) + `01-literals/expected-webir.json`; `test:language` stays WebIR-free; optional `test:language:full`
 - [x] **Partial (Agent J / Slice 4):** thin `hub-emit-cwl-webir.mjs` WebIR→CWL; `npm run smoke:cwl-emit` + `test:ingest-roundtrip` on `01-literals`; pillar `cwl-fmt` stays parse→print (dual-mode deferred)
-- [x] **Ingest matrix:** `01-literals` + `02-path-params` + `24-dna-bridge` goldens (`npm run smoke:cwl-ingest-matrix`)
+- [x] **Ingest matrix:** all `language-gold/*/routes.cwl` + `expected-webir.json` (`npm run smoke:cwl-ingest-matrix`)
 - [x] **UT evidence pack:** `npm run smoke:ut-evidence` → `reports/ut-spine/EVIDENCE.md`
-- [ ] **Convert flip:** physical tree in chrysalis-cwl; convert `packages/webir` → cwl (deferred — unsafe for convert pnpm until Slice 3 checklist; see plan)
-- [ ] Dual-mode `cwl-fmt` (explicit with convert; do not overwrite convert WebIR fmt)
-- [ ] Convert depends on shared webir package (not a private fork)
+- [x] **Convert reverse-home:** Convert `packages/webir` → junction/`file:` at CWL — verified ([`WEBIR-FLIP-REQUESTED.md`](./WEBIR-FLIP-REQUESTED.md))
+- [x] Dual-mode `cwl-fmt` (default parse→print; `--webir` thin emit reverse; convert WebIR fmt untouched)
+- [x] Convert depends on shared webir via reverse pin (junction + `file:`)
 
 **Exit 0.3:** Parse, print, ingest, and at least one WebIR round-trip path runnable from `chrysalis-cwl` alone.  
 **Round-trip path (met):** `smoke:cwl-emit` / `test:ingest-roundtrip` from this pillar with linked `@chrysalis/webir`.
@@ -82,22 +82,49 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 - [x] Fixture pair: minimal `.cwl` + expected DNA shape (no firewall code here) (`fixtures/language-gold/24-dna-bridge/`)
 - [x] Secure consumes mapping; does not fork grammar (`cwl-dna-seed` in CWL; Helix CLI seeds via sibling import)
 - [x] UT spine + evidence pack (`smoke:ut-spine` / `smoke:ut-evidence`) — Convert consumes via `hub:cwl-helix-cutover-smoke` only
+- [x] RFC-0023 deploy/DNA profiles + gold profile on `24-dna-bridge`
+- [x] RFC-0024 island kinds vocabulary + `25-island-kinds`
+- [x] **Secure cutover default** = live DNA vs CWL surface — verified ([SECURE-CUTOVER-REQUESTED.md](./SECURE-CUTOVER-REQUESTED.md)); protect stays DNA-only
 
 **Exit 0.5:** Documented, fixture-backed bridge contract; Helix owns enforcement.
 
 ---
 
-## Phase 1.0 — Published language
+## Phase 0.6 — Private-first authoring (DNA gravity)
 
-- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (`0.1.7`) — metadata only; package stays `"private": true`
-- [x] Pre-publish pin path documented: sibling workspace / `file:` / env `CHRYSALIS_CWL_ROOT` ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
-- [x] Convert + Secure **`file:` pin** `@chrysalis/cwl` (`npm run test:cwl-pin`)
-- [ ] npm (or private registry) package version ≡ `LANGUAGE_VERSION.md` (**actual publish — still open**)
-- [ ] Convert pins a **registry** CWL release (today: `file:` + junctions)
-- [ ] Secure pins a **registry** CWL release (today: `file:` + sibling / env)
+- [x] Pillar GitHub repos private ([`PRIVATE-PILLARS.md`](./PRIVATE-PILLARS.md))
+- [x] Diagnose → LSP map + `test:cwl-lsp-map` ([`DNA-EVOLUTION-0.1.9.md`](./DNA-EVOLUTION-0.1.9.md))
+- [x] Editor push-diagnostics + format DocumentProvider (`editors/vscode`)
+- [x] CLI `--stdin` for unsaved buffers
+- [x] Minimal stdio Language Server (`cwl-lsp-server.mjs` + `test:cwl-lsp-server`) — diagnose/fmt/cheap hover + completion v0 + column ranges v1 + token end columns v1 + definition v0 + rename v0 ([`CWL-LSP.md`](../language/CWL-LSP.md), 0.1.14)
+- [x] Runtime matrix + line/column diagnose ranges (0.1.12); token end columns (**0.1.14**) ([`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md))
+- [x] Package diagnose/lsp-map exports (`0.1.13`); parser + print exports (**0.1.14**) + `test:cwl-package-exports`
+- [x] Same-file LSP rename (`textDocument/rename` + `prepareRename`) — tip `0b824de` / `0.1.13`
+
+**Exit 0.6:** Authors get live diagnostics/fmt inside the private pillar without Convert.  
+**Exit met** — LSP rename + package exports close near-term authoring gravity. Historical: [`DNA-CWL-NEAR-COMPLETE.md`](./DNA-CWL-NEAR-COMPLETE.md). Queue: [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) (**Phase 1.x deepen OPEN**).
+
+---
+
+## Phase 1.0 — Published language (private registry)
+
+- [x] `@chrysalis/cwl` `"version"` ≡ `LANGUAGE_VERSION.md` (tip **`1.0.18`**)
+- [x] Packable artifact: staged `lib/` + `bin/cwl` + GitHub Packages `publishConfig` ([`EXIT-1.0.md`](./EXIT-1.0.md))
+- [x] Pre-publish pin path documented: sibling / `file:` / env ([`CWL-PUBLISH.md`](../language/CWL-PUBLISH.md))
+- [x] Convert + Secure **`file:` / registry** pins proven (`npm run test:cwl-pin`) during transition
+- [x] Publish **prep + pack dry-run** → `CWL_EXIT_1_0_PACK_OK`
+- [x] Editor + stdio LSP ([`CWL-LSP.md`](../language/CWL-LSP.md)) including import-graph refs/rename
+- [x] Private-first registry decision (GitHub Packages; no public npm)
+- [x] **CI publish:** `@agenticop-io/cwl@1.0.0`… tip tags `cwl-v*` through **`cwl-v1.0.17`**
+- [x] Package `dna-seed` export + multi-host DNA gold + holes report
+- [x] Ecology bootstrap — [`CWL-ECOLOGY.md`](../language/CWL-ECOLOGY.md)
+- [x] **CWL-owned Exit/DNA complete** — [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md)
+- [ ] Convert pins tip `@agenticop-io/cwl` from registry (sibling)
+- [ ] Secure pins tip `@agenticop-io/cwl` from registry (sibling)
+- [ ] **Requested (Convert):** peel/emit gravity — [CONVERT-GRAVITY-REQUESTED.md](./CONVERT-GRAVITY-REQUESTED.md)
 - [ ] Breaking changes require major bump + RFC migration notes
 
-**Exit 1.0:** External consumers depend on a versioned language artifact, not a random tree copy. **Not exited** — registry publish remains open; local `file:` pins are in place.
+**Exit 1.0 (CWL-side):** **CLOSED.** Consumer registry tip pins + Convert gravity = sibling agents.
 
 ---
 
@@ -112,7 +139,9 @@ Language pillar delivers **semantics + fixtures** for surface compare; Helix imp
 
 ## How to pick the next slice
 
-1. Does it improve **spec, fixtures, or tooling** for the language? → do it here.  
+Follow **Rosetta → Universal Translator → DNA** ([`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)). Queue: [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) (**Phase 1.x deepen OPEN**). Complete: [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md).
+
+1. Does it improve **spec, fixtures, or tooling** for the language? → do it here (Phase 1.x deepen — see CWL-GENOME-DEEPEN.md).  
 2. Is it convert product smoke / ST prove? → convert agent.  
 3. Is it DNA learn/enforce? → secure agent.  
 4. Does convert need a parser fix? → fix here, sync, then re-run convert gates.

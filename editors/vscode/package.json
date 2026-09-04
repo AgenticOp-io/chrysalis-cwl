@@ -1,0 +1,37 @@
+{
+  "name": "cwl-lsp",
+  "displayName": "Chrysalis Web Language",
+  "description": "CWL language support — TextMate, stdio LSP (diagnostics/fmt/hover/completion/definition/references/rename + token end columns), private pillar.",
+  "version": "1.0.17",
+  "publisher": "agenticop",
+  "private": true,
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Programming Languages"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "cwl",
+        "aliases": ["Chrysalis Web Language", "CWL"],
+        "extensions": [".cwl"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cwl",
+        "scopeName": "source.cwl",
+        "path": "./syntaxes/cwl.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "cwl.checkActive",
+        "title": "CWL: Check active file"
+      }
+    ]
+  },
+  "main": "./extension.js",
+  "activationEvents": ["onLanguage:cwl"]
+}

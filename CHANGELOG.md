@@ -1,5 +1,330 @@
 # CWL language changelog
 
+## Docs / ops — 2026-09-03
+
+- Pillar GitHub repos flipped **public** (`chrysalis-cwl`, `chrysalis`, `chrysalis-security`) — see [`PRIVATE-PILLARS.md`](./docs/history/PRIVATE-PILLARS.md)
+- Tip remains **1.0.26** (redirect/error HTML shell + urlencoded form gold)
+
+## 1.0.26 — 2026-08-21
+
+- Ingest preserves authored HTML shell with `load { redirect|error }` (`cwl-load-*-html` blocks); emit recovers exact shell
+- Gold `35-form-urlencoded` — native urlencoded form POST + `body` bindings
+- Still forbidden: Nest / LiveView / Flutter façades; WebSocket duplex invent
+
+## 1.0.25 — 2026-08-21
+
+- Emit reverse: `effect.redirect` / `effect.http.error` → `load { redirect|error … }` (gold `27-data-v2` hole-free)
+- HTML shell for redirect/error still not preserved at ingest (empty `return html ""` on emit)
+- Still forbidden: Nest / LiveView / Flutter façades; WebSocket duplex invent
+
+## 1.0.24 — 2026-08-21
+
+- RFC-0022 deepen: DNA seed honesty for SSE (`content_class: other` + `cwl_stream`), multipart field/file fingerprints, HEAD identity
+- Gold `34-dna-bridge-surfaces`; gate schemaVersion 4
+- Emit honesty: `27-data-v2` load redirect/error remain catalogued emit holes (not forged reverse)
+- Still forbidden: Nest / LiveView / Flutter façades; WebSocket duplex invent; synthetic soak traffic
+
+## 1.0.23 — 2026-08-11
+
+- RFC-0028 named client islands + form event contracts; gold `33-ui-island-contracts`
+- WebSocket duplex kept as honest hole (no invent)
+- Still forbidden: Nest / LiveView / Flutter façades; silent React/Svelte lowering
+
+## 1.0.22 — 2026-08-11
+
+- RFC-0027 SSE single-shot `stream sse;`; gold `32-stream-sse`
+- Transport gold `29` keeps WebSocket hole only
+- Still forbidden: Nest / LiveView / Flutter façades; inventing EventSource runtimes
+
+## 1.0.21 — 2026-08-11
+
+- RFC-0026 multipart field/file bindings; gold `31-multipart-binding`
+- Transport gold `29` keeps SSE/WebSocket holes only (multipart named parts are genes)
+- Still forbidden: Nest / LiveView / Flutter façades; inventing upload middleware
+
+## 1.0.20 — 2026-08-11
+
+- RFC-0020 deepen: executable Effects beyond session presets (`time.now`, `random`, `mail.send`, `db.read`/`db.write`, `io`, `rate.limit`)
+- Gold `30-effects-executable`; emit peel recovers new effect tags
+- Still forbidden: Nest / LiveView / Flutter façades; inventing mail/SQL/rate engines
+
+## 1.0.19 — 2026-08-11
+
+- Data v2 language gold `27-data-v2` (load redirect / error / cookie) — RFC-0013 v2
+- Hyphenated `response-header` names (`Set-Cookie`) + gold `28-response-cookie`
+- Catalogued transport holes SSE / WebSocket / multipart + gold `29-transport-holes`
+- Still forbidden: Nest / LiveView / Flutter façades; origin PLs as CWL dialects
+
+## 1.0.18 — 2026-08-11
+
+- **Genome deepen reopened** (Exit 1.0.17 = bootstrap, not full web-app DNA)
+- RFC-0025 nested structured object/array literals (parser/print/ingest/emit)
+- Gold `26-nested-literals`; `24-dna-bridge` nested `meta` runtime JSON
+- Docs: `CWL-GENOME-DEEPEN.md`, `DNA-BUILD-NEXT.md` queue
+
+## History — 2026-08-10
+
+- Git-backed pillar sync: `docs/pillar-sync/` in each engine (pull all three every turn; commit+push OUTBOX) — [`docs/pillar-sync/PROTOCOL.md`](./docs/pillar-sync/PROTOCOL.md)
+- Convert agent execute plan Phase 2–3 — [`docs/history/CONVERT-AGENT-EXECUTE-PLAN.md`](./docs/history/CONVERT-AGENT-EXECUTE-PLAN.md)
+- Convert mirrors landed `56a75d35`; dual-mode control-lower sync skip
+- Convert notify: whole-system / WPTP orbit cohesion (no DNA tip bump)
+
+## 1.0.17 — 2026-08-09
+
+- DNA seed Helix parity: fingerprint depth ≤ 2, `pathTemplateShapeEqual`, request/query name FPs
+- `24-dna-bridge` gold: nested JSON, `status`, body/query bindings
+- Sync `cwl-control-lower.mjs` into Convert helper list
+- RFC-0022 SoR updates; sibling tip ask → 1.0.17
+
+## 1.0.16 — 2026-08-09
+
+- CWL-owned DNA queue **CLOSED** — tip/doc handoff only
+- Align README / EXIT / PUBLISH / ecology / fleet / starter / ROADMAP to tip
+- Sibling Requested tip pin → `@agenticop-io/cwl@1.0.16`
+
+## 1.0.15 — 2026-08-09
+
+- UT evidence: parse `LANGUAGE_VERSION.md` table (tip fidelity)
+- Gates: nested foreach on `emit-check` / `fmt --webir` (`23`)
+- Diagnose `opaque-residual` info for authored `g_*`
+- Packable CLI rejects WebIR commands; constitution/RFC-0021 tip sync
+
+## 1.0.14 — 2026-08-09
+
+- Nested foreach after `return` kept as documentation IR + thin emit reverse (`23-nested-control`)
+- TextMate / language-config sync with LSP control/UI catalog; `test:cwl-grammar`
+- CLI `emit-check` gated (`test:cwl-emit-check`, WebIR-aware)
+
+## 1.0.13 — 2026-08-09
+
+- CI: `build:webir` + `CWL_REQUIRE_WEBIR=1` language gate + emit smoke on language/publish workflows
+- Catalogued thin-emit hole reasons (`cwl:emit:*`) in fullstack hole catalog
+- CLI `emit-check` (CWL → WebIR → thin emit reverse report; `--stdout` optional)
+- LSP snippets: `if` / `else` / `else if` / `foreach` / `return ui` / `client ui` (+ gate asserts)
+
+## 1.0.12 — 2026-08-09
+
+- Thin emit: HTML templates, UI trees, `client ui` islands/events (SSR), attachment-hole pages
+- Emit smoke covers all language-gold (honest holes on `11` / `21`)
+- `test:runtime-cwl` → language-gold gate (`CWL_RUNTIME_CWL_OK`)
+- Dual-mode `cwl-fmt` (`--webir`) + `CWL_FMT_OK`
+
+## 1.0.11 — 2026-08-09
+
+- Thin emit: response chrome (`status` / `content-type` / `response-header`), executable effects peel, page-load
+- Param/query defaults + hyphenated header idents on emit reverse
+- Emit smoke matrix **15** golds → `CWL_EMIT_SMOKE_OK`
+
+## 1.0.10 — 2026-08-09
+
+- Thin emit Rosetta reverse: projectable early-guards / else / else-if / foreach (`cwl-emit-control.mjs`)
+- `runtime-cwl`: authored content-type only (no body-sniff invent)
+- Emit smoke defaults: `01` + `19` + `23`
+
+## 1.0.9 — 2026-08-09
+
+- RFC-0021: top-level `foreachBindings` → WebIR `data.foreach` (`appendForeachBindings`; empty-iter honesty)
+- RFC-0021: projectable `else` / `else if` (incl. same-line `} else`) → `ifElse.else`
+- Unshadow page early-exit HTML (`/post/:id`); gate else-if route; deeper `19` / `23` matrix
+
+## 1.0.8 — 2026-08-09
+
+- RFC-0021: lower projectable early-exit / nested `if` to WebIR (`cwl-control-lower.mjs`); opaque `g_*` skipped
+- RFC-0024: attachment-hole soft-path in `runtime-cwl` — HTML returns while hole IR remains
+- Deeper matrix checks for `19-early-exit`, `23-nested-control`, `25-island-kinds`
+
+## 1.0.7 — 2026-08-09
+
+- Full language-gold **runtime-ok** matrix (**25**): middleware, probes, effects chains, DNA bridge routes, holes/form-action **501**, island-kind attachment-hole **501**
+- Partial surfaces documented honestly (`19` list page; `23` empty shells; no invented auth/loops)
+
+## 1.0.6 — 2026-08-09
+
+- Fix HTML ingest double-response wrap (single body for `@page` / `return html`)
+- Execute optional: `07` auth effects, `09` fullstack page, `10` page-load, `15` HTML interp, `16` layout, `17` UI v0, `18` UI v1
+- Runtime matrix **16** → `CWL_RUNTIME_MATRIX_OK`
+
+## 1.0.5 — 2026-08-09
+
+- Execute: JSON/urlencoded body → `RequestInput.post` (`05-request-body` runtime-ok)
+- Execute: authored WebIR `content-type` on HTTP response (`08-response-content-type` runtime-ok)
+- Ingest + execute: CWL `response-header` → WebIR `ResponseAttrs.headers` (`14-defaults-headers` runtime-ok)
+- Runtime matrix **9** → `CWL_RUNTIME_MATRIX_OK`
+
+## Unreleased — execute
+
+- Pass HTTP `Headers` → rewrite `RequestInput.headers` in `runtime-cwl` `buildRequestInput`
+- Mark `04-request-context` **`runtime-ok`**; runtime matrix **6** → `CWL_RUNTIME_MATRIX_OK`
+- Convert rewrite-headers Requested → **Verified**
+
+## 1.0.4 — 2026-08-09
+
+- CLI `dna-seed` / `--holes-report` on pillar + packable `bin/cwl`
+- LSP: `import "…"` sibling `.cwl` path completion
+- Gate `test:cwl-hole-catalog` (`CWL_HOLE_CATALOG_OK`) in `test:language`
+- CI Node 22; docs: package README + `DNA-STEP-EXECUTE` WebIR home truth
+
+## 1.0.3 — 2026-08-09
+
+- Package export `@chrysalis/cwl/dna-seed` (RFC-0022/0023 seed helpers for Secure)
+- LSP import-graph (RFC-0009) definition / references / rename; `listCwlImportGraph`
+- **CWL pillar Exit/DNA queue complete** — [`DNA-CWL-COMPLETE.md`](./docs/history/DNA-CWL-COMPLETE.md)
+
+## 1.0.2 — 2026-08-09
+
+- DNA bridge: RFC-0023 multi-host seed gold (`deploy-profile-api.json` / `expected-dna-api.json`)
+- `loadDeployProfile` / `resolveHostFromProfile` / `cwlHolesBridgeReport` in `cwl-dna-seed.mjs`
+- Gate `test:cwl-dna-bridge` → `CWL_DNA_BRIDGE_OK` (default + api host + hosts{} validation + holes report)
+
+## 1.0.1 — 2026-08-09
+
+- LSP polish: context-aware completion (effects presets, HTTP methods, same-file handlers/paths)
+- Same-file `textDocument/references`; hover on handler name idents
+- Docs: `CWL-LSP.md`; private VSIX already via `pack:cwl-vsix`
+- Sibling verify: Convert WebIR reverse-home + Secure cutover done; [`CWL-LANGUAGE-SCOPE.md`](./docs/language/CWL-LANGUAGE-SCOPE.md) (DNA ≠ all PLs)
+
+## 1.0.0 — 2026-08-09
+
+- **Exit 1.0:** `@agenticop-io/cwl@1.0.0` **published** on GitHub Packages (tag `cwl-v1.0.0`); local name stays `@chrysalis/cwl`
+- Stage `packages/cwl/lib/` from hub-ingest (`sync:cwl-package-lib`); packable `bin/cwl`
+- **WebIR physical home** in `packages/webir` (Convert reverse-home still Requested)
+- Ecology bootstrap: `docs/language/CWL-ECOLOGY.md` + `npm run pack:cwl-vsix`
+- LSP completion + same-file rename already in stdio server (`CWL-LSP.md`)
+- Docs: `EXIT-1.0.md`; Convert gravity / Secure cutover Requested at `1.0.0`
+
+## Unreleased — thesis
+
+- Constitution reframed: **Rosetta Stone → Universal Translator → DNA of the web** (`CWL-PILLAR-HOME.md`, `ROSETTA-UT-PATH.md`); AGENTS / cursor rule / README aligned
+
+## Unreleased / DNA authoring
+
+- *(cleared into 0.1.14)*
+
+## Unreleased / execute
+
+- DNA Execute slice: `smoke:cwl-runtime-gold` → `CWL_RUNTIME_GOLD_OK` on `fixtures/language-gold/01-literals` via `@chrysalis/runtime-cwl` + WebIR `simulateHandler` (not Convert emit)
+- Runtime matrix: `smoke:cwl-runtime-matrix` → `CWL_RUNTIME_MATRIX_OK` over `runtime-ok` fixtures (`01-literals`, `02-path-params`, `03-query-params`, `06-response-status`, `12-multi-file`); allowlist in `scripts/cwl-runtime-smoke-lib.mjs` (no invented handlers)
+- Wired into optional `test:language:full` (stable/fast)
+- Plan/honesty: `docs/history/DNA-STEP-EXECUTE.md`
+
+### Requested (Convert) — execute
+
+- Keep sibling `webir` / `rewrite` / `emit-shared` dists buildable; Slice 3.4 dep retarget so pillar runtime imports need fewer resolve hooks
+- **Rewrite headers:** `RequestInput.headers` + `pickBag(..., "header")` so CWL can mark `04-request-context` `runtime-ok` and matrix goes to 6 — [`docs/history/CONVERT-REWRITE-HEADERS-REQUESTED.md`](./docs/history/CONVERT-REWRITE-HEADERS-REQUESTED.md)
+
+## 0.1.14 — 2026-08-09
+
+- Token end columns v1: parser records exclusive keyword ends for `module`, `@route`/`@page`, `hole`
+- Diagnose schema **v5**: emits `endCharacter`/`endColumn` on those cheap sites
+- LSP map schema **v2**: `range.end.character` from end fields when present (else line-end `1<<20`)
+- Gate: `test:cwl-lsp-map` asserts holes gold end characters are finite and `> start` (not line sentinel)
+- Package exports: `@chrysalis/cwl/parser` + `@chrysalis/cwl/print` (gate extended; docs in `CWL-PUBLISH.md`)
+- Package / editor / LSP server version `0.1.14`; pillars stay `"private": true`
+
+### Requested (Convert)
+
+- Pull `0.1.14` junctions after land; prefer package subpaths over hub-ingest deep-links
+
+### Requested (Secure)
+
+- Keep `file:` pin; import diagnose/lsp-map/parser/print via `@chrysalis/cwl/*` when bridging
+
+## 0.1.13 — 2026-08-09
+
+- Package exports: `@chrysalis/cwl/diagnose` and `@chrysalis/cwl/lsp-map` re-export hub-ingest helpers (no deep-link required)
+- Gate: `test:cwl-package-exports` → `CWL_PACKAGE_EXPORTS_OK` (wired into `test:language`)
+- Package / editor version `0.1.13`; pillars stay `"private": true`
+
+### Requested (Convert)
+
+- Pull `0.1.13` junctions after land; prefer package subpaths over `scripts/hub-ingest/cwl-diagnose.mjs` deep-links
+
+### Requested (Secure)
+
+- Keep `file:` pin; import diagnose/lsp-map via `@chrysalis/cwl/*` when bridging
+
+## 0.1.12 — 2026-08-09
+
+- Diagnostic column ranges v1: parser records 0-based keyword starts for `module`, `@route`/`@page`, `hole`; diagnose schema v4 emits `character`/`column` when cheap
+- LSP map: `range.start.character` from `character`/`column` (default 0); end still line-granular (`1<<20`)
+- Gate: `test:cwl-lsp-map` asserts ≥1 mapped diagnostic with `character > 0` (holes gold indent + synthetic)
+- Line sites folded in: holes / duplicates / layout / module → accurate LSP lines
+- Definition v0 + document symbols: `textDocument/definition` / `documentSymbol` (same-file surface); VS Code providers; server gate asserts ≥1 each
+- Package / editor / LSP server version `0.1.12`; pillars stay private
+
+### Requested (Convert)
+
+- Pull `0.1.12` junctions after land; WebIR flip still open
+
+### Requested (Secure)
+
+- Keep `file:` pin; no grammar forks
+
+## 0.1.11 — 2026-08-09
+
+- LSP completion v0: `textDocument/completion` on `cwl-lsp-server.mjs` — keywords / surface starters (`module`, `@route`, `@page`, `@component`, `handler`, `effects`, `hole`, `return`, `load`) + common effect presets; prefix filter only (no import/path smarts)
+- Gate: `test:cwl-lsp-server` asserts completion returns ≥1 item; advertise `completionProvider`
+- VS Code thin client: CompletionItemProvider (`@` / `.` triggers)
+- Docs: `CWL-LSP.md` honesty (completion v0 limits)
+- Package / editor version `0.1.11`; pillars stay private
+
+### Requested (Convert)
+
+- Pull `0.1.11` junctions after land; WebIR flip still open
+
+### Requested (Secure)
+
+- Keep `file:` pin; no grammar forks
+
+## 0.1.10 — 2026-08-08
+
+- Minimal stdio Language Server: `scripts/cwl-lsp-server.mjs` (JSON-RPC `Content-Length`) — initialize/shutdown, doc sync → `publishDiagnostics` via `mapDiagnoseSource`, `textDocument/formatting` via `formatCwlSource`, cheap hover (module / route surface)
+- VS Code extension: thin spawn client (zero npm deps; no `vscode-languageclient`)
+- `npm run test:cwl-lsp-server` → `CWL_LSP_SERVER_OK` (wired into `test:language`)
+- Docs: `CWL-LSP.md` honesty update; ROADMAP Phase 0.6 stdio LSP checkbox
+- Package / editor version `0.1.10`; pillars stay private (no Marketplace)
+
+### Requested (Convert)
+
+- Pull `0.1.10` junctions after land; WebIR flip still open
+
+### Requested (Secure)
+
+- Keep `file:` pin; no grammar forks
+
+## 0.1.9 — 2026-08-08
+
+- **Private pillars:** GitHub `chrysalis-cwl`, `chrysalis` (Convert), `chrysalis-security` set private; docs in `PRIVATE-PILLARS.md`
+- DNA authoring slice: diagnose → LSP map (`cwl-lsp-map.mjs`) + `test:cwl-lsp-map` → `CWL_LSP_MAP_OK`
+- CLI: `diagnose --stdin [--lsp]`, `fmt --stdin` for editor buffers
+- VS Code extension: push diagnostics + document formatting (still not Marketplace / not full LSP server)
+- Private-first publish posture: Exit 1.0 defaults to private registry, not public npm
+- Plan: `docs/history/DNA-EVOLUTION-0.1.9.md`
+
+### Requested (Convert)
+
+- WebIR physical flip still open (`WEBIR-FLIP-REQUESTED.md`); pull `0.1.9` junctions after land; repo is now **private**
+- **DNA Step E:** actionable flip checklist + acceptance/prove commands in `WEBIR-FLIP-REQUESTED.md` / `DNA-STEP-E-WEBIR.md` — Convert can execute without guessing; CWL will re-run `smoke:webir` + `test:ingest` + `test:language:full` after SHA reply
+- **Step G gravity:** every peel/emit lands honest CWL (no façades); consume junctions + `hub:cwl-helix-cutover-smoke` — [`CONVERT-GRAVITY-REQUESTED.md`](./docs/history/CONVERT-GRAVITY-REQUESTED.md)
+
+### Requested (Secure)
+
+- Keep `file:` pin; repo is now **private**; no grammar forks
+- **Step G cutover default:** live DNA vs CWL surface (RFC-0022/0023); `cwl-bridge-smoke` / `cutover-smoke` — [`SECURE-CUTOVER-REQUESTED.md`](./docs/history/SECURE-CUTOVER-REQUESTED.md)
+
+## 0.1.8 — 2026-08-07
+
+- Boundary-break execution: ingest matrix covers all `language-gold/*/routes.cwl` with `expected-webir.json`
+- RFC-0023 deploy/DNA profiles + `24-dna-bridge/deploy-profile.json`
+- RFC-0024 island kinds + `25-island-kinds` + catalogued `unsupported:wasm-module|vendor-sdk|opaque-script`
+- **Attachment holes:** `hole` + later `return` kept on `attachmentHoles` (parse/print/diagnose/ingest); RFC-0024 gold no longer silently drops island holes
+- `test:cwl-publish-prep` → `CWL_PUBLISH_PREP_OK` (still no npm publish); wired into `test:language`; validates deploy-profile schema
+- UT spine reads RFC-0023 `deploy-profile.json` when present
+- VS Code scaffold (`editors/vscode`) + `docs/language/CWL-LSP.md` (honest TextMate+check limits)
+- GitHub Actions `cwl-language.yml`
+- WebIR flip handoff: `docs/history/WEBIR-FLIP-REQUESTED.md` (Convert agent)
+- `pnpm-workspace.yaml` prepared for future `packages/webir`
+
 ## 0.1.7 — 2026-08-05
 
 - Convert + Secure pin `@chrysalis/cwl` via `file:../chrysalis-cwl/packages/cwl`; package exports `VERSION` / `pillarRoot()`; `npm run test:cwl-pin` (wired into `test:language`)

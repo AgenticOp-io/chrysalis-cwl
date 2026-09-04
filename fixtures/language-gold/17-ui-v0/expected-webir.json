@@ -1,0 +1,456 @@
+{
+  "meta": {
+    "chrysalisVersion": "0.0.0",
+    "createdAt": "1970-01-01T00:00:00.000Z",
+    "sourceApp": "cwl-ingest-smoke"
+  },
+  "nodes": [
+    {
+      "attrs": {
+        "nodes": {
+          "attrs": {
+            "class": "demo"
+          },
+          "children": [
+            {
+              "attrs": {},
+              "children": [
+                {
+                  "escape": true,
+                  "kind": "text",
+                  "text": "CWL UI v0"
+                }
+              ],
+              "kind": "element",
+              "tag": "h1"
+            },
+            {
+              "attrs": {},
+              "children": [
+                {
+                  "escape": true,
+                  "kind": "text",
+                  "text": "Server-rendered element tree."
+                }
+              ],
+              "kind": "element",
+              "tag": "p"
+            }
+          ],
+          "kind": "element",
+          "tag": "main"
+        }
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n0",
+      "op": "ui.tree",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 15
+      },
+      "provenance": [
+        {
+          "locator": "cwl:ui-tree",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n1",
+      "op": "response",
+      "operands": [
+        "n0"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 15
+      },
+      "provenance": [
+        {
+          "locator": "cwl:response-content-type",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n10",
+      "op": "response",
+      "operands": [
+        "n9"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 36
+      },
+      "provenance": [
+        {
+          "locator": "cwl:response-content-type",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "ui_v0_named",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n11",
+      "op": "handler",
+      "operands": [
+        "n10"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 36
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/ui-v0/:name",
+        "pathParams": [
+          {
+            "name": "name",
+            "type": {
+              "kind": "string"
+            }
+          }
+        ]
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n12",
+      "op": "route",
+      "operands": [
+        "n11"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 36
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "ui_v0_demo",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n2",
+      "op": "handler",
+      "operands": [
+        "n1"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 15
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/ui-v0",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n3",
+      "op": "route",
+      "operands": [
+        "n2"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 15
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "nodes": {
+          "attrs": {
+            "class": "card"
+          },
+          "children": [
+            {
+              "attrs": {},
+              "children": [
+                {
+                  "escape": true,
+                  "kind": "text",
+                  "text": "Component reuse"
+                }
+              ],
+              "kind": "element",
+              "tag": "h2"
+            }
+          ],
+          "kind": "element",
+          "tag": "div"
+        }
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n4",
+      "op": "ui.tree",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 30
+      },
+      "provenance": [
+        {
+          "locator": "cwl:ui-tree",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n5",
+      "op": "response",
+      "operands": [
+        "n4"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 30
+      },
+      "provenance": [
+        {
+          "locator": "cwl:response-content-type",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "ui_v0_card",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n6",
+      "op": "handler",
+      "operands": [
+        "n5"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 30
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/ui-v0/card",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n7",
+      "op": "route",
+      "operands": [
+        "n6"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 30
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "name": "name",
+        "source": "path"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n8",
+      "op": "request.field",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 36
+      },
+      "provenance": [
+        {
+          "locator": "cwl:ui-path-binding",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "nodes": {
+          "attrs": {
+            "class": "card"
+          },
+          "children": [
+            {
+              "attrs": {},
+              "children": [
+                {
+                  "escape": true,
+                  "kind": "text",
+                  "operandIndex": 0
+                }
+              ],
+              "kind": "element",
+              "tag": "h2"
+            }
+          ],
+          "kind": "element",
+          "tag": "div"
+        }
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n9",
+      "op": "ui.tree",
+      "operands": [
+        "n8"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 36
+      },
+      "provenance": [
+        {
+          "locator": "cwl:ui-tree",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    }
+  ],
+  "roots": [
+    "n3",
+    "n7",
+    "n12"
+  ]
+}

@@ -2,14 +2,17 @@
 /**
  * Chrysalis Web Language CLI (pillar-owned).
  * parse | print | fmt | diagnose | check — no WebIR required.
+ * fmt --webir | emit-check — need WebIR dist (`npm run build:webir`).
  */
 import { readdir, readFile, stat } from "node:fs/promises";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { diagnoseCwlSource } from "./hub-ingest/cwl-diagnose.mjs";
-import { formatCwlFile, formatCwlSource } from "./hub-ingest/cwl-fmt.mjs";
+import { formatCwlFile, formatCwlSource, formatCwlSourceViaWebir } from "./hub-ingest/cwl-fmt.mjs";
+import { mapDiagnoseSource } from "./hub-ingest/cwl-lsp-map.mjs";
 import { parseCwlModule } from "./hub-ingest/cwl-parser.mjs";
 import { canonicalizeCwlModule, printCwlModule } from "./hub-ingest/cwl-print.mjs";
+import { seedDraftDnaFromCwlPath } from "./hub-ingest/cwl-dna-seed.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -18,20 +21,36 @@ const USAGE = `Usage: cwl <command> [options] <path>
 Commands:
   parse <file.cwl>              Parse and print AST JSON
   print <file.cwl>              Parse → print normalized source to stdout
-  fmt <file.cwl> [--write|--stdout]
-                                Format via parse→print (default: --write)
+  fmt <file.cwl> [--write|--stdout] [--webir]
+                                Format via parse→print (default: --write);
+                                --webir = ingest→thin emit reverse (needs WebIR)
   diagnose <file.cwl>           Authoring diagnostics JSON
+  diagnose --stdin [--lsp]      Diagnose buffer from stdin (optional LSP map)
   check <file-or-dir>           Round-trip AST equality + diagnose
                                 (recurses directories for *.cwl)
+  emit-check <file.cwl> [--stdout]
+                                CWL → WebIR → thin emit reverse report
+                                (needs WebIR; holes stay honest)
+  dna-seed <file.cwl> [--profile <deploy-profile.json>]
+                                RFC-0022/0023 draft DNA JSON (no Helix)
 
 Options:
   -h, --help                    Show this help
   --json                        Force JSON report (default for parse/diagnose/check/fmt)
+  --stdin                       Read source from stdin (diagnose/fmt)
+  --lsp                         With diagnose: emit editor/LSP map shape
+  --name <path>                 Virtual path for --stdin (default: stdin.cwl)
+  --profile <path>              Deploy profile for dna-seed (RFC-0023)
+  --holes-report                With dna-seed: include RFC-0022 §6 holes report
+  --stdout                      With emit-check: print emitted CWL after JSON
+  --webir                       With fmt: ingest→thin emit reverse
 
 Examples:
   npm run cwl -- parse fixtures/language-gold/01-literals/routes.cwl
   npm run cwl -- check fixtures/language-gold
   npm run cwl -- fmt path/to/app.cwl --stdout
+  npm run cwl -- emit-check fixtures/language-gold/19-early-exit/routes.cwl
+  npm run cwl -- dna-seed fixtures/language-gold/24-dna-bridge/routes.cwl --profile fixtures/language-gold/24-dna-bridge/deploy-profile-api.json
 `;
 
 /**
@@ -141,12 +160,30 @@ function parseArgs(argv) {
   const flags = new Set();
   /** @type {string[]} */
   const positional = [];
-  for (const a of argv) {
+  /** @type {Record<string, string>} */
+  const opts = {};
+  for (let i = 0; i < argv.length; i += 1) {
+    const a = argv[i];
     if (a === "-h" || a === "--help") flags.add("help");
-    else if (a.startsWith("--")) flags.add(a.slice(2));
+    else if (a === "--name") {
+      opts.name = argv[++i] ?? "";
+    } else if (a.startsWith("--name=")) {
+      opts.name = a.slice("--name=".length);
+    } else if (a === "--profile") {
+      opts.profile = argv[++i] ?? "";
+    } else if (a.startsWith("--profile=")) {
+      opts.profile = a.slice("--profile=".length);
+    } else if (a.startsWith("--")) flags.add(a.slice(2));
     else positional.push(a);
   }
-  return { flags, positional };
+  return { flags, positional, opts };
+}
+
+/** @returns {Promise<string>} */
+async function readStdin() {
+  const chunks = [];
+  for await (const chunk of process.stdin) chunks.push(chunk);
+  return Buffer.concat(chunks).toString("utf8");
 }
 
 function printJson(obj) {
@@ -158,7 +195,7 @@ function printJson(obj) {
  * @param {string[]} positional
  * @param {Set<string>} flags
  */
-async function runCommand(cmd, positional, flags) {
+async function runCommand(cmd, positional, flags, opts = {}) {
   switch (cmd) {
     case "parse": {
       const file = positional[0];
@@ -185,40 +222,65 @@ async function runCommand(cmd, positional, flags) {
       return 0;
     }
     case "fmt": {
+      const webir = flags.has("webir");
+      if (flags.has("stdin")) {
+        const name = opts.name || "stdin.cwl";
+        const source = await readStdin();
+        const formatted = webir
+          ? await formatCwlSourceViaWebir(source, name)
+          : formatCwlSource(source, name);
+        process.stdout.write(formatted.endsWith("\n") ? formatted : `${formatted}\n`);
+        return 0;
+      }
       const file = positional[0];
-      if (!file) throw new Error("fmt requires <file.cwl>");
+      if (!file) throw new Error("fmt requires <file.cwl> or --stdin");
       const abs = resolve(file);
       const write = flags.has("write") || (!flags.has("stdout") && !flags.has("check"));
       if (flags.has("stdout")) {
         const source = await readFile(abs, "utf8");
-        const formatted = formatCwlSource(source, abs);
+        const formatted = webir
+          ? await formatCwlSourceViaWebir(source, abs)
+          : formatCwlSource(source, abs);
         process.stdout.write(formatted.endsWith("\n") ? formatted : `${formatted}\n`);
         return 0;
       }
       if (flags.has("check")) {
         const source = await readFile(abs, "utf8");
-        const formatted = formatCwlSource(source, abs);
+        const formatted = webir
+          ? await formatCwlSourceViaWebir(source, abs)
+          : formatCwlSource(source, abs);
         const changed = formatted !== source;
         printJson({
           kind: "chrysalis.cwl.fmt",
-          schemaVersion: 2,
+          schemaVersion: 3,
           ok: !changed,
           path: abs,
           changed,
-          mode: "parse-print",
+          mode: webir ? "webir-emit" : "parse-print",
         });
         return changed ? 1 : 0;
       }
-      const report = await formatCwlFile(abs, { write });
+      const report = await formatCwlFile(abs, { write, webir });
       printJson(report);
       return 0;
     }
     case "diagnose": {
+      if (flags.has("stdin")) {
+        const name = opts.name || "stdin.cwl";
+        const source = await readStdin();
+        const report = flags.has("lsp")
+          ? mapDiagnoseSource(source, name, `file://${name}`)
+          : diagnoseCwlSource(source, name);
+        printJson(report);
+        return report.ok ? 0 : 1;
+      }
       const file = positional[0];
-      if (!file) throw new Error("diagnose requires <file.cwl>");
+      if (!file) throw new Error("diagnose requires <file.cwl> or --stdin");
       const abs = resolve(file);
       const source = await readFile(abs, "utf8");
-      const report = diagnoseCwlSource(source, abs);
+      const report = flags.has("lsp")
+        ? mapDiagnoseSource(source, abs, `file://${abs.replace(/\\/g, "/")}`)
+        : diagnoseCwlSource(source, abs);
       printJson(report);
       return report.ok ? 0 : 1;
     }
@@ -263,13 +325,80 @@ async function runCommand(cmd, positional, flags) {
       printJson(report);
       return report.ok ? 0 : 1;
     }
+    case "emit-check": {
+      const file = positional[0];
+      if (!file) throw new Error("emit-check requires <file.cwl>");
+      const abs = resolve(file);
+      const source = await readFile(abs, "utf8");
+      const { liftCwlFileToWebir } = await import("./hub-ingest/cwl-ingest.mjs");
+      const { emitCwlFromWebirModule } = await import("./hub-ingest/hub-emit-cwl-webir.mjs");
+      const { loadWebir, resolveWebirEntryPath } = await import("./hub-ingest/load-webir.mjs");
+      const webir = await loadWebir();
+      const builder = new webir.ModuleBuilder({ sourceApp: "cwl-emit-check" });
+      const wr = webir.webRequest.builders(builder);
+      const lift = liftCwlFileToWebir({
+        webir,
+        builder,
+        wr,
+        source,
+        file: abs,
+        entryPath: abs,
+        language: "cwl",
+      });
+      const module = builder.finish();
+      const { text, holeCount, routeCount } = emitCwlFromWebirModule(module, {
+        header: "# Chrysalis Web Language — emit-check",
+        moduleName: "emit_check",
+      });
+      const reparsed = parseCwlModule(text, `${abs}.emit-check`);
+      const reparseRoutes = (reparsed.routes ?? []).length;
+      /** @type {string[]} */
+      const holeReasons = [];
+      const holeRe = /\bhole\s+([a-zA-Z0-9_.:-]+)\s*;/g;
+      let hm;
+      while ((hm = holeRe.exec(text))) holeReasons.push(hm[1]);
+      const ok =
+        (lift.routeCount ?? 0) >= 1 && routeCount >= 1 && reparseRoutes === routeCount;
+      const report = {
+        kind: "chrysalis.cwl.emit-check",
+        schemaVersion: 1,
+        ok,
+        path: abs,
+        webir: resolveWebirEntryPath() ?? "(package import)",
+        ingestRoutes: lift.routeCount ?? 0,
+        emitRoutes: routeCount,
+        reparseRoutes,
+        holeCount,
+        holeReasons: [...new Set(holeReasons)].sort(),
+        token: ok ? "CWL_EMIT_CHECK_OK" : "CWL_EMIT_CHECK_FAIL",
+      };
+      printJson(report);
+      if (flags.has("stdout")) {
+        process.stdout.write(text.endsWith("\n") ? text : `${text}\n`);
+      }
+      return ok ? 0 : 1;
+    }
+    case "dna-seed":
+    case "seed-dna": {
+      const file = positional[0];
+      if (!file) throw new Error("dna-seed requires <file.cwl>");
+      const abs = resolve(file);
+      const profilePath = opts.profile ? resolve(opts.profile) : undefined;
+      const draft = seedDraftDnaFromCwlPath(abs, {
+        profilePath,
+        fixture: relative(ROOT, abs).replace(/\\/g, "/"),
+        includeHolesReport: flags.has("holes-report"),
+      });
+      printJson(draft);
+      return 0;
+    }
     default:
       throw new Error(`unknown command: ${cmd}`);
   }
 }
 
 async function main() {
-  const { flags, positional } = parseArgs(process.argv.slice(2));
+  const { flags, positional, opts } = parseArgs(process.argv.slice(2));
   if (flags.has("help") || positional.length === 0) {
     process.stdout.write(USAGE);
     process.exit(positional.length === 0 && !flags.has("help") ? 2 : 0);
@@ -277,7 +406,7 @@ async function main() {
 
   const [cmd, ...rest] = positional;
   try {
-    const code = await runCommand(cmd, rest, flags);
+    const code = await runCommand(cmd, rest, flags, opts);
     process.exit(code);
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);

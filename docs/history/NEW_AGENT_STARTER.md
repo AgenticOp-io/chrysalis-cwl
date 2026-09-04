@@ -4,8 +4,6 @@
 
 `C:\Users\david\AgenticOps\engines\chrysalis-cwl`
 
-(or `C:\Users\david\projects\chrysalis-cwl`)
-
 **First message:**
 
 ```
@@ -16,16 +14,18 @@ Root: C:\Users\david\AgenticOps\engines\chrysalis-cwl
 Read in order:
 1. AGENTS.md
 2. docs/language/CWL-PILLAR-HOME.md  (constitution — full)
-3. LANGUAGE_VERSION.md
-4. docs/history/ROADMAP.md
-5. docs/language/CWL.md
-6. AgenticOps/docs/THREE_PILLARS.md
+3. docs/language/ROSETTA-UT-PATH.md
+4. LANGUAGE_VERSION.md
+5. docs/history/DNA-BUILD-NEXT.md  (queue CLOSED — sibling waits only)
+6. docs/history/DNA-CWL-COMPLETE.md
+7. docs/language/CWL.md
+8. AgenticOps/docs/THREE_PILLARS.md
 
-Mission: mature CWL so conversion, security bridges, and runtimes share one language bar.
-Land language fixes here; npm run test:language; npm run sync:convert.
+Mission: keep the genome honest. CWL-owned Exit/DNA queue is CLOSED at tip 1.0.17.
+Do not invent Convert oracle work (g_* evaluate, foreach N-iter HTML, browser event execution).
+Land language fixes here only when siblings need a genome change; npm run test:language; hand off pins.
+Do not edit chrysalis-convert or chrysalis-security from this chat.
 Do not build Helix firewall features here.
 
 GitHub: https://github.com/AgenticOp-io/chrysalis-cwl
-
-Continue from docs/history/ROADMAP.md (next open 0.1.x / 0.2 items).
 ```

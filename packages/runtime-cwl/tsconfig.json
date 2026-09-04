@@ -4,8 +4,17 @@
     "rootDir": "src",
     "outDir": "dist",
     "composite": true,
-    "lib": ["ES2022", "DOM"]
+    "lib": ["ES2022", "DOM"],
+    "paths": {
+      "@chrysalis/webir": ["../webir/src/index.ts"],
+      "@chrysalis/emit-shared": ["../../../chrysalis-convert/packages/emit-shared/src/index.ts"],
+      "@chrysalis/rewrite": ["../../../chrysalis-convert/packages/rewrite/src/index.ts"]
+    }
   },
-  "references": [{ "path": "../emit-shared" }, { "path": "../rewrite" }, { "path": "../webir" }],
+  "references": [
+    { "path": "../../../chrysalis-convert/packages/emit-shared" },
+    { "path": "../../../chrysalis-convert/packages/rewrite" },
+    { "path": "../webir" }
+  ],
   "include": ["src/**/*"]
 }

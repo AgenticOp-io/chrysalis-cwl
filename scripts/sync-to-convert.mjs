@@ -52,6 +52,8 @@ export function isReparsePoint(path) {
 /**
  * CWL-specific WebIR helpers owned by the language pillar (Agent G).
  * Plain `sync:convert` copies only — never part of `setup:mirrors` / junction gate.
+ * Do **not** list `cwl-control-lower.mjs` here: Convert keeps a fat import of
+ * `hub-lift-webir-route`; this pillar keeps thin `hub-lift-cwl-webir` (dual-mode).
  */
 export const CWL_WEBIR_HELPERS = [
   "hub-t.mjs",
@@ -112,6 +114,11 @@ function main() {
       {
         file: "cwl-ingest.mjs",
         reason: "pillar uses thin hub-lift-cwl-webir; convert keeps fat hub-lift until dual-mode agreed",
+      },
+      {
+        file: "cwl-control-lower.mjs",
+        reason:
+          "dual-mode: pillar thin hub-lift-cwl-webir; convert fat hub-lift-webir-route + nested foreach docs IR — never overwrite from sync",
       },
     ],
   };

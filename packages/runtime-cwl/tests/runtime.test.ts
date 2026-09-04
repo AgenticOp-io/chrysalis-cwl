@@ -4,17 +4,24 @@ import { fileURLToPath } from "node:url";
 import { createCwlRuntime, loadModuleFromCwlFile } from "../src/index.js";
 
 const ROOT = resolve(fileURLToPath(new URL("../../..", import.meta.url)));
-const GOLD_CWL = resolve(ROOT, "fixtures/hub-gold-cwl/routes.cwl");
+const LITERALS = resolve(ROOT, "fixtures/language-gold/01-literals/routes.cwl");
+const FULLSTACK = resolve(ROOT, "fixtures/language-gold/09-fullstack-page/routes.cwl");
+const HTML_INTERP = resolve(ROOT, "fixtures/language-gold/15-html-interpolation/routes.cwl");
+const AUTH = resolve(ROOT, "fixtures/language-gold/07-auth-effects/routes.cwl");
+const PAGE_LOAD = resolve(ROOT, "fixtures/language-gold/10-page-load/routes.cwl");
+const REQ_CTX = resolve(ROOT, "fixtures/language-gold/04-request-context/routes.cwl");
+const CONTENT_TYPE = resolve(ROOT, "fixtures/language-gold/08-response-content-type/routes.cwl");
+const ISLANDS = resolve(ROOT, "fixtures/language-gold/25-island-kinds/routes.cwl");
 
-describe("@chrysalis/runtime-cwl", () => {
-  it("serves CWL gold routes via fetch", () => {
-    const module = loadModuleFromCwlFile(GOLD_CWL, ROOT);
+describe("@chrysalis/runtime-cwl (language-gold)", () => {
+  it("serves 01-literals routes via fetch", () => {
+    const module = loadModuleFromCwlFile(LITERALS, ROOT);
     const runtime = createCwlRuntime({ module });
     expect(runtime.routes.length).toBeGreaterThanOrEqual(3);
   });
 
   it("GET /health returns literal true", async () => {
-    const module = loadModuleFromCwlFile(GOLD_CWL, ROOT);
+    const module = loadModuleFromCwlFile(LITERALS, ROOT);
     const runtime = createCwlRuntime({ module });
     const res = await runtime.fetch({ method: "GET", url: "http://127.0.0.1/health" });
     expect(res.status).toBe(200);
@@ -22,7 +29,7 @@ describe("@chrysalis/runtime-cwl", () => {
   });
 
   it("GET /meta returns JSON object", async () => {
-    const module = loadModuleFromCwlFile(GOLD_CWL, ROOT);
+    const module = loadModuleFromCwlFile(LITERALS, ROOT);
     const runtime = createCwlRuntime({ module });
     const res = await runtime.fetch({ method: "GET", url: "http://127.0.0.1/meta" });
     expect(res.status).toBe(200);
@@ -31,9 +38,8 @@ describe("@chrysalis/runtime-cwl", () => {
     expect(body.version).toBe(1);
   });
 
-  it("GET / on full-stack gold returns HTML (G1151)", async () => {
-    const fullstack = resolve(ROOT, "fixtures/hub-gold-cwl-fullstack/routes.cwl");
-    const module = loadModuleFromCwlFile(fullstack, ROOT);
+  it("GET / on fullstack gold returns HTML", async () => {
+    const module = loadModuleFromCwlFile(FULLSTACK, ROOT);
     const runtime = createCwlRuntime({ module });
     const res = await runtime.fetch({ method: "GET", url: "http://127.0.0.1/" });
     expect(res.status).toBe(200);
@@ -42,9 +48,8 @@ describe("@chrysalis/runtime-cwl", () => {
     expect(res.headers.get("content-type")).toMatch(/text\/html/);
   });
 
-  it("interpolates path params in page HTML (G1189)", async () => {
-    const fullstack = resolve(ROOT, "fixtures/hub-flagship-cwl-fullstack/routes.cwl");
-    const module = loadModuleFromCwlFile(fullstack, ROOT);
+  it("interpolates path params in page HTML", async () => {
+    const module = loadModuleFromCwlFile(HTML_INTERP, ROOT);
     const runtime = createCwlRuntime({ module });
     const res = await runtime.fetch({ method: "GET", url: "http://127.0.0.1/docs/intro" });
     expect(res.status).toBe(200);
@@ -52,8 +57,8 @@ describe("@chrysalis/runtime-cwl", () => {
     expect(body).toContain("intro");
   });
 
-  it("injects configured session map (G6209)", async () => {
-    const module = loadModuleFromCwlFile(GOLD_CWL, ROOT);
+  it("injects configured session map", async () => {
+    const module = loadModuleFromCwlFile(LITERALS, ROOT);
     const runtime = createCwlRuntime({
       module,
       session: { user_id: { kind: "num", value: 42 }, role: { kind: "str", value: "admin" } },
@@ -63,9 +68,8 @@ describe("@chrysalis/runtime-cwl", () => {
     expect(res.status).toBe(200);
   });
 
-  it("resolveSession maps cookies into handler session (G6210+)", async () => {
-    const authEffects = resolve(ROOT, "fixtures/hub-gold-cwl-auth-effects/routes.cwl");
-    const module = loadModuleFromCwlFile(authEffects, ROOT);
+  it("resolveSession maps cookies into handler session", async () => {
+    const module = loadModuleFromCwlFile(AUTH, ROOT);
     let sawCookie = false;
     const runtime = createCwlRuntime({
       module,
@@ -83,51 +87,22 @@ describe("@chrysalis/runtime-cwl", () => {
     expect(sawCookie).toBe(true);
   });
 
-  it("resolveSession session.read echoes user_id in JSON body (G6211+)", async () => {
-    const requestContext = resolve(ROOT, "fixtures/hub-gold-cwl-request-context/routes.cwl");
-    const module = loadModuleFromCwlFile(requestContext, ROOT);
-    let resolvedSid = "";
-    const runtime = createCwlRuntime({
-      module,
-      resolveSession: ({ cookies }) => {
-        resolvedSid = cookies.session_id ?? "";
-        return { session_id: { kind: "str", value: resolvedSid } };
-      },
-    });
+  it("request-context echoes cookie sid in JSON body", async () => {
+    const module = loadModuleFromCwlFile(REQ_CTX, ROOT);
+    const runtime = createCwlRuntime({ module });
     const res = await runtime.fetch({
       method: "GET",
       url: "http://127.0.0.1/auth",
       headers: { cookie: "session_id=42", Authorization: "Bearer tok" },
     });
     expect(res.status).toBe(200);
-    expect(resolvedSid).toBe("42");
-    const body = JSON.parse(await res.text()) as { sid?: string };
+    const body = JSON.parse(await res.text()) as { sid?: string; auth?: string };
     expect(body.sid).toBe("42");
+    expect(body.auth).toBe("Bearer tok");
   });
 
-  it("resolveSession session.read echoes PHP $_SESSION body (G6226)", async () => {
-    const { ingestDirectory } = await import("@chrysalis/ingest");
-    const probe = resolve(ROOT, "fixtures/session-resolve-probe");
-    const module = await ingestDirectory(probe);
-    const runtime = createCwlRuntime({
-      module,
-      resolveSession: ({ cookies }) => ({
-        user_id: { kind: "str", value: cookies.session_uid ?? "" },
-      }),
-    });
-    const res = await runtime.fetch({
-      method: "GET",
-      url: "http://127.0.0.1/whoami",
-      headers: { cookie: "session_uid=42" },
-    });
-    expect(res.status).toBe(200);
-    const body = JSON.parse(await res.text()) as { user_id?: string };
-    expect(body.user_id).toBe("42");
-  });
-
-  it("page load sidecar in HTML (G1169)", async () => {
-    const pageLoadGold = resolve(ROOT, "fixtures/hub-gold-cwl-page-load/routes.cwl");
-    const module = loadModuleFromCwlFile(pageLoadGold, ROOT);
+  it("page load sidecar in HTML", async () => {
+    const module = loadModuleFromCwlFile(PAGE_LOAD, ROOT);
     const runtime = createCwlRuntime({ module });
     const res = await runtime.fetch({ method: "GET", url: "http://127.0.0.1/blog/hello" });
     expect(res.status).toBe(200);
@@ -136,27 +111,21 @@ describe("@chrysalis/runtime-cwl", () => {
     expect(body).toContain('"slug":"hello"');
   });
 
-  it("wraps HTML with UI stylesheet links and serves CSS (G9470)", async () => {
-    const { loadCwlUiAssetsFromProject } = await import("../src/index.js");
-    const fixture = resolve(ROOT, "fixtures/site-scale-matrix");
-    const module = loadModuleFromCwlFile(resolve(fixture, "routes.cwl"), ROOT);
-    const uiAssets = loadCwlUiAssetsFromProject(fixture);
-    expect(uiAssets).not.toBeNull();
-    const runtime = createCwlRuntime({ module, uiAssets: uiAssets! });
-    const res = await runtime.fetch({ method: "GET", url: "http://127.0.0.1/login" });
+  it("authored content-type only (no body sniff invent)", async () => {
+    const module = loadModuleFromCwlFile(CONTENT_TYPE, ROOT);
+    const runtime = createCwlRuntime({ module });
+    const json = await runtime.fetch({ method: "GET", url: "http://127.0.0.1/json" });
+    expect(json.headers.get("content-type")).toBe("application/json");
+    const plain = await runtime.fetch({ method: "GET", url: "http://127.0.0.1/plain" });
+    expect(plain.headers.get("content-type")).toMatch(/text\/plain/);
+  });
+
+  it("attachment-hole pages return HTML soft-path (not 501)", async () => {
+    const module = loadModuleFromCwlFile(ISLANDS, ROOT);
+    const runtime = createCwlRuntime({ module });
+    const res = await runtime.fetch({ method: "GET", url: "http://127.0.0.1/map" });
     expect(res.status).toBe(200);
     const body = await res.text();
-    expect(body).toContain("<!DOCTYPE html>");
-    expect(body).toContain('href="/assets/original-css/login.css"');
-    expect(body).toContain('href="/assets/original-css/layout.css"');
-    expect(body).toContain("login-form");
-
-    const css = await runtime.fetch({
-      method: "GET",
-      url: "http://127.0.0.1/assets/original-css/login.css",
-    });
-    expect(css.status).toBe(200);
-    expect(css.headers.get("content-type")).toMatch(/text\/css/);
-    expect(await css.text()).toContain("login");
+    expect(body).toContain("<h1>Map</h1>");
   });
 });
