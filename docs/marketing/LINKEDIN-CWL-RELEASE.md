@@ -14,7 +14,7 @@ Chrysalis Web Language is the DNA of the web — a readable genome for what an a
 
 routes · pages · data · UI · effects · **honest holes** when a claim is unsafe
 
-Tip **1.0.26** is open under AgenticOp-io (Apache-2.0). Convert speaks it. Secure may bridge it. Neither owns the grammar. Recorded traffic decides what ships.
+Tip **1.0.26** is open under AgenticOp-io (Apache-2.0). Convert and Secure consume it — they do not redefine it. Recorded traffic decides what ships.
 
 https://github.com/AgenticOp-io/chrysalis-cwl  
 https://agenticop.io/chrysalis.html
