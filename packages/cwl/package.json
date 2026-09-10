@@ -1,17 +1,33 @@
 {
   "name": "@chrysalis/cwl",
-  "version": "0.1.7",
-  "private": true,
-  "description": "Chrysalis Web Language — version pin + pillar root helpers. Parser/fmt remain in scripts until extracted; see LANGUAGE_VERSION.md.",
+  "version": "1.0.26",
+  "private": false,
+  "description": "Chrysalis Web Language — DNA of the web (Rosetta meaning). Versioned language surface for Convert UT + Secure bridges.",
   "license": "Apache-2.0",
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "main": "./index.mjs",
   "exports": {
     ".": "./index.mjs",
+    "./diagnose": "./diagnose.mjs",
+    "./lsp-map": "./lsp-map.mjs",
+    "./parser": "./parser.mjs",
+    "./print": "./print.mjs",
+    "./dna-seed": "./dna-seed.mjs",
     "./package.json": "./package.json"
   },
   "bin": {
-    "cwl": "../../scripts/cwl-cli.mjs"
+    "cwl": "./bin/cwl.js"
+  },
+  "scripts": {
+    "prepack": "node ../../scripts/sync-cwl-package-lib.mjs",
+    "prepublishOnly": "node ../../scripts/sync-cwl-package-lib.mjs"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
   },
   "repository": {
     "type": "git",
@@ -21,6 +37,13 @@
   "homepage": "https://github.com/AgenticOp-io/chrysalis-cwl/blob/main/docs/language/CWL-PILLAR-HOME.md",
   "files": [
     "index.mjs",
+    "diagnose.mjs",
+    "lsp-map.mjs",
+    "parser.mjs",
+    "print.mjs",
+    "dna-seed.mjs",
+    "bin/",
+    "lib/",
     "README.md",
     "package.json"
   ]

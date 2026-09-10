@@ -78,6 +78,116 @@ function parseCookies(header: string | undefined): Record<string, string> {
   return out;
 }
 
+/**
+ * HTTP Headers → rewrite `RequestInput.headers` bag (lower-case keys per Convert contract).
+ * Missing names bind null in simulate — do not invent values here.
+ */
+function headersToBag(headers: Headers): Record<string, string> {
+  const out: Record<string, string> = {};
+  headers.forEach((value, key) => {
+    out[key.toLowerCase()] = value;
+  });
+  return out;
+}
+
+/**
+ * Parse request body into rewrite `post` bag (string values only).
+ * JSON objects → top-level fields; urlencoded → form fields. Else `{}`.
+ */
+function parsePostBody(body: string | undefined, contentType: string | undefined): Record<string, string> {
+  const out: Record<string, string> = {};
+  if (!body) return out;
+  const ct = (contentType ?? "").toLowerCase();
+  if (ct.includes("application/json") || body.trimStart().startsWith("{") || body.trimStart().startsWith("[")) {
+    try {
+      const parsed: unknown = JSON.parse(body);
+      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+        for (const [k, v] of Object.entries(parsed as Record<string, unknown>)) {
+          if (v === null || v === undefined) continue;
+          out[k] = typeof v === "string" ? v : String(v);
+        }
+      }
+    } catch {
+      /* leave empty — honest miss */
+    }
+    return out;
+  }
+  if (ct.includes("application/x-www-form-urlencoded") || (!ct && body.includes("="))) {
+    for (const part of body.split("&")) {
+      if (!part) continue;
+      const [k, v = ""] = part.split("=");
+      if (!k) continue;
+      out[decodeURIComponent(k.replace(/\+/g, " "))] = decodeURIComponent(v.replace(/\+/g, " "));
+    }
+  }
+  return out;
+}
+
+type ResponseMeta = {
+  contentType?: string;
+  headers?: Readonly<Record<string, string>>;
+};
+
+/** Walk route for RFC-0024 attachment-hole provenance. */
+function routeHasAttachmentHoles(module: Module, routeNodeId: string): boolean {
+  const route = module.nodes.get(routeNodeId as never);
+  if (!route) return false;
+  const seen = new Set<string>();
+  const stack = [...(route.operands ?? [])];
+  while (stack.length > 0) {
+    const id = stack.pop();
+    if (id === undefined || seen.has(id)) continue;
+    seen.add(id);
+    const n = module.nodes.get(id);
+    if (!n) continue;
+    const prov = n.provenance ?? [];
+    if (
+      prov.some((p: { locator?: unknown }) => {
+        const loc = p?.locator as unknown;
+        // Fat ingest may stamp locator as the string "cwl:attachment-holes"
+        // (see Convert hub-cwl-attachment-holes-smoke); also accept synthetic Locator.
+        if (loc === "cwl:attachment-holes") return true;
+        return (
+          typeof loc === "object" &&
+          loc !== null &&
+          (loc as { kind?: string; reason?: string }).kind === "synthetic" &&
+          (loc as { reason?: string }).reason === "cwl:attachment-holes"
+        );
+      })
+    )
+      return true;
+    for (const op of n.operands ?? []) stack.push(op);
+  }
+  return false;
+}
+
+/** Walk route → handler → body for authored `web.request.response` attrs. */
+function findResponseMeta(module: Module, routeNodeId: string): ResponseMeta | null {
+  const route = module.nodes.get(routeNodeId as never);
+  if (!route) return null;
+  const seen = new Set<string>();
+  const stack = [...(route.operands ?? [])];
+  while (stack.length > 0) {
+    const id = stack.pop();
+    if (id === undefined || seen.has(id)) continue;
+    seen.add(id);
+    const n = module.nodes.get(id);
+    if (!n) continue;
+    if (n.dialect === "web.request" && n.op === "response") {
+      const attrs = n.attrs as {
+        contentType?: string;
+        headers?: Readonly<Record<string, string>>;
+      };
+      const meta: ResponseMeta = {};
+      if (typeof attrs.contentType === "string") meta.contentType = attrs.contentType;
+      if (attrs.headers) meta.headers = attrs.headers;
+      return meta;
+    }
+    for (const op of n.operands ?? []) stack.push(op);
+  }
+  return null;
+}
+
 function contentTypeForAsset(fileName: string): string {
   const lower = fileName.toLowerCase();
   if (lower.endsWith(".css")) return "text/css; charset=utf-8";
@@ -126,6 +236,7 @@ function simToResponse(
   sim: ReturnType<typeof simulateHandler>,
   pathname: string,
   uiAssets: CwlUiAssetsServeConfig | undefined,
+  responseMeta: ResponseMeta | null,
 ): Response {
   if (sim.redirectTo) {
     return new Response(null, { status: sim.status || 302, headers: { Location: sim.redirectTo } });
@@ -134,18 +245,29 @@ function simToResponse(
   const headers = new Headers();
   const trimmed = body.trim();
   const looksHtml = trimmed.startsWith("<");
-  if (trimmed.startsWith("{") || trimmed.startsWith("[") || trimmed === "true" || trimmed === "false") {
-    headers.set("content-type", "application/json; charset=utf-8");
-  } else if (looksHtml) {
-    headers.set("content-type", "text/html; charset=utf-8");
-    if (uiAssets !== undefined && uiAssets.wrapHtmlDocuments !== false) {
-      body = wrapHtmlFragmentWithDocumentShell(body, uiAssets.styleMap, pathname, {
-        title: basename(pathname) || "page",
-      });
-    }
-  } else if (/^-?\d+(\.\d+)?$/.test(trimmed)) {
-    headers.set("content-type", "application/json; charset=utf-8");
+  const authoredCt = responseMeta?.contentType;
+
+  // Authored WebIR content-type only — no body-sniff invent (DNA-STEP-EXECUTE honesty).
+  if (authoredCt) {
+    headers.set("content-type", authoredCt);
   }
+
+  if (looksHtml && uiAssets !== undefined && uiAssets.wrapHtmlDocuments !== false) {
+    // UI asset shell wrap implies HTML document; set CT only when wrapping.
+    if (!headers.has("content-type")) {
+      headers.set("content-type", "text/html; charset=utf-8");
+    }
+    body = wrapHtmlFragmentWithDocumentShell(body, uiAssets.styleMap, pathname, {
+      title: basename(pathname) || "page",
+    });
+  }
+
+  if (responseMeta?.headers) {
+    for (const [k, v] of Object.entries(responseMeta.headers)) {
+      headers.set(k, v);
+    }
+  }
+
   const status = sim.status || 200;
   if (status === 204 || status === 304) {
     return new Response(null, { status, headers });
@@ -159,13 +281,15 @@ function buildRequestInput(
   headers: Headers,
   pathParams: Record<string, string>,
   session: Readonly<Record<string, SimValue>>,
+  post: Readonly<Record<string, string>>,
 ): RequestInput {
   return {
     method: method.toUpperCase(),
     path: url.pathname,
     query: parseQuery(url.search),
-    post: {},
+    post: { ...post },
     cookies: parseCookies(headers.get("cookie") ?? undefined),
+    headers: headersToBag(headers),
     session: { ...session },
     pathParams,
   };
@@ -176,7 +300,12 @@ export function createCwlRuntime(config: CwlRuntimeConfig): CwlRuntimeHandle {
   const db = config.db ?? DEFAULT_STUB_DB;
   const uiAssets = config.uiAssets;
 
-  async function dispatch(method: string, url: URL, headers: Headers): Promise<Response> {
+  async function dispatch(
+    method: string,
+    url: URL,
+    headers: Headers,
+    bodyText = "",
+  ): Promise<Response> {
     if (uiAssets !== undefined && method.toUpperCase() === "GET") {
       const asset = tryServeUiAsset(uiAssets, url.pathname);
       if (asset !== null) return asset;
@@ -193,15 +322,22 @@ export function createCwlRuntime(config: CwlRuntimeConfig): CwlRuntimeHandle {
       config.resolveSession !== undefined
         ? config.resolveSession({ cookies, headers })
         : { ...(config.session ?? {}) };
-    const input = buildRequestInput(method, url, headers, match.pathParams, session);
+    const post = parsePostBody(bodyText, headers.get("content-type") ?? undefined);
+    const input = buildRequestInput(method, url, headers, match.pathParams, session, post);
     const sim = simulateHandler(config.module, match.route.routeNodeId, input, db);
-    if (sim.errors.length > 0) {
+    const attachmentSoft =
+      sim.errors.length > 0 &&
+      Boolean(sim.body) &&
+      sim.errors.every((e: { reason: string }) => e.reason === "hit a hole") &&
+      routeHasAttachmentHoles(config.module, match.route.routeNodeId);
+    if (sim.errors.length > 0 && !attachmentSoft) {
       return new Response(
         JSON.stringify({ error: "cwl-runtime:simulation-inconclusive", errors: sim.errors }),
         { status: 501, headers: { "content-type": "application/json" } },
       );
     }
-    return simToResponse(sim, url.pathname, uiAssets);
+    const responseMeta = findResponseMeta(config.module, match.route.routeNodeId);
+    return simToResponse(sim, url.pathname, uiAssets, responseMeta);
   }
 
   return {
@@ -211,16 +347,29 @@ export function createCwlRuntime(config: CwlRuntimeConfig): CwlRuntimeHandle {
     async fetch(input) {
       if (input instanceof Request) {
         const url = new URL(input.url);
-        return dispatch(input.method, url, input.headers);
+        const method = input.method;
+        const bodyText =
+          method.toUpperCase() === "GET" || method.toUpperCase() === "HEAD" ? "" : await input.text();
+        return dispatch(method, url, input.headers, bodyText);
       }
       const url = new URL(input.url);
       const headers = new Headers(input.headers ?? {});
-      return dispatch(input.method, url, headers);
+      return dispatch(input.method, url, headers, input.body ?? "");
     },
     async handleNodeRequest(req, res) {
       const host = req.headers.host ?? "127.0.0.1";
       const url = new URL(req.url ?? "/", `http://${host}`);
-      const response = await dispatch(req.method ?? "GET", url, new Headers(req.headers as HeadersInit));
+      const chunks: Buffer[] = [];
+      for await (const chunk of req) {
+        chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+      }
+      const bodyText = Buffer.concat(chunks).toString("utf8");
+      const response = await dispatch(
+        req.method ?? "GET",
+        url,
+        new Headers(req.headers as HeadersInit),
+        bodyText,
+      );
       res.statusCode = response.status;
       response.headers.forEach((v, k) => {
         res.setHeader(k, v);

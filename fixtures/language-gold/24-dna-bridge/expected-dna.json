@@ -1,5 +1,4 @@
 {
-  "$comment": "RFC-0022 contract gold: CWL surface → draft DNA seed. routes[] are app-dna-v1-shaped. bridge.annotations stay outside certified DNA (schema additionalProperties:false).",
   "schema": "app-dna-v1",
   "app_id": "dna-bridge-gold",
   "created_at": "2026-08-04T00:00:00.000Z",
@@ -19,8 +18,10 @@
       "method": "GET",
       "path_template": "/api/health",
       "content_class": "json",
-      "status_classes": [],
-      "response_key_fingerprint": "ok,surface"
+      "status_classes": [
+        200
+      ],
+      "response_key_fingerprint": "meta,meta.v,ok,surface"
     },
     {
       "host": "default",
@@ -28,15 +29,19 @@
       "path_template": "/items/:id",
       "content_class": "json",
       "status_classes": [],
-      "response_key_fingerprint": "id,ok"
+      "response_key_fingerprint": "id,ok",
+      "query_key_fingerprint": "include"
     },
     {
       "host": "default",
       "method": "POST",
       "path_template": "/login",
       "content_class": "json",
-      "status_classes": [],
-      "response_key_fingerprint": "ok"
+      "status_classes": [
+        200
+      ],
+      "response_key_fingerprint": "ok",
+      "request_key_fingerprint": "password,username"
     }
   ],
   "holes": [],
@@ -63,14 +68,19 @@
         "method": "GET",
         "path_template": "/items/:id",
         "cwl_surface": "route",
-        "cwl_effects": ["session.read"]
+        "cwl_effects": [
+          "session.read"
+        ]
       },
       {
         "method": "POST",
         "path_template": "/login",
         "cwl_surface": "route",
-        "cwl_effects": ["session.write"]
+        "cwl_effects": [
+          "session.write"
+        ]
       }
     ]
-  }
+  },
+  "$comment": "RFC-0022 contract gold: CWL surface → draft DNA seed. routes[] are app-dna-v1-shaped. bridge.annotations stay outside certified DNA (schema additionalProperties:false)."
 }

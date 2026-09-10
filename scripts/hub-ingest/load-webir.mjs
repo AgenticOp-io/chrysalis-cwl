@@ -51,8 +51,9 @@ export async function loadWebir() {
     const tried = webirCandidatePaths().join("\n  - ");
     throw new Error(
       `Cannot resolve @chrysalis/webir. Tried:\n  - ${tried}\n  - import("@chrysalis/webir")\n` +
-        `Run: npm run link:webir  (junction to convert) or install a file:/workspace dep.\n` +
-        `See docs/history/WEBIR-EXTRACT-PLAN.md.\n` +
+        `Pre-flip: npm run link:webir (sibling private Convert AgenticOp-io/chrysalis + built dist).\n` +
+        `Post-flip: physical packages/webir in this pillar (see docs/history/WEBIR-FLIP-REQUESTED.md).\n` +
+        `Docs: packages/WEBIR.md · docs/history/DNA-STEP-E-WEBIR.md\n` +
         `Cause: ${err instanceof Error ? err.message : String(err)}`,
     );
   }

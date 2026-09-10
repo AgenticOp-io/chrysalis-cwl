@@ -11,18 +11,23 @@ page home {
 @route GET "/api/health"
 handler health {
   effects: none;
-  return { ok: true, surface: "api" };
+  status 200;
+  return { ok: true, surface: "api", meta: { v: 1 } };
 }
 
 @route GET "/items/:id"
 handler item_show {
   effects: session.read;
   param id;
+  query include;
   return { ok: true, id: id };
 }
 
 @route POST "/login"
 handler login {
   effects: session.write;
+  body username;
+  body password;
+  status 201;
   return { ok: true };
 }

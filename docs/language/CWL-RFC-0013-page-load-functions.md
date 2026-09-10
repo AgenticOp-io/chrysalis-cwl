@@ -60,3 +60,8 @@ Framework ingest targets (structural gold):
 - Next.js App Router server module → `load { }` or hole
 
 Verify: `fixtures/hub-gold-cwl-data-v2`, gate **G7320**; framework ingest **G7321** (`hub-sveltekit-deep-cwl-export-smoke`, `hub-nextjs-deep-cwl-export-smoke`).
+
+
+## Language-gold prove (1.0.19)
+
+- `fixtures/language-gold/27-data-v2` — redirect / error / cookie runtime matrix (`CWL_RUNTIME_MATRIX_OK`).

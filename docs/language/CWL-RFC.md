@@ -26,9 +26,15 @@ CWL evolves by **RFC**: each proposal must cite cross-language evidence (path kn
 | [0020](CWL-RFC-0020-effects-middleware.md) | Effects middleware chains | accepted |
 | [0021](CWL-RFC-0021-early-exit-cond-expr.md) | Early-exit cond expressions + opaque call/member/empty residual + foreach bind | accepted (`!param` / `g_empty_<name>`) |
 | [0022](CWL-RFC-0022-dna-surface-bridge.md) | CWL `@route`/`@page` surface ↔ `app-dna-v1` route identity (Secure bridge contract) | accepted (contract only) |
+| [0023](CWL-RFC-0023-deploy-dna-profiles.md) | Deploy / DNA surface profiles (`cwl-deploy-profile-v1`) | accepted (normative) |
+| [0024](CWL-RFC-0024-island-kinds.md) | Island kinds (Wasm / vendor / opaque) — declare, don’t absorb | accepted (vocabulary) |
+| [0025](CWL-RFC-0025-nested-structured-literals.md) | Nested structured object/array literals | accepted |
+| [0026](CWL-RFC-0026-multipart-binding.md) | Multipart field/file part bindings | accepted |
+| [0027](CWL-RFC-0027-stream-sse.md) | SSE single-shot `stream sse;` | accepted |
+| [0028](CWL-RFC-0028-ui-island-contracts.md) | Named client islands + form event contracts | accepted |
 
 **Process**
 
-1. Open RFC in `docs/CWL-RFC-NNNN-*.md` with motivation, syntax, WebIR mapping, and verify plan.
-2. Add parser + ingest + fixture; extend `hub-gold-manifest` when behavior is CI-gated.
-3. Record decision in `DESIGN.md` and checklist item in `ROADMAP.md`.
+1. Open RFC in `docs/language/CWL-RFC-NNNN-*.md` with motivation, syntax, WebIR mapping, and verify plan.
+2. Add parser + ingest + fixture; extend language-gold (and convert `hub-gold-manifest` only when Convert gates it).
+3. Record decision in `CHANGELOG.md` / `LANGUAGE_VERSION.md` and checklist item in `ROADMAP.md`.

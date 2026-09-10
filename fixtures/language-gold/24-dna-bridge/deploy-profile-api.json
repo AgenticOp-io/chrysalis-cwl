@@ -1,0 +1,16 @@
+{
+  "schema": "cwl-deploy-profile-v1",
+  "app_id": "dna-bridge-gold",
+  "host": "api",
+  "hosts": {
+    "default": {
+      "public_origin": "https://example.test"
+    },
+    "api": {
+      "public_origin": "https://api.example.test"
+    }
+  },
+  "path_shape_equality": true,
+  "content_class_from_cwl": true,
+  "fixture": "fixtures/language-gold/24-dna-bridge/routes.cwl"
+}

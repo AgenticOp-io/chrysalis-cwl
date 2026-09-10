@@ -1,4 +1,4 @@
-# Early-exit guards + foreach (RFC-0021)
+# Early-exit guards + foreach + else-if (RFC-0021)
 module early_exit;
 
 @route POST "/login"
@@ -28,6 +28,20 @@ handler post_show {
   return { ok: true, id: id };
 }
 
+@route GET "/gate"
+handler gate {
+  effects: none;
+  query mode;
+  if mode == "off" {
+    status 503;
+    return "not ready";
+  } else if mode == "maint" {
+    status 503;
+    return "maintenance";
+  }
+  return { ready: true };
+}
+
 @page GET "/posts"
 page posts_list {
   effects: none;
@@ -37,7 +51,7 @@ page posts_list {
   }
 }
 
-@page GET "/posts/:id"
+@page GET "/post/:id"
 page post_view {
   effects: none;
   param id;

@@ -1,0 +1,38 @@
+# Publish @agenticop-io/cwl to GitHub Packages on version tags
+name: publish-cwl
+
+on:
+  push:
+    tags:
+      - "cwl-v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@agenticop-io"
+      - name: Sync lib + language gate
+        run: |
+          npm run build:webir
+          npm run sync:cwl-package-lib
+          CWL_REQUIRE_WEBIR=1 npm run test:language
+      - name: Emit smoke (WebIR reverse)
+        run: npm run smoke:cwl-emit
+      - name: Publish to GitHub Packages
+        working-directory: packages/cwl
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # GH Packages requires scope == org; local pin name stays @chrysalis/cwl for file: consumers
+          npm pkg set name=@agenticop-io/cwl
+          npm publish --access restricted

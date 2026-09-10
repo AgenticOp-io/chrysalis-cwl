@@ -1,7 +1,7 @@
 /**
  * CWL → WebIR ingest (direct; no lossy lift).
  */
-import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lowerHubPageWithLoadBody, lowerHubPageWithLoadAndUiBody } from "./hub-lift-cwl-webir.mjs";
+import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lowerHubPageWithLoadBody, lowerHubPageWithLoadAndUiBody, lowerHubPageWithEffectAndHtmlBody } from "./hub-lift-cwl-webir.mjs";
 import { lowerCwlHtmlTemplateBody } from "./cwl-html-template.mjs";
 import { lowerCwlUiTreeBody, resolveCwlUiComponent } from "./cwl-ui-tree.mjs";
 import { parseCwlModuleResolved, resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";
@@ -9,6 +9,7 @@ import { liftCwlModuleMiddlewareToWebir } from "./hub-cwl-middleware.mjs";
 import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
 import { cwlEffectsToWebir, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
 import { cwlPathParamsForWebir } from "./hub-cwl-path-params.mjs";
+import { appendForeachBindings, wrapWithEarlyGuards } from "./cwl-control-lower.mjs";
 
 /**
  * @param {string} language
@@ -98,18 +99,68 @@ function lowerObjectEntriesBody(ctx, entries, loc) {
       continue;
     }
     if (value.kind === "bodyParam" && value.name) {
+      const name = String(value.name);
+      const files = ctx.multipartFiles ?? [];
+      const fields = ctx.multipartFields ?? [];
+      const locator = files.includes(name)
+        ? "cwl:multipart-file"
+        : fields.includes(name)
+          ? "cwl:multipart-field"
+          : "cwl:body";
       flat.push(
         data.requestField({
           source: "body",
-          name: value.name,
+          name,
           type: HUB_T.string,
           origin,
-          provenance: [webir.provenance("hub-ingest", "cwl:body")],
+          provenance: [webir.provenance("hub-ingest", locator)],
+        }),
+      );
+      continue;
+    }
+    if (value.kind === "object" && Array.isArray(value.entries)) {
+      flat.push(lowerObjectEntriesBody(ctx, value.entries, loc));
+      continue;
+    }
+    if (value.kind === "array" && Array.isArray(value.elements)) {
+      const arrayArgs = value.elements.map((el) => {
+        if (el?.kind === "object" && Array.isArray(el.entries)) {
+          return lowerObjectEntriesBody(ctx, el.entries, loc);
+        }
+        if (el?.kind === "array" && Array.isArray(el.elements)) {
+          // Flatten one level via recursive object-entries shape: reuse array call
+          const nested = el.elements.map((inner) => {
+            if (inner?.kind === "object" && Array.isArray(inner.entries)) {
+              return lowerObjectEntriesBody(ctx, inner.entries, loc);
+            }
+            return lowerHubLiteral(ctx, inner?.value ?? null, loc);
+          });
+          return data.call({
+            callee: "__array_literal",
+            args: nested,
+            type: HUB_T.unknown,
+            origin,
+            provenance: [webir.provenance("hub-ingest", "cwl:array")],
+          });
+        }
+        return lowerHubLiteral(ctx, el?.value ?? null, loc);
+      });
+      flat.push(
+        data.call({
+          callee: "__array_literal",
+          args: arrayArgs,
+          type: HUB_T.unknown,
+          origin,
+          provenance: [webir.provenance("hub-ingest", "cwl:array")],
         }),
       );
       continue;
     }
     const val = value.value;
+    if (val && typeof val === "object" && !Array.isArray(val)) {
+      flat.push(lowerObjectBody(ctx, val, loc));
+      continue;
+    }
     if (Array.isArray(val)) {
       const arrayArgs = val.map((item) =>
         data.literal({
@@ -203,6 +254,8 @@ export function liftCwlFileToWebir(opts) {
   for (const r of parsed.routes) {
     let valueId;
     const loc = { file, line: r.line };
+    ctx.multipartFields = r.handlerMultipartFields ?? [];
+    ctx.multipartFiles = r.handlerMultipartFiles ?? [];
     const htmlBindings = {
       path: r.handlerPathParams ?? [],
       query: r.handlerQueryParams ?? [],
@@ -216,21 +269,39 @@ export function liftCwlFileToWebir(opts) {
       const errorEntry = r.loadBody.entries.find((e) => e.key === "error");
       if (redirectEntry?.value?.kind === "literal") {
         const locId = lowerHubLiteral(ctx, redirectEntry.value.value, loc);
-        valueId = effect.redirect({
+        const effectId = effect.redirect({
           location: locId,
           origin: hubOrigin(file, r.line ?? 1),
           provenance: [webir.provenance("hub-ingest", "cwl-load-redirect")],
         });
+        valueId = lowerHubPageWithEffectAndHtmlBody(
+          ctx,
+          effectId,
+          r.body.value,
+          loc,
+          wrBuilders,
+          htmlBindings,
+          "cwl-load-redirect-html",
+        );
       } else if (errorEntry?.value?.kind === "literal") {
         const msgEntry = r.loadBody.entries.find((e) => e.key === "message");
         const msgId =
           msgEntry?.value?.kind === "literal" ? lowerHubLiteral(ctx, msgEntry.value.value, loc) : null;
-        valueId = effect.httpError({
+        const effectId = effect.httpError({
           status: Number(errorEntry.value.value),
           message: msgId,
           origin: hubOrigin(file, r.line ?? 1),
           provenance: [webir.provenance("hub-ingest", "cwl-load-error")],
         });
+        valueId = lowerHubPageWithEffectAndHtmlBody(
+          ctx,
+          effectId,
+          r.body.value,
+          loc,
+          wrBuilders,
+          htmlBindings,
+          "cwl-load-error-html",
+        );
       } else {
         const loadValueId = lowerObjectEntriesBody(ctx, r.loadBody.entries, loc);
         valueId = lowerHubPageWithLoadBody(ctx, loadValueId, r.body.value, loc, wrBuilders, htmlBindings);
@@ -281,7 +352,22 @@ export function liftCwlFileToWebir(opts) {
     } else {
       valueId = hubHandlerBodyHole(ctx, r.body.reason ?? "cwl:hole", loc);
     }
+    // RFC-0024: attachment holes coexist with a return body — declare in WebIR, don't drop.
+    const attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+    if (attachmentHoles.length > 0 && r.body?.kind !== "hole" && valueId) {
+      const holeIds = attachmentHoles.map((reason) =>
+        hubHandlerBodyHole(ctx, reason, loc),
+      );
+      valueId = data.block({
+        statements: [...holeIds, valueId],
+        type: HUB_T.unknown,
+        origin: hubOrigin(file, r.line ?? 1),
+        provenance: [webir.provenance("hub-ingest", "cwl:attachment-holes")],
+      });
+    }
     valueId = wrapCwlExecutableEffects({ data, webir, builder, file }, valueId, r.effects ?? [], loc);
+    valueId = wrapWithEarlyGuards(ctx, valueId, r.earlyGuards ?? [], r, wrBuilders, lowerObjectEntriesBody);
+    valueId = appendForeachBindings(ctx, valueId, r.foreachBindings ?? [], r, wrBuilders, lowerObjectEntriesBody);
     const status = r.responseStatus ?? 200;
     const contentType =
       r.responseContentType ??
@@ -293,16 +379,47 @@ export function liftCwlFileToWebir(opts) {
         : contentType
           ? "text"
           : "json";
+    /** @type {Record<string, string>} */
+    const responseHeaderBag = {};
+    for (const h of r.responseHeaders ?? []) {
+      if (!h?.name || !Object.prototype.hasOwnProperty.call(h, "default")) continue;
+      const v = h.default;
+      responseHeaderBag[String(h.name).toLowerCase()] =
+        v === null || v === undefined ? "" : typeof v === "string" ? v : String(v);
+    }
+    const hasResponseHeaders = Object.keys(responseHeaderBag).length > 0;
     let bodyId = valueId;
     const pageLoadHtml = Boolean(r.loadBody && r.body.kind === "html");
     const pageLoadUi = Boolean(r.loadBody && r.body.kind === "ui");
-    if (!pageLoadHtml && !pageLoadUi && (status !== 200 || contentType)) {
+    // `lowerCwlHtmlTemplateBody` / page-load HTML already emit `web.request.response` —
+    // do not wrap again (double echo). UI trees still need the outer response for CT.
+    const htmlAlreadyResponded = r.body.kind === "html" || pageLoadHtml;
+    if (
+      !htmlAlreadyResponded &&
+      !pageLoadUi &&
+      (status !== 200 || contentType || hasResponseHeaders)
+    ) {
+      const streamSse = r.streamKind === "sse" || contentType === "text/event-stream";
       bodyId = wrBuilders.response({
-        attrs: { status, kind, contentType },
+        attrs: {
+          status,
+          kind,
+          ...(contentType ? { contentType } : {}),
+          ...(hasResponseHeaders ? { headers: responseHeaderBag } : {}),
+        },
         value: valueId,
         origin: hubOrigin(file, r.line ?? 1),
         provenance: [
-          webir.provenance("hub-ingest", contentType ? "cwl:response-content-type" : "cwl:response-status"),
+          webir.provenance(
+            "hub-ingest",
+            streamSse
+              ? "cwl:stream-sse"
+              : contentType
+                ? "cwl:response-content-type"
+                : hasResponseHeaders
+                  ? "cwl:response-header"
+                  : "cwl:response-status",
+          ),
         ],
       });
     }

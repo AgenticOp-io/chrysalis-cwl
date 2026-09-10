@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "chrysalisVersion": "0.0.0",
+    "createdAt": "1970-01-01T00:00:00.000Z",
+    "sourceApp": "cwl-ingest-smoke"
+  },
+  "nodes": [
+    {
+      "attrs": {
+        "nodes": {
+          "attrs": {},
+          "children": [
+            {
+              "attrs": {},
+              "children": [
+                {
+                  "escape": true,
+                  "kind": "text",
+                  "text": "Signup"
+                }
+              ],
+              "kind": "element",
+              "tag": "h1"
+            },
+            {
+              "children": [
+                {
+                  "attrs": {},
+                  "children": [
+                    {
+                      "attrs": {
+                        "name": "email"
+                      },
+                      "children": [],
+                      "events": [
+                        {
+                          "action": "email.changed",
+                          "name": "change"
+                        }
+                      ],
+                      "kind": "element",
+                      "tag": "input"
+                    },
+                    {
+                      "attrs": {},
+                      "children": [
+                        {
+                          "escape": true,
+                          "kind": "text",
+                          "text": "Save"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "action": "signup.save",
+                          "name": "click"
+                        }
+                      ],
+                      "kind": "element",
+                      "tag": "button"
+                    }
+                  ],
+                  "kind": "element",
+                  "tag": "form"
+                }
+              ],
+              "client": true,
+              "kind": "island",
+              "name": "signup"
+            }
+          ],
+          "kind": "element",
+          "tag": "main"
+        }
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n0",
+      "op": "ui.tree",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 4
+      },
+      "provenance": [
+        {
+          "locator": "cwl:ui-tree",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n1",
+      "op": "response",
+      "operands": [
+        "n0"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 4
+      },
+      "provenance": [
+        {
+          "locator": "cwl:response-content-type",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "signup",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n2",
+      "op": "handler",
+      "operands": [
+        "n1"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 4
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/signup",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n3",
+      "op": "route",
+      "operands": [
+        "n2"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 4
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "nodes": {
+          "attrs": {},
+          "children": [
+            {
+              "children": [
+                {
+                  "attrs": {},
+                  "children": [
+                    {
+                      "escape": true,
+                      "kind": "text",
+                      "text": "Ping"
+                    }
+                  ],
+                  "events": [
+                    {
+                      "action": "ping",
+                      "name": "click"
+                    }
+                  ],
+                  "kind": "element",
+                  "tag": "button"
+                }
+              ],
+              "client": true,
+              "kind": "island"
+            }
+          ],
+          "kind": "element",
+          "tag": "section"
+        }
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n4",
+      "op": "ui.tree",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 27
+      },
+      "provenance": [
+        {
+          "locator": "cwl:ui-tree",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n5",
+      "op": "response",
+      "operands": [
+        "n4"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 27
+      },
+      "provenance": [
+        {
+          "locator": "cwl:response-content-type",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "anon_island",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n6",
+      "op": "handler",
+      "operands": [
+        "n5"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 27
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/anon",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n7",
+      "op": "route",
+      "operands": [
+        "n6"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 27
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    }
+  ],
+  "roots": [
+    "n3",
+    "n7"
+  ]
+}

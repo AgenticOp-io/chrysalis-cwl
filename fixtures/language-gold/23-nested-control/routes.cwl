@@ -1,5 +1,5 @@
-# Nested if / foreach stmt lists (RFC-0021 remaining gap — surface round-trip).
-# Honest documentation only: no CWL loop evaluate / verify; WebIR/Hono authority.
+# Nested if / else / foreach stmt lists (RFC-0021).
+# Honest documentation: foreach empty-iter IR only — no N-iteration HTML claim.
 module nested_control;
 
 @route POST "/login"
@@ -11,8 +11,9 @@ handler login_nested {
     status 400;
     if password == "" {
       return "Password required";
+    } else {
+      return "Missing credentials";
     }
-    return "Missing credentials";
   }
   if !user {
     if g_verify_password {
@@ -32,8 +33,9 @@ page posts_nested_if {
   foreach posts as p {
     if p == null {
       return html "<li>missing</li>";
+    } else {
+      return html "<li>post</li>";
     }
-    return html "<li>post</li>";
   }
 }
 

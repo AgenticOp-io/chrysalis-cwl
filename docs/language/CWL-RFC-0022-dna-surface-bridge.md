@@ -96,17 +96,29 @@ Effects describe **declared** behavior in CWL. DNA proves **observed** traffic. 
 | --- | --- |
 | `return html …` or `@page` with HTML body | `html` |
 | `return { … }` object literal / JSON body | `json` |
+| `stream sse;` (RFC-0027) | `other` — wire is `text/event-stream`; JSON payload is not certified traffic class |
 | string / opaque / hole-only body | `other` (or omit seed fingerprint) |
 
 Live DNA may **override** after learn (e.g. JSON that returns HTML error pages). Compare of identity uses method+path(+host); content_class drift is a DNA/Helix concern, not a CWL grammar change.
 
-### 4. Status classes & JSON fingerprints (DNA-owned; optional seed hints)
+### 4. Status classes & JSON fingerprints (optional seed hints; learn may deepen)
 
 | Field | Seed from CWL? | Notes |
 | --- | --- | --- |
-| `status_classes` | Optional: if handler declares `status N;` on all exits, seed `[floor(N/100)*100]` set; else `[]` or omit | Traffic learn fills this |
-| `response_key_fingerprint` | Optional for JSON literals: sorted top-level keys joined by `,` | Matches Helix `responseKeyFingerprint` for objects; `null` for html/other |
+| `status_classes` | If handler declares `status N;`, seed `[floor(N/100)*100]`; else `[]` | Traffic learn may widen |
+| `response_key_fingerprint` | JSON object/literal: sorted key **paths** depth ≤ 2 (`a,b` / `data,data.x`) | Matches Helix `dna-core` `responseKeyFingerprint`; `null` for html/other |
+| `request_key_fingerprint` | Optional: sorted union of `body` + `multipart field` + `multipart file` names | Omit when none declared |
+| `query_key_fingerprint` | Optional: sorted `query` binding names | Omit when none declared |
 | `mode` / `app_id` / `created_at` / `parent_hash` / `signature` | Profile / Helix | Not derived from CWL syntax |
+
+Bridge envelope annotations (not certified DNA route fields):
+
+| Annotation | From CWL |
+| --- | --- |
+| `cwl_effects` | Declared effects list |
+| `cwl_surface` | `page` vs `route` |
+| `cwl_stream` | `"sse"` when `stream sse;` |
+| `cwl_multipart_fields` / `cwl_multipart_files` | Named multipart part bindings |
 
 ### 5. Path templates
 
@@ -118,7 +130,7 @@ Live DNA may **override** after learn (e.g. JSON that returns HTML error pages).
 | Direction | Rule |
 | --- | --- |
 | CWL → seed DNA | Keep CWL path string as `path_template` (named params preserved). |
-| Compare CWL ↔ learned DNA | Helix (or bridge tool) should treat templates as equal when they share method and a **segment-shape** match: each `:param` aligns with `:id` or a named param; static segments must match exactly. Exact string equality is sufficient when DNA was seeded from CWL without re-learn. |
+| Compare CWL ↔ learned DNA | Segment-shape equality: `pathTemplateShapeEqual` in `cwl-dna-seed.mjs` / `@chrysalis/cwl/dna-seed` (each `:param` aligns with `:id`/named param; statics exact). Exact string equality is sufficient when DNA was seeded from CWL without re-learn. |
 | Static asset globs (`/**/*.js`) | DNA-only collapse. CWL does not author CDN asset DNA; no seed from CWL modules. |
 
 ### 6. Holes
@@ -128,6 +140,8 @@ Live DNA may **override** after learn (e.g. JSON that returns HTML error pages).
 | Language honesty: unsupported emit/runtime | Certificate honesty: uncertified / unknown observed behavior |
 
 Do **not** auto-copy CWL holes into DNA `holes`. They are different vocabularies. A bridge report may *list* CWL holes next to DNA gaps for operators; schemas stay separate.
+
+Language helper: `cwlHolesBridgeReport(mod)` in `scripts/hub-ingest/cwl-dna-seed.mjs` (optional on seed via `includeHolesReport: true`). Gate proves it on `11-holes`.
 
 ## What this RFC does not change
 
@@ -140,17 +154,21 @@ Do **not** auto-copy CWL holes into DNA `holes`. They are different vocabularies
 | Path | Role |
 | --- | --- |
 | `fixtures/language-gold/24-dna-bridge/routes.cwl` | Minimal valid CWL (round-trip / diagnose) |
-| `fixtures/language-gold/24-dna-bridge/expected-dna.json` | Documented seed/compare shape for Helix |
+| `fixtures/language-gold/24-dna-bridge/expected-dna.json` | Default-host seed/compare shape |
+| `fixtures/language-gold/24-dna-bridge/deploy-profile.json` | RFC-0023 profile (`hosts.default` + `hosts.api`) |
+| `fixtures/language-gold/24-dna-bridge/deploy-profile-api.json` | Multi-host seed (`host: "api"`) |
+| `fixtures/language-gold/24-dna-bridge/expected-dna-api.json` | Multi-host contract gold |
+| `fixtures/language-gold/34-dna-bridge-surfaces/` | Deepen 1.0.24 — SSE / multipart / HEAD seed honesty |
 
-Gate: `npm run test:language` covers the `.cwl` only. The JSON is a **contract gold** for Secure agents — not executed by the language parser.
+Gate: `npm run test:cwl-dna-bridge` → `CWL_DNA_BRIDGE_OK` (default + multi-host + holes report + surfaces deepen).
 
 ## Helix follow-up (blockers / handoff)
 
-1. Implement `cwlSurfaceToDraftDna(module)` (or CLI) consuming this mapping — **in** `chrysalis-security`.
-2. Define host resolution when seeding from CWL (profile vs `"default"`).
-3. Implement path-template **shape** equality for CWL-named vs DNA-`/:id` learned templates.
-4. Decide whether bridge annotations (`cwl_effects`) live in an envelope beside DNA or a Helix-private extension (schema today is `additionalProperties: false` on `app-dna-v1` — keep effects **out** of the certified certificate body unless schema is versioned).
-5. Wire cutover gate: CWL surface ⊆ certified DNA (identity), without forking grammar — **Convert does not own this**.
+1. ~~Implement `cwlSurfaceToDraftDna`~~ — **Done in CWL** (`@chrysalis/cwl/dna-seed`); Secure consumes.
+2. ~~Host resolution~~ — RFC-0023 deploy profiles + gold.
+3. ~~Path-template shape equality~~ — **Done in CWL** (`pathTemplateShapeEqual`); Secure may thin-wrap.
+4. Bridge annotations (`cwl_effects`) stay in envelope beside DNA (`additionalProperties: false` on certified body).
+5. Cutover gate orchestration (strip / promote / enforce) — **Secure**; Convert does not own this.
 
 ## Verify (language pillar)
 

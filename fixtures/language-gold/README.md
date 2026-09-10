@@ -30,9 +30,21 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `20-probes` | production readiness probe surfaces | 0015 |
 | `21-form-action` | form-action catalogued hole | 0016 |
 | `22-effects-middleware` | effects middleware chains | 0020 |
-| `24-dna-bridge` | CWL surface ↔ `app-dna-v1` seed shape (+ `expected-dna.json` + `expected-webir.json`) | 0022 |
+| `23-nested-control` | nested `if` / `foreach` stmt lists | 0021 |
+| `24-dna-bridge` | CWL surface ↔ `app-dna-v1` (+ `expected-dna.json` + `expected-webir.json` + `deploy-profile.json`) | 0022/0023 |
+| `25-island-kinds` | Wasm/vendor/opaque attachment holes (+ return shell) | 0024 |
+| `26-nested-literals` | Nested object/array literals | 0025 |
+| `27-data-v2` | Load redirect / error / cookie | 0013 |
+| `28-response-cookie` | Hyphenated `Set-Cookie` response-header | headers |
+| `29-transport-holes` | SSE / WebSocket / multipart catalogued holes | holes |
+| `30-effects-executable` | Effects beyond session presets (executable) | 0020 |
+| `31-multipart-binding` | Multipart field/file part bindings | 0026 |
+| `32-stream-sse` | SSE single-shot `stream sse;` | 0027 |
+| `33-ui-island-contracts` | Named client islands + form events | 0028 |
+| `34-dna-bridge-surfaces` | DNA seed deepen — SSE / multipart / HEAD | 0022 |
+| `35-form-urlencoded` | Urlencoded form POST + `body` bindings | 0005 + 0001 |
 
-## Parseable subset notes (0.1.5)
+## Parseable subset notes (0.1.8)
 
 | Dir | In gold (parser accepts) | Honest gap / elsewhere |
 | --- | --- | --- |
@@ -40,18 +52,23 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `20-probes` | `/search` query HTML + `/blog/:slug` load HTML | runtime probe assertions (convert) |
 | `21-form-action` | `hole hub-svelte:form-action` + HTML form shell | no `actions{}` syntax invented |
 | `22-effects-middleware` | `auth.require` / `cors.allow` / `csrf.verify` chains | middleware helper lowering (convert) |
+| `25-island-kinds` | `hole` + `return html` on same page (`attachmentHoles`) | Wasm/vendor runtime (Convert/Secure) |
 
 ## Gates
 
 ```bash
 npm run test:language
-npm run test:ingest          # needs npm run link:webir (sibling convert webir dist)
-# npm run test:language:full # language + ingest
+npm run test:ingest                 # needs npm run link:webir
+npm run smoke:cwl-ingest-matrix     # all language-gold/*/routes.cwl
+npm run smoke:cwl-runtime-gold      # execute 01-literals
+npm run smoke:cwl-runtime-matrix    # execute README runtime-ok + allowlist
+# npm run test:language:full        # language + ingest-roundtrip + ingest matrix + runtime matrix
 ```
 
 - **Round-trip:** parse → print → parse AST equality + print idempotence; multi-file + layout resolve  
-- **Diagnose:** no diagnose **errors** (warns OK for honest holes / hints)
-- **Ingest (optional):** CWL → WebIR on `01-literals`; compares `expected-webir.json` when present
+- **Diagnose:** no diagnose **errors** (warns OK for honest holes / hints); catalogued holes are **info**
+- **Ingest (optional):** CWL → WebIR; compares `expected-webir.json` when present
+- **Runtime execute (optional):** fixtures with **`runtime-ok`** in their README **and** checks in `scripts/cwl-runtime-smoke-lib.mjs` — API simulate only; no invented handlers
 
 ## Authoring rules
 
