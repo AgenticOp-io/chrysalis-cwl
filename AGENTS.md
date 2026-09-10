@@ -12,13 +12,14 @@ You own **CWL — the DNA of the web** (Rosetta inscription + tongue for the Uni
 
 1. `git pull` CWL + Convert + Secure; then [`docs/pillar-sync/BOARD.md`](./docs/pillar-sync/BOARD.md)
 2. [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md) — **constitution (full)**
-3. [`docs/language/ROSETTA-UT-PATH.md`](./docs/language/ROSETTA-UT-PATH.md) — Rosetta → UT → DNA path
-4. [`LANGUAGE_VERSION.md`](./LANGUAGE_VERSION.md)
-5. [`docs/history/ROADMAP.md`](./docs/history/ROADMAP.md)
-6. [`README.md`](./README.md)
-7. [`docs/language/CWL.md`](./docs/language/CWL.md)
-8. [`docs/language/CWL-PUBLISH.md`](./docs/language/CWL-PUBLISH.md) — publish later; Convert/Secure pin (`file:` vs registry)
-9. `AgenticOps/docs/THREE_PILLARS.md`
+3. [`docs/language/CWL-HOWTO.md`](./docs/language/CWL-HOWTO.md) — install & use (CLI, package, golds, editor, runtime)
+4. [`docs/language/ROSETTA-UT-PATH.md`](./docs/language/ROSETTA-UT-PATH.md) — Rosetta → UT → DNA path
+5. [`LANGUAGE_VERSION.md`](./LANGUAGE_VERSION.md)
+6. [`docs/history/ROADMAP.md`](./docs/history/ROADMAP.md)
+7. [`README.md`](./README.md)
+8. [`docs/language/CWL.md`](./docs/language/CWL.md)
+9. [`docs/language/CWL-PUBLISH.md`](./docs/language/CWL-PUBLISH.md) — publish later; Convert/Secure pin (`file:` vs registry)
+10. `AgenticOps/docs/THREE_PILLARS.md`
 
 ## Mission
 
