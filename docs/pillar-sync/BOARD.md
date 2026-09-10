@@ -1,6 +1,6 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-09-03 · tip **1.0.26** · GitHub pillars **public**  
+**Updated:** 2026-09-09 · tip **1.0.26** · Chrysalis OSS surface **public** (pillars + WPTP + FDE + Ghost Museum)  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md) · visibility [`../history/PRIVATE-PILLARS.md`](../history/PRIVATE-PILLARS.md)
 
@@ -8,7 +8,7 @@
 FLEET_MODE: on
 CWL_FLEET_IDLE: yes
 DISPATCH: standing sibling next · ops soak residual · human/PR merge to main
-VISIBILITY: public (chrysalis-cwl · chrysalis · chrysalis-security)
+VISIBILITY: public (pillars + wptp-* + fragility-discovery-engine + ghost-museum)
 CONVERT_NEXT: traffic-decides keep-green · urlencoded + redirect-shell peels
 SECURE_NEXT: bridge annotations · ops EXTFMAP/soak
 ```
