@@ -4,7 +4,7 @@
 
 **CWL · Convert · Secure** — this repo **owns** the genome. Convert translates into/out of it. Secure bridges to it. Neither redefines it.
 
-**Start here:** [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md) · [`docs/language/ROSETTA-UT-PATH.md`](./docs/language/ROSETTA-UT-PATH.md)
+**Start here:** [`docs/language/CWL-HOWTO.md`](./docs/language/CWL-HOWTO.md) (install & use) · [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md) · [`docs/language/ROSETTA-UT-PATH.md`](./docs/language/ROSETTA-UT-PATH.md)
 
 ## What’s here
 
@@ -12,6 +12,7 @@
 |------|------|
 | `LANGUAGE_VERSION.md` | Language semver + compatibility |
 | `CHANGELOG.md` | Language deltas |
+| `docs/language/CWL-HOWTO.md` | **Install & use** — package, CLI, golds, editor, runtime, DNA, gates |
 | `docs/language/CWL-PILLAR-HOME.md` | Constitution — ownership, sync, completeness |
 | `docs/language/CWL-PUBLISH.md` | GitHub Packages `@agenticop-io/cwl` + Convert/Secure pin |
 | `docs/language/CWL-CLI.md` | Authoring CLI (`parse` / `print` / `fmt` / `diagnose` / `check` / `emit-check`) |

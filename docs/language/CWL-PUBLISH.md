@@ -1,7 +1,7 @@
 # CWL publish & consumer pin path
 
-**Status:** Exit **1.0 published** — tip **`@agenticop-io/cwl@1.0.17`** on GitHub Packages (lineage from `1.0.0`; tags `cwl-v*`).  
-See [`EXIT-1.0.md`](../history/EXIT-1.0.md) · queue [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md) (**CLOSED**).
+**Status:** Exit **1.0** lineage — language tip **`1.0.26`** ([`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md)). GitHub Packages publishes `@agenticop-io/cwl` at tagged `cwl-v*` releases (registry tip may lag deepen; prefer tip pin or `file:` until Packages catches up).  
+See [`EXIT-1.0.md`](../history/EXIT-1.0.md) · how-to [`CWL-HOWTO.md`](./CWL-HOWTO.md) · queue [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md).
 
 Canonical version: [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md)  
 Local package: [`packages/cwl/package.json`](../../packages/cwl/package.json) (`@chrysalis/cwl`)  
@@ -28,10 +28,10 @@ Published package: **`@agenticop-io/cwl`** (org scope)
 ```
 
 ```bash
-npm install @agenticop-io/cwl@1.0.17
+npm install @agenticop-io/cwl@1.0.26
 ```
 
-Ecology / VSIX: [`CWL-ECOLOGY.md`](./CWL-ECOLOGY.md).
+Ecology / VSIX: [`CWL-ECOLOGY.md`](./CWL-ECOLOGY.md) · end-to-end how-to: [`CWL-HOWTO.md`](./CWL-HOWTO.md).
 
 ## Package subpath exports
 
