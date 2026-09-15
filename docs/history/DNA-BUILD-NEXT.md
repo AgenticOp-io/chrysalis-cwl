@@ -23,6 +23,7 @@
 | P0 | HTML shell preserve + urlencoded form gold (`35`) | **done** (`1.0.26`) |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
+| — | **Cinderpath expand asks** | working note only — [`CWL-EXPAND.md`](./CWL-EXPAND.md) — **no tip bump until drafts are edited and golded** |
 
 ## Sibling
 

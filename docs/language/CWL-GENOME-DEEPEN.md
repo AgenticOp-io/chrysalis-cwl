@@ -28,6 +28,7 @@ Convert still **hears** origin stacks; Secure still **checks** live DNA. Neither
 | **Emit reverse** | Load redirect / http.error (`27`) — done (`1.0.25`) |
 | **HTML shell + forms** | Redirect/error shell preserve + urlencoded POST (`35`) — done (`1.0.26`) |
 | **WebSocket duplex** | Kept honest hole (`unsupported:websocket`) |
+| **Cinderpath product asks** | Working note [`CWL-EXPAND.md`](../history/CWL-EXPAND.md) — layout wrap / device class / html+island — **not landed** until drafts approved + golded |
 | **CWL UI** | Hydration / silent React-Svelte lower remain non-goals |
 | **Holes** | More precise `unsupported:*` / `cwl:*` reasons as peels demand |
 
