@@ -557,7 +557,7 @@ npm run cwl -- check path/to/routes.cwl
 npm run cwl -- fmt path/to/routes.cwl
 
 # Package consumers
-npm install @agenticop-io/cwl@1.0.26   # needs GH Packages auth
+npm install @agenticop-io/cwl@1.0.28   # needs GH Packages auth
 npx cwl check path/to/routes.cwl
 
 # Rosetta reverse

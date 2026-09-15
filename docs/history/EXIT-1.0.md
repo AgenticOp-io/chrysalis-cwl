@@ -32,7 +32,7 @@ npm run test:cwl-pack    # CWL_EXIT_1_0_PACK_OK
 ## Consumer pin (Convert / Secure)
 
 ```json
-"@agenticop-io/cwl": "1.0.17"
+"@agenticop-io/cwl": "1.0.28"
 ```
 
 ```text
