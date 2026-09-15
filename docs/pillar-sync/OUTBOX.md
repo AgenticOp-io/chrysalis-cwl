@@ -4,6 +4,27 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-14 — tip-1.0.28-emit-reverse
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open** (await sibling pin ack)  
+**CWL tip:** **1.0.28**
+
+### Ask
+
+| Consumer | Action |
+| --- | --- |
+| Convert | Pin ≡ **1.0.28**; peels may rely on page-island + cookie-load emit reverse |
+| Secure | Pin ≡ **1.0.28**; DNA seed / live-match vs tip |
+
+### Shipped
+
+- Gold `38` emit hole-free (RFC-0030 reverse)
+- Island events in WebIR serialise; `load { …: cookie name }` emit recovery
+
+---
+
 ## 2026-09-14 — tip-1.0.27-expand
 
 **To:** convert + secure  

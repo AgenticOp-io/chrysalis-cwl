@@ -49,6 +49,9 @@ const HOLE_FREE = new Set([
   "33-ui-island-contracts",
   "34-dna-bridge-surfaces",
   "35-form-urlencoded",
+  "36-layout-chrome",
+  "37-html-cookie-device",
+  "38-html-page-island",
 ]);
 
 /** Honest remaining emit holes (catalogued / form-action). */
@@ -138,6 +141,19 @@ async function runOne(cwlPath, name) {
     const inner = outer?.stmts?.find((s) => s.kind === "foreach");
     if (inner?.collection !== "comments" || inner?.item !== "c") {
       throw new Error(`23 emit: nested foreach comments as c missing\n---\n${text}`);
+    }
+  }
+
+  if (name === "38-html-page-island") {
+    if (!/client ui "device"/.test(text) || !/on resize/.test(text) || !/return html/.test(text)) {
+      throw new Error(`38 emit: missing page island + html\n---\n${text}`);
+    }
+  }
+  if (name === "37-html-cookie-device") {
+    if (!/load \{ device: cookie cp_device \}/.test(text) && !/load \{ device: cookie cp_device\}/.test(text)) {
+      if (!/cookie cp_device/.test(text) || !/device: cookie cp_device/.test(text)) {
+        throw new Error(`37 emit: missing cookie load token\n---\n${text}`);
+      }
     }
   }
 

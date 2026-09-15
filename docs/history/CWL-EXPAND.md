@@ -1,7 +1,7 @@
 # CWL expand (Cinderpath)
 
 Working note for **AgenticOp-io/chrysalis-cwl**. Genome: `internal/webapp/cwl/cinderpath.cwl`.  
-**Landed tip:** **1.0.27** (RFC-0029 / 0014 deepen / 0030). Go (`cinderpath-web`) remains the hole executor.
+**Landed tip:** **1.0.28** (RFC-0029 / 0014 deepen / 0030 + emit reverse). Go (`cinderpath-web`) remains the hole executor.
 
 If a line is wrong, strike it.
 
@@ -62,7 +62,7 @@ RFC-0030 · gold `38-html-page-island`. Layout may own the island once (RFC-0029
 2. Public pages: treat CWL `return html` (+ layout chrome) as the **record** Convert/`cwl` simulate/emit can render.
 3. Keep **Go** for catalogued holes only: bcrypt/session, WireGuard/POP/QR, any opaque device script the genome declares.
 4. Do **not** re-implement a second CWL parser in Go — call the pillar package / Convert spine.
-5. Bump `cinderpath.cwl` tip comment only after Convert/Secure pin **1.0.27**.
+5. Bump `cinderpath.cwl` tip comment only after Convert/Secure pin **1.0.28**.
 
 ---
 

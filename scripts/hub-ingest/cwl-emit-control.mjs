@@ -385,6 +385,8 @@ export function peelCwlControlBody(get, bodyId) {
   let loadBody = null;
   /** @type {string[]} */
   let attachmentHoles = [];
+  /** @type {string[]} WebIR node ids for page-level islands (RFC-0030) */
+  let pageIslandIds = [];
   let id = bodyId;
   let n = get(id);
 
@@ -397,6 +399,16 @@ export function peelCwlControlBody(get, bodyId) {
       for (let i = 0; i < ops.length - 1; i++) {
         const h = get(ops[i]);
         if (h?.op === "hole") attachmentHoles.push(String(h.attrs?.reason ?? "cwl:hole"));
+      }
+      id = ops[ops.length - 1];
+      n = get(id);
+      continue;
+    }
+
+    if (n.dialect === "data" && n.op === "block" && loc === "cwl:page-islands") {
+      const ops = n.operands ?? [];
+      for (let i = 0; i < ops.length - 1; i++) {
+        if (ops[i]) pageIslandIds.push(ops[i]);
       }
       id = ops[ops.length - 1];
       n = get(id);
@@ -521,6 +533,7 @@ export function peelCwlControlBody(get, bodyId) {
     responseHeaders,
     loadBody,
     attachmentHoles,
+    pageIslandIds,
     bindings,
   };
 }

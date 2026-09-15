@@ -52,6 +52,7 @@ function deserialiseUiNode(get, node, operands) {
       client: true,
       name: node.name ? String(node.name) : null,
       children: (node.children ?? []).map((c) => deserialiseUiNode(get, c, operands)),
+      events: Array.isArray(node.events) ? node.events : [],
     };
   }
   if (node.kind === "element") {
@@ -98,6 +99,16 @@ export function projectHtmlTemplateOrLiteral(get, n) {
 }
 
 /**
+ * Print a standalone page/layout island (RFC-0030) without `return ui`.
+ * @param {object} island
+ * @param {string} indent
+ * @param {string[]} lines
+ */
+export function printEmitStandaloneIsland(island, indent, lines) {
+  printUiNode(island, indent, lines);
+}
+
+/**
  * Print UI tree return (mirrors cwl-print printCwlUiReturn shape).
  * @param {object} tree
  * @param {string} indent
@@ -138,6 +149,9 @@ function printUiNode(node, indent, lines) {
   if (node.kind === "island") {
     if (node.name) lines.push(`${indent}client ui ${JSON.stringify(String(node.name))} {`);
     else lines.push(`${indent}client ui {`);
+    for (const ev of node.events ?? []) {
+      lines.push(`${indent}  on ${ev.name} { action ${JSON.stringify(ev.action)}; }`);
+    }
     for (const child of node.children ?? []) printUiNode(child, `${indent}  `, lines);
     lines.push(`${indent}}`);
     return;

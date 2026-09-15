@@ -1,6 +1,6 @@
 # CWL how-to — install and use
 
-**Tip language:** **`1.0.26`** ([`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md))  
+**Tip language:** **`1.0.28`** ([`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md))  
 **Repo:** [AgenticOp-io/chrysalis-cwl](https://github.com/AgenticOp-io/chrysalis-cwl) (public, Apache-2.0)  
 **Audience:** authors, integrators, Convert/Secure consumers, and anyone cloning the language pillar
 
@@ -32,7 +32,7 @@ CWL is the **readable genome** of a web app: routes, pages, data loaders, UI isl
 | --- | --- | --- |
 | Language package | `packages/cwl` → `@chrysalis/cwl` / published `@agenticop-io/cwl` | Parser, print, diagnose, DNA seed, packable `cwl` bin |
 | Pillar CLI | `scripts/cwl-cli.mjs` | Full authoring + **WebIR** `emit-check` / `fmt --webir` |
-| Language golds | `fixtures/language-gold/` | Spec-by-example (`01` … `35`) |
+| Language golds | `fixtures/language-gold/` | Spec-by-example (`01` … `38`) |
 | WebIR package | `packages/webir` | Homeable IR types/builder (build for Rosetta reverse) |
 | Runtime | `packages/runtime-cwl*` | In-process HTTP serve via WebIR simulation |
 | Emit runtime | `packages/emit-runtime-cwl` | Emit a deployable Node project from WebIR |
@@ -87,14 +87,14 @@ npm run test:cwl-mirrors
 
 ### 2.1 From GitHub Packages (outside the monorepo)
 
-Published name: **`@agenticop-io/cwl`**. Tip version must match [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (today **`1.0.26`**). A token with `read:packages` on org **AgenticOp-io** is required.
+Published name: **`@agenticop-io/cwl`**. Tip version must match [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (today **`1.0.28`**). A token with `read:packages` on org **AgenticOp-io** is required.
 
 ```bash
 # .npmrc (project or user)
 @agenticop-io:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 
-npm install @agenticop-io/cwl@1.0.26
+npm install @agenticop-io/cwl@1.0.28
 ```
 
 ```bash
@@ -198,7 +198,28 @@ handler signup {
 
 Gold: `fixtures/language-gold/35-form-urlencoded/`.
 
-### 3.4 Honest holes
+### 3.4 Layout chrome + HTML island (tip 1.0.27+)
+
+```cwl
+layout shell {
+  chrome html "<header><a href='/cwl'>CWL</a></header>";
+}
+
+@page GET "/"
+page home {
+  layout shell;
+  client ui "device" {
+    on resize { action "classify-device"; }
+  }
+  cookie cp_device;
+  load { device: cookie cp_device };
+  return html "<main data-device='device'>home</main>";
+}
+```
+
+Golds: `36-layout-chrome`, `37-html-cookie-device`, `38-html-page-island`. RFCs 0029 / 0014 / 0030.
+
+### 3.5 Honest holes
 
 Never invent. Catalogued reasons diagnose as **info**; uncatalogued as **warn**.
 
@@ -362,7 +383,7 @@ npm run pack:cwl-vsix
 Install: Extensions → **Install from VSIX…**, or:
 
 ```bash
-code --install-extension dist-editors/cwl-lsp-1.0.26.vsix
+code --install-extension dist-editors/cwl-lsp-1.0.28.vsix
 ```
 
 (Exact filename follows tip / packer output.)

@@ -8,7 +8,12 @@
  * @see docs/history/WEBIR-EXTRACT-PLAN.md Slice 4
  */
 import { cwlEmitLocator, peelCwlControlBody } from "./cwl-emit-control.mjs";
-import { printEmitUiTree, projectHtmlTemplateOrLiteral, projectUiTreeValue } from "./cwl-emit-ui.mjs";
+import {
+  printEmitStandaloneIsland,
+  printEmitUiTree,
+  projectHtmlTemplateOrLiteral,
+  projectUiTreeValue,
+} from "./cwl-emit-ui.mjs";
 
 /**
  * @param {unknown} value
@@ -34,6 +39,7 @@ function cwlRenderValue(v) {
   if (!v) return '""';
   if (v.t === "html") return `html ${cwlRenderLiteral(v.value)}`;
   if (v.t === "ident" && typeof v.name === "string") return v.name;
+  if (v.t === "cookie" && typeof v.name === "string") return `cookie ${v.name}`;
   if (v.t === "lit") return cwlRenderLiteral(v.value);
   if (v.t === "obj") {
     const ent = v.entries.map((e) => `${e.key}: ${cwlRenderValue(e.value)}`);
@@ -153,10 +159,13 @@ export function cwlValueOfThin(get, id) {
   if (n.dialect === "data" && (n.op === "binop" || n.op === "binOp") && n.attrs?.operator === "??") {
     return cwlValueOfThin(get, n.operands?.[0]);
   }
-  // Path/query/body/header field as bare ident (headers may include `-`)
+  // Path/query/body/header field as bare ident (headers may include `-`); cookies keep `cookie name`
   if (n.dialect === "data" && (n.op === "request.field" || n.op === "requestField" || n.op === "param")) {
     const name = String(n.attrs?.name ?? "");
-    if (/^[A-Za-z_][A-Za-z0-9_-]*$/.test(name)) return { t: "ident", name };
+    if (/^[A-Za-z_][A-Za-z0-9_-]*$/.test(name)) {
+      if (n.attrs?.source === "cookie") return { t: "cookie", name };
+      return { t: "ident", name };
+    }
   }
   return { t: "hole", reason: `cwl:emit:unsupported:${n.dialect}.${n.op}` };
 }
@@ -169,6 +178,13 @@ export function cwlValueOfThin(get, id) {
 export function walkCwlHandlerBodyThin(get, bodyId) {
   const peeled = peelCwlControlBody(get, bodyId);
   let value = cwlValueOfThin(get, peeled.successId);
+  /** @type {object[]} */
+  const pageIslands = [];
+  for (const iid of peeled.pageIslandIds ?? []) {
+    const node = get(iid);
+    const ui = projectUiTreeValue(get, node);
+    if (ui.t === "ui" && ui.tree) pageIslands.push(ui.tree);
+  }
   /** @type {object | null} */
   let loadValue = null;
   if (peeled.loadBody?.kind === "object-ref" && peeled.loadBody.id) {
@@ -206,7 +222,8 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
     loadValue = { t: "obj", entries };
     value = { t: "html", value: "" };
   }
-  const isPage = value.t === "html" || value.t === "ui" || loadValue != null;
+  const isPage =
+    value.t === "html" || value.t === "ui" || loadValue != null || pageIslands.length > 0;
   const hasControl =
     peeled.earlyGuards.length > 0 ||
     peeled.foreachBindings.length > 0 ||
@@ -215,7 +232,8 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
     peeled.status != null ||
     peeled.contentType != null ||
     (peeled.responseHeaders?.length ?? 0) > 0 ||
-    (peeled.attachmentHoles?.length ?? 0) > 0;
+    (peeled.attachmentHoles?.length ?? 0) > 0 ||
+    pageIslands.length > 0;
 
   if (value.t === "hole" && !hasControl) {
     return {
@@ -239,6 +257,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
       earlyGuards: [],
       foreachBindings: [],
       attachmentHoles: peeled.attachmentHoles ?? [],
+      pageIslands: [],
       surfaceKind: "api",
     };
   }
@@ -264,6 +283,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
       earlyGuards: peeled.earlyGuards,
       foreachBindings: peeled.foreachBindings,
       attachmentHoles: peeled.attachmentHoles ?? [],
+      pageIslands,
       surfaceKind: isPage ? "page" : "api",
     };
   }
@@ -288,6 +308,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
     earlyGuards: peeled.earlyGuards,
     foreachBindings: peeled.foreachBindings,
     attachmentHoles: peeled.attachmentHoles ?? [],
+    pageIslands,
     surfaceKind: isPage ? "page" : "api",
   };
 }
@@ -450,6 +471,7 @@ export function renderCwlRoutes(routes, opts = {}) {
       r.foreachBindings?.length ||
       r.value ||
       r.loadValue ||
+      r.pageIslands?.length ||
       (typeof r.status === "number" && r.status !== 200) ||
       r.contentType ||
       r.responseHeaders?.length;
@@ -493,6 +515,10 @@ export function renderCwlRoutes(routes, opts = {}) {
 
     if (r.loadValue) {
       lines.push(`  load ${cwlRenderValue(r.loadValue)};`);
+    }
+
+    for (const island of r.pageIslands ?? []) {
+      printEmitStandaloneIsland(island, "  ", lines);
     }
 
     if (r.value?.t === "ui") {

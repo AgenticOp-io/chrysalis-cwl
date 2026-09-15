@@ -34,6 +34,7 @@ Islands remain **contract metadata** — they do not invent a browser runtime in
 
 - HTML body lowers as today (RFC-0014 templates when bindings match)
 - Page islands lower as UI tree blocks attached beside the response (provenance `cwl:page-islands`)
+- **Emit reverse (tip 1.0.28):** peels `cwl:page-islands` and reprints sibling `client ui` (including island events)
 
 ## Non-goals
 

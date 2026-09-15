@@ -1,7 +1,7 @@
 {
   "kind": "chrysalis.cwl.package-lib",
   "schemaVersion": 1,
-  "stagedAt": "2026-09-15T04:16:18.599Z",
+  "stagedAt": "2026-09-15T04:53:08.603Z",
   "files": [
     "cwl-parser.mjs",
     "cwl-print.mjs",

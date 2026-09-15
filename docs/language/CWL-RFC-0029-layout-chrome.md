@@ -38,6 +38,7 @@ At resolve/ingest, `layout name;` merges layout headers, cookies, attachment hol
 
 - Compose: `layoutChromeHtml + body.html`
 - Merged bindings / holes / islands follow existing request-context, RFC-0024, and RFC-0030 paths
+- **Emit reverse:** recovers the **composed** HTML phenotype (chrome + body) and merged holes/bindings; it does not reconstruct a separate `layout` decl (authoring sugar stays in source)
 
 ## Non-goals
 

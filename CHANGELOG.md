@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.28 — 2026-09-14
+
+- Emit reverse: page-level `client ui` siblings (RFC-0030 / gold `38`) — no more `cwl:emit:multi-statement-body`
+- Island events survive WebIR serialise/deserialise; cookie load emit recovers `cookie name`
+- Layout chrome emit stays composed HTML phenotype (honest; no fake `layout` reconstruct)
+- Still forbidden: UA regex; Nest / LiveView / Flutter façades; WebSocket duplex invent
+
 ## 1.0.27 — 2026-09-14
 
 - RFC-0029 layout chrome wrap (`layout` + `chrome html` + page use); gold `36-layout-chrome`
