@@ -25,7 +25,7 @@ SECURE_NEXT: pin 1.0.28 · bridge annotations · ops EXTFMAP/soak
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | *(pending)* | tip **1.0.28** |
+| **CWL** | `main` | `51bbd61` | tip **1.0.28** on main |
 | **Convert** | `candidate/wptp-convert-orbit` | `5844a00f` | still at 1.0.26 ack |
 | **Secure** | `candidate/live-match-step4` | `1be6670` | still at 1.0.26 ack |
 
