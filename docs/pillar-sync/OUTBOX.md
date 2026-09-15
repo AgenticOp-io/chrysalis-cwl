@@ -4,6 +4,33 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-14 — tip-1.0.27-expand
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open** (await sibling pin ack)  
+**CWL tip:** **1.0.27**
+
+### Ask
+
+| Consumer | Action |
+| --- | --- |
+| Convert | Pin `file:../chrysalis-cwl/packages/cwl` ≡ **1.0.27**; peel layout chrome compose + page islands + cookie HTML interpolate |
+| Secure | Pin ≡ **1.0.27**; DNA seed / live-match vs tip surfaces |
+
+### Shipped in CWL
+
+- RFC-0029 layout chrome (`36-layout-chrome`)
+- RFC-0014 cookie/load HTML deepen (`37-html-cookie-device`)
+- RFC-0030 HTML + sibling `client ui` (`38-html-page-island`)
+- Cinderpath consume process: [`../history/CWL-EXPAND.md`](../history/CWL-EXPAND.md)
+
+### Honesty
+
+No UA regex invent. Holes remain for bcrypt/session, WireGuard/POP/QR, opaque script.
+
+---
+
 ## 2026-09-09 — full-oss-surface (informational)
 
 **To:** convert + secure + brand  

@@ -32,6 +32,8 @@ CWL evolves by **RFC**: each proposal must cite cross-language evidence (path kn
 | [0026](CWL-RFC-0026-multipart-binding.md) | Multipart field/file part bindings | accepted |
 | [0027](CWL-RFC-0027-stream-sse.md) | SSE single-shot `stream sse;` | accepted |
 | [0028](CWL-RFC-0028-ui-island-contracts.md) | Named client islands + form event contracts | accepted |
+| [0029](CWL-RFC-0029-layout-chrome.md) | Layout chrome wrap (`layout` + `chrome html`) | accepted |
+| [0030](CWL-RFC-0030-html-page-island.md) | Page `return html` + sibling `client ui` | accepted |
 
 **Process**
 

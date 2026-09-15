@@ -148,6 +148,18 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
   { label: "stream sse", kind: KIND_SNIPPET, detail: "SSE single-shot surface (RFC-0027)", insertText: "stream sse;" },
   { label: "header", kind: KIND_KEYWORD, detail: "Request header binding", insertText: "header " },
   { label: "cookie", kind: KIND_KEYWORD, detail: "Cookie binding", insertText: "cookie " },
+  {
+    label: "layout",
+    kind: KIND_SNIPPET,
+    detail: "Layout chrome wrap decl or use (RFC-0029)",
+    insertText: "layout ${1:shell} {\n  chrome html \"${2:}\";\n}",
+  },
+  {
+    label: "chrome html",
+    kind: KIND_SNIPPET,
+    detail: "Layout chrome HTML prefix (RFC-0029)",
+    insertText: 'chrome html "${1:<header></header>}";',
+  },
 ]);
 
 /** @type {ReadonlyArray<{ label: string, kind: number, detail: string }>} */

@@ -118,6 +118,38 @@ async function main() {
   if (layout.ok) passes.push(layout);
   else failures.push(layout);
 
+  const chromeEntry = resolve(FIXTURES, "36-layout-chrome/routes.cwl");
+  const chromeResolved = resolveCwlModuleFromPath(chromeEntry);
+  const home = chromeResolved.routes.find((r) => r.path === "/" && r.method === "GET");
+  const chromeOk =
+    home &&
+    home.layoutName === "shell" &&
+    home.layoutChromeHtml === "<header class='top'><a href='/cwl'>CWL</a></header>" &&
+    Array.isArray(home.handlerHeaders) &&
+    home.handlerHeaders.includes("User-Agent") &&
+    Array.isArray(home.attachmentHoles) &&
+    home.attachmentHoles.includes("unsupported:opaque-script") &&
+    home.body?.kind === "html" &&
+    home.body.value === "<main>home</main>";
+  const chrome = chromeOk
+    ? { ok: true, entry: chromeEntry, routes: chromeResolved.routes.length }
+    : {
+        ok: false,
+        entry: chromeEntry,
+        error: "layout-chrome-resolve",
+        home: home
+          ? {
+              layoutName: home.layoutName,
+              layoutChromeHtml: home.layoutChromeHtml,
+              handlerHeaders: home.handlerHeaders,
+              attachmentHoles: home.attachmentHoles,
+              body: home.body,
+            }
+          : null,
+      };
+  if (chrome.ok) passes.push(chrome);
+  else failures.push(chrome);
+
   const report = {
     kind: "chrysalis.cwl.roundtrip",
     schemaVersion: 1,
