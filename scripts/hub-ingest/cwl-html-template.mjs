@@ -27,15 +27,16 @@ function lowerHubHtmlLiteralPageBody(ctx, html, loc, wr) {
 
 /**
  * @param {string} html
- * @param {{ path?: string[], query?: string[], load?: string[] }} bindings
+ * @param {{ path?: string[], query?: string[], load?: string[], cookie?: string[] }} bindings
  */
 export function splitCwlHtmlTemplate(html, bindings = {}) {
   const pathSet = new Set(bindings.path ?? []);
   const querySet = new Set(bindings.query ?? []);
   const loadSet = new Set(bindings.load ?? []);
-  if (pathSet.size + querySet.size + loadSet.size === 0) return null;
+  const cookieSet = new Set(bindings.cookie ?? []);
+  if (pathSet.size + querySet.size + loadSet.size + cookieSet.size === 0) return null;
 
-  /** @type {Array<{ kind: "literal", text: string } | { kind: "expr", name: string, source: "path" | "query" | "load" }>} */
+  /** @type {Array<{ kind: "literal", text: string } | { kind: "expr", name: string, source: "path" | "query" | "load" | "cookie" }>} */
   const parts = [];
   let i = 0;
   while (i < html.length) {
@@ -47,13 +48,10 @@ export function splitCwlHtmlTemplate(html, bindings = {}) {
       if (pathSet.has(name)) source = "path";
       else if (querySet.has(name)) source = "query";
       else if (loadSet.has(name)) source = "load";
+      else if (cookieSet.has(name)) source = "cookie";
       if (source) {
         const after = html[i + name.length];
         const before = i > 0 ? html[i - 1] : "";
-        // Skip load/path/query ids inside hyphenated CSS/attr tokens
-        // (e.g. class="module-header", data-cwl-path). Only consume from the
-        // current index forward — walking back would duplicate a prior literal
-        // prefix (legacy:markup-no- + markup-no-source-route).
         if (before === "-" || after === "-") {
           let end = i + name.length;
           while (end < html.length && /[a-zA-Z0-9_-]/.test(html[end])) end++;
@@ -73,7 +71,7 @@ export function splitCwlHtmlTemplate(html, bindings = {}) {
       const next = /^[a-zA-Z_][a-zA-Z0-9_]*/.exec(tail);
       if (next) {
         const name = next[0];
-        if (pathSet.has(name) || querySet.has(name) || loadSet.has(name)) break;
+        if (pathSet.has(name) || querySet.has(name) || loadSet.has(name) || cookieSet.has(name)) break;
       }
       j++;
     }
@@ -88,7 +86,7 @@ export function splitCwlHtmlTemplate(html, bindings = {}) {
  * @param {string} html
  * @param {{ file: string, line?: number }} loc
  * @param {object} wr
- * @param {{ path?: string[], query?: string[], load?: string[] }} [bindings]
+ * @param {{ path?: string[], query?: string[], load?: string[], cookie?: string[] }} [bindings]
  */
 export function lowerCwlHtmlTemplateBody(ctx, html, loc, wr, bindings = {}) {
   const split = splitCwlHtmlTemplate(html, bindings);
@@ -112,11 +110,16 @@ export function lowerCwlHtmlTemplateBody(ctx, html, loc, wr, bindings = {}) {
             provenance: [webir.provenance("hub-ingest", "cwl-html-load-field")],
           })
         : data.requestField({
-            source: part.source,
+            source: part.source === "cookie" ? "cookie" : part.source,
             name: part.name,
             type: { kind: "string" },
             origin,
-            provenance: [webir.provenance("hub-ingest", "cwl-html-param")],
+            provenance: [
+              webir.provenance(
+                "hub-ingest",
+                part.source === "cookie" ? "cwl-html-cookie" : "cwl-html-param",
+              ),
+            ],
           });
     templateParts.push({ kind: "expr", node: nodeId, escape: true });
   }

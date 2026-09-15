@@ -29,6 +29,7 @@ const LABEL_TO_WORDS = {
   "multipart field": ["multipart"],
   "multipart file": ["multipart"],
   "stream sse": ["stream"],
+  "chrome html": ["chrome", "html"],
 };
 
 const tm = JSON.parse(readFileSync(TM, "utf8"));

@@ -5,6 +5,7 @@ import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lo
 import { lowerCwlHtmlTemplateBody } from "./cwl-html-template.mjs";
 import { lowerCwlUiTreeBody, resolveCwlUiComponent } from "./cwl-ui-tree.mjs";
 import { parseCwlModuleResolved, resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";
+import { composeLayoutChromeHtml } from "./cwl-layout.mjs";
 import { liftCwlModuleMiddlewareToWebir } from "./hub-cwl-middleware.mjs";
 import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
 import { cwlEffectsToWebir, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
@@ -259,11 +260,16 @@ export function liftCwlFileToWebir(opts) {
     const htmlBindings = {
       path: r.handlerPathParams ?? [],
       query: r.handlerQueryParams ?? [],
+      cookie: r.handlerCookies ?? [],
       load:
         r.loadBody?.kind === "object" && r.loadBody.entries
           ? r.loadBody.entries.map((e) => e.key)
           : [],
     };
+    const pageHtml =
+      r.body.kind === "html"
+        ? composeLayoutChromeHtml(r.layoutChromeHtml, r.body.value)
+        : null;
     if (r.loadBody && r.body.kind === "html" && r.loadBody.kind === "object" && r.loadBody.entries) {
       const redirectEntry = r.loadBody.entries.find((e) => e.key === "redirect");
       const errorEntry = r.loadBody.entries.find((e) => e.key === "error");
@@ -277,7 +283,7 @@ export function liftCwlFileToWebir(opts) {
         valueId = lowerHubPageWithEffectAndHtmlBody(
           ctx,
           effectId,
-          r.body.value,
+          pageHtml,
           loc,
           wrBuilders,
           htmlBindings,
@@ -296,7 +302,7 @@ export function liftCwlFileToWebir(opts) {
         valueId = lowerHubPageWithEffectAndHtmlBody(
           ctx,
           effectId,
-          r.body.value,
+          pageHtml,
           loc,
           wrBuilders,
           htmlBindings,
@@ -304,7 +310,7 @@ export function liftCwlFileToWebir(opts) {
         );
       } else {
         const loadValueId = lowerObjectEntriesBody(ctx, r.loadBody.entries, loc);
-        valueId = lowerHubPageWithLoadBody(ctx, loadValueId, r.body.value, loc, wrBuilders, htmlBindings);
+        valueId = lowerHubPageWithLoadBody(ctx, loadValueId, pageHtml, loc, wrBuilders, htmlBindings);
       }
     } else if (
       r.loadBody &&
@@ -337,7 +343,7 @@ export function liftCwlFileToWebir(opts) {
         { file, line: r.line ?? 1, column: 1 },
       );
     } else if (r.body.kind === "html") {
-      valueId = lowerCwlHtmlTemplateBody(ctx, r.body.value, loc, wrBuilders, htmlBindings);
+      valueId = lowerCwlHtmlTemplateBody(ctx, pageHtml, loc, wrBuilders, htmlBindings);
     } else if (r.body.kind === "ui") {
       let tree = r.body.tree;
       if (r.body.componentRef) {
@@ -363,6 +369,17 @@ export function liftCwlFileToWebir(opts) {
         type: HUB_T.unknown,
         origin: hubOrigin(file, r.line ?? 1),
         provenance: [webir.provenance("hub-ingest", "cwl:attachment-holes")],
+      });
+    }
+    // RFC-0030: page-level client islands alongside HTML — attach as UI metadata blocks.
+    const pageIslands = Array.isArray(r.pageIslands) ? r.pageIslands : [];
+    if (pageIslands.length > 0 && valueId) {
+      const islandIds = pageIslands.map((island) => lowerCwlUiTreeBody(ctx, island, loc, htmlBindings));
+      valueId = data.block({
+        statements: [...islandIds, valueId],
+        type: HUB_T.unknown,
+        origin: hubOrigin(file, r.line ?? 1),
+        provenance: [webir.provenance("hub-ingest", "cwl:page-islands")],
       });
     }
     valueId = wrapCwlExecutableEffects({ data, webir, builder, file }, valueId, r.effects ?? [], loc);

@@ -1,9 +1,17 @@
 # CWL language changelog
 
+## 1.0.27 — 2026-09-14
+
+- RFC-0029 layout chrome wrap (`layout` + `chrome html` + page use); gold `36-layout-chrome`
+- RFC-0014 deepen: cookie (+ load) identifiers in `return html`; gold `37-html-cookie-device`
+- RFC-0030 page-level `client ui` sibling to `return html`; gold `38-html-page-island`
+- Process note: Go/host as hole executor vs CWL as genome/renderer record ([`CWL-EXPAND.md`](./docs/history/CWL-EXPAND.md))
+- Still forbidden: UA regex in CWL; Nest / LiveView / Flutter façades; WebSocket duplex invent
+
 ## Docs / ops — 2026-09-03
 
 - Pillar GitHub repos flipped **public** (`chrysalis-cwl`, `chrysalis`, `chrysalis-security`) — see [`PRIVATE-PILLARS.md`](./docs/history/PRIVATE-PILLARS.md)
-- Tip remains **1.0.26** (redirect/error HTML shell + urlencoded form gold)
+- Tip was **1.0.26** (redirect/error HTML shell + urlencoded form gold)
 
 ## 1.0.26 — 2026-08-21
 

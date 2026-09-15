@@ -43,6 +43,9 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `33-ui-island-contracts` | Named client islands + form events | 0028 |
 | `34-dna-bridge-surfaces` | DNA seed deepen — SSE / multipart / HEAD | 0022 |
 | `35-form-urlencoded` | Urlencoded form POST + `body` bindings | 0005 + 0001 |
+| `36-layout-chrome` | Layout chrome wrap (`layout` + `chrome html`) | 0029 |
+| `37-html-cookie-device` | Cookie / load tokens in `return html` | 0014 |
+| `38-html-page-island` | `return html` + sibling `client ui` | 0030 |
 
 ## Parseable subset notes (0.1.8)
 

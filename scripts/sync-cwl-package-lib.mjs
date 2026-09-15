@@ -23,6 +23,7 @@ const FILES = [
   "hub-cwl-path-params.mjs",
   "hub-t.mjs",
   "cwl-module-graph.mjs",
+  "cwl-layout.mjs",
   "cwl-dna-seed.mjs",
 ];
 
