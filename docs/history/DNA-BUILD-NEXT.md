@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.34`** — RFC-0033 declared upstream forwards (destination in CWL, bytes host-side)  
+**Tip:** **`1.0.35`** — precise host-byte hole reasons (keypair / binary render)  
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -29,6 +29,7 @@
 | P0 | Repeat item **field** access (`41`) | **done** (`1.0.33`) |
 | P0 | Credential / session effects (`42`, RFC-0032) | **done** (`1.0.33`) — crypto stays host-side |
 | P0 | Declared upstream forward (`43`, RFC-0033) | **done** (`1.0.34`) — transfer stays host-side |
+| P0 | Precise keypair / binary-render reasons (`44`) | **done** (`1.0.35`) |
 | P1 | Conditional markup inside repeats (`if` on item field) | open — only if peels demand |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
@@ -38,7 +39,7 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.34** | Convert + Secure — **asked** |
+| Tip pin **1.0.35** | Convert + Secure — **asked** |
 | Consume layout chrome + page islands in peels / simulate | Convert |
 | Live-match / cutover vs tip seed | Secure |
 | EXTFMAP | **Operator** — [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) |

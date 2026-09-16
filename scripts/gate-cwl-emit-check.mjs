@@ -19,6 +19,7 @@ const REPEAT = join(ROOT, "fixtures/language-gold/40-html-repeat/routes.cwl");
 const REPEAT_FIELDS = join(ROOT, "fixtures/language-gold/41-html-repeat-fields/routes.cwl");
 const AUTH_V2 = join(ROOT, "fixtures/language-gold/42-auth-effects-v2/routes.cwl");
 const PROXY_UPSTREAM = join(ROOT, "fixtures/language-gold/43-proxy-upstream/routes.cwl");
+const HOST_BYTES = join(ROOT, "fixtures/language-gold/44-host-bytes-holes/routes.cwl");
 
 const webirEntry = resolveWebirEntryPath();
 const webirReady = Boolean(webirEntry && existsSync(webirEntry));
@@ -158,6 +159,20 @@ runEmitCheck(
       (rep.holeCount ?? 1) === 0 &&
       /proxy\s+upstream\s+"https:\/\/backend-services\.internal\/tower-status";/.test(text) &&
       /proxy\s+upstream\s+"https:\/\/backend-services\.internal\/provision";/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// Host-byte residuals: the hole stays, but the declared media type must not be lost with it.
+runEmitCheck(
+  "emit-check-44-host-bytes-holes",
+  HOST_BYTES,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      /content-type\s+"image\/png";\s*\n\s*hole\s+hub-cwl:binary-render;/.test(text) &&
+      /content-type\s+"application\/json";\s*\n\s*hole\s+hub-cwl:keypair-gen;/.test(text)
     );
   },
   { stdout: true },

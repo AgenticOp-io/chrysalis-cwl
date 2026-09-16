@@ -1,5 +1,13 @@
 # CWL language changelog
 
+## 1.0.35 — 2026-09-16
+
+- Catalog precision after RFC-0033: `hub-cwl:keypair-gen` (host keypair) and `hub-cwl:binary-render` (host bytes)
+- Keypair / QR / config-blob residuals stop borrowing `hub-cwl:upstream-proxy`, which now means transfer mechanics only
+- Gold `44-host-bytes-holes` + emit-check case: a hole body keeps its declared `content-type` through WebIR and back
+- Cinderpath working note re-filed onto the narrow reasons
+- No grammar change; still forbidden: crypto or image encoders in CWL
+
 ## 1.0.34 — 2026-09-16
 
 - RFC-0033 `proxy upstream "<url>";` — a forwarded route now names its destination in the genome

@@ -1,7 +1,7 @@
 # CWL expand (Cinderpath)
 
 Working note for **AgenticOp-io/chrysalis-cwl**. Genome: `internal/webapp/cwl/cinderpath.cwl`.  
-**Landed tip:** **1.0.34** (declared upstream forwards; credential/session intent). **GET pages render from compiled CWL**.  
+**Landed tip:** **1.0.35** (declared upstream forwards; precise host-byte reasons). **GET pages render from compiled CWL**.  
 **Holes live in the genome.** Go (`cinderpath-web`) only executes them.
 
 If a line is wrong, strike it.
@@ -19,7 +19,9 @@ If a line is wrong, strike it.
 | Live HTML fragments | `hole hub-cwl:html-fragment;` (Go fills `load` bindings) |
 | Auth credentials | `hole hub-cwl:credential-store;` on auth POSTs |
 | Forwarded API routes | `proxy upstream "…";` (RFC-0033) — target named in CWL |
-| WireGuard / POP / QR | `hole hub-cwl:upstream-proxy;` (transfer mechanics) |
+| Forward mechanics (TLS, retries, tunnels) | `hole hub-cwl:upstream-proxy;` |
+| WireGuard keypair | `hole hub-cwl:keypair-gen;` + declared `content-type` |
+| QR / config bytes | `hole hub-cwl:binary-render;` + declared `content-type` |
 | Genome on the site | `/cwl`, `/cinderpath.cwl`, nav chip **CWL** |
 
 ---
@@ -35,7 +37,8 @@ Holes are **named in CWL**. Go does not own the vocabulary. Website `/cwl` copy 
 ### Keep as holes (executor only)
 
 - bcrypt / sqlite session → `hub-cwl:credential-store`
-- WireGuard keypair, POP, QR → `hub-cwl:upstream-proxy`
+- WireGuard keypair → `hub-cwl:keypair-gen` (was `upstream-proxy` before `1.0.35`)
+- QR / config bytes → `hub-cwl:binary-render` (was `upstream-proxy` before `1.0.35`)
 - Live HTML fragments → `hub-cwl:html-fragment`
 - UA regex inside CWL — **forbidden**
 - Tunnel destination inspection — `tunnel_inspection: false`
@@ -44,6 +47,6 @@ Holes are **named in CWL**. Go does not own the vocabulary. Website `/cwl` copy 
 
 ## After tip pin
 
-1. Genome tip **1.0.34** + catalog holes — **done**
+1. Genome tip **1.0.35** + catalog holes — **done**
 2. Redeploy `/cinderpath.cwl` after compile
-3. Convert/Secure pin **1.0.34**
+3. Convert/Secure pin **1.0.35**

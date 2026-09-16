@@ -77,6 +77,20 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     summary:
       "Host-owned credential store beyond declared intent. Verify / mint / revoke are expressible as effects (RFC-0032); keep this hole only for the store itself — hashing, token format, and expiry stay with the host.",
   },
+  "hub-cwl:keypair-gen": {
+    rfc: "0012",
+    origin: "cwl",
+    surface: "api",
+    summary:
+      "Host generates an asymmetric keypair (WireGuard / X25519 / SSH). Private material never enters the genome; CWL names the route and its media type only.",
+  },
+  "hub-cwl:binary-render": {
+    rfc: "0012",
+    origin: "cwl",
+    surface: "api",
+    summary:
+      "Host renders non-text bytes (QR PNG, PDF, archive, config blob). The declared `content-type` stays in CWL — only the byte production is host-owned.",
+  },
   "cwl:empty-handler": {
     rfc: "0012",
     origin: "cwl",

@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-16 — tip-1.0.35-host-byte-reasons
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.35** (RFC-0012 catalog) · Packages publish at tag `cwl-v1.0.35`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.35**; when a peel hits host-produced bytes, emit `hub-cwl:keypair-gen` / `hub-cwl:binary-render` instead of `hub-cwl:upstream-proxy` |
+| Secure | Pin to **1.0.35**; host-byte routes now carry a declared `content-type` next to the hole — usable for seed/live-match |
+
+### CWL landed
+
+- Two narrow reasons: `hub-cwl:keypair-gen` (host keypair) and `hub-cwl:binary-render` (QR / PDF / archive / config blob)
+- Since RFC-0033, `hub-cwl:upstream-proxy` means transfer mechanics only — keypair and byte work no longer belong there
+- Gold `44-host-bytes-holes` proves a hole body keeps its `content-type` through WebIR and thin emit
+- No grammar change; crypto and image encoders stay host-owned
+
+---
+
 ## 2026-09-16 — tip-1.0.34-proxy-upstream
 
 **To:** convert + secure  

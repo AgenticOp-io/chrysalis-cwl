@@ -18,8 +18,14 @@ Full-stack origins (SvelteKit first) lift **route surfaces** before component/SS
 | `hub-cwl:html-fragment` | cwl | page | Live HTML fragments filled by host executor |
 | `hub-cwl:credential-store` | cwl | api | Password hash / session mint — host owns store |
 | `hub-cwl:upstream-proxy` | cwl | api | Transfer mechanics only — destination is `proxy upstream` (RFC-0033) |
+| `hub-cwl:keypair-gen` | cwl | api | Host generates a keypair (WireGuard / X25519 / SSH); no private material in the genome |
+| `hub-cwl:binary-render` | cwl | api | Host renders non-text bytes (QR PNG, PDF, archive); `content-type` stays in CWL |
 
-Registry: `scripts/hub-ingest/cwl-fullstack-holes.mjs`. Gold: `39-cinderpath-holes`.
+Registry: `scripts/hub-ingest/cwl-fullstack-holes.mjs`. Golds: `39-cinderpath-holes`, `44-host-bytes-holes`.
+
+A hole body does **not** erase the rest of the route: `content-type`, effects, and the path all
+survive ingest and thin emit next to `hole …;`. Prefer the narrowest reason — a keypair or an image
+encoder is not a proxy.
 
 ## CWL projection
 
