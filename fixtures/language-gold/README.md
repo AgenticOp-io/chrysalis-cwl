@@ -48,6 +48,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `38-html-page-island` | `return html` + sibling `client ui` | 0030 |
 | `39-cinderpath-holes` | Host-executor holes (`html-fragment` / `credential-store` / `upstream-proxy`) | 0012 |
 | `40-html-repeat` | Repeated markup per collection item (`repeat … as … html`) | 0031 |
+| `41-html-repeat-fields` | Item field access in repeats (`s.user`, `s.site.city`) | 0031 |
 
 ## Parseable subset notes (0.1.8)
 

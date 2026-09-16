@@ -1,5 +1,13 @@
 # CWL language changelog
 
+## 1.0.32 — 2026-09-16
+
+- RFC-0031 deepen: item **field** access in repeats — `repeat sessions as s html "…s.user…s.site.city…"`
+- Fields lower to `data.member` chains on the item `param`; emit reverse reproduces dotted text
+- Hyphenated words (`item-list`) and `.`-prefixed text stay literal markup
+- Gold `41-html-repeat-fields` + emit-check case; list/table fragments no longer need a host executor
+- Still forbidden: UA regex; Nest / LiveView / Flutter façades; WebSocket duplex invent
+
 ## 1.0.31 — 2026-09-16
 
 - RFC-0031 `repeat <collection> as <item> html "…";` — repeated markup is a gene, not a host fragment

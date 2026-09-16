@@ -16,6 +16,7 @@ const CONTROL = join(ROOT, "fixtures/language-gold/19-early-exit/routes.cwl");
 const HOLES = join(ROOT, "fixtures/language-gold/11-holes/routes.cwl");
 const NESTED = join(ROOT, "fixtures/language-gold/23-nested-control/routes.cwl");
 const REPEAT = join(ROOT, "fixtures/language-gold/40-html-repeat/routes.cwl");
+const REPEAT_FIELDS = join(ROOT, "fixtures/language-gold/41-html-repeat-fields/routes.cwl");
 
 const webirEntry = resolveWebirEntryPath();
 const webirReady = Boolean(webirEntry && existsSync(webirEntry));
@@ -111,6 +112,20 @@ runEmitCheck(
       rep.token === "CWL_EMIT_CHECK_OK" &&
       (rep.holeCount ?? 1) === 0 &&
       /repeat\s+pops\s+as\s+pop\s+html\s+"<li>pop<\/li>";/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0031 deepen: dotted item fields survive as member chains, not flattened text.
+runEmitCheck(
+  "emit-check-41-html-repeat-fields",
+  REPEAT_FIELDS,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /repeat\s+sessions\s+as\s+s\s+html\s+"<tr><td>s\.user<\/td><td>s\.site\.city<\/td><\/tr>";/.test(text)
     );
   },
   { stdout: true },

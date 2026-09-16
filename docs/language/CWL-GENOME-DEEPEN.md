@@ -1,7 +1,7 @@
 # CWL genome deepen — Phase 1.x
 
 **Status:** active (reopened 2026-08-11)  
-**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.31**  
+**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.32**  
 **Authority:** [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md) · [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) · [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ## Thesis
@@ -32,7 +32,7 @@ Convert still **hears** origin stacks; Secure still **checks** live DNA. Neither
 | **HTML + page island** | Sibling `client ui` (`38`, RFC-0030) — done (`1.0.27`); emit reverse done (`1.0.28`) |
 | **Host-executor holes** | Catalog + gold `39` (`html-fragment` / `credential-store` / `upstream-proxy`) — done (`1.0.29`–`1.0.30`) |
 | **Layout package surface** | ALWAYS sync + `@chrysalis/cwl/layout` — done (`1.0.30`) |
-| **Repeated markup** | `repeat … as … html` (`40`, RFC-0031) — done (`1.0.31`); item field access still deepen |
+| **Repeated markup** | `repeat … as … html` (`40`, RFC-0031) — done (`1.0.31`); item fields (`41`) — done (`1.0.32`) |
 | **WebSocket duplex** | Kept honest hole (`unsupported:websocket`) |
 | **Cinderpath product asks** | Working note [`CWL-EXPAND.md`](../history/CWL-EXPAND.md) — consume process documented; genome tip bump in Cinderpath after pin |
 | **CWL UI** | Hydration / silent React-Svelte lower remain non-goals |

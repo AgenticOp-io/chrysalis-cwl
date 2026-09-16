@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-16 — tip-1.0.32-repeat-fields
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.32** (RFC-0031 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.32**; repeat peel must handle `data.member` chains on the item param (gold `41`) |
+| Secure | Pin to **1.0.32**; DNA seed vs golds `40`–`41` |
+
+### CWL landed
+
+- Dotted item fields in repeats (`s.user`, `s.site.city`) → member chains; emit reverse exact
+- Gold `41-html-repeat-fields` + emit-check case; session/catalog tables are CWL surfaces now
+- Unchanged holes by design: credential crypto, upstream bytes, WebSocket duplex
+
+---
+
 ## 2026-09-16 — tip-1.0.31-html-repeat
 
 **To:** convert + secure  

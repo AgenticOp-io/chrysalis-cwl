@@ -98,6 +98,43 @@ export function splitCwlHtmlTemplate(html, bindings = {}) {
 }
 
 /**
+ * Split a repeat item template on the loop variable, allowing dotted field chains
+ * (`item.name`, `item.site.city`). Field access is the shape real list fragments need;
+ * anything else stays literal text.
+ * @param {string} template
+ * @param {string} itemName
+ * @returns {Array<{ kind: "literal", text: string } | { kind: "expr", fields: string[] }>}
+ */
+export function splitCwlRepeatItemTemplate(template, itemName) {
+  const html = String(template ?? "");
+  /** @type {Array<{ kind: "literal", text: string } | { kind: "expr", fields: string[] }>} */
+  const parts = [];
+  const idRe = new RegExp(`\\b${itemName}\\b`, "g");
+  let cursor = 0;
+  for (let m = idRe.exec(html); m; m = idRe.exec(html)) {
+    const start = m.index;
+    const before = start > 0 ? html[start - 1] : "";
+    let end = start + itemName.length;
+    // Hyphenated words (`item-list`) and dashed prefixes are markup, not bindings.
+    if (before === "-" || html[end] === "-" || before === ".") continue;
+    /** @type {string[]} */
+    const fields = [];
+    while (html[end] === ".") {
+      const field = /^[a-zA-Z_][a-zA-Z0-9_]*/.exec(html.slice(end + 1));
+      if (!field) break;
+      fields.push(field[0]);
+      end += 1 + field[0].length;
+    }
+    if (start > cursor) parts.push({ kind: "literal", text: html.slice(cursor, start) });
+    parts.push({ kind: "expr", fields });
+    cursor = end;
+    idRe.lastIndex = end;
+  }
+  if (cursor < html.length) parts.push({ kind: "literal", text: html.slice(cursor) });
+  return parts;
+}
+
+/**
  * RFC-0031: lower one `repeat <collection> as <item> html "…";` to a repeat node.
  * Item markup is a nested `html.template`; the repeat itself is a named CWL call
  * so WebIR keeps both the iterable and the per-item template (no invented loop runtime).
@@ -107,24 +144,30 @@ export function splitCwlHtmlTemplate(html, bindings = {}) {
  */
 export function lowerCwlHtmlRepeat(ctx, repeat, origin) {
   const { data, webir } = ctx;
-  const itemSplit = splitCwlHtmlTemplate(repeat.template, { load: [repeat.item] });
+  const itemSplit = splitCwlRepeatItemTemplate(repeat.template, repeat.item);
   /** @type {Array<{ kind: "literal", text: string } | { kind: "expr", node: string, escape: boolean }>} */
   const itemParts = [];
-  for (const part of itemSplit ?? [{ kind: "literal", text: repeat.template }]) {
+  for (const part of itemSplit) {
     if (part.kind === "literal") {
       itemParts.push({ kind: "literal", text: part.text });
       continue;
     }
-    itemParts.push({
-      kind: "expr",
-      node: data.param({
-        name: part.name,
+    let nodeId = data.param({
+      name: repeat.item,
+      type: part.fields.length > 0 ? { kind: "unknown" } : { kind: "string" },
+      origin,
+      provenance: [webir.provenance("hub-ingest", "cwl-html-repeat-item")],
+    });
+    for (const field of part.fields) {
+      nodeId = data.member({
+        obj: nodeId,
+        key: field,
         type: { kind: "string" },
         origin,
-        provenance: [webir.provenance("hub-ingest", "cwl-html-repeat-item")],
-      }),
-      escape: true,
-    });
+        provenance: [webir.provenance("hub-ingest", "cwl-html-repeat-item-field")],
+      });
+    }
+    itemParts.push({ kind: "expr", node: nodeId, escape: true });
   }
   const itemTemplateId = data.htmlTemplate({
     parts: itemParts,
@@ -274,15 +317,35 @@ export function cwlHtmlRepeatToStatement(get, call) {
     }
     const idx = p.operandIndex ?? p.idx;
     const opId = itemTemplate.operands?.[idx];
-    const expr = opId ? get(opId) : null;
-    if (expr?.op !== "param") return null;
-    const name = String(expr.attrs?.name ?? "");
-    if (!name) return null;
-    if (!item) item = name;
-    template += name;
+    const ref = cwlRepeatItemRefToText(get, opId ? get(opId) : null);
+    if (!ref) return null;
+    if (!item) item = ref.item;
+    template += ref.text;
   }
   if (!item) return null;
   return { collection, item, template };
+}
+
+/**
+ * Reverse a repeat item expression (`param` or `member` chain) to `item` / `item.a.b`.
+ * @param {(id: string) => object | undefined} get
+ * @param {object | null} expr
+ * @returns {{ item: string, text: string } | null}
+ */
+function cwlRepeatItemRefToText(get, expr) {
+  /** @type {string[]} */
+  const fields = [];
+  let node = expr;
+  while (node?.op === "member") {
+    const key = node.attrs?.key;
+    if (typeof key !== "string" || !key) return null;
+    fields.unshift(key);
+    node = get(node.operands?.[0] ?? "");
+  }
+  if (node?.op !== "param") return null;
+  const item = String(node.attrs?.name ?? "");
+  if (!item) return null;
+  return { item, text: [item, ...fields].join(".") };
 }
 
 /**
