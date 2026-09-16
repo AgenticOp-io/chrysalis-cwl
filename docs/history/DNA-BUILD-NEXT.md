@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.29`** — hole catalog html-fragment + credential-store  
+**Tip:** **`1.0.30`** — layout ALWAYS/export + cinderpath hole gold  
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -24,6 +24,7 @@
 | P0 | Layout chrome + cookie HTML + page islands (`36`–`38`) | **done** (`1.0.27`) |
 | P0 | Page-island + cookie-load emit reverse | **done** (`1.0.28`) |
 | P0 | Catalog html-fragment + credential-store | **done** (`1.0.29`) |
+| P0 | Layout ALWAYS + `/layout` export + gold `39` | **done** (`1.0.30`) |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
 | — | **Cinderpath consume** | genome declares holes in CWL; Go executor only |
@@ -32,7 +33,7 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.29** | Convert + Secure — **asked** |
+| Tip pin **1.0.30** | Convert + Secure — **asked** |
 | Consume layout chrome + page islands in peels / simulate | Convert |
 | Live-match / cutover vs tip seed | Secure |
 | EXTFMAP | **Operator** — [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) |

@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.30 — 2026-09-15
+
+- ALWAYS sync: `cwl-layout.mjs` (Convert ask — RFC-0029 apply lands with language mirrors)
+- Package export: `@chrysalis/cwl/layout` (`composeLayoutChromeHtml` / `applyLayoutsToParsedModule`)
+- Gold `39-cinderpath-holes`: catalog proof for `hub-cwl:html-fragment` / `credential-store` / `upstream-proxy`
+- Still forbidden: UA regex; Nest / LiveView / Flutter façades; WebSocket duplex invent
+
 ## 1.0.29 — 2026-09-15
 
 - Hole catalog: `hub-cwl:html-fragment`, `hub-cwl:credential-store` — declare Go residuals in the genome; do not invent auth/fragment runtimes

@@ -15,8 +15,11 @@ Full-stack origins (SvelteKit first) lift **route surfaces** before component/SS
 | `hub-svelte:server-handler` | svelte | api | `+server.ts` handler when AST lift fails |
 | `hub-svelte:load-function` | svelte | data | `+page.server.ts` load (reserved) |
 | `hub-svelte:form-action` | svelte | api | form actions (reserved) |
+| `hub-cwl:html-fragment` | cwl | page | Live HTML fragments filled by host executor |
+| `hub-cwl:credential-store` | cwl | api | Password hash / session mint — host owns store |
+| `hub-cwl:upstream-proxy` | cwl | api | HTTP upstream / operator proxy residual |
 
-Registry: `scripts/hub-ingest/cwl-fullstack-holes.mjs`.
+Registry: `scripts/hub-ingest/cwl-fullstack-holes.mjs`. Gold: `39-cinderpath-holes`.
 
 ## CWL projection
 

@@ -46,6 +46,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `36-layout-chrome` | Layout chrome wrap (`layout` + `chrome html`) | 0029 |
 | `37-html-cookie-device` | Cookie / load tokens in `return html` | 0014 |
 | `38-html-page-island` | `return html` + sibling `client ui` | 0030 |
+| `39-cinderpath-holes` | Host-executor holes (`html-fragment` / `credential-store` / `upstream-proxy`) | 0012 |
 
 ## Parseable subset notes (0.1.8)
 

@@ -1,0 +1,290 @@
+{
+  "meta": {
+    "chrysalisVersion": "0.0.0",
+    "createdAt": "1970-01-01T00:00:00.000Z",
+    "sourceApp": "cwl-ingest-smoke"
+  },
+  "nodes": [
+    {
+      "attrs": {
+        "reason": "hub-cwl:html-fragment"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n0",
+      "op": "hole",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 4
+      },
+      "provenance": [
+        {
+          "locator": "hub-cwl:html-fragment",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "contract": {
+          "input": {
+            "kind": "unknown"
+          },
+          "output": {
+            "kind": "unknown"
+          }
+        },
+        "kind": "hole"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "fragment",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n1",
+      "op": "handler",
+      "operands": [
+        "n0"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 4
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/fragment",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n2",
+      "op": "route",
+      "operands": [
+        "n1"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 4
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "reason": "hub-cwl:credential-store"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n3",
+      "op": "hole",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 10
+      },
+      "provenance": [
+        {
+          "locator": "hub-cwl:credential-store",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "contract": {
+          "input": {
+            "kind": "unknown"
+          },
+          "output": {
+            "kind": "unknown"
+          }
+        },
+        "kind": "hole"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "login",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n4",
+      "op": "handler",
+      "operands": [
+        "n3"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 10
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "POST",
+        "path": "/login",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n5",
+      "op": "route",
+      "operands": [
+        "n4"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 10
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "reason": "hub-cwl:upstream-proxy"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n6",
+      "op": "hole",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 17
+      },
+      "provenance": [
+        {
+          "locator": "hub-cwl:upstream-proxy",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "contract": {
+          "input": {
+            "kind": "unknown"
+          },
+          "output": {
+            "kind": "unknown"
+          }
+        },
+        "kind": "hole"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "upstream",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n7",
+      "op": "handler",
+      "operands": [
+        "n6"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 17
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/upstream",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n8",
+      "op": "route",
+      "operands": [
+        "n7"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 17
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    }
+  ],
+  "roots": [
+    "n2",
+    "n5",
+    "n8"
+  ]
+}

@@ -28,6 +28,7 @@ export const ALWAYS = [
   "cwl-module-graph.mjs",
   "cwl-diagnose.mjs",
   "cwl-fullstack-holes.mjs",
+  "cwl-layout.mjs",
 ];
 
 /**

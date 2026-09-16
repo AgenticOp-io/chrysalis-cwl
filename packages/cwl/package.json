@@ -1,6 +1,6 @@
 {
   "name": "@chrysalis/cwl",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "private": false,
   "description": "Chrysalis Web Language — DNA of the web (Rosetta meaning). Versioned language surface for Convert UT + Secure bridges.",
   "license": "Apache-2.0",
@@ -16,6 +16,7 @@
     "./parser": "./parser.mjs",
     "./print": "./print.mjs",
     "./dna-seed": "./dna-seed.mjs",
+    "./layout": "./layout.mjs",
     "./package.json": "./package.json"
   },
   "bin": {
@@ -42,6 +43,7 @@
     "parser.mjs",
     "print.mjs",
     "dna-seed.mjs",
+    "layout.mjs",
     "bin/",
     "lib/",
     "README.md",

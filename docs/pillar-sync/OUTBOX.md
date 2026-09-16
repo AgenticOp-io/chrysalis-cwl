@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-15 — tip-1.0.30-layout-export
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.30**
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.30**; `cwl-layout.mjs` now on ALWAYS (closes prior optional ask); gold `39` in language-pillar |
+| Secure | Pin to **1.0.30**; DNA seed vs tip |
+
+### CWL landed
+
+- ALWAYS + `@chrysalis/cwl/layout` export
+- Gold `39-cinderpath-holes` (html-fragment / credential-store / upstream-proxy)
+- No WebSocket invent
+
+---
+
 ## 2026-09-15 — adoption-1.0.29
 
 **To:** convert + secure + operator  

@@ -1,6 +1,6 @@
 # CWL publish & consumer pin path
 
-**Status:** Exit **1.0** lineage — language tip **`1.0.29`** ([`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md)). GitHub Packages publishes `@agenticop-io/cwl` at tagged `cwl-v*` releases (registry tip may lag deepen; prefer tip pin or `file:` until Packages catches up).  
+**Status:** Exit **1.0** lineage — language tip **`1.0.30`** ([`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md)). GitHub Packages publishes `@agenticop-io/cwl` at tagged `cwl-v*` releases (registry tip may lag deepen; prefer tip pin or `file:` until Packages catches up).  
 See [`EXIT-1.0.md`](../history/EXIT-1.0.md) · how-to [`CWL-HOWTO.md`](./CWL-HOWTO.md) · queue [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md).
 
 Canonical version: [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md)  
@@ -28,7 +28,7 @@ Published package: **`@agenticop-io/cwl`** (org scope)
 ```
 
 ```bash
-npm install @agenticop-io/cwl@1.0.29
+npm install @agenticop-io/cwl@1.0.30
 ```
 
 Ecology / VSIX: [`CWL-ECOLOGY.md`](./CWL-ECOLOGY.md) · end-to-end how-to: [`CWL-HOWTO.md`](./CWL-HOWTO.md).
@@ -43,6 +43,7 @@ Ecology / VSIX: [`CWL-ECOLOGY.md`](./CWL-ECOLOGY.md) · end-to-end how-to: [`CWL
 | `…/parser` | `parseCwlModule` |
 | `…/print` | print / canonicalize |
 | `…/dna-seed` | RFC-0022/0023 draft DNA |
+| `…/layout` | RFC-0029 layout chrome apply/merge |
 
 Packable CLI: parse/print/fmt/diagnose/check/dna-seed — **no WebIR**. Pillar `npm run cwl -- emit-check` / `fmt --webir` for Rosetta reverse.
 
