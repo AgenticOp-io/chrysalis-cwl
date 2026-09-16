@@ -9,19 +9,20 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure + operator  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.29** · Packages tag `cwl-v1.0.29`
+**CWL tip:** **1.0.29** · Packages **`@agenticop-io/cwl@1.0.29`** live (`cwl-v1.0.29`)
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin ≡ **1.0.29**; peels for layout chrome + page islands (ack still **1.0.27**) |
-| Secure | Pin ≡ **1.0.29** (ack **1.0.28**) |
+| Convert | Pin to **1.0.29**; peels for layout chrome + page islands (ack still **1.0.27**) |
+| Secure | Pin to **1.0.29** (ack **1.0.28**) |
 | Operator | Redeploy Cinderpath web with compiled genome tip **1.0.29** |
 
 ### CWL done
 
 - Tip **1.0.29** on main: html-fragment + credential-store catalog; layout-after-import fix
+- Packages published: `@agenticop-io/cwl@1.0.29`
 - Cinderpath genome already declares holes in CWL (`4c436e1`)
 - Path: adoption + honesty — not native CWL rewrite
 

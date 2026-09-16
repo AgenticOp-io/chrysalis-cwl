@@ -7,7 +7,7 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: Packages 1.0.29 · Convert pin+peels · Secure pin · Cinderpath redeploy
+DISPATCH: Packages 1.0.29 LIVE · Convert pin+peels · Secure pin · Cinderpath redeploy
 CONVERT_NEXT: pin 1.0.29 · layout/page-island peels (still at 1.0.27 ack)
 SECURE_NEXT: pin 1.0.29 (at 1.0.28 ack)
 ```
@@ -17,7 +17,7 @@ SECURE_NEXT: pin 1.0.29 (at 1.0.28 ack)
 | Surface | Value |
 | --- | --- |
 | **CWL tip** | **`1.0.29`** |
-| Packages | **`@agenticop-io/cwl@1.0.29`** (tagging) |
+| Packages | **`@agenticop-io/cwl@1.0.29`** **live** |
 | Convert | file: → bump acknowledgment to **1.0.29** (was 1.0.27) |
 | Secure | file: → bump acknowledgment to **1.0.29** (was 1.0.28) |
 
@@ -25,7 +25,7 @@ SECURE_NEXT: pin 1.0.29 (at 1.0.28 ack)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | `731b5c8` | tip **1.0.29** |
+| **CWL** | `main` | `eeb383c` | tip **1.0.29** · tag `cwl-v1.0.29` |
 | **Convert** | `candidate/wptp-convert-orbit` | lag | tip ack **1.0.27** |
 | **Secure** | `candidate/live-match-step4` | lag | tip ack **1.0.28** |
 
