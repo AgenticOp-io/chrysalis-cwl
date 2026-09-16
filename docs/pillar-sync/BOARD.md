@@ -17,7 +17,7 @@ SECURE_NEXT: pin 1.0.31 (was 1.0.28 ack)
 | Surface | Value |
 | --- | --- |
 | **CWL tip** | **`1.0.31`** |
-| Packages | tagging `cwl-v1.0.31` (1.0.30 live) |
+| Packages | **`@agenticop-io/cwl@1.0.31`** **live** |
 | Convert | file: → bump acknowledgment to **1.0.31** (was 1.0.27) |
 | Secure | file: → bump acknowledgment to **1.0.31** (was 1.0.28) |
 
@@ -25,7 +25,7 @@ SECURE_NEXT: pin 1.0.31 (was 1.0.28 ack)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | (landing) | tip **1.0.31** · RFC-0031 |
+| **CWL** | `main` | `c23c37a` | tip **1.0.31** · tag `cwl-v1.0.31` |
 | **Convert** | `candidate/wptp-convert-orbit` | lag | tip ack **1.0.27** |
 | **Secure** | `candidate/live-match-step4` | lag | tip ack **1.0.28** |
 
