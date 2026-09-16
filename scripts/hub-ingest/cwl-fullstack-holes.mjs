@@ -3,7 +3,11 @@
  * Honest holes for UI/component semantics not yet lowered to WebIR.
  */
 
-/** @typedef {{ rfc: string, origin: string, surface: string, summary: string }} CwlFullstackHoleEntry */
+/**
+ * `param` marks a reason that carries a `:<argument>` suffix at the hole site
+ * (e.g. `cwl:unknown-proxy-param:region`); only those resolve by prefix.
+ * @typedef {{ rfc: string, origin: string, surface: string, summary: string, param?: string }} CwlFullstackHoleEntry
+ */
 
 /** @type {Record<string, CwlFullstackHoleEntry>} */
 export const CWL_FULLSTACK_HOLE_CATALOG = {
@@ -119,8 +123,30 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     rfc: "0033",
     origin: "cwl",
     surface: "api",
+    param: "param name",
     summary:
       "`proxy upstream` target references a `:name` the route's path does not declare — the destination is not guessed.",
+  },
+  "cwl:param-not-in-path": {
+    rfc: "0002",
+    origin: "cwl",
+    surface: "api",
+    param: "param name",
+    summary: "Handler declares `param <name>;` but the route path has no `:<name>` segment.",
+  },
+  "cwl:unknown-component": {
+    rfc: "0028",
+    origin: "cwl",
+    surface: "page",
+    param: "component name",
+    summary: "Route uses a `component` that no `component <name> { … }` decl defines after resolve.",
+  },
+  "cwl:emit:unsupported-call": {
+    rfc: "0012",
+    origin: "cwl",
+    surface: "emit",
+    param: "callee",
+    summary: "Thin emit met a call it has no CWL surface for — kept as a hole instead of guessed syntax.",
   },
   "cwl:emit:proxy-target": {
     rfc: "0033",
@@ -268,12 +294,21 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
  * @returns {CwlFullstackHoleEntry | null}
  */
 export function lookupFullstackHole(reason) {
-  return CWL_FULLSTACK_HOLE_CATALOG[reason] ?? null;
+  const exact = CWL_FULLSTACK_HOLE_CATALOG[reason];
+  if (exact) return exact;
+  // Parameterized reasons carry their argument as a trailing `:<value>`.
+  let base = String(reason ?? "");
+  while (base.includes(":")) {
+    base = base.slice(0, base.lastIndexOf(":"));
+    const entry = CWL_FULLSTACK_HOLE_CATALOG[base];
+    if (entry?.param) return entry;
+  }
+  return null;
 }
 
 /**
  * @param {string} reason
  */
 export function isCataloguedFullstackHole(reason) {
-  return reason in CWL_FULLSTACK_HOLE_CATALOG;
+  return lookupFullstackHole(reason) !== null;
 }

@@ -1,7 +1,7 @@
 # CWL ecology outside AgenticOps
 
 **Status:** bootstrap (Exit 1.0) — public GitHub pillars; GitHub Packages / `file:` pin; local VSIX (not Marketplace / public npm by default)  
-**Package:** tip `@agenticop-io/cwl` / `@chrysalis/cwl` ≡ **1.0.36** (Packages lineage from `1.0.0`; siblings often `file:`)  
+**Package:** tip `@agenticop-io/cwl` / `@chrysalis/cwl` ≡ **1.0.37** (Packages lineage from `1.0.0`; siblings often `file:`)  
 **Editor:** `editors/vscode` → VSIX (`npm run pack:cwl-vsix`)
 
 Ecology outside the AgenticOps monorepo starts here: a versioned language artifact + installable editor support that do **not** require Convert or Secure checkouts.
@@ -15,7 +15,7 @@ Needs a GitHub token with `read:packages` for org `AgenticOp-io`.
 @agenticop-io:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 
-npm install @agenticop-io/cwl@1.0.36
+npm install @agenticop-io/cwl@1.0.37
 ```
 
 ```js
@@ -39,7 +39,7 @@ npm run pack:cwl-vsix
 # → dist-editors/cwl-lsp-<tip>.vsix
 ```
 
-Install: Extensions → `Install from VSIX…` (or `code --install-extension dist-editors/cwl-lsp-1.0.36.vsix`).
+Install: Extensions → `Install from VSIX…` (or `code --install-extension dist-editors/cwl-lsp-1.0.37.vsix`).
 
 Extension spawns `scripts/cwl-lsp-server.mjs` from the chrysalis-cwl checkout above `editors/vscode`. For a machine without the full pillar, clone this public repo (or set path in extension settings when added).
 
@@ -48,7 +48,7 @@ Extension spawns `scripts/cwl-lsp-server.mjs` from the chrysalis-cwl checkout ab
 
 ## 3. Minimal outsider loop (no Convert)
 
-1. Install `@agenticop-io/cwl@1.0.36` (or `file:` pin to this tip)
+1. Install `@agenticop-io/cwl@1.0.37` (or `file:` pin to this tip)
 2. Author `.cwl` with holes for unknowns
 3. `cwl check` / `cwl fmt`
 4. Optional: local VSIX for diagnostics / completion / same-file rename
@@ -65,7 +65,7 @@ Full walkthrough: [`CWL-HOWTO.md`](./CWL-HOWTO.md).
 | Local VSIX | Marketplace listing |
 | Stdio LSP (completion + rename v0) | Full IDE / cross-file rename |
 | RFCs + language golds in this repo | Convert peel gravity finished |
-| Tip **1.0.36** deepen | Framework façades (Nest / LiveView / Flutter) |
+| Tip **1.0.37** deepen | Framework façades (Nest / LiveView / Flutter) |
 
 ## Related
 

@@ -27,6 +27,10 @@ A hole body does **not** erase the rest of the route: `content-type`, effects, a
 survive ingest and thin emit next to `hole …;`. Prefer the narrowest reason — a keypair or an image
 encoder is not a proxy.
 
+Some reasons carry their argument at the hole site (`cwl:unknown-proxy-param:region`). Those entries
+are marked `param` in the registry and resolve by prefix, so diagnostics show the catalog summary
+rather than an "uncatalogued hole" warning. Reasons without `param` stay exact-match.
+
 ## CWL projection
 
 Hole routes render as:

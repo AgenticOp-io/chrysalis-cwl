@@ -1,7 +1,7 @@
 # CWL genome deepen — Phase 1.x
 
 **Status:** active (reopened 2026-08-11)  
-**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.36**  
+**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.37**  
 **Authority:** [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md) · [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) · [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ## Thesis
@@ -39,7 +39,7 @@ Convert still **hears** origin stacks; Secure still **checks** live DNA. Neither
 | **WebSocket duplex** | Kept honest hole (`unsupported:websocket`) |
 | **Cinderpath product asks** | Working note [`CWL-EXPAND.md`](../history/CWL-EXPAND.md) — consume process documented; genome tip bump in Cinderpath after pin |
 | **CWL UI** | Hydration / silent React-Svelte lower remain non-goals |
-| **Holes** | More precise `unsupported:*` / `cwl:*` reasons as peels demand |
+| **Holes** | More precise `unsupported:*` / `cwl:*` reasons as peels demand; argument-carrying reasons resolve to their entry — done (`1.0.37`) |
 
 ## Explicit non-goals (unchanged)
 

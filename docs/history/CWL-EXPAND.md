@@ -1,7 +1,7 @@
 # CWL expand (Cinderpath)
 
 Working note for **AgenticOp-io/chrysalis-cwl**. Genome: `internal/webapp/cwl/cinderpath.cwl`.  
-**Landed tip:** **1.0.36** (parameterized upstream forwards; precise host-byte reasons). **GET pages render from compiled CWL**.  
+**Landed tip:** **1.0.37** (parameterized upstream forwards; precise host-byte reasons; resolving hole messages). **GET pages render from compiled CWL**.  
 **Holes live in the genome.** Go (`cinderpath-web`) only executes them.
 
 If a line is wrong, strike it.
@@ -47,6 +47,6 @@ Holes are **named in CWL**. Go does not own the vocabulary. Website `/cwl` copy 
 
 ## After tip pin
 
-1. Genome tip **1.0.36** + catalog holes — **done**
+1. Genome tip **1.0.37** + catalog holes — **done**
 2. Redeploy `/cinderpath.cwl` after compile
-3. Convert/Secure pin **1.0.36**
+3. Convert/Secure pin **1.0.37**

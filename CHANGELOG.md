@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.37 — 2026-09-16
+
+- Fix: parameterized hole reasons resolve to their catalog entry, so authors get the explanation instead of "not in the language hole catalog"
+- Catalog entries marked `param`: `cwl:unknown-proxy-param`, `cwl:param-not-in-path`, `cwl:unknown-component`, `cwl:emit:unsupported-call`
+- Prefix resolution applies **only** to `param` entries — `hub-cwl:upstream-proxy:extra` stays uncatalogued
+- Hole-catalog gate now asserts both directions of that resolution
+
 ## 1.0.36 — 2026-09-16
 
 - RFC-0033 deepen: `proxy upstream` targets may reuse the route's path params (`…/device/:id/status`)

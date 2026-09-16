@@ -7,7 +7,7 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { isCataloguedFullstackHole } from "./hub-ingest/cwl-fullstack-holes.mjs";
+import { isCataloguedFullstackHole, lookupFullstackHole } from "./hub-ingest/cwl-fullstack-holes.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const GOLD = join(ROOT, "fixtures/language-gold");
@@ -51,6 +51,25 @@ for (const file of listCwl(GOLD)) {
     // cwl:* reserved for language-owned honesty codes
     if (reason.startsWith("cwl:")) continue;
     failures.push(`${relative(ROOT, file).replace(/\\/g, "/")}: uncatalogued hole reason "${reason}"`);
+  }
+}
+
+// Reasons that carry a `:<argument>` must resolve to their catalog entry — and only those.
+/** @type {Array<[string, boolean]>} */
+const PARAM_RESOLUTION = [
+  ["cwl:unknown-proxy-param:region", true],
+  ["cwl:param-not-in-path:id", true],
+  ["cwl:unknown-component:SiteCard", true],
+  ["cwl:emit:unsupported-call:__cwl_unknown", true],
+  ["hub-cwl:upstream-proxy:extra", false],
+  ["cwl:invalid-proxy-upstream:extra", false],
+  ["hub-cwl:nonsense", false],
+];
+for (const [reason, expected] of PARAM_RESOLUTION) {
+  if (isCataloguedFullstackHole(reason) !== expected) {
+    failures.push(
+      `param-resolution: "${reason}" expected catalogued=${expected} (entry=${JSON.stringify(lookupFullstackHole(reason))})`,
+    );
   }
 }
 

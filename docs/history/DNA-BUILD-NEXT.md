@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.36`** — RFC-0033 deepen: path params in upstream targets  
+**Tip:** **`1.0.37`** — parameterized hole reasons resolve in diagnostics  
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -31,6 +31,7 @@
 | P0 | Declared upstream forward (`43`, RFC-0033) | **done** (`1.0.34`) — transfer stays host-side |
 | P0 | Precise keypair / binary-render reasons (`44`) | **done** (`1.0.35`) |
 | P0 | Path params in upstream targets (`45`) | **done** (`1.0.36`) |
+| P0 | Parameterized hole reasons resolve in diagnose | **done** (`1.0.37`) |
 | P1 | Conditional markup inside repeats (`if` on item field) | open — only if peels demand |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
@@ -40,7 +41,7 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.36** | Convert + Secure — **asked** |
+| Tip pin **1.0.37** | Convert + Secure — **asked** |
 | Consume layout chrome + page islands in peels / simulate | Convert |
 | Live-match / cutover vs tip seed | Secure |
 | EXTFMAP | **Operator** — [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) |

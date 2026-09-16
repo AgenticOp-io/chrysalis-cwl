@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-16 — tip-1.0.37-hole-message-resolution
+
+**To:** convert + secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.37** · Packages publish at tag `cwl-v1.0.37`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.37**; if you surface hole reasons in UI, use `lookupFullstackHole` — argument-carrying reasons now resolve to their entry |
+| Convert | **P0 (separate):** execute `__cwl_effect_upstream_proxy` in `@chrysalis/rewrite` `simulateHandler`; `runtime-cwl` delegates there, so a declared forward is currently inert at runtime |
+| Secure | Pin to **1.0.37**; no semantic change to seeds |
+
+### CWL landed
+
+- `cwl:unknown-proxy-param:region` and friends resolve to their catalog entry instead of warning "uncatalogued hole"
+- Entries opt in with `param`; everything else stays exact-match, so the catalog does not get looser
+- Hole-catalog gate asserts both directions
+
+---
+
 ## 2026-09-16 — tip-1.0.36-proxy-upstream-params
 
 **To:** convert + secure  
