@@ -74,7 +74,7 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     origin: "cwl",
     surface: "api",
     summary:
-      "Password hash / sqlite (or similar) session mint — declare hole; host executor (e.g. Go bcrypt) owns credentials. Do not invent auth stores in CWL grammar.",
+      "Host-owned credential store beyond declared intent. Verify / mint / revoke are expressible as effects (RFC-0032); keep this hole only for the store itself — hashing, token format, and expiry stay with the host.",
   },
   "cwl:empty-handler": {
     rfc: "0012",

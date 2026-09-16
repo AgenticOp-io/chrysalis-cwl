@@ -1,10 +1,10 @@
 # Exit 1.0 — private registry language release
 
-**Status:** **Published** — `@agenticop-io/cwl@1.0.0`+ (tip **`1.0.32`**) on GitHub Packages  
+**Status:** **Published** — `@agenticop-io/cwl@1.0.0`+ (tip **`1.0.33`**) on GitHub Packages  
 **CWL Exit/DNA queue:** **CLOSED** — [`DNA-CWL-COMPLETE.md`](./DNA-CWL-COMPLETE.md) · [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md)  
 **Registry:** GitHub Packages only (`https://npm.pkg.github.com`) — **not** public npm  
 **REPOS:** public ([`PRIVATE-PILLARS.md`](./PRIVATE-PILLARS.md))  
-**Tip language:** **1.0.32**
+**Tip language:** **1.0.33**
 
 
 ## What 1.0.0 is
@@ -16,8 +16,8 @@ Packable language surface containing:
 - CLI `bin/cwl` (parse / print / fmt / diagnose / check)
 - Subpath exports: `diagnose`, `lsp-map`, `parser`, `print`
 
-**Published name:** `@agenticop-io/cwl` tip `1.0.32` (org scope; lineage from `1.0.0`)  
-**Local / `file:` name:** `@chrysalis/cwl` tip `1.0.32` (same tree)
+**Published name:** `@agenticop-io/cwl` tip `1.0.33` (org scope; lineage from `1.0.0`)  
+**Local / `file:` name:** `@chrysalis/cwl` tip `1.0.33` (same tree)
 
 Thesis: DNA of the web / Rosetta meaning — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md).
 
@@ -32,7 +32,7 @@ npm run test:cwl-pack    # CWL_EXIT_1_0_PACK_OK
 ## Consumer pin (Convert / Secure)
 
 ```json
-"@agenticop-io/cwl": "1.0.32"
+"@agenticop-io/cwl": "1.0.33"
 ```
 
 ```text

@@ -1,5 +1,13 @@
 # CWL language changelog
 
+## 1.0.33 — 2026-09-16
+
+- RFC-0032 credential / session effects: `auth.verify`, `session.mint`, `session.revoke`
+- Lower to `db.read` / `session.write` plus named `__cwl_effect_*` nodes; emit reverse recovers the tags
+- Gold `42-auth-effects-v2` (login + logout, hole-free) + emit-check case; LSP presets updated
+- `hub-cwl:credential-store` narrowed: intent is expressible, the store/hashing stays host-owned
+- Still forbidden: hashing or session runtimes in CWL; UA regex; framework façades; WebSocket duplex invent
+
 ## 1.0.32 — 2026-09-16
 
 - RFC-0031 deepen: item **field** access in repeats — `repeat sessions as s html "…s.user…s.site.city…"`

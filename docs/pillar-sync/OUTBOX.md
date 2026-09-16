@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-16 — tip-1.0.33-credential-effects
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.33** (RFC-0032)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.33**; peel effect tags `auth.verify` / `session.mint` / `session.revoke` (gold `42`) |
+| Secure | Pin to **1.0.33**; DNA seed / live-match may now read login intent from the genome instead of a hole |
+
+### CWL landed
+
+- Effect vocabulary for credential verify + session mint/revoke; login and logout golds are hole-free
+- Lowering: `db.read` / `session.write` + `__cwl_effect_*` nodes; emit reverse recovers tags
+- Hashing, token format, expiry, and stores stay host-owned — `hub-cwl:credential-store` narrowed, not deleted
+
+---
+
 ## 2026-09-16 — tip-1.0.32-repeat-fields
 
 **To:** convert + secure  

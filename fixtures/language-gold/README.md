@@ -49,6 +49,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `39-cinderpath-holes` | Host-executor holes (`html-fragment` / `credential-store` / `upstream-proxy`) | 0012 |
 | `40-html-repeat` | Repeated markup per collection item (`repeat … as … html`) | 0031 |
 | `41-html-repeat-fields` | Item field access in repeats (`s.user`, `s.site.city`) | 0031 |
+| `42-auth-effects-v2` | Credential / session effects (`auth.verify`, `session.mint`, `session.revoke`) | 0032 |
 
 ## Parseable subset notes (0.1.8)
 

@@ -37,6 +37,8 @@ handler clock {
 | `mail.send` | `data.call` `__cwl_effect_mail_send` (no invented mailer) |
 | `db.read` / `db.write` | `data.call` `__cwl_effect_db_*` (no invented SQL engine) |
 | `io` | `data.call` `__cwl_effect_io` (no invented HTTP client) |
+| `auth.verify` | `db.read` + `data.call` `__cwl_effect_auth_verify` (RFC-0032; host hashes) |
+| `session.mint` / `session.revoke` | `session.write` + `data.call` `__cwl_effect_session_*` (RFC-0032) |
 
 Effects run **in declaration order** before the handler value.
 

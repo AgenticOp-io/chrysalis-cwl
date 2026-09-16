@@ -17,6 +17,7 @@ const HOLES = join(ROOT, "fixtures/language-gold/11-holes/routes.cwl");
 const NESTED = join(ROOT, "fixtures/language-gold/23-nested-control/routes.cwl");
 const REPEAT = join(ROOT, "fixtures/language-gold/40-html-repeat/routes.cwl");
 const REPEAT_FIELDS = join(ROOT, "fixtures/language-gold/41-html-repeat-fields/routes.cwl");
+const AUTH_V2 = join(ROOT, "fixtures/language-gold/42-auth-effects-v2/routes.cwl");
 
 const webirEntry = resolveWebirEntryPath();
 const webirReady = Boolean(webirEntry && existsSync(webirEntry));
@@ -126,6 +127,21 @@ runEmitCheck(
       rep.token === "CWL_EMIT_CHECK_OK" &&
       (rep.holeCount ?? 1) === 0 &&
       /repeat\s+sessions\s+as\s+s\s+html\s+"<tr><td>s\.user<\/td><td>s\.site\.city<\/td><\/tr>";/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0032: credential/session effect tags must survive reverse, not degrade to a hole.
+runEmitCheck(
+  "emit-check-42-auth-effects-v2",
+  AUTH_V2,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*auth\.verify,\s*session\.mint;/.test(text) &&
+      /effects:\s*session\.revoke;/.test(text)
     );
   },
   { stdout: true },

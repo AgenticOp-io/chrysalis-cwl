@@ -348,6 +348,9 @@ function effectsFromExecutableStmts(get, stmtIds) {
     if (loc === "cwl:executable-session-read") tags.push("session.read");
     else if (loc === "cwl:executable-session-write") tags.push("session.write");
     else if (loc === "cwl:executable-auth-require") tags.push("auth.require");
+    else if (loc === "cwl:executable-auth-verify") tags.push("auth.verify");
+    else if (loc === "cwl:executable-session-mint") tags.push("session.mint");
+    else if (loc === "cwl:executable-session-revoke") tags.push("session.revoke");
     else if (loc === "cwl:executable-cors-allow") tags.push("cors.allow");
     else if (loc === "cwl:executable-csrf-verify") tags.push("csrf.verify");
     else if (loc === "cwl:executable-rate-limit") tags.push("rate.limit");
