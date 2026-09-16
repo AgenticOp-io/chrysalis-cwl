@@ -416,6 +416,12 @@ export function printCwlModule(mod, opts = {}) {
       }
     }
 
+    for (const rep of route.htmlRepeats ?? []) {
+      lines.push(
+        `  repeat ${rep.collection} as ${rep.item} html ${printCwlLiteral(rep.template)};`,
+      );
+    }
+
     for (const island of route.pageIslands ?? []) {
       printUiNode(island, "  ", lines);
     }
@@ -497,6 +503,11 @@ export function canonicalizeCwlModule(mod) {
       effects: [...(r.effects ?? [])],
       layoutName: r.layoutName ?? null,
       pageIslands: (r.pageIslands ?? []).map(canonicalizeUiNode),
+      htmlRepeats: (r.htmlRepeats ?? []).map((rep) => ({
+        collection: rep.collection,
+        item: rep.item,
+        template: rep.template,
+      })),
       handlerPathParams: [...(r.handlerPathParams ?? [])],
       handlerPathDefaults: { ...(r.handlerPathDefaults ?? {}) },
       handlerQueryParams: [...(r.handlerQueryParams ?? [])],

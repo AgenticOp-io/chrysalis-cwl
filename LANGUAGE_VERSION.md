@@ -3,19 +3,20 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.30` |
-| **Status** | Layout package export + cinderpath hole gold |
-| **Date** | 2026-09-15 |
+| **Version** | `1.0.31` |
+| **Status** | RFC-0031 repeated markup — list fragments leave the host |
+| **Date** | 2026-09-16 |
 
 ## What this version means
 
 Phase **1.x** deepen continues (no Nest / LiveView / Flutter façades; no origin-PL dialects):
 
-- **Convert sync:** `cwl-layout.mjs` on ALWAYS mirror list (RFC-0029 apply)
-- **Package:** `@chrysalis/cwl/layout` export
-- **Gold `39`:** `hub-cwl:html-fragment` / `credential-store` / `upstream-proxy` catalog proof
-- Prior: hole catalog entries (`1.0.29`), page-island emit reverse (`1.0.28`)
-- **WebSocket** — remains honest hole (`unsupported:websocket`)
+- **RFC-0031:** `repeat <collection> as <item> html "…";` renders one fragment per item
+- Collection identifier interpolates in `return html` as rendered markup (beats scalar `load`)
+- WebIR: `__cwl_html_repeat(iterable, itemTemplate)`; emit reverses the statement exactly
+- **Gold `40`:** parse/print + ingest + emit reverse; `cwl:emit:html-repeat` stays honest
+- Prior: layout export + hole gold (`1.0.30`), hole catalog (`1.0.29`)
+- Still host-owned by design: credential crypto (`hub-cwl:credential-store`), upstream bytes (`hub-cwl:upstream-proxy`), WebSocket duplex
 
 Queue: [`DNA-BUILD-NEXT.md`](./docs/history/DNA-BUILD-NEXT.md) · [`CWL-GENOME-DEEPEN.md`](./docs/language/CWL-GENOME-DEEPEN.md)
 

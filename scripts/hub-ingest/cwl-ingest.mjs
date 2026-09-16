@@ -257,6 +257,7 @@ export function liftCwlFileToWebir(opts) {
     const loc = { file, line: r.line };
     ctx.multipartFields = r.handlerMultipartFields ?? [];
     ctx.multipartFiles = r.handlerMultipartFiles ?? [];
+    const htmlRepeats = Array.isArray(r.htmlRepeats) ? r.htmlRepeats : [];
     const htmlBindings = {
       path: r.handlerPathParams ?? [],
       query: r.handlerQueryParams ?? [],
@@ -265,6 +266,8 @@ export function liftCwlFileToWebir(opts) {
         r.loadBody?.kind === "object" && r.loadBody.entries
           ? r.loadBody.entries.map((e) => e.key)
           : [],
+      repeat: htmlRepeats.map((rep) => rep.collection),
+      repeats: htmlRepeats,
     };
     const pageHtml =
       r.body.kind === "html"

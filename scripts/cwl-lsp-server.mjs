@@ -77,6 +77,12 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     detail: "Collection binding (empty-iter / docs; RFC-0021)",
     insertText: "foreach ${1:items} as ${2:item} {\n  $0\n}",
   },
+  {
+    label: "repeat",
+    kind: KIND_SNIPPET,
+    detail: "Repeat markup per collection item (RFC-0031)",
+    insertText: 'repeat ${1:items} as ${2:item} html "${3:<li>item</li>}";',
+  },
   { label: "status", kind: KIND_SNIPPET, detail: "Response status", insertText: "status ${1:400};" },
   {
     label: "content-type",

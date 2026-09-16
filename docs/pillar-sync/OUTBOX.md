@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-16 — tip-1.0.31-html-repeat
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.31** (RFC-0031)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.31**; peel repeated markup (`__cwl_html_repeat` in `html.template`) — list surfaces are CWL now, not host fragments |
+| Secure | Pin to **1.0.31**; DNA seed vs tip (gold `40`) |
+
+### CWL landed
+
+- `repeat <collection> as <item> html "…";` — parse/print, WebIR lift, exact emit reverse, gold `40`
+- Catalog: `cwl:invalid-html-repeat`, `cwl:emit:html-repeat`; `hub-cwl:html-fragment` narrowed to host-owned bytes
+- Still host-executor by design: `hub-cwl:credential-store` (crypto), `hub-cwl:upstream-proxy`, `unsupported:websocket`
+
+---
+
 ## 2026-09-15 — tip-1.0.30-layout-export
 
 **To:** convert + secure  

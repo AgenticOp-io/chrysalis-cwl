@@ -1,5 +1,14 @@
 # CWL language changelog
 
+## 1.0.31 — 2026-09-16
+
+- RFC-0031 `repeat <collection> as <item> html "…";` — repeated markup is a gene, not a host fragment
+- Collection name interpolates as rendered list in `return html`; item name interpolates per iteration
+- WebIR `__cwl_html_repeat(iterable, itemTemplate)` with `argNames` item; emit reverse reproduces the statement
+- Gold `40-html-repeat`; catalog `cwl:invalid-html-repeat` + `cwl:emit:html-repeat`; LSP/TextMate `repeat`
+- `hub-cwl:html-fragment` narrowed to fragments whose bytes the host still owns
+- Still forbidden: UA regex; Nest / LiveView / Flutter façades; WebSocket duplex invent
+
 ## 1.0.30 — 2026-09-15
 
 - ALWAYS sync: `cwl-layout.mjs` (Convert ask — RFC-0029 apply lands with language mirrors)

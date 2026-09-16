@@ -15,6 +15,7 @@ const CLI = join(ROOT, "scripts/cwl-cli.mjs");
 const CONTROL = join(ROOT, "fixtures/language-gold/19-early-exit/routes.cwl");
 const HOLES = join(ROOT, "fixtures/language-gold/11-holes/routes.cwl");
 const NESTED = join(ROOT, "fixtures/language-gold/23-nested-control/routes.cwl");
+const REPEAT = join(ROOT, "fixtures/language-gold/40-html-repeat/routes.cwl");
 
 const webirEntry = resolveWebirEntryPath();
 const webirReady = Boolean(webirEntry && existsSync(webirEntry));
@@ -96,6 +97,20 @@ runEmitCheck(
       rep.token === "CWL_EMIT_CHECK_OK" &&
       (rep.holeCount ?? 1) === 0 &&
       /foreach\s+comments\s+as\s+c\s*\{/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0031: the repeat statement must survive WebIR reverse, not collapse to markup.
+runEmitCheck(
+  "emit-check-40-html-repeat",
+  REPEAT,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /repeat\s+pops\s+as\s+pop\s+html\s+"<li>pop<\/li>";/.test(text)
     );
   },
   { stdout: true },

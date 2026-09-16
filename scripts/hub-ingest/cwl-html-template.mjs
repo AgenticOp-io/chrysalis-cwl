@@ -4,6 +4,9 @@
 
 const HUB_T = { string: { kind: "string" } };
 
+/** RFC-0031 repeat node callee — named so emit can reverse it exactly. */
+export const CWL_HTML_REPEAT_CALLEE = "__cwl_html_repeat";
+
 function hubOrigin(file, line = 1) {
   return { file, line, column: 1 };
 }
@@ -27,16 +30,19 @@ function lowerHubHtmlLiteralPageBody(ctx, html, loc, wr) {
 
 /**
  * @param {string} html
- * @param {{ path?: string[], query?: string[], load?: string[], cookie?: string[] }} bindings
+ * @param {{ path?: string[], query?: string[], load?: string[], cookie?: string[], repeat?: string[] }} bindings
  */
 export function splitCwlHtmlTemplate(html, bindings = {}) {
   const pathSet = new Set(bindings.path ?? []);
   const querySet = new Set(bindings.query ?? []);
   const loadSet = new Set(bindings.load ?? []);
   const cookieSet = new Set(bindings.cookie ?? []);
-  if (pathSet.size + querySet.size + loadSet.size + cookieSet.size === 0) return null;
+  const repeatSet = new Set(bindings.repeat ?? []);
+  if (pathSet.size + querySet.size + loadSet.size + cookieSet.size + repeatSet.size === 0) {
+    return null;
+  }
 
-  /** @type {Array<{ kind: "literal", text: string } | { kind: "expr", name: string, source: "path" | "query" | "load" | "cookie" }>} */
+  /** @type {Array<{ kind: "literal", text: string } | { kind: "expr", name: string, source: "path" | "query" | "load" | "cookie" | "repeat" }>} */
   const parts = [];
   let i = 0;
   while (i < html.length) {
@@ -45,7 +51,9 @@ export function splitCwlHtmlTemplate(html, bindings = {}) {
     if (idMatch) {
       const name = idMatch[0];
       let source = null;
-      if (pathSet.has(name)) source = "path";
+      // `repeat` wins over `load`: a repeated collection renders markup, not a scalar.
+      if (repeatSet.has(name)) source = "repeat";
+      else if (pathSet.has(name)) source = "path";
       else if (querySet.has(name)) source = "query";
       else if (loadSet.has(name)) source = "load";
       else if (cookieSet.has(name)) source = "cookie";
@@ -71,7 +79,15 @@ export function splitCwlHtmlTemplate(html, bindings = {}) {
       const next = /^[a-zA-Z_][a-zA-Z0-9_]*/.exec(tail);
       if (next) {
         const name = next[0];
-        if (pathSet.has(name) || querySet.has(name) || loadSet.has(name) || cookieSet.has(name)) break;
+        if (
+          pathSet.has(name) ||
+          querySet.has(name) ||
+          loadSet.has(name) ||
+          cookieSet.has(name) ||
+          repeatSet.has(name)
+        ) {
+          break;
+        }
       }
       j++;
     }
@@ -82,11 +98,61 @@ export function splitCwlHtmlTemplate(html, bindings = {}) {
 }
 
 /**
+ * RFC-0031: lower one `repeat <collection> as <item> html "…";` to a repeat node.
+ * Item markup is a nested `html.template`; the repeat itself is a named CWL call
+ * so WebIR keeps both the iterable and the per-item template (no invented loop runtime).
+ * @param {object} ctx — { data, webir }
+ * @param {{ collection: string, item: string, template: string }} repeat
+ * @param {{ file: string, line?: number, column?: number }} origin
+ */
+export function lowerCwlHtmlRepeat(ctx, repeat, origin) {
+  const { data, webir } = ctx;
+  const itemSplit = splitCwlHtmlTemplate(repeat.template, { load: [repeat.item] });
+  /** @type {Array<{ kind: "literal", text: string } | { kind: "expr", node: string, escape: boolean }>} */
+  const itemParts = [];
+  for (const part of itemSplit ?? [{ kind: "literal", text: repeat.template }]) {
+    if (part.kind === "literal") {
+      itemParts.push({ kind: "literal", text: part.text });
+      continue;
+    }
+    itemParts.push({
+      kind: "expr",
+      node: data.param({
+        name: part.name,
+        type: { kind: "string" },
+        origin,
+        provenance: [webir.provenance("hub-ingest", "cwl-html-repeat-item")],
+      }),
+      escape: true,
+    });
+  }
+  const itemTemplateId = data.htmlTemplate({
+    parts: itemParts,
+    origin,
+    provenance: [webir.provenance("hub-ingest", "cwl-html-repeat-item-template")],
+  });
+  const iterableId = data.param({
+    name: repeat.collection,
+    type: { kind: "unknown" },
+    origin,
+    provenance: [webir.provenance("hub-ingest", "cwl-html-repeat-iterable")],
+  });
+  return data.call({
+    callee: CWL_HTML_REPEAT_CALLEE,
+    args: [iterableId, itemTemplateId],
+    argNames: ["items", repeat.item],
+    type: { kind: "string" },
+    origin,
+    provenance: [webir.provenance("hub-ingest", "cwl-html-repeat")],
+  });
+}
+
+/**
  * @param {object} ctx — { data, webir, file }
  * @param {string} html
  * @param {{ file: string, line?: number }} loc
  * @param {object} wr
- * @param {{ path?: string[], query?: string[], load?: string[], cookie?: string[] }} [bindings]
+ * @param {{ path?: string[], query?: string[], load?: string[], cookie?: string[], repeat?: string[], repeats?: object[] }} [bindings]
  */
 export function lowerCwlHtmlTemplateBody(ctx, html, loc, wr, bindings = {}) {
   const split = splitCwlHtmlTemplate(html, bindings);
@@ -94,12 +160,26 @@ export function lowerCwlHtmlTemplateBody(ctx, html, loc, wr, bindings = {}) {
 
   const { data, webir } = ctx;
   const origin = { file: loc.file, line: loc.line ?? 1, column: 1 };
+  const repeatsByCollection = new Map(
+    (bindings.repeats ?? []).map((rep) => [rep.collection, rep]),
+  );
   /** @type {Array<{ kind: "literal", text: string } | { kind: "expr", node: string, escape: boolean }>} */
   const templateParts = [];
   for (const part of split) {
     if (part.kind === "literal") {
       templateParts.push({ kind: "literal", text: part.text });
       continue;
+    }
+    if (part.source === "repeat") {
+      const repeat = repeatsByCollection.get(part.name);
+      if (repeat) {
+        templateParts.push({
+          kind: "expr",
+          node: lowerCwlHtmlRepeat(ctx, repeat, origin),
+          escape: false,
+        });
+        continue;
+      }
     }
     const nodeId =
       part.source === "load"
@@ -138,12 +218,16 @@ export function lowerCwlHtmlTemplateBody(ctx, html, loc, wr, bindings = {}) {
 
 /**
  * Reconstruct CWL `return html "..."` text with bare binding identifiers.
+ * RFC-0031 repeat nodes come back as the collection identifier plus a recovered
+ * `repeat` statement (see `repeats`), never as invented markup.
  * @param {(id: string) => object | undefined} get
  * @param {object} n
  */
 export function cwlHtmlTemplateToLit(get, n) {
   const parts = n.attrs?.parts ?? [];
   let html = "";
+  /** @type {Array<{ collection: string, item: string, template: string }>} */
+  const repeats = [];
   for (const p of parts) {
     if (p.kind === "literal") {
       html += String(p.text ?? "");
@@ -152,11 +236,53 @@ export function cwlHtmlTemplateToLit(get, n) {
     const idx = p.operandIndex ?? p.idx;
     const opId = n.operands?.[idx];
     const expr = opId ? get(opId) : null;
+    if (expr?.op === "call" && expr.attrs?.callee === CWL_HTML_REPEAT_CALLEE) {
+      const recovered = cwlHtmlRepeatToStatement(get, expr);
+      if (!recovered) return { t: "hole", reason: "cwl:emit:html-repeat" };
+      repeats.push(recovered);
+      html += recovered.collection;
+      continue;
+    }
     if (expr?.op === "request.field") html += String(expr.attrs?.name ?? "");
     else if (expr?.op === "param") html += String(expr.attrs?.name ?? "");
     else return { t: "hole", reason: "hub:cwl:html-template-expr" };
   }
-  return { t: "lit", value: html };
+  return repeats.length > 0
+    ? { t: "lit", value: html, repeats }
+    : { t: "lit", value: html };
+}
+
+/**
+ * Reverse one RFC-0031 repeat call to its CWL statement fields.
+ * Returns null when the item template is not reconstructable (keep an honest hole).
+ * @param {(id: string) => object | undefined} get
+ * @param {object} call
+ */
+export function cwlHtmlRepeatToStatement(get, call) {
+  const iterable = get(call.operands?.[0] ?? "");
+  const itemTemplate = get(call.operands?.[1] ?? "");
+  if (iterable?.op !== "param" || itemTemplate?.op !== "html.template") return null;
+  const collection = String(iterable.attrs?.name ?? "");
+  if (!collection) return null;
+  const argNames = call.attrs?.argNames ?? [];
+  let item = typeof argNames[1] === "string" ? argNames[1] : "";
+  let template = "";
+  for (const p of itemTemplate.attrs?.parts ?? []) {
+    if (p.kind === "literal") {
+      template += String(p.text ?? "");
+      continue;
+    }
+    const idx = p.operandIndex ?? p.idx;
+    const opId = itemTemplate.operands?.[idx];
+    const expr = opId ? get(opId) : null;
+    if (expr?.op !== "param") return null;
+    const name = String(expr.attrs?.name ?? "");
+    if (!name) return null;
+    if (!item) item = name;
+    template += name;
+  }
+  if (!item) return null;
+  return { collection, item, template };
 }
 
 /**

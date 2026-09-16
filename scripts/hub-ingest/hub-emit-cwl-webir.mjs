@@ -517,6 +517,12 @@ export function renderCwlRoutes(routes, opts = {}) {
       lines.push(`  load ${cwlRenderValue(r.loadValue)};`);
     }
 
+    for (const rep of r.value?.repeats ?? []) {
+      lines.push(
+        `  repeat ${rep.collection} as ${rep.item} html ${cwlRenderLiteral(rep.template)};`,
+      );
+    }
+
     for (const island of r.pageIslands ?? []) {
       printEmitStandaloneIsland(island, "  ", lines);
     }

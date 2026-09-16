@@ -90,7 +90,9 @@ export function projectHtmlTemplateOrLiteral(get, n) {
   if (n.dialect === "data" && n.op === "html.template") {
     const lit = cwlHtmlTemplateToLit(get, n);
     if (lit.t === "hole") return lit;
-    return { t: "html", value: lit.value };
+    return lit.repeats
+      ? { t: "html", value: lit.value, repeats: lit.repeats }
+      : { t: "html", value: lit.value };
   }
   if (n.dialect === "data" && n.op === "literal" && typeof n.attrs?.value === "string") {
     return { t: "html", value: n.attrs.value };

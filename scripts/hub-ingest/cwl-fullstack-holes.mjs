@@ -67,7 +67,7 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     origin: "cwl",
     surface: "page",
     summary:
-      "Live HTML fragments injected via load bindings (nav, catalog, session lists, forms) — declare in the genome; host executor fills bytes. Do not invent session UI runtimes in CWL.",
+      "Live HTML fragment bytes the host still owns. Repeated markup over a collection is now expressible as `repeat … as … html` (RFC-0031) — keep this hole only for fragments CWL cannot name yet.",
   },
   "hub-cwl:credential-store": {
     rfc: "0012",
@@ -81,6 +81,18 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     origin: "cwl",
     surface: "api",
     summary: "Handler body intentionally empty / not yet authored; placeholder hole.",
+  },
+  "cwl:invalid-html-repeat": {
+    rfc: "0031",
+    origin: "cwl",
+    surface: "page",
+    summary: "`repeat … as … html` statement template is not a string literal — kept as an honest hole.",
+  },
+  "cwl:emit:html-repeat": {
+    rfc: "0031",
+    origin: "cwl",
+    surface: "emit",
+    summary: "Thin emit: repeat node lost its iterable or item template — do not guess the markup.",
   },
   "cwl:unknown-layout": {
     rfc: "0029",
