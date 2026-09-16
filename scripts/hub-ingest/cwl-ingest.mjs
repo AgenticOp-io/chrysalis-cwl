@@ -9,7 +9,7 @@ import { composeLayoutChromeHtml } from "./cwl-layout.mjs";
 import { liftCwlModuleMiddlewareToWebir } from "./hub-cwl-middleware.mjs";
 import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
 import { cwlEffectsToWebir, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
-import { cwlPathParamsForWebir } from "./hub-cwl-path-params.mjs";
+import { cwlPathParamsForWebir, extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { appendForeachBindings, wrapWithEarlyGuards } from "./cwl-control-lower.mjs";
 
 /**
@@ -353,9 +353,19 @@ export function liftCwlFileToWebir(opts) {
         origin: hubOrigin(file, r.line ?? 1),
         provenance: [webir.provenance("hub-ingest", "cwl:proxy-target")],
       });
+      // Params reused by the target are real data dependencies, not text.
+      const proxyParamFields = extractPathParamsFromCwlPath(r.body.target).map((name) =>
+        data.requestField({
+          source: "path",
+          name,
+          type: HUB_T.string,
+          origin: hubOrigin(file, r.line ?? 1),
+          provenance: [webir.provenance("hub-ingest", "cwl:proxy-path-param")],
+        }),
+      );
       valueId = data.call({
         callee: "__cwl_effect_upstream_proxy",
-        args: [targetId],
+        args: [targetId, ...proxyParamFields],
         type: HUB_T.unknown,
         origin: hubOrigin(file, r.line ?? 1),
         provenance: [webir.provenance("hub-ingest", "cwl:proxy-upstream")],

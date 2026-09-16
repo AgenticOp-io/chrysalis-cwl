@@ -1,6 +1,6 @@
 # CWL how-to — install and use
 
-**Tip language:** **`1.0.35`** ([`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md))  
+**Tip language:** **`1.0.36`** ([`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md))  
 **Repo:** [AgenticOp-io/chrysalis-cwl](https://github.com/AgenticOp-io/chrysalis-cwl) (public, Apache-2.0)  
 **Audience:** authors, integrators, Convert/Secure consumers, and anyone cloning the language pillar
 
@@ -87,14 +87,14 @@ npm run test:cwl-mirrors
 
 ### 2.1 From GitHub Packages (outside the monorepo)
 
-Published name: **`@agenticop-io/cwl`**. Tip version must match [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (today **`1.0.35`**). A token with `read:packages` on org **AgenticOp-io** is required.
+Published name: **`@agenticop-io/cwl`**. Tip version must match [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (today **`1.0.36`**). A token with `read:packages` on org **AgenticOp-io** is required.
 
 ```bash
 # .npmrc (project or user)
 @agenticop-io:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 
-npm install @agenticop-io/cwl@1.0.35
+npm install @agenticop-io/cwl@1.0.36
 ```
 
 ```bash
@@ -383,7 +383,7 @@ npm run pack:cwl-vsix
 Install: Extensions → **Install from VSIX…**, or:
 
 ```bash
-code --install-extension dist-editors/cwl-lsp-1.0.35.vsix
+code --install-extension dist-editors/cwl-lsp-1.0.36.vsix
 ```
 
 (Exact filename follows tip / packer output.)
@@ -557,7 +557,7 @@ npm run cwl -- check path/to/routes.cwl
 npm run cwl -- fmt path/to/routes.cwl
 
 # Package consumers
-npm install @agenticop-io/cwl@1.0.35   # needs GH Packages auth
+npm install @agenticop-io/cwl@1.0.36   # needs GH Packages auth
 npx cwl check path/to/routes.cwl
 
 # Rosetta reverse

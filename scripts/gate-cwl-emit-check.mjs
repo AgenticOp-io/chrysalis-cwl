@@ -20,6 +20,7 @@ const REPEAT_FIELDS = join(ROOT, "fixtures/language-gold/41-html-repeat-fields/r
 const AUTH_V2 = join(ROOT, "fixtures/language-gold/42-auth-effects-v2/routes.cwl");
 const PROXY_UPSTREAM = join(ROOT, "fixtures/language-gold/43-proxy-upstream/routes.cwl");
 const HOST_BYTES = join(ROOT, "fixtures/language-gold/44-host-bytes-holes/routes.cwl");
+const PROXY_PARAMS = join(ROOT, "fixtures/language-gold/45-proxy-upstream-params/routes.cwl");
 
 const webirEntry = resolveWebirEntryPath();
 const webirReady = Boolean(webirEntry && existsSync(webirEntry));
@@ -173,6 +174,21 @@ runEmitCheck(
       rep.token === "CWL_EMIT_CHECK_OK" &&
       /content-type\s+"image\/png";\s*\n\s*hole\s+hub-cwl:binary-render;/.test(text) &&
       /content-type\s+"application\/json";\s*\n\s*hole\s+hub-cwl:keypair-gen;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0033 deepen: path params reach the upstream target; an unowned `:name` holes out.
+runEmitCheck(
+  "emit-check-45-proxy-upstream-params",
+  PROXY_PARAMS,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      /param\s+id;\s*\n\s*proxy\s+upstream\s+"https:\/\/backend-services\.internal\/device\/:id\/status";/.test(text) &&
+      /proxy\s+upstream\s+"https:\/\/backend-services\.internal\/sites\/:site\/towers\/:tower";/.test(text) &&
+      /hole\s+cwl:unknown-proxy-param:region;/.test(text)
     );
   },
   { stdout: true },

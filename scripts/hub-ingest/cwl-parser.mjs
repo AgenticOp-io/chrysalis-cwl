@@ -923,19 +923,34 @@ export function parseCwlModule(source, file) {
       // RFC-0033: declared upstream forward — the target is meaning, the bytes are the host's.
       const proxyM = PROXY_UPSTREAM_RE.exec(inner);
       if (proxyM) {
+        const proxyRaw = lines[i - 1] ?? "";
         const targetLit = parseCwlLiteral(proxyM[1]);
-        if (targetLit.ok && typeof targetLit.value === "string") {
-          body = { kind: "proxy", target: targetLit.value };
-          sawReturn = true;
-        } else {
-          const proxyRaw = lines[i - 1] ?? "";
+        // A target may reuse the route's own path params — nothing else.
+        const unknownParam = targetLit.ok
+          ? extractPathParamsFromCwlPath(String(targetLit.value)).find(
+              (p) => !extractPathParamsFromCwlPath(path).includes(p),
+            )
+          : null;
+        const proxyHole = !targetLit.ok || typeof targetLit.value !== "string"
+          ? "cwl:invalid-proxy-upstream"
+          : unknownParam
+            ? `cwl:unknown-proxy-param:${unknownParam}`
+            : null;
+        if (proxyHole) {
+          attachmentHoles.push(proxyHole);
+          attachmentHoleLines.push(i);
+          attachmentHoleCharacters.push(keywordStartCharacter0(proxyRaw));
+          attachmentHoleEndCharacters.push(keywordEndCharacter0(proxyRaw, "proxy"));
           body = {
             kind: "hole",
-            reason: "cwl:invalid-proxy-upstream",
+            reason: proxyHole,
             line: i,
             character: keywordStartCharacter0(proxyRaw),
             endCharacter: keywordEndCharacter0(proxyRaw, "proxy"),
           };
+        } else {
+          body = { kind: "proxy", target: String(targetLit.value) };
+          sawReturn = true;
         }
         continue;
       }

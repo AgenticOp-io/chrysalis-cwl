@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-16 — tip-1.0.36-proxy-upstream-params
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.36** (RFC-0033 deepen) · Packages publish at tag `cwl-v1.0.36`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.36**; the proxy peel must keep `:param` segments in the target and read the extra `data.requestField` path operands (gold `45`) |
+| Secure | Pin to **1.0.36**; a forwarded route's full destination (params included) is genome data |
+
+### CWL landed
+
+- `proxy upstream "https://backend/device/:id/status";` — the target may reuse the route's path params
+- Params lower to `data.requestField` path reads (`cwl:proxy-path-param`) as operands after the target literal
+- A `:name` the route's path does not declare → `hole cwl:unknown-proxy-param:<name>;`
+- Fixes a latent `1.0.34` bug: rejected proxy targets now round-trip print→reparse as honest holes
+
+---
+
 ## 2026-09-16 — tip-1.0.35-host-byte-reasons
 
 **To:** convert + secure  

@@ -115,6 +115,13 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     surface: "api",
     summary: "`proxy upstream` target is not a string literal — kept as an honest hole.",
   },
+  "cwl:unknown-proxy-param": {
+    rfc: "0033",
+    origin: "cwl",
+    surface: "api",
+    summary:
+      "`proxy upstream` target references a `:name` the route's path does not declare — the destination is not guessed.",
+  },
   "cwl:emit:proxy-target": {
     rfc: "0033",
     origin: "cwl",

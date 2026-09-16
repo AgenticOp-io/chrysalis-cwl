@@ -1,5 +1,14 @@
 # CWL language changelog
 
+## 1.0.36 — 2026-09-16
+
+- RFC-0033 deepen: `proxy upstream` targets may reuse the route's path params (`…/device/:id/status`)
+- Target params lower to `data.requestField` path reads (`cwl:proxy-path-param`) — real dependencies, not text
+- A `:name` the route's path does not declare holes out as `cwl:unknown-proxy-param:<name>`; never guessed
+- Gold `45-proxy-upstream-params` + emit-check case: params come back as `param …;` next to the statement
+- Fix (`1.0.34` latent): a rejected proxy target now records an attachment hole, so the hole round-trips print→reparse
+- Still forbidden: query / header / body values in the target, body rewriting, upstream pools
+
 ## 1.0.35 — 2026-09-16
 
 - Catalog precision after RFC-0033: `hub-cwl:keypair-gen` (host keypair) and `hub-cwl:binary-render` (host bytes)

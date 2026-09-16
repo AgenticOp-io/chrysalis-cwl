@@ -1,7 +1,7 @@
 # CWL RFC-0033 — Declared upstream forwards
 
 **Status:** accepted (2026-09-16)  
-**Tip:** `1.0.34` · gold `43-proxy-upstream`  
+**Tip:** `1.0.34` · deepened `1.0.36` · golds `43-proxy-upstream`, `45-proxy-upstream-params`  
 **Extends:** RFC-0007 (effects) · RFC-0012 (host-executor holes)
 
 ## Summary
@@ -24,11 +24,29 @@ handler tower_status {
 `proxy upstream <string literal>;` is a handler body — it replaces `return`, and a route may have only one.
 A non-literal target is not guessed; it becomes `hole cwl:invalid-proxy-upstream;`.
 
+### Path params in the target (`1.0.36`)
+
+Most forwarded routes have a path, so the target may reuse the route's own `:name` params:
+
+```cwl
+@route GET "/api/site/:site/tower/:tower"
+handler site_tower {
+  effects: io;
+  proxy upstream "https://backend-services.internal/sites/:site/towers/:tower";
+}
+```
+
+Only params the route's path declares may appear. A `:name` the route does not own becomes
+`hole cwl:unknown-proxy-param:<name>;` — CWL will not invent where the value comes from.
+
 ## Lowering and reverse
 
-The body lowers to `data.call __cwl_effect_upstream_proxy(<target literal>)` with a `cwl:proxy-upstream`
-provenance locator; the target is a plain `data.literal` so emit can read it back verbatim. If the literal
-is missing on the way back, thin emit yields `hole cwl:emit:proxy-target;` rather than inventing a host.
+The body lowers to `data.call __cwl_effect_upstream_proxy(<target literal>, …<path reads>)` with a
+`cwl:proxy-upstream` provenance locator. The target is a plain `data.literal` so emit reads it back
+verbatim; each `:name` in it also lowers to a `data.requestField` path read (`cwl:proxy-path-param`), so
+the params are real data dependencies rather than text, and emit recovers them as `param …;` bindings.
+If the target literal is missing on the way back, thin emit yields `hole cwl:emit:proxy-target;` rather
+than inventing a host.
 
 ## What stays with the host
 
@@ -44,5 +62,5 @@ CWL declares the destination; it does **not** describe:
 ## Non-goals
 
 - Request/response body rewriting on the way through
-- Path rewriting beyond the declared target
+- Query, header, or body values in the target — path params only
 - Upstream pools, weights, or health checks
