@@ -17,7 +17,7 @@ SECURE_NEXT: pin 1.0.37 · forwarded routes name their full upstream target; hos
 | Surface | Value |
 | --- | --- |
 | **CWL tip** | **`1.0.37`** |
-| Packages | **`@agenticop-io/cwl@1.0.37`** — publish at tag |
+| Packages | **`@agenticop-io/cwl@1.0.37`** **live** |
 | Convert | file: → bump acknowledgment to **1.0.37** (was 1.0.27) |
 | Secure | file: → bump acknowledgment to **1.0.37** (was 1.0.28) |
 
@@ -25,7 +25,7 @@ SECURE_NEXT: pin 1.0.37 · forwarded routes name their full upstream target; hos
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | pending | tip **1.0.37** · tag `cwl-v1.0.37` |
+| **CWL** | `main` | `177fc0b` | tip **1.0.37** · tag `cwl-v1.0.37` · Packages live |
 | **Convert** | `candidate/wptp-convert-orbit` | lag | tip ack **1.0.27** |
 | **Secure** | `candidate/live-match-step4` | lag | tip ack **1.0.28** |
 
