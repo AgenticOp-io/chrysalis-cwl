@@ -24,7 +24,7 @@ SECURE_NEXT: pin 1.0.29
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | *(pending)* | tip **1.0.29** |
+| **CWL** | `main` | `17f77dc` | tip **1.0.29** |
 | **Convert** | `candidate/wptp-convert-orbit` | `5844a00f` | lag |
 | **Secure** | `candidate/live-match-step4` | `1be6670` | lag |
 
