@@ -9,7 +9,7 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.30**
+**CWL tip:** **1.0.30** · Packages **`@agenticop-io/cwl@1.0.30`** live (`cwl-v1.0.30`)
 
 ### Ask
 
@@ -22,6 +22,7 @@ Pushed asks for siblings. Newest first.
 
 - ALWAYS + `@chrysalis/cwl/layout` export
 - Gold `39-cinderpath-holes` (html-fragment / credential-store / upstream-proxy)
+- Packages published: `@agenticop-io/cwl@1.0.30`
 - No WebSocket invent
 
 ---
