@@ -83,6 +83,12 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     detail: "Repeat markup per collection item (RFC-0031)",
     insertText: 'repeat ${1:items} as ${2:item} html "${3:<li>item</li>}";',
   },
+  {
+    label: "proxy upstream",
+    kind: KIND_SNIPPET,
+    detail: "Forward this route to a declared upstream (RFC-0033)",
+    insertText: 'proxy upstream "${1:https://upstream.internal/path}";',
+  },
   { label: "status", kind: KIND_SNIPPET, detail: "Response status", insertText: "status ${1:400};" },
   {
     label: "content-type",

@@ -1,5 +1,13 @@
 # CWL language changelog
 
+## 1.0.34 — 2026-09-16
+
+- RFC-0033 `proxy upstream "<url>";` — a forwarded route now names its destination in the genome
+- Lowers to `__cwl_effect_upstream_proxy(<literal>)` with `cwl:proxy-upstream` provenance; emit reverse reads the target back verbatim
+- Gold `43-proxy-upstream` (hole-free) + emit-check case; catalog `cwl:invalid-proxy-upstream` + `cwl:emit:proxy-target`
+- `hub-cwl:upstream-proxy` narrowed: destination is expressible, transfer mechanics (TLS, hop headers, retries, tunnels) stay host-owned
+- Still forbidden: body/path rewriting, upstream pools or health checks, guessing a destination
+
 ## 1.0.33 — 2026-09-16
 
 - RFC-0032 credential / session effects: `auth.verify`, `session.mint`, `session.revoke`

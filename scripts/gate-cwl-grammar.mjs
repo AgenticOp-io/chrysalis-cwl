@@ -30,6 +30,7 @@ const LABEL_TO_WORDS = {
   "multipart file": ["multipart"],
   "stream sse": ["stream"],
   "chrome html": ["chrome", "html"],
+  "proxy upstream": ["proxy", "upstream"],
 };
 
 const tm = JSON.parse(readFileSync(TM, "utf8"));

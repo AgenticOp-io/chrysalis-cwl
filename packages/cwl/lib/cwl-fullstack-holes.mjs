@@ -60,7 +60,8 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     rfc: "0012",
     origin: "cwl",
     surface: "api",
-    summary: "HTTP upstream proxy to existing WISP backend-services (operator-owned; Mongo unchanged).",
+    summary:
+      "Host-owned forward mechanics. The destination is expressible as `proxy upstream \"…\"` (RFC-0033); keep this hole only for the transfer itself — TLS, hop-by-hop headers, retries, timeouts, tunnels.",
   },
   "hub-cwl:html-fragment": {
     rfc: "0012",
@@ -93,6 +94,18 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     origin: "cwl",
     surface: "emit",
     summary: "Thin emit: repeat node lost its iterable or item template — do not guess the markup.",
+  },
+  "cwl:invalid-proxy-upstream": {
+    rfc: "0033",
+    origin: "cwl",
+    surface: "api",
+    summary: "`proxy upstream` target is not a string literal — kept as an honest hole.",
+  },
+  "cwl:emit:proxy-target": {
+    rfc: "0033",
+    origin: "cwl",
+    surface: "emit",
+    summary: "Thin emit: proxy node lost its target literal — do not guess a destination.",
   },
   "cwl:unknown-layout": {
     rfc: "0029",

@@ -34,6 +34,9 @@ CWL evolves by **RFC**: each proposal must cite cross-language evidence (path kn
 | [0028](CWL-RFC-0028-ui-island-contracts.md) | Named client islands + form event contracts | accepted |
 | [0029](CWL-RFC-0029-layout-chrome.md) | Layout chrome wrap (`layout` + `chrome html`) | accepted |
 | [0030](CWL-RFC-0030-html-page-island.md) | Page `return html` + sibling `client ui` | accepted |
+| [0031](CWL-RFC-0031-html-repeat.md) | Repeated markup `repeat … as … html` (+ item fields) | accepted |
+| [0032](CWL-RFC-0032-credential-effects.md) | Credential / session effects (`auth.verify`, `session.mint`, `session.revoke`) | accepted |
+| [0033](CWL-RFC-0033-proxy-upstream.md) | Declared upstream forwards (`proxy upstream "…"`) | accepted |
 
 **Process**
 

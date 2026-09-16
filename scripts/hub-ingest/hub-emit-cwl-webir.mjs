@@ -129,6 +129,14 @@ export function cwlValueOfThin(get, id) {
       }
       return { t: "arr", elements };
     }
+    // RFC-0033: recover the declared upstream target (never guess a destination).
+    if (callee === "__cwl_effect_upstream_proxy") {
+      const target = get(n.operands?.[0] ?? "");
+      if (target?.op === "literal" && typeof target.attrs?.value === "string") {
+        return { t: "proxy", target: target.attrs.value };
+      }
+      return { t: "hole", reason: "cwl:emit:proxy-target" };
+    }
     return { t: "hole", reason: `cwl:emit:unsupported-call:${callee}` };
   }
   if (n.dialect === "data" && n.op === "hole") {
@@ -529,6 +537,8 @@ export function renderCwlRoutes(routes, opts = {}) {
 
     if (r.value?.t === "ui") {
       printEmitUiTree(r.value.tree, "  ", lines);
+    } else if (r.value?.t === "proxy") {
+      lines.push(`  proxy upstream ${cwlRenderLiteral(r.value.target)};`);
     } else if (r.value) {
       lines.push(`  return ${cwlRenderValue(r.value)};`);
     } else if (r.holeReason) {

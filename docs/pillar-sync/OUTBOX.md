@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-16 — tip-1.0.34-proxy-upstream
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.34** (RFC-0033) · Packages publish at tag `cwl-v1.0.34`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.34**; peel `__cwl_effect_upstream_proxy(<literal>)` back to `proxy upstream "…";` (gold `43`) |
+| Secure | Pin to **1.0.34**; a forwarded route's destination is now genome data, not a hole — seed/live-match may read it |
+
+### CWL landed
+
+- `proxy upstream "<url>";` is a handler body: the destination of a forwarded route is heritable
+- Lowering: `__cwl_effect_upstream_proxy(<literal>)` with `cwl:proxy-upstream` provenance; emit reverse returns the target verbatim
+- Missing target never guessed — `cwl:invalid-proxy-upstream` (parse) / `cwl:emit:proxy-target` (emit)
+- `hub-cwl:upstream-proxy` narrowed to transfer mechanics: TLS, hop-by-hop headers, retries, timeouts, tunnels
+
+---
+
 ## 2026-09-16 — tip-1.0.33-credential-effects
 
 **To:** convert + secure  

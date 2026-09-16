@@ -345,6 +345,21 @@ export function liftCwlFileToWebir(opts) {
         r.body,
         { file, line: r.line ?? 1, column: 1 },
       );
+    } else if (r.body.kind === "proxy") {
+      // RFC-0033: declare the upstream target; the host performs the forward.
+      const targetId = data.literal({
+        value: r.body.target,
+        type: HUB_T.string,
+        origin: hubOrigin(file, r.line ?? 1),
+        provenance: [webir.provenance("hub-ingest", "cwl:proxy-target")],
+      });
+      valueId = data.call({
+        callee: "__cwl_effect_upstream_proxy",
+        args: [targetId],
+        type: HUB_T.unknown,
+        origin: hubOrigin(file, r.line ?? 1),
+        provenance: [webir.provenance("hub-ingest", "cwl:proxy-upstream")],
+      });
     } else if (r.body.kind === "html") {
       valueId = lowerCwlHtmlTemplateBody(ctx, pageHtml, loc, wrBuilders, htmlBindings);
     } else if (r.body.kind === "ui") {

@@ -17,7 +17,7 @@ Full-stack origins (SvelteKit first) lift **route surfaces** before component/SS
 | `hub-svelte:form-action` | svelte | api | form actions (reserved) |
 | `hub-cwl:html-fragment` | cwl | page | Live HTML fragments filled by host executor |
 | `hub-cwl:credential-store` | cwl | api | Password hash / session mint — host owns store |
-| `hub-cwl:upstream-proxy` | cwl | api | HTTP upstream / operator proxy residual |
+| `hub-cwl:upstream-proxy` | cwl | api | Transfer mechanics only — destination is `proxy upstream` (RFC-0033) |
 
 Registry: `scripts/hub-ingest/cwl-fullstack-holes.mjs`. Gold: `39-cinderpath-holes`.
 
