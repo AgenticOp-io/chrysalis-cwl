@@ -62,6 +62,20 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     surface: "api",
     summary: "HTTP upstream proxy to existing WISP backend-services (operator-owned; Mongo unchanged).",
   },
+  "hub-cwl:html-fragment": {
+    rfc: "0012",
+    origin: "cwl",
+    surface: "page",
+    summary:
+      "Live HTML fragments injected via load bindings (nav, catalog, session lists, forms) — declare in the genome; host executor fills bytes. Do not invent session UI runtimes in CWL.",
+  },
+  "hub-cwl:credential-store": {
+    rfc: "0012",
+    origin: "cwl",
+    surface: "api",
+    summary:
+      "Password hash / sqlite (or similar) session mint — declare hole; host executor (e.g. Go bcrypt) owns credentials. Do not invent auth stores in CWL grammar.",
+  },
   "cwl:empty-handler": {
     rfc: "0012",
     origin: "cwl",

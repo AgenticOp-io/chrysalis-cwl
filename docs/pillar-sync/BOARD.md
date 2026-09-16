@@ -1,56 +1,45 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-09-14 · tip **1.0.28** · page-island emit reverse  
+**Updated:** 2026-09-15 · tip **1.0.29** · Cinderpath holes catalogued in CWL  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
-**Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md) · visibility [`../history/PRIVATE-PILLARS.md`](../history/PRIVATE-PILLARS.md)
+**Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: siblings pin tip 1.0.28 · Convert peels layout/page-island · Secure seed match
-VISIBILITY: public (pillars + wptp-* + fragility-discovery-engine + ghost-museum)
-CONVERT_NEXT: pin 1.0.28 · layout chrome + page-island peels · traffic-decides keep-green
-SECURE_NEXT: pin 1.0.28 · bridge annotations · ops EXTFMAP/soak
+DISPATCH: siblings pin tip 1.0.29
+CONVERT_NEXT: pin 1.0.29
+SECURE_NEXT: pin 1.0.29
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.28`** |
-| Convert | file: → bump acknowledgment to **1.0.28** |
-| Secure | file: → bump acknowledgment to **1.0.28** · soak = ops |
+| **CWL tip** | **`1.0.29`** |
+| Convert | file: → bump to **1.0.29** |
+| Secure | file: → bump to **1.0.29** |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | `51bbd61` | tip **1.0.28** on main |
-| **Convert** | `candidate/wptp-convert-orbit` | `5844a00f` | still at 1.0.26 ack |
-| **Secure** | `candidate/live-match-step4` | `1be6670` | still at 1.0.26 ack |
+| **CWL** | `main` | *(pending)* | tip **1.0.29** |
+| **Convert** | `candidate/wptp-convert-orbit` | `5844a00f` | lag |
+| **Secure** | `candidate/live-match-step4` | `1be6670` | lag |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Tip pin **1.0.28**; peels for layout chrome + HTML/page islands |
-| **P0** | Secure | Tip pin **1.0.28**; honor DNA seed vs new surfaces |
-| **ops** | Operator | EXTFMAP · live soak → enforce |
-| **done** | CWL | RFC-0029/0030 + golds `36`–`38` + emit reverse `1.0.28` |
-
-## Honesty (do not force-fill)
-
-Nest DI / LiveView / Flutter / onion / WebSocket duplex = catalogued residuals.  
-No UA regex in CWL. No synthetic customer soak traffic. Patent / counsel materials stay out of public trees unless counsel clears.
+| **P0** | Convert | Tip pin **1.0.29** |
+| **P0** | Secure | Tip pin **1.0.29** |
+| **done** | CWL | catalog html-fragment + credential-store |
 
 ## Closed
 
 | ID | Note |
 | --- | --- |
-| cwl-emit-1.0.28 | page-island + cookie-load emit reverse |
-| cwl-expand-1.0.27 | layout chrome · cookie HTML · page islands |
-| convert-tip-1.0.26 | `5844a00f` |
-| secure-tip-1.0.26 | `1be6670` |
-| 1.0.26 shell + urlencoded | `9fe485a` · gold `35` |
-| public pillars | 2026-09-03 |
-| WebSocket | kept hole |
+| cwl-holes-1.0.29 | hub-cwl:html-fragment · hub-cwl:credential-store |
+| cwl-emit-1.0.28 | page-island emit reverse |
+| cwl-expand-1.0.27 | layout chrome |

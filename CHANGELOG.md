@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.29 — 2026-09-15
+
+- Hole catalog: `hub-cwl:html-fragment`, `hub-cwl:credential-store` — declare Go residuals in the genome; do not invent auth/fragment runtimes
+- Fix: apply layout chrome once after import merge (no spurious `cwl:unknown-layout` on imported pages)
+- Cinderpath consume: holes named in CWL; Go remains executor only
+- Still forbidden: UA regex; Nest / LiveView / Flutter façades; WebSocket duplex invent
+
 ## 1.0.28 — 2026-09-14
 
 - Emit reverse: page-level `client ui` siblings (RFC-0030 / gold `38`) — no more `cwl:emit:multi-statement-body`

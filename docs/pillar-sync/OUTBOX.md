@@ -4,6 +4,19 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-15 — tip-1.0.29-hole-catalog
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.29**
+
+### Ask
+
+Pin ≡ **1.0.29**. New catalog reasons: `hub-cwl:html-fragment`, `hub-cwl:credential-store` (Cinderpath genome declares; Go executes).
+
+---
+
 ## 2026-09-14 — tip-1.0.28-emit-reverse
 
 **To:** convert + secure  
