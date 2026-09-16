@@ -17,7 +17,7 @@ SECURE_NEXT: pin 1.0.33 · login intent from genome, not a hole
 | Surface | Value |
 | --- | --- |
 | **CWL tip** | **`1.0.33`** |
-| Packages | tagging `cwl-v1.0.33` (1.0.32 live) |
+| Packages | **`@agenticop-io/cwl@1.0.33`** **live** |
 | Convert | file: → bump acknowledgment to **1.0.33** (was 1.0.27) |
 | Secure | file: → bump acknowledgment to **1.0.33** (was 1.0.28) |
 
@@ -25,7 +25,7 @@ SECURE_NEXT: pin 1.0.33 · login intent from genome, not a hole
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | (landing) | tip **1.0.33** · RFC-0032 |
+| **CWL** | `main` | `e16998b` | tip **1.0.33** · tag `cwl-v1.0.33` |
 | **Convert** | `candidate/wptp-convert-orbit` | lag | tip ack **1.0.27** |
 | **Secure** | `candidate/live-match-step4` | lag | tip ack **1.0.28** |
 
