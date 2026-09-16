@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-15 — adoption-1.0.29
+
+**To:** convert + secure + operator  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.29** · Packages tag `cwl-v1.0.29`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin ≡ **1.0.29**; peels for layout chrome + page islands (ack still **1.0.27**) |
+| Secure | Pin ≡ **1.0.29** (ack **1.0.28**) |
+| Operator | Redeploy Cinderpath web with compiled genome tip **1.0.29** |
+
+### CWL done
+
+- Tip **1.0.29** on main: html-fragment + credential-store catalog; layout-after-import fix
+- Cinderpath genome already declares holes in CWL (`4c436e1`)
+- Path: adoption + honesty — not native CWL rewrite
+
+---
+
 ## 2026-09-15 — tip-1.0.29-hole-catalog
 
 **To:** convert + secure  
