@@ -7,8 +7,8 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.45 land · Convert/Secure pin
-CONVERT_NEXT: pin 1.0.45 · peel gold 53
+DISPATCH: Packages 1.0.45 · Convert/Secure pin · CWL continue genome tips
+CONVERT_NEXT: pin 1.0.45 · peel golds 49–53
 SECURE_NEXT: pin 1.0.45
 ```
 
@@ -24,8 +24,15 @@ SECURE_NEXT: pin 1.0.45
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-1.0.45` | (landing) | tip **1.0.45** |
+| **CWL** | `main` | 41ebba8 | tip **1.0.45** |
+
+## Who builds next
+
+| Priority | Owner | Work |
+| --- | --- | --- |
+| **P0** | Convert / Secure | Tip pin **1.0.45** |
+| **done** | CWL | tips **1.0.41–1.0.45** on main |
 
 ## Honesty
 
-Rate budgets are declared policy — host enforces. No invented limiter runtime. WebSocket stays a hole.
+Policy genes only — no invented CORS ACL / rate-limiter / cookie-token runtimes. WebSocket duplex stays a hole.
