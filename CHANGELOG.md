@@ -7,6 +7,12 @@
 - Prefix resolution applies **only** to `param` entries — `hub-cwl:upstream-proxy:extra` stays uncatalogued
 - Hole-catalog gate now asserts both directions of that resolution
 
+### Runtime follow-up (2026-09-19, tip unchanged)
+
+- `@chrysalis/runtime-cwl`: `CwlRuntimeConfig.upstream` → `simulateHandler(..., upstream)` so RFC-0033 forwards can run when the host injects transport
+- Default still `DEFAULT_STUB_UPSTREAM` (501 inconclusive — no invented body)
+- ALWAYS sync adds `cwl-html-template.mjs` + `cwl-emit-ui.mjs` for Convert tip-sync
+
 ## 1.0.36 — 2026-09-16
 
 - RFC-0033 deepen: `proxy upstream` targets may reuse the route's path params (`…/device/:id/status`)

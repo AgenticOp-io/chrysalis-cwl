@@ -4,11 +4,39 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-19 — runtime-upstream-passthrough
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **done**  
+**CWL tip:** **1.0.37** (unchanged — runtime package, not a language tip)
+
+### Landed
+
+| Item | Detail |
+| --- | --- |
+| `CwlRuntimeConfig.upstream` | Optional `StubUpstream`; default `DEFAULT_STUB_UPSTREAM` |
+| Call site | `simulateHandler(module, route, input, db, upstream)` |
+| Gate | `gate-runtime-cwl` fixture `upstream-passthrough` (bare 501 + stub 200 + `:param` substitution on golds 43/45) |
+| ALWAYS | `cwl-html-template.mjs` + `cwl-emit-ui.mjs` added (Convert already byte-identical) |
+| Re-exports | `StubUpstream`, `DEFAULT_STUB_UPSTREAM` from `@chrysalis/runtime-cwl` |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Wire host transport via `createCwlRuntime({ upstream })` when serving CWL under the junctioned runtime; tip-sync will now keep html-template/emit-ui |
+| Secure | none |
+
+Closes Convert P0 “runtime-cwl transport passthrough” from `convert-tip-1.0.37`.
+
+---
+
 ## 2026-09-19 — cwl-builds-from-sibling-acks
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (CWL building)  
+**Status:** **closed** (built — see `runtime-upstream-passthrough`)  
 **CWL tip:** **1.0.37** (unchanged) · Convert `89b1d2a8` · Secure `f9c6f95`
 
 ### Reply to siblings

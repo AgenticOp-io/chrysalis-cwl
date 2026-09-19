@@ -4,7 +4,15 @@ import { basename, join } from "node:path";
 import type { Module, UiRouteStyleMapV1 } from "@chrysalis/webir";
 import { moduleFromGoldenSnapshot } from "@chrysalis/webir";
 import { wrapHtmlFragmentWithDocumentShell } from "@chrysalis/emit-shared";
-import { DEFAULT_STUB_DB, simulateHandler, type RequestInput, type SimValue, type StubDb } from "@chrysalis/rewrite";
+import {
+  DEFAULT_STUB_DB,
+  DEFAULT_STUB_UPSTREAM,
+  simulateHandler,
+  type RequestInput,
+  type SimValue,
+  type StubDb,
+  type StubUpstream,
+} from "@chrysalis/rewrite";
 import { compileCwlRoutes, matchCwlRoute, type CompiledCwlRoute } from "./route-match.js";
 
 export const CWL_RUNTIME_KIND = "chrysalis.cwl.runtime" as const;
@@ -27,6 +35,12 @@ export interface CwlUiAssetsServeConfig {
 export interface CwlRuntimeConfig {
   readonly module: Module;
   readonly db?: StubDb;
+  /**
+   * Host transport for RFC-0033 `proxy upstream` (Convert `@chrysalis/rewrite`
+   * `StubUpstream`). Default is `DEFAULT_STUB_UPSTREAM` — declare the forward,
+   * perform nothing (501 inconclusive). No real network inside this package.
+   */
+  readonly upstream?: StubUpstream;
   readonly nowIso?: string;
   readonly randomSeed?: string;
   /** Injected session map for preview/runtime (Phase 10 — verify remains authoritative). */
@@ -298,6 +312,7 @@ function buildRequestInput(
 export function createCwlRuntime(config: CwlRuntimeConfig): CwlRuntimeHandle {
   const routes = compileCwlRoutes(config.module);
   const db = config.db ?? DEFAULT_STUB_DB;
+  const upstream = config.upstream ?? DEFAULT_STUB_UPSTREAM;
   const uiAssets = config.uiAssets;
 
   async function dispatch(
@@ -324,7 +339,7 @@ export function createCwlRuntime(config: CwlRuntimeConfig): CwlRuntimeHandle {
         : { ...(config.session ?? {}) };
     const post = parsePostBody(bodyText, headers.get("content-type") ?? undefined);
     const input = buildRequestInput(method, url, headers, match.pathParams, session, post);
-    const sim = simulateHandler(config.module, match.route.routeNodeId, input, db);
+    const sim = simulateHandler(config.module, match.route.routeNodeId, input, db, upstream);
     const attachmentSoft =
       sim.errors.length > 0 &&
       Boolean(sim.body) &&

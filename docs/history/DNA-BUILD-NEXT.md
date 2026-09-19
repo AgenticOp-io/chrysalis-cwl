@@ -44,8 +44,8 @@
 | Tip pin **1.0.37** | Convert + Secure — **done** (`CONVERT_TIP_1_0_37_OK` / `SECURE_TIP_1_0_37_OK`) |
 | Peels golds 40–45 + rewrite upstream exec | Convert — **done** |
 | Live-match / cutover vs tip seed | Secure — **done** |
-| **runtime-cwl `StubUpstream` passthrough** | **CWL** — **open** (Convert cannot finish alone) |
-| ALWAYS: `cwl-html-template.mjs` + `cwl-emit-ui.mjs` | **CWL** — **open** (Convert adopted by copy) |
+| **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |
+| ALWAYS: `cwl-html-template.mjs` + `cwl-emit-ui.mjs` | **CWL** — **done** (in `ALWAYS`; Convert already byte-identical) |
 | EXTFMAP | **Operator** — [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) |
 | Customer soak → enforce | **Operator** (Secure runbook) |
 

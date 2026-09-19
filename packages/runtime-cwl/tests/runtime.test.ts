@@ -12,6 +12,8 @@ const PAGE_LOAD = resolve(ROOT, "fixtures/language-gold/10-page-load/routes.cwl"
 const REQ_CTX = resolve(ROOT, "fixtures/language-gold/04-request-context/routes.cwl");
 const CONTENT_TYPE = resolve(ROOT, "fixtures/language-gold/08-response-content-type/routes.cwl");
 const ISLANDS = resolve(ROOT, "fixtures/language-gold/25-island-kinds/routes.cwl");
+const PROXY = resolve(ROOT, "fixtures/language-gold/43-proxy-upstream/routes.cwl");
+const PROXY_PARAMS = resolve(ROOT, "fixtures/language-gold/45-proxy-upstream-params/routes.cwl");
 
 describe("@chrysalis/runtime-cwl (language-gold)", () => {
   it("serves 01-literals routes via fetch", () => {
@@ -127,5 +129,56 @@ describe("@chrysalis/runtime-cwl (language-gold)", () => {
     expect(res.status).toBe(200);
     const body = await res.text();
     expect(body).toContain("<h1>Map</h1>");
+  });
+
+  it("proxy upstream without transport is 501 inconclusive (no invented body)", async () => {
+    const module = loadModuleFromCwlFile(PROXY, ROOT);
+    const runtime = createCwlRuntime({ module });
+    const res = await runtime.fetch({ method: "GET", url: "http://127.0.0.1/api/tower-status" });
+    expect(res.status).toBe(501);
+    const body = JSON.parse(await res.text()) as { error?: string; errors?: { reason: string }[] };
+    expect(body.error).toBe("cwl-runtime:simulation-inconclusive");
+    expect(body.errors?.some((e) => e.reason.includes("upstream forward not performed"))).toBe(true);
+  });
+
+  it("proxy upstream with StubUpstream returns host body and status", async () => {
+    const module = loadModuleFromCwlFile(PROXY, ROOT);
+    /** @type {string[]} */
+    const seen: string[] = [];
+    const runtime = createCwlRuntime({
+      module,
+      upstream: {
+        forward({ target, method }) {
+          seen.push(`${method} ${target}`);
+          return { status: 200, body: JSON.stringify({ ok: true, from: "stub" }) };
+        },
+      },
+    });
+    const res = await runtime.fetch({ method: "GET", url: "http://127.0.0.1/api/tower-status" });
+    expect(res.status).toBe(200);
+    expect(await res.text()).toBe('{"ok":true,"from":"stub"}');
+    expect(seen).toEqual(["GET https://backend-services.internal/tower-status"]);
+  });
+
+  it("proxy upstream substitutes path params into the declared target", async () => {
+    const module = loadModuleFromCwlFile(PROXY_PARAMS, ROOT);
+    /** @type {string[]} */
+    const seen: string[] = [];
+    const runtime = createCwlRuntime({
+      module,
+      upstream: {
+        forward({ target }) {
+          seen.push(target);
+          return { status: 202, body: "accepted" };
+        },
+      },
+    });
+    const res = await runtime.fetch({
+      method: "GET",
+      url: "http://127.0.0.1/api/site/alpha/tower/t7",
+    });
+    expect(res.status).toBe(202);
+    expect(await res.text()).toBe("accepted");
+    expect(seen).toEqual(["https://backend-services.internal/sites/alpha/towers/t7"]);
   });
 });

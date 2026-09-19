@@ -49,6 +49,82 @@ for (const name of PACKAGE_GOLD) {
   }
 }
 
+// RFC-0033: host transport must reach simulateHandler; default stays inconclusive.
+{
+  const id = "upstream-passthrough";
+  try {
+    const cwlPath = join(GOLD_ROOT, "43-proxy-upstream/routes.cwl");
+    const module = runtimeApi.loadModuleFromCwlFile(cwlPath, ROOT);
+    const bare = runtimeApi.createCwlRuntime({ module });
+    const bareRes = await bare.fetch({
+      method: "GET",
+      url: "http://127.0.0.1/api/tower-status",
+    });
+    if (bareRes.status !== 501) {
+      throw new Error(`default upstream expected 501, got ${bareRes.status}`);
+    }
+    const bareBody = JSON.parse(await bareRes.text());
+    if (bareBody.error !== "cwl-runtime:simulation-inconclusive") {
+      throw new Error(`default upstream expected inconclusive, got ${JSON.stringify(bareBody)}`);
+    }
+
+    /** @type {string[]} */
+    const seen = [];
+    const withTransport = runtimeApi.createCwlRuntime({
+      module,
+      upstream: {
+        forward({ target, method }) {
+          seen.push(`${method} ${target}`);
+          return { status: 200, body: '{"ok":true,"from":"stub"}' };
+        },
+      },
+    });
+    const okRes = await withTransport.fetch({
+      method: "GET",
+      url: "http://127.0.0.1/api/tower-status",
+    });
+    const okText = await okRes.text();
+    if (okRes.status !== 200 || okText !== '{"ok":true,"from":"stub"}') {
+      throw new Error(`stub upstream expected 200 stub body, got ${okRes.status} ${okText}`);
+    }
+    if (seen.join("|") !== "GET https://backend-services.internal/tower-status") {
+      throw new Error(`stub upstream target mismatch: ${seen.join("|")}`);
+    }
+
+    const paramsPath = join(GOLD_ROOT, "45-proxy-upstream-params/routes.cwl");
+    const paramsMod = runtimeApi.loadModuleFromCwlFile(paramsPath, ROOT);
+    /** @type {string[]} */
+    const paramSeen = [];
+    const paramsRt = runtimeApi.createCwlRuntime({
+      module: paramsMod,
+      upstream: {
+        forward({ target }) {
+          paramSeen.push(target);
+          return { status: 202, body: "accepted" };
+        },
+      },
+    });
+    const pRes = await paramsRt.fetch({
+      method: "GET",
+      url: "http://127.0.0.1/api/site/alpha/tower/t7",
+    });
+    if (pRes.status !== 202 || (await pRes.text()) !== "accepted") {
+      throw new Error(`param upstream expected 202 accepted, got ${pRes.status}`);
+    }
+    if (paramSeen[0] !== "https://backend-services.internal/sites/alpha/towers/t7") {
+      throw new Error(`param substitution failed: ${paramSeen[0]}`);
+    }
+
+    results.push({ fixture: id, ok: true });
+  } catch (e) {
+    results.push({
+      fixture: id,
+      ok: false,
+      detail: e instanceof Error ? e.message : String(e),
+    });
+  }
+}
+
 const ok = results.every((r) => r.ok);
 const report = {
   kind: "chrysalis.cwl.runtime-cwl.gate",
