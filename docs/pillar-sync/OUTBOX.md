@@ -8,8 +8,8 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (landing on candidate)  
-**CWL tip:** **1.0.42** (RFC-0031 composition - gene closed)
+**Status:** **open** (language landed on `main` `5bd854a` - pin/peel pending)  
+**CWL tip:** **1.0.42** (RFC-0031 composition - gene closed) · CWL `main` `5bd854a`
 
 ### Ask
 
