@@ -24,6 +24,7 @@ const PROXY_PARAMS = join(ROOT, "fixtures/language-gold/45-proxy-upstream-params
 const SESSION_COOKIE = join(ROOT, "fixtures/language-gold/46-session-cookie-name/routes.cwl");
 const SESSION_COOKIE_ATTRS = join(ROOT, "fixtures/language-gold/51-session-cookie-attrs/routes.cwl");
 const CORS_ORIGIN = join(ROOT, "fixtures/language-gold/52-cors-allow-origin/routes.cwl");
+const RATE_LIMIT_RPM = join(ROOT, "fixtures/language-gold/53-rate-limit-rpm/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -311,6 +312,21 @@ runEmitCheck(
       (rep.holeCount ?? 1) === 0 &&
       /effects:\s*cors\.allow\s+origin\s+https:\/\/app\.example\.com;/.test(text) &&
       /effects:\s*cors\.allow;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0020 deepen: named rate.limit rpm survives reverse.
+runEmitCheck(
+  "emit-check-53-rate-limit-rpm",
+  RATE_LIMIT_RPM,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*rate\.limit\s+rpm\s+60;/.test(text) &&
+      /effects:\s*rate\.limit;/.test(text)
     );
   },
   { stdout: true },

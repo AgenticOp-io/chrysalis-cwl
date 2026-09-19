@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.44`** - named CORS origin (RFC-0020 deepen)
+**Tip:** **`1.0.45`** - named rate.limit rpm (RFC-0020 deepen)
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -47,7 +47,7 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.44** | Convert + Secure — **asked** |
+| Tip pin **1.0.45** | Convert + Secure — **asked** |
 | Peels golds 40–49 + nested repeat | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |

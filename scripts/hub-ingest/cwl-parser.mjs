@@ -4,7 +4,7 @@
  */
 import { extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { parseCwlStandaloneIslandBlock, parseCwlUiReturnBlock } from "./cwl-ui-tree.mjs";
-import { formatSessionCookieAttrs, parseCorsAllowEffect, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
+import { formatSessionCookieAttrs, parseCorsAllowEffect, parseRateLimitEffect, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
 
 const COMPONENT_DECL_RE = /^@component\s+([A-Za-z_][A-Za-z0-9_]*)\s*\{/;
 const PROP_RE = /^prop\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;$/;
@@ -480,6 +480,11 @@ function normalizeEffectTag(raw) {
     return cors.origin === "*" ? "cors.allow" : `cors.allow origin ${cors.origin}`;
   }
   if (/^cors\.allow\b/i.test(raw)) return ""; // invalid origin form — drop
+  const rate = parseRateLimitEffect(raw);
+  if (rate) {
+    return rate.rpm == null ? "rate.limit" : `rate.limit rpm ${rate.rpm}`;
+  }
+  if (/^rate\.limit\b/i.test(raw)) return ""; // invalid budget form — drop
   return raw;
 }
 

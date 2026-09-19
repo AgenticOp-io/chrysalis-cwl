@@ -106,6 +106,22 @@ export function parseCorsAllowEffect(raw) {
   return { origin: m[1] === "*" ? "*" : m[1] };
 }
 
+/**
+ * RFC-0020 deepen (tip 1.0.45): `rate.limit` or `rate.limit rpm <n>`.
+ * Declares a requests-per-minute budget — host enforces; CWL does not invent the limiter.
+ * @param {string} raw
+ * @returns {{ rpm: number | null } | null}
+ */
+export function parseRateLimitEffect(raw) {
+  const t = String(raw ?? "").trim().toLowerCase();
+  if (t === "rate.limit") return { rpm: null };
+  const m = /^rate\.limit\s+rpm\s+(\d+)$/.exec(t);
+  if (!m) return null;
+  const rpm = Number(m[1]);
+  if (!Number.isInteger(rpm) || rpm < 1 || rpm > 1_000_000) return null;
+  return { rpm };
+}
+
 /** @param {string[]} declared */
 export function cwlEffectsToWebir(declared) {
   /** @type {import('@chrysalis/webir').Effect[]} */
@@ -150,7 +166,8 @@ export function cwlEffectsToWebir(declared) {
       continue;
     }
     const corsFx = parseCorsAllowEffect(t);
-    if (corsFx || t === "csrf.verify" || t === "rate.limit") {
+    const rateFx = parseRateLimitEffect(t);
+    if (corsFx || t === "csrf.verify" || rateFx) {
       out.push({ kind: "http.fetch" });
     }
   }
@@ -367,11 +384,24 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
       );
       continue;
     }
-    if (t === "rate.limit") {
+    const rate = parseRateLimitEffect(t);
+    if (rate) {
+      const args =
+        rate.rpm == null
+          ? []
+          : [
+              data.literal({
+                value: rate.rpm,
+                type: HUB_T.int,
+                origin,
+                provenance: [webir.provenance("hub-ingest", "cwl:executable-rate-limit-rpm")],
+              }),
+            ];
       statements.push(
         data.call({
           callee: "__cwl_middleware_rate_limit",
-          args: [],
+          args,
+          argNames: rate.rpm == null ? undefined : ["rpm"],
           type: HUB_T.unknown,
           origin,
           provenance: [webir.provenance("hub-ingest", "cwl:executable-rate-limit")],
