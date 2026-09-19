@@ -90,6 +90,22 @@ export function formatSessionCookieAttrs(attrs) {
   return parts.join(" ");
 }
 
+/**
+ * RFC-0020 deepen (tip 1.0.44): `cors.allow` or `cors.allow origin <url|* >`.
+ * Bare form still means `*` — no invented host list.
+ * @param {string} raw
+ * @returns {{ origin: string } | null}
+ */
+export function parseCorsAllowEffect(raw) {
+  const t = String(raw ?? "").trim().toLowerCase();
+  if (t === "cors.allow") return { origin: "*" };
+  const m = /^cors\.allow\s+origin\s+(\*|[a-z][a-z0-9+.-]*:\/\/[^\s]+)$/i.exec(
+    String(raw ?? "").trim(),
+  );
+  if (!m) return null;
+  return { origin: m[1] === "*" ? "*" : m[1] };
+}
+
 /** @param {string[]} declared */
 export function cwlEffectsToWebir(declared) {
   /** @type {import('@chrysalis/webir').Effect[]} */
@@ -133,7 +149,8 @@ export function cwlEffectsToWebir(declared) {
       out.push({ kind: "session.write" });
       continue;
     }
-    if (t === "cors.allow" || t === "csrf.verify" || t === "rate.limit") {
+    const corsFx = parseCorsAllowEffect(t);
+    if (corsFx || t === "csrf.verify" || t === "rate.limit") {
       out.push({ kind: "http.fetch" });
     }
   }
@@ -318,9 +335,10 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
       );
       continue;
     }
-    if (t === "cors.allow") {
+    const cors = parseCorsAllowEffect(t);
+    if (cors) {
       const allow = data.literal({
-        value: "*",
+        value: cors.origin,
         type: HUB_T.string,
         origin,
         provenance: [webir.provenance("hub-ingest", "cwl:executable-cors-allow")],
@@ -329,6 +347,7 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
         data.call({
           callee: "__cwl_middleware_cors",
           args: [allow],
+          argNames: ["origin"],
           type: HUB_T.unknown,
           origin,
           provenance: [webir.provenance("hub-ingest", "cwl:executable-cors-allow")],

@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.44 - 2026-09-19
+
+- RFC-0020 deepen: `cors.allow origin <url>` — named CORS origin (bare `cors.allow` still `*`)
+- Gold `52-cors-allow-origin`; gold `22` unchanged
+- Origin lowers as named arg on `__cwl_middleware_cors`; emit reverses exactly
 ## 1.0.43 - 2026-09-19
 
 - RFC-0032 deepen: session cookie policy attrs - `httponly`, `secure`, `path /...`, `samesite lax|strict|none`
