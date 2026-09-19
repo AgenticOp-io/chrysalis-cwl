@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.42 - 2026-09-19
+
+- RFC-0031 composition: nested repeat + `if`/`else` on outer and inner (gold `50`)
+- No new grammar - proves tips `1.0.39`-`1.0.41` compose; golds `40`/`41`/`47`-`49` unchanged
+- RFC-0031 deepen queue for declared repeat surface: **closed** (WebSocket / sort / multi-level nest stay non-goals)
 ## 1.0.41 - 2026-09-19
 
 - RFC-0031 deepen: one-level nested repeats - `repeat outerItem.field as inner html "..."`

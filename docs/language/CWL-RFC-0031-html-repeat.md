@@ -1,7 +1,7 @@
 # CWL RFC-0031 — Repeated markup (`repeat … as … html`)
 
-**Status:** accepted (2026-09-16) · deepen tip `1.0.41`  
-**Tip:** `1.0.41` · golds `40-html-repeat`, `41-html-repeat-fields`, `47-html-repeat-if`, `48-html-repeat-else`, `49-html-repeat-nested`
+**Status:** accepted (2026-09-16) · deepen tip `1.0.42` (composition closed)  
+**Tip:** `1.0.42` · golds `40`–`41`, `47`–`50`
 
 ## Summary
 
