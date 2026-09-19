@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.42`** - RFC-0031 composition (nested + if/else); repeat gene closed
+**Tip:** **`1.0.43`** - session cookie policy attrs (RFC-0032 deepen)
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -37,6 +37,7 @@
 | P0 | Empty-collection `else html` on repeats (`48`) | **done** (`1.0.40`) |
 | P0 | Nested repeats (one level) (`49`) | **done** (`1.0.41`) |
 | P0 | Nested + if/else composition (`50`) | **done** (`1.0.42`) - RFC-0031 deepen **closed** |
+| P0 | Session cookie policy attrs (`51`) | **done** (`1.0.43`) |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
 | — | **Cinderpath consume** | genome declares holes in CWL; Go executor only |
@@ -45,7 +46,7 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.42** | Convert + Secure — **asked** |
+| Tip pin **1.0.43** | Convert + Secure — **asked** |
 | Peels golds 40–49 + nested repeat | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |

@@ -4,6 +4,7 @@
  */
 import { extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { parseCwlStandaloneIslandBlock, parseCwlUiReturnBlock } from "./cwl-ui-tree.mjs";
+import { formatSessionCookieAttrs, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
 
 const COMPONENT_DECL_RE = /^@component\s+([A-Za-z_][A-Za-z0-9_]*)\s*\{/;
 const PROP_RE = /^prop\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;$/;
@@ -460,14 +461,20 @@ function parseEffects(effectsRaw) {
 /**
  * Normalize effect tags. RFC-0032 deepen: `session.mint cookie sid` keeps the
  * cookie **name** (never a value) so Secure can cross-check response surfaces.
+ * Tip 1.0.43: optional policy attrs (`httponly`, `secure`, `path /`, `samesite lax`).
  * @param {string} raw
  */
 function normalizeEffectTag(raw) {
   if (!raw) return "";
-  const mint = /^session\.mint(?:\s+cookie\s+([a-zA-Z_][a-zA-Z0-9_]*))?$/.exec(raw);
-  if (mint) return mint[1] ? `session.mint cookie ${mint[1]}` : "session.mint";
-  const revoke = /^session\.revoke(?:\s+cookie\s+([a-zA-Z_][a-zA-Z0-9_]*))?$/.exec(raw);
-  if (revoke) return revoke[1] ? `session.revoke cookie ${revoke[1]}` : "session.revoke";
+  const session = parseSessionCookieEffect(raw);
+  if (session) {
+    if (!session.cookie) return session.kind;
+    const attrPart = session.attrs ? ` ${formatSessionCookieAttrs(session.attrs)}` : "";
+    return `${session.kind} cookie ${session.cookie}${attrPart}`;
+  }
+  // Invalid cookie-attr tail on mint/revoke — drop rather than invent policy.
+  const broken = /^session\.(?:mint|revoke)\s+cookie\s+/i.test(raw);
+  if (broken) return "";
   return raw;
 }
 

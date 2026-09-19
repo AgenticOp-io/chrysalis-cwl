@@ -21,6 +21,7 @@ const FILES = [
   "cwl-fmt.mjs",
   "cwl-ui-tree.mjs",
   "hub-cwl-path-params.mjs",
+  "hub-cwl-effects.mjs",
   "hub-t.mjs",
   "cwl-module-graph.mjs",
   "cwl-layout.mjs",

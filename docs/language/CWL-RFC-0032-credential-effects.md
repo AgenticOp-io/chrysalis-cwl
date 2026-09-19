@@ -1,7 +1,7 @@
 # CWL RFC-0032 — Credential / session effects
 
 **Status:** accepted (2026-09-16) · deepened 2026-09-19  
-**Tip:** `1.0.33` · deepen `1.0.38` · golds `42-auth-effects-v2`, `46-session-cookie-name`  
+**Tip:** `1.0.33` · deepen `1.0.43` · golds `42-auth-effects-v2`, `46-session-cookie-name`, `51-session-cookie-attrs`  
 **Extends:** RFC-0007 (auth effects) · RFC-0020 (executable effects)
 
 ## Summary
@@ -18,6 +18,7 @@ host executor owned both the meaning and the crypto. This RFC moves the **intent
 | `auth.verify` | A submitted credential is checked against a store | `db.read` |
 | `session.mint` | A session is created for the caller | `session.write` |
 | `session.mint cookie <name>` | Same, and the cookie **name** the host will set | `session.write` |
+| `session.mint cookie <name> httponly secure path / samesite lax` | Same + cookie **policy** attrs (tip `1.0.43`) | `session.write` |
 | `session.revoke` | The caller's session is destroyed | `session.write` |
 | `session.revoke cookie <name>` | Same, naming the cookie the host will clear | `session.write` |
 
