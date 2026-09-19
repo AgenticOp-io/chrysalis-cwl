@@ -39,7 +39,6 @@ const HOLE_FREE = new Set([
   "22-effects-middleware",
   "23-nested-control",
   "24-dna-bridge",
-  "25-island-kinds",
   "26-nested-literals",
   "27-data-v2",
   "28-response-cookie",
@@ -49,16 +48,20 @@ const HOLE_FREE = new Set([
   "33-ui-island-contracts",
   "34-dna-bridge-surfaces",
   "35-form-urlencoded",
-  "36-layout-chrome",
   "37-html-cookie-device",
   "38-html-page-island",
 ]);
 
-/** Honest remaining emit holes (catalogued / form-action). */
+/** Honest remaining emit holes (catalogued / form-action / attachment). */
 const HONEST_HOLES = {
   "11-holes": { min: 1 },
   "21-form-action": { min: 1 },
+  "25-island-kinds": { min: 3 },
   "29-transport-holes": { min: 1 },
+  "36-layout-chrome": { min: 2 },
+  "39-cinderpath-holes": { min: 3 },
+  "44-host-bytes-holes": { min: 3 },
+  "45-proxy-upstream-params": { min: 1 },
 };
 
 /**
