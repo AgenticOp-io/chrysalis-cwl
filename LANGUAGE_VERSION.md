@@ -3,17 +3,18 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.42` |
-| **Status** | RFC-0031 composition — nested repeat + `if`/`else` |
+| **Version** | `1.0.43` |
+| **Status** | RFC-0032 deepen — session cookie policy attrs |
 | **Date** | 2026-09-19 |
 
 ## What this version means
 
 Phase **1.x** deepen continues (no Nest / LiveView / Flutter façades; no origin-PL dialects):
 
-- **RFC-0031 composition:** one-level nest composes with `if` and `else` on outer and inner (gold `50`)
-- No new grammar — proves tips `1.0.39`–`1.0.41` combine honestly
-- Prior: one-level nest (`1.0.41`), empty `else` (`1.0.40`), `if` filter (`1.0.39`)
+- **RFC-0032 deepen:** `session.mint cookie sid httponly secure path / samesite lax` — policy flags, never a token value
+- **Gold `51`:** mint with full attrs + revoke with matching `path /`
+- Attrs lower as `__object_literal` on the mint/revoke call; emit reverses exactly
+- Prior: RFC-0031 composition closed (`1.0.42`), nested repeats (`1.0.41`)
 
 Queue: [`DNA-BUILD-NEXT.md`](./docs/history/DNA-BUILD-NEXT.md) · [`CWL-GENOME-DEEPEN.md`](./docs/language/CWL-GENOME-DEEPEN.md)
 

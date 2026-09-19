@@ -351,10 +351,16 @@ function effectsFromExecutableStmts(get, stmtIds) {
     else if (loc === "cwl:executable-auth-verify") tags.push("auth.verify");
     else if (loc === "cwl:executable-session-mint") {
       const cookie = sessionCookieArgName(get, n);
-      tags.push(cookie ? `session.mint cookie ${cookie}` : "session.mint");
+      const attrs = sessionCookieAttrsPart(get, n);
+      if (cookie && attrs) tags.push(`session.mint cookie ${cookie} ${attrs}`);
+      else if (cookie) tags.push(`session.mint cookie ${cookie}`);
+      else tags.push("session.mint");
     } else if (loc === "cwl:executable-session-revoke") {
       const cookie = sessionCookieArgName(get, n);
-      tags.push(cookie ? `session.revoke cookie ${cookie}` : "session.revoke");
+      const attrs = sessionCookieAttrsPart(get, n);
+      if (cookie && attrs) tags.push(`session.revoke cookie ${cookie} ${attrs}`);
+      else if (cookie) tags.push(`session.revoke cookie ${cookie}`);
+      else tags.push("session.revoke");
     } else if (loc === "cwl:executable-cors-allow") tags.push("cors.allow");
     else if (loc === "cwl:executable-csrf-verify") tags.push("csrf.verify");
     else if (loc === "cwl:executable-rate-limit") tags.push("rate.limit");
@@ -373,7 +379,10 @@ function effectsFromExecutableStmts(get, stmtIds) {
  * @param {object} call
  */
 function sessionCookieArgName(get, call) {
-  const argId = call.operands?.[0];
+  const argNames = call.attrs?.argNames ?? [];
+  const cookieIdx = argNames.indexOf("cookie");
+  const argId =
+    cookieIdx >= 0 ? call.operands?.[cookieIdx] : call.operands?.[0];
   if (!argId) return null;
   const lit = get(argId);
   if (lit?.op === "literal" && typeof lit.attrs?.value === "string") {
@@ -381,6 +390,42 @@ function sessionCookieArgName(get, call) {
     return /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name) ? name : null;
   }
   return null;
+}
+
+/**
+ * Reverse optional cookie policy attrs object on mint/revoke (tip 1.0.43).
+ * @param {(id: string) => object | undefined} get
+ * @param {object} call
+ */
+function sessionCookieAttrsPart(get, call) {
+  const argNames = call.attrs?.argNames ?? [];
+  const attrsIdx = argNames.indexOf("attrs");
+  const argId = attrsIdx >= 0 ? call.operands?.[attrsIdx] : call.operands?.[1];
+  if (!argId) return null;
+  const obj = get(argId);
+  if (obj?.op !== "call" || obj.attrs?.callee !== "__object_literal") return null;
+  /** @type {{ httponly?: boolean, secure?: boolean, path?: string, samesite?: string }} */
+  const attrs = {};
+  const ops = obj.operands ?? [];
+  for (let i = 0; i + 1 < ops.length; i += 2) {
+    const keyLit = get(ops[i]);
+    const valLit = get(ops[i + 1]);
+    if (keyLit?.op !== "literal" || valLit?.op !== "literal") return null;
+    const key = String(keyLit.attrs?.value ?? "");
+    const val = valLit.attrs?.value;
+    if (key === "httponly" && val === true) attrs.httponly = true;
+    else if (key === "secure" && val === true) attrs.secure = true;
+    else if (key === "path" && typeof val === "string") attrs.path = val;
+    else if (key === "samesite" && typeof val === "string") attrs.samesite = val;
+    else return null;
+  }
+  /** @type {string[]} */
+  const parts = [];
+  if (attrs.httponly) parts.push("httponly");
+  if (attrs.secure) parts.push("secure");
+  if (typeof attrs.path === "string") parts.push(`path ${attrs.path}`);
+  if (typeof attrs.samesite === "string") parts.push(`samesite ${attrs.samesite}`);
+  return parts.length ? parts.join(" ") : null;
 }
 
 /**

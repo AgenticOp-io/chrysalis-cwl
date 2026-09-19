@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-19 - tip-1.0.43-session-cookie-attrs
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open** (landing on candidate)  
+**CWL tip:** **1.0.43** (RFC-0032 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.43**; peel/recover ``session.mint cookie sid httponly secure path / samesite lax`` (gold ``51``); attrs are ``__object_literal`` on mint/revoke |
+| Secure | Pin to **1.0.43**; may honor policy attrs against live ``Set-Cookie`` — still never read token values into CWL |
+
+### CWL landed
+
+- Cookie policy attrs on mint/revoke: ``httponly``, ``secure``, ``path /...``, ``samesite lax|strict|none``
+- Package lib now stages ``hub-cwl-effects.mjs``
+- Gold ``46`` (name-only) unchanged
+
+---
+
 ## 2026-09-19 - tip-1.0.42-html-repeat-composition
 
 **To:** convert + secure  

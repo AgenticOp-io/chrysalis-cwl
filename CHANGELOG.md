@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.43 - 2026-09-19
+
+- RFC-0032 deepen: session cookie policy attrs - `httponly`, `secure`, `path /...`, `samesite lax|strict|none`
+- Gold `51-session-cookie-attrs`; gold `46` (name-only) unchanged
+- Attrs lower as `__object_literal` arg on mint/revoke; token values stay forbidden
+- Package lib stages `hub-cwl-effects.mjs` (parser dependency)
 ## 1.0.42 - 2026-09-19
 
 - RFC-0031 composition: nested repeat + `if`/`else` on outer and inner (gold `50`)
