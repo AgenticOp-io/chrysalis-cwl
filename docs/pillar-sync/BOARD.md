@@ -7,9 +7,9 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.44 land · Convert/Secure pin
-CONVERT_NEXT: pin 1.0.44 · peel gold 52
-SECURE_NEXT: pin 1.0.44 · page/API DNA only for CORS origin
+DISPATCH: Packages 1.0.44 · Convert/Secure pin · CWL next tip
+CONVERT_NEXT: pin 1.0.44 · peel golds 49–52
+SECURE_NEXT: pin 1.0.44
 ```
 
 ## Tips / pins
@@ -25,8 +25,16 @@ SECURE_NEXT: pin 1.0.44 · page/API DNA only for CORS origin
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-1.0.44` | (landing) | tip **1.0.44** |
+| **CWL** | `main` | `1b9f921` | tip **1.0.44** · merge PR #10 |
+
+## Who builds next
+
+| Priority | Owner | Work |
+| --- | --- | --- |
+| **P0** | Convert | Tip pin **1.0.44** |
+| **P0** | Secure | Tip pin **1.0.44** |
+| **done** | CWL | tips **1.0.41–1.0.44** on `main` |
 
 ## Honesty
 
-CORS origin is declared policy — not a forged ACL engine. Cookie values never enter CWL. WebSocket stays a hole.
+RFC-0031 repeat gene closed. Cookie values never enter CWL. WebSocket duplex stays a hole. No façades.
