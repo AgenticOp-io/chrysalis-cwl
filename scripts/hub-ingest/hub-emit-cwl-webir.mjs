@@ -528,8 +528,10 @@ export function renderCwlRoutes(routes, opts = {}) {
 
     for (const rep of r.value?.repeats ?? []) {
       const whenPart = rep.when ? ` if ${rep.when}` : "";
+      const elsePart =
+        typeof rep.empty === "string" ? ` else html ${cwlRenderLiteral(rep.empty)}` : "";
       lines.push(
-        `  repeat ${rep.collection} as ${rep.item}${whenPart} html ${cwlRenderLiteral(rep.template)};`,
+        `  repeat ${rep.collection} as ${rep.item}${whenPart} html ${cwlRenderLiteral(rep.template)}${elsePart};`,
       );
     }
 

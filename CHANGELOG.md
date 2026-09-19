@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.40 — 2026-09-19
+
+- RFC-0031 deepen: `repeat … html "…" else html "…"` — empty-collection markup
+- Gold `48-html-repeat-else`; golds `40`/`41`/`47` unchanged
+- `empty` lowers as named `__cwl_html_repeat` arg (literal `html.template`); emit reverses `else` exactly
+- Works with or without `if` filter; inventing empty-state copy when omitted stays forbidden
+
 ## 1.0.39 — 2026-09-19
 
 - RFC-0031 deepen: `repeat coll as item if item.field html "…"` — truthy item-field filter inside repeats

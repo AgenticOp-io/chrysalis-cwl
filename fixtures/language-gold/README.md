@@ -55,6 +55,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `45-proxy-upstream-params` | Path params in upstream targets | 0033 |
 | `46-session-cookie-name` | Named session cookie on mint/revoke | 0032 |
 | `47-html-repeat-if` | Conditional markup in repeats (`if` on item field) | 0031 |
+| `48-html-repeat-else` | Empty-collection markup (`else html`) | 0031 |
 
 ## Parseable subset notes (0.1.8)
 

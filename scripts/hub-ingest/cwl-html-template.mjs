@@ -138,9 +138,10 @@ export function splitCwlRepeatItemTemplate(template, itemName) {
  * RFC-0031: lower one `repeat <collection> as <item> html "…";` to a repeat node.
  * Item markup is a nested `html.template`; the repeat itself is a named CWL call
  * so WebIR keeps both the iterable and the per-item template (no invented loop runtime).
- * Optional `when` (item field chain) becomes a third arg — truthy filter, no invented sorter.
+ * Optional `when` (item field chain) becomes a named arg — truthy filter, no invented sorter.
+ * Optional `empty` (else markup) becomes a named arg — rendered when the filtered list is empty.
  * @param {object} ctx — { data, webir }
- * @param {{ collection: string, item: string, template: string, when?: string }} repeat
+ * @param {{ collection: string, item: string, template: string, when?: string, empty?: string }} repeat
  * @param {{ file: string, line?: number, column?: number }} origin
  */
 export function lowerCwlHtmlRepeat(ctx, repeat, origin) {
@@ -210,6 +211,16 @@ export function lowerCwlHtmlRepeat(ctx, repeat, origin) {
     }
     args.push(whenNode);
     argNames.push("when");
+  }
+  if (typeof repeat.empty === "string") {
+    // Empty markup is a literal html.template — no item binding (collection had nothing to bind).
+    const emptyTemplateId = data.htmlTemplate({
+      parts: [{ kind: "literal", text: repeat.empty }],
+      origin,
+      provenance: [webir.provenance("hub-ingest", "cwl-html-repeat-empty")],
+    });
+    args.push(emptyTemplateId);
+    argNames.push("empty");
   }
   return data.call({
     callee: CWL_HTML_REPEAT_CALLEE,
@@ -354,13 +365,29 @@ export function cwlHtmlRepeatToStatement(get, call) {
     template += ref.text;
   }
   if (!item) return null;
-  /** @type {{ collection: string, item: string, template: string, when?: string }} */
+  /** @type {{ collection: string, item: string, template: string, when?: string, empty?: string }} */
   const out = { collection, item, template };
-  const whenOpId = call.operands?.[2];
-  if (whenOpId) {
+  const whenIdx = argNames.indexOf("when");
+  if (whenIdx >= 0) {
+    const whenOpId = call.operands?.[whenIdx];
     const whenRef = cwlRepeatItemRefToText(get, get(whenOpId));
     if (!whenRef) return null;
     out.when = whenRef.text;
+  } else if (call.operands?.[2] && argNames[2] !== "empty") {
+    // Legacy tip 1.0.39: third arg is when without relying on argNames alone
+    const whenRef = cwlRepeatItemRefToText(get, get(call.operands[2]));
+    if (whenRef) out.when = whenRef.text;
+  }
+  const emptyIdx = argNames.indexOf("empty");
+  if (emptyIdx >= 0) {
+    const emptyTemplate = get(call.operands?.[emptyIdx] ?? "");
+    if (emptyTemplate?.op !== "html.template") return null;
+    let empty = "";
+    for (const p of emptyTemplate.attrs?.parts ?? []) {
+      if (p.kind !== "literal") return null;
+      empty += String(p.text ?? "");
+    }
+    out.empty = empty;
   }
   return out;
 }
