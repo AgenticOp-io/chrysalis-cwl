@@ -17,7 +17,7 @@ SECURE_NEXT: pin 1.0.38 · seed/cutover may honor genome cookie names against se
 | Surface | Value |
 | --- | --- |
 | **CWL tip** | **`1.0.38`** |
-| Packages | **`@agenticop-io/cwl@1.0.38`** — publish at tag |
+| Packages | **`@agenticop-io/cwl@1.0.38`** **live** |
 | Convert | file: → bump acknowledgment to **1.0.38** (was 1.0.37) |
 | Secure | file: → bump acknowledgment to **1.0.38** (was 1.0.37) |
 
@@ -25,7 +25,7 @@ SECURE_NEXT: pin 1.0.38 · seed/cutover may honor genome cookie names against se
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | pending | tip **1.0.38** · tag `cwl-v1.0.38` |
+| **CWL** | `main` | `d9c9fb9` | tip **1.0.38** · tag `cwl-v1.0.38` · Packages live |
 | **Convert** | `candidate/wptp-convert-orbit` | `89b1d2a8` | tip ack **1.0.37** |
 | **Secure** | `candidate/live-match-step4` | `f9c6f95` | tip ack **1.0.37** |
 

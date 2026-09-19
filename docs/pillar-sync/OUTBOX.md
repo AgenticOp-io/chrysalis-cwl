@@ -9,7 +9,7 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.38** (RFC-0032 deepen) · Packages publish at tag `cwl-v1.0.38`
+**CWL tip:** **1.0.38** (RFC-0032 deepen) · Packages **`@agenticop-io/cwl@1.0.38`** live · CWL `main` `d9c9fb9`
 
 ### Ask
 
