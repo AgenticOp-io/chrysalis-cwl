@@ -61,6 +61,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `51-session-cookie-attrs` | Session cookie policy attrs (httponly/secure/path/samesite) | 0032 |
 | `52-cors-allow-origin` | Named CORS origin (`cors.allow origin …`) | 0020 |
 | `53-rate-limit-rpm` | Named rate-limit budget (`rate.limit rpm N`) | 0020 |
+| `54-csrf-verify-cookie` | CSRF cookie name (`csrf.verify cookie …`) | 0020 |
 
 ## Parseable subset notes (0.1.8)
 

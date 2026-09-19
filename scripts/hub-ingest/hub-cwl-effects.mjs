@@ -122,6 +122,20 @@ export function parseRateLimitEffect(raw) {
   return { rpm };
 }
 
+/**
+ * RFC-0020 deepen (tip 1.0.46): `csrf.verify` or `csrf.verify cookie <name>`.
+ * Names the CSRF cookie — never the token value.
+ * @param {string} raw
+ * @returns {{ cookie: string | null } | null}
+ */
+export function parseCsrfVerifyEffect(raw) {
+  const t = String(raw ?? "").trim().toLowerCase();
+  if (t === "csrf.verify") return { cookie: null };
+  const m = /^csrf\.verify\s+cookie\s+([a-zA-Z_][a-zA-Z0-9_]*)$/.exec(t);
+  if (!m) return null;
+  return { cookie: m[1] };
+}
+
 /** @param {string[]} declared */
 export function cwlEffectsToWebir(declared) {
   /** @type {import('@chrysalis/webir').Effect[]} */
@@ -167,7 +181,8 @@ export function cwlEffectsToWebir(declared) {
     }
     const corsFx = parseCorsAllowEffect(t);
     const rateFx = parseRateLimitEffect(t);
-    if (corsFx || t === "csrf.verify" || rateFx) {
+    const csrfFx = parseCsrfVerifyEffect(t);
+    if (corsFx || csrfFx || rateFx) {
       out.push({ kind: "http.fetch" });
     }
   }
@@ -372,11 +387,24 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
       );
       continue;
     }
-    if (t === "csrf.verify") {
+    const csrf = parseCsrfVerifyEffect(t);
+    if (csrf) {
+      const args =
+        csrf.cookie == null
+          ? []
+          : [
+              data.literal({
+                value: csrf.cookie,
+                type: HUB_T.string,
+                origin,
+                provenance: [webir.provenance("hub-ingest", "cwl:executable-csrf-verify-cookie")],
+              }),
+            ];
       statements.push(
         data.call({
           callee: "__cwl_middleware_csrf",
-          args: [],
+          args,
+          argNames: csrf.cookie == null ? undefined : ["cookie"],
           type: HUB_T.unknown,
           origin,
           provenance: [webir.provenance("hub-ingest", "cwl:executable-csrf-verify")],

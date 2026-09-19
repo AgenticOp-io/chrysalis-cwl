@@ -364,8 +364,10 @@ function effectsFromExecutableStmts(get, stmtIds) {
     } else if (loc === "cwl:executable-cors-allow") {
       const origin = corsAllowOriginArg(get, n);
       tags.push(origin && origin !== "*" ? `cors.allow origin ${origin}` : "cors.allow");
-    } else if (loc === "cwl:executable-csrf-verify") tags.push("csrf.verify");
-    else if (loc === "cwl:executable-rate-limit") {
+    } else if (loc === "cwl:executable-csrf-verify") {
+      const cookie = csrfVerifyCookieArg(get, n);
+      tags.push(cookie ? `csrf.verify cookie ${cookie}` : "csrf.verify");
+    } else if (loc === "cwl:executable-rate-limit") {
       const rpm = rateLimitRpmArg(get, n);
       tags.push(rpm != null ? `rate.limit rpm ${rpm}` : "rate.limit");
     } else if (loc === "cwl:executable-time-now") tags.push("time.now");
@@ -462,6 +464,23 @@ function rateLimitRpmArg(get, call) {
   if (lit?.op === "literal" && typeof lit.attrs?.value === "number") {
     const n = lit.attrs.value;
     return Number.isInteger(n) && n >= 1 ? n : null;
+  }
+  return null;
+}
+
+/**
+ * @param {(id: string) => object | undefined} get
+ * @param {object} call
+ */
+function csrfVerifyCookieArg(get, call) {
+  const argNames = call.attrs?.argNames ?? [];
+  const cookieIdx = argNames.indexOf("cookie");
+  const argId = cookieIdx >= 0 ? call.operands?.[cookieIdx] : call.operands?.[0];
+  if (!argId) return null;
+  const lit = get(argId);
+  if (lit?.op === "literal" && typeof lit.attrs?.value === "string") {
+    const name = lit.attrs.value;
+    return /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name) ? name : null;
   }
   return null;
 }

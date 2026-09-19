@@ -4,6 +4,27 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-19 - tip-1.0.46-csrf-verify-cookie
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open** (landing on candidate)  
+**CWL tip:** **1.0.46** (RFC-0020 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.46**; peel ``csrf.verify cookie <name>`` (gold ``54``) |
+| Secure | Pin to **1.0.46**; may cross-check CSRF cookie names — never token values |
+
+### CWL landed
+
+- ``csrf.verify cookie csrf`` lowers cookie name as named arg on ``__cwl_middleware_csrf``
+- Bare ``csrf.verify`` unchanged
+
+---
+
 ## 2026-09-19 - tip-1.0.45-rate-limit-rpm
 
 **To:** convert + secure  
