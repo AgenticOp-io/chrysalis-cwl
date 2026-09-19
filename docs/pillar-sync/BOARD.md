@@ -25,7 +25,7 @@ SECURE_NEXT: pin 1.0.39 · no new Secure surface (filter is page DNA only)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | *(pending push)* | tip **1.0.39** · tag `cwl-v1.0.39` |
+| **CWL** | `main` | `3c608e9` | tip **1.0.39** · tag `cwl-v1.0.39` |
 | **Convert** | `candidate/wptp-convert-orbit` | `89b1d2a8` | tip ack **1.0.37** |
 | **Secure** | `candidate/live-match-step4` | `f9c6f95` | tip ack **1.0.37** |
 

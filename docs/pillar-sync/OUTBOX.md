@@ -9,7 +9,7 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.39** (RFC-0031 deepen) · Packages land with tip · CWL `main` *(pending)*
+**CWL tip:** **1.0.39** (RFC-0031 deepen) · Packages land with tip · CWL `main` `3c608e9`
 
 ### Ask
 
