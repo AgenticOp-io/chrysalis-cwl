@@ -4,6 +4,27 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-19 - tip-1.0.44-cors-allow-origin
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open** (landing on candidate)  
+**CWL tip:** **1.0.44** (RFC-0020 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.44**; peel ``cors.allow origin <url>`` (gold ``52``); bare ``cors.allow`` remains ``*`` |
+| Secure | Pin to **1.0.44**; no new Secure surface required |
+
+### CWL landed
+
+- ``cors.allow origin https://…`` lowers origin as named arg on ``__cwl_middleware_cors``
+- Gold ``22`` unchanged
+
+---
+
 ## 2026-09-19 - tip-1.0.43-session-cookie-attrs
 
 **To:** convert + secure  

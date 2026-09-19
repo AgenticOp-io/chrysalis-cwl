@@ -361,8 +361,10 @@ function effectsFromExecutableStmts(get, stmtIds) {
       if (cookie && attrs) tags.push(`session.revoke cookie ${cookie} ${attrs}`);
       else if (cookie) tags.push(`session.revoke cookie ${cookie}`);
       else tags.push("session.revoke");
-    } else if (loc === "cwl:executable-cors-allow") tags.push("cors.allow");
-    else if (loc === "cwl:executable-csrf-verify") tags.push("csrf.verify");
+    } else if (loc === "cwl:executable-cors-allow") {
+      const origin = corsAllowOriginArg(get, n);
+      tags.push(origin && origin !== "*" ? `cors.allow origin ${origin}` : "cors.allow");
+    } else if (loc === "cwl:executable-csrf-verify") tags.push("csrf.verify");
     else if (loc === "cwl:executable-rate-limit") tags.push("rate.limit");
     else if (loc === "cwl:executable-time-now") tags.push("time.now");
     else if (loc === "cwl:executable-random") tags.push("random");
@@ -426,6 +428,22 @@ function sessionCookieAttrsPart(get, call) {
   if (typeof attrs.path === "string") parts.push(`path ${attrs.path}`);
   if (typeof attrs.samesite === "string") parts.push(`samesite ${attrs.samesite}`);
   return parts.length ? parts.join(" ") : null;
+}
+
+/**
+ * @param {(id: string) => object | undefined} get
+ * @param {object} call
+ */
+function corsAllowOriginArg(get, call) {
+  const argNames = call.attrs?.argNames ?? [];
+  const originIdx = argNames.indexOf("origin");
+  const argId = originIdx >= 0 ? call.operands?.[originIdx] : call.operands?.[0];
+  if (!argId) return null;
+  const lit = get(argId);
+  if (lit?.op === "literal" && typeof lit.attrs?.value === "string") {
+    return lit.attrs.value;
+  }
+  return null;
 }
 
 /**

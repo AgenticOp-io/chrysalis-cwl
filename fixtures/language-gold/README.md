@@ -59,6 +59,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `49-html-repeat-nested` | One-level nested repeat (`outerItem.field`) | 0031 |
 | `50-html-repeat-nested-filter` | Nested repeat + `if`/`else` composition | 0031 |
 | `51-session-cookie-attrs` | Session cookie policy attrs (httponly/secure/path/samesite) | 0032 |
+| `52-cors-allow-origin` | Named CORS origin (`cors.allow origin …`) | 0020 |
 
 ## Parseable subset notes (0.1.8)
 

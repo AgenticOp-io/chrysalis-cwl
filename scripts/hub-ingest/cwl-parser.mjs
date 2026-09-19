@@ -4,7 +4,7 @@
  */
 import { extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { parseCwlStandaloneIslandBlock, parseCwlUiReturnBlock } from "./cwl-ui-tree.mjs";
-import { formatSessionCookieAttrs, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
+import { formatSessionCookieAttrs, parseCorsAllowEffect, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
 
 const COMPONENT_DECL_RE = /^@component\s+([A-Za-z_][A-Za-z0-9_]*)\s*\{/;
 const PROP_RE = /^prop\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;$/;
@@ -475,6 +475,11 @@ function normalizeEffectTag(raw) {
   // Invalid cookie-attr tail on mint/revoke — drop rather than invent policy.
   const broken = /^session\.(?:mint|revoke)\s+cookie\s+/i.test(raw);
   if (broken) return "";
+  const cors = parseCorsAllowEffect(raw);
+  if (cors) {
+    return cors.origin === "*" ? "cors.allow" : `cors.allow origin ${cors.origin}`;
+  }
+  if (/^cors\.allow\b/i.test(raw)) return ""; // invalid origin form — drop
   return raw;
 }
 

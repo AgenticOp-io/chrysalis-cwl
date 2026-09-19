@@ -23,6 +23,7 @@ const HOST_BYTES = join(ROOT, "fixtures/language-gold/44-host-bytes-holes/routes
 const PROXY_PARAMS = join(ROOT, "fixtures/language-gold/45-proxy-upstream-params/routes.cwl");
 const SESSION_COOKIE = join(ROOT, "fixtures/language-gold/46-session-cookie-name/routes.cwl");
 const SESSION_COOKIE_ATTRS = join(ROOT, "fixtures/language-gold/51-session-cookie-attrs/routes.cwl");
+const CORS_ORIGIN = join(ROOT, "fixtures/language-gold/52-cors-allow-origin/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -299,6 +300,21 @@ runEmitCheck(
   { stdout: true },
 );
 
+
+// RFC-0020 deepen: named CORS origin survives reverse (bare cors.allow stays *).
+runEmitCheck(
+  "emit-check-52-cors-allow-origin",
+  CORS_ORIGIN,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*cors\.allow\s+origin\s+https:\/\/app\.example\.com;/.test(text) &&
+      /effects:\s*cors\.allow;/.test(text)
+    );
+  },
+  { stdout: true },
+);
 // Attachment holes count toward holeCount (Convert fat emit alignment; gold 36).
 runEmitCheck(
   "emit-check-36-layout-chrome-hole-count",
