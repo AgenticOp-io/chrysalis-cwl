@@ -41,9 +41,11 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.37** | Convert + Secure — **asked** |
-| Consume layout chrome + page islands in peels / simulate | Convert |
-| Live-match / cutover vs tip seed | Secure |
+| Tip pin **1.0.37** | Convert + Secure — **done** (`CONVERT_TIP_1_0_37_OK` / `SECURE_TIP_1_0_37_OK`) |
+| Peels golds 40–45 + rewrite upstream exec | Convert — **done** |
+| Live-match / cutover vs tip seed | Secure — **done** |
+| **runtime-cwl `StubUpstream` passthrough** | **CWL** — **open** (Convert cannot finish alone) |
+| ALWAYS: `cwl-html-template.mjs` + `cwl-emit-ui.mjs` | **CWL** — **open** (Convert adopted by copy) |
 | EXTFMAP | **Operator** — [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) |
 | Customer soak → enforce | **Operator** (Secure runbook) |
 

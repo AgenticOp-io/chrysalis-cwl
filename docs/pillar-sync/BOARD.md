@@ -1,15 +1,15 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-09-16 · tip **1.0.37** · parameterized hole reasons resolve in diagnostics  
+**Updated:** 2026-09-19 · tip **1.0.37** · siblings caught up; CWL builds runtime upstream passthrough  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.37 land + Packages · Convert pin+peels+forward exec · Secure pin
-CONVERT_NEXT: pin 1.0.37 · peel proxy upstream incl. :params (43,45) + repeats (40-41) + auth/session tags (42) · emit narrow host-byte reasons (44) · execute __cwl_effect_upstream_proxy in @chrysalis/rewrite
-SECURE_NEXT: pin 1.0.37 · forwarded routes name their full upstream target; host-byte routes keep their media type
+DISPATCH: CWL P0 runtime-cwl StubUpstream passthrough · ALWAYS sync html-template+emit-ui
+CONVERT_NEXT: waiting (tip 1.0.37 peels done; open only after CWL lands transport line)
+SECURE_NEXT: waiting (tip 1.0.37 consume done; no language ask)
 ```
 
 ## Tips / pins
@@ -18,27 +18,28 @@ SECURE_NEXT: pin 1.0.37 · forwarded routes name their full upstream target; hos
 | --- | --- |
 | **CWL tip** | **`1.0.37`** |
 | Packages | **`@agenticop-io/cwl@1.0.37`** **live** |
-| Convert | file: → bump acknowledgment to **1.0.37** (was 1.0.27) |
-| Secure | file: → bump acknowledgment to **1.0.37** (was 1.0.28) |
+| Convert | **`1.0.37`** ack (`CONVERT_TIP_1_0_37_OK`) |
+| Secure | **`1.0.37`** ack (`SECURE_TIP_1_0_37_OK`) |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | `177fc0b` | tip **1.0.37** · tag `cwl-v1.0.37` · Packages live |
-| **Convert** | `candidate/wptp-convert-orbit` | lag | tip ack **1.0.27** |
-| **Secure** | `candidate/live-match-step4` | lag | tip ack **1.0.28** |
+| **CWL** | `main` | `b12a538` | tip **1.0.37** · tag `cwl-v1.0.37` · Packages live |
+| **Convert** | `candidate/wptp-convert-orbit` | `89b1d2a8` | tip ack **1.0.37** · peels + rewrite upstream exec |
+| **Secure** | `candidate/live-match-step4` | `f9c6f95` | tip ack **1.0.37** · cutover / helix upstreams |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Tip pin **1.0.37**; peel `proxy upstream` incl. `:param` targets + repeats + credential/session effect tags; emit the narrow host-byte reasons |
-| **P0** | Convert | **Execute** `__cwl_effect_upstream_proxy` in `@chrysalis/rewrite` `simulateHandler` — CWL runtime can only declare the forward |
-| **P0** | Secure | Tip pin **1.0.37**; DNA seed vs golds `40`–`45` |
-| **P0** | Operator | Redeploy Cinderpath web once genome uses `repeat`, auth effects, `proxy upstream`, and the narrow byte reasons |
-| **done** | CWL | repeats + credential/session effects + upstream forwards (incl. path params) + precise host-byte reasons |
+| **P0** | **CWL** | Thread `StubUpstream` through `CwlRuntimeConfig` → `simulateHandler(..., upstream)` — Convert rewrite already executes forwards; runtime-cwl does not pass transport |
+| **P1** | **CWL** | Add `cwl-html-template.mjs` + `cwl-emit-ui.mjs` to `ALWAYS` in `sync-to-convert.mjs` (Convert adopted by copy; tip-sync drift risk) |
+| **done** | Convert | Tip pin **1.0.37**; peels golds 40–45; `__cwl_effect_upstream_proxy` executes in `@chrysalis/rewrite` |
+| **done** | Secure | Tip pin **1.0.37**; DNA seed/cutover vs golds 39–45; hole-param lookup on `helix upstreams` |
+| **note** | Secure | Soft: if CWL ever names the session cookie for `session.mint`, cutover can honor it — **not asking** |
+| **flag** | Convert | Gold `36` hole-counter mismatch under fat emit (text matches; counters differ) — align if CWL cares |
 
 ## Honesty
 
-Host keeps hashing, session stores, keypairs, binary encoders, and the proxy transfer itself (TLS, hop headers, retries, tunnels); WebSocket duplex stays a hole. No UA regex / façades.
+Host keeps hashing, session stores, keypairs, binary encoders, and the proxy transfer itself (TLS, hop headers, retries, tunnels); WebSocket duplex stays a hole. No UA regex / façades. Rewrite may simulate a forward via injected `StubUpstream`; real network stays host/ops.

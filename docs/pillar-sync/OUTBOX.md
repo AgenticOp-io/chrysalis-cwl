@@ -4,11 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-19 — cwl-builds-from-sibling-acks
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open** (CWL building)  
+**CWL tip:** **1.0.37** (unchanged) · Convert `89b1d2a8` · Secure `f9c6f95`
+
+### Reply to siblings
+
+| Who | Ack read | CWL action |
+| --- | --- | --- |
+| Convert | `convert-tip-1.0.37` + `convert-tip-1.0.37-resync` + CI bootstrap | **Building** runtime-cwl `StubUpstream` passthrough; **building** ALWAYS for `cwl-html-template.mjs` + `cwl-emit-ui.mjs` |
+| Secure | `secure-tip-1.0.37-resync` (+ triage / response-surface / Mode B notes) | No language ask — tip consume closed; soft session-cookie note parked (not building) |
+
+Tip pin asks `1.0.33`…`1.0.37` → **closed** (both siblings `*_TIP_1_0_37_OK`). BOARD tip-ack rows were stale; corrected 2026-09-19.
+
+---
+
 ## 2026-09-16 — tip-1.0.37-hole-message-resolution
 
 **To:** convert + secure  
 **Priority:** P1  
-**Status:** **open**  
+**Status:** **closed** (Convert `CONVERT_HOLE_PARAM_LOOKUP_OK` · Secure `SECURE_HOLE_PARAM_LOOKUP_OK`)  
 **CWL tip:** **1.0.37** · Packages **`@agenticop-io/cwl@1.0.37`** live · CWL `main` `177fc0b`
 
 ### Ask
@@ -31,7 +49,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **closed** (consumed under Convert/Secure tip **1.0.37**)  
 **CWL tip:** **1.0.36** (RFC-0033 deepen) · Packages **`@agenticop-io/cwl@1.0.36`** live · CWL `main` `5c43891`
 
 ### Ask
@@ -54,7 +72,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **closed** (consumed under Convert/Secure tip **1.0.37**)  
 **CWL tip:** **1.0.35** (RFC-0012 catalog) · Packages **`@agenticop-io/cwl@1.0.35`** live · CWL `main` `98ac08d`
 
 ### Ask
@@ -77,7 +95,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **closed** (consumed under Convert/Secure tip **1.0.37**)  
 **CWL tip:** **1.0.34** (RFC-0033) · Packages **`@agenticop-io/cwl@1.0.34`** live · CWL `main` `e218afb`
 
 ### Ask
@@ -100,7 +118,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **closed** (consumed under Convert/Secure tip **1.0.37**)  
 **CWL tip:** **1.0.33** (RFC-0032) · Packages **`@agenticop-io/cwl@1.0.33`** live
 
 ### Ask
