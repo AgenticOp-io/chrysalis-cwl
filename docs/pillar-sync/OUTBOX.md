@@ -4,6 +4,27 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-19 - tip-1.0.45-rate-limit-rpm
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open** (landing on candidate)  
+**CWL tip:** **1.0.45** (RFC-0020 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.45**; peel ``rate.limit rpm <n>`` (gold ``53``) |
+| Secure | Pin to **1.0.45**; no new Secure surface required |
+
+### CWL landed
+
+- ``rate.limit rpm 60`` lowers rpm as named int arg on ``__cwl_middleware_rate_limit``
+- Bare ``rate.limit`` unchanged
+
+---
+
 ## 2026-09-19 - tip-1.0.44-cors-allow-origin
 
 **To:** convert + secure  

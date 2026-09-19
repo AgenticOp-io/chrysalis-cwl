@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.45 - 2026-09-19
+
+- RFC-0020 deepen: `rate.limit rpm <n>` — named requests-per-minute budget
+- Gold `53-rate-limit-rpm`; bare `rate.limit` unchanged
+- Host enforces; CWL does not invent a limiter runtime
 ## 1.0.44 - 2026-09-19
 
 - RFC-0020 deepen: `cors.allow origin <url>` — named CORS origin (bare `cors.allow` still `*`)
