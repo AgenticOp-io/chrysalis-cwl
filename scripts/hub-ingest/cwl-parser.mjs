@@ -41,7 +41,7 @@ const ELSE_RE = /^else\s*\{$/;
 const FOREACH_RE = /^foreach\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+as(?:\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=>)?\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\{$/;
 /** RFC-0031: repeat a markup fragment per item of a load collection (optional `if` filter). */
 const HTML_REPEAT_RE =
-  /^repeat\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+as\s+([a-zA-Z_][a-zA-Z0-9_]*)(?:\s+if\s+([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)*))?\s+html\s+(.+);$/i;
+  /^repeat\s+([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)*)\s+as\s+([a-zA-Z_][a-zA-Z0-9_]*)(?:\s+if\s+([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)*))?\s+html\s+(.+);$/i;
 /** Split `html "…" else html "…"` — first literal may not contain the else keyword as markup. */
 const HTML_REPEAT_ELSE_SPLIT_RE = /^(.+?)\s+else\s+html\s+(.+)$/i;
 /** RFC-0033: route forwards to a named upstream (host owns the bytes). */
@@ -987,6 +987,9 @@ export function parseCwlModule(source, file) {
         const elseTplRaw = elseSplit ? elseSplit[2] : null;
         const tplLit = parseCwlLiteral(mainTplRaw);
         const elseLit = elseTplRaw ? parseCwlLiteral(elseTplRaw) : { ok: true, value: null };
+        // Nested collections are one level only: `outerItem.field` (tip 1.0.41).
+        const collectionDepth = collection.split(".").length;
+        const collectionOk = collectionDepth >= 1 && collectionDepth <= 2;
         // `if` filter must be a field chain rooted on the item (`s.active`), never a free name.
         const whenOk =
           !whenRaw ||
@@ -996,6 +999,7 @@ export function parseCwlModule(source, file) {
           tplLit.ok &&
           typeof tplLit.value === "string" &&
           whenOk &&
+          collectionOk &&
           elseLit.ok &&
           (elseTplRaw == null || typeof elseLit.value === "string")
         ) {
@@ -1011,7 +1015,10 @@ export function parseCwlModule(source, file) {
           htmlRepeats.push(rep);
         } else {
           const repeatRaw = lines[i - 1] ?? "";
-          attachmentHoles.push(whenRaw && !whenOk ? "cwl:invalid-html-repeat-if" : "cwl:invalid-html-repeat");
+          let reason = "cwl:invalid-html-repeat";
+          if (whenRaw && !whenOk) reason = "cwl:invalid-html-repeat-if";
+          else if (!collectionOk) reason = "cwl:invalid-html-repeat-nested";
+          attachmentHoles.push(reason);
           attachmentHoleLines.push(i);
           attachmentHoleCharacters.push(keywordStartCharacter0(repeatRaw));
           attachmentHoleEndCharacters.push(keywordEndCharacter0(repeatRaw, "repeat"));

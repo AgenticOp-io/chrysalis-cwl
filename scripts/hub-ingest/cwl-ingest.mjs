@@ -266,7 +266,10 @@ export function liftCwlFileToWebir(opts) {
         r.loadBody?.kind === "object" && r.loadBody.entries
           ? r.loadBody.entries.map((e) => e.key)
           : [],
-      repeat: htmlRepeats.map((rep) => rep.collection),
+      repeat: htmlRepeats.flatMap((rep) => {
+        const segs = String(rep.collection).split(".");
+        return segs.length > 1 ? [rep.collection, segs[segs.length - 1]] : [rep.collection];
+      }),
       repeats: htmlRepeats,
     };
     const pageHtml =
