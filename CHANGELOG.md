@@ -1,5 +1,9 @@
 # CWL language changelog
 
+## 1.0.46 - 2026-09-19
+
+- RFC-0020 deepen: `csrf.verify cookie <name>` — CSRF cookie name only (never a token value)
+- Gold `54-csrf-verify-cookie`; bare `csrf.verify` unchanged
 ## 1.0.45 - 2026-09-19
 
 - RFC-0020 deepen: `rate.limit rpm <n>` — named requests-per-minute budget
