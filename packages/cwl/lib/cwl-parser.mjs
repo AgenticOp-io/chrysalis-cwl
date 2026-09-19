@@ -443,11 +443,29 @@ function parseCwlObjectEntries(objectExpr, bindings) {
 
 /**
  * @param {string} effectsRaw
+ * @returns {string[]}
  */
 function parseEffects(effectsRaw) {
   const t = effectsRaw.trim().toLowerCase();
   if (t === "none" || t === "") return [];
-  return t.split(",").map((s) => s.trim()).filter(Boolean);
+  return t
+    .split(",")
+    .map((s) => normalizeEffectTag(s.trim()))
+    .filter(Boolean);
+}
+
+/**
+ * Normalize effect tags. RFC-0032 deepen: `session.mint cookie sid` keeps the
+ * cookie **name** (never a value) so Secure can cross-check response surfaces.
+ * @param {string} raw
+ */
+function normalizeEffectTag(raw) {
+  if (!raw) return "";
+  const mint = /^session\.mint(?:\s+cookie\s+([a-zA-Z_][a-zA-Z0-9_]*))?$/.exec(raw);
+  if (mint) return mint[1] ? `session.mint cookie ${mint[1]}` : "session.mint";
+  const revoke = /^session\.revoke(?:\s+cookie\s+([a-zA-Z_][a-zA-Z0-9_]*))?$/.exec(raw);
+  if (revoke) return revoke[1] ? `session.revoke cookie ${revoke[1]}` : "session.revoke";
+  return raw;
 }
 
 /**

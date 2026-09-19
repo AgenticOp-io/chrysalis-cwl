@@ -4,6 +4,30 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-19 — tip-1.0.38-session-cookie-name
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.38** (RFC-0032 deepen) · Packages publish at tag `cwl-v1.0.38`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.38**; peel/recover `session.mint cookie <name>` / `session.revoke cookie <name>` (gold `46`); attachment holes now count in thin emit `holeCount` (gold `36`) |
+| Secure | Pin to **1.0.38**; genome may now name the session cookie — cutover can honor `session.mint cookie sid` against certificate `set_cookie_names` (name only; never seed a value) |
+
+### CWL landed
+
+- `effects: session.mint cookie sid;` / `session.revoke cookie sid;` — optional cookie **name** on mint/revoke
+- Lowers as string literal arg on `__cwl_effect_session_mint` / `_revoke`; emit reverse recovers the phrase
+- Bare `session.mint` (gold `42`) unchanged
+- Emit `holeCount` increments for each attachment hole (Convert counter alignment)
+- Completes the soft Secure note from response-surface work without inventing cookie values
+
+---
+
 ## 2026-09-19 — runtime-upstream-passthrough
 
 **To:** convert + secure  

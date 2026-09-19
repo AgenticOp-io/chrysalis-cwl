@@ -1,7 +1,7 @@
 # CWL genome deepen — Phase 1.x
 
 **Status:** active (reopened 2026-08-11)  
-**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.37**  
+**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.38**  
 **Authority:** [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md) · [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) · [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ## Thesis
@@ -33,7 +33,7 @@ Convert still **hears** origin stacks; Secure still **checks** live DNA. Neither
 | **Host-executor holes** | Catalog + gold `39` (`html-fragment` / `credential-store` / `upstream-proxy`) — done (`1.0.29`–`1.0.30`) |
 | **Layout package surface** | ALWAYS sync + `@chrysalis/cwl/layout` — done (`1.0.30`) |
 | **Repeated markup** | `repeat … as … html` (`40`, RFC-0031) — done (`1.0.31`); item fields (`41`) — done (`1.0.32`) |
-| **Credential / session intent** | `auth.verify` / `session.mint` / `session.revoke` (`42`, RFC-0032) — done (`1.0.33`); crypto stays host |
+| **Credential / session intent** | `auth.verify` / `session.mint` / `session.revoke` (`42`, RFC-0032) — done (`1.0.33`); cookie **names** (`46`, `session.mint cookie sid`) — done (`1.0.38`); crypto + values stay host |
 | **Upstream forward** | `proxy upstream "…"` (`43`, RFC-0033) — done (`1.0.34`); path params in targets (`45`) — done (`1.0.36`); transfer mechanics stay host |
 | **Host-byte residuals** | `keypair-gen` / `binary-render` reasons with declared media type (`44`) — done (`1.0.35`) |
 | **WebSocket duplex** | Kept honest hole (`unsupported:websocket`) |

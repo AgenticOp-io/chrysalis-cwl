@@ -188,6 +188,18 @@ export const CWL_EFFECT_PRESETS = Object.freeze([
   { label: "auth.require", kind: KIND_TEXT, detail: "Effect preset: auth.require" },
   { label: "auth.verify", kind: KIND_TEXT, detail: "Effect preset: auth.verify (host hashes; RFC-0032)" },
   { label: "session.mint", kind: KIND_TEXT, detail: "Effect preset: session.mint (RFC-0032)" },
+  {
+    label: "session.mint cookie",
+    kind: KIND_SNIPPET,
+    detail: "Mint a session and name the cookie (RFC-0032 deepen; name only)",
+    insertText: "session.mint cookie ${1:sid}",
+  },
+  {
+    label: "session.revoke cookie",
+    kind: KIND_SNIPPET,
+    detail: "Revoke a session cookie by name (RFC-0032 deepen; name only)",
+    insertText: "session.revoke cookie ${1:sid}",
+  },
   { label: "session.revoke", kind: KIND_TEXT, detail: "Effect preset: session.revoke (RFC-0032)" },
   { label: "cors.allow", kind: KIND_TEXT, detail: "Effect preset: cors.allow" },
   { label: "csrf.verify", kind: KIND_TEXT, detail: "Effect preset: csrf.verify" },

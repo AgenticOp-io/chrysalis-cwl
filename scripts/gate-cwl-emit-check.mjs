@@ -21,6 +21,8 @@ const AUTH_V2 = join(ROOT, "fixtures/language-gold/42-auth-effects-v2/routes.cwl
 const PROXY_UPSTREAM = join(ROOT, "fixtures/language-gold/43-proxy-upstream/routes.cwl");
 const HOST_BYTES = join(ROOT, "fixtures/language-gold/44-host-bytes-holes/routes.cwl");
 const PROXY_PARAMS = join(ROOT, "fixtures/language-gold/45-proxy-upstream-params/routes.cwl");
+const SESSION_COOKIE = join(ROOT, "fixtures/language-gold/46-session-cookie-name/routes.cwl");
+const LAYOUT_CHROME = join(ROOT, "fixtures/language-gold/36-layout-chrome/routes.cwl");
 
 const webirEntry = resolveWebirEntryPath();
 const webirReady = Boolean(webirEntry && existsSync(webirEntry));
@@ -189,6 +191,36 @@ runEmitCheck(
       /param\s+id;\s*\n\s*proxy\s+upstream\s+"https:\/\/backend-services\.internal\/device\/:id\/status";/.test(text) &&
       /proxy\s+upstream\s+"https:\/\/backend-services\.internal\/sites\/:site\/towers\/:tower";/.test(text) &&
       /hole\s+cwl:unknown-proxy-param:region;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0032 deepen: session.mint/revoke may name the cookie (name only, never a value).
+runEmitCheck(
+  "emit-check-46-session-cookie-name",
+  SESSION_COOKIE,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*auth\.verify,\s*session\.mint\s+cookie\s+sid;/.test(text) &&
+      /effects:\s*session\.revoke\s+cookie\s+sid;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// Attachment holes count toward holeCount (Convert fat emit alignment; gold 36).
+runEmitCheck(
+  "emit-check-36-layout-chrome-hole-count",
+  LAYOUT_CHROME,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 0) === 2 &&
+      (rep.holeReasons ?? []).includes("unsupported:opaque-script") &&
+      /hole\s+unsupported:opaque-script;/.test(text)
     );
   },
   { stdout: true },

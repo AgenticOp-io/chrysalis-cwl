@@ -31,6 +31,8 @@ const LABEL_TO_WORDS = {
   "stream sse": ["stream"],
   "chrome html": ["chrome", "html"],
   "proxy upstream": ["proxy", "upstream"],
+  "session.mint cookie": ["cookie"],
+  "session.revoke cookie": ["cookie"],
 };
 
 const tm = JSON.parse(readFileSync(TM, "utf8"));

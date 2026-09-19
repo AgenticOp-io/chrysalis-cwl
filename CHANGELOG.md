@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.38 — 2026-09-19
+
+- RFC-0032 deepen: `session.mint cookie <name>` / `session.revoke cookie <name>` — genome names the cookie, never the token value
+- Gold `46-session-cookie-name` + emit-check; bare `session.mint` (gold `42`) still valid
+- Emit `holeCount` now counts attachment holes (gold `36` aligns with Convert's fat counter)
+- LSP snippets for the cookie forms; Secure can honor genome cookie names against `set_cookie_names`
+
 ## 1.0.37 — 2026-09-16
 
 - Fix: parameterized hole reasons resolve to their catalog entry, so authors get the explanation instead of "not in the language hole catalog"

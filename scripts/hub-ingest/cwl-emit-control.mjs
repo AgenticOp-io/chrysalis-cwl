@@ -349,9 +349,13 @@ function effectsFromExecutableStmts(get, stmtIds) {
     else if (loc === "cwl:executable-session-write") tags.push("session.write");
     else if (loc === "cwl:executable-auth-require") tags.push("auth.require");
     else if (loc === "cwl:executable-auth-verify") tags.push("auth.verify");
-    else if (loc === "cwl:executable-session-mint") tags.push("session.mint");
-    else if (loc === "cwl:executable-session-revoke") tags.push("session.revoke");
-    else if (loc === "cwl:executable-cors-allow") tags.push("cors.allow");
+    else if (loc === "cwl:executable-session-mint") {
+      const cookie = sessionCookieArgName(get, n);
+      tags.push(cookie ? `session.mint cookie ${cookie}` : "session.mint");
+    } else if (loc === "cwl:executable-session-revoke") {
+      const cookie = sessionCookieArgName(get, n);
+      tags.push(cookie ? `session.revoke cookie ${cookie}` : "session.revoke");
+    } else if (loc === "cwl:executable-cors-allow") tags.push("cors.allow");
     else if (loc === "cwl:executable-csrf-verify") tags.push("csrf.verify");
     else if (loc === "cwl:executable-rate-limit") tags.push("rate.limit");
     else if (loc === "cwl:executable-time-now") tags.push("time.now");
@@ -362,6 +366,21 @@ function effectsFromExecutableStmts(get, stmtIds) {
     else if (loc === "cwl:executable-io") tags.push("io");
   }
   return tags.length ? tags : ["none"];
+}
+
+/**
+ * @param {(id: string) => object | undefined} get
+ * @param {object} call
+ */
+function sessionCookieArgName(get, call) {
+  const argId = call.operands?.[0];
+  if (!argId) return null;
+  const lit = get(argId);
+  if (lit?.op === "literal" && typeof lit.attrs?.value === "string") {
+    const name = lit.attrs.value;
+    return /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name) ? name : null;
+  }
+  return null;
 }
 
 /**

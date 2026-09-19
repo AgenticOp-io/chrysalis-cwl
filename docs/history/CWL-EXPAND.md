@@ -1,7 +1,7 @@
 # CWL expand (Cinderpath)
 
 Working note for **AgenticOp-io/chrysalis-cwl**. Genome: `internal/webapp/cwl/cinderpath.cwl`.  
-**Landed tip:** **1.0.37** (parameterized upstream forwards; precise host-byte reasons; resolving hole messages). **GET pages render from compiled CWL**.  
+**Landed tip:** **1.0.38** (session cookie names; parameterized upstream forwards; precise host-byte reasons). **GET pages render from compiled CWL**.  
 **Holes live in the genome.** Go (`cinderpath-web`) only executes them.
 
 If a line is wrong, strike it.
@@ -17,7 +17,7 @@ If a line is wrong, strike it.
 | Device class token | `cookie cp_device` + `load { device: … }` (not UA regex) |
 | Opaque device residual | `hole unsupported:opaque-script;` |
 | Live HTML fragments | `hole hub-cwl:html-fragment;` (Go fills `load` bindings) |
-| Auth credentials | `hole hub-cwl:credential-store;` on auth POSTs |
+| Auth credentials | `effects: auth.verify, session.mint cookie sid;` (+ `hole hub-cwl:credential-store;` only for the store) |
 | Forwarded API routes | `proxy upstream "…/:id/…";` (RFC-0033) — target + path params named in CWL |
 | Forward mechanics (TLS, retries, tunnels) | `hole hub-cwl:upstream-proxy;` |
 | WireGuard keypair | `hole hub-cwl:keypair-gen;` + declared `content-type` |
@@ -47,6 +47,6 @@ Holes are **named in CWL**. Go does not own the vocabulary. Website `/cwl` copy 
 
 ## After tip pin
 
-1. Genome tip **1.0.37** + catalog holes — **done**
+1. Genome tip **1.0.38** + catalog holes — **done**
 2. Redeploy `/cinderpath.cwl` after compile
-3. Convert/Secure pin **1.0.37**
+3. Convert/Secure pin **1.0.38**

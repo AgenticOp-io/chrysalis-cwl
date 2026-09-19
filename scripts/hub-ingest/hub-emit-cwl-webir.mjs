@@ -515,6 +515,7 @@ export function renderCwlRoutes(routes, opts = {}) {
     }
 
     for (const reason of r.attachmentHoles ?? []) {
+      holeCount += 1;
       const rs = String(reason);
       lines.push(
         /^[A-Za-z0-9_:.-]+$/.test(rs) ? `  hole ${rs};` : `  hole legacy ${JSON.stringify(rs)};`,
