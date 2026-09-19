@@ -3,18 +3,18 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.39` |
-| **Status** | RFC-0031 deepen — conditional markup in repeats (`if` on item field) |
+| **Version** | `1.0.40` |
+| **Status** | RFC-0031 deepen — empty-collection `else html` on repeats |
 | **Date** | 2026-09-19 |
 
 ## What this version means
 
 Phase **1.x** deepen continues (no Nest / LiveView / Flutter façades; no origin-PL dialects):
 
-- **RFC-0031 deepen:** `repeat coll as item if item.field html "…"` — truthy item-field filter
-- **Gold `47`:** filtered session rows; bare/field repeats (golds `40`/`41`) unchanged
-- `when` lowers as third `__cwl_html_repeat` arg; emit reverses `if` exactly
-- Prior: session cookie names (`1.0.38`), hole-param resolve (`1.0.37`), proxy path params (`1.0.36`)
+- **RFC-0031 deepen:** `repeat … html "…" else html "…"` — empty-collection markup
+- **Gold `48`:** filtered session rows with an empty fallback; golds `40`/`41`/`47` unchanged
+- `empty` lowers as a named `__cwl_html_repeat` arg (literal `html.template`); emit reverses `else` exactly
+- Prior: repeat `if` filter (`1.0.39`), session cookie names (`1.0.38`)
 
 Queue: [`DNA-BUILD-NEXT.md`](./docs/history/DNA-BUILD-NEXT.md) · [`CWL-GENOME-DEEPEN.md`](./docs/language/CWL-GENOME-DEEPEN.md)
 
@@ -23,7 +23,4 @@ Queue: [`DNA-BUILD-NEXT.md`](./docs/history/DNA-BUILD-NEXT.md) · [`CWL-GENOME-D
 ```bash
 npm run build:webir
 CWL_REQUIRE_WEBIR=1 npm run test:language
-npm run smoke:cwl-ingest-matrix
-npm run smoke:cwl-runtime-matrix
-npm run smoke:cwl-emit
 ```

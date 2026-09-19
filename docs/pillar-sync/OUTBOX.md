@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-19 — tip-1.0.40-html-repeat-else
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.40** (RFC-0031 deepen) · Packages land with tip  
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.40**; peel/recover `repeat coll as item … html "…" else html "…"` (gold `48`); named `__cwl_html_repeat` arg `empty` is a literal `html.template` — ALWAYS already syncs `cwl-html-template.mjs` / `cwl-emit-ui.mjs` |
+| Secure | Pin to **1.0.40**; no new Secure surface — empty markup is page DNA only |
+
+### CWL landed
+
+- Optional `else html "…"` on RFC-0031 repeats — empty-collection fragment
+- Lowers as named arg `empty` on `__cwl_html_repeat` (works with or without `if`)
+- Emit reverses `else html` exactly
+- Golds `40`/`41`/`47` unchanged
+
+---
+
 ## 2026-09-19 — tip-1.0.39-html-repeat-if
 
 **To:** convert + secure  

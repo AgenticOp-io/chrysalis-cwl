@@ -42,6 +42,8 @@ const FOREACH_RE = /^foreach\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+as(?:\s+([a-zA-Z_][a-z
 /** RFC-0031: repeat a markup fragment per item of a load collection (optional `if` filter). */
 const HTML_REPEAT_RE =
   /^repeat\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+as\s+([a-zA-Z_][a-zA-Z0-9_]*)(?:\s+if\s+([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)*))?\s+html\s+(.+);$/i;
+/** Split `html "…" else html "…"` — first literal may not contain the else keyword as markup. */
+const HTML_REPEAT_ELSE_SPLIT_RE = /^(.+?)\s+else\s+html\s+(.+)$/i;
 /** RFC-0033: route forwards to a named upstream (host owns the bytes). */
 const PROXY_UPSTREAM_RE = /^proxy\s+upstream\s+(.+);$/i;
 /** RFC-0029: shared chrome layout */
@@ -979,14 +981,25 @@ export function parseCwlModule(source, file) {
         const collection = repeatM[1];
         const item = repeatM[2];
         const whenRaw = repeatM[3] ?? null;
-        const tplLit = parseCwlLiteral(repeatM[4]);
+        const tplRaw = repeatM[4];
+        const elseSplit = HTML_REPEAT_ELSE_SPLIT_RE.exec(tplRaw);
+        const mainTplRaw = elseSplit ? elseSplit[1] : tplRaw;
+        const elseTplRaw = elseSplit ? elseSplit[2] : null;
+        const tplLit = parseCwlLiteral(mainTplRaw);
+        const elseLit = elseTplRaw ? parseCwlLiteral(elseTplRaw) : { ok: true, value: null };
         // `if` filter must be a field chain rooted on the item (`s.active`), never a free name.
         const whenOk =
           !whenRaw ||
           whenRaw === item ||
           whenRaw.startsWith(`${item}.`);
-        if (tplLit.ok && typeof tplLit.value === "string" && whenOk) {
-          /** @type {{ collection: string, item: string, template: string, line: number, when?: string }} */
+        if (
+          tplLit.ok &&
+          typeof tplLit.value === "string" &&
+          whenOk &&
+          elseLit.ok &&
+          (elseTplRaw == null || typeof elseLit.value === "string")
+        ) {
+          /** @type {{ collection: string, item: string, template: string, line: number, when?: string, empty?: string }} */
           const rep = {
             collection,
             item,
@@ -994,6 +1007,7 @@ export function parseCwlModule(source, file) {
             line: i,
           };
           if (whenRaw) rep.when = whenRaw;
+          if (typeof elseLit.value === "string") rep.empty = elseLit.value;
           htmlRepeats.push(rep);
         } else {
           const repeatRaw = lines[i - 1] ?? "";

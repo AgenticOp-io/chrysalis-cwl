@@ -23,6 +23,7 @@ const HOST_BYTES = join(ROOT, "fixtures/language-gold/44-host-bytes-holes/routes
 const PROXY_PARAMS = join(ROOT, "fixtures/language-gold/45-proxy-upstream-params/routes.cwl");
 const SESSION_COOKIE = join(ROOT, "fixtures/language-gold/46-session-cookie-name/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
+const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const LAYOUT_CHROME = join(ROOT, "fixtures/language-gold/36-layout-chrome/routes.cwl");
 
 const webirEntry = resolveWebirEntryPath();
@@ -221,6 +222,22 @@ runEmitCheck(
       rep.token === "CWL_EMIT_CHECK_OK" &&
       (rep.holeCount ?? 1) === 0 &&
       /repeat\s+sessions\s+as\s+s\s+if\s+s\.active\s+html\s+"<tr><td>s\.user<\/td><\/tr>";/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0031 deepen: empty-collection `else html` survives reverse.
+runEmitCheck(
+  "emit-check-48-html-repeat-else",
+  REPEAT_ELSE,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /repeat\s+sessions\s+as\s+s\s+if\s+s\.active\s+html\s+"<tr><td>s\.user<\/td><\/tr>"\s+else\s+html\s+"<tr><td>none<\/td><\/tr>";/.test(
+        text,
+      )
     );
   },
   { stdout: true },
