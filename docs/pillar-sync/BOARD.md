@@ -7,9 +7,9 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.43 land + Packages · Convert pin+peel · Secure tip pin
-CONVERT_NEXT: pin 1.0.43 · peel gold 51 cookie attrs
-SECURE_NEXT: pin 1.0.43 · honor cookie policy attrs vs Set-Cookie when ready
+DISPATCH: Packages 1.0.43 · Convert/Secure pin · CWL next tip
+CONVERT_NEXT: pin 1.0.43 · peel gold 51
+SECURE_NEXT: pin 1.0.43 · honor cookie policy attrs when ready
 ```
 
 ## Tips / pins
@@ -19,13 +19,13 @@ SECURE_NEXT: pin 1.0.43 · honor cookie policy attrs vs Set-Cookie when ready
 | **CWL tip** | **`1.0.43`** |
 | Packages | **`@agenticop-io/cwl@1.0.43`** (land → publish) |
 | Convert | bump acknowledgment to **1.0.43** |
-| Secure | bump acknowledgment to **1.0.43** (attrs are DNA intent) |
+| Secure | bump acknowledgment to **1.0.43** |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-1.0.43` | (landing) | tip **1.0.43** |
+| **CWL** | `main` | `ef4e4b4` | tip **1.0.43** · merge PR #8 |
 | **Convert** | lag | tip ack **1.0.39** |
 | **Secure** | lag | tip ack **1.0.39** |
 
@@ -33,10 +33,10 @@ SECURE_NEXT: pin 1.0.43 · honor cookie policy attrs vs Set-Cookie when ready
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Tip pin **1.0.43**; peel cookie attrs |
-| **P0** | Secure | Tip pin **1.0.43**; optional honor attrs vs live Set-Cookie |
-| **done** | CWL | RFC-0032 deepen · gold `51` |
+| **P0** | Convert | Tip pin **1.0.43** |
+| **P0** | Secure | Tip pin **1.0.43** |
+| **done** | CWL | RFC-0032 cookie attrs · gold `51` · `main` `ef4e4b4` |
 
 ## Honesty
 
-Cookie **values** never enter CWL. Attrs are policy only. WebSocket duplex stays a hole. No UA regex / façades.
+Cookie **values** never enter CWL. Attrs are policy only. RFC-0031 repeat gene closed. WebSocket duplex stays a hole.
