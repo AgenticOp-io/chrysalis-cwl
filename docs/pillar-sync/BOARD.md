@@ -25,7 +25,7 @@ SECURE_NEXT: waiting (no language ask)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | pending | tip **1.0.37** + runtime upstream passthrough |
+| **CWL** | `main` | `9f8b520` | tip **1.0.37** + runtime upstream passthrough |
 | **Convert** | `candidate/wptp-convert-orbit` | `89b1d2a8` | tip ack **1.0.37** · peels + rewrite upstream exec |
 | **Secure** | `candidate/live-match-step4` | `f9c6f95` | tip ack **1.0.37** · cutover / helix upstreams |
 
