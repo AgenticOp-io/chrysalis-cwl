@@ -57,6 +57,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `47-html-repeat-if` | Conditional markup in repeats (`if` on item field) | 0031 |
 | `48-html-repeat-else` | Empty-collection markup (`else html`) | 0031 |
 | `49-html-repeat-nested` | One-level nested repeat (`outerItem.field`) | 0031 |
+| `50-html-repeat-nested-filter` | Nested repeat + `if`/`else` composition | 0031 |
 
 ## Parseable subset notes (0.1.8)
 

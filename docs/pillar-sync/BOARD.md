@@ -1,31 +1,31 @@
 ﻿# Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-09-19 · tip **1.0.41** · RFC-0031 deepen — one-level nested repeats  
+**Updated:** 2026-09-19 · tip **1.0.42** · RFC-0031 composition — nested + if/else (gene closed)  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: Packages publish 1.0.41 · Convert pin+peel · Secure tip pin · CWL next genome tip
-CONVERT_NEXT: pin 1.0.41 · peel `repeat outerItem.field` (gold 49)
-SECURE_NEXT: pin 1.0.41 · no new Secure surface (nested markup is page DNA only)
+DISPATCH: tip 1.0.42 land + Packages · Convert pin+peel · Secure tip pin · next genome tip
+CONVERT_NEXT: pin 1.0.42 · peel golds 49–50 (nested + nested-filter)
+SECURE_NEXT: pin 1.0.42 · no new Secure surface (page DNA only)
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.41`** |
-| Packages | **`@agenticop-io/cwl@1.0.41`** (land → publish) |
-| Convert | file: → bump acknowledgment to **1.0.41** |
-| Secure | file: → bump acknowledgment to **1.0.41** |
+| **CWL tip** | **`1.0.42`** |
+| Packages | **`@agenticop-io/cwl@1.0.42`** (land → publish) |
+| Convert | file: → bump acknowledgment to **1.0.42** |
+| Secure | file: → bump acknowledgment to **1.0.42** |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | `82cd85f` | tip **1.0.41** · merge PR #4 |
+| **CWL** | `candidate/cwl-1.0.42` | (landing) | tip **1.0.42** |
 | **Convert** | lag | tip ack **1.0.39** |
 | **Secure** | lag | tip ack **1.0.39** |
 
@@ -33,10 +33,10 @@ SECURE_NEXT: pin 1.0.41 · no new Secure surface (nested markup is page DNA only
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Tip pin **1.0.41**; peel nested repeat |
-| **P0** | Secure | Tip pin **1.0.41**; page DNA only |
-| **done** | CWL | RFC-0031 deepen · gold `49` · `main` `82cd85f` |
+| **P0** | Convert | Tip pin **1.0.42**; peel nested + nested-filter |
+| **P0** | Secure | Tip pin **1.0.42**; page DNA only |
+| **done** | CWL | RFC-0031 composition · gold `50` · gene closed |
 
 ## Honesty
 
-Nest / `if` / `else` stay page DNA — not sorters, paginators, or multi-level trees. Cookie **values** never enter CWL. WebSocket duplex stays a hole. No UA regex / façades.
+RFC-0031 declared surface is closed. Multi-level nests, sort, pagination, WebSocket duplex stay holes/non-goals. Cookie **values** never enter CWL. No UA regex / façades.

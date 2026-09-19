@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-19 - tip-1.0.42-html-repeat-composition
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open** (landing on candidate)  
+**CWL tip:** **1.0.42** (RFC-0031 composition - gene closed)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.42**; peel/recover golds ``49`` + ``50`` (nested; nested+if/else) |
+| Secure | Pin to **1.0.42**; no new Secure surface - page DNA only |
+
+### CWL landed
+
+- Gold ``50-html-repeat-nested-filter`` - nest composes with ``if``/``else``
+- No new grammar; RFC-0031 deepen queue for declared repeat surface **closed**
+- Golds ``40``/``41``/``47``-``49`` unchanged
+
+---
+
 ## 2026-09-19 - tip-1.0.41-html-repeat-nested
 
 **To:** convert + secure  
