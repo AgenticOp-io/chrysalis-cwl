@@ -114,6 +114,13 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     summary:
       "`repeat … if …` filter must be a field chain rooted on the item — free names are not guessed.",
   },
+  "cwl:invalid-html-repeat-nested": {
+    rfc: "0031",
+    origin: "cwl",
+    surface: "page",
+    summary:
+      "`repeat` collection nests deeper than one level (`a.b.c`) — only `outerItem.field` is in the genome; deeper nests stay holes.",
+  },
   "cwl:emit:html-repeat": {
     rfc: "0031",
     origin: "cwl",

@@ -56,6 +56,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `46-session-cookie-name` | Named session cookie on mint/revoke | 0032 |
 | `47-html-repeat-if` | Conditional markup in repeats (`if` on item field) | 0031 |
 | `48-html-repeat-else` | Empty-collection markup (`else html`) | 0031 |
+| `49-html-repeat-nested` | One-level nested repeat (`outerItem.field`) | 0031 |
 
 ## Parseable subset notes (0.1.8)
 

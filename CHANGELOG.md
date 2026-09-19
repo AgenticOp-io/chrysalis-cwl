@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.41 - 2026-09-19
+
+- RFC-0031 deepen: one-level nested repeats - `repeat outerItem.field as inner html "..."`
+- Gold `49-html-repeat-nested`; golds `40`/`41`/`47`/`48` unchanged
+- Outer item template interpolates the leaf (`towers`); iterable is `param`->`member`; emit reverses both statements
+- Deeper nests (`a.b.c`) -> `hole cwl:invalid-html-repeat-nested` - sorting/pagination still non-goals
+
 ## 1.0.40 — 2026-09-19
 
 - RFC-0031 deepen: `repeat … html "…" else html "…"` — empty-collection markup

@@ -1,6 +1,29 @@
-﻿# CWL OUTBOX (git)
+# CWL OUTBOX (git)
 
 Pushed asks for siblings. Newest first.
+
+---
+
+## 2026-09-19 - tip-1.0.41-html-repeat-nested
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open** (landing on candidate)  
+**CWL tip:** **1.0.41** (RFC-0031 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.41**; peel/recover `repeat outerItem.field as inner html "..."` (gold `49`); outer item template leaf (`towers`) embeds inner `__cwl_html_repeat`; iterable is `param`->`member` - ALWAYS already syncs `cwl-html-template.mjs` / `cwl-emit-ui.mjs` |
+| Secure | Pin to **1.0.41**; no new Secure surface - nested markup is page DNA only |
+
+### CWL landed
+
+- One-level nested repeats: `repeat region.towers as tower html "..."`
+- Deeper nests (`a.b.c`) -> `hole cwl:invalid-html-repeat-nested`
+- Emit reverses outer + nested sibling statements
+- Golds `40`/`41`/`47`/`48` unchanged
 
 ---
 

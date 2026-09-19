@@ -24,6 +24,7 @@ const PROXY_PARAMS = join(ROOT, "fixtures/language-gold/45-proxy-upstream-params
 const SESSION_COOKIE = join(ROOT, "fixtures/language-gold/46-session-cookie-name/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
+const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
 const LAYOUT_CHROME = join(ROOT, "fixtures/language-gold/36-layout-chrome/routes.cwl");
 
 const webirEntry = resolveWebirEntryPath();
@@ -238,6 +239,23 @@ runEmitCheck(
       /repeat\s+sessions\s+as\s+s\s+if\s+s\.active\s+html\s+"<tr><td>s\.user<\/td><\/tr>"\s+else\s+html\s+"<tr><td>none<\/td><\/tr>";/.test(
         text,
       )
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0031 deepen: one-level nested repeat (`outerItem.field`) survives reverse.
+runEmitCheck(
+  "emit-check-49-html-repeat-nested",
+  REPEAT_NESTED,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /repeat\s+regions\s+as\s+region\s+html\s+"<section><h2>region\.name<\/h2><ul>towers<\/ul><\/section>";/.test(
+        text,
+      ) &&
+      /repeat\s+region\.towers\s+as\s+tower\s+html\s+"<li>tower\.id<\/li>";/.test(text)
     );
   },
   { stdout: true },
