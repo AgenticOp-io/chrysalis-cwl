@@ -138,8 +138,9 @@ export function splitCwlRepeatItemTemplate(template, itemName) {
  * RFC-0031: lower one `repeat <collection> as <item> html "…";` to a repeat node.
  * Item markup is a nested `html.template`; the repeat itself is a named CWL call
  * so WebIR keeps both the iterable and the per-item template (no invented loop runtime).
+ * Optional `when` (item field chain) becomes a third arg — truthy filter, no invented sorter.
  * @param {object} ctx — { data, webir }
- * @param {{ collection: string, item: string, template: string }} repeat
+ * @param {{ collection: string, item: string, template: string, when?: string }} repeat
  * @param {{ file: string, line?: number, column?: number }} origin
  */
 export function lowerCwlHtmlRepeat(ctx, repeat, origin) {
@@ -180,10 +181,40 @@ export function lowerCwlHtmlRepeat(ctx, repeat, origin) {
     origin,
     provenance: [webir.provenance("hub-ingest", "cwl-html-repeat-iterable")],
   });
+  /** @type {string[]} */
+  const args = [iterableId, itemTemplateId];
+  /** @type {string[]} */
+  const argNames = ["items", repeat.item];
+  if (repeat.when) {
+    const whenFields =
+      repeat.when === repeat.item
+        ? []
+        : String(repeat.when)
+            .slice(repeat.item.length + 1)
+            .split(".")
+            .filter(Boolean);
+    let whenNode = data.param({
+      name: repeat.item,
+      type: whenFields.length > 0 ? { kind: "unknown" } : { kind: "boolean" },
+      origin,
+      provenance: [webir.provenance("hub-ingest", "cwl-html-repeat-when")],
+    });
+    for (const field of whenFields) {
+      whenNode = data.member({
+        obj: whenNode,
+        key: field,
+        type: { kind: "unknown" },
+        origin,
+        provenance: [webir.provenance("hub-ingest", "cwl-html-repeat-when-field")],
+      });
+    }
+    args.push(whenNode);
+    argNames.push("when");
+  }
   return data.call({
     callee: CWL_HTML_REPEAT_CALLEE,
-    args: [iterableId, itemTemplateId],
-    argNames: ["items", repeat.item],
+    args,
+    argNames,
     type: { kind: "string" },
     origin,
     provenance: [webir.provenance("hub-ingest", "cwl-html-repeat")],
@@ -269,7 +300,7 @@ export function lowerCwlHtmlTemplateBody(ctx, html, loc, wr, bindings = {}) {
 export function cwlHtmlTemplateToLit(get, n) {
   const parts = n.attrs?.parts ?? [];
   let html = "";
-  /** @type {Array<{ collection: string, item: string, template: string }>} */
+  /** @type {Array<{ collection: string, item: string, template: string, when?: string }>} */
   const repeats = [];
   for (const p of parts) {
     if (p.kind === "literal") {
@@ -323,7 +354,15 @@ export function cwlHtmlRepeatToStatement(get, call) {
     template += ref.text;
   }
   if (!item) return null;
-  return { collection, item, template };
+  /** @type {{ collection: string, item: string, template: string, when?: string }} */
+  const out = { collection, item, template };
+  const whenOpId = call.operands?.[2];
+  if (whenOpId) {
+    const whenRef = cwlRepeatItemRefToText(get, get(whenOpId));
+    if (!whenRef) return null;
+    out.when = whenRef.text;
+  }
+  return out;
 }
 
 /**

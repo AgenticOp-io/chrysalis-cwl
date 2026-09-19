@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.38`** — session cookie names on mint/revoke; emit holeCount counts attachments  
+**Tip:** **`1.0.39`** — conditional markup inside repeats (`if` on item field)  
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -33,7 +33,7 @@
 | P0 | Path params in upstream targets (`45`) | **done** (`1.0.36`) |
 | P0 | Parameterized hole reasons resolve in diagnose | **done** (`1.0.37`) |
 | P0 | `session.mint cookie <name>` + emit holeCount attachments (`46`) | **done** (`1.0.38`) |
-| P1 | Conditional markup inside repeats (`if` on item field) | open — only if peels demand |
+| P0 | Conditional markup inside repeats (`if` on item field) (`47`) | **done** (`1.0.39`) |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
 | — | **Cinderpath consume** | genome declares holes in CWL; Go executor only |
@@ -42,9 +42,9 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.38** | Convert + Secure — **asked** |
-| Peels golds 40–45 + rewrite upstream exec | Convert — **done** |
-| Live-match / cutover vs tip seed | Secure — **done** |
+| Tip pin **1.0.39** | Convert + Secure — **asked** |
+| Peels golds 40–47 + repeat `if` | Convert — **asked** |
+| Live-match / cutover vs tip seed | Secure — **asked** |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |
 | ALWAYS: `cwl-html-template.mjs` + `cwl-emit-ui.mjs` | **CWL** — **done** (in `ALWAYS`; Convert already byte-identical) |
 | EXTFMAP | **Operator** — [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) |

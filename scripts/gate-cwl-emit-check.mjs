@@ -22,6 +22,7 @@ const PROXY_UPSTREAM = join(ROOT, "fixtures/language-gold/43-proxy-upstream/rout
 const HOST_BYTES = join(ROOT, "fixtures/language-gold/44-host-bytes-holes/routes.cwl");
 const PROXY_PARAMS = join(ROOT, "fixtures/language-gold/45-proxy-upstream-params/routes.cwl");
 const SESSION_COOKIE = join(ROOT, "fixtures/language-gold/46-session-cookie-name/routes.cwl");
+const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const LAYOUT_CHROME = join(ROOT, "fixtures/language-gold/36-layout-chrome/routes.cwl");
 
 const webirEntry = resolveWebirEntryPath();
@@ -206,6 +207,20 @@ runEmitCheck(
       (rep.holeCount ?? 1) === 0 &&
       /effects:\s*auth\.verify,\s*session\.mint\s+cookie\s+sid;/.test(text) &&
       /effects:\s*session\.revoke\s+cookie\s+sid;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0031 deepen: optional `if item.field` filter survives reverse.
+runEmitCheck(
+  "emit-check-47-html-repeat-if",
+  REPEAT_IF,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /repeat\s+sessions\s+as\s+s\s+if\s+s\.active\s+html\s+"<tr><td>s\.user<\/td><\/tr>";/.test(text)
     );
   },
   { stdout: true },

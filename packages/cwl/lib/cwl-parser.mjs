@@ -39,8 +39,9 @@ const IF_GUARD_RE = /^if\s+(.+?)\s*\{$/;
 const ELSE_IF_RE = /^else\s+if\s+(.+?)\s*\{$/;
 const ELSE_RE = /^else\s*\{$/;
 const FOREACH_RE = /^foreach\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+as(?:\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=>)?\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\{$/;
-/** RFC-0031: repeat a markup fragment per item of a load collection. */
-const HTML_REPEAT_RE = /^repeat\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+as\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+html\s+(.+);$/i;
+/** RFC-0031: repeat a markup fragment per item of a load collection (optional `if` filter). */
+const HTML_REPEAT_RE =
+  /^repeat\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+as\s+([a-zA-Z_][a-zA-Z0-9_]*)(?:\s+if\s+([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)*))?\s+html\s+(.+);$/i;
 /** RFC-0033: route forwards to a named upstream (host owns the bytes). */
 const PROXY_UPSTREAM_RE = /^proxy\s+upstream\s+(.+);$/i;
 /** RFC-0029: shared chrome layout */
@@ -975,17 +976,28 @@ export function parseCwlModule(source, file) {
       // RFC-0031: repeat markup per item of a collection binding (list fragments).
       const repeatM = HTML_REPEAT_RE.exec(inner);
       if (repeatM) {
-        const tplLit = parseCwlLiteral(repeatM[3]);
-        if (tplLit.ok && typeof tplLit.value === "string") {
-          htmlRepeats.push({
-            collection: repeatM[1],
-            item: repeatM[2],
+        const collection = repeatM[1];
+        const item = repeatM[2];
+        const whenRaw = repeatM[3] ?? null;
+        const tplLit = parseCwlLiteral(repeatM[4]);
+        // `if` filter must be a field chain rooted on the item (`s.active`), never a free name.
+        const whenOk =
+          !whenRaw ||
+          whenRaw === item ||
+          whenRaw.startsWith(`${item}.`);
+        if (tplLit.ok && typeof tplLit.value === "string" && whenOk) {
+          /** @type {{ collection: string, item: string, template: string, line: number, when?: string }} */
+          const rep = {
+            collection,
+            item,
             template: tplLit.value,
             line: i,
-          });
+          };
+          if (whenRaw) rep.when = whenRaw;
+          htmlRepeats.push(rep);
         } else {
           const repeatRaw = lines[i - 1] ?? "";
-          attachmentHoles.push("cwl:invalid-html-repeat");
+          attachmentHoles.push(whenRaw && !whenOk ? "cwl:invalid-html-repeat-if" : "cwl:invalid-html-repeat");
           attachmentHoleLines.push(i);
           attachmentHoleCharacters.push(keywordStartCharacter0(repeatRaw));
           attachmentHoleEndCharacters.push(keywordEndCharacter0(repeatRaw, "repeat"));

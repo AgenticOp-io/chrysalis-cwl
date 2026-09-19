@@ -50,6 +50,11 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `40-html-repeat` | Repeated markup per collection item (`repeat … as … html`) | 0031 |
 | `41-html-repeat-fields` | Item field access in repeats (`s.user`, `s.site.city`) | 0031 |
 | `42-auth-effects-v2` | Credential / session effects (`auth.verify`, `session.mint`, `session.revoke`) | 0032 |
+| `43-proxy-upstream` | Declared upstream forward (`proxy upstream`) | 0033 |
+| `44-host-bytes-holes` | Precise keypair / binary-render hole reasons | holes |
+| `45-proxy-upstream-params` | Path params in upstream targets | 0033 |
+| `46-session-cookie-name` | Named session cookie on mint/revoke | 0032 |
+| `47-html-repeat-if` | Conditional markup in repeats (`if` on item field) | 0031 |
 
 ## Parseable subset notes (0.1.8)
 

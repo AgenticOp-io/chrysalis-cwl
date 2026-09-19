@@ -527,8 +527,9 @@ export function renderCwlRoutes(routes, opts = {}) {
     }
 
     for (const rep of r.value?.repeats ?? []) {
+      const whenPart = rep.when ? ` if ${rep.when}` : "";
       lines.push(
-        `  repeat ${rep.collection} as ${rep.item} html ${cwlRenderLiteral(rep.template)};`,
+        `  repeat ${rep.collection} as ${rep.item}${whenPart} html ${cwlRenderLiteral(rep.template)};`,
       );
     }
 

@@ -419,8 +419,9 @@ export function printCwlModule(mod, opts = {}) {
     }
 
     for (const rep of route.htmlRepeats ?? []) {
+      const whenPart = rep.when ? ` if ${rep.when}` : "";
       lines.push(
-        `  repeat ${rep.collection} as ${rep.item} html ${printCwlLiteral(rep.template)};`,
+        `  repeat ${rep.collection} as ${rep.item}${whenPart} html ${printCwlLiteral(rep.template)};`,
       );
     }
 
@@ -512,6 +513,7 @@ export function canonicalizeCwlModule(mod) {
         collection: rep.collection,
         item: rep.item,
         template: rep.template,
+        ...(rep.when ? { when: rep.when } : {}),
       })),
       handlerPathParams: [...(r.handlerPathParams ?? [])],
       handlerPathDefaults: { ...(r.handlerPathDefaults ?? {}) },

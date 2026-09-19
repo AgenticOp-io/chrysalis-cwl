@@ -1,31 +1,31 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-09-19 · tip **1.0.38** · session.mint cookie names + emit holeCount fix  
+**Updated:** 2026-09-19 · tip **1.0.39** · RFC-0031 deepen — repeat `if` filter  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.38 land + Packages · Convert pin+peel · Secure honor cookie names
-CONVERT_NEXT: pin 1.0.38 · peel session.mint cookie <name> (gold 46) · holeCount attachments (36)
-SECURE_NEXT: pin 1.0.38 · seed/cutover may honor genome cookie names against set_cookie_names
+DISPATCH: tip 1.0.39 land + Packages · Convert pin+peel · Secure tip pin
+CONVERT_NEXT: pin 1.0.39 · peel `repeat … if item.field html` (gold 47)
+SECURE_NEXT: pin 1.0.39 · no new Secure surface (filter is page DNA only)
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.38`** |
-| Packages | **`@agenticop-io/cwl@1.0.38`** **live** |
-| Convert | file: → bump acknowledgment to **1.0.38** (was 1.0.37) |
-| Secure | file: → bump acknowledgment to **1.0.38** (was 1.0.37) |
+| **CWL tip** | **`1.0.39`** |
+| Packages | **`@agenticop-io/cwl@1.0.39`** (land → publish) |
+| Convert | file: → bump acknowledgment to **1.0.39** (was 1.0.37/38) |
+| Secure | file: → bump acknowledgment to **1.0.39** (was 1.0.37/38) |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | `d9c9fb9` | tip **1.0.38** · tag `cwl-v1.0.38` · Packages live |
+| **CWL** | `main` | *(pending push)* | tip **1.0.39** · tag `cwl-v1.0.39` |
 | **Convert** | `candidate/wptp-convert-orbit` | `89b1d2a8` | tip ack **1.0.37** |
 | **Secure** | `candidate/live-match-step4` | `f9c6f95` | tip ack **1.0.37** |
 
@@ -33,10 +33,10 @@ SECURE_NEXT: pin 1.0.38 · seed/cutover may honor genome cookie names against se
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Tip pin **1.0.38**; peel `session.mint cookie <name>`; attachment holeCount now matches fat emit |
-| **P0** | Secure | Tip pin **1.0.38**; parse cookie name from `session.mint cookie sid` for cutover / seed notes |
-| **done** | CWL | RFC-0032 deepen + holeCount fix · gold `46` |
+| **P0** | Convert | Tip pin **1.0.39**; peel/recover `repeat … if item.field html`; ALWAYS already has html-template/emit-ui |
+| **P0** | Secure | Tip pin **1.0.39**; no cutover change required (page filter DNA) |
+| **done** | CWL | RFC-0031 deepen · gold `47` |
 
 ## Honesty
 
-Cookie **names** are genome data; cookie **values** never enter CWL. Host keeps hashing, stores, and real network. WebSocket duplex stays a hole. No UA regex / façades.
+`if` is a field chain on the item — not a general expression, sorter, or pagination gene. Cookie **values** never enter CWL. WebSocket duplex stays a hole. No UA regex / façades.

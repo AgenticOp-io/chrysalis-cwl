@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.39 — 2026-09-19
+
+- RFC-0031 deepen: `repeat coll as item if item.field html "…"` — truthy item-field filter inside repeats
+- Gold `47-html-repeat-if`; bare/field repeats (`40`/`41`) unchanged
+- `when` lowers as third `__cwl_html_repeat` arg (member chain); emit reverses `if` exactly
+- Invalid `if` (not rooted on item) → `hole cwl:invalid-html-repeat-if`
+
 ## 1.0.38 — 2026-09-19
 
 - RFC-0032 deepen: `session.mint cookie <name>` / `session.revoke cookie <name>` — genome names the cookie, never the token value

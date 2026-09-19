@@ -4,11 +4,34 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-09-19 — tip-1.0.38-session-cookie-name
+## 2026-09-19 — tip-1.0.39-html-repeat-if
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
+**CWL tip:** **1.0.39** (RFC-0031 deepen) · Packages land with tip · CWL `main` *(pending)*
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.39**; peel/recover `repeat coll as item if item.field html "…"` (gold `47`); third `__cwl_html_repeat` arg is the `when` member chain — ALWAYS already syncs `cwl-html-template.mjs` / `cwl-emit-ui.mjs` |
+| Secure | Pin to **1.0.39**; no new Secure surface — filter is page DNA only |
+
+### CWL landed
+
+- Optional `if <item[.field…]>` on RFC-0031 repeats — truthy item-field filter
+- Parser rejects `if` not rooted on the item (`cwl:invalid-html-repeat-if`)
+- Lower: third call arg + `argNames` includes `"when"`; emit reverses `if` exactly
+- Golds `40`/`41` unchanged
+
+---
+
+## 2026-09-19 — tip-1.0.38-session-cookie-name
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **superseded** (tip advanced to 1.0.39 — pin asks roll forward)  
 **CWL tip:** **1.0.38** (RFC-0032 deepen) · Packages **`@agenticop-io/cwl@1.0.38`** live · CWL `main` `d9c9fb9`
 
 ### Ask
