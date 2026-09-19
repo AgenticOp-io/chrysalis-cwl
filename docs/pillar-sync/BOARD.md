@@ -25,7 +25,7 @@ SECURE_NEXT: pin 1.0.40 · no new Secure surface (empty markup is page DNA only)
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/live-match-step4` | *(land)* | tip **1.0.40** |
+| **CWL** | `main` | `6d215b8` | tip **1.0.40** · merge PR #2 |
 | **Convert** | `candidate/wptp-convert-orbit` | lag | tip ack **1.0.39** |
 | **Secure** | `candidate/live-match-step4` | lag | tip ack **1.0.39** |
 
