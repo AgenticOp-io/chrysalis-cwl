@@ -7,8 +7,8 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.46 land · Convert/Secure pin
-CONVERT_NEXT: pin 1.0.46 · peel gold 54
+DISPATCH: Packages 1.0.46 · Convert/Secure pin · CWL continue
+CONVERT_NEXT: pin 1.0.46 · peel golds 49–54
 SECURE_NEXT: pin 1.0.46
 ```
 
@@ -23,8 +23,15 @@ SECURE_NEXT: pin 1.0.46
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-1.0.46` | (landing) | tip **1.0.46** |
+| **CWL** | `main` | fdd7e3d | tip **1.0.46** |
+
+## Who builds next
+
+| Priority | Owner | Work |
+| --- | --- | --- |
+| **P0** | Convert / Secure | Tip pin **1.0.46** |
+| **done** | CWL | tips **1.0.41–1.0.46** on main |
 
 ## Honesty
 
-CSRF cookie **names** only — token values never enter CWL. WebSocket stays a hole.
+Names/policy only — no token values, no invented limiter/CORS/CSRF engines. WebSocket duplex stays a hole.
