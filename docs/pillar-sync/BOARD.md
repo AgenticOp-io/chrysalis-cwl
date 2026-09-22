@@ -7,9 +7,9 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.47 land · Packages · Convert/Secure pin
-CONVERT_NEXT: pin 1.0.47 · peel gold 55 · tag cwl-v1.0.46 ready
-SECURE_NEXT: pin 1.0.47 · honor auth.require cookie name
+DISPATCH: Packages 1.0.47 · Convert/Secure pin · CWL continue
+CONVERT_NEXT: pin 1.0.47 · peel gold 55 · use tag cwl-v1.0.46 (then 1.0.47 when tagged)
+SECURE_NEXT: pin 1.0.47 · honor auth.require cookie
 ```
 
 ## Tips / pins
@@ -17,27 +17,24 @@ SECURE_NEXT: pin 1.0.47 · honor auth.require cookie name
 | Surface | Value |
 | --- | --- |
 | **CWL tip** | **`1.0.47`** |
-| Packages | **`@agenticop-io/cwl@1.0.47`** (land → publish) |
+| Packages | **`@agenticop-io/cwl@1.0.47`** |
 | Tag | **`cwl-v1.0.46`** @ `e08629c` |
-| Convert | tip **1.0.46** done → pin **1.0.47** |
-| Secure | tip **1.0.46** done → pin **1.0.47** |
+| Convert | pin **1.0.47** (was 1.0.46 done) |
+| Secure | pin **1.0.47** (was 1.0.46 done) |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-1.0.47` | (landing) | tip **1.0.47** |
-| **Convert** | caught up | tip ack **1.0.46** |
-| **Secure** | caught up | tip ack **1.0.46** |
+| **CWL** | `main` | 65144a5 | tip **1.0.47** |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Tip pin **1.0.47**; peel auth.require cookie |
-| **P0** | Secure | Tip pin **1.0.47**; honor named session cookie |
-| **done** | CWL | tag `cwl-v1.0.46`; tip **1.0.47** landing |
+| **P0** | Convert / Secure | Tip pin **1.0.47** |
+| **done** | CWL | tip **1.0.47** · tag `cwl-v1.0.46` |
 
 ## Honesty
 
-Cookie **values** never enter CWL. WebSocket duplex stays a hole. No façades.
+Cookie **values** never enter CWL. WebSocket duplex stays a hole.
