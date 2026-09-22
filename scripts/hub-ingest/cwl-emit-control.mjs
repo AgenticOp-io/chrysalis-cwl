@@ -347,8 +347,10 @@ function effectsFromExecutableStmts(get, stmtIds) {
     const loc = cwlEmitLocator(n);
     if (loc === "cwl:executable-session-read") tags.push("session.read");
     else if (loc === "cwl:executable-session-write") tags.push("session.write");
-    else if (loc === "cwl:executable-auth-require") tags.push("auth.require");
-    else if (loc === "cwl:executable-auth-verify") tags.push("auth.verify");
+    else if (loc === "cwl:executable-auth-require") {
+      const cookie = authRequireCookieArg(get, n);
+      tags.push(cookie ? `auth.require cookie ${cookie}` : "auth.require");
+    } else if (loc === "cwl:executable-auth-verify") tags.push("auth.verify");
     else if (loc === "cwl:executable-session-mint") {
       const cookie = sessionCookieArgName(get, n);
       const attrs = sessionCookieAttrsPart(get, n);
@@ -483,6 +485,16 @@ function csrfVerifyCookieArg(get, call) {
     return /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name) ? name : null;
   }
   return null;
+}
+
+/**
+ * Cookie name on `auth.require cookie <name>` (tip 1.0.47). Bare auth.require is sessionRead.
+ * @param {(id: string) => object | undefined} get
+ * @param {object} n
+ */
+function authRequireCookieArg(get, n) {
+  if (n?.op !== "call") return null;
+  return csrfVerifyCookieArg(get, n);
 }
 
 /**

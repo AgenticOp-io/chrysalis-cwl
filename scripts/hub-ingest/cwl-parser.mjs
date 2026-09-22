@@ -4,7 +4,7 @@
  */
 import { extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { parseCwlStandaloneIslandBlock, parseCwlUiReturnBlock } from "./cwl-ui-tree.mjs";
-import { formatSessionCookieAttrs, parseCorsAllowEffect, parseCsrfVerifyEffect, parseRateLimitEffect, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
+import { formatSessionCookieAttrs, parseAuthRequireEffect, parseCorsAllowEffect, parseCsrfVerifyEffect, parseRateLimitEffect, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
 
 const COMPONENT_DECL_RE = /^@component\s+([A-Za-z_][A-Za-z0-9_]*)\s*\{/;
 const PROP_RE = /^prop\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;$/;
@@ -490,6 +490,11 @@ function normalizeEffectTag(raw) {
     return csrf.cookie == null ? "csrf.verify" : `csrf.verify cookie ${csrf.cookie}`;
   }
   if (/^csrf\.verify\b/i.test(raw)) return ""; // invalid cookie form — drop
+  const authReq = parseAuthRequireEffect(raw);
+  if (authReq) {
+    return authReq.cookie == null ? "auth.require" : `auth.require cookie ${authReq.cookie}`;
+  }
+  if (/^auth\.require\b/i.test(raw)) return ""; // invalid cookie form — drop
   return raw;
 }
 

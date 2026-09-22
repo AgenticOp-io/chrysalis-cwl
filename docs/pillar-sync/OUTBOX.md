@@ -4,11 +4,33 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-22 - tip-1.0.47-auth-require-cookie
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open** (landing on candidate)  
+**CWL tip:** **1.0.47** (RFC-0007 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.47**; peel ``auth.require cookie <name>`` (gold ``55``); bare ``auth.require`` remains sessionRead |
+| Secure | Pin to **1.0.47**; may cross-check named session cookie presence — never token values |
+
+### CWL landed
+
+- ``auth.require cookie sid`` lowers as ``__cwl_effect_auth_require`` with named cookie arg
+- Bare ``auth.require`` unchanged
+- Tag ``cwl-v1.0.46`` published at ``e08629c``
+
+---
+
 ## 2026-09-19 - tip-1.0.46-csrf-verify-cookie
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (language landed on `main` `fdd7e3d` - pin/peel pending)  
+**Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
 **CWL tip:** **1.0.46** (RFC-0020 deepen) · CWL `main` `fdd7e3d`
 
 ### Ask
@@ -29,7 +51,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (language landed on `main` `41ebba8` - pin/peel pending)  
+**Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
 **CWL tip:** **1.0.45** (RFC-0020 deepen) · CWL `main` `41ebba8`
 
 ### Ask
@@ -50,7 +72,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (language landed on `main` `1b9f921` - pin/peel pending)  
+**Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
 **CWL tip:** **1.0.44** (RFC-0020 deepen) · CWL `main` `1b9f921`
 
 ### Ask
@@ -71,7 +93,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (language landed on `main` `ef4e4b4` - pin/peel pending)  
+**Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
 **CWL tip:** **1.0.43** (RFC-0032 deepen) · CWL `main` `ef4e4b4`
 
 ### Ask
@@ -93,7 +115,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (language landed on `main` `5bd854a` - pin/peel pending)  
+**Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
 **CWL tip:** **1.0.42** (RFC-0031 composition - gene closed) · CWL `main` `5bd854a`
 
 ### Ask
@@ -115,7 +137,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (language landed on `main` `82cd85f` - pin/peel pending)  
+**Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
 **CWL tip:** **1.0.41** (RFC-0031 deepen) · CWL `main` `82cd85f`
 
 ### Ask
@@ -138,7 +160,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (language landed on `main` `6d215b8` — pin/peel pending)  
+**Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
 **CWL tip:** **1.0.40** (RFC-0031 deepen) · CWL `main` `6d215b8`  
 
 ### Ask
