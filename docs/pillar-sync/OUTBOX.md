@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-22 - tip-1.0.48-db-table-name
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open** (landing on candidate)  
+**CWL tip:** **1.0.48** (RFC-0020 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.48**; peel ``db.read|write table <name>`` (gold ``56``); bare forms unchanged |
+| Secure | Pin to **1.0.48**; no new Secure surface required (data intent only) |
+
+### CWL landed
+
+- ``db.read table users`` / ``db.write table users`` — table name as named arg
+- Tag ``cwl-v1.0.47`` published
+- No SQL invent
+
+---
+
 ## 2026-09-22 - tip-1.0.47-auth-require-cookie
 
 **To:** convert + secure  

@@ -27,6 +27,7 @@ const CORS_ORIGIN = join(ROOT, "fixtures/language-gold/52-cors-allow-origin/rout
 const RATE_LIMIT_RPM = join(ROOT, "fixtures/language-gold/53-rate-limit-rpm/routes.cwl");
 const CSRF_COOKIE = join(ROOT, "fixtures/language-gold/54-csrf-verify-cookie/routes.cwl");
 const AUTH_REQUIRE_COOKIE = join(ROOT, "fixtures/language-gold/55-auth-require-cookie/routes.cwl");
+const DB_TABLE = join(ROOT, "fixtures/language-gold/56-db-table-name/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -359,6 +360,22 @@ runEmitCheck(
       (rep.holeCount ?? 1) === 0 &&
       /effects:\s*auth\.require\s+cookie\s+sid;/.test(text) &&
       /effects:\s*auth\.require;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0020 deepen: db.read|write table <name> survives reverse.
+runEmitCheck(
+  "emit-check-56-db-table-name",
+  DB_TABLE,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*db\.read\s+table\s+users;/.test(text) &&
+      /effects:\s*auth\.require,\s*db\.write\s+table\s+users;/.test(text) &&
+      /effects:\s*db\.read;/.test(text)
     );
   },
   { stdout: true },

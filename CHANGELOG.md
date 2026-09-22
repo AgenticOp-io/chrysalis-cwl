@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.48 - 2026-09-22
+
+- RFC-0020 deepen: `db.read table <name>` / `db.write table <name>` — logical table only (no SQL invent)
+- Gold `56-db-table-name`; bare `db.read`/`db.write` unchanged
+- Tagged `cwl-v1.0.47`
 ## 1.0.47 - 2026-09-22
 
 - RFC-0007 deepen: `auth.require cookie <name>` — session cookie name only (never a token value)
