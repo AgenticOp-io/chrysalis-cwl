@@ -375,9 +375,13 @@ function effectsFromExecutableStmts(get, stmtIds) {
     } else if (loc === "cwl:executable-time-now") tags.push("time.now");
     else if (loc === "cwl:executable-random") tags.push("random");
     else if (loc === "cwl:executable-mail-send") tags.push("mail.send");
-    else if (loc === "cwl:executable-db-read") tags.push("db.read");
-    else if (loc === "cwl:executable-db-write") tags.push("db.write");
-    else if (loc === "cwl:executable-io") tags.push("io");
+    else if (loc === "cwl:executable-db-read") {
+      const table = dbEffectTableArg(get, n);
+      tags.push(table ? `db.read table ${table}` : "db.read");
+    } else if (loc === "cwl:executable-db-write") {
+      const table = dbEffectTableArg(get, n);
+      tags.push(table ? `db.write table ${table}` : "db.write");
+    } else if (loc === "cwl:executable-io") tags.push("io");
   }
   return tags.length ? tags : ["none"];
 }
@@ -495,6 +499,24 @@ function csrfVerifyCookieArg(get, call) {
 function authRequireCookieArg(get, n) {
   if (n?.op !== "call") return null;
   return csrfVerifyCookieArg(get, n);
+}
+
+/**
+ * @param {(id: string) => object | undefined} get
+ * @param {object} call
+ */
+function dbEffectTableArg(get, call) {
+  if (call?.op !== "call") return null;
+  const argNames = call.attrs?.argNames ?? [];
+  const tableIdx = argNames.indexOf("table");
+  const argId = tableIdx >= 0 ? call.operands?.[tableIdx] : call.operands?.[0];
+  if (!argId) return null;
+  const lit = get(argId);
+  if (lit?.op === "literal" && typeof lit.attrs?.value === "string") {
+    const name = lit.attrs.value;
+    return /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name) ? name : null;
+  }
+  return null;
 }
 
 /**

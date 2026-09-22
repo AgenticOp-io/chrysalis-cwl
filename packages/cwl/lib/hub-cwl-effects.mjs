@@ -150,6 +150,22 @@ export function parseAuthRequireEffect(raw) {
   return { cookie: m[1] };
 }
 
+/**
+ * RFC-0020 deepen (tip 1.0.48): `db.read` / `db.write` or `db.read table <name>`.
+ * Names the logical table — no SQL invented in CWL.
+ * @param {string} raw
+ * @returns {{ kind: "db.read" | "db.write", table: string | null } | null}
+ */
+export function parseDbEffect(raw) {
+  const t = String(raw ?? "").trim().toLowerCase();
+  const m = /^(db\.(?:read|write))(?:\s+table\s+([a-zA-Z_][a-zA-Z0-9_]*))?$/.exec(t);
+  if (!m) return null;
+  return {
+    kind: /** @type {"db.read" | "db.write"} */ (m[1]),
+    table: m[2] ?? null,
+  };
+}
+
 /** @param {string[]} declared */
 export function cwlEffectsToWebir(declared) {
   /** @type {import('@chrysalis/webir').Effect[]} */
@@ -167,6 +183,11 @@ export function cwlEffectsToWebir(declared) {
     }
     if (t === "db.write") {
       out.push({ kind: "db.write", table: "*" });
+      continue;
+    }
+    const dbFx = parseDbEffect(t);
+    if (dbFx) {
+      out.push({ kind: dbFx.kind, table: dbFx.table ?? "*" });
       continue;
     }
     if (
@@ -521,26 +542,29 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
       );
       continue;
     }
-    if (t === "db.read") {
+    const dbFx = parseDbEffect(t);
+    if (dbFx) {
+      const callee = dbFx.kind === "db.read" ? "__cwl_effect_db_read" : "__cwl_effect_db_write";
+      const loc = dbFx.kind === "db.read" ? "cwl:executable-db-read" : "cwl:executable-db-write";
+      const args =
+        dbFx.table == null
+          ? []
+          : [
+              data.literal({
+                value: dbFx.table,
+                type: HUB_T.string,
+                origin,
+                provenance: [webir.provenance("hub-ingest", `${loc}-table`)],
+              }),
+            ];
       statements.push(
         data.call({
-          callee: "__cwl_effect_db_read",
-          args: [],
+          callee,
+          args,
+          argNames: dbFx.table == null ? undefined : ["table"],
           type: HUB_T.unknown,
           origin,
-          provenance: [webir.provenance("hub-ingest", "cwl:executable-db-read")],
-        }),
-      );
-      continue;
-    }
-    if (t === "db.write") {
-      statements.push(
-        data.call({
-          callee: "__cwl_effect_db_write",
-          args: [],
-          type: HUB_T.unknown,
-          origin,
-          provenance: [webir.provenance("hub-ingest", "cwl:executable-db-write")],
+          provenance: [webir.provenance("hub-ingest", loc)],
         }),
       );
       continue;
