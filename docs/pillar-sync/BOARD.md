@@ -25,7 +25,7 @@ SECURE_NEXT: pin 1.0.50 · optional README pillar table
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-1.0.49-1.0.50` | PENDING | tip **1.0.50** land |
+| **CWL** | `candidate/cwl-1.0.49-1.0.50` | 185b6b2 | tip **1.0.50** land |
 
 ## Who builds next
 
