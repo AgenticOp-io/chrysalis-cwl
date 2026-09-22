@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-22 - docs-chrysalis-direction
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.48** (docs / GitHub identity) · CWL `main` `21de53f`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Rewrite root `README.md` lead: drop `legacy PHP to modern TypeScript` as the product identity. Lead with Universal Translator + three-pillar table (CWL / chrysalis / chrysalis-security). PHP stays **one peel**. GitHub description already updated. |
+| Secure | Optional: add the same three-pillar table near the top of `README.md` (clarify CWL bridge does not own the language). |
+
+### CWL landed
+
+- Org profile Chrysalis section refreshed
+- Repo descriptions: `chrysalis-cwl`, `chrysalis`, `chrysalis-security`
+- CWL README / scope / PRIVATE-PILLARS / packages/cwl README
+
+---
+
 ## 2026-09-22 - tip-1.0.48-db-table-name
 
 **To:** convert + secure  
