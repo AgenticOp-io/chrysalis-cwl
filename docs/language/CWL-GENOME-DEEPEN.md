@@ -1,7 +1,7 @@
 # CWL genome deepen — Phase 1.x
 
 **Status:** active (reopened 2026-08-11)  
-**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.50**  
+**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.51**  
 **Authority:** [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md) · [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) · [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ## Thesis

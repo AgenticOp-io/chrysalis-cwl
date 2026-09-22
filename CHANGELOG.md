@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.51 - 2026-09-22
+
+- RFC-0020 deepen: `cache.max-age <seconds>` — Cache-Control max-age intent
+- Gold `59-cache-max-age`; host sets headers — no CDN / cache engine invent
+
 ## 1.0.50 - 2026-09-22
 
 - RFC-0020 deepen: `cors.allow methods GET POST …` and `cors.allow origin <url> methods …`

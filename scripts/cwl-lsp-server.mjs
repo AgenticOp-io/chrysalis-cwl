@@ -220,6 +220,12 @@ export const CWL_EFFECT_PRESETS = Object.freeze([
     detail: "Named CORS origin + methods (RFC-0020 deepen)",
     insertText: "cors.allow origin ${1:https://app.example.com} methods ${2:GET} ${3:POST}",
   },
+  {
+    label: "cache.max-age",
+    kind: KIND_SNIPPET,
+    detail: "Cache-Control max-age seconds (RFC-0020 deepen; host sets headers)",
+    insertText: "cache.max-age ${1:3600}",
+  },
   { label: "csrf.verify", kind: KIND_TEXT, detail: "Effect preset: csrf.verify" },
   { label: "rate.limit", kind: KIND_TEXT, detail: "Effect preset: rate.limit" },
 ]);

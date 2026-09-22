@@ -382,6 +382,9 @@ function effectsFromExecutableStmts(get, stmtIds) {
     else if (loc === "cwl:executable-mail-send") {
       const template = mailSendTemplateArg(get, n);
       tags.push(template ? `mail.send template ${template}` : "mail.send");
+    } else if (loc === "cwl:executable-cache-max-age") {
+      const seconds = cacheMaxAgeArg(get, n);
+      if (seconds != null) tags.push(`cache.max-age ${seconds}`);
     } else if (loc === "cwl:executable-db-read") {
       const table = dbEffectTableArg(get, n);
       tags.push(table ? `db.read table ${table}` : "db.read");
@@ -499,6 +502,26 @@ function mailSendTemplateArg(get, call) {
   if (lit?.op === "literal" && typeof lit.attrs?.value === "string") {
     const name = lit.attrs.value;
     return /^[a-zA-Z_][a-zA-Z0-9_-]*$/.test(name) ? name : null;
+  }
+  return null;
+}
+
+/**
+ * Tip 1.0.51: max-age seconds on `__cwl_middleware_cache`.
+ * @param {(id: string) => object | undefined} get
+ * @param {object} call
+ * @returns {number | null}
+ */
+function cacheMaxAgeArg(get, call) {
+  if (call?.op !== "call") return null;
+  const argNames = call.attrs?.argNames ?? [];
+  const maxAgeIdx = argNames.indexOf("maxAge");
+  const argId = maxAgeIdx >= 0 ? call.operands?.[maxAgeIdx] : call.operands?.[0];
+  if (!argId) return null;
+  const lit = get(argId);
+  if (lit?.op === "literal" && typeof lit.attrs?.value === "number") {
+    const n = lit.attrs.value;
+    return Number.isInteger(n) && n >= 0 ? n : null;
   }
   return null;
 }

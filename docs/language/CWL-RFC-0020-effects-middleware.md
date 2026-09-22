@@ -38,6 +38,7 @@ handler clock {
 | `auth.verify` | `db.read` + `data.call` `__cwl_effect_auth_verify` (RFC-0032; host hashes) |
 | `session.mint` / `session.revoke` | `session.write` + `data.call` `__cwl_effect_session_*` (RFC-0032; optional `cookie <name>`) |
 | `cors.allow` | `data.call` `__cwl_middleware_cors` (`origin` tip 1.0.44; `methods` tip 1.0.50 — no invented CORS engine) |
+| `cache.max-age` | `data.call` `__cwl_middleware_cache` (tip 1.0.51 — no invented CDN) |
 | `csrf.verify` | `data.call` `__cwl_middleware_csrf` (optional `cookie <name>`; tip 1.0.46) |
 | `auth.require` | Executable `session.read` (optional `cookie <name>`; tip 1.0.47) |
 
