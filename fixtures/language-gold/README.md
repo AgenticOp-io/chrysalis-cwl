@@ -59,11 +59,13 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `49-html-repeat-nested` | One-level nested repeat (`outerItem.field`) | 0031 |
 | `50-html-repeat-nested-filter` | Nested repeat + `if`/`else` composition | 0031 |
 | `51-session-cookie-attrs` | Session cookie policy attrs (httponly/secure/path/samesite) | 0032 |
-| `52-cors-allow-origin` | Named CORS origin (`cors.allow origin …`) | 0020 |
+| `52-cors-allow-origin` | Named CORS origin (`cors.allow origin ï¿½`) | 0020 |
 | `53-rate-limit-rpm` | Named rate-limit budget (`rate.limit rpm N`) | 0020 |
-| `54-csrf-verify-cookie` | CSRF cookie name (`csrf.verify cookie …`) | 0020 |
-| `55-auth-require-cookie` | Auth session cookie name (`auth.require cookie …`) | 0007 |
+| `54-csrf-verify-cookie` | CSRF cookie name (`csrf.verify cookie ï¿½`) | 0020 |
+| `55-auth-require-cookie` | Auth session cookie name (`auth.require cookie ï¿½`) | 0007 |
 | `56-db-table-name` | Named db.read/write table | 0020 |
+| /-mail-send-template | Named mail.send template | 0020 |
+| 8-cors-allow-methods | Named CORS methods (+ origin composition) | 0020 |
 
 ## Parseable subset notes (0.1.8)
 

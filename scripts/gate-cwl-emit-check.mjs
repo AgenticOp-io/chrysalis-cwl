@@ -28,6 +28,8 @@ const RATE_LIMIT_RPM = join(ROOT, "fixtures/language-gold/53-rate-limit-rpm/rout
 const CSRF_COOKIE = join(ROOT, "fixtures/language-gold/54-csrf-verify-cookie/routes.cwl");
 const AUTH_REQUIRE_COOKIE = join(ROOT, "fixtures/language-gold/55-auth-require-cookie/routes.cwl");
 const DB_TABLE = join(ROOT, "fixtures/language-gold/56-db-table-name/routes.cwl");
+const MAIL_TEMPLATE = join(ROOT, "fixtures/language-gold/57-mail-send-template/routes.cwl");
+const CORS_METHODS = join(ROOT, "fixtures/language-gold/58-cors-allow-methods/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -376,6 +378,39 @@ runEmitCheck(
       /effects:\s*db\.read\s+table\s+users;/.test(text) &&
       /effects:\s*auth\.require,\s*db\.write\s+table\s+users;/.test(text) &&
       /effects:\s*db\.read;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0020 deepen: mail.send template <name> survives reverse.
+runEmitCheck(
+  "emit-check-57-mail-send-template",
+  MAIL_TEMPLATE,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*mail\.send\s+template\s+welcome;/.test(text) &&
+      /effects:\s*mail\.send;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0020 deepen: cors.allow methods (+ origin composition) survives reverse.
+runEmitCheck(
+  "emit-check-58-cors-allow-methods",
+  CORS_METHODS,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*cors\.allow\s+methods\s+GET\s+POST;/.test(text) &&
+      /effects:\s*cors\.allow\s+origin\s+https:\/\/app\.example\.com\s+methods\s+GET\s+POST\s+PUT;/.test(
+        text,
+      ) &&
+      /effects:\s*cors\.allow;/.test(text)
     );
   },
   { stdout: true },

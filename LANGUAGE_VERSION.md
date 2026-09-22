@@ -3,15 +3,16 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.48` |
-| **Status** | RFC-0020 deepen — db.read/write table name |
+| **Version** | `1.0.50` |
+| **Status** | RFC-0020 deepen — cors.allow methods |
 | **Date** | 2026-09-22 |
 
 ## What this version means
 
-- **RFC-0020 deepen:** `db.read table users` / `db.write table users` — logical table name only (no SQL)
-- **Gold `56`:** named + bare; gold `30` unchanged
-- Tagged `cwl-v1.0.47`; prior: auth.require cookie (`1.0.47`)
+- **RFC-0020 deepen:** `cors.allow methods GET POST` (+ optional `origin` composition)
+- **Gold `58`:** methods-only, origin+methods, bare `cors.allow` unchanged
+- Prior tip **1.0.49:** `mail.send template <name>` (gold `57`)
+- Tagged after land; prior tags `cwl-v1.0.46` / `cwl-v1.0.47`
 
 ## Gate
 

@@ -365,7 +365,12 @@ function effectsFromExecutableStmts(get, stmtIds) {
       else tags.push("session.revoke");
     } else if (loc === "cwl:executable-cors-allow") {
       const origin = corsAllowOriginArg(get, n);
-      tags.push(origin && origin !== "*" ? `cors.allow origin ${origin}` : "cors.allow");
+      const methods = corsAllowMethodsArg(get, n);
+      /** @type {string[]} */
+      const parts = ["cors.allow"];
+      if (origin && origin !== "*") parts.push(`origin ${origin}`);
+      if (methods) parts.push(`methods ${methods}`);
+      tags.push(parts.join(" "));
     } else if (loc === "cwl:executable-csrf-verify") {
       const cookie = csrfVerifyCookieArg(get, n);
       tags.push(cookie ? `csrf.verify cookie ${cookie}` : "csrf.verify");
@@ -374,8 +379,10 @@ function effectsFromExecutableStmts(get, stmtIds) {
       tags.push(rpm != null ? `rate.limit rpm ${rpm}` : "rate.limit");
     } else if (loc === "cwl:executable-time-now") tags.push("time.now");
     else if (loc === "cwl:executable-random") tags.push("random");
-    else if (loc === "cwl:executable-mail-send") tags.push("mail.send");
-    else if (loc === "cwl:executable-db-read") {
+    else if (loc === "cwl:executable-mail-send") {
+      const template = mailSendTemplateArg(get, n);
+      tags.push(template ? `mail.send template ${template}` : "mail.send");
+    } else if (loc === "cwl:executable-db-read") {
       const table = dbEffectTableArg(get, n);
       tags.push(table ? `db.read table ${table}` : "db.read");
     } else if (loc === "cwl:executable-db-write") {
@@ -452,6 +459,46 @@ function corsAllowOriginArg(get, call) {
   const lit = get(argId);
   if (lit?.op === "literal" && typeof lit.attrs?.value === "string") {
     return lit.attrs.value;
+  }
+  return null;
+}
+
+/**
+ * Tip 1.0.50: space-separated Allow-Methods list on `__cwl_middleware_cors`.
+ * @param {(id: string) => object | undefined} get
+ * @param {object} call
+ * @returns {string | null}
+ */
+function corsAllowMethodsArg(get, call) {
+  const argNames = call.attrs?.argNames ?? [];
+  const methodsIdx = argNames.indexOf("methods");
+  if (methodsIdx < 0) return null;
+  const argId = call.operands?.[methodsIdx];
+  if (!argId) return null;
+  const lit = get(argId);
+  if (lit?.op === "literal" && typeof lit.attrs?.value === "string") {
+    const v = lit.attrs.value.trim();
+    return v || null;
+  }
+  return null;
+}
+
+/**
+ * Tip 1.0.49: template name on `__cwl_effect_mail_send`.
+ * @param {(id: string) => object | undefined} get
+ * @param {object} call
+ * @returns {string | null}
+ */
+function mailSendTemplateArg(get, call) {
+  if (call?.op !== "call") return null;
+  const argNames = call.attrs?.argNames ?? [];
+  const templateIdx = argNames.indexOf("template");
+  const argId = templateIdx >= 0 ? call.operands?.[templateIdx] : call.operands?.[0];
+  if (!argId) return null;
+  const lit = get(argId);
+  if (lit?.op === "literal" && typeof lit.attrs?.value === "string") {
+    const name = lit.attrs.value;
+    return /^[a-zA-Z_][a-zA-Z0-9_-]*$/.test(name) ? name : null;
   }
   return null;
 }

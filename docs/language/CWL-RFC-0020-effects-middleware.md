@@ -29,16 +29,17 @@ handler clock {
 | Effect | Lowering (v1) |
 | --- | --- |
 | `auth.require` | Executable `session.read` on `user_id` (same sandbox as session.read) |
-| `cors.allow` | `data.call` to `__cwl_middleware_cors` (no-op in verify sandbox) |
-| `csrf.verify` | `data.call` to `__cwl_middleware_csrf` (no-op in verify sandbox) |
-| `rate.limit` | `data.call` to `__cwl_middleware_rate_limit` (no-op in verify sandbox) |
+| `rate.limit` | `data.call` to `__cwl_middleware_rate_limit` (optional `rpm <n>`; tip 1.0.45) |
 | `time.now` | `effect.time.now` |
 | `random` | `effect.random` with sandbox literals `0..1` |
-| `mail.send` | `data.call` `__cwl_effect_mail_send` (no invented mailer) |
-| `db.read` / `db.write` | `data.call` `__cwl_effect_db_*` (no invented SQL engine) |
+| `mail.send` | `data.call` `__cwl_effect_mail_send` (optional `template <name>`; tip 1.0.49 — no invented mailer) |
+| `db.read` / `db.write` | `data.call` `__cwl_effect_db_*` (optional `table <name>`; tip 1.0.48 — no invented SQL engine) |
 | `io` | `data.call` `__cwl_effect_io` (no invented HTTP client) |
 | `auth.verify` | `db.read` + `data.call` `__cwl_effect_auth_verify` (RFC-0032; host hashes) |
 | `session.mint` / `session.revoke` | `session.write` + `data.call` `__cwl_effect_session_*` (RFC-0032; optional `cookie <name>`) |
+| `cors.allow` | `data.call` `__cwl_middleware_cors` (`origin` tip 1.0.44; `methods` tip 1.0.50 — no invented CORS engine) |
+| `csrf.verify` | `data.call` `__cwl_middleware_csrf` (optional `cookie <name>`; tip 1.0.46) |
+| `auth.require` | Executable `session.read` (optional `cookie <name>`; tip 1.0.47) |
 
 Effects run **in declaration order** before the handler value.
 

@@ -185,6 +185,12 @@ export const CWL_EFFECT_PRESETS = Object.freeze([
   { label: "time.now", kind: KIND_TEXT, detail: "Effect preset: time.now" },
   { label: "random", kind: KIND_TEXT, detail: "Effect preset: random" },
   { label: "mail.send", kind: KIND_TEXT, detail: "Effect preset: mail.send" },
+  {
+    label: "mail.send template",
+    kind: KIND_SNIPPET,
+    detail: "Named mail template (RFC-0020 deepen; host sends — no SMTP invent)",
+    insertText: "mail.send template ${1:welcome}",
+  },
   { label: "auth.require", kind: KIND_TEXT, detail: "Effect preset: auth.require" },
   { label: "auth.verify", kind: KIND_TEXT, detail: "Effect preset: auth.verify (host hashes; RFC-0032)" },
   { label: "session.mint", kind: KIND_TEXT, detail: "Effect preset: session.mint (RFC-0032)" },
@@ -202,6 +208,18 @@ export const CWL_EFFECT_PRESETS = Object.freeze([
   },
   { label: "session.revoke", kind: KIND_TEXT, detail: "Effect preset: session.revoke (RFC-0032)" },
   { label: "cors.allow", kind: KIND_TEXT, detail: "Effect preset: cors.allow" },
+  {
+    label: "cors.allow methods",
+    kind: KIND_SNIPPET,
+    detail: "Named CORS methods (RFC-0020 deepen; host enforces)",
+    insertText: "cors.allow methods ${1:GET} ${2:POST}",
+  },
+  {
+    label: "cors.allow origin methods",
+    kind: KIND_SNIPPET,
+    detail: "Named CORS origin + methods (RFC-0020 deepen)",
+    insertText: "cors.allow origin ${1:https://app.example.com} methods ${2:GET} ${3:POST}",
+  },
   { label: "csrf.verify", kind: KIND_TEXT, detail: "Effect preset: csrf.verify" },
   { label: "rate.limit", kind: KIND_TEXT, detail: "Effect preset: rate.limit" },
 ]);

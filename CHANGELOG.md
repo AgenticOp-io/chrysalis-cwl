@@ -1,5 +1,17 @@
 # CWL language changelog
 
+## 1.0.50 - 2026-09-22
+
+- RFC-0020 deepen: `cors.allow methods GET POST …` and `cors.allow origin <url> methods …`
+- Gold `58-cors-allow-methods`; bare / origin-only forms unchanged
+- Host enforces CORS — no invented CORS engine
+
+## 1.0.49 - 2026-09-22
+
+- RFC-0020 deepen: `mail.send template <name>` — host-owned template name only
+- Gold `57-mail-send-template`; bare `mail.send` unchanged
+- No SMTP / message-body invent
+
 ## 1.0.48 - 2026-09-22
 
 - RFC-0020 deepen: `db.read table <name>` / `db.write table <name>` — logical table only (no SQL invent)
