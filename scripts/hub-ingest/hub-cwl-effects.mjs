@@ -90,20 +90,64 @@ export function formatSessionCookieAttrs(attrs) {
   return parts.join(" ");
 }
 
+const CORS_METHOD_RE = /^(?:GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS)$/i;
+
 /**
- * RFC-0020 deepen (tip 1.0.44): `cors.allow` or `cors.allow origin <url|* >`.
- * Bare form still means `*` — no invented host list.
+ * RFC-0020 deepen (tip 1.0.44 / 1.0.50): `cors.allow` with optional
+ * `origin <url|*>` and/or `methods GET POST …`.
+ * Bare form still means origin `*` — no invented host list or CORS engine.
  * @param {string} raw
- * @returns {{ origin: string } | null}
+ * @returns {{ origin: string, methods: string[] | null } | null}
  */
 export function parseCorsAllowEffect(raw) {
+  const src = String(raw ?? "").trim();
+  const t = src.toLowerCase();
+  if (t === "cors.allow") return { origin: "*", methods: null };
+  if (!t.startsWith("cors.allow")) return null;
+  let rest = src.slice("cors.allow".length).trim();
+  if (!rest) return { origin: "*", methods: null };
+  let origin = "*";
+  /** @type {string[] | null} */
+  let methods = null;
+  while (rest) {
+    const originM = /^origin\s+(\*|[a-z][a-z0-9+.-]*:\/\/[^\s]+)\s*/i.exec(rest);
+    if (originM) {
+      origin = originM[1] === "*" ? "*" : originM[1];
+      rest = rest.slice(originM[0].length).trim();
+      continue;
+    }
+    const methodsM = /^methods\s+(.+)$/i.exec(rest);
+    if (methodsM) {
+      const parts = methodsM[1].trim().split(/\s+/).filter(Boolean);
+      if (parts.length === 0) return null;
+      const normalized = [];
+      for (const p of parts) {
+        if (!CORS_METHOD_RE.test(p)) return null;
+        normalized.push(p.toUpperCase());
+      }
+      methods = normalized;
+      rest = "";
+      continue;
+    }
+    return null;
+  }
+  return { origin, methods };
+}
+
+/**
+ * RFC-0020 deepen (tip 1.0.49): `mail.send` or `mail.send template <name>`.
+ * Names a host-owned template — never invents SMTP / message bodies.
+ * @param {string} raw
+ * @returns {{ template: string | null } | null}
+ */
+export function parseMailSendEffect(raw) {
   const t = String(raw ?? "").trim().toLowerCase();
-  if (t === "cors.allow") return { origin: "*" };
-  const m = /^cors\.allow\s+origin\s+(\*|[a-z][a-z0-9+.-]*:\/\/[^\s]+)$/i.exec(
+  if (t === "mail.send") return { template: null };
+  const m = /^mail\.send\s+template\s+([a-zA-Z_][a-zA-Z0-9_-]*)$/.exec(
     String(raw ?? "").trim(),
   );
   if (!m) return null;
-  return { origin: m[1] === "*" ? "*" : m[1] };
+  return { template: m[1] };
 }
 
 /**
@@ -190,14 +234,13 @@ export function cwlEffectsToWebir(declared) {
       out.push({ kind: dbFx.kind, table: dbFx.table ?? "*" });
       continue;
     }
-    if (
-      t === "session.read" ||
-      t === "session.write" ||
-      t === "time.now" ||
-      t === "random" ||
-      t === "mail.send"
-    ) {
+    if (t === "session.read" || t === "session.write" || t === "time.now" || t === "random") {
       out.push({ kind: t });
+      continue;
+    }
+    const mailFx = parseMailSendEffect(t);
+    if (mailFx) {
+      out.push({ kind: "mail.send" });
       continue;
     }
     if (t === "auth.require") {
@@ -430,17 +473,35 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
     }
     const cors = parseCorsAllowEffect(t);
     if (cors) {
-      const allow = data.literal({
-        value: cors.origin,
-        type: HUB_T.string,
-        origin,
-        provenance: [webir.provenance("hub-ingest", "cwl:executable-cors-allow")],
-      });
+      /** @type {string[]} */
+      const corsArgs = [];
+      /** @type {string[]} */
+      const corsArgNames = [];
+      corsArgs.push(
+        data.literal({
+          value: cors.origin,
+          type: HUB_T.string,
+          origin,
+          provenance: [webir.provenance("hub-ingest", "cwl:executable-cors-allow")],
+        }),
+      );
+      corsArgNames.push("origin");
+      if (cors.methods && cors.methods.length) {
+        corsArgs.push(
+          data.literal({
+            value: cors.methods.join(" "),
+            type: HUB_T.string,
+            origin,
+            provenance: [webir.provenance("hub-ingest", "cwl:executable-cors-allow-methods")],
+          }),
+        );
+        corsArgNames.push("methods");
+      }
       statements.push(
         data.call({
           callee: "__cwl_middleware_cors",
-          args: [allow],
-          argNames: ["origin"],
+          args: corsArgs,
+          argNames: corsArgNames,
           type: HUB_T.unknown,
           origin,
           provenance: [webir.provenance("hub-ingest", "cwl:executable-cors-allow")],
@@ -530,11 +591,24 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
       );
       continue;
     }
-    if (t === "mail.send") {
+    const mailFx = parseMailSendEffect(t);
+    if (mailFx) {
+      const args =
+        mailFx.template == null
+          ? []
+          : [
+              data.literal({
+                value: mailFx.template,
+                type: HUB_T.string,
+                origin,
+                provenance: [webir.provenance("hub-ingest", "cwl:executable-mail-send-template")],
+              }),
+            ];
       statements.push(
         data.call({
           callee: "__cwl_effect_mail_send",
-          args: [],
+          args,
+          argNames: mailFx.template == null ? undefined : ["template"],
           type: HUB_T.unknown,
           origin,
           provenance: [webir.provenance("hub-ingest", "cwl:executable-mail-send")],

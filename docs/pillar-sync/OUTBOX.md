@@ -4,6 +4,30 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-22 - tip-1.0.50-cors-allow-methods
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.50** (RFC-0020 deepen) · includes tip **1.0.49**
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.50**; peel `mail.send template <name>` (gold `57`) and `cors.allow methods` / origin+methods (gold `58`); bare forms unchanged |
+| Secure | Pin to **1.0.50**; CORS methods / mail template are genome intent only — no invented CORS or mailer |
+
+### CWL landed
+
+- `mail.send template welcome` — host-owned template name (1.0.49)
+- `cors.allow methods GET POST` + `cors.allow origin … methods …` (1.0.50)
+- Tags: publish `cwl-v1.0.48`–`cwl-v1.0.50` when ready
+- No SMTP / CORS engine invent
+
+---
+
+
 ## 2026-09-22 - docs-chrysalis-direction
 
 **To:** convert + secure  
