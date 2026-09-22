@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.47 - 2026-09-22
+
+- RFC-0007 deepen: `auth.require cookie <name>` — session cookie name only (never a token value)
+- Gold `55-auth-require-cookie`; bare `auth.require` unchanged (sessionRead path)
+- Tagged `cwl-v1.0.46` for sibling CI; Convert/Secure tip-1.0.46 pins closed
 ## 1.0.46 - 2026-09-19
 
 - RFC-0020 deepen: `csrf.verify cookie <name>` — CSRF cookie name only (never a token value)

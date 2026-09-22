@@ -136,6 +136,20 @@ export function parseCsrfVerifyEffect(raw) {
   return { cookie: m[1] };
 }
 
+/**
+ * RFC-0007 / RFC-0020 deepen (tip 1.0.47): `auth.require` or `auth.require cookie <name>`.
+ * Names the session cookie the host must see — never a token value.
+ * @param {string} raw
+ * @returns {{ cookie: string | null } | null}
+ */
+export function parseAuthRequireEffect(raw) {
+  const t = String(raw ?? "").trim().toLowerCase();
+  if (t === "auth.require") return { cookie: null };
+  const m = /^auth\.require\s+cookie\s+([a-zA-Z_][a-zA-Z0-9_]*)$/.exec(t);
+  if (!m) return null;
+  return { cookie: m[1] };
+}
+
 /** @param {string[]} declared */
 export function cwlEffectsToWebir(declared) {
   /** @type {import('@chrysalis/webir').Effect[]} */
@@ -166,6 +180,11 @@ export function cwlEffectsToWebir(declared) {
       continue;
     }
     if (t === "auth.require") {
+      out.push({ kind: "session.read" });
+      continue;
+    }
+    const authReq = parseAuthRequireEffect(t);
+    if (authReq) {
       out.push({ kind: "session.read" });
       continue;
     }
@@ -279,15 +298,36 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
       );
       continue;
     }
-    if (t === "auth.require") {
-      statements.push(
-        effect.sessionRead({
-          key: "user_id",
-          type: HUB_T.string,
-          origin,
-          provenance: [webir.provenance("hub-ingest", "cwl:executable-auth-require")],
-        }),
-      );
+    const authReq = parseAuthRequireEffect(t);
+    if (authReq) {
+      if (authReq.cookie) {
+        statements.push(
+          data.call({
+            callee: "__cwl_effect_auth_require",
+            args: [
+              data.literal({
+                value: authReq.cookie,
+                type: HUB_T.string,
+                origin,
+                provenance: [webir.provenance("hub-ingest", "cwl:executable-auth-require-cookie")],
+              }),
+            ],
+            argNames: ["cookie"],
+            type: HUB_T.unknown,
+            origin,
+            provenance: [webir.provenance("hub-ingest", "cwl:executable-auth-require")],
+          }),
+        );
+      } else {
+        statements.push(
+          effect.sessionRead({
+            key: "user_id",
+            type: HUB_T.string,
+            origin,
+            provenance: [webir.provenance("hub-ingest", "cwl:executable-auth-require")],
+          }),
+        );
+      }
       continue;
     }
     if (t === "auth.verify") {

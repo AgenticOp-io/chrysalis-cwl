@@ -62,6 +62,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `52-cors-allow-origin` | Named CORS origin (`cors.allow origin …`) | 0020 |
 | `53-rate-limit-rpm` | Named rate-limit budget (`rate.limit rpm N`) | 0020 |
 | `54-csrf-verify-cookie` | CSRF cookie name (`csrf.verify cookie …`) | 0020 |
+| `55-auth-require-cookie` | Auth session cookie name (`auth.require cookie …`) | 0007 |
 
 ## Parseable subset notes (0.1.8)
 
