@@ -1,14 +1,16 @@
-# Pillar & platform GitHub visibility (2026-09-09)
+# Pillar & platform GitHub visibility (2026-09-22)
 
-Chrysalis-related GitHub repositories under **AgenticOp-io** are **public**:
+Chrysalis-related GitHub repositories under **AgenticOp-io** are **public**.
 
-## Pillars
+## Chrysalis (open source)
 
-| Pillar | GitHub | Visibility |
-| --- | --- | --- |
-| CWL | [`AgenticOp-io/chrysalis-cwl`](https://github.com/AgenticOp-io/chrysalis-cwl) | **public** |
-| Convert | [`AgenticOp-io/chrysalis`](https://github.com/AgenticOp-io/chrysalis) | **public** |
-| Secure | [`AgenticOp-io/chrysalis-security`](https://github.com/AgenticOp-io/chrysalis-security) | **public** |
+| Pillar | Repository | Role |
+|--------|------------|------|
+| **CWL** | [**chrysalis-cwl**](https://github.com/AgenticOp-io/chrysalis-cwl) | Chrysalis Web Language — DNA of the web |
+| **Convert** | [**chrysalis**](https://github.com/AgenticOp-io/chrysalis) | Universal Translator — origin → WebIR/CWL → emit |
+| **Secure** | [**chrysalis-security**](https://github.com/AgenticOp-io/chrysalis-security) | Helix DNA firewall — allow only what certified traffic proves |
+
+Local sibling checkouts: `engines/chrysalis-cwl`, `engines/chrysalis-convert` (junction `PHP_converter`), `engines/chrysalis-security`.
 
 ## Platforms & siblings
 
@@ -33,5 +35,7 @@ Chrysalis-related GitHub repositories under **AgenticOp-io** are **public**:
 **npm:** Prefer GitHub Packages `@agenticop-io/cwl` (restricted) or sibling `file:` pins. **Public npm is still not the default.**
 
 **Website:** Static HTML on `agenticop.io` — Markdown marketing notes do not auto-deploy; update HTML + `llms.txt` + `whitepaper.html` then Firebase Hosting.
+
+**Direction:** CWL owns the genome; Convert is the Universal Translator (not “PHP-only”); Secure is Helix traffic DNA. Org profile: [github.com/AgenticOp-io](https://github.com/AgenticOp-io).
 
 Historical private-first posture (Aug 2026) is superseded.

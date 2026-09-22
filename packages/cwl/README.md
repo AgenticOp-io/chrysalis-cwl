@@ -2,12 +2,20 @@
 
 **Package:** `@chrysalis/cwl`  
 **Version:** must equal [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md) (currently `1.0.48`)  
-**Status:** Exit 1.0 lineage — packable for **GitHub Packages** (`publishConfig` restricted). GitHub repos are **public**; package install still prefers Packages / `file:` — not public npm by default.  
+**Status:** Exit 1.0 lineage + Phase 1.x deepen — packable for **GitHub Packages** (`publishConfig` restricted). GitHub repos are **public**; package install still prefers Packages / `file:` — not public npm by default.  
 **How-to:** [`docs/language/CWL-HOWTO.md`](../../docs/language/CWL-HOWTO.md)
+
+## Chrysalis pillars
+
+| Pillar | Repository | Role |
+|--------|------------|------|
+| **CWL** | [chrysalis-cwl](https://github.com/AgenticOp-io/chrysalis-cwl) | Chrysalis Web Language — DNA of the web |
+| **Convert** | [chrysalis](https://github.com/AgenticOp-io/chrysalis) | Universal Translator — origin → WebIR/CWL → emit |
+| **Secure** | [chrysalis-security](https://github.com/AgenticOp-io/chrysalis-security) | Helix DNA firewall — allow only what certified traffic proves |
 
 ## Purpose
 
-**CWL** is the **DNA of the web** (Rosetta meaning) for AgenticOps: a single surface for routes, pages, data, UI, effects, and honest holes, mapped 1:1 to **WebIR**. Convert is the Universal Translator through it.
+**CWL** is the **DNA of the web** (Rosetta meaning) for AgenticOps: a single surface for routes, pages, data, UI, effects, and honest holes, mapped 1:1 to **WebIR**. Convert is the Universal Translator through it — PHP is one peel, not the product identity.
 
 ## Public API
 
