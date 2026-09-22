@@ -30,6 +30,7 @@ const AUTH_REQUIRE_COOKIE = join(ROOT, "fixtures/language-gold/55-auth-require-c
 const DB_TABLE = join(ROOT, "fixtures/language-gold/56-db-table-name/routes.cwl");
 const MAIL_TEMPLATE = join(ROOT, "fixtures/language-gold/57-mail-send-template/routes.cwl");
 const CORS_METHODS = join(ROOT, "fixtures/language-gold/58-cors-allow-methods/routes.cwl");
+const CACHE_MAX_AGE = join(ROOT, "fixtures/language-gold/59-cache-max-age/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -411,6 +412,20 @@ runEmitCheck(
         text,
       ) &&
       /effects:\s*cors\.allow;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0020 deepen: cache.max-age <seconds> survives reverse.
+runEmitCheck(
+  "emit-check-59-cache-max-age",
+  CACHE_MAX_AGE,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      /effects:\s*cache\.max-age\s+86400;/.test(text) &&
+      /effects:\s*cache\.max-age\s+0;/.test(text)
     );
   },
   { stdout: true },

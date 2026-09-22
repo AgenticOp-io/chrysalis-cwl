@@ -151,6 +151,21 @@ export function parseMailSendEffect(raw) {
 }
 
 /**
+ * RFC-0020 deepen (tip 1.0.51): `cache.max-age <seconds>`.
+ * Declares Cache-Control max-age intent — host sets headers; CWL does not invent a CDN.
+ * @param {string} raw
+ * @returns {{ seconds: number } | null}
+ */
+export function parseCacheMaxAgeEffect(raw) {
+  const t = String(raw ?? "").trim().toLowerCase();
+  const m = /^cache\.max-age\s+(\d+)$/.exec(t);
+  if (!m) return null;
+  const seconds = Number(m[1]);
+  if (!Number.isInteger(seconds) || seconds < 0 || seconds > 31_536_000) return null;
+  return { seconds };
+}
+
+/**
  * RFC-0020 deepen (tip 1.0.45): `rate.limit` or `rate.limit rpm <n>`.
  * Declares a requests-per-minute budget — host enforces; CWL does not invent the limiter.
  * @param {string} raw
@@ -265,7 +280,8 @@ export function cwlEffectsToWebir(declared) {
     const corsFx = parseCorsAllowEffect(t);
     const rateFx = parseRateLimitEffect(t);
     const csrfFx = parseCsrfVerifyEffect(t);
-    if (corsFx || csrfFx || rateFx) {
+    const cacheFx = parseCacheMaxAgeEffect(t);
+    if (corsFx || csrfFx || rateFx || cacheFx) {
       out.push({ kind: "http.fetch" });
     }
   }
@@ -612,6 +628,27 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
           type: HUB_T.unknown,
           origin,
           provenance: [webir.provenance("hub-ingest", "cwl:executable-mail-send")],
+        }),
+      );
+      continue;
+    }
+    const cacheFx = parseCacheMaxAgeEffect(t);
+    if (cacheFx) {
+      statements.push(
+        data.call({
+          callee: "__cwl_middleware_cache",
+          args: [
+            data.literal({
+              value: cacheFx.seconds,
+              type: HUB_T.int,
+              origin,
+              provenance: [webir.provenance("hub-ingest", "cwl:executable-cache-max-age")],
+            }),
+          ],
+          argNames: ["maxAge"],
+          type: HUB_T.unknown,
+          origin,
+          provenance: [webir.provenance("hub-ingest", "cwl:executable-cache-max-age")],
         }),
       );
       continue;

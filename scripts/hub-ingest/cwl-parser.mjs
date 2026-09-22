@@ -4,7 +4,7 @@
  */
 import { extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { parseCwlStandaloneIslandBlock, parseCwlUiReturnBlock } from "./cwl-ui-tree.mjs";
-import { formatSessionCookieAttrs, parseAuthRequireEffect, parseCorsAllowEffect, parseCsrfVerifyEffect, parseDbEffect, parseMailSendEffect, parseRateLimitEffect, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
+import { formatSessionCookieAttrs, parseAuthRequireEffect, parseCacheMaxAgeEffect, parseCorsAllowEffect, parseCsrfVerifyEffect, parseDbEffect, parseMailSendEffect, parseRateLimitEffect, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
 
 const COMPONENT_DECL_RE = /^@component\s+([A-Za-z_][A-Za-z0-9_]*)\s*\{/;
 const PROP_RE = /^prop\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;$/;
@@ -509,6 +509,11 @@ function normalizeEffectTag(raw) {
     return mailFx.template == null ? "mail.send" : `mail.send template ${mailFx.template}`;
   }
   if (/^mail\.send\b/i.test(raw)) return ""; // invalid template form — drop
+  const cacheFx = parseCacheMaxAgeEffect(raw);
+  if (cacheFx) {
+    return `cache.max-age ${cacheFx.seconds}`;
+  }
+  if (/^cache\.max-age\b/i.test(raw)) return ""; // invalid budget form — drop
   return raw;
 }
 

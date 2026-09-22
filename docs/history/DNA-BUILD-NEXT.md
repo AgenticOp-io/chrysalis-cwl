@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.50`** - cors.allow methods (RFC-0020 deepen)
+**Tip:** **`1.0.51`** - cache.max-age (RFC-0020 deepen)
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -53,8 +53,8 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.50** | Convert + Secure — **asked** |
-| Peels golds 40–58 + mail template / CORS methods | Convert — **asked** |
+| Tip pin **1.0.51** | Convert + Secure — **asked** |
+| Peels golds 40–59 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |
 | ALWAYS: `cwl-html-template.mjs` + `cwl-emit-ui.mjs` | **CWL** — **done** (in `ALWAYS`; Convert already byte-identical) |

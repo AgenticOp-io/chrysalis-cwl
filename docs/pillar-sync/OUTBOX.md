@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-22 - tip-1.0.51-cache-max-age
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.51** (RFC-0020 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.51**; peel `cache.max-age <seconds>` (gold `59`) |
+| Secure | Pin to **1.0.51**; cache intent only — no invented CDN |
+
+### CWL landed
+
+- `cache.max-age 86400` / `cache.max-age 0` — host sets Cache-Control
+- No CDN / cache-engine invent
+
+---
+
+
 ## 2026-09-22 - tip-1.0.50-cors-allow-methods
 
 **To:** convert + secure  
