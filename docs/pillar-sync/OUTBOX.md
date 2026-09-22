@@ -8,8 +8,8 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (landing on candidate)  
-**CWL tip:** **1.0.48** (RFC-0020 deepen)
+**Status:** **open** (language landed on `main` `b3f7530` - pin/peel pending)  
+**CWL tip:** **1.0.48** (RFC-0020 deepen) · CWL `main` `b3f7530`
 
 ### Ask
 

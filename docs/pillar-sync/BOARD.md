@@ -7,7 +7,7 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.48 land · Convert/Secure pin
+DISPATCH: Packages 1.0.48 · Convert/Secure pin · CWL continue
 CONVERT_NEXT: pin 1.0.48 · peel gold 56
 SECURE_NEXT: pin 1.0.48
 ```
@@ -18,13 +18,20 @@ SECURE_NEXT: pin 1.0.48
 | --- | --- |
 | **CWL tip** | **`1.0.48`** |
 | Packages | **`@agenticop-io/cwl@1.0.48`** |
-| Tag | **`cwl-v1.0.47`** @ `250a5e1` |
+| Tags | `cwl-v1.0.46` · `cwl-v1.0.47` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-1.0.48` | (landing) | tip **1.0.48** |
+| **CWL** | `main` | b3f7530 | tip **1.0.48** |
+
+## Who builds next
+
+| Priority | Owner | Work |
+| --- | --- | --- |
+| **P0** | Convert / Secure | Tip pin **1.0.48** |
+| **done** | CWL | tip **1.0.48** |
 
 ## Honesty
 
