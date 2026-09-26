@@ -8,7 +8,7 @@ import { parseCwlModuleResolved, resolveCwlModuleFromPath } from "./cwl-module-g
 import { composeLayoutChromeHtml } from "./cwl-layout.mjs";
 import { liftCwlModuleMiddlewareToWebir } from "./hub-cwl-middleware.mjs";
 import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
-import { cwlEffectsToWebir, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
+import { cwlEffectsToWebir, wrapCwlCookiePurposes, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
 import { cwlPathParamsForWebir, extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { appendForeachBindings, wrapWithEarlyGuards } from "./cwl-control-lower.mjs";
 
@@ -261,7 +261,9 @@ export function liftCwlFileToWebir(opts) {
     const htmlBindings = {
       path: r.handlerPathParams ?? [],
       query: r.handlerQueryParams ?? [],
-      cookie: r.handlerCookies ?? [],
+      cookie: (r.handlerCookiePurposes ?? [])
+        .filter((p) => p.purpose === "preference")
+        .map((p) => p.name),
       load:
         r.loadBody?.kind === "object" && r.loadBody.entries
           ? r.loadBody.entries.map((e) => e.key)
@@ -414,6 +416,12 @@ export function liftCwlFileToWebir(opts) {
       });
     }
     valueId = wrapCwlExecutableEffects({ data, webir, builder, file }, valueId, r.effects ?? [], loc);
+    valueId = wrapCwlCookiePurposes(
+      { data, webir, file },
+      valueId,
+      r.handlerCookiePurposes ?? [],
+      loc,
+    );
     valueId = wrapWithEarlyGuards(ctx, valueId, r.earlyGuards ?? [], r, wrBuilders, lowerObjectEntriesBody);
     valueId = appendForeachBindings(ctx, valueId, r.foreachBindings ?? [], r, wrBuilders, lowerObjectEntriesBody);
     const status = r.responseStatus ?? 200;

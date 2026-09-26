@@ -5,7 +5,7 @@ module request_context;
 handler auth_check {
   effects: none;
   header Authorization;
-  cookie session_id;
+  cookie session_id purpose session;
   return { auth: Authorization, sid: session_id };
 }
 

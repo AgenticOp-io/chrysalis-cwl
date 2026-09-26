@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.56 - 2026-09-26
+
+- RFC-0034: cookie purpose — session, csrf, or an enumerated preference
+- Gold `64-cookie-purpose`; bare cookie names and `samesite none` are `unsupported:tracking-cookie`
+- Cookie values stay out of CWL; session and csrf names are not spliced into HTML
+
 ## 1.0.55 - 2026-09-26
 
 - RFC-0020 deepen: `cache.private` — Cache-Control private intent

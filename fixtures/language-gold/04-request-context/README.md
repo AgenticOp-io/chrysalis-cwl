@@ -14,7 +14,7 @@ GET /locale?lang=en  Accept-Language: en-US
 
 | Binding | Execute |
 | --- | --- |
-| `cookie session_id` | binds (`sid`) |
+| `cookie session_id purpose session` | binds (`sid`); session name only — not a tracking id |
 | `query lang` | binds |
 | `header Authorization` / `Accept-Language` | binds (lower-case bag keys) |
 

@@ -4,7 +4,7 @@
  */
 import { extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { parseCwlStandaloneIslandBlock, parseCwlUiReturnBlock } from "./cwl-ui-tree.mjs";
-import { formatSessionCookieAttrs, parseAuthRequireEffect, parseCacheMaxAgeEffect, parseCachePrivateEffect, parseCorsAllowEffect, parseCsrfVerifyEffect, parseDbEffect, parseIoEffect, parseMailSendEffect, parseRateLimitEffect, parseSessionAccessEffect, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
+import { formatSessionCookieAttrs, parseAuthRequireEffect, parseCacheMaxAgeEffect, parseCachePrivateEffect, parseCookieDecl, parseCorsAllowEffect, parseCsrfVerifyEffect, parseDbEffect, parseIoEffect, parseMailSendEffect, parseRateLimitEffect, parseSessionAccessEffect, parseSessionCookieEffect, sessionCookieTrackingAbuse } from "./hub-cwl-effects.mjs";
 
 const COMPONENT_DECL_RE = /^@component\s+([A-Za-z_][A-Za-z0-9_]*)\s*\{/;
 const PROP_RE = /^prop\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;$/;
@@ -146,6 +146,8 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
   const headers = [];
   /** @type {string[]} */
   const cookies = [];
+  /** @type {Array<{ name: string, purpose: string, values: string[] | null }>} */
+  const cookiePurposes = [];
   /** @type {string[]} */
   const holes = [];
   /** @type {string | null} */
@@ -160,7 +162,7 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
     if (line === "}") {
       return {
         ok: true,
-        layout: { name, line: lineNo, headers, cookies, holes, chromeHtml, pageIslands },
+        layout: { name, line: lineNo, headers, cookies, cookiePurposes, holes, chromeHtml, pageIslands },
         consumed: i,
       };
     }
@@ -169,9 +171,14 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
       if (!headers.includes(hm[1])) headers.push(hm[1]);
       continue;
     }
-    const cm = COOKIE_RE.exec(line);
+    const cm = parseCookieDecl(line);
     if (cm) {
-      if (!cookies.includes(cm[1])) cookies.push(cm[1]);
+      if (cm.tracking || !cm.name) {
+        if (!holes.includes("unsupported:tracking-cookie")) holes.push("unsupported:tracking-cookie");
+        continue;
+      }
+      if (!cookies.includes(cm.name)) cookies.push(cm.name);
+      cookiePurposes.push({ name: cm.name, purpose: cm.purpose, values: cm.values });
       continue;
     }
     const hol = HOLE_RE.exec(line);
@@ -461,7 +468,8 @@ function parseEffects(effectsRaw) {
 /**
  * Normalize effect tags. RFC-0032 deepen: `session.mint cookie sid` keeps the
  * cookie **name** (never a value) so Secure can cross-check response surfaces.
- * Tip 1.0.43: optional policy attrs (`httponly`, `secure`, `path /`, `samesite lax`).
+ * Tip 1.0.43: optional policy attrs (`httponly`, `secure`, `path /`, `samesite lax|strict`).
+ * Tip 1.0.56: `samesite none` is refused (`unsupported:tracking-cookie`).
  * @param {string} raw
  */
 function normalizeEffectTag(raw) {
@@ -808,6 +816,8 @@ export function parseCwlModule(source, file) {
     const handlerQueryDefaults = {};
     const handlerHeaders = [];
     const handlerCookies = [];
+    /** @type {Array<{ name: string, purpose: string, values: string[] | null }>} */
+    const handlerCookiePurposes = [];
     const handlerBodyParams = [];
     /** @type {string[]} */
     const handlerMultipartFields = [];
@@ -902,9 +912,24 @@ export function parseCwlModule(source, file) {
         if (!handlerHeaders.includes(hmHeader[1])) handlerHeaders.push(hmHeader[1]);
         continue;
       }
-      const cm = COOKIE_RE.exec(inner);
+      const cm = parseCookieDecl(inner);
       if (cm) {
-        if (!handlerCookies.includes(cm[1])) handlerCookies.push(cm[1]);
+        if (cm.tracking || !cm.name || !cm.purpose) {
+          if (!attachmentHoles.includes("unsupported:tracking-cookie")) {
+            const holeRaw = lines[i - 1] ?? "";
+            attachmentHoles.push("unsupported:tracking-cookie");
+            attachmentHoleLines.push(i);
+            attachmentHoleCharacters.push(keywordStartCharacter0(holeRaw));
+            attachmentHoleEndCharacters.push(keywordEndCharacter0(holeRaw, "cookie"));
+          }
+          continue;
+        }
+        if (!handlerCookies.includes(cm.name)) handlerCookies.push(cm.name);
+        handlerCookiePurposes.push({
+          name: cm.name,
+          purpose: cm.purpose,
+          values: cm.values,
+        });
         continue;
       }
       const bm = BODY_RE.exec(inner);
@@ -953,7 +978,21 @@ export function parseCwlModule(source, file) {
       }
       const em = EFFECTS_RE.exec(inner);
       if (em) {
-        effects.push(...parseEffects(em[1]));
+        const kept = [];
+        for (const part of em[1].split(",")) {
+          if (sessionCookieTrackingAbuse(part)) {
+            if (!attachmentHoles.includes("unsupported:tracking-cookie")) {
+              const holeRaw = lines[i - 1] ?? "";
+              attachmentHoles.push("unsupported:tracking-cookie");
+              attachmentHoleLines.push(i);
+              attachmentHoleCharacters.push(keywordStartCharacter0(holeRaw));
+              attachmentHoleEndCharacters.push(keywordEndCharacter0(holeRaw, "effects:"));
+            }
+            continue;
+          }
+          kept.push(part);
+        }
+        effects.push(...parseEffects(kept.join(",")));
         continue;
       }
       const htmlRetLit = extractCwlHtmlReturnLiteral(inner);
@@ -1191,6 +1230,7 @@ export function parseCwlModule(source, file) {
       handlerQueryDefaults,
       handlerHeaders,
       handlerCookies,
+      handlerCookiePurposes,
       handlerBodyParams,
       handlerMultipartFields,
       handlerMultipartFiles,

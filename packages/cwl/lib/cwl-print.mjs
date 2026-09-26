@@ -1,3 +1,5 @@
+import { formatCookieDecl } from "./hub-cwl-effects.mjs";
+
 /**
  * Print `else if` / `else` tails for an if / earlyGuard node.
  * @param {object} s
@@ -305,7 +307,10 @@ export function printCwlModule(mod, opts = {}) {
     lines.push("");
     lines.push(`layout ${L.name} {`);
     for (const h of L.headers ?? []) lines.push(`  header ${h};`);
-    for (const c of L.cookies ?? []) lines.push(`  cookie ${c};`);
+    for (const c of L.cookies ?? []) {
+      const purpose = (L.cookiePurposes ?? []).find((p) => p.name === c);
+      lines.push(`  ${formatCookieDecl(c, purpose)};`);
+    }
     for (const hole of L.holes ?? []) {
       const r = String(hole ?? "cwl:hole");
       lines.push(
@@ -384,7 +389,8 @@ export function printCwlModule(mod, opts = {}) {
       lines.push(`  header ${name};`);
     }
     for (const name of route.handlerCookies ?? []) {
-      lines.push(`  cookie ${name};`);
+      const purpose = (route.handlerCookiePurposes ?? []).find((p) => p.name === name);
+      lines.push(`  ${formatCookieDecl(name, purpose)};`);
     }
     for (const name of route.handlerMultipartFields ?? []) {
       lines.push(`  multipart field ${name};`);
@@ -492,6 +498,11 @@ export function canonicalizeCwlModule(mod) {
       name: L.name,
       headers: [...(L.headers ?? [])],
       cookies: [...(L.cookies ?? [])],
+      cookiePurposes: (L.cookiePurposes ?? []).map((p) => ({
+        name: p.name,
+        purpose: p.purpose,
+        values: p.values ? [...p.values] : null,
+      })),
       holes: [...(L.holes ?? [])],
       chromeHtml: L.chromeHtml ?? null,
       pageIslands: (L.pageIslands ?? []).map(canonicalizeUiNode),
@@ -523,6 +534,11 @@ export function canonicalizeCwlModule(mod) {
       handlerQueryDefaults: { ...(r.handlerQueryDefaults ?? {}) },
       handlerHeaders: [...(r.handlerHeaders ?? [])],
       handlerCookies: [...(r.handlerCookies ?? [])],
+      handlerCookiePurposes: (r.handlerCookiePurposes ?? []).map((p) => ({
+        name: p.name,
+        purpose: p.purpose,
+        values: p.values ? [...p.values] : null,
+      })),
       handlerBodyParams: [...(r.handlerBodyParams ?? [])],
       handlerMultipartFields: [...(r.handlerMultipartFields ?? [])],
       handlerMultipartFiles: [...(r.handlerMultipartFiles ?? [])],

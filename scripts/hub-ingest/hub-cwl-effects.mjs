@@ -38,6 +38,7 @@ export function parseSessionCookieEffect(raw) {
 
 /**
  * Cookie **policy** attrs only — never a token value (tip 1.0.43).
+ * `samesite` is `lax` or `strict`. `none` is refused (RFC-0034).
  * @param {string} rest
  * @returns {{ httponly?: boolean, secure?: boolean, path?: string, samesite?: string } | null}
  */
@@ -66,7 +67,8 @@ export function parseSessionCookieAttrs(rest) {
     }
     if (tok === "samesite") {
       const ss = tokens[++i];
-      if (!ss || !/^(lax|strict|none)$/.test(ss)) return null;
+      // `none` is a cross-site identity cookie — refused (tip 1.0.56).
+      if (!ss || !/^(lax|strict)$/.test(ss)) return null;
       attrs.samesite = ss;
       continue;
     }
@@ -86,8 +88,123 @@ export function formatSessionCookieAttrs(attrs) {
   if (attrs.httponly) parts.push("httponly");
   if (attrs.secure) parts.push("secure");
   if (typeof attrs.path === "string") parts.push(`path ${attrs.path}`);
-  if (typeof attrs.samesite === "string") parts.push(`samesite ${attrs.samesite}`);
+  if (typeof attrs.samesite === "string" && attrs.samesite !== "none") {
+    parts.push(`samesite ${attrs.samesite}`);
+  }
   return parts.join(" ");
+}
+
+const COOKIE_CLASS_RE = /^[a-z][a-z0-9-]{0,15}$/;
+
+/**
+ * `samesite none` on mint/revoke is a cross-site identity cookie (tip 1.0.56).
+ * @param {string} raw
+ */
+export function sessionCookieTrackingAbuse(raw) {
+  const t = String(raw ?? "").trim().toLowerCase();
+  if (!/^session\.(?:mint|revoke)\b/.test(t)) return false;
+  return /\bsamesite\s+none\b/.test(t);
+}
+
+/**
+ * Cookie declaration. Closed purposes only (tip 1.0.56 / RFC-0034).
+ * Bare `cookie <name>;` and any profile-shaped tail are tracking.
+ * @param {string} line
+ * @returns {{ name: string, purpose: "session" | "csrf" | "preference" | null, values: string[] | null, tracking: boolean } | null}
+ */
+export function parseCookieDecl(line) {
+  const t = String(line ?? "").trim();
+  if (!/^cookie\b/i.test(t) || !t.endsWith(";")) return null;
+  const bare = /^cookie\s+([A-Za-z_][A-Za-z0-9_]*)\s*;$/.exec(t);
+  if (bare) return { name: bare[1], purpose: null, values: null, tracking: true };
+  const purp = /^cookie\s+([A-Za-z_][A-Za-z0-9_]*)\s+purpose\s+(session|csrf|preference)\b([\s\S]*);$/i.exec(t);
+  if (!purp) return { name: "", purpose: null, values: null, tracking: true };
+  const name = purp[1];
+  const purpose = /** @type {"session" | "csrf" | "preference"} */ (purp[2].toLowerCase());
+  const rest = purp[3].trim();
+  if (purpose === "session" || purpose === "csrf") {
+    if (rest) return { name, purpose, values: null, tracking: true };
+    return { name, purpose, values: null, tracking: false };
+  }
+  const vm = /^values\s+(\S+(?:\s+\S+)+)$/i.exec(rest);
+  if (!vm) return { name, purpose, values: null, tracking: true };
+  const values = vm[1].toLowerCase().split(/\s+/);
+  const closed =
+    values.length >= 2 &&
+    values.length <= 8 &&
+    new Set(values).size === values.length &&
+    values.every((v) => COOKIE_CLASS_RE.test(v));
+  if (!closed) return { name, purpose, values, tracking: true };
+  return { name, purpose, values, tracking: false };
+}
+
+/**
+ * @param {string} name
+ * @param {{ purpose?: string | null, values?: string[] | null } | null | undefined} purpose
+ */
+export function formatCookieDecl(name, purpose) {
+  if (!purpose?.purpose) return `cookie ${name}`;
+  if (purpose.purpose === "preference" && purpose.values?.length) {
+    return `cookie ${name} purpose preference values ${purpose.values.join(" ")}`;
+  }
+  return `cookie ${name} purpose ${purpose.purpose}`;
+}
+
+/**
+ * Prepend purpose calls so emit can recover the declaration without a cookie value.
+ * @param {{ data: any, webir: any, file: string }} ctx
+ * @param {string} bodyId
+ * @param {Array<{ name: string, purpose: string, values: string[] | null }>} purposes
+ * @param {{ file: string, line?: number }} loc
+ */
+export function wrapCwlCookiePurposes(ctx, bodyId, purposes, loc) {
+  const list = Array.isArray(purposes) ? purposes : [];
+  if (!bodyId || list.length === 0) return bodyId;
+  const { data, webir } = ctx;
+  const origin = { file: loc.file, line: loc.line ?? 1, column: 1 };
+  /** @type {string[]} */
+  const statements = [];
+  for (const p of list) {
+    if (!p?.name || !p.purpose) continue;
+    const values = p.purpose === "preference" && p.values?.length ? p.values.join(" ") : "";
+    statements.push(
+      data.call({
+        callee: "__cwl_cookie_purpose",
+        args: [
+          data.literal({
+            value: p.name,
+            type: HUB_T.string,
+            origin,
+            provenance: [webir.provenance("hub-ingest", "cwl:cookie-purpose-name")],
+          }),
+          data.literal({
+            value: p.purpose,
+            type: HUB_T.string,
+            origin,
+            provenance: [webir.provenance("hub-ingest", "cwl:cookie-purpose-kind")],
+          }),
+          data.literal({
+            value: values,
+            type: HUB_T.string,
+            origin,
+            provenance: [webir.provenance("hub-ingest", "cwl:cookie-purpose-values")],
+          }),
+        ],
+        argNames: ["cookie", "purpose", "values"],
+        type: HUB_T.unknown,
+        origin,
+        provenance: [webir.provenance("hub-ingest", "cwl:executable-cookie-purpose")],
+      }),
+    );
+  }
+  if (statements.length === 0) return bodyId;
+  statements.push(bodyId);
+  return data.block({
+    statements,
+    type: HUB_T.unknown,
+    origin,
+    provenance: [webir.provenance("hub-ingest", "cwl:cookie-purpose-block")],
+  });
 }
 
 const CORS_METHOD_RE = /^(?:GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS)$/i;

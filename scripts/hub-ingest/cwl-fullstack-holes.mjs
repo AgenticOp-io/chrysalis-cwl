@@ -217,6 +217,13 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     surface: "api",
     summary: "WebSocket upgrade — declare hole until a duplex surface RFC exists; do not invent WS framework façades.",
   },
+  "unsupported:tracking-cookie": {
+    rfc: "0034",
+    origin: "cwl",
+    surface: "api",
+    summary:
+      "Cookie is not a closed purpose (session, csrf, or enumerated preference) or uses samesite none. Refused so a stable joinable identifier cannot be declared. No tracking runtime is invented.",
+  },
   "unsupported:multipart": {
     rfc: "0026",
     origin: "cwl",
