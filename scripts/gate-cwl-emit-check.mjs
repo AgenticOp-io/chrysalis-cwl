@@ -35,6 +35,7 @@ const IO_HOST = join(ROOT, "fixtures/language-gold/60-io-host/routes.cwl");
 const CORS_CREDENTIALS = join(ROOT, "fixtures/language-gold/61-cors-allow-credentials/routes.cwl");
 const SESSION_ACCESS = join(ROOT, "fixtures/language-gold/62-session-access-cookie/routes.cwl");
 const CACHE_PRIVATE = join(ROOT, "fixtures/language-gold/63-cache-private/routes.cwl");
+const COOKIE_PURPOSE = join(ROOT, "fixtures/language-gold/64-cookie-purpose/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -490,6 +491,24 @@ runEmitCheck(
       (rep.holeCount ?? 1) === 0 &&
       /effects:\s*cache\.max-age\s+0,\s*cache\.private;/.test(text) &&
       /effects:\s*cache\.max-age\s+3600;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-64-cookie-purpose",
+  COOKIE_PURPOSE,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 0) >= 2 &&
+      (rep.holeReasons ?? []).includes("unsupported:tracking-cookie") &&
+      /cookie\s+theme\s+purpose\s+preference\s+values\s+light\s+dark;/.test(text) &&
+      /cookie\s+sid\s+purpose\s+session;/.test(text) &&
+      /effects:\s*auth\.require\s+cookie\s+sid;/.test(text) &&
+      !/samesite\s+none/.test(text) &&
+      !/cookie\s+_ga\b/.test(text)
     );
   },
   { stdout: true },

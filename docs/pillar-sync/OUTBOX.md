@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-26 - tip-1.0.56-cookie-purpose
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.56** (RFC-0034)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.56**; peel gold `64` (`cookie <name> purpose preference values …`, `cookie <name> purpose session`). Bare `cookie <name>` and `samesite none` are `unsupported:tracking-cookie` |
+| Secure | Pin to **1.0.56**. Refuse a live `Set-Cookie` whose name is not session, csrf, or an enumerated preference, and refuse a preference value outside the declared class list. Never a token value |
+
+### CWL landed
+
+- Closed purposes: `session`, `csrf`, `preference` (class list of 2–8 short tokens)
+- `samesite` on session mint/revoke is `lax` or `strict`
+- Session and csrf names are not spliced into HTML
+- Prior tip **1.0.55** still open for sibling pin (golds 62–63)
+
+---
+
 ## 2026-09-26 - tip-1.0.55-cache-private
 
 **To:** convert + secure  

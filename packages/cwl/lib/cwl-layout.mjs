@@ -21,6 +21,7 @@ export function mergeLayoutOntoRoute(route, layout) {
   if (!layout) return;
   route.handlerHeaders = route.handlerHeaders ?? [];
   route.handlerCookies = route.handlerCookies ?? [];
+  route.handlerCookiePurposes = route.handlerCookiePurposes ?? [];
   route.attachmentHoles = route.attachmentHoles ?? [];
   route.attachmentHoleLines = route.attachmentHoleLines ?? [];
   route.attachmentHoleCharacters = route.attachmentHoleCharacters ?? [];
@@ -30,6 +31,11 @@ export function mergeLayoutOntoRoute(route, layout) {
   }
   for (const c of layout.cookies ?? []) {
     if (!route.handlerCookies.includes(c)) route.handlerCookies.push(c);
+  }
+  for (const p of layout.cookiePurposes ?? []) {
+    if (!route.handlerCookiePurposes.some((x) => x.name === p.name)) {
+      route.handlerCookiePurposes.push(p);
+    }
   }
   for (const hole of layout.holes ?? []) {
     if (!route.attachmentHoles.includes(hole)) {

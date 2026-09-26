@@ -8,6 +8,7 @@
  * @see docs/history/WEBIR-EXTRACT-PLAN.md Slice 4
  */
 import { cwlEmitLocator, peelCwlControlBody } from "./cwl-emit-control.mjs";
+import { formatCookieDecl } from "./hub-cwl-effects.mjs";
 import {
   printEmitStandaloneIsland,
   printEmitUiTree,
@@ -258,6 +259,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
       multipartFiles: peeled.bindings.multipartFiles,
       headerParams: peeled.bindings.header,
       cookieParams: peeled.bindings.cookie,
+      cookiePurposes: peeled.cookiePurposes ?? [],
       value: null,
       loadValue: null,
       holeReason: value.reason,
@@ -284,6 +286,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
       multipartFiles: peeled.bindings.multipartFiles,
       headerParams: peeled.bindings.header,
       cookieParams: peeled.bindings.cookie,
+      cookiePurposes: peeled.cookiePurposes ?? [],
       value: null,
       loadValue,
       holeReason: value.reason,
@@ -309,6 +312,7 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
     multipartFiles: peeled.bindings.multipartFiles,
     headerParams: peeled.bindings.header,
     cookieParams: peeled.bindings.cookie,
+    cookiePurposes: peeled.cookiePurposes ?? [],
     value,
     loadValue,
     holeReason: null,
@@ -462,7 +466,19 @@ export function renderCwlRoutes(routes, opts = {}) {
       }
     }
     for (const name of r.headerParams ?? []) lines.push(`  header ${name};`);
-    for (const name of r.cookieParams ?? []) lines.push(`  cookie ${name};`);
+    const purposeByName = new Map((r.cookiePurposes ?? []).map((p) => [p.name, p]));
+    const printedCookies = new Set();
+    for (const p of r.cookiePurposes ?? []) {
+      if (!p?.name || printedCookies.has(p.name)) continue;
+      printedCookies.add(p.name);
+      lines.push(`  ${formatCookieDecl(p.name, p)};`);
+    }
+    for (const name of r.cookieParams ?? []) {
+      if (printedCookies.has(name)) continue;
+      printedCookies.add(name);
+      const purpose = purposeByName.get(name);
+      lines.push(`  ${formatCookieDecl(name, purpose)};`);
+    }
     for (const name of r.multipartFields ?? []) lines.push(`  multipart field ${name};`);
     for (const name of r.multipartFiles ?? []) lines.push(`  multipart file ${name};`);
     for (const name of r.bodyParams ?? []) lines.push(`  body ${name};`);

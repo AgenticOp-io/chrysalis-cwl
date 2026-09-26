@@ -56,12 +56,145 @@
     },
     {
       "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "auth_check",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n10",
+      "op": "handler",
+      "operands": [
+        "n9"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 4
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/auth",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n11",
+      "op": "route",
+      "operands": [
+        "n10"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 4
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "value": "accept"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n12",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 12
+      },
+      "provenance": [
+        {
+          "locator": "cwl:object-key",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "name": "Accept-Language",
+        "source": "header"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n13",
+      "op": "request.field",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 12
+      },
+      "provenance": [
+        {
+          "locator": "cwl:header",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "value": "lang"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n14",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 12
+      },
+      "provenance": [
+        {
+          "locator": "cwl:object-key",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
         "name": "lang",
         "source": "query"
       },
       "dialect": "data",
       "effects": [],
-      "id": "n10",
+      "id": "n15",
       "op": "request.field",
       "operands": [],
       "origin": {
@@ -85,13 +218,13 @@
       },
       "dialect": "data",
       "effects": [],
-      "id": "n11",
+      "id": "n16",
       "op": "call",
       "operands": [
-        "n7",
-        "n8",
-        "n9",
-        "n10"
+        "n12",
+        "n13",
+        "n14",
+        "n15"
       ],
       "origin": {
         "column": 1,
@@ -120,10 +253,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n12",
+      "id": "n17",
       "op": "handler",
       "operands": [
-        "n11"
+        "n16"
       ],
       "origin": {
         "column": 1,
@@ -148,10 +281,10 @@
       },
       "dialect": "web.request",
       "effects": [],
-      "id": "n13",
+      "id": "n18",
       "op": "route",
       "operands": [
-        "n12"
+        "n17"
       ],
       "origin": {
         "column": 1,
@@ -248,21 +381,13 @@
     },
     {
       "attrs": {
-        "input": {
-          "kind": "unknown"
-        },
-        "name": "auth_check",
-        "output": {
-          "kind": "unknown"
-        }
+        "value": "session_id"
       },
-      "dialect": "web.request",
+      "dialect": "data",
       "effects": [],
       "id": "n5",
-      "op": "handler",
-      "operands": [
-        "n4"
-      ],
+      "op": "literal",
+      "operands": [],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
@@ -270,27 +395,23 @@
       },
       "provenance": [
         {
-          "locator": "hub-lift:cwl",
+          "locator": "cwl:cookie-purpose-name",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "kind": "unknown"
+        "kind": "string"
       }
     },
     {
       "attrs": {
-        "method": "GET",
-        "path": "/auth",
-        "pathParams": []
+        "value": "session"
       },
-      "dialect": "web.request",
+      "dialect": "data",
       "effects": [],
       "id": "n6",
-      "op": "route",
-      "operands": [
-        "n5"
-      ],
+      "op": "literal",
+      "operands": [],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
@@ -298,17 +419,17 @@
       },
       "provenance": [
         {
-          "locator": "route:cwl",
+          "locator": "cwl:cookie-purpose-kind",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "kind": "void"
+        "kind": "string"
       }
     },
     {
       "attrs": {
-        "value": "accept"
+        "value": ""
       },
       "dialect": "data",
       "effects": [],
@@ -318,11 +439,11 @@
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 12
+        "line": 4
       },
       "provenance": [
         {
-          "locator": "cwl:object-key",
+          "locator": "cwl:cookie-purpose-values",
           "source": "hub-ingest"
         }
       ],
@@ -332,56 +453,65 @@
     },
     {
       "attrs": {
-        "name": "Accept-Language",
-        "source": "header"
+        "argNames": [
+          "cookie",
+          "purpose",
+          "values"
+        ],
+        "callee": "__cwl_cookie_purpose"
       },
       "dialect": "data",
       "effects": [],
       "id": "n8",
-      "op": "request.field",
-      "operands": [],
+      "op": "call",
+      "operands": [
+        "n5",
+        "n6",
+        "n7"
+      ],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 12
+        "line": 4
       },
       "provenance": [
         {
-          "locator": "cwl:header",
+          "locator": "cwl:executable-cookie-purpose",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "kind": "string"
+        "kind": "unknown"
       }
     },
     {
-      "attrs": {
-        "value": "lang"
-      },
+      "attrs": {},
       "dialect": "data",
       "effects": [],
       "id": "n9",
-      "op": "literal",
-      "operands": [],
+      "op": "block",
+      "operands": [
+        "n8",
+        "n4"
+      ],
       "origin": {
         "column": 1,
         "file": "routes.cwl",
-        "line": 12
+        "line": 4
       },
       "provenance": [
         {
-          "locator": "cwl:object-key",
+          "locator": "cwl:cookie-purpose-block",
           "source": "hub-ingest"
         }
       ],
       "type": {
-        "kind": "string"
+        "kind": "unknown"
       }
     }
   ],
   "roots": [
-    "n6",
-    "n13"
+    "n11",
+    "n18"
   ]
 }

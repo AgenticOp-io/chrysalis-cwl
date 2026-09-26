@@ -449,7 +449,8 @@ function sessionCookieAttrsPart(get, call) {
     if (key === "httponly" && val === true) attrs.httponly = true;
     else if (key === "secure" && val === true) attrs.secure = true;
     else if (key === "path" && typeof val === "string") attrs.path = val;
-    else if (key === "samesite" && typeof val === "string") attrs.samesite = val;
+    else if (key === "samesite" && (val === "lax" || val === "strict")) attrs.samesite = val;
+    else if (key === "samesite" && val === "none") return null;
     else return null;
   }
   /** @type {string[]} */
@@ -649,6 +650,31 @@ function dbEffectTableArg(get, call) {
 }
 
 /**
+ * Reverse `__cwl_cookie_purpose` (tip 1.0.56). Name and closed class list only.
+ * @param {(id: string) => object | undefined} get
+ * @param {object | undefined} call
+ * @returns {{ name: string, purpose: string, values: string[] | null } | null}
+ */
+function cookiePurposeFromCall(get, call) {
+  if (call?.op !== "call" || call.attrs?.callee !== "__cwl_cookie_purpose") return null;
+  const argNames = call.attrs?.argNames ?? [];
+  const operand = (name, fallback) => {
+    const idx = argNames.indexOf(name);
+    const id = idx >= 0 ? call.operands?.[idx] : call.operands?.[fallback];
+    return id ? get(id) : null;
+  };
+  const name = operand("cookie", 0)?.attrs?.value;
+  const purpose = operand("purpose", 1)?.attrs?.value;
+  const valuesRaw = operand("values", 2)?.attrs?.value;
+  if (typeof name !== "string" || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) return null;
+  if (purpose !== "session" && purpose !== "csrf" && purpose !== "preference") return null;
+  if (purpose !== "preference") return { name, purpose, values: null };
+  const values = typeof valuesRaw === "string" ? valuesRaw.split(/\s+/).filter(Boolean) : [];
+  if (values.length < 2) return null;
+  return { name, purpose, values };
+}
+
+/**
  * Peel ingest-shaped wrappers from a handler body id (outer → inner).
  * @param {(id: string) => object | undefined} get
  * @param {string} bodyId
@@ -672,6 +698,8 @@ export function peelCwlControlBody(get, bodyId) {
   let loadBody = null;
   /** @type {string[]} */
   let attachmentHoles = [];
+  /** @type {Array<{ name: string, purpose: string, values: string[] | null }>} */
+  const cookiePurposes = [];
   /** @type {string[]} WebIR node ids for page-level islands (RFC-0030) */
   let pageIslandIds = [];
   let id = bodyId;
@@ -751,6 +779,19 @@ export function peelCwlControlBody(get, bodyId) {
       continue;
     }
 
+    if (n.dialect === "data" && n.op === "block" && loc === "cwl:cookie-purpose-block") {
+      const ops = n.operands ?? [];
+      for (let i = 0; i < ops.length - 1; i++) {
+        const purpose = cookiePurposeFromCall(get, get(ops[i]));
+        if (purpose && !cookiePurposes.some((p) => p.name === purpose.name)) {
+          cookiePurposes.push(purpose);
+        }
+      }
+      id = ops[ops.length - 1];
+      n = get(id);
+      continue;
+    }
+
     if (n.dialect === "data" && n.op === "block" && loc === "cwl:executable-effects-block") {
       const ops = n.operands ?? [];
       if (ops.length >= 1) {
@@ -820,6 +861,7 @@ export function peelCwlControlBody(get, bodyId) {
     responseHeaders,
     loadBody,
     attachmentHoles,
+    cookiePurposes,
     pageIslandIds,
     bindings,
   };

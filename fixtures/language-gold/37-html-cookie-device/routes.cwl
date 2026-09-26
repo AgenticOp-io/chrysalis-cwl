@@ -4,7 +4,7 @@ module html_cookie_device;
 @page GET "/"
 page home {
   effects: none;
-  cookie cp_device;
+  cookie cp_device purpose preference values phone desktop;
   load { device: cookie cp_device };
   return html "<html data-device='device'><body><p>class=device cookie=cp_device</p></body></html>";
 }
