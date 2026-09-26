@@ -345,9 +345,13 @@ function effectsFromExecutableStmts(get, stmtIds) {
     const n = get(sid);
     if (!n) continue;
     const loc = cwlEmitLocator(n);
-    if (loc === "cwl:executable-session-read") tags.push("session.read");
-    else if (loc === "cwl:executable-session-write") tags.push("session.write");
-    else if (loc === "cwl:executable-auth-require") {
+    if (loc === "cwl:executable-session-read") {
+      const cookie = sessionAccessCookieArg(get, n);
+      tags.push(cookie ? `session.read cookie ${cookie}` : "session.read");
+    } else if (loc === "cwl:executable-session-write") {
+      const cookie = sessionAccessCookieArg(get, n);
+      tags.push(cookie ? `session.write cookie ${cookie}` : "session.write");
+    } else if (loc === "cwl:executable-auth-require") {
       const cookie = authRequireCookieArg(get, n);
       tags.push(cookie ? `auth.require cookie ${cookie}` : "auth.require");
     } else if (loc === "cwl:executable-auth-verify") tags.push("auth.verify");
@@ -387,6 +391,8 @@ function effectsFromExecutableStmts(get, stmtIds) {
     } else if (loc === "cwl:executable-cache-max-age") {
       const seconds = cacheMaxAgeArg(get, n);
       if (seconds != null) tags.push(`cache.max-age ${seconds}`);
+    } else if (loc === "cwl:executable-cache-private") {
+      tags.push("cache.private");
     } else if (loc === "cwl:executable-db-read") {
       const table = dbEffectTableArg(get, n);
       tags.push(table ? `db.read table ${table}` : "db.read");
@@ -565,6 +571,18 @@ function cacheMaxAgeArg(get, call) {
     return Number.isInteger(n) && n >= 0 ? n : null;
   }
   return null;
+}
+
+/**
+ * Cookie name on named session.read / session.write (tip 1.0.54).
+ * Bare dialect nodes have no cookie arg.
+ * @param {(id: string) => object | undefined} get
+ * @param {object} n
+ * @returns {string | null}
+ */
+function sessionAccessCookieArg(get, n) {
+  if (n?.op !== "call") return null;
+  return csrfVerifyCookieArg(get, n);
 }
 
 /**

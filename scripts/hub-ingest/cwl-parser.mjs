@@ -4,7 +4,7 @@
  */
 import { extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { parseCwlStandaloneIslandBlock, parseCwlUiReturnBlock } from "./cwl-ui-tree.mjs";
-import { formatSessionCookieAttrs, parseAuthRequireEffect, parseCacheMaxAgeEffect, parseCorsAllowEffect, parseCsrfVerifyEffect, parseDbEffect, parseIoEffect, parseMailSendEffect, parseRateLimitEffect, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
+import { formatSessionCookieAttrs, parseAuthRequireEffect, parseCacheMaxAgeEffect, parseCachePrivateEffect, parseCorsAllowEffect, parseCsrfVerifyEffect, parseDbEffect, parseIoEffect, parseMailSendEffect, parseRateLimitEffect, parseSessionAccessEffect, parseSessionCookieEffect } from "./hub-cwl-effects.mjs";
 
 const COMPONENT_DECL_RE = /^@component\s+([A-Za-z_][A-Za-z0-9_]*)\s*\{/;
 const PROP_RE = /^prop\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;$/;
@@ -520,6 +520,12 @@ function normalizeEffectTag(raw) {
     return ioFx.host == null ? "io" : `io host ${ioFx.host}`;
   }
   if (/^io\b/i.test(raw)) return ""; // invalid host form — drop
+  const access = parseSessionAccessEffect(raw);
+  if (access) {
+    return access.cookie == null ? access.kind : `${access.kind} cookie ${access.cookie}`;
+  }
+  if (/^session\.(?:read|write)\b/i.test(raw)) return ""; // invalid cookie form — drop
+  if (parseCachePrivateEffect(raw)) return "cache.private";
   return raw;
 }
 

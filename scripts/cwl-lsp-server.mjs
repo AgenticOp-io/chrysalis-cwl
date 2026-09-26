@@ -188,6 +188,18 @@ export const CWL_EFFECT_PRESETS = Object.freeze([
   { label: "db.write", kind: KIND_TEXT, detail: "Effect preset: db.write" },
   { label: "session.read", kind: KIND_TEXT, detail: "Effect preset: session.read" },
   { label: "session.write", kind: KIND_TEXT, detail: "Effect preset: session.write" },
+  {
+    label: "session.read cookie",
+    kind: KIND_SNIPPET,
+    detail: "Read a named session cookie (name only)",
+    insertText: "session.read cookie ${1:sid}",
+  },
+  {
+    label: "session.write cookie",
+    kind: KIND_SNIPPET,
+    detail: "Touch a named session cookie (name only)",
+    insertText: "session.write cookie ${1:sid}",
+  },
   { label: "time.now", kind: KIND_TEXT, detail: "Effect preset: time.now" },
   { label: "random", kind: KIND_TEXT, detail: "Effect preset: random" },
   { label: "mail.send", kind: KIND_TEXT, detail: "Effect preset: mail.send" },
@@ -238,6 +250,7 @@ export const CWL_EFFECT_PRESETS = Object.freeze([
     detail: "Cache-Control max-age seconds (RFC-0020 deepen; host sets headers)",
     insertText: "cache.max-age ${1:3600}",
   },
+  { label: "cache.private", kind: KIND_TEXT, detail: "Cache-Control private (RFC-0020 deepen; host sets the header)" },
   { label: "csrf.verify", kind: KIND_TEXT, detail: "Effect preset: csrf.verify" },
   { label: "rate.limit", kind: KIND_TEXT, detail: "Effect preset: rate.limit" },
 ]);

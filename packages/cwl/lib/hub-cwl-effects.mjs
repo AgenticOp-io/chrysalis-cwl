@@ -173,6 +173,32 @@ export function parseMailSendEffect(raw) {
 }
 
 /**
+ * RFC-0020 deepen (tip 1.0.54): `session.read` / `session.write` or `… cookie <name>`.
+ * Names the session cookie — never a token value.
+ * @param {string} raw
+ * @returns {{ kind: "session.read" | "session.write", cookie: string | null } | null}
+ */
+export function parseSessionAccessEffect(raw) {
+  const t = String(raw ?? "").trim().toLowerCase();
+  const m = /^(session\.(?:read|write))(?:\s+cookie\s+([a-zA-Z_][a-zA-Z0-9_]*))?$/.exec(t);
+  if (!m) return null;
+  return {
+    kind: /** @type {"session.read" | "session.write"} */ (m[1]),
+    cookie: m[2] ?? null,
+  };
+}
+
+/**
+ * RFC-0020 deepen (tip 1.0.55): `cache.private`.
+ * Declares Cache-Control private intent — host sets the header; no CDN invent.
+ * @param {string} raw
+ * @returns {{ private: true } | null}
+ */
+export function parseCachePrivateEffect(raw) {
+  return String(raw ?? "").trim().toLowerCase() === "cache.private" ? { private: true } : null;
+}
+
+/**
  * RFC-0020 deepen (tip 1.0.51): `cache.max-age <seconds>`.
  * Declares Cache-Control max-age intent — host sets headers; CWL does not invent a CDN.
  * @param {string} raw
@@ -272,7 +298,12 @@ export function cwlEffectsToWebir(declared) {
       out.push({ kind: dbFx.kind, table: dbFx.table ?? "*" });
       continue;
     }
-    if (t === "session.read" || t === "session.write" || t === "time.now" || t === "random") {
+    const access = parseSessionAccessEffect(t);
+    if (access) {
+      out.push({ kind: access.kind });
+      continue;
+    }
+    if (t === "time.now" || t === "random") {
       out.push({ kind: t });
       continue;
     }
@@ -304,7 +335,8 @@ export function cwlEffectsToWebir(declared) {
     const rateFx = parseRateLimitEffect(t);
     const csrfFx = parseCsrfVerifyEffect(t);
     const cacheFx = parseCacheMaxAgeEffect(t);
-    if (corsFx || csrfFx || rateFx || cacheFx) {
+    const cachePrivate = parseCachePrivateEffect(t);
+    if (corsFx || csrfFx || rateFx || cacheFx || cachePrivate) {
       out.push({ kind: "http.fetch" });
     }
   }
@@ -373,6 +405,34 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
   const statements = [];
   for (const raw of declared) {
     const t = raw.trim().toLowerCase();
+    const access = parseSessionAccessEffect(t);
+    if (access?.cookie) {
+      const loc =
+        access.kind === "session.read"
+          ? "cwl:executable-session-read"
+          : "cwl:executable-session-write";
+      statements.push(
+        data.call({
+          callee:
+            access.kind === "session.read"
+              ? "__cwl_effect_session_read"
+              : "__cwl_effect_session_write",
+          args: [
+            data.literal({
+              value: access.cookie,
+              type: HUB_T.string,
+              origin,
+              provenance: [webir.provenance("hub-ingest", `${loc}-cookie`)],
+            }),
+          ],
+          argNames: ["cookie"],
+          type: HUB_T.unknown,
+          origin,
+          provenance: [webir.provenance("hub-ingest", loc)],
+        }),
+      );
+      continue;
+    }
     if (t === "session.read") {
       statements.push(
         effect.sessionRead({
@@ -683,6 +743,27 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
           type: HUB_T.unknown,
           origin,
           provenance: [webir.provenance("hub-ingest", "cwl:executable-cache-max-age")],
+        }),
+      );
+      continue;
+    }
+    const cachePrivate = parseCachePrivateEffect(t);
+    if (cachePrivate) {
+      statements.push(
+        data.call({
+          callee: "__cwl_middleware_cache",
+          args: [
+            data.literal({
+              value: true,
+              type: HUB_T.bool,
+              origin,
+              provenance: [webir.provenance("hub-ingest", "cwl:executable-cache-private")],
+            }),
+          ],
+          argNames: ["private"],
+          type: HUB_T.unknown,
+          origin,
+          provenance: [webir.provenance("hub-ingest", "cwl:executable-cache-private")],
         }),
       );
       continue;

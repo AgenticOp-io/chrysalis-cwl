@@ -1,6 +1,8 @@
 | `59-cache-max-age` | Cache-Control max-age seconds | 0020 |
 | `60-io-host` | Named io host | 0020 |
 | `61-cors-allow-credentials` | CORS credentials flag | 0020 |
+| `62-session-access-cookie` | session.read/write cookie name | 0020 |
+| `63-cache-private` | Cache-Control private intent | 0020 |
 # Language-pillar golden fixtures
 
 **Authority:** [`docs/language/CWL-PILLAR-HOME.md`](../../docs/language/CWL-PILLAR-HOME.md)  

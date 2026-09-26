@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-26 - tip-1.0.55-cache-private
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.55** (RFC-0020 deepen) · includes tip **1.0.54**
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.55**; peel `session.read|write cookie <name>` (gold `62`) and `cache.private` (gold `63`); bare forms unchanged |
+| Secure | Pin to **1.0.55**; cookie name and private-cache intent only — never a token value, no CDN |
+
+### CWL landed
+
+- `session.read cookie sid` / `session.write cookie sid` (1.0.54)
+- `cache.private` composes with `cache.max-age` (1.0.55)
+- Siblings already closed tip **1.0.53**
+
+---
+
+
 ## 2026-09-26 - tip-1.0.53-cors-allow-credentials
 
 **To:** convert + secure  
