@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-26 - tip-1.0.53-cors-allow-credentials
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.53** (RFC-0020 deepen) · includes tip **1.0.52**
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.53**; peel `io host <name>` (gold `60`) and `cors.allow credentials` (gold `61`); bare forms unchanged |
+| Secure | Pin to **1.0.53**; host name and credentials flag are genome intent only — no invented HTTP client or CORS engine |
+
+### CWL landed
+
+- `io host api.example.com` — logical host only (1.0.52)
+- `cors.allow origin … credentials` / `cors.allow methods … credentials` (1.0.53)
+- Siblings already closed tip **1.0.51**
+
+---
+
+
 ## 2026-09-22 - tip-1.0.51-cache-max-age
 
 **To:** convert + secure  

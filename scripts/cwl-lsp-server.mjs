@@ -178,6 +178,12 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
 export const CWL_EFFECT_PRESETS = Object.freeze([
   { label: "none", kind: KIND_TEXT, detail: "Effect preset: none" },
   { label: "io", kind: KIND_TEXT, detail: "Effect preset: io" },
+  {
+    label: "io host",
+    kind: KIND_SNIPPET,
+    detail: "Named io host (RFC-0020 deepen; transfer stays host-side)",
+    insertText: "io host ${1:api.example.com}",
+  },
   { label: "db.read", kind: KIND_TEXT, detail: "Effect preset: db.read" },
   { label: "db.write", kind: KIND_TEXT, detail: "Effect preset: db.write" },
   { label: "session.read", kind: KIND_TEXT, detail: "Effect preset: session.read" },
@@ -219,6 +225,12 @@ export const CWL_EFFECT_PRESETS = Object.freeze([
     kind: KIND_SNIPPET,
     detail: "Named CORS origin + methods (RFC-0020 deepen)",
     insertText: "cors.allow origin ${1:https://app.example.com} methods ${2:GET} ${3:POST}",
+  },
+  {
+    label: "cors.allow credentials",
+    kind: KIND_SNIPPET,
+    detail: "CORS credentials intent (RFC-0020 deepen; host sets the header)",
+    insertText: "cors.allow origin ${1:https://app.example.com} credentials",
   },
   {
     label: "cache.max-age",

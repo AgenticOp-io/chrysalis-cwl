@@ -3,15 +3,15 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.51` |
-| **Status** | RFC-0020 deepen — cache.max-age |
-| **Date** | 2026-09-22 |
+| **Version** | `1.0.53` |
+| **Status** | RFC-0020 deepen — cors.allow credentials |
+| **Date** | 2026-09-26 |
 
 ## What this version means
 
-- **RFC-0020 deepen:** `cache.max-age <seconds>` — Cache-Control intent only
-- **Gold `59`:** long-lived + `0` (no-store-ish intent); host sets headers
-- Prior: **1.0.50** CORS methods · **1.0.49** mail template
+- **RFC-0020 deepen:** `cors.allow … credentials` — host sets the header
+- **Gold `61`:** origin+credentials, methods+credentials, bare `cors.allow` unchanged
+- Prior tip **1.0.52:** `io host <name>` (gold `60`) — logical host only
 
 ## Gate
 

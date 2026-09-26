@@ -1,5 +1,17 @@
 # CWL language changelog
 
+## 1.0.53 - 2026-09-26
+
+- RFC-0020 deepen: `cors.allow credentials` (composes with origin and methods)
+- Gold `61-cors-allow-credentials`; bare / origin-only / methods-only forms unchanged
+- Host sets Access-Control-Allow-Credentials — no CORS engine invent
+
+## 1.0.52 - 2026-09-26
+
+- RFC-0020 deepen: `io host <name>` — logical host only
+- Gold `60-io-host`; bare `io` unchanged
+- Transfer stays host-side — no HTTP client invent
+
 ## 1.0.51 - 2026-09-22
 
 - RFC-0020 deepen: `cache.max-age <seconds>` — Cache-Control max-age intent
