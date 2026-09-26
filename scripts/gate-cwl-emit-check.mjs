@@ -33,6 +33,8 @@ const CORS_METHODS = join(ROOT, "fixtures/language-gold/58-cors-allow-methods/ro
 const CACHE_MAX_AGE = join(ROOT, "fixtures/language-gold/59-cache-max-age/routes.cwl");
 const IO_HOST = join(ROOT, "fixtures/language-gold/60-io-host/routes.cwl");
 const CORS_CREDENTIALS = join(ROOT, "fixtures/language-gold/61-cors-allow-credentials/routes.cwl");
+const SESSION_ACCESS = join(ROOT, "fixtures/language-gold/62-session-access-cookie/routes.cwl");
+const CACHE_PRIVATE = join(ROOT, "fixtures/language-gold/63-cache-private/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -463,6 +465,36 @@ runEmitCheck(
   },
   { stdout: true },
 );
+
+runEmitCheck(
+  "emit-check-62-session-access-cookie",
+  SESSION_ACCESS,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*session\.read\s+cookie\s+sid;/.test(text) &&
+      /effects:\s*session\.write\s+cookie\s+sid;/.test(text) &&
+      /effects:\s*session\.read;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-63-cache-private",
+  CACHE_PRIVATE,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*cache\.max-age\s+0,\s*cache\.private;/.test(text) &&
+      /effects:\s*cache\.max-age\s+3600;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
 // Attachment holes count toward holeCount (Convert fat emit alignment; gold 36).
 runEmitCheck(
   "emit-check-36-layout-chrome-hole-count",

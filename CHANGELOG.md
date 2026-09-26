@@ -1,5 +1,17 @@
 # CWL language changelog
 
+## 1.0.55 - 2026-09-26
+
+- RFC-0020 deepen: `cache.private` — Cache-Control private intent
+- Gold `63-cache-private`; composes with `cache.max-age`
+- Host sets the header — no CDN invent
+
+## 1.0.54 - 2026-09-26
+
+- RFC-0020 deepen: `session.read cookie <name>` / `session.write cookie <name>`
+- Gold `62-session-access-cookie`; bare forms unchanged
+- Cookie name only — never a token value
+
 ## 1.0.53 - 2026-09-26
 
 - RFC-0020 deepen: `cors.allow credentials` (composes with origin and methods)
