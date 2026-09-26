@@ -1,4 +1,6 @@
 | `59-cache-max-age` | Cache-Control max-age seconds | 0020 |
+| `60-io-host` | Named io host | 0020 |
+| `61-cors-allow-credentials` | CORS credentials flag | 0020 |
 # Language-pillar golden fixtures
 
 **Authority:** [`docs/language/CWL-PILLAR-HOME.md`](../../docs/language/CWL-PILLAR-HOME.md)  
@@ -65,8 +67,11 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `54-csrf-verify-cookie` | CSRF cookie name (`csrf.verify cookie �`) | 0020 |
 | `55-auth-require-cookie` | Auth session cookie name (`auth.require cookie �`) | 0007 |
 | `56-db-table-name` | Named db.read/write table | 0020 |
-| /-mail-send-template | Named mail.send template | 0020 |
-| 8-cors-allow-methods | Named CORS methods (+ origin composition) | 0020 |
+| `57-mail-send-template` | Named mail.send template | 0020 |
+| `58-cors-allow-methods` | Named CORS methods (+ origin composition) | 0020 |
+| `59-cache-max-age` | Cache-Control max-age seconds | 0020 |
+| `60-io-host` | Named io host | 0020 |
+| `61-cors-allow-credentials` | CORS credentials flag | 0020 |
 
 ## Parseable subset notes (0.1.8)
 

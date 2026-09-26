@@ -366,10 +366,12 @@ function effectsFromExecutableStmts(get, stmtIds) {
     } else if (loc === "cwl:executable-cors-allow") {
       const origin = corsAllowOriginArg(get, n);
       const methods = corsAllowMethodsArg(get, n);
+      const credentials = corsAllowCredentialsArg(get, n);
       /** @type {string[]} */
       const parts = ["cors.allow"];
       if (origin && origin !== "*") parts.push(`origin ${origin}`);
       if (methods) parts.push(`methods ${methods}`);
+      if (credentials) parts.push("credentials");
       tags.push(parts.join(" "));
     } else if (loc === "cwl:executable-csrf-verify") {
       const cookie = csrfVerifyCookieArg(get, n);
@@ -391,7 +393,10 @@ function effectsFromExecutableStmts(get, stmtIds) {
     } else if (loc === "cwl:executable-db-write") {
       const table = dbEffectTableArg(get, n);
       tags.push(table ? `db.write table ${table}` : "db.write");
-    } else if (loc === "cwl:executable-io") tags.push("io");
+    } else if (loc === "cwl:executable-io") {
+      const host = ioEffectHostArg(get, n);
+      tags.push(host ? `io host ${host}` : "io");
+    }
   }
   return tags.length ? tags : ["none"];
 }
@@ -482,6 +487,42 @@ function corsAllowMethodsArg(get, call) {
   if (lit?.op === "literal" && typeof lit.attrs?.value === "string") {
     const v = lit.attrs.value.trim();
     return v || null;
+  }
+  return null;
+}
+
+/**
+ * Tip 1.0.53: credentials flag on `__cwl_middleware_cors`.
+ * @param {(id: string) => object | undefined} get
+ * @param {object} call
+ */
+function corsAllowCredentialsArg(get, call) {
+  const argNames = call.attrs?.argNames ?? [];
+  const idx = argNames.indexOf("credentials");
+  if (idx < 0) return false;
+  const lit = get(call.operands?.[idx]);
+  return lit?.op === "literal" && lit.attrs?.value === true;
+}
+
+/**
+ * Tip 1.0.52: host name on `__cwl_effect_io`.
+ * @param {(id: string) => object | undefined} get
+ * @param {object} call
+ * @returns {string | null}
+ */
+function ioEffectHostArg(get, call) {
+  if (call?.op !== "call") return null;
+  const argNames = call.attrs?.argNames ?? [];
+  const idx = argNames.indexOf("host");
+  if (idx < 0) return null;
+  const lit = get(call.operands?.[idx]);
+  if (lit?.op === "literal" && typeof lit.attrs?.value === "string") {
+    const host = lit.attrs.value;
+    return /^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
+      host,
+    )
+      ? host
+      : null;
   }
   return null;
 }

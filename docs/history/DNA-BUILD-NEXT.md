@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.51`** - cache.max-age (RFC-0020 deepen)
+**Tip:** **`1.0.53`** - cors.allow credentials (RFC-0020 deepen)
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -45,6 +45,9 @@
 | P0 | Db table name (`56`) | **done** (`1.0.48`) |
 | P0 | Mail send template (`57`) | **done** (`1.0.49`) |
 | P0 | CORS methods (`58`) | **done** (`1.0.50`) |
+| P0 | Cache max-age (`59`) | **done** (`1.0.51`) |
+| P0 | Io host (`60`) | **done** (`1.0.52`) |
+| P0 | CORS credentials (`61`) | **done** (`1.0.53`) |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
 | — | **Cinderpath consume** | genome declares holes in CWL; Go executor only |
@@ -53,8 +56,8 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.51** | Convert + Secure — **asked** |
-| Peels golds 40–59 + mail template / CORS methods | Convert — **asked** |
+| Tip pin **1.0.53** | Convert + Secure — **asked** |
+| Peels golds 40–61 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |
 | ALWAYS: `cwl-html-template.mjs` + `cwl-emit-ui.mjs` | **CWL** — **done** (in `ALWAYS`; Convert already byte-identical) |

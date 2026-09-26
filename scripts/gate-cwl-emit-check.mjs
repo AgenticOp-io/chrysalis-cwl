@@ -31,6 +31,8 @@ const DB_TABLE = join(ROOT, "fixtures/language-gold/56-db-table-name/routes.cwl"
 const MAIL_TEMPLATE = join(ROOT, "fixtures/language-gold/57-mail-send-template/routes.cwl");
 const CORS_METHODS = join(ROOT, "fixtures/language-gold/58-cors-allow-methods/routes.cwl");
 const CACHE_MAX_AGE = join(ROOT, "fixtures/language-gold/59-cache-max-age/routes.cwl");
+const IO_HOST = join(ROOT, "fixtures/language-gold/60-io-host/routes.cwl");
+const CORS_CREDENTIALS = join(ROOT, "fixtures/language-gold/61-cors-allow-credentials/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -426,6 +428,37 @@ runEmitCheck(
       rep.token === "CWL_EMIT_CHECK_OK" &&
       /effects:\s*cache\.max-age\s+86400;/.test(text) &&
       /effects:\s*cache\.max-age\s+0;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0020 deepen: io host <name> survives reverse.
+runEmitCheck(
+  "emit-check-60-io-host",
+  IO_HOST,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*io\s+host\s+api\.example\.com;/.test(text) &&
+      /effects:\s*io;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+// RFC-0020 deepen: cors.allow credentials survives reverse.
+runEmitCheck(
+  "emit-check-61-cors-allow-credentials",
+  CORS_CREDENTIALS,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*cors\.allow\s+origin\s+https:\/\/app\.example\.com\s+credentials;/.test(text) &&
+      /effects:\s*cors\.allow\s+methods\s+GET\s+POST\s+credentials;/.test(text) &&
+      /effects:\s*cors\.allow;/.test(text)
     );
   },
   { stdout: true },
