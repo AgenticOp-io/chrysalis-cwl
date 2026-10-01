@@ -7,11 +7,12 @@ CWL reads this on coordinator ticks. Tip bumps only for **contract gaps**.
 
 | When | From | Note |
 | --- | --- | --- |
-| 2026-09-30 | parent | agenticop.io cannot be complete CWL — single-line `return html` / prefix-only chrome. Full ask: [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |
+| — | — | none |
 
 ## Closed recently
 
 | When | From | Note |
 | --- | --- | --- |
+| 2026-09-30 | parent | agenticop.io page HTML — **done** in tip **1.0.60** (gold 68). Static emit remains Convert. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |
 | 2026-08-11 | convert | EXTFMAP honesty — no CWL invent |
 | 2026-08-11 | secure | Mode B L2 deepen — no CWL invent |

@@ -3,12 +3,16 @@
  * Layout decls live in the parser; this module applies chrome at ingest / resolve.
  */
 
+/** Slot in a document shell. Absent marker keeps RFC-0029 prefix concatenation. */
+const CWL_HTML_BODY_SLOT = "<!-- cwl:body -->";
+
 /**
  * @param {string | null | undefined} chrome
  * @param {string} body
  */
 export function composeLayoutChromeHtml(chrome, body) {
   if (!chrome) return body;
+  if (chrome.includes(CWL_HTML_BODY_SLOT)) return chrome.replace(CWL_HTML_BODY_SLOT, body);
   return `${chrome}${body}`;
 }
 

@@ -75,6 +75,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `65-redirect-same-origin` | Same-site redirect; off-site target is a hole | 0006 |
 | `66-cache-no-store` | Cache-Control no-store intent | 0020 |
 | `67-cache-no-cache` | Cache-Control no-cache (revalidate before reuse) | 0020 |
+| `68-site-document` | Multi-line HTML page and a document shell slot | 0029 |
 
 ## Parseable subset notes (0.1.8)
 

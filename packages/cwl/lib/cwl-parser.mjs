@@ -132,6 +132,40 @@ export function extractCwlChromeHtmlLiteral(inner) {
   return extractCwlHtmlReturnLiteral(t.replace(CHROME_HTML_PREFIX_RE, "return html "));
 }
 
+/** Multi-line HTML opener. Content runs until a line that is only `""";`. */
+const HTML_BLOCK_CLOSE_RE = /^"""\s*;\s*$/;
+
+/**
+ * @param {string} line
+ * @returns {"return" | "chrome" | null}
+ */
+export function cwlHtmlBlockKind(line) {
+  const t = String(line ?? "").trim();
+  if (/^return\s+html\s+"""\s*$/i.test(t)) return "return";
+  if (/^chrome\s+html\s+"""\s*$/i.test(t)) return "chrome";
+  return null;
+}
+
+/**
+ * Read raw HTML after an opener line. Newlines and quotes stay in the value.
+ * @param {string[]} lines
+ * @param {number} indexAfterOpen
+ * @returns {{ ok: true, value: string, next: number } | { ok: false, value: "", next: number }}
+ */
+export function readCwlHtmlBlock(lines, indexAfterOpen) {
+  /** @type {string[]} */
+  const parts = [];
+  let i = indexAfterOpen;
+  while (i < lines.length) {
+    if (HTML_BLOCK_CLOSE_RE.test(lines[i].trim())) {
+      return { ok: true, value: parts.join("\n"), next: i + 1 };
+    }
+    parts.push(lines[i]);
+    i += 1;
+  }
+  return { ok: false, value: "", next: lines.length };
+}
+
 /**
  * @param {string[]} lines
  * @param {number} startIdx
@@ -184,6 +218,14 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
     const hol = HOLE_RE.exec(line);
     if (hol) {
       holes.push(hol[1]);
+      continue;
+    }
+    const chromeKind = cwlHtmlBlockKind(line);
+    if (chromeKind === "chrome") {
+      const block = readCwlHtmlBlock(lines, i);
+      i = block.next;
+      if (block.ok) chromeHtml = block.value;
+      else if (!holes.includes("cwl:unclosed-html")) holes.push("cwl:unclosed-html");
       continue;
     }
     const chromeLit = extractCwlChromeHtmlLiteral(line);
@@ -1015,6 +1057,19 @@ export function parseCwlModule(source, file) {
           kept.push(part);
         }
         effects.push(...parseEffects(kept.join(",")));
+        continue;
+      }
+      const htmlBlock = cwlHtmlBlockKind(inner);
+      if (htmlBlock === "return") {
+        const block = readCwlHtmlBlock(lines, i);
+        i = block.next;
+        if (block.ok) {
+          body = { kind: "html", value: block.value };
+          if (!responseContentType) responseContentType = "text/html; charset=utf-8";
+        } else {
+          body = { kind: "hole", reason: "cwl:unclosed-html", line: i };
+        }
+        sawReturn = true;
         continue;
       }
       const htmlRetLit = extractCwlHtmlReturnLiteral(inner);

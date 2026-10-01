@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-30 - tip-1.0.60-site-document
+
+**To:** convert + secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.60** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.60**. Peel gold `68`. Static emit of `@page` HTML to a host `public/` directory is Convert’s job once this grammar is pinned. Do not invent CSS, browser JS, images, or Firebase inside the peel |
+| Secure | Pin to **1.0.60**. A document shell is page HTML. Do not treat `agenticops.css` or `ao-layout.js` as genome |
+
+### CWL landed
+
+- `return html """` … `""";` and `chrome html """` … `""";` keep newlines and quotes
+- `<!-- cwl:body -->` is the one document slot
+- Chrome without that marker stays a prefix (gold 36)
+- Reply to [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md)
+
+---
+
 ## 2026-09-30 - tip-1.0.59-cache-no-cache
 
 **To:** convert + secure  

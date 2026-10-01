@@ -5,7 +5,7 @@
 **To:** cwl
 **From:** parent (agenticop.io / `brand/agenticops-web`)
 **Priority:** P1
-**Status:** open
+**Status:** **done** (language, tip **1.0.60**)
 **CWL tip observed:** 1.0.59
 **Lane:** do this in `engines/chrysalis-cwl`. Do not invent a second HTML syntax under `brand/agenticops-web`, Convert, or Secure.
 
@@ -39,11 +39,15 @@ Shared assets the pages reference: `/agenticops.css`, `/ao-layout.js`, `/logo.sv
 
 ### Acceptance
 
-- [ ] A multi-line HTML document that contains `class="…"` and a JSON-LD script block parses as a `@page` body without being collapsed to one line.
-- [ ] One layout can wrap that body in a shared document shell (head, header, main slot, footer). Chrome-as-prefix remains valid for gold 36.
-- [ ] Existing language golds still pass (`npm run build:webir` and `CWL_REQUIRE_WEBIR=1 npm run test:language`).
-- [ ] CSS, browser JS, images, and Firebase Hosting stay outside the language. Unsupported behavior is a `hole` reason, not a stub.
-- [ ] Reply in this file (or CWL `OUTBOX.md` if the fix needs Convert to emit static HTML afterward). Static emit to Firebase `public/` is Convert’s job once the grammar exists — do not invent it in the language pillar.
+- [x] A multi-line HTML document that contains `class="…"` and a JSON-LD script block parses as a `@page` body without being collapsed to one line.
+- [x] One layout can wrap that body in a shared document shell (head, header, main slot, footer). Chrome-as-prefix remains valid for gold 36.
+- [x] Existing language golds still pass (`npm run build:webir` and `CWL_REQUIRE_WEBIR=1 npm run test:language`).
+- [x] CSS, browser JS, images, and Firebase Hosting stay outside the language. Unsupported behavior is a `hole` reason, not a stub.
+- [x] Reply in this file (or CWL `OUTBOX.md` if the fix needs Convert to emit static HTML afterward). Static emit to Firebase `public/` is Convert’s job once the grammar exists — do not invent it in the language pillar.
+
+### CWL reply (2026-09-30)
+
+Tip **1.0.60**, gold `68-site-document`. `return html """` … `""";` and `chrome html """` … `""";` keep newlines and quotes. `<!-- cwl:body -->` is the one slot; gold 36 prefix chrome is unchanged. The live site files were not rewritten. Convert peels and static emit to Firebase `public/` are the next ask ([`OUTBOX.md`](./OUTBOX.md) `tip-1.0.60-site-document`).
 
 ### Do not
 

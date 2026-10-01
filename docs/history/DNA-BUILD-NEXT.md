@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.59`** - cache.no-cache (RFC-0020 deepen)
+**Tip:** **`1.0.60`** - multi-line page HTML (RFC-0029 deepen)
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -54,6 +54,7 @@
 | P0 | Same-site redirect (`65`) | **done** (`1.0.57`) — off-site target is `unsupported:open-redirect` |
 | P0 | Cache no-store (`66`) | **done** (`1.0.58`) — nothing may store the response; no CDN invent |
 | P0 | Cache no-cache (`67`) | **done** (`1.0.59`) — store only if revalidated; no CDN invent |
+| P0 | Site document HTML (`68`) | **done** (`1.0.60`) — multi-line page body + `<!-- cwl:body -->` shell; CSS/JS/hosting stay outside |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
 | — | **Cinderpath consume** | genome declares holes in CWL; Go executor only |
@@ -62,7 +63,7 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.59** | Convert + Secure — **asked** |
+| Tip pin **1.0.60** | Convert + Secure — **asked** |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |

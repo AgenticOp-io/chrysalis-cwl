@@ -1,6 +1,25 @@
 import { formatCookieDecl, formatRedirectStatement } from "./hub-cwl-effects.mjs";
 
 /**
+ * Print `return html` / `chrome html`. Newlines stay a raw block, not a one-line escape.
+ * @param {string[]} lines
+ * @param {string} indent
+ * @param {string} head
+ * @param {unknown} value
+ */
+function appendCwlHtmlStmt(lines, indent, head, value) {
+  const s = String(value ?? "");
+  if (!s.includes("\n")) {
+    lines.push(`${indent}${head} ${JSON.stringify(s)};`);
+    return;
+  }
+  const body = s.endsWith("\n") ? s.slice(0, -1) : s;
+  lines.push(`${indent}${head} """`);
+  for (const line of body.split("\n")) lines.push(line);
+  lines.push(`${indent}""";`);
+}
+
+/**
  * Print `else if` / `else` tails for an if / earlyGuard node.
  * @param {object} s
  * @param {string} indent
@@ -20,7 +39,7 @@ function printElseTail(s, indent, lines) {
     lines.push(`${indent}else {`);
     if (typeof s.elseStatus === "number") lines.push(`${indent}  status ${s.elseStatus};`);
     if (s.elseBody?.kind === "html") {
-      lines.push(`${indent}  return html ${printCwlLiteral(s.elseBody.value)};`);
+      appendCwlHtmlStmt(lines, `${indent}  `, "return html", s.elseBody.value);
     } else {
       const expr = printCwlBodyExpr(s.elseBody);
       if (expr != null) lines.push(`${indent}  return ${expr};`);
@@ -44,7 +63,7 @@ function printControlStmts(stmts, indent, lines) {
     }
     if (s.kind === "return") {
       if (s.body?.kind === "html") {
-        lines.push(`${indent}return html ${printCwlLiteral(s.body.value)};`);
+        appendCwlHtmlStmt(lines, indent, "return html", s.body.value);
       } else if (s.body) {
         const expr = printCwlBodyExpr(s.body);
         if (expr != null) lines.push(`${indent}return ${expr};`);
@@ -321,7 +340,7 @@ export function printCwlModule(mod, opts = {}) {
       printUiNode(island, "  ", lines);
     }
     if (typeof L.chromeHtml === "string") {
-      lines.push(`  chrome html ${JSON.stringify(L.chromeHtml)};`);
+      appendCwlHtmlStmt(lines, "  ", "chrome html", L.chromeHtml);
     }
     lines.push("}");
   }
@@ -465,6 +484,8 @@ export function printCwlModule(mod, opts = {}) {
       for (const reason of attachmentHoles) printHoleLine(reason);
       if (body?.kind === "ui") {
         printCwlUiReturn(body, "  ", lines);
+      } else if (body?.kind === "html") {
+        appendCwlHtmlStmt(lines, "  ", "return html", body.value);
       } else {
         const expr = printCwlBodyExpr(body);
         if (expr != null) lines.push(`  return ${expr};`);

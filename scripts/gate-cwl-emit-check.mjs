@@ -39,6 +39,7 @@ const COOKIE_PURPOSE = join(ROOT, "fixtures/language-gold/64-cookie-purpose/rout
 const REDIRECT_SAME = join(ROOT, "fixtures/language-gold/65-redirect-same-origin/routes.cwl");
 const CACHE_NO_STORE = join(ROOT, "fixtures/language-gold/66-cache-no-store/routes.cwl");
 const CACHE_NO_CACHE = join(ROOT, "fixtures/language-gold/67-cache-no-cache/routes.cwl");
+const SITE_DOCUMENT = join(ROOT, "fixtures/language-gold/68-site-document/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -558,6 +559,24 @@ runEmitCheck(
       /effects:\s*cache\.no-cache;/.test(text) &&
       /effects:\s*cache\.no-cache,\s*cache\.private;/.test(text) &&
       /effects:\s*cache\.no-store;/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-68-site-document",
+  SITE_DOCUMENT,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 0) === 1 &&
+      (rep.holeReasons ?? []).includes("unsupported:opaque-script") &&
+      /<!doctype html>/.test(text) &&
+      /class=\\"hero\\"/.test(text) &&
+      /application\/ld\+json/.test(text) &&
+      /class=\\"top\\"/.test(text) &&
+      !/<!-- cwl:body -->/.test(text)
     );
   },
   { stdout: true },
