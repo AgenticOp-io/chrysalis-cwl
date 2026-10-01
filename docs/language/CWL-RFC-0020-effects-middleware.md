@@ -41,6 +41,7 @@ handler clock {
 | `cors.allow` | `data.call` `__cwl_middleware_cors` (`origin` tip 1.0.44; `methods` tip 1.0.50; `credentials` tip 1.0.53 — no invented CORS engine) |
 | `cache.max-age` | `data.call` `__cwl_middleware_cache` (tip 1.0.51 — no invented CDN) |
 | `cache.private` | `data.call` `__cwl_middleware_cache` (tip 1.0.55 — private intent only) |
+| `cache.no-store` | `data.call` `__cwl_middleware_cache` (tip 1.0.58 — nothing may store the response) |
 | `csrf.verify` | `data.call` `__cwl_middleware_csrf` (optional `cookie <name>`; tip 1.0.46) |
 | `auth.require` | Executable `session.read` (optional `cookie <name>`; tip 1.0.47) |
 

@@ -3,15 +3,15 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.57` |
-| **Status** | RFC-0006 deepen — same-site redirect |
+| **Version** | `1.0.58` |
+| **Status** | RFC-0020 deepen — cache.no-store |
 | **Date** | 2026-09-30 |
 
 ## What this version means
 
-- **RFC-0006 deepen:** `redirect "/path"` — same-site only; off-site targets are `unsupported:open-redirect`
-- **Gold `65`:** default 302, `status 301`, off-site refusal
-- Prior tip **1.0.56:** cookie purpose (gold `64`)
+- **RFC-0020 deepen:** `cache.no-store` — nothing may store the response; host sets the header
+- **Gold `66`:** composes with `cache.private`; `cache.max-age` stays for public assets
+- Prior tip **1.0.57:** same-site redirect (gold `65`)
 
 ## Gate
 

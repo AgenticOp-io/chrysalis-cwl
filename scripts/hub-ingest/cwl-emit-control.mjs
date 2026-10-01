@@ -393,6 +393,8 @@ function effectsFromExecutableStmts(get, stmtIds) {
       if (seconds != null) tags.push(`cache.max-age ${seconds}`);
     } else if (loc === "cwl:executable-cache-private") {
       tags.push("cache.private");
+    } else if (loc === "cwl:executable-cache-no-store") {
+      tags.push("cache.no-store");
     } else if (loc === "cwl:executable-db-read") {
       const table = dbEffectTableArg(get, n);
       tags.push(table ? `db.read table ${table}` : "db.read");

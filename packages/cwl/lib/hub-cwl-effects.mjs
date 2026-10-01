@@ -316,6 +316,16 @@ export function parseCachePrivateEffect(raw) {
 }
 
 /**
+ * RFC-0020 deepen (tip 1.0.58): `cache.no-store`.
+ * Declares that no cache may store the response — host sets the header; no CDN invent.
+ * @param {string} raw
+ * @returns {{ noStore: true } | null}
+ */
+export function parseCacheNoStoreEffect(raw) {
+  return String(raw ?? "").trim().toLowerCase() === "cache.no-store" ? { noStore: true } : null;
+}
+
+/**
  * RFC-0020 deepen (tip 1.0.51): `cache.max-age <seconds>`.
  * Declares Cache-Control max-age intent — host sets headers; CWL does not invent a CDN.
  * @param {string} raw
@@ -910,6 +920,27 @@ export function wrapCwlExecutableEffects(ctx, bodyId, declared, loc) {
           type: HUB_T.unknown,
           origin,
           provenance: [webir.provenance("hub-ingest", "cwl:executable-cache-private")],
+        }),
+      );
+      continue;
+    }
+    const cacheNoStore = parseCacheNoStoreEffect(t);
+    if (cacheNoStore) {
+      statements.push(
+        data.call({
+          callee: "__cwl_middleware_cache",
+          args: [
+            data.literal({
+              value: true,
+              type: HUB_T.bool,
+              origin,
+              provenance: [webir.provenance("hub-ingest", "cwl:executable-cache-no-store")],
+            }),
+          ],
+          argNames: ["noStore"],
+          type: HUB_T.unknown,
+          origin,
+          provenance: [webir.provenance("hub-ingest", "cwl:executable-cache-no-store")],
         }),
       );
       continue;

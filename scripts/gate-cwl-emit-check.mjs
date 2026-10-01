@@ -37,6 +37,7 @@ const SESSION_ACCESS = join(ROOT, "fixtures/language-gold/62-session-access-cook
 const CACHE_PRIVATE = join(ROOT, "fixtures/language-gold/63-cache-private/routes.cwl");
 const COOKIE_PURPOSE = join(ROOT, "fixtures/language-gold/64-cookie-purpose/routes.cwl");
 const REDIRECT_SAME = join(ROOT, "fixtures/language-gold/65-redirect-same-origin/routes.cwl");
+const CACHE_NO_STORE = join(ROOT, "fixtures/language-gold/66-cache-no-store/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -526,6 +527,21 @@ runEmitCheck(
       /redirect\s+"\/account";/.test(text) &&
       /redirect\s+"\/home"\s+status\s+301;/.test(text) &&
       !/https:\/\/evil\.example/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-66-cache-no-store",
+  CACHE_NO_STORE,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 1) === 0 &&
+      /effects:\s*cache\.no-store,\s*cache\.private;/.test(text) &&
+      /effects:\s*cache\.no-store;/.test(text) &&
+      /effects:\s*cache\.max-age\s+86400;/.test(text)
     );
   },
   { stdout: true },
