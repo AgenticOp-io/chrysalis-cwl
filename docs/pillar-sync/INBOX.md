@@ -5,7 +5,9 @@ CWL reads this on coordinator ticks. Tip bumps only for **contract gaps**.
 
 ## Open
 
-_(none)_
+| When | From | Note |
+| --- | --- | --- |
+| 2026-09-30 | parent | agenticop.io cannot be complete CWL — single-line `return html` / prefix-only chrome. Full ask: [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |
 
 ## Closed recently
 
