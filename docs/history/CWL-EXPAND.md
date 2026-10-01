@@ -14,7 +14,7 @@ If a line is wrong, strike it.
 | --- | --- |
 | Routes, pages, forms | `@page` / `@route`, `use urlencoded`, `use auth session` |
 | Shared chrome | `layout site { chrome html … }` (RFC-0029) |
-| Device class token | `cookie cp_device` + `load { device: … }` (not UA regex) |
+| Device class token | `cookie cp_device purpose preference values phone desktop` + `load { device: … }` (not UA regex) |
 | Opaque device residual | `hole unsupported:opaque-script;` |
 | Live HTML fragments | `hole hub-cwl:html-fragment;` (Go fills `load` bindings) |
 | Auth credentials | `effects: auth.verify, session.mint cookie sid;` (+ `hole hub-cwl:credential-store;` only for the store) |

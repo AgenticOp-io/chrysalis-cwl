@@ -63,6 +63,7 @@ const HONEST_HOLES = {
   "44-host-bytes-holes": { min: 3 },
   "45-proxy-upstream-params": { min: 1 },
   "64-cookie-purpose": { min: 2 },
+  "65-redirect-same-origin": { min: 1 },
 };
 
 /**

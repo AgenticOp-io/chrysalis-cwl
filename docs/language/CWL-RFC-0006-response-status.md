@@ -31,6 +31,15 @@ Default status is **200** when omitted.
 - Fixture: **`fixtures/hub-gold-cwl-response-status/routes.cwl`**
 - Runtime smoke: **`pnpm run hub:cwl-response-status-smoke`** (G177 — closes D400 deferral)
 
+## Deepen — same-site redirect (tip 1.0.57)
+
+```cwl
+redirect "/account";
+redirect "/home" status 301;
+```
+
+The path is same-site (`/…`). Default status is **302**. Allowed statuses: `301`, `302`, `303`, `307`, `308`. A scheme or protocol-relative target is `unsupported:open-redirect`. Gold `14` may still spell a redirect as `status` plus `response-header location`.
+
 ## Non-goals
 
 - Response headers, content negotiation, streaming (future RFC).

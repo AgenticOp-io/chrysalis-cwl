@@ -321,6 +321,35 @@ export function parseCachePrivateEffect(raw) {
  * @param {string} raw
  * @returns {{ seconds: number } | null}
  */
+const REDIRECT_STATUSES = new Set([301, 302, 303, 307, 308]);
+
+/**
+ * Same-site path only. Refuses scheme, protocol-relative, and `..` targets (tip 1.0.57).
+ * @param {string} path
+ */
+export function sameOriginRedirectPath(path) {
+  if (typeof path !== "string" || path.length < 1 || path.length > 512) return false;
+  if (!path.startsWith("/") || path.startsWith("//")) return false;
+  if (path.includes("..") || path.includes("\\") || /[\u0000-\u001f\s]/.test(path)) return false;
+  return /^\/[A-Za-z0-9._~/-]*(?:\?[A-Za-z0-9._~%=&+-]*)?$/.test(path);
+}
+
+/**
+ * @param {number} status
+ */
+export function redirectStatusAllowed(status) {
+  return REDIRECT_STATUSES.has(status);
+}
+
+/**
+ * @param {{ path: string, status?: number }} redirect
+ */
+export function formatRedirectStatement(redirect) {
+  const path = JSON.stringify(redirect.path);
+  if (!redirect.status || redirect.status === 302) return `redirect ${path}`;
+  return `redirect ${path} status ${redirect.status}`;
+}
+
 export function parseCacheMaxAgeEffect(raw) {
   const t = String(raw ?? "").trim().toLowerCase();
   const m = /^cache\.max-age\s+(\d+)$/.exec(t);

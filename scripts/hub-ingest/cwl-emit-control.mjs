@@ -688,6 +688,8 @@ export function peelCwlControlBody(get, bodyId) {
   let effects = ["none"];
   /** @type {number | null} */
   let status = null;
+  /** @type {{ path: string, status: number } | null} */
+  let redirect = null;
   /** @type {string | null} */
   let contentType = null;
   /** @type {string | null} */
@@ -726,6 +728,20 @@ export function peelCwlControlBody(get, bodyId) {
         if (ops[i]) pageIslandIds.push(ops[i]);
       }
       id = ops[ops.length - 1];
+      n = get(id);
+      continue;
+    }
+
+    if (n.dialect === "web.request" && n.op === "response" && loc === "cwl:redirect") {
+      const headers =
+        n.attrs?.headers && typeof n.attrs.headers === "object" ? n.attrs.headers : {};
+      const location = headers.location ?? headers.Location;
+      const st = typeof n.attrs?.status === "number" ? n.attrs.status : 302;
+      if (typeof location === "string") redirect = { path: location, status: st };
+      responseHeaders = Object.entries(headers)
+        .filter(([name]) => String(name).toLowerCase() !== "location")
+        .map(([name, v]) => ({ name, default: v }));
+      id = n.operands?.[0];
       n = get(id);
       continue;
     }
@@ -856,6 +872,7 @@ export function peelCwlControlBody(get, bodyId) {
     foreachBindings,
     effects,
     status,
+    redirect,
     contentType,
     streamKind,
     responseHeaders,

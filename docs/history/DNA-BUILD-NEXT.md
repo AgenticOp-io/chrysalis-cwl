@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.56`** - cookie purpose (RFC-0034)
+**Tip:** **`1.0.57`** - same-site redirect (RFC-0006 deepen)
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -51,6 +51,7 @@
 | P0 | Session access cookie (`62`) | **done** (`1.0.54`) |
 | P0 | Cache private (`63`) | **done** (`1.0.55`) |
 | P0 | Cookie purpose (`64`) | **done** (`1.0.56`) — session / csrf / enumerated preference; tracking name is a hole |
+| P0 | Same-site redirect (`65`) | **done** (`1.0.57`) — off-site target is `unsupported:open-redirect` |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
 | — | **Cinderpath consume** | genome declares holes in CWL; Go executor only |
@@ -59,7 +60,7 @@
 
 | Item | Owner |
 | --- | --- |
-| Tip pin **1.0.56** | Convert + Secure — **asked** |
+| Tip pin **1.0.57** | Convert + Secure — **asked** |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |

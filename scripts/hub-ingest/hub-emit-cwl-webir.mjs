@@ -8,7 +8,7 @@
  * @see docs/history/WEBIR-EXTRACT-PLAN.md Slice 4
  */
 import { cwlEmitLocator, peelCwlControlBody } from "./cwl-emit-control.mjs";
-import { formatCookieDecl } from "./hub-cwl-effects.mjs";
+import { formatCookieDecl, formatRedirectStatement } from "./hub-cwl-effects.mjs";
 import {
   printEmitStandaloneIsland,
   printEmitUiTree,
@@ -246,7 +246,8 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
 
   if (value.t === "hole" && !hasControl) {
     return {
-      status: peeled.status,
+      status: peeled.redirect ? null : peeled.status,
+      redirect: peeled.redirect ?? null,
       contentType: peeled.contentType,
       streamKind: peeled.streamKind,
       responseHeaders: peeled.responseHeaders,
@@ -273,7 +274,8 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
   }
   if (value.t === "hole") {
     return {
-      status: peeled.status,
+      status: peeled.redirect ? null : peeled.status,
+      redirect: peeled.redirect ?? null,
       contentType: peeled.contentType,
       streamKind: peeled.streamKind,
       responseHeaders: peeled.responseHeaders,
@@ -299,7 +301,8 @@ export function walkCwlHandlerBodyThin(get, bodyId) {
     };
   }
   return {
-    status: peeled.status,
+    status: peeled.redirect ? null : peeled.status,
+    redirect: peeled.redirect ?? null,
     contentType: peeled.contentType,
     streamKind: peeled.streamKind,
     responseHeaders: peeled.responseHeaders,
@@ -483,6 +486,7 @@ export function renderCwlRoutes(routes, opts = {}) {
     for (const name of r.multipartFiles ?? []) lines.push(`  multipart file ${name};`);
     for (const name of r.bodyParams ?? []) lines.push(`  body ${name};`);
     for (const h of r.responseHeaders ?? []) {
+      if (r.redirect?.path && String(h.name).toLowerCase() === "location") continue;
       if (Object.prototype.hasOwnProperty.call(h, "default")) {
         lines.push(`  response-header ${h.name} = ${cwlRenderLiteral(h.default)};`);
       } else {
@@ -514,7 +518,9 @@ export function renderCwlRoutes(routes, opts = {}) {
 
     for (const g of r.earlyGuards ?? []) printEmitGuard(g, "  ", lines);
 
-    if (typeof r.status === "number" && r.status !== 200) {
+    if (r.redirect?.path) {
+      lines.push(`  ${formatRedirectStatement(r.redirect)};`);
+    } else if (typeof r.status === "number" && r.status !== 200) {
       lines.push(`  status ${r.status};`);
     }
     // Skip default page HTML CT (ingest always sets it); keep authored non-default CT.

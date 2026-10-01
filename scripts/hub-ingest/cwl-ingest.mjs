@@ -443,6 +443,7 @@ export function liftCwlFileToWebir(opts) {
       responseHeaderBag[String(h.name).toLowerCase()] =
         v === null || v === undefined ? "" : typeof v === "string" ? v : String(v);
     }
+    if (r.redirect?.path) responseHeaderBag.location = r.redirect.path;
     const hasResponseHeaders = Object.keys(responseHeaderBag).length > 0;
     let bodyId = valueId;
     const pageLoadHtml = Boolean(r.loadBody && r.body.kind === "html");
@@ -468,13 +469,15 @@ export function liftCwlFileToWebir(opts) {
         provenance: [
           webir.provenance(
             "hub-ingest",
-            streamSse
-              ? "cwl:stream-sse"
-              : contentType
-                ? "cwl:response-content-type"
-                : hasResponseHeaders
-                  ? "cwl:response-header"
-                  : "cwl:response-status",
+            r.redirect?.path
+              ? "cwl:redirect"
+              : streamSse
+                ? "cwl:stream-sse"
+                : contentType
+                  ? "cwl:response-content-type"
+                  : hasResponseHeaders
+                    ? "cwl:response-header"
+                    : "cwl:response-status",
           ),
         ],
       });

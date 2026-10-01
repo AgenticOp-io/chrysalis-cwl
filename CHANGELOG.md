@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.57 - 2026-09-30
+
+- RFC-0006 deepen: `redirect "/path"` for a same-site path (optional status 301/302/303/307/308)
+- Gold `65-redirect-same-origin`; off-site targets are `unsupported:open-redirect`
+- `status` plus `response-header location` (gold `14`) stays valid
+
 ## 1.0.56 - 2026-09-26
 
 - RFC-0034: cookie purpose — session, csrf, or an enumerated preference

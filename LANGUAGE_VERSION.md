@@ -3,15 +3,15 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.56` |
-| **Status** | RFC-0034 — cookie purpose |
-| **Date** | 2026-09-26 |
+| **Version** | `1.0.57` |
+| **Status** | RFC-0006 deepen — same-site redirect |
+| **Date** | 2026-09-30 |
 
 ## What this version means
 
-- **RFC-0034:** cookie purpose — `session`, `csrf`, or enumerated `preference`; bare names and `samesite none` are `unsupported:tracking-cookie`
-- **Gold `64`:** preference class, session name, tracking refusals
-- Prior tip **1.0.55:** `cache.private` (gold `63`)
+- **RFC-0006 deepen:** `redirect "/path"` — same-site only; off-site targets are `unsupported:open-redirect`
+- **Gold `65`:** default 302, `status 301`, off-site refusal
+- Prior tip **1.0.56:** cookie purpose (gold `64`)
 
 ## Gate
 
