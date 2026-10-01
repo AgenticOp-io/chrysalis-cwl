@@ -173,6 +173,12 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: 'chrome html "${1:<header></header>}";',
   },
   {
+    label: "year host",
+    kind: KIND_SNIPPET,
+    detail: "Host calendar year token <!-- cwl:year --> (RFC-0029). CWL does not read the clock.",
+    insertText: "year host;",
+  },
+  {
     label: "nav",
     kind: KIND_SNIPPET,
     detail: "Shared nav id for <!-- cwl:page --> and <!-- cwl:active --> (RFC-0029)",

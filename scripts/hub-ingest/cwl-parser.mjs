@@ -199,6 +199,7 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
   const holes = [];
   /** @type {string | null} */
   let chromeHtml = null;
+  let yearHost = false;
   /** @type {object[]} */
   const pageIslands = [];
   let i = startIdx + 1;
@@ -209,7 +210,17 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
     if (line === "}") {
       return {
         ok: true,
-        layout: { name, line: lineNo, headers, cookies, cookiePurposes, holes, chromeHtml, pageIslands },
+        layout: {
+          name,
+          line: lineNo,
+          headers,
+          cookies,
+          cookiePurposes,
+          holes,
+          chromeHtml,
+          pageIslands,
+          ...(yearHost ? { yearHost: true } : {}),
+        },
         consumed: i,
       };
     }
@@ -226,6 +237,10 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
       }
       if (!cookies.includes(cm.name)) cookies.push(cm.name);
       cookiePurposes.push({ name: cm.name, purpose: cm.purpose, values: cm.values });
+      continue;
+    }
+    if (/^year\s+host\s*;$/.test(line)) {
+      yearHost = true;
       continue;
     }
     const hol = HOLE_RE.exec(line);
