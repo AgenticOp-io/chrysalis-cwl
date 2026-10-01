@@ -13,8 +13,14 @@ const CWL_HTML_PAGE_SLOT = "<!-- cwl:page -->";
 const CWL_HTML_YEAR_SLOT = "<!-- cwl:year -->";
 /** `<!-- cwl:active <navId> <classToken> -->` becomes ` <classToken>` on that nav id only. */
 const CWL_HTML_ACTIVE_RE = /<!-- cwl:active\s+([A-Za-z][A-Za-z0-9_-]*)\s+([A-Za-z][A-Za-z0-9_-]*)\s*-->/g;
-/** `<!-- cwl:links <baseClass> <activeClass> -->` expands every layout `link` (each copy of the marker). */
-const CWL_HTML_LINKS_RE = /<!-- cwl:links\s+([A-Za-z][A-Za-z0-9_-]*)\s+([A-Za-z][A-Za-z0-9_-]*)\s*-->/g;
+/** Host device class. CWL leaves this token and does not read the viewport or the user agent. */
+const CWL_HTML_DEVICE_SLOT = "<!-- cwl:device -->";
+/**
+ * Two tokens: default link list, base class, active class.
+ * Three tokens: named list, base class, active class.
+ */
+const CWL_HTML_LINKS_RE =
+  /<!-- cwl:links\s+([A-Za-z][A-Za-z0-9_-]*)\s+([A-Za-z][A-Za-z0-9_-]*)(?:\s+([A-Za-z][A-Za-z0-9_-]*))?\s*-->/g;
 
 /**
  * @param {string} value
@@ -35,15 +41,56 @@ function escapeCwlHtmlText(value) {
 function expandCwlLinks(chrome, links, navId) {
   const items = Array.isArray(links) ? links : [];
   if (!items.length) return chrome;
-  return chrome.replace(CWL_HTML_LINKS_RE, (_m, baseClass, activeClass) =>
-    items
+  return chrome.replace(CWL_HTML_LINKS_RE, (_m, a, b, c) => {
+    const grouped = Boolean(c);
+    const group = grouped ? a : "";
+    const baseClass = grouped ? b : a;
+    const activeClass = grouped ? c : b;
+    return items
+      .filter((item) => (item.group || "") === group)
       .map((item) => {
         const cls = item.className || baseClass;
         const active = item.id === navId ? ` ${activeClass}` : "";
         return `<a class="${cls}${active}" href="${escapeCwlHtmlText(item.href)}">${escapeCwlHtmlText(item.label)}</a>`;
       })
-      .join(""),
-  );
+      .join("");
+  });
+}
+
+/**
+ * Bounded drawer behavior. No viewport read and no user-agent read.
+ * @param {{ navId: string, toggleClass: string, openClass: string, panelId?: string }} drawer
+ */
+function drawerBehaviorScript(drawer) {
+  const nav = JSON.stringify(drawer.navId);
+  const toggle = JSON.stringify(`.${drawer.toggleClass}`);
+  const openClass = JSON.stringify(drawer.openClass);
+  const panel = drawer.panelId ? `document.getElementById(${JSON.stringify(drawer.panelId)})` : "null";
+  return `<script data-cwl-drawer="1">(function(){var nav=document.getElementById(${nav});var toggle=nav&&nav.querySelector(${toggle});var panel=${panel};if(!nav||!toggle)return;function setOpen(open){nav.classList.toggle(${openClass},open);toggle.setAttribute("aria-expanded",open?"true":"false");if(panel)panel.setAttribute("aria-hidden",open?"false":"true");}toggle.addEventListener("click",function(){setOpen(!nav.classList.contains(${openClass}));});nav.addEventListener("click",function(e){var t=e.target;if(t&&t.closest&&t.closest("a"))setOpen(false);});document.addEventListener("keydown",function(e){if(e.key==="Escape")setOpen(false);});})();</script>`;
+}
+
+/**
+ * @param {string} chrome
+ * @param {{ navId: string, toggleClass: string, openClass: string, panelId?: string }} drawer
+ */
+export function chromeHasDrawerTargets(chrome, drawer) {
+  const text = String(chrome ?? "");
+  if (!text.includes(`id="${drawer.navId}"`) && !text.includes(`id='${drawer.navId}'`)) return false;
+  if (!text.includes(drawer.toggleClass)) return false;
+  if (drawer.panelId && !text.includes(`id="${drawer.panelId}"`) && !text.includes(`id='${drawer.panelId}'`)) return false;
+  return true;
+}
+
+/**
+ * @param {string} html
+ * @param {{ navId: string, toggleClass: string, openClass: string, panelId?: string }} drawer
+ */
+function insertDrawerScript(html, drawer) {
+  if (html.includes("data-cwl-drawer=")) return html;
+  const script = drawerBehaviorScript(drawer);
+  const idx = html.lastIndexOf("</body>");
+  if (idx >= 0) return `${html.slice(0, idx)}${script}${html.slice(idx)}`;
+  return `${html}${script}`;
 }
 
 /**
@@ -62,7 +109,7 @@ function applyCwlPageMarkers(chrome, pageName, navId) {
 /**
  * @param {string | null | undefined} chrome
  * @param {string} body
- * @param {{ head?: string, pageName?: string, navId?: string }} [opts]
+ * @param {{ head?: string, pageName?: string, navId?: string, links?: object[], drawer?: object }} [opts]
  */
 export function composeLayoutChromeHtml(chrome, body, opts = {}) {
   if (!chrome) return body;
@@ -71,8 +118,9 @@ export function composeLayoutChromeHtml(chrome, body, opts = {}) {
   let shell = applyCwlPageMarkers(chrome, opts.pageName ?? "", opts.navId ?? "");
   shell = expandCwlLinks(shell, opts.links, navName);
   if (shell.includes(CWL_HTML_HEAD_SLOT)) shell = shell.replace(CWL_HTML_HEAD_SLOT, head);
-  if (shell.includes(CWL_HTML_BODY_SLOT)) return shell.replace(CWL_HTML_BODY_SLOT, body);
-  return `${shell}${body}`;
+  let html = shell.includes(CWL_HTML_BODY_SLOT) ? shell.replace(CWL_HTML_BODY_SLOT, body) : `${shell}${body}`;
+  if (opts.drawer && chromeHasDrawerTargets(html, opts.drawer)) html = insertDrawerScript(html, opts.drawer);
+  return html;
 }
 
 /** True when a declared head has nowhere to sit in the shell. */
@@ -88,6 +136,28 @@ export function chromeHasYearSlot(chrome) {
 /** True when the shell has at least one shared link-list slot. */
 export function chromeHasLinksSlot(chrome) {
   return /<!-- cwl:links\s+/.test(String(chrome ?? ""));
+}
+
+/**
+ * True when every link group has a matching slot.
+ * Ungrouped rows need a two-token marker. Named rows need `<!-- cwl:links <group> `.
+ * @param {string | null | undefined} chrome
+ * @param {Array<{ group?: string }>} links
+ */
+export function chromeHasLinkGroups(chrome, links) {
+  const text = String(chrome ?? "");
+  const groups = new Set((links ?? []).map((link) => link.group || ""));
+  for (const group of groups) {
+    if (!group) {
+      if (!/<!-- cwl:links\s+[A-Za-z][A-Za-z0-9_-]*\s+[A-Za-z][A-Za-z0-9_-]*\s*-->/.test(text)) return false;
+    } else if (!text.includes(`<!-- cwl:links ${group} `)) return false;
+  }
+  return true;
+}
+
+/** True when the shell names the host device token. */
+export function chromeHasDeviceSlot(chrome) {
+  return String(chrome ?? "").includes(CWL_HTML_DEVICE_SLOT);
 }
 
 /**
@@ -129,6 +199,8 @@ export function mergeLayoutOntoRoute(route, layout) {
   }
   if (layout.chromeHtml) route.layoutChromeHtml = layout.chromeHtml;
   if (layout.yearHost) route.yearHost = true;
+  if (layout.deviceHost) route.deviceHost = layout.deviceHost;
+  if (layout.drawer) route.drawer = layout.drawer;
   if (Array.isArray(layout.links) && layout.links.length) route.navLinks = layout.links.slice();
 }
 

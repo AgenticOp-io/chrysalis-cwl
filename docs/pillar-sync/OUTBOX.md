@@ -4,6 +4,31 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-01 - tip-1.0.65-site-shell-behavior
+
+**To:** convert + secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.65** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.65**. Peel gold `73`. Emit the drawer script with the page. Replace `<!-- cwl:device -->` in the browser with one of the declared classes. Do not add a user-agent or viewport read to the language |
+| Secure | Pin to **1.0.65**. The drawer script is the declared toggle. A device token is document text. Do not treat the user agent as genome |
+
+### CWL landed
+
+- `drawer` writes click, Escape, and link-close
+- `device host <a> <b>;` keeps `<!-- cwl:device -->`
+- `links <name>;` is a separate list
+- Missing targets or tokens stay named holes
+- CSS, images, and Firebase Hosting stay outside the language
+- Reply on [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md)
+
+---
+
 ## 2026-10-01 - tip-1.0.64-site-nav-links
 
 **To:** convert + secure  

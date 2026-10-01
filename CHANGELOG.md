@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.65 - 2026-10-01
+
+- RFC-0029 deepen: `drawer` is the menu toggle (click, Escape, link). `device host` keeps `<!-- cwl:device -->`. `links <name>` is a separate list for footer columns
+- Gold `73-site-shell-behavior`. CWL does not read the viewport or the user agent
+- CSS, images, and Firebase Hosting stay outside the language
+
 ## 1.0.64 - 2026-10-01
 
 - RFC-0029 deepen: `link <id> "<href>" "<label>";` is the shared nav. `<!-- cwl:links <base> <active> -->` expands every copy

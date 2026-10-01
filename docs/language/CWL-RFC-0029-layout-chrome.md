@@ -1,7 +1,7 @@
 # CWL RFC-0029 — Layout chrome wrap
 
 **Status:** accepted (2026-09-14); document shell deepened (2026-09-30); per-page head and shared nav id (2026-10-01)  
-**Tip:** **1.0.64** (chrome prefix since 1.0.27)  
+**Tip:** **1.0.65** (chrome prefix since 1.0.27)  
 **Extends:** [RFC-0011](CWL-RFC-0011-full-stack-layouts.md) (import merge stays; this adds wrap)  
 **Ask:** [CWL-EXPAND.md](../history/CWL-EXPAND.md) §1
 
@@ -69,6 +69,14 @@ A shared shell still cannot say which page is current, or carry that page's titl
 
 The live header is empty. `ao-layout.js` writes the same link list into the desktop nav and the mobile drawer, and the contact row uses `ao-nav-cta` instead of `ao-nav-link`. `link <id> "<href>" "<label>";` is that list. `<!-- cwl:links <baseClass> <activeClass> -->` expands every copy. `class <token>` on a row replaces the base class. The active class is added when the row id matches the nav id. A list with no slot is `cwl:missing-links-slot`. The Menu button can sit in the chrome as text. Opening the drawer and setting `data-ao-device` stay `unsupported:opaque-script`.
 
+## Deepen — drawer, device, named lists (tip 1.0.65)
+
+`links <name>;` starts a separate list. `<!-- cwl:links <name> <base> <active> -->` fills that list. A two-token marker still fills rows that have no name (gold `72`).
+
+`drawer <navId> toggle <class> class <openClass> panel <panelId>;` writes one script into the document. A click on the toggle flips the open class and `aria-expanded`. Escape closes it. A click on a link inside the nav closes it. The panel id gets `aria-hidden`. A declaration whose chrome lacks those targets is `cwl:missing-drawer-target` and gets no script.
+
+`device host <mobile> <desktop>;` keeps `<!-- cwl:device -->`. CWL does not read the viewport or the user agent and does not write either class. A declaration with no token is `cwl:missing-device-slot`.
+
 ## Syntax
 
 | Construct | Meaning |
@@ -80,7 +88,11 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 | `nav <id>;` | Shared nav id. Header and footer markers use it (tip 1.0.62) |
 | `year host;` | Host calendar year. `<!-- cwl:year -->` stays in the document (tip 1.0.63) |
 | `link <id> "<href>" "<label>";` | Shared nav row. Optional `class <token>` (tip 1.0.64) |
-| `<!-- cwl:links <base> <active> -->` | Expands the link list. Every copy is filled (tip 1.0.64) |
+| `<!-- cwl:links <base> <active> -->` | Expands the unnamed link list. Every copy is filled (tip 1.0.64) |
+| `links <name>;` | Following `link` rows belong to that list (tip 1.0.65) |
+| `<!-- cwl:links <name> <base> <active> -->` | Expands that named list (tip 1.0.65) |
+| `drawer …;` | Menu toggle script. No viewport or user-agent read (tip 1.0.65) |
+| `device host <a> <b>;` | Host device classes. `<!-- cwl:device -->` stays (tip 1.0.65) |
 | `<!-- cwl:page -->` | Nav id when `nav` is set; otherwise the page decl name |
 | `<!-- cwl:active <page> <class> -->` | Inserts ` <class>` only when the page name matches |
 | `return html """` … `""";` | Multi-line page body; quotes and newlines stay (tip 1.0.60) |
@@ -107,3 +119,4 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 - Gold `fixtures/language-gold/70-site-nav-id`
 - Gold `fixtures/language-gold/71-site-year`
 - Gold `fixtures/language-gold/72-site-nav-links`
+- Gold `fixtures/language-gold/73-site-shell-behavior`

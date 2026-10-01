@@ -54,6 +54,13 @@ const NAV_ID_RE = /^nav\s+([A-Za-z_][A-Za-z0-9_]*)\s*;$/;
 /** Shared nav row. Optional class replaces the slot's base class (contact CTA). */
 const LINK_RE =
   /^link\s+([A-Za-z_][A-Za-z0-9_]*)\s+"([^"]*)"\s+"([^"]*)"(?:\s+class\s+([A-Za-z][A-Za-z0-9_-]*))?\s*;$/;
+/** Following `link` rows belong to this named list until the next `links` statement. */
+const LINKS_GROUP_RE = /^links\s+([A-Za-z_][A-Za-z0-9_]*)\s*;$/;
+/** Host device classes. CWL does not read the viewport or the user agent. */
+const DEVICE_HOST_RE = /^device\s+host\s+([A-Za-z][A-Za-z0-9_-]*)\s+([A-Za-z][A-Za-z0-9_-]*)\s*;$/;
+/** Menu drawer. The host document gets the bounded toggle script. */
+const DRAWER_RE =
+  /^drawer\s+([A-Za-z][A-Za-z0-9_-]*)\s+toggle\s+([A-Za-z][A-Za-z0-9_-]*)\s+class\s+([A-Za-z][A-Za-z0-9_-]*)(?:\s+panel\s+([A-Za-z][A-Za-z0-9_-]*))?\s*;$/;
 const CLIENT_UI_START_RE = /^client\s+ui\b/;
 const CHROME_HTML_PREFIX_RE = /^chrome\s+html\s+/i;
 
@@ -203,7 +210,13 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
   /** @type {string | null} */
   let chromeHtml = null;
   let yearHost = false;
-  /** @type {Array<{ id: string, href: string, label: string, className?: string }>} */
+  /** @type {{ values: string[] } | null} */
+  let deviceHost = null;
+  /** @type {{ navId: string, toggleClass: string, openClass: string, panelId?: string } | null} */
+  let drawer = null;
+  /** @type {string} */
+  let linkGroup = "";
+  /** @type {Array<{ id: string, href: string, label: string, className?: string, group?: string }>} */
   const links = [];
   /** @type {object[]} */
   const pageIslands = [];
@@ -225,6 +238,8 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
           chromeHtml,
           pageIslands,
           ...(yearHost ? { yearHost: true } : {}),
+          ...(deviceHost ? { deviceHost } : {}),
+          ...(drawer ? { drawer } : {}),
           ...(links.length ? { links } : {}),
         },
         consumed: i,
@@ -249,10 +264,27 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
       yearHost = true;
       continue;
     }
+    const device = DEVICE_HOST_RE.exec(line);
+    if (device) {
+      deviceHost = { values: [device[1], device[2]] };
+      continue;
+    }
+    const drawerLine = DRAWER_RE.exec(line);
+    if (drawerLine) {
+      drawer = { navId: drawerLine[1], toggleClass: drawerLine[2], openClass: drawerLine[3] };
+      if (drawerLine[4]) drawer.panelId = drawerLine[4];
+      continue;
+    }
+    const group = LINKS_GROUP_RE.exec(line);
+    if (group) {
+      linkGroup = group[1];
+      continue;
+    }
     const link = LINK_RE.exec(line);
     if (link) {
       const row = { id: link[1], href: link[2], label: link[3] };
       if (link[4]) row.className = link[4];
+      if (linkGroup) row.group = linkGroup;
       links.push(row);
       continue;
     }

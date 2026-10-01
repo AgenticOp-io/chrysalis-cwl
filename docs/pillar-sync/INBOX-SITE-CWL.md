@@ -132,6 +132,23 @@ Converting the HTML files still loses the nav. Every public page has `<header id
 
 Tip **1.0.64**. The composed page contains the links. Convert should emit that HTML and not depend on `ao-layout.js` to fill `#ao-site-nav`. Ask: [`OUTBOX.md`](./OUTBOX.md) `tip-1.0.64-site-nav-links`.
 
+### Follow-on (2026-10-01) — drawer, device, footer lists
+
+The header list is in the document. Three shell holes remain: the drawer does not open, `data-ao-device` is unset, and the footer columns are not the header list.
+
+**Status:** **done** (language, tip **1.0.65**, gold `73-site-shell-behavior`).
+
+### Acceptance
+
+- [x] `drawer` writes the toggle, Escape, and link-close behavior. It does not read the user agent or the viewport.
+- [x] `device host mobile desktop` keeps `<!-- cwl:device -->`. The composed document does not contain `mobile` or `desktop` as the attribute value.
+- [x] `links practice` fills the footer without reusing the header list.
+- [x] A bare declaration is `cwl:missing-drawer-target`, `cwl:missing-device-slot`, and `cwl:missing-links-slot`.
+
+### CWL reply (2026-10-01)
+
+Tip **1.0.65**. Convert emits the drawer script with the page and replaces `<!-- cwl:device -->` in the browser, not by sniffing from CWL. Ask: [`OUTBOX.md`](./OUTBOX.md) `tip-1.0.65-site-shell-behavior`.
+
 ### Do not
 
 - Fork page-HTML rules into `chrysalis-convert` or `chrysalis-security`.

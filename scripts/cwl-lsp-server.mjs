@@ -185,6 +185,24 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: 'link ${1:home} "${2:/}" "${3:Home}";',
   },
   {
+    label: "links",
+    kind: KIND_SNIPPET,
+    detail: "Name the following link rows. <!-- cwl:links name base active --> fills that list.",
+    insertText: "links ${1:primary};",
+  },
+  {
+    label: "device host",
+    kind: KIND_SNIPPET,
+    detail: "Host device classes. <!-- cwl:device --> stays. CWL does not read the viewport or the user agent.",
+    insertText: "device host ${1:mobile} ${2:desktop};",
+  },
+  {
+    label: "drawer",
+    kind: KIND_SNIPPET,
+    detail: "Menu drawer. Click, Escape, and a link close it. No user-agent read.",
+    insertText: "drawer ${1:ao-site-nav} toggle ${2:ao-nav-toggle} class ${3:is-open} panel ${4:ao-nav-drawer};",
+  },
+  {
     label: "nav",
     kind: KIND_SNIPPET,
     detail: "Shared nav id for <!-- cwl:page --> and <!-- cwl:active --> (RFC-0029)",

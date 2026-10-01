@@ -80,6 +80,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `70-site-nav-id` | Shared nav id distinct from the page decl name | 0029 |
 | `71-site-year` | Host calendar year token; CWL does not read the clock | 0029 |
 | `72-site-nav-links` | Shared nav list fills desktop and mobile slots | 0029 |
+| `73-site-shell-behavior` | Drawer script, device token, named footer list | 0029 |
 
 ## Parseable subset notes (0.1.8)
 
