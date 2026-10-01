@@ -5,7 +5,7 @@ import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lo
 import { lowerCwlHtmlTemplateBody } from "./cwl-html-template.mjs";
 import { lowerCwlUiTreeBody, resolveCwlUiComponent } from "./cwl-ui-tree.mjs";
 import { parseCwlModuleResolved, resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";
-import { chromeHasHeadSlot, chromeHasLinksSlot, chromeHasYearSlot, composeLayoutChromeHtml } from "./cwl-layout.mjs";
+import { chromeHasDeviceSlot, chromeHasDrawerTargets, chromeHasHeadSlot, chromeHasLinkGroups, chromeHasYearSlot, composeLayoutChromeHtml } from "./cwl-layout.mjs";
 import { liftCwlModuleMiddlewareToWebir } from "./hub-cwl-middleware.mjs";
 import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
 import { cwlEffectsToWebir, wrapCwlCookiePurposes, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
@@ -279,9 +279,17 @@ export function liftCwlFileToWebir(opts) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-year-slot")) r.attachmentHoles.push("cwl:missing-year-slot");
     }
-    if (Array.isArray(r.navLinks) && r.navLinks.length && !chromeHasLinksSlot(r.layoutChromeHtml)) {
+    if (Array.isArray(r.navLinks) && r.navLinks.length && !chromeHasLinkGroups(r.layoutChromeHtml, r.navLinks)) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-links-slot")) r.attachmentHoles.push("cwl:missing-links-slot");
+    }
+    if (r.deviceHost && !chromeHasDeviceSlot(r.layoutChromeHtml)) {
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-device-slot")) r.attachmentHoles.push("cwl:missing-device-slot");
+    }
+    if (r.drawer && !chromeHasDrawerTargets(r.layoutChromeHtml, r.drawer)) {
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-drawer-target")) r.attachmentHoles.push("cwl:missing-drawer-target");
     }
     if (headHtml && !chromeHasHeadSlot(r.layoutChromeHtml)) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
@@ -294,6 +302,7 @@ export function liftCwlFileToWebir(opts) {
             pageName: r.name,
             navId: r.navId,
             links: r.navLinks,
+            drawer: r.drawer,
           })
         : null;
     if (r.loadBody && r.body.kind === "html" && r.loadBody.kind === "object" && r.loadBody.entries) {

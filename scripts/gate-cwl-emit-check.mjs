@@ -44,6 +44,7 @@ const SITE_SHELL = join(ROOT, "fixtures/language-gold/69-site-shell/routes.cwl")
 const SITE_NAV = join(ROOT, "fixtures/language-gold/70-site-nav-id/routes.cwl");
 const SITE_YEAR = join(ROOT, "fixtures/language-gold/71-site-year/routes.cwl");
 const SITE_LINKS = join(ROOT, "fixtures/language-gold/72-site-nav-links/routes.cwl");
+const SITE_SHELL_BEHAVIOR = join(ROOT, "fixtures/language-gold/73-site-shell-behavior/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -661,6 +662,28 @@ runEmitCheck(
       /ao-nav-cta ao-nav-link-active\\" href=\\"\/contact\.html\\"/.test(text) &&
       /ao-nav-toggle/.test(text) &&
       !/<!-- cwl:links/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-73-site-shell-behavior",
+  SITE_SHELL_BEHAVIOR,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeReasons ?? []).includes("cwl:missing-device-slot") &&
+      (rep.holeReasons ?? []).includes("cwl:missing-drawer-target") &&
+      (rep.holeReasons ?? []).includes("cwl:missing-links-slot") &&
+      /data-cwl-drawer=\\"1\\"/.test(text) &&
+      /Escape/.test(text) &&
+      /<!-- cwl:device -->/.test(text) &&
+      /href=\\"\/method\.html\\">Method/.test(text) &&
+      /ao-nav-cta ao-nav-link-active/.test(text) &&
+      !/userAgent/.test(text) &&
+      !/matchMedia/.test(text) &&
+      !/data-ao-device=\\"(mobile|desktop)\\"/.test(text)
     );
   },
   { stdout: true },

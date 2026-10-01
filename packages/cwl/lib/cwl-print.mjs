@@ -331,7 +331,22 @@ export function printCwlModule(mod, opts = {}) {
       lines.push(`  ${formatCookieDecl(c, purpose)};`);
     }
     if (L.yearHost) lines.push("  year host;");
+    if (L.deviceHost?.values?.length === 2) {
+      lines.push(`  device host ${L.deviceHost.values[0]} ${L.deviceHost.values[1]};`);
+    }
+    if (L.drawer) {
+      const panel = L.drawer.panelId ? ` panel ${L.drawer.panelId}` : "";
+      lines.push(
+        `  drawer ${L.drawer.navId} toggle ${L.drawer.toggleClass} class ${L.drawer.openClass}${panel};`,
+      );
+    }
+    let printedGroup = "";
     for (const link of L.links ?? []) {
+      const group = link.group || "";
+      if (group !== printedGroup) {
+        if (group) lines.push(`  links ${group};`);
+        printedGroup = group;
+      }
       const cls = link.className ? ` class ${link.className}` : "";
       lines.push(`  link ${link.id} ${JSON.stringify(link.href)} ${JSON.stringify(link.label)}${cls};`);
     }

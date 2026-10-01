@@ -12,7 +12,7 @@ This repo **owns the genome**. Convert translates into/out of it. Secure may bri
 | **Convert** | [**chrysalis**](https://github.com/AgenticOp-io/chrysalis) | Universal Translator — origin → WebIR/CWL → emit |
 | **Secure** | [**chrysalis-security**](https://github.com/AgenticOp-io/chrysalis-security) | Helix DNA firewall — allow only what certified traffic proves |
 
-**Tip:** see [`LANGUAGE_VERSION.md`](./LANGUAGE_VERSION.md) (currently **1.0.64**). Phase 1.x deepen continues — RFCs **0001–0034**, language golds `01`–`72`.
+**Tip:** see [`LANGUAGE_VERSION.md`](./LANGUAGE_VERSION.md) (currently **1.0.65**). Phase 1.x deepen continues — RFCs **0001–0034**, language golds `01`–`73`.
 
 **Start here:** [`docs/language/CWL-HOWTO.md`](./docs/language/CWL-HOWTO.md) · [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md) · [`docs/language/ROSETTA-UT-PATH.md`](./docs/language/ROSETTA-UT-PATH.md) · [`docs/language/CWL-LANGUAGE-SCOPE.md`](./docs/language/CWL-LANGUAGE-SCOPE.md)
 
