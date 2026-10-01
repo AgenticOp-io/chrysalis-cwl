@@ -4,7 +4,7 @@
  */
 import { extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { parseCwlStandaloneIslandBlock, parseCwlUiReturnBlock } from "./cwl-ui-tree.mjs";
-import { formatSessionCookieAttrs, parseAuthRequireEffect, parseCacheMaxAgeEffect, parseCachePrivateEffect, parseCookieDecl, parseCorsAllowEffect, parseCsrfVerifyEffect, parseDbEffect, parseIoEffect, parseMailSendEffect, parseRateLimitEffect, parseSessionAccessEffect, parseSessionCookieEffect, sessionCookieTrackingAbuse } from "./hub-cwl-effects.mjs";
+import { formatSessionCookieAttrs, parseAuthRequireEffect, parseCacheMaxAgeEffect, parseCachePrivateEffect, parseCookieDecl, parseCorsAllowEffect, parseCsrfVerifyEffect, parseDbEffect, parseIoEffect, parseMailSendEffect, parseRateLimitEffect, parseSessionAccessEffect, parseSessionCookieEffect, redirectStatusAllowed, sameOriginRedirectPath, sessionCookieTrackingAbuse } from "./hub-cwl-effects.mjs";
 
 const COMPONENT_DECL_RE = /^@component\s+([A-Za-z_][A-Za-z0-9_]*)\s*\{/;
 const PROP_RE = /^prop\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;$/;
@@ -831,6 +831,8 @@ export function parseCwlModule(source, file) {
     /** @type {Array<{ name: string, default?: unknown }>} */
     const responseHeaders = [];
     let responseStatus = null;
+    /** @type {{ path: string, status: number } | null} */
+    let redirect = null;
     let responseContentType = null;
     /** @type {string | null} */
     let streamKind = null;
@@ -950,6 +952,22 @@ export function parseCwlModule(source, file) {
       const sm = STATUS_RE.exec(inner);
       if (sm) {
         responseStatus = Number(sm[1]);
+        continue;
+      }
+      if (/^redirect\b/i.test(inner)) {
+        const rd = /^redirect\s+(\S+)(?:\s+status\s+(\d{3}))?\s*;$/i.exec(inner);
+        const lit = rd ? parseCwlLiteral(rd[1]) : { ok: false, value: null };
+        const status = rd?.[2] ? Number(rd[2]) : 302;
+        const target = lit.ok && typeof lit.value === "string" ? lit.value : "";
+        if (rd && sameOriginRedirectPath(target) && redirectStatusAllowed(status)) {
+          redirect = { path: target, status };
+        } else if (!attachmentHoles.includes("unsupported:open-redirect")) {
+          const holeRaw = lines[i - 1] ?? "";
+          attachmentHoles.push("unsupported:open-redirect");
+          attachmentHoleLines.push(i);
+          attachmentHoleCharacters.push(keywordStartCharacter0(holeRaw));
+          attachmentHoleEndCharacters.push(keywordEndCharacter0(holeRaw, "redirect"));
+        }
         continue;
       }
       const ctm = CONTENT_TYPE_RE.exec(inner);
@@ -1234,7 +1252,8 @@ export function parseCwlModule(source, file) {
       handlerBodyParams,
       handlerMultipartFields,
       handlerMultipartFiles,
-      responseStatus,
+      responseStatus: redirect?.status ?? responseStatus,
+      redirect,
       responseContentType,
       streamKind,
       responseHeaders,

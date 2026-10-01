@@ -36,6 +36,7 @@ const CORS_CREDENTIALS = join(ROOT, "fixtures/language-gold/61-cors-allow-creden
 const SESSION_ACCESS = join(ROOT, "fixtures/language-gold/62-session-access-cookie/routes.cwl");
 const CACHE_PRIVATE = join(ROOT, "fixtures/language-gold/63-cache-private/routes.cwl");
 const COOKIE_PURPOSE = join(ROOT, "fixtures/language-gold/64-cookie-purpose/routes.cwl");
+const REDIRECT_SAME = join(ROOT, "fixtures/language-gold/65-redirect-same-origin/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -509,6 +510,22 @@ runEmitCheck(
       /effects:\s*auth\.require\s+cookie\s+sid;/.test(text) &&
       !/samesite\s+none/.test(text) &&
       !/cookie\s+_ga\b/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-65-redirect-same-origin",
+  REDIRECT_SAME,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 0) >= 1 &&
+      (rep.holeReasons ?? []).includes("unsupported:open-redirect") &&
+      /redirect\s+"\/account";/.test(text) &&
+      /redirect\s+"\/home"\s+status\s+301;/.test(text) &&
+      !/https:\/\/evil\.example/.test(text)
     );
   },
   { stdout: true },

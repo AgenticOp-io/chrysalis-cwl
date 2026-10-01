@@ -1,4 +1,4 @@
-import { formatCookieDecl } from "./hub-cwl-effects.mjs";
+import { formatCookieDecl, formatRedirectStatement } from "./hub-cwl-effects.mjs";
 
 /**
  * Print `else if` / `else` tails for an if / earlyGuard node.
@@ -355,7 +355,9 @@ export function printCwlModule(mod, opts = {}) {
       lines.push(`  layout ${route.layoutName};`);
     }
 
-    if (typeof route.responseStatus === "number") {
+    if (route.redirect?.path) {
+      lines.push(`  ${formatRedirectStatement(route.redirect)};`);
+    } else if (typeof route.responseStatus === "number") {
       lines.push(`  status ${route.responseStatus};`);
     }
     if (route.streamKind === "sse") {
@@ -542,7 +544,10 @@ export function canonicalizeCwlModule(mod) {
       handlerBodyParams: [...(r.handlerBodyParams ?? [])],
       handlerMultipartFields: [...(r.handlerMultipartFields ?? [])],
       handlerMultipartFiles: [...(r.handlerMultipartFiles ?? [])],
-      responseStatus: r.responseStatus ?? null,
+      responseStatus: r.redirect?.path ? null : (r.responseStatus ?? null),
+      redirect: r.redirect?.path
+        ? { path: r.redirect.path, status: r.redirect.status ?? 302 }
+        : null,
       responseContentType: r.responseContentType ?? null,
       streamKind: r.streamKind ?? null,
       responseHeaders: (r.responseHeaders ?? []).map((h) =>

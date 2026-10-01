@@ -4,11 +4,34 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-09-26 - tip-1.0.56-cookie-purpose
+## 2026-09-30 - tip-1.0.57-same-site-redirect
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
+**CWL tip:** **1.0.57** (RFC-0006 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.57**; peel gold `65` (`redirect "/path"` and `redirect "/path" status 301`). Off-site targets stay `unsupported:open-redirect`. Gold `14` status plus location header stays |
+| Secure | Pin to **1.0.57**. A declared redirect is a same-site path only. Do not follow a genome target that is off-site |
+
+### CWL landed
+
+- `redirect "/account"` defaults to 302
+- `redirect "/home" status 301` (also 303, 307, 308)
+- Scheme and protocol-relative targets are `unsupported:open-redirect`
+- Siblings closed tip **1.0.56**
+
+---
+
+## 2026-09-26 - tip-1.0.56-cookie-purpose
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **done**  
 **CWL tip:** **1.0.56** (RFC-0034)
 
 ### Ask

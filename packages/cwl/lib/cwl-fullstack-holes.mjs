@@ -217,6 +217,13 @@ export const CWL_FULLSTACK_HOLE_CATALOG = {
     surface: "api",
     summary: "WebSocket upgrade — declare hole until a duplex surface RFC exists; do not invent WS framework façades.",
   },
+  "unsupported:open-redirect": {
+    rfc: "0006",
+    origin: "cwl",
+    surface: "api",
+    summary:
+      "Redirect target is not a same-site path. Off-site and protocol-relative targets stay a hole so the genome cannot declare an open redirect.",
+  },
   "unsupported:tracking-cookie": {
     rfc: "0034",
     origin: "cwl",
