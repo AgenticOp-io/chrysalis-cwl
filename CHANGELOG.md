@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.58 - 2026-09-30
+
+- RFC-0020 deepen: `cache.no-store` — nothing may store the response
+- Gold `66-cache-no-store`; composes with `cache.private`
+- Host sets the header — no CDN invent
+
 ## 1.0.57 - 2026-09-30
 
 - RFC-0006 deepen: `redirect "/path"` for a same-site path (optional status 301/302/303/307/308)

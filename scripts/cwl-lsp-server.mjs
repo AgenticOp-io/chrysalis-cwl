@@ -251,6 +251,7 @@ export const CWL_EFFECT_PRESETS = Object.freeze([
     insertText: "cache.max-age ${1:3600}",
   },
   { label: "cache.private", kind: KIND_TEXT, detail: "Cache-Control private (RFC-0020 deepen; host sets the header)" },
+  { label: "cache.no-store", kind: KIND_TEXT, detail: "Cache-Control no-store (RFC-0020 deepen; host sets the header)" },
   { label: "csrf.verify", kind: KIND_TEXT, detail: "Effect preset: csrf.verify" },
   { label: "rate.limit", kind: KIND_TEXT, detail: "Effect preset: rate.limit" },
 ]);
