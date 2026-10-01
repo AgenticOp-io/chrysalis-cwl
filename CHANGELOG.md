@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.64 - 2026-10-01
+
+- RFC-0029 deepen: `link <id> "<href>" "<label>";` is the shared nav. `<!-- cwl:links <base> <active> -->` expands every copy
+- Gold `72-site-nav-links`; a row `class` replaces the base class; no slot is `cwl:missing-links-slot`
+- The Menu control is document text. Opening the drawer and `data-ao-device` stay `unsupported:opaque-script`
+
 ## 1.0.63 - 2026-10-01
 
 - RFC-0029 deepen: `year host;` names the host calendar year. `<!-- cwl:year -->` stays in the document

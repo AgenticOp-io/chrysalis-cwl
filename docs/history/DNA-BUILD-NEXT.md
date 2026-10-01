@@ -1,7 +1,7 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Tip:** **`1.0.63`** - host calendar year (RFC-0029 deepen)
+**Tip:** **`1.0.64`** - shared nav list (RFC-0029 deepen)
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -58,6 +58,7 @@
 | P0 | Site shell head / page id (`69`) | **done** (`1.0.61`) — `head html`, `<!-- cwl:page -->`, active class; menu script stays a hole |
 | P0 | Shared nav id (`70`) | **done** (`1.0.62`) — `nav <id>;` marks header and footer; page decl name stays |
 | P0 | Host calendar year (`71`) | **done** (`1.0.63`) — `<!-- cwl:year -->` stays; CWL does not read the clock |
+| P0 | Shared nav list (`72`) | **done** (`1.0.64`) — one `link` list fills every nav slot; drawer click and device sniff stay holes |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
 | — | **Cinderpath consume** | genome declares holes in CWL; Go executor only |
@@ -69,6 +70,7 @@
 | Tip pin **1.0.61** | Convert + Secure — **done** (candidate branches) |
 | Tip pin **1.0.62** | Convert + Secure — **done** (candidate / Convert main) |
 | Tip pin **1.0.63** | Convert + Secure — **asked** |
+| Tip pin **1.0.64** | Convert + Secure — **asked** |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |

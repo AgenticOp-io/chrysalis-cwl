@@ -43,6 +43,7 @@ const SITE_DOCUMENT = join(ROOT, "fixtures/language-gold/68-site-document/routes
 const SITE_SHELL = join(ROOT, "fixtures/language-gold/69-site-shell/routes.cwl");
 const SITE_NAV = join(ROOT, "fixtures/language-gold/70-site-nav-id/routes.cwl");
 const SITE_YEAR = join(ROOT, "fixtures/language-gold/71-site-year/routes.cwl");
+const SITE_LINKS = join(ROOT, "fixtures/language-gold/72-site-nav-links/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -640,6 +641,26 @@ runEmitCheck(
       (rep.holeReasons ?? []).includes("cwl:missing-year-slot") &&
       /<!-- cwl:year -->/.test(text) &&
       !/©\s+20\d\d/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-72-site-nav-links",
+  SITE_LINKS,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeReasons ?? []).includes("unsupported:opaque-script") &&
+      (rep.holeReasons ?? []).includes("cwl:missing-links-slot") &&
+      /ao-nav-links--desktop/.test(text) &&
+      /ao-nav-links--mobile/.test(text) &&
+      /ao-nav-link ao-nav-link-active\\" href=\\"\/\\">Home/.test(text) &&
+      /ao-nav-link ao-nav-link-active\\" href=\\"\/docs\.html\\"/.test(text) &&
+      /ao-nav-cta ao-nav-link-active\\" href=\\"\/contact\.html\\"/.test(text) &&
+      /ao-nav-toggle/.test(text) &&
+      !/<!-- cwl:links/.test(text)
     );
   },
   { stdout: true },

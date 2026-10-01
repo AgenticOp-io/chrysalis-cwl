@@ -1,7 +1,7 @@
 # CWL RFC-0029 — Layout chrome wrap
 
 **Status:** accepted (2026-09-14); document shell deepened (2026-09-30); per-page head and shared nav id (2026-10-01)  
-**Tip:** **1.0.63** (chrome prefix since 1.0.27)  
+**Tip:** **1.0.64** (chrome prefix since 1.0.27)  
 **Extends:** [RFC-0011](CWL-RFC-0011-full-stack-layouts.md) (import merge stays; this adds wrap)  
 **Ask:** [CWL-EXPAND.md](../history/CWL-EXPAND.md) §1
 
@@ -65,6 +65,10 @@ A shared shell still cannot say which page is current, or carry that page's titl
 
 `year host;` tells the host to fill the calendar year. `<!-- cwl:year -->` stays in the composed document. CWL does not replace it with digits. A declaration with no token is `cwl:missing-year-slot`. The menu toggle and the `data-ao-device` switch stay `unsupported:opaque-script`.
 
+## Deepen — shared nav list (tip 1.0.64)
+
+The live header is empty. `ao-layout.js` writes the same link list into the desktop nav and the mobile drawer, and the contact row uses `ao-nav-cta` instead of `ao-nav-link`. `link <id> "<href>" "<label>";` is that list. `<!-- cwl:links <baseClass> <activeClass> -->` expands every copy. `class <token>` on a row replaces the base class. The active class is added when the row id matches the nav id. A list with no slot is `cwl:missing-links-slot`. The Menu button can sit in the chrome as text. Opening the drawer and setting `data-ao-device` stay `unsupported:opaque-script`.
+
 ## Syntax
 
 | Construct | Meaning |
@@ -75,6 +79,8 @@ A shared shell still cannot say which page is current, or carry that page's titl
 | `head html """` … `""";` | Per-page head fragment for `<!-- cwl:head -->` (tip 1.0.61) |
 | `nav <id>;` | Shared nav id. Header and footer markers use it (tip 1.0.62) |
 | `year host;` | Host calendar year. `<!-- cwl:year -->` stays in the document (tip 1.0.63) |
+| `link <id> "<href>" "<label>";` | Shared nav row. Optional `class <token>` (tip 1.0.64) |
+| `<!-- cwl:links <base> <active> -->` | Expands the link list. Every copy is filled (tip 1.0.64) |
 | `<!-- cwl:page -->` | Nav id when `nav` is set; otherwise the page decl name |
 | `<!-- cwl:active <page> <class> -->` | Inserts ` <class>` only when the page name matches |
 | `return html """` … `""";` | Multi-line page body; quotes and newlines stay (tip 1.0.60) |
@@ -100,3 +106,4 @@ A shared shell still cannot say which page is current, or carry that page's titl
 - Gold `fixtures/language-gold/69-site-shell`
 - Gold `fixtures/language-gold/70-site-nav-id`
 - Gold `fixtures/language-gold/71-site-year`
+- Gold `fixtures/language-gold/72-site-nav-links`

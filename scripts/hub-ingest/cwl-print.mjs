@@ -331,6 +331,10 @@ export function printCwlModule(mod, opts = {}) {
       lines.push(`  ${formatCookieDecl(c, purpose)};`);
     }
     if (L.yearHost) lines.push("  year host;");
+    for (const link of L.links ?? []) {
+      const cls = link.className ? ` class ${link.className}` : "";
+      lines.push(`  link ${link.id} ${JSON.stringify(link.href)} ${JSON.stringify(link.label)}${cls};`);
+    }
     for (const hole of L.holes ?? []) {
       const r = String(hole ?? "cwl:hole");
       lines.push(

@@ -51,6 +51,9 @@ const PROXY_UPSTREAM_RE = /^proxy\s+upstream\s+(.+);$/i;
 const LAYOUT_DECL_RE = /^layout\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\{/;
 const LAYOUT_USE_RE = /^layout\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;$/;
 const NAV_ID_RE = /^nav\s+([A-Za-z_][A-Za-z0-9_]*)\s*;$/;
+/** Shared nav row. Optional class replaces the slot's base class (contact CTA). */
+const LINK_RE =
+  /^link\s+([A-Za-z_][A-Za-z0-9_]*)\s+"([^"]*)"\s+"([^"]*)"(?:\s+class\s+([A-Za-z][A-Za-z0-9_-]*))?\s*;$/;
 const CLIENT_UI_START_RE = /^client\s+ui\b/;
 const CHROME_HTML_PREFIX_RE = /^chrome\s+html\s+/i;
 
@@ -200,6 +203,8 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
   /** @type {string | null} */
   let chromeHtml = null;
   let yearHost = false;
+  /** @type {Array<{ id: string, href: string, label: string, className?: string }>} */
+  const links = [];
   /** @type {object[]} */
   const pageIslands = [];
   let i = startIdx + 1;
@@ -220,6 +225,7 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
           chromeHtml,
           pageIslands,
           ...(yearHost ? { yearHost: true } : {}),
+          ...(links.length ? { links } : {}),
         },
         consumed: i,
       };
@@ -241,6 +247,13 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
     }
     if (/^year\s+host\s*;$/.test(line)) {
       yearHost = true;
+      continue;
+    }
+    const link = LINK_RE.exec(line);
+    if (link) {
+      const row = { id: link[1], href: link[2], label: link[3] };
+      if (link[4]) row.className = link[4];
+      links.push(row);
       continue;
     }
     const hol = HOLE_RE.exec(line);

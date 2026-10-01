@@ -4,6 +4,30 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-01 - tip-1.0.64-site-nav-links
+
+**To:** convert + secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.64** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.64**. Peel gold `72`. Emit the expanded link list as static HTML. Do not depend on `ao-layout.js` to fill `#ao-site-nav`. Do not invent the drawer click or a device sniff |
+| Secure | Pin to **1.0.64**. A nav list is document text. Do not treat the viewport or the user agent as genome |
+
+### CWL landed
+
+- `link <id> "<href>" "<label>";` fills every `<!-- cwl:links -->`
+- `class <token>` replaces the base class
+- A list with no slot is `cwl:missing-links-slot`
+- The Menu button is document text. Opening the drawer and `data-ao-device` stay `unsupported:opaque-script`
+- Reply on [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md)
+
+---
+
 ## 2026-10-01 - tip-1.0.63-site-year
 
 **To:** convert + secure  

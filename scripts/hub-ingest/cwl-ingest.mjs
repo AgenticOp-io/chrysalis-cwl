@@ -5,7 +5,7 @@ import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lo
 import { lowerCwlHtmlTemplateBody } from "./cwl-html-template.mjs";
 import { lowerCwlUiTreeBody, resolveCwlUiComponent } from "./cwl-ui-tree.mjs";
 import { parseCwlModuleResolved, resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";
-import { chromeHasHeadSlot, chromeHasYearSlot, composeLayoutChromeHtml } from "./cwl-layout.mjs";
+import { chromeHasHeadSlot, chromeHasLinksSlot, chromeHasYearSlot, composeLayoutChromeHtml } from "./cwl-layout.mjs";
 import { liftCwlModuleMiddlewareToWebir } from "./hub-cwl-middleware.mjs";
 import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
 import { cwlEffectsToWebir, wrapCwlCookiePurposes, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
@@ -279,6 +279,10 @@ export function liftCwlFileToWebir(opts) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-year-slot")) r.attachmentHoles.push("cwl:missing-year-slot");
     }
+    if (Array.isArray(r.navLinks) && r.navLinks.length && !chromeHasLinksSlot(r.layoutChromeHtml)) {
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-links-slot")) r.attachmentHoles.push("cwl:missing-links-slot");
+    }
     if (headHtml && !chromeHasHeadSlot(r.layoutChromeHtml)) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-head-slot")) r.attachmentHoles.push("cwl:missing-head-slot");
@@ -289,6 +293,7 @@ export function liftCwlFileToWebir(opts) {
             head: headHtml,
             pageName: r.name,
             navId: r.navId,
+            links: r.navLinks,
           })
         : null;
     if (r.loadBody && r.body.kind === "html" && r.loadBody.kind === "object" && r.loadBody.entries) {
