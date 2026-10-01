@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.61 - 2026-10-01
+
+- RFC-0029 deepen: per-page `head html`, `<!-- cwl:page -->`, and `<!-- cwl:active <page> <class> -->` on a shared shell
+- Gold `69-site-shell`; a head with no slot is `cwl:missing-head-slot`
+- Menu script, CSS, images, and Firebase Hosting stay outside the language
+
 ## 1.0.60 - 2026-09-30
 
 - RFC-0029 deepen: multi-line `return html """` / `chrome html """` so a real document can be a page

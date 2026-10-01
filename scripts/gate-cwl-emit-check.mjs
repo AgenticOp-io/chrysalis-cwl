@@ -40,6 +40,7 @@ const REDIRECT_SAME = join(ROOT, "fixtures/language-gold/65-redirect-same-origin
 const CACHE_NO_STORE = join(ROOT, "fixtures/language-gold/66-cache-no-store/routes.cwl");
 const CACHE_NO_CACHE = join(ROOT, "fixtures/language-gold/67-cache-no-cache/routes.cwl");
 const SITE_DOCUMENT = join(ROOT, "fixtures/language-gold/68-site-document/routes.cwl");
+const SITE_SHELL = join(ROOT, "fixtures/language-gold/69-site-shell/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -577,6 +578,29 @@ runEmitCheck(
       /application\/ld\+json/.test(text) &&
       /class=\\"top\\"/.test(text) &&
       !/<!-- cwl:body -->/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-69-site-shell",
+  SITE_SHELL,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeCount ?? 0) >= 3 &&
+      (rep.holeReasons ?? []).includes("unsupported:opaque-script") &&
+      (rep.holeReasons ?? []).includes("cwl:missing-head-slot") &&
+      /<title>Home<\/title>/.test(text) &&
+      /<title>Docs<\/title>/.test(text) &&
+      /data-ao-page=\\"home\\"/.test(text) &&
+      /data-ao-page=\\"docs\\"/.test(text) &&
+      /ao-nav-link ao-nav-link-active\\" href=\\"\/\\"/.test(text) &&
+      /ao-nav-link ao-nav-link-active\\" href=\\"\/docs\.html\\"/.test(text) &&
+      !/<!-- cwl:/.test(text) &&
+      !/<title>Bare<\/title>/.test(text) &&
+      /<p>bare<\/p>/.test(text)
     );
   },
   { stdout: true },

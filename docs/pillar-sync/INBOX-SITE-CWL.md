@@ -49,6 +49,20 @@ Shared assets the pages reference: `/agenticops.css`, `/ao-layout.js`, `/logo.sv
 
 Tip **1.0.60**, gold `68-site-document`. `return html """` … `""";` and `chrome html """` … `""";` keep newlines and quotes. `<!-- cwl:body -->` is the one slot; gold 36 prefix chrome is unchanged. The live site files were not rewritten. Convert peels and static emit to Firebase `public/` are the next ask ([`OUTBOX.md`](./OUTBOX.md) `tip-1.0.60-site-document`).
 
+### Follow-on (2026-10-01) — shared shell still could not carry a real page
+
+Reading the live pages after tip 1.0.60: each document has its own `<title>` and meta, `data-ao-page`, and an active nav class. One body slot cannot say those. `ao-layout.js` was filling the nav and footer at runtime.
+
+**Status:** **done** (language, tip **1.0.61**, gold `69-site-shell`)
+
+- `head html` fills `<!-- cwl:head -->`
+- `<!-- cwl:page -->` is the page decl name
+- `<!-- cwl:active <page> <class> -->` inserts that class only on the matching page
+- A head with no slot is `cwl:missing-head-slot` and is left out of the response
+- The menu toggle, viewport script, CSS, images, and Firebase Hosting stay outside. `unsupported:opaque-script` stays on the shell
+
+Convert peels gold `69` and still emits static HTML. Ask: [`OUTBOX.md`](./OUTBOX.md) `tip-1.0.61-site-shell`.
+
 ### Do not
 
 - Fork page-HTML rules into `chrysalis-convert` or `chrysalis-security`.

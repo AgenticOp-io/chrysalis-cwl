@@ -136,13 +136,25 @@ export function extractCwlChromeHtmlLiteral(inner) {
 const HTML_BLOCK_CLOSE_RE = /^"""\s*;\s*$/;
 
 /**
+ * Extract `head html "…";` literal including quotes (RFC-0029 deepen).
+ * @param {string} inner
+ * @returns {string | null}
+ */
+export function extractCwlHeadHtmlLiteral(inner) {
+  const t = String(inner ?? "").trim();
+  if (!/^head\s+html\s+/i.test(t)) return null;
+  return extractCwlHtmlReturnLiteral(t.replace(/^head\s+html\s+/i, "return html "));
+}
+
+/**
  * @param {string} line
- * @returns {"return" | "chrome" | null}
+ * @returns {"return" | "chrome" | "head" | null}
  */
 export function cwlHtmlBlockKind(line) {
   const t = String(line ?? "").trim();
   if (/^return\s+html\s+"""\s*$/i.test(t)) return "return";
   if (/^chrome\s+html\s+"""\s*$/i.test(t)) return "chrome";
+  if (/^head\s+html\s+"""\s*$/i.test(t)) return "head";
   return null;
 }
 
@@ -900,6 +912,8 @@ export function parseCwlModule(source, file) {
     const htmlRepeats = [];
     /** @type {string | null} RFC-0029 layout name */
     let layoutName = null;
+    /** @type {string | null} Per-page head fragment (RFC-0029 deepen) */
+    let headHtml = null;
     /** @type {object[]} RFC-0030 page-level client islands (sibling to return html) */
     const pageIslands = [];
     let body = {
@@ -1060,6 +1074,20 @@ export function parseCwlModule(source, file) {
         continue;
       }
       const htmlBlock = cwlHtmlBlockKind(inner);
+      if (htmlBlock === "head") {
+        const block = readCwlHtmlBlock(lines, i);
+        i = block.next;
+        if (block.ok) headHtml = block.value;
+        else if (!attachmentHoles.includes("cwl:unclosed-html")) attachmentHoles.push("cwl:unclosed-html");
+        continue;
+      }
+      const headLit = extractCwlHeadHtmlLiteral(inner);
+      if (headLit !== null) {
+        const lit = parseCwlLiteral(headLit);
+        if (lit.ok && typeof lit.value === "string") headHtml = lit.value;
+        else if (!attachmentHoles.includes("cwl:invalid-html-return")) attachmentHoles.push("cwl:invalid-html-return");
+        continue;
+      }
       if (htmlBlock === "return") {
         const block = readCwlHtmlBlock(lines, i);
         i = block.next;
@@ -1324,6 +1352,7 @@ export function parseCwlModule(source, file) {
       attachmentHoleCharacters,
       attachmentHoleEndCharacters,
       layoutName,
+      ...(typeof headHtml === "string" ? { headHtml } : {}),
       pageIslands,
       htmlRepeats,
       body,

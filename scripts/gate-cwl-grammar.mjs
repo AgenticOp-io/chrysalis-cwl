@@ -30,6 +30,7 @@ const LABEL_TO_WORDS = {
   "multipart file": ["multipart"],
   "stream sse": ["stream"],
   "chrome html": ["chrome", "html"],
+  "head html": ["head", "html"],
   "proxy upstream": ["proxy", "upstream"],
   "session.mint cookie": ["cookie"],
   "session.revoke cookie": ["cookie"],

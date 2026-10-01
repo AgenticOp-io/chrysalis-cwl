@@ -172,6 +172,12 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     detail: "Layout chrome HTML prefix (RFC-0029)",
     insertText: 'chrome html "${1:<header></header>}";',
   },
+  {
+    label: "head html",
+    kind: KIND_SNIPPET,
+    detail: "Per-page head fragment for <!-- cwl:head --> (RFC-0029)",
+    insertText: 'head html "${1:<title></title>}";',
+  },
 ]);
 
 /** @type {ReadonlyArray<{ label: string, kind: number, detail: string }>} */
