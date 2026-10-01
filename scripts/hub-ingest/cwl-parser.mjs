@@ -4,7 +4,7 @@
  */
 import { extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { parseCwlStandaloneIslandBlock, parseCwlUiReturnBlock } from "./cwl-ui-tree.mjs";
-import { formatSessionCookieAttrs, parseAuthRequireEffect, parseCacheMaxAgeEffect, parseCacheNoStoreEffect, parseCachePrivateEffect, parseCookieDecl, parseCorsAllowEffect, parseCsrfVerifyEffect, parseDbEffect, parseIoEffect, parseMailSendEffect, parseRateLimitEffect, parseSessionAccessEffect, parseSessionCookieEffect, redirectStatusAllowed, sameOriginRedirectPath, sessionCookieTrackingAbuse } from "./hub-cwl-effects.mjs";
+import { formatSessionCookieAttrs, parseAuthRequireEffect, parseCacheMaxAgeEffect, parseCacheNoCacheEffect, parseCacheNoStoreEffect, parseCachePrivateEffect, parseCookieDecl, parseCorsAllowEffect, parseCsrfVerifyEffect, parseDbEffect, parseIoEffect, parseMailSendEffect, parseRateLimitEffect, parseSessionAccessEffect, parseSessionCookieEffect, redirectStatusAllowed, sameOriginRedirectPath, sessionCookieTrackingAbuse } from "./hub-cwl-effects.mjs";
 
 const COMPONENT_DECL_RE = /^@component\s+([A-Za-z_][A-Za-z0-9_]*)\s*\{/;
 const PROP_RE = /^prop\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;$/;
@@ -536,6 +536,8 @@ function normalizeEffectTag(raw) {
   if (parseCachePrivateEffect(raw)) return "cache.private";
   if (parseCacheNoStoreEffect(raw)) return "cache.no-store";
   if (/^cache\.no-store\b/i.test(raw)) return ""; // invalid form — drop
+  if (parseCacheNoCacheEffect(raw)) return "cache.no-cache";
+  if (/^cache\.no-cache\b/i.test(raw)) return ""; // invalid form — drop
   return raw;
 }
 

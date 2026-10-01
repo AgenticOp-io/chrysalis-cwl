@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-09-30 - tip-1.0.59-cache-no-cache
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.59** (RFC-0020 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.59**; peel gold `67` (`cache.no-cache`, including with `cache.private`). Host sets Cache-Control. No CDN invent. Still peel golds `65`–`66` if those tips are not pinned yet |
+| Secure | Pin to **1.0.59**. `cache.no-cache` means a cache may store the response only if it revalidates first. Do not invent a cache |
+
+### CWL landed
+
+- `cache.no-cache` composes with `cache.private`
+- `cache.no-store` is unchanged and stronger
+- Siblings are still on tip **1.0.56**
+
+---
+
 ## 2026-09-30 - tip-1.0.58-cache-no-store
 
 **To:** convert + secure  
