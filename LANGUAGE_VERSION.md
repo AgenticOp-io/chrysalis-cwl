@@ -3,16 +3,16 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.61` |
-| **Status** | RFC-0029 deepen — per-page head in a shared shell |
+| **Version** | `1.0.62` |
+| **Status** | RFC-0029 deepen — shared nav id |
 | **Date** | 2026-10-01 |
 
 ## What this version means
 
-- **RFC-0029 deepen:** `head html` fills `<!-- cwl:head -->`; `<!-- cwl:page -->` is the page name; `<!-- cwl:active <page> <class> -->` marks the current page
-- **Gold `69`:** a shared shell with two pages; a head with no slot is `cwl:missing-head-slot`
+- **RFC-0029 deepen:** `nav <id>;` is the shared nav id for `<!-- cwl:page -->` and `<!-- cwl:active -->`. The page decl name stays its own
+- **Gold `70`:** `paper_cwl` marks Docs in the header and the footer; a page with no `nav` still uses its name
 - The menu script, CSS, images, and hosting stay outside the language
-- Prior tip **1.0.60:** multi-line page HTML (gold `68`)
+- Prior tip **1.0.61:** per-page head (gold `69`)
 
 ## Gate
 

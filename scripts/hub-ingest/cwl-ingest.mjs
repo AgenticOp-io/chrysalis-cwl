@@ -281,7 +281,11 @@ export function liftCwlFileToWebir(opts) {
     }
     const pageHtml =
       r.body.kind === "html"
-        ? composeLayoutChromeHtml(r.layoutChromeHtml, r.body.value, { head: headHtml, pageName: r.name })
+        ? composeLayoutChromeHtml(r.layoutChromeHtml, r.body.value, {
+            head: headHtml,
+            pageName: r.name,
+            navId: r.navId,
+          })
         : null;
     if (r.loadBody && r.body.kind === "html" && r.loadBody.kind === "object" && r.loadBody.entries) {
       const redirectEntry = r.loadBody.entries.find((e) => e.key === "redirect");

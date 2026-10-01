@@ -31,6 +31,7 @@ const LABEL_TO_WORDS = {
   "stream sse": ["stream"],
   "chrome html": ["chrome", "html"],
   "head html": ["head", "html"],
+  nav: ["nav"],
   "proxy upstream": ["proxy", "upstream"],
   "session.mint cookie": ["cookie"],
   "session.revoke cookie": ["cookie"],

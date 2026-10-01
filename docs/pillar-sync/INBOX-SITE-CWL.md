@@ -5,7 +5,7 @@
 **To:** cwl
 **From:** parent (agenticop.io / `brand/agenticops-web`)
 **Priority:** P1
-**Status:** **open** (tip **1.0.61** still cannot mark a shared nav id)
+**Status:** **done** (language, tip **1.0.62**)
 **CWL tip observed:** 1.0.61
 **Lane:** do this in `engines/chrysalis-cwl`. Do not invent a second HTML syntax under `brand/agenticops-web`, Convert, or Secure.
 
@@ -81,14 +81,18 @@ The same script still writes the header and footer (`#ao-site-nav`, `#ao-site-fo
 
 Convert has not pinned **1.0.61**. Static emit stays the open ask `tip-1.0.61-site-shell` in [`OUTBOX.md`](./OUTBOX.md).
 
-**Status:** **open**
+**Status:** **done** (language, tip **1.0.62**, gold `70-site-nav-id`)
 
 ### Acceptance
 
-- [ ] A page keeps its own decl name and still marks one shared nav id, so `paper-cwl` highlights Docs and `whitepaper` highlights About.
-- [ ] The same shared id marks the matching footer link.
-- [ ] Gold `69` still passes when the nav id is the page name.
-- [ ] The menu script, CSS, images, and Firebase Hosting stay holes.
+- [x] A page keeps its own decl name and still marks one shared nav id, so `paper-cwl` highlights Docs and `whitepaper` highlights About.
+- [x] The same shared id marks the matching footer link.
+- [x] Gold `69` still passes when the nav id is the page name.
+- [x] The menu script, CSS, images, and Firebase Hosting stay holes.
+
+### CWL reply (2026-10-01)
+
+`nav docs;` on page `paper_cwl` fills `<!-- cwl:page -->` and both the header and footer `<!-- cwl:active docs … -->` markers. `whitepaper` uses `nav about;`. A page with no `nav` statement still uses its decl name, so gold `69` is unchanged. The menu script stays `unsupported:opaque-script`. Convert peels gold `70`. Ask: [`OUTBOX.md`](./OUTBOX.md) `tip-1.0.62-nav-id`. Convert and Secure already pinned **1.0.61**.
 
 ### Do not
 
