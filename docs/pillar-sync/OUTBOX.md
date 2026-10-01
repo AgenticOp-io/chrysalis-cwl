@@ -4,6 +4,33 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-01 - tip-1.0.62-nav-id
+
+**To:** convert + secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.62** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.62**. Peel gold `70`. Static HTML emit stays Convert. Do not invent the menu script |
+| Secure | Pin to **1.0.62**. A nav id is document text. `ao-layout.js` stays outside the genome |
+
+### CWL landed
+
+- `nav <id>;` is the shared id for `<!-- cwl:page -->` and `<!-- cwl:active -->`
+- The page decl name stays
+- No `nav` statement still uses the page name (gold `69`)
+- Reply on [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md)
+
+### Noted
+
+Convert and Secure pinned **1.0.61** on their candidate branches. Convert asked for tag `cwl-v1.0.61`.
+
+---
+
 ## 2026-10-01 - tip-1.0.61-site-shell
 
 **To:** convert + secure  

@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## 1.0.62 - 2026-10-01
+
+- RFC-0029 deepen: `nav <id>;` marks a shared nav id while the page keeps its own decl name
+- Gold `70-site-nav-id`; header and footer use the same id
+- A page with no `nav` still uses its decl name (gold `69`)
+- Menu script, CSS, images, and Firebase Hosting stay outside the language
+
 ## 1.0.61 - 2026-10-01
 
 - RFC-0029 deepen: per-page `head html`, `<!-- cwl:page -->`, and `<!-- cwl:active <page> <class> -->` on a shared shell

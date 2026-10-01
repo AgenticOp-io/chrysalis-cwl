@@ -1,0 +1,521 @@
+{
+  "meta": {
+    "chrysalisVersion": "0.0.0",
+    "createdAt": "1970-01-01T00:00:00.000Z",
+    "sourceApp": "cwl-ingest-smoke"
+  },
+  "nodes": [
+    {
+      "attrs": {
+        "value": "<!doctype html>\n<html>\n<head>\n<title>Home</title>\n</head>\n<body data-ao-page=\"home\">\n<header class=\"ao-nav\">\n<a class=\"ao-nav-link ao-nav-link-active\" href=\"/\">Home</a>\n<a class=\"ao-nav-link\" href=\"/docs.html\">Docs</a>\n<a class=\"ao-nav-link\" href=\"/about.html\">About</a>\n</header>\n<main>\n<section class=\"hero\"><h1>Home</h1></section>\n</main>\n<footer class=\"ao-footer\">\n<a class=\"ao-footer-link\" href=\"/docs.html\">Docs</a>\n<a class=\"ao-footer-link\" href=\"/about.html\">About</a>\n</footer>\n</body>\n</html>"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n0",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 30
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-literal",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n1",
+      "op": "response",
+      "operands": [
+        "n0"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 30
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "paper_cwl",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n10",
+      "op": "handler",
+      "operands": [
+        "n9"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 40
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/paper-cwl.html",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n11",
+      "op": "route",
+      "operands": [
+        "n10"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 40
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "value": "<!doctype html>\n<html>\n<head>\n<title>Whitepaper</title>\n</head>\n<body data-ao-page=\"about\">\n<header class=\"ao-nav\">\n<a class=\"ao-nav-link\" href=\"/\">Home</a>\n<a class=\"ao-nav-link\" href=\"/docs.html\">Docs</a>\n<a class=\"ao-nav-link ao-nav-link-active\" href=\"/about.html\">About</a>\n</header>\n<main>\n<section class=\"paper\"><h1>Overview</h1></section>\n</main>\n<footer class=\"ao-footer\">\n<a class=\"ao-footer-link\" href=\"/docs.html\">Docs</a>\n<a class=\"ao-footer-link ao-footer-link-active\" href=\"/about.html\">About</a>\n</footer>\n</body>\n</html>"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n12",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 51
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-literal",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n13",
+      "op": "response",
+      "operands": [
+        "n12"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 51
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "reason": "unsupported:opaque-script"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n14",
+      "op": "hole",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 51
+      },
+      "provenance": [
+        {
+          "locator": "unsupported:opaque-script",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "contract": {
+          "input": {
+            "kind": "unknown"
+          },
+          "output": {
+            "kind": "unknown"
+          }
+        },
+        "kind": "hole"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n15",
+      "op": "block",
+      "operands": [
+        "n14",
+        "n13"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 51
+      },
+      "provenance": [
+        {
+          "locator": "cwl:attachment-holes",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "whitepaper",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n16",
+      "op": "handler",
+      "operands": [
+        "n15"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 51
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/whitepaper.html",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n17",
+      "op": "route",
+      "operands": [
+        "n16"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 51
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "reason": "unsupported:opaque-script"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n2",
+      "op": "hole",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 30
+      },
+      "provenance": [
+        {
+          "locator": "unsupported:opaque-script",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "contract": {
+          "input": {
+            "kind": "unknown"
+          },
+          "output": {
+            "kind": "unknown"
+          }
+        },
+        "kind": "hole"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n3",
+      "op": "block",
+      "operands": [
+        "n2",
+        "n1"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 30
+      },
+      "provenance": [
+        {
+          "locator": "cwl:attachment-holes",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "home",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n4",
+      "op": "handler",
+      "operands": [
+        "n3"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 30
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n5",
+      "op": "route",
+      "operands": [
+        "n4"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 30
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "value": "<!doctype html>\n<html>\n<head>\n<title>CWL paper</title>\n</head>\n<body data-ao-page=\"docs\">\n<header class=\"ao-nav\">\n<a class=\"ao-nav-link\" href=\"/\">Home</a>\n<a class=\"ao-nav-link ao-nav-link-active\" href=\"/docs.html\">Docs</a>\n<a class=\"ao-nav-link\" href=\"/about.html\">About</a>\n</header>\n<main>\n<section class=\"paper\"><h1>CWL</h1></section>\n</main>\n<footer class=\"ao-footer\">\n<a class=\"ao-footer-link ao-footer-link-active\" href=\"/docs.html\">Docs</a>\n<a class=\"ao-footer-link\" href=\"/about.html\">About</a>\n</footer>\n</body>\n</html>"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n6",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 40
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-literal",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n7",
+      "op": "response",
+      "operands": [
+        "n6"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 40
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "reason": "unsupported:opaque-script"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n8",
+      "op": "hole",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 40
+      },
+      "provenance": [
+        {
+          "locator": "unsupported:opaque-script",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "contract": {
+          "input": {
+            "kind": "unknown"
+          },
+          "output": {
+            "kind": "unknown"
+          }
+        },
+        "kind": "hole"
+      }
+    },
+    {
+      "attrs": {},
+      "dialect": "data",
+      "effects": [],
+      "id": "n9",
+      "op": "block",
+      "operands": [
+        "n8",
+        "n7"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 40
+      },
+      "provenance": [
+        {
+          "locator": "cwl:attachment-holes",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    }
+  ],
+  "roots": [
+    "n5",
+    "n11",
+    "n17"
+  ]
+}

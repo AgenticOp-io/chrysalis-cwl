@@ -41,6 +41,7 @@ const CACHE_NO_STORE = join(ROOT, "fixtures/language-gold/66-cache-no-store/rout
 const CACHE_NO_CACHE = join(ROOT, "fixtures/language-gold/67-cache-no-cache/routes.cwl");
 const SITE_DOCUMENT = join(ROOT, "fixtures/language-gold/68-site-document/routes.cwl");
 const SITE_SHELL = join(ROOT, "fixtures/language-gold/69-site-shell/routes.cwl");
+const SITE_NAV = join(ROOT, "fixtures/language-gold/70-site-nav-id/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -601,6 +602,28 @@ runEmitCheck(
       !/<!-- cwl:/.test(text) &&
       !/<title>Bare<\/title>/.test(text) &&
       /<p>bare<\/p>/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-70-site-nav-id",
+  SITE_NAV,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeReasons ?? []).includes("unsupported:opaque-script") &&
+      /data-ao-page=\\"home\\"/.test(text) &&
+      /data-ao-page=\\"docs\\"/.test(text) &&
+      /data-ao-page=\\"about\\"/.test(text) &&
+      /ao-nav-link ao-nav-link-active\\" href=\\"\/docs\.html\\"/.test(text) &&
+      /ao-footer-link ao-footer-link-active\\" href=\\"\/docs\.html\\"/.test(text) &&
+      /ao-nav-link ao-nav-link-active\\" href=\\"\/about\.html\\"/.test(text) &&
+      /ao-footer-link ao-footer-link-active\\" href=\\"\/about\.html\\"/.test(text) &&
+      /page paper_cwl/.test(text) &&
+      /page whitepaper/.test(text) &&
+      !/<!-- cwl:/.test(text)
     );
   },
   { stdout: true },

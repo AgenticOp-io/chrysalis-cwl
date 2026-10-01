@@ -173,6 +173,12 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: 'chrome html "${1:<header></header>}";',
   },
   {
+    label: "nav",
+    kind: KIND_SNIPPET,
+    detail: "Shared nav id for <!-- cwl:page --> and <!-- cwl:active --> (RFC-0029)",
+    insertText: "nav ${1:docs};",
+  },
+  {
     label: "head html",
     kind: KIND_SNIPPET,
     detail: "Per-page head fragment for <!-- cwl:head --> (RFC-0029)",

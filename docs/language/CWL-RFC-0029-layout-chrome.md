@@ -1,7 +1,7 @@
 # CWL RFC-0029 — Layout chrome wrap
 
-**Status:** accepted (2026-09-14); document shell deepened (2026-09-30); per-page head (2026-10-01)  
-**Tip:** **1.0.61** (chrome prefix since 1.0.27)  
+**Status:** accepted (2026-09-14); document shell deepened (2026-09-30); per-page head and shared nav id (2026-10-01)  
+**Tip:** **1.0.62** (chrome prefix since 1.0.27)  
 **Extends:** [RFC-0011](CWL-RFC-0011-full-stack-layouts.md) (import merge stays; this adds wrap)  
 **Ask:** [CWL-EXPAND.md](../history/CWL-EXPAND.md) §1
 
@@ -57,6 +57,10 @@ page home {
 
 A shared shell still cannot say which page is current, or carry that page's title. The page decl name fills `<!-- cwl:page -->`. `head html` fills `<!-- cwl:head -->`. A head with no slot is `cwl:missing-head-slot` and is not inserted. The menu script that reads the viewport stays `unsupported:opaque-script`.
 
+## Deepen — shared nav id (tip 1.0.62)
+
+`nav docs;` keeps the page decl name and supplies the id that `<!-- cwl:page -->` and `<!-- cwl:active -->` compare. Header and footer markers use that same id. No `nav` statement means the page name, so gold `69` stays valid. The menu script stays `unsupported:opaque-script`.
+
 ## Syntax
 
 | Construct | Meaning |
@@ -65,7 +69,8 @@ A shared shell still cannot say which page is current, or carry that page's titl
 | `chrome html "…";` | HTML prefix composed before `return html` |
 | `chrome html """` … `""";` | Multi-line chrome. `<!-- cwl:body -->` is the page slot (tip 1.0.60) |
 | `head html """` … `""";` | Per-page head fragment for `<!-- cwl:head -->` (tip 1.0.61) |
-| `<!-- cwl:page -->` | Replaced by the page decl name |
+| `nav <id>;` | Shared nav id. Header and footer markers use it (tip 1.0.62) |
+| `<!-- cwl:page -->` | Nav id when `nav` is set; otherwise the page decl name |
 | `<!-- cwl:active <page> <class> -->` | Inserts ` <class>` only when the page name matches |
 | `return html """` … `""";` | Multi-line page body; quotes and newlines stay (tip 1.0.60) |
 | `layout name;` | Page uses that layout |
@@ -88,3 +93,4 @@ A shared shell still cannot say which page is current, or carry that page's titl
 - Gold `fixtures/language-gold/36-layout-chrome`
 - Gold `fixtures/language-gold/68-site-document`
 - Gold `fixtures/language-gold/69-site-shell`
+- Gold `fixtures/language-gold/70-site-nav-id`
