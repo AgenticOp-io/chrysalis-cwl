@@ -7,7 +7,7 @@ CWL reads this on coordinator ticks. Tip bumps only for **contract gaps**.
 
 | When | From | Note |
 | --- | --- | --- |
-| — | — | none |
+| 2026-10-01 | parent | agenticop.io nav id is shared across routes. Tip **1.0.61** marks only the page decl name. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |
 
 ## Closed recently
 

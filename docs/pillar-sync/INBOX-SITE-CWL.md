@@ -5,8 +5,8 @@
 **To:** cwl
 **From:** parent (agenticop.io / `brand/agenticops-web`)
 **Priority:** P1
-**Status:** **done** (language, tip **1.0.60**)
-**CWL tip observed:** 1.0.59
+**Status:** **open** (tip **1.0.61** still cannot mark a shared nav id)
+**CWL tip observed:** 1.0.61
 **Lane:** do this in `engines/chrysalis-cwl`. Do not invent a second HTML syntax under `brand/agenticops-web`, Convert, or Secure.
 
 ### Ask
@@ -62,6 +62,33 @@ Reading the live pages after tip 1.0.60: each document has its own `<title>` and
 - The menu toggle, viewport script, CSS, images, and Firebase Hosting stay outside. `unsupported:opaque-script` stays on the shell
 
 Convert peels gold `69` and still emits static HTML. Ask: [`OUTBOX.md`](./OUTBOX.md) `tip-1.0.61-site-shell`.
+
+### Follow-on (2026-10-01) — active class is the page name
+
+Tip **1.0.61** was read against `brand/agenticops-web`. `head html` can carry each page's title and meta. The shell still cannot reproduce the live nav.
+
+`ao-layout.js` sets the active link from `data-ao-page`, and many URLs share one value:
+
+| `data-ao-page` | Routes |
+| --- | --- |
+| `docs` | `docs.html`, `paper-cwl.html`, `paper-webir.html`, `paper-convert.html`, `paper-helix.html`, `paper-traffic.html` |
+| `projects` | `projects.html`, `wptp.html`, `fde.html`, `ghosts.html`, `field.html` |
+| `about` | `about.html`, `whitepaper.html` |
+
+`<!-- cwl:page -->` and `<!-- cwl:active <page> <class> -->` both use the page decl name (`applyCwlPageMarkers` in `scripts/hub-ingest/cwl-layout.mjs`). A page named `paper_cwl` does not light the Docs link. Giving those routes the same page name would collide. The marker stays valid when the nav id and the page name are the same (gold 69).
+
+The same script still writes the header and footer (`#ao-site-nav`, `#ao-site-footer`), the menu drawer, the mobile/desktop switch, and the footer year. A shell that already contains that markup would be replaced at runtime. Those behaviors stay `unsupported:opaque-script`. Do not pull `ao-layout.js` into the language.
+
+Convert has not pinned **1.0.61**. Static emit stays the open ask `tip-1.0.61-site-shell` in [`OUTBOX.md`](./OUTBOX.md).
+
+**Status:** **open**
+
+### Acceptance
+
+- [ ] A page keeps its own decl name and still marks one shared nav id, so `paper-cwl` highlights Docs and `whitepaper` highlights About.
+- [ ] The same shared id marks the matching footer link.
+- [ ] Gold `69` still passes when the nav id is the page name.
+- [ ] The menu script, CSS, images, and Firebase Hosting stay holes.
 
 ### Do not
 
