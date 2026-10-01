@@ -668,6 +668,9 @@
     },
     {
       "attrs": {
+        "argNames": [
+          "origin"
+        ],
         "callee": "__cwl_middleware_cors"
       },
       "dialect": "data",

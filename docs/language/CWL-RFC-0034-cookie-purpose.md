@@ -32,3 +32,5 @@ Session and CSRF names are not spliced into HTML. A preference may show its **cl
 ## What stays with the host
 
 The host mints the session token, sets `HttpOnly`, and refuses a `Set-Cookie` whose name is not one of these purposes or whose preference value is outside the declared list. CWL records the intent. It does not store the token.
+
+The language runtime drops `__cwl_cookie_purpose` before simulation. The declaration stays in WebIR for emit. Cookie values still come from the request, never from the genome.
