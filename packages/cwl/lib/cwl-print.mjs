@@ -457,6 +457,10 @@ export function printCwlModule(mod, opts = {}) {
       printUiNode(island, "  ", lines);
     }
 
+    if (typeof route.headHtml === "string") {
+      appendCwlHtmlStmt(lines, "  ", "head html", route.headHtml);
+    }
+
     const body = route.body;
     const attachmentHoles = Array.isArray(route.attachmentHoles)
       ? route.attachmentHoles

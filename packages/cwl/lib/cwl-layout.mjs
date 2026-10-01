@@ -5,15 +5,41 @@
 
 /** Slot in a document shell. Absent marker keeps RFC-0029 prefix concatenation. */
 const CWL_HTML_BODY_SLOT = "<!-- cwl:body -->";
+/** Per-page head fragment (title, meta). Replaced once. */
+const CWL_HTML_HEAD_SLOT = "<!-- cwl:head -->";
+/** Page decl name, for attributes such as data-ao-page. */
+const CWL_HTML_PAGE_SLOT = "<!-- cwl:page -->";
+/** `<!-- cwl:active <pageName> <classToken> -->` becomes ` <classToken>` on that page only. */
+const CWL_HTML_ACTIVE_RE = /<!-- cwl:active\s+([A-Za-z][A-Za-z0-9_-]*)\s+([A-Za-z][A-Za-z0-9_-]*)\s*-->/g;
+
+/**
+ * Markers are resolved in the shell before head and body are inserted.
+ * @param {string} chrome
+ * @param {string} pageName
+ */
+function applyCwlPageMarkers(chrome, pageName) {
+  const name = String(pageName ?? "");
+  const withPage = chrome.split(CWL_HTML_PAGE_SLOT).join(name);
+  return withPage.replace(CWL_HTML_ACTIVE_RE, (_m, page, token) => (page === name ? ` ${token}` : ""));
+}
 
 /**
  * @param {string | null | undefined} chrome
  * @param {string} body
+ * @param {{ head?: string, pageName?: string }} [opts]
  */
-export function composeLayoutChromeHtml(chrome, body) {
+export function composeLayoutChromeHtml(chrome, body, opts = {}) {
   if (!chrome) return body;
-  if (chrome.includes(CWL_HTML_BODY_SLOT)) return chrome.replace(CWL_HTML_BODY_SLOT, body);
-  return `${chrome}${body}`;
+  const head = String(opts.head ?? "");
+  let shell = applyCwlPageMarkers(chrome, opts.pageName ?? "");
+  if (shell.includes(CWL_HTML_HEAD_SLOT)) shell = shell.replace(CWL_HTML_HEAD_SLOT, head);
+  if (shell.includes(CWL_HTML_BODY_SLOT)) return shell.replace(CWL_HTML_BODY_SLOT, body);
+  return `${shell}${body}`;
+}
+
+/** True when a declared head has nowhere to sit in the shell. */
+export function chromeHasHeadSlot(chrome) {
+  return String(chrome ?? "").includes(CWL_HTML_HEAD_SLOT);
 }
 
 /**

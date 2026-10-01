@@ -5,7 +5,7 @@ import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lo
 import { lowerCwlHtmlTemplateBody } from "./cwl-html-template.mjs";
 import { lowerCwlUiTreeBody, resolveCwlUiComponent } from "./cwl-ui-tree.mjs";
 import { parseCwlModuleResolved, resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";
-import { composeLayoutChromeHtml } from "./cwl-layout.mjs";
+import { chromeHasHeadSlot, composeLayoutChromeHtml } from "./cwl-layout.mjs";
 import { liftCwlModuleMiddlewareToWebir } from "./hub-cwl-middleware.mjs";
 import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
 import { cwlEffectsToWebir, wrapCwlCookiePurposes, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
@@ -274,9 +274,14 @@ export function liftCwlFileToWebir(opts) {
       }),
       repeats: htmlRepeats,
     };
+    const headHtml = typeof r.headHtml === "string" ? r.headHtml : "";
+    if (headHtml && !chromeHasHeadSlot(r.layoutChromeHtml)) {
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-head-slot")) r.attachmentHoles.push("cwl:missing-head-slot");
+    }
     const pageHtml =
       r.body.kind === "html"
-        ? composeLayoutChromeHtml(r.layoutChromeHtml, r.body.value)
+        ? composeLayoutChromeHtml(r.layoutChromeHtml, r.body.value, { head: headHtml, pageName: r.name })
         : null;
     if (r.loadBody && r.body.kind === "html" && r.loadBody.kind === "object" && r.loadBody.entries) {
       const redirectEntry = r.loadBody.entries.find((e) => e.key === "redirect");

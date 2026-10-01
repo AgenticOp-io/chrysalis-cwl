@@ -1,7 +1,7 @@
 # CWL RFC-0029 — Layout chrome wrap
 
-**Status:** accepted (2026-09-14); document shell deepened (2026-09-30)  
-**Tip:** **1.0.60** (chrome prefix since 1.0.27)  
+**Status:** accepted (2026-09-14); document shell deepened (2026-09-30); per-page head (2026-10-01)  
+**Tip:** **1.0.61** (chrome prefix since 1.0.27)  
 **Extends:** [RFC-0011](CWL-RFC-0011-full-stack-layouts.md) (import merge stays; this adds wrap)  
 **Ask:** [CWL-EXPAND.md](../history/CWL-EXPAND.md) §1
 
@@ -31,7 +31,7 @@ Chrome without a body marker is still a prefix: `layoutChromeHtml + body.html` (
 
 A page document is not one quoted line. `return html """` … `""";` and `chrome html """` … `""";` keep newlines and `"` characters.
 
-If chrome contains `<!-- cwl:body -->`, that marker is the page slot (head, header, main, footer). One marker. No nested slots, no CSS pipeline, no browser runtime.
+If chrome contains `<!-- cwl:body -->`, that marker is the page slot. `<!-- cwl:head -->` is the per-page head fragment. `<!-- cwl:page -->` is the page name. `<!-- cwl:active <page> <class> -->` inserts that class only when the page name matches. No general slot language, no CSS pipeline, no browser runtime.
 
 ```cwl
 layout site {
@@ -53,6 +53,10 @@ page home {
 }
 ```
 
+## Deepen — per-page head (tip 1.0.61)
+
+A shared shell still cannot say which page is current, or carry that page's title. The page decl name fills `<!-- cwl:page -->`. `head html` fills `<!-- cwl:head -->`. A head with no slot is `cwl:missing-head-slot` and is not inserted. The menu script that reads the viewport stays `unsupported:opaque-script`.
+
 ## Syntax
 
 | Construct | Meaning |
@@ -60,13 +64,16 @@ page home {
 | `layout name { … }` | Module-level layout decl |
 | `chrome html "…";` | HTML prefix composed before `return html` |
 | `chrome html """` … `""";` | Multi-line chrome. `<!-- cwl:body -->` is the page slot (tip 1.0.60) |
+| `head html """` … `""";` | Per-page head fragment for `<!-- cwl:head -->` (tip 1.0.61) |
+| `<!-- cwl:page -->` | Replaced by the page decl name |
+| `<!-- cwl:active <page> <class> -->` | Inserts ` <class>` only when the page name matches |
 | `return html """` … `""";` | Multi-line page body; quotes and newlines stay (tip 1.0.60) |
 | `layout name;` | Page uses that layout |
 | `header` / `cookie` / `hole` / `client ui` inside layout | Merged onto using pages |
 
 ## WebIR lowering
 
-- Compose: if chrome contains `<!-- cwl:body -->`, that marker is replaced by the page body; otherwise `layoutChromeHtml + body.html`
+- Compose: markers in the shell resolve first (`<!-- cwl:page -->`, `<!-- cwl:active … -->`, then `<!-- cwl:head -->`). If chrome contains `<!-- cwl:body -->`, that marker is replaced by the page body; otherwise `layoutChromeHtml + body.html`
 - Merged bindings / holes / islands follow existing request-context, RFC-0024, and RFC-0030 paths
 - **Emit reverse:** recovers the **composed** HTML phenotype (chrome + body) and merged holes/bindings; it does not reconstruct a separate `layout` decl (authoring sugar stays in source)
 
@@ -80,3 +87,4 @@ page home {
 
 - Gold `fixtures/language-gold/36-layout-chrome`
 - Gold `fixtures/language-gold/68-site-document`
+- Gold `fixtures/language-gold/69-site-shell`

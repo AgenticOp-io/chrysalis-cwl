@@ -4,6 +4,30 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-01 - tip-1.0.61-site-shell
+
+**To:** convert + secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.61** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.61**. Peel gold `69`. Static HTML emit stays Convert. Do not invent the menu script, CSS, images, or Firebase |
+| Secure | Pin to **1.0.61**. A page id and an active class are document text. Do not treat `ao-layout.js` as genome |
+
+### CWL landed
+
+- `head html` fills `<!-- cwl:head -->`
+- `<!-- cwl:page -->` is the page name
+- `<!-- cwl:active <page> <class> -->` marks the current page
+- A head with no slot is `cwl:missing-head-slot`
+- Reply on [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md)
+
+---
+
 ## 2026-09-30 - tip-1.0.60-site-document
 
 **To:** convert + secure  
