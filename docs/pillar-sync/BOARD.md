@@ -24,7 +24,7 @@ SECURE_NEXT: pin 1.0.62
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | c725557 | tip **1.0.61** land |
+| **CWL** | `main` | 5100f70 | tip **1.0.62** land |
 
 ## Who builds next
 
