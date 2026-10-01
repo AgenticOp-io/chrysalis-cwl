@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.60 - 2026-09-30
+
+- RFC-0029 deepen: multi-line `return html """` / `chrome html """` so a real document can be a page
+- Gold `68-site-document`; `<!-- cwl:body -->` is the shell slot; gold 36 prefix chrome stays
+- CSS, browser script, images, and Firebase Hosting stay outside the language
+
 ## 1.0.59 - 2026-09-30
 
 - RFC-0020 deepen: `cache.no-cache` — a cache may store the response but must revalidate before reuse
