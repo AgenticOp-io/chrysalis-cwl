@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.59 - 2026-09-30
+
+- RFC-0020 deepen: `cache.no-cache` — a cache may store the response but must revalidate before reuse
+- Gold `67-cache-no-cache`; composes with `cache.private`
+- `cache.no-store` stays the stronger refusal. Host sets the header — no CDN invent
+
 ## 1.0.58 - 2026-09-30
 
 - RFC-0020 deepen: `cache.no-store` — nothing may store the response

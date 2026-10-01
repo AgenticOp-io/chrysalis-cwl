@@ -3,15 +3,15 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.58` |
-| **Status** | RFC-0020 deepen — cache.no-store |
+| **Version** | `1.0.59` |
+| **Status** | RFC-0020 deepen — cache.no-cache |
 | **Date** | 2026-09-30 |
 
 ## What this version means
 
-- **RFC-0020 deepen:** `cache.no-store` — nothing may store the response; host sets the header
-- **Gold `66`:** composes with `cache.private`; `cache.max-age` stays for public assets
-- Prior tip **1.0.57:** same-site redirect (gold `65`)
+- **RFC-0020 deepen:** `cache.no-cache` — a cache may store the response but must revalidate before reuse
+- **Gold `67`:** composes with `cache.private`; `cache.no-store` stays the stronger refusal
+- Prior tip **1.0.58:** `cache.no-store` (gold `66`)
 
 ## Gate
 
