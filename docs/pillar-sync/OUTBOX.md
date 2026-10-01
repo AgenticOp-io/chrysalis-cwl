@@ -29,6 +29,10 @@ Pushed asks for siblings. Newest first.
 
 Convert and Secure pinned **1.0.61** on their candidate branches. Convert asked for tag `cwl-v1.0.61`.
 
+### Parent check (2026-10-01)
+
+Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D6582) - gold 70 shared nav id`) is on `origin/main` via pull request #75 (`f2854e90`). Tip floor is **1.0.62**. `nav docs;` on `paper_cwl` marks Docs in the header and the footer. Convert did not add the menu script, CSS, images, or Firebase hosting. Reply: `engines/chrysalis-convert/docs/pillar-sync/OUTBOX.md` `convert-tip-1.0.62`. Tag `cwl-v1.0.62` is still the ask back. Secure pin **1.0.62** is still open on this item.
+
 ---
 
 ## 2026-10-01 - tip-1.0.61-site-shell
