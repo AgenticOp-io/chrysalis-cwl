@@ -9,6 +9,8 @@ const CWL_HTML_BODY_SLOT = "<!-- cwl:body -->";
 const CWL_HTML_HEAD_SLOT = "<!-- cwl:head -->";
 /** Nav id when `nav` is set, otherwise the page decl name. */
 const CWL_HTML_PAGE_SLOT = "<!-- cwl:page -->";
+/** Host calendar year. CWL leaves this token in the document and does not read the clock. */
+const CWL_HTML_YEAR_SLOT = "<!-- cwl:year -->";
 /** `<!-- cwl:active <navId> <classToken> -->` becomes ` <classToken>` on that nav id only. */
 const CWL_HTML_ACTIVE_RE = /<!-- cwl:active\s+([A-Za-z][A-Za-z0-9_-]*)\s+([A-Za-z][A-Za-z0-9_-]*)\s*-->/g;
 
@@ -42,6 +44,11 @@ export function composeLayoutChromeHtml(chrome, body, opts = {}) {
 /** True when a declared head has nowhere to sit in the shell. */
 export function chromeHasHeadSlot(chrome) {
   return String(chrome ?? "").includes(CWL_HTML_HEAD_SLOT);
+}
+
+/** True when the shell names the host year token. */
+export function chromeHasYearSlot(chrome) {
+  return String(chrome ?? "").includes(CWL_HTML_YEAR_SLOT);
 }
 
 /**
@@ -82,6 +89,7 @@ export function mergeLayoutOntoRoute(route, layout) {
     route.pageIslands.push(island);
   }
   if (layout.chromeHtml) route.layoutChromeHtml = layout.chromeHtml;
+  if (layout.yearHost) route.yearHost = true;
 }
 
 /**

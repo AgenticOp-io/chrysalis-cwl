@@ -94,6 +94,27 @@ Convert has not pinned **1.0.61**. Static emit stays the open ask `tip-1.0.61-si
 
 `nav docs;` on page `paper_cwl` fills `<!-- cwl:page -->` and both the header and footer `<!-- cwl:active docs … -->` markers. `whitepaper` uses `nav about;`. A page with no `nav` statement still uses its decl name, so gold `69` is unchanged. The menu script stays `unsupported:opaque-script`. Convert peels gold `70`. Ask: [`OUTBOX.md`](./OUTBOX.md) `tip-1.0.62-nav-id`. Convert and Secure already pinned **1.0.61**.
 
+### Follow-on (2026-10-01) — footer year, menu toggle, device switch
+
+After tip **1.0.62** the shell can mark a shared nav id. `ao-layout.js` still does three things the document does not:
+
+1. It writes the copyright year from the clock into `#ao-year`.
+2. It opens and closes the menu drawer (`.is-open`, Escape, link click).
+3. It sets `data-ao-device` from the viewport and the user agent.
+
+**Status:** **done** for the year (language, tip **1.0.63**, gold `71-site-year`). The menu toggle and the device switch stay `unsupported:opaque-script`. CSS media queries stay in the stylesheet. CWL does not read the clock, the viewport, or the user agent.
+
+### Acceptance
+
+- [x] `year host;` keeps `<!-- cwl:year -->` in the footer. The composed document does not contain a calendar year.
+- [x] A `year host` declaration with no token is `cwl:missing-year-slot`.
+- [x] The menu toggle and `data-ao-device` stay a hole, not a browser runtime.
+- [x] CSS, images, and Firebase Hosting stay outside the language.
+
+### CWL reply (2026-10-01)
+
+Tip **1.0.63**. The host writes the digits for `<!-- cwl:year -->` when it emits static HTML. Convert's ask is [`OUTBOX.md`](./OUTBOX.md) `tip-1.0.63-site-year`.
+
 ### Do not
 
 - Fork page-HTML rules into `chrysalis-convert` or `chrysalis-security`.

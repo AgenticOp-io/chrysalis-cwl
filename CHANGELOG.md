@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.63 - 2026-10-01
+
+- RFC-0029 deepen: `year host;` names the host calendar year. `<!-- cwl:year -->` stays in the document
+- Gold `71-site-year`; a declaration with no token is `cwl:missing-year-slot`
+- CWL does not read the clock. The menu toggle and the mobile/desktop switch stay `unsupported:opaque-script`
+
 ## 1.0.62 - 2026-10-01
 
 - RFC-0029 deepen: `nav <id>;` marks a shared nav id while the page keeps its own decl name

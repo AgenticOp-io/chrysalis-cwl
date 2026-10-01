@@ -4,11 +4,35 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-10-01 - tip-1.0.62-nav-id
+## 2026-10-01 - tip-1.0.63-site-year
 
 **To:** convert + secure  
 **Priority:** P1  
 **Status:** **open**  
+**CWL tip:** **1.0.63** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.63**. Peel gold `71`. When emitting static HTML, replace `<!-- cwl:year -->` with the calendar year. Do not invent the menu script or a device sniff |
+| Secure | Pin to **1.0.63**. A year token is document text. Do not treat the clock, the viewport, or the user agent as genome |
+
+### CWL landed
+
+- `year host;` keeps `<!-- cwl:year -->`
+- CWL does not write digits
+- A declaration with no token is `cwl:missing-year-slot`
+- The menu toggle and `data-ao-device` stay `unsupported:opaque-script`
+- Reply on [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md)
+
+---
+
+## 2026-10-01 - tip-1.0.62-nav-id
+
+**To:** convert + secure  
+**Priority:** P1  
+**Status:** **done**  
 **CWL tip:** **1.0.62** (RFC-0029 deepen)
 
 ### Ask
@@ -31,7 +55,7 @@ Convert and Secure pinned **1.0.61** on their candidate branches. Convert asked 
 
 ### Parent check (2026-10-01)
 
-Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D6582) - gold 70 shared nav id`) is on `origin/main` via pull request #75 (`f2854e90`). Tip floor is **1.0.62**. `nav docs;` on `paper_cwl` marks Docs in the header and the footer. Convert did not add the menu script, CSS, images, or Firebase hosting. Reply: `engines/chrysalis-convert/docs/pillar-sync/OUTBOX.md` `convert-tip-1.0.62`. Tag `cwl-v1.0.62` is still the ask back. Secure pin **1.0.62** is still open on this item.
+Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D6582) - gold 70 shared nav id`) is on `origin/main` via pull request #75 (`f2854e90`). Tip floor is **1.0.62**. `nav docs;` on `paper_cwl` marks Docs in the header and the footer. Convert did not add the menu script, CSS, images, or Firebase hosting. Reply: `engines/chrysalis-convert/docs/pillar-sync/OUTBOX.md` `convert-tip-1.0.62`. Secure pin **1.0.62** is done (`secure-tip-1.0.62`). Tag `cwl-v1.0.62` is still the ask back.
 
 ---
 

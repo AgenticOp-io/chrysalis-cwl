@@ -330,6 +330,7 @@ export function printCwlModule(mod, opts = {}) {
       const purpose = (L.cookiePurposes ?? []).find((p) => p.name === c);
       lines.push(`  ${formatCookieDecl(c, purpose)};`);
     }
+    if (L.yearHost) lines.push("  year host;");
     for (const hole of L.holes ?? []) {
       const r = String(hole ?? "cwl:hole");
       lines.push(

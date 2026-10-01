@@ -32,6 +32,7 @@ const LABEL_TO_WORDS = {
   "chrome html": ["chrome", "html"],
   "head html": ["head", "html"],
   nav: ["nav"],
+  "year host": ["year", "host"],
   "proxy upstream": ["proxy", "upstream"],
   "session.mint cookie": ["cookie"],
   "session.revoke cookie": ["cookie"],

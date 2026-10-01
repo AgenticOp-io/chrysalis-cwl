@@ -1,7 +1,7 @@
 # CWL RFC-0029 — Layout chrome wrap
 
 **Status:** accepted (2026-09-14); document shell deepened (2026-09-30); per-page head and shared nav id (2026-10-01)  
-**Tip:** **1.0.62** (chrome prefix since 1.0.27)  
+**Tip:** **1.0.63** (chrome prefix since 1.0.27)  
 **Extends:** [RFC-0011](CWL-RFC-0011-full-stack-layouts.md) (import merge stays; this adds wrap)  
 **Ask:** [CWL-EXPAND.md](../history/CWL-EXPAND.md) §1
 
@@ -61,6 +61,10 @@ A shared shell still cannot say which page is current, or carry that page's titl
 
 `nav docs;` keeps the page decl name and supplies the id that `<!-- cwl:page -->` and `<!-- cwl:active -->` compare. Header and footer markers use that same id. No `nav` statement means the page name, so gold `69` stays valid. The menu script stays `unsupported:opaque-script`.
 
+## Deepen — host year (tip 1.0.63)
+
+`year host;` tells the host to fill the calendar year. `<!-- cwl:year -->` stays in the composed document. CWL does not replace it with digits. A declaration with no token is `cwl:missing-year-slot`. The menu toggle and the `data-ao-device` switch stay `unsupported:opaque-script`.
+
 ## Syntax
 
 | Construct | Meaning |
@@ -70,6 +74,7 @@ A shared shell still cannot say which page is current, or carry that page's titl
 | `chrome html """` … `""";` | Multi-line chrome. `<!-- cwl:body -->` is the page slot (tip 1.0.60) |
 | `head html """` … `""";` | Per-page head fragment for `<!-- cwl:head -->` (tip 1.0.61) |
 | `nav <id>;` | Shared nav id. Header and footer markers use it (tip 1.0.62) |
+| `year host;` | Host calendar year. `<!-- cwl:year -->` stays in the document (tip 1.0.63) |
 | `<!-- cwl:page -->` | Nav id when `nav` is set; otherwise the page decl name |
 | `<!-- cwl:active <page> <class> -->` | Inserts ` <class>` only when the page name matches |
 | `return html """` … `""";` | Multi-line page body; quotes and newlines stay (tip 1.0.60) |
@@ -94,3 +99,4 @@ A shared shell still cannot say which page is current, or carry that page's titl
 - Gold `fixtures/language-gold/68-site-document`
 - Gold `fixtures/language-gold/69-site-shell`
 - Gold `fixtures/language-gold/70-site-nav-id`
+- Gold `fixtures/language-gold/71-site-year`
