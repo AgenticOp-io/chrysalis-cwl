@@ -5,6 +5,8 @@
 - RFC-0006 deepen: `redirect "/path"` for a same-site path (optional status 301/302/303/307/308)
 - Gold `65-redirect-same-origin`; off-site targets are `unsupported:open-redirect`
 - `status` plus `response-header location` (gold `14`) stays valid
+- Language runtime treats `__cwl_cookie_purpose` as a declaration so gold `04` still executes
+- Ingest goldens `22` and `46` record named effect args (`origin`, `cookie`)
 
 ## 1.0.56 - 2026-09-26
 

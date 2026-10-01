@@ -262,6 +262,9 @@
     },
     {
       "attrs": {
+        "argNames": [
+          "cookie"
+        ],
         "callee": "__cwl_effect_session_revoke"
       },
       "dialect": "data",
@@ -555,6 +558,9 @@
     },
     {
       "attrs": {
+        "argNames": [
+          "cookie"
+        ],
         "callee": "__cwl_effect_session_mint"
       },
       "dialect": "data",

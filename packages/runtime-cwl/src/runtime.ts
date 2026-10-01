@@ -15,6 +15,14 @@ import {
 } from "@chrysalis/rewrite";
 import { compileCwlRoutes, matchCwlRoute, type CompiledCwlRoute } from "./route-match.js";
 
+/**
+ * RFC-0034 cookie purpose is a declaration (name, kind, preference classes).
+ * It is not an executable step. Convert simulate does not know
+ * `__cwl_cookie_purpose`, so the language runtime drops those calls before
+ * simulation. The ingested module kept for emit still carries them.
+ */
+const DECLARATIVE_SIM_CALLEES = new Set(["__cwl_cookie_purpose"]);
+
 export const CWL_RUNTIME_KIND = "chrysalis.cwl.runtime" as const;
 export const CWL_RUNTIME_SCHEMA_VERSION = 1 as const;
 
@@ -289,6 +297,29 @@ function simToResponse(
   return new Response(body, { status, headers });
 }
 
+function calleeName(attrs: Readonly<Record<string, unknown>>): string {
+  const callee = attrs.callee;
+  return typeof callee === "string" ? callee : "";
+}
+
+function moduleForSimulation(module: Module): Module {
+  const nodes = new Map(module.nodes);
+  let changed = false;
+  for (const [id, n] of module.nodes) {
+    if (n.operands.length === 0) continue;
+    const kept = n.operands.filter((op) => {
+      const child = module.nodes.get(op);
+      if (!child || child.op !== "call") return true;
+      return !DECLARATIVE_SIM_CALLEES.has(calleeName(child.attrs));
+    });
+    if (kept.length === n.operands.length) continue;
+    changed = true;
+    nodes.set(id, { ...n, operands: kept });
+  }
+  if (!changed) return module;
+  return { nodes, roots: module.roots, meta: module.meta };
+}
+
 function buildRequestInput(
   method: string,
   url: URL,
@@ -339,7 +370,13 @@ export function createCwlRuntime(config: CwlRuntimeConfig): CwlRuntimeHandle {
         : { ...(config.session ?? {}) };
     const post = parsePostBody(bodyText, headers.get("content-type") ?? undefined);
     const input = buildRequestInput(method, url, headers, match.pathParams, session, post);
-    const sim = simulateHandler(config.module, match.route.routeNodeId, input, db, upstream);
+    const sim = simulateHandler(
+      moduleForSimulation(config.module),
+      match.route.routeNodeId,
+      input,
+      db,
+      upstream,
+    );
     const attachmentSoft =
       sim.errors.length > 0 &&
       Boolean(sim.body) &&

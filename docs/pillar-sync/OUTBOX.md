@@ -15,7 +15,7 @@ Pushed asks for siblings. Newest first.
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.57**; peel gold `65` (`redirect "/path"` and `redirect "/path" status 301`). Off-site targets stay `unsupported:open-redirect`. Gold `14` status plus location header stays |
+| Convert | Pin to **1.0.57**; peel gold `65` (`redirect "/path"` and `redirect "/path" status 301`). Off-site targets stay `unsupported:open-redirect`. Gold `14` status plus location header stays. Treat `__cwl_cookie_purpose` as a declarative no-op in simulate (same class as cors/mail). Do not invent cookie values |
 | Secure | Pin to **1.0.57**. A declared redirect is a same-site path only. Do not follow a genome target that is off-site |
 
 ### CWL landed
