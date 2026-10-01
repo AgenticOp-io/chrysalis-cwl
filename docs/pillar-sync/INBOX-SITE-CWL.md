@@ -115,6 +115,23 @@ After tip **1.0.62** the shell can mark a shared nav id. `ao-layout.js` still do
 
 Tip **1.0.63**. The host writes the digits for `<!-- cwl:year -->` when it emits static HTML. Convert's ask is [`OUTBOX.md`](./OUTBOX.md) `tip-1.0.63-site-year`.
 
+### Follow-on (2026-10-01) — empty header and footer
+
+Converting the HTML files still loses the nav. Every public page has `<header id="ao-site-nav"></header>` and `<footer id="ao-site-footer"></footer>`. `ao-layout.js` writes one link list into the desktop nav and the mobile drawer, and the contact row uses `ao-nav-cta`.
+
+**Status:** **done** for the list (language, tip **1.0.64**, gold `72-site-nav-links`). Opening the drawer and setting `data-ao-device` stay `unsupported:opaque-script`.
+
+### Acceptance
+
+- [x] One `link` list fills both the desktop nav and the mobile drawer.
+- [x] The contact row can use `ao-nav-cta` and still take the active class on the contact page.
+- [x] A list with no slot is `cwl:missing-links-slot`.
+- [x] The Menu button is in the document. The click handler and the device switch stay a hole.
+
+### CWL reply (2026-10-01)
+
+Tip **1.0.64**. The composed page contains the links. Convert should emit that HTML and not depend on `ao-layout.js` to fill `#ao-site-nav`. Ask: [`OUTBOX.md`](./OUTBOX.md) `tip-1.0.64-site-nav-links`.
+
 ### Do not
 
 - Fork page-HTML rules into `chrysalis-convert` or `chrysalis-security`.

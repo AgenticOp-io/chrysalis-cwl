@@ -13,6 +13,7 @@ CWL reads this on coordinator ticks. Tip bumps only for **contract gaps**.
 
 | When | From | Note |
 | --- | --- | --- |
+| 2026-10-01 | parent | agenticop.io empty header — **done** in tip **1.0.64** (gold 72). Drawer click and device switch stay holes. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |
 | 2026-10-01 | parent | agenticop.io footer year — **done** in tip **1.0.63** (gold 71). Menu toggle and device switch stay holes. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |
 | 2026-10-01 | parent | agenticop.io shared nav id — **done** in tip **1.0.62** (gold 70). Menu script stays a hole. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |
 | 2026-10-01 | parent | agenticop.io shared shell — **done** in tip **1.0.61** (gold 69). Menu script stays a hole. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |

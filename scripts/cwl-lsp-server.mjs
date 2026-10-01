@@ -179,6 +179,12 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: "year host;",
   },
   {
+    label: "link",
+    kind: KIND_SNIPPET,
+    detail: "Shared nav row. <!-- cwl:links base active --> expands every copy. Optional class replaces the base class.",
+    insertText: 'link ${1:home} "${2:/}" "${3:Home}";',
+  },
+  {
     label: "nav",
     kind: KIND_SNIPPET,
     detail: "Shared nav id for <!-- cwl:page --> and <!-- cwl:active --> (RFC-0029)",
