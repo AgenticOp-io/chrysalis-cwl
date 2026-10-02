@@ -5,7 +5,7 @@ import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lo
 import { lowerCwlHtmlTemplateBody } from "./cwl-html-template.mjs";
 import { lowerCwlUiTreeBody, resolveCwlUiComponent } from "./cwl-ui-tree.mjs";
 import { parseCwlModuleResolved, resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";
-import { chromeHasDeviceSlot, chromeHasDrawerTargets, chromeHasHeadSlot, chromeHasLinkGroups, chromeHasYearSlot, composeLayoutChromeHtml } from "./cwl-layout.mjs";
+import { chromeHasDeviceSlot, chromeHasDrawerTargets, chromeHasHeadSlot, chromeHasLinkGroups, chromeHasYearSlot, composeLayoutChromeHtml, surfaceHasImageSlot, surfaceHasStyleSlot } from "./cwl-layout.mjs";
 import { liftCwlModuleMiddlewareToWebir } from "./hub-cwl-middleware.mjs";
 import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
 import { cwlEffectsToWebir, wrapCwlCookiePurposes, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
@@ -287,6 +287,16 @@ export function liftCwlFileToWebir(opts) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-device-slot")) r.attachmentHoles.push("cwl:missing-device-slot");
     }
+    const assetSurface = `${r.layoutChromeHtml ?? ""}${headHtml}${r.body?.kind === "html" ? r.body.value : ""}`;
+    if (Array.isArray(r.styles) && r.styles.length && !surfaceHasStyleSlot(assetSurface)) {
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-style-slot")) r.attachmentHoles.push("cwl:missing-style-slot");
+    }
+    for (const image of r.images ?? []) {
+      if (surfaceHasImageSlot(assetSurface, image.id)) continue;
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-image-slot")) r.attachmentHoles.push("cwl:missing-image-slot");
+    }
     if (r.drawer && !chromeHasDrawerTargets(r.layoutChromeHtml, r.drawer)) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-drawer-target")) r.attachmentHoles.push("cwl:missing-drawer-target");
@@ -303,6 +313,9 @@ export function liftCwlFileToWebir(opts) {
             navId: r.navId,
             links: r.navLinks,
             drawer: r.drawer,
+            styles: r.styles,
+            images: r.images,
+            hostFirebase: r.hostFirebase,
           })
         : null;
     if (r.loadBody && r.body.kind === "html" && r.loadBody.kind === "object" && r.loadBody.entries) {

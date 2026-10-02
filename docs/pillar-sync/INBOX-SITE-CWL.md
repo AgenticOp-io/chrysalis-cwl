@@ -149,6 +149,23 @@ The header list is in the document. Three shell holes remain: the drawer does no
 
 Tip **1.0.65**. Convert emits the drawer script with the page and replaces `<!-- cwl:device -->` in the browser, not by sniffing from CWL. Ask: [`OUTBOX.md`](./OUTBOX.md) `tip-1.0.65-site-shell-behavior`.
 
+### Follow-on (2026-10-01) — stylesheet, images, Firebase Hosting
+
+The shell can hold the document. The stylesheet, the logo, and Firebase Hosting were still outside the genome.
+
+**Status:** **done** (language, tip **1.0.66**, gold `74-site-assets`).
+
+### Acceptance
+
+- [x] `style "/agenticops.css";` fills `<!-- cwl:style -->` with a stylesheet link. CWL does not parse the CSS file.
+- [x] `image logo "/logo.svg";` fills `<!-- cwl:image logo -->` with the path. CWL does not read the bytes.
+- [x] `host firebase "agenticops" public "." error "/404.html";` names the Hosting target, the public directory, and the error document. CWL does not deploy.
+- [x] A stylesheet or image with no slot is `cwl:missing-style-slot` or `cwl:missing-image-slot`.
+
+### CWL reply (2026-10-01)
+
+Tip **1.0.66**. Convert serves the named files and deploys the named public root. Ask: [`OUTBOX.md`](./OUTBOX.md) `tip-1.0.66-site-assets`.
+
 ### Do not
 
 - Fork page-HTML rules into `chrysalis-convert` or `chrysalis-security`.

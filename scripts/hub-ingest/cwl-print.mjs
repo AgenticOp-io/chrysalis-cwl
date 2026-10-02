@@ -340,6 +340,14 @@ export function printCwlModule(mod, opts = {}) {
         `  drawer ${L.drawer.navId} toggle ${L.drawer.toggleClass} class ${L.drawer.openClass}${panel};`,
       );
     }
+    for (const href of L.styles ?? []) lines.push(`  style ${JSON.stringify(href)};`);
+    for (const image of L.images ?? []) lines.push(`  image ${image.id} ${JSON.stringify(image.path)};`);
+    if (L.hostFirebase) {
+      const error = L.hostFirebase.errorDoc ? ` error ${JSON.stringify(L.hostFirebase.errorDoc)}` : "";
+      lines.push(
+        `  host firebase ${JSON.stringify(L.hostFirebase.target)} public ${JSON.stringify(L.hostFirebase.publicDir)}${error};`,
+      );
+    }
     let printedGroup = "";
     for (const link of L.links ?? []) {
       const group = link.group || "";

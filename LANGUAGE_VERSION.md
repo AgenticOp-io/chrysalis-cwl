@@ -3,15 +3,15 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Version** | `1.0.65` |
-| **Status** | RFC-0029 deepen — drawer, device token, named link lists |
+| **Version** | `1.0.66` |
+| **Status** | RFC-0029 deepen — stylesheet, image, Firebase public root |
 | **Date** | 2026-10-01 |
 
 ## What this version means
 
-- **RFC-0029 deepen:** `drawer` writes the menu toggle. `device host` keeps `<!-- cwl:device -->`. `links <name>` is a separate list
-- **Gold `73`:** footer columns are their own list. CWL does not read the viewport or the user agent
-- Prior tip **1.0.64:** one shared nav list (gold `72`)
+- **RFC-0029 deepen:** `style`, `image`, and `host firebase` name the stylesheet, the image, and the public root
+- **Gold `74`:** CWL does not parse CSS, read image bytes, or deploy
+- Prior tip **1.0.65:** drawer, device token, named lists (gold `73`)
 
 ## Gate
 

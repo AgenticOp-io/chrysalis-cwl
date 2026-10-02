@@ -197,6 +197,24 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: "device host ${1:mobile} ${2:desktop};",
   },
   {
+    label: "style",
+    kind: KIND_SNIPPET,
+    detail: "Stylesheet URL. <!-- cwl:style --> expands the link tag. CWL does not parse CSS.",
+    insertText: 'style "${1:/agenticops.css}";',
+  },
+  {
+    label: "image",
+    kind: KIND_SNIPPET,
+    detail: "Image URL. <!-- cwl:image id --> expands the path. CWL does not read the bytes.",
+    insertText: 'image ${1:logo} "${2:/logo.svg}";',
+  },
+  {
+    label: "host firebase",
+    kind: KIND_SNIPPET,
+    detail: "Firebase Hosting target and public root. CWL does not deploy.",
+    insertText: 'host firebase "${1:agenticops}" public "${2:.}" error "${3:/404.html}";',
+  },
+  {
     label: "drawer",
     kind: KIND_SNIPPET,
     detail: "Menu drawer. Click, Escape, and a link close it. No user-agent read.",

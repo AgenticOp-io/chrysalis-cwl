@@ -81,6 +81,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `71-site-year` | Host calendar year token; CWL does not read the clock | 0029 |
 | `72-site-nav-links` | Shared nav list fills desktop and mobile slots | 0029 |
 | `73-site-shell-behavior` | Drawer script, device token, named footer list | 0029 |
+| `74-site-assets` | Stylesheet, image path, Firebase public root | 0029 |
 
 ## Parseable subset notes (0.1.8)
 
