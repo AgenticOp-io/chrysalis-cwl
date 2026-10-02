@@ -7,7 +7,7 @@
 
 We’re opening the Chrysalis stack under AgenticOp-io — pillars and the related platform repos:
 
-**CWL** — the DNA of the web: a readable language for what an app *is* (routes, pages, data, UI, effects — and honest holes when something can’t be translated yet).
+**CWL** — the DNA of web languages: a language in its own right, able to replace any web page (routes, pages, data, UI, effects — and honest holes when a page behavior cannot yet be said).
 
 **Convert** — the Universal Translator: origin stacks → CWL/WebIR → modern emit. AI can draft; **recorded traffic and oracles decide** what actually ships.
 

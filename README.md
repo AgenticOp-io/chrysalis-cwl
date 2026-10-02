@@ -1,6 +1,6 @@
-# Chrysalis Web Language (CWL) — DNA of the web
+# Chrysalis Web Language (CWL) — DNA of web languages
 
-**Rosetta Stone** of web-app meaning · tongue for the **Universal Translator** (Convert) · heritable **DNA** for emit and Secure bridges.
+CWL is a language in its own right. **Goal:** replace any web page. The page's source is CWL. Emit produces that page. Convert translates other web languages into this one. Secure may bridge to it. Neither redefines it.
 
 This repo **owns the genome**. Convert translates into/out of it. Secure may bridge to it. Neither redefines it.
 
@@ -8,7 +8,7 @@ This repo **owns the genome**. Convert translates into/out of it. Secure may bri
 
 | Pillar | Repository | Role |
 |--------|------------|------|
-| **CWL** | [**chrysalis-cwl**](https://github.com/AgenticOp-io/chrysalis-cwl) | Chrysalis Web Language — DNA of the web |
+| **CWL** | [**chrysalis-cwl**](https://github.com/AgenticOp-io/chrysalis-cwl) | Chrysalis Web Language — DNA of web languages |
 | **Convert** | [**chrysalis**](https://github.com/AgenticOp-io/chrysalis) | Universal Translator — origin → WebIR/CWL → emit |
 | **Secure** | [**chrysalis-security**](https://github.com/AgenticOp-io/chrysalis-security) | Helix DNA firewall — allow only what certified traffic proves |
 
@@ -22,9 +22,9 @@ This repo **owns the genome**. Convert translates into/out of it. Secure may bri
 | --- | --- | --- |
 | **Rosetta** | One app meaning ↔ CWL / WebIR | **This repo** |
 | **Universal Translator** | Hear origin stacks → speak emit targets | **Convert** (`AgenticOp-io/chrysalis`) |
-| **DNA of the web** | What the web app *is* (routes, pages, data, UI, effects, holes) | **CWL genome** |
+| **DNA of web languages** | The language that can replace any web page | **CWL genome** |
 
-CWL is **not** a universal programming language and **not** “PHP migration syntax.” Convert peels may hear PHP, Express, Go, Java, COBOL layouts, etc. — they **map into** this genome or leave catalogued holes. Secure’s out-of-box path is **traffic DNA**; any CWL bridge must match this tip.
+CWL is a web language. It is not a universal programming language and not “PHP migration syntax.” Convert peels may hear PHP, Express, Go, Java, COBOL layouts, etc. — they **map into** this genome or leave catalogued holes. A hole is a page CWL cannot yet replace. Secure’s out-of-box path is **traffic DNA**; any CWL bridge must match this tip.
 
 ## What’s here
 

@@ -3,7 +3,7 @@
 **Status:** **Exit 1.0 CLOSED** — tip was `1.0.17`; **Phase 1.x deepen REOPENED** at `1.0.18` (2026-08-09)  
 **Tip:** `@chrysalis/cwl@1.0.17` / published `@agenticop-io/cwl@1.0.0`…`1.0.17` (tag `cwl-v*`)  
 **Queue:** [`DNA-BUILD-NEXT.md`](./DNA-BUILD-NEXT.md) — **Phase 1.x genome deepen open — not framework façades**  
-**Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) — DNA of the web ≠ all PLs
+**Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) — DNA of web languages; replace any web page
 
 ## What “complete” means here
 

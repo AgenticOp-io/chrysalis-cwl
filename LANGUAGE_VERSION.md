@@ -3,6 +3,7 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
+| **Goal** | DNA of web languages. A language in its own right. Able to replace any web page. Tip `1.0.66` replaces a document shell (golds `68`–`74`). It does not yet replace every web page. |
 | **Version** | `1.0.66` |
 | **Status** | RFC-0029 deepen — stylesheet, image, Firebase public root |
 | **Date** | 2026-10-01 |

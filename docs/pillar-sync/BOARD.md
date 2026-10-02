@@ -1,6 +1,6 @@
 ﻿# Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-01 · tip **1.0.66** · RFC-0029 deepen — stylesheet, image, Firebase public root  
+**Updated:** 2026-10-01 · tip **1.0.66** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. Golds `68`–`74` are a document shell. The goal is not met yet.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
@@ -30,6 +30,7 @@ SECURE_NEXT: pin 1.0.66
 
 | Priority | Owner | Work |
 | --- | --- | --- |
+| **P0** | CWL | Replace any web page — open. Document shell through gold `74` is the start |
 | **P0** | Convert / Secure | Tip pin **1.0.66** |
 | **P0** | Convert | Peel gold `74`; serve the named files; deploy the named public root |
 | **done** | CWL | tip **1.0.66** stylesheet, image, Firebase public root |
@@ -40,4 +41,4 @@ SECURE_NEXT: pin 1.0.66
 
 ## Honesty
 
-No SQL invent. Cookie values never enter CWL. A cookie is session, csrf, or an enumerated preference. A redirect is a same-site path; off-site targets are `unsupported:open-redirect`. A page body may be a multi-line HTML document. `<!-- cwl:head -->` is that page's title and meta. `nav <id>;` is the shared nav id for `<!-- cwl:page -->` and `<!-- cwl:active <page> <class> -->`. No `nav` statement uses the page name. `<!-- cwl:year -->` is the host calendar year. CWL does not read the clock. `link` rows fill every `<!-- cwl:links -->` slot. `links <name>` is a separate list. `drawer` is the menu toggle. `<!-- cwl:device -->` is the host device class. CWL does not read the viewport or the user agent. `style` and `image` name host files. `host firebase` names the public root. CWL does not parse CSS, read image bytes, or deploy. WebSocket stays a hole. No SMTP / CORS / CDN / HTTP-client invent.
+Goal: CWL is the DNA of web languages and must be able to replace any web page. Tip **1.0.66** does not yet do that. No SQL invent. Cookie values never enter CWL. A cookie is session, csrf, or an enumerated preference. A redirect is a same-site path; off-site targets are `unsupported:open-redirect`. A page body may be a multi-line HTML document. `<!-- cwl:head -->` is that page's title and meta. `nav <id>;` is the shared nav id for `<!-- cwl:page -->` and `<!-- cwl:active <page> <class> -->`. No `nav` statement uses the page name. `<!-- cwl:year -->` is the host calendar year. CWL does not read the clock. `link` rows fill every `<!-- cwl:links -->` slot. `links <name>` is a separate list. `drawer` is the menu toggle. `<!-- cwl:device -->` is the host device class. CWL does not read the viewport or the user agent. `style` and `image` name host files. `host firebase` names the public root. CWL does not parse CSS, read image bytes, or deploy. WebSocket stays a hole. No SMTP / CORS / CDN / HTTP-client invent.
