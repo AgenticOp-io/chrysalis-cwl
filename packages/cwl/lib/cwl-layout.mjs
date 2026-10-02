@@ -51,7 +51,9 @@ function expandCwlLinks(chrome, links, navId) {
       .map((item) => {
         const cls = item.className || baseClass;
         const active = item.id === navId ? ` ${activeClass}` : "";
-        return `<a class="${cls}${active}" href="${escapeCwlHtmlText(item.href)}">${escapeCwlHtmlText(item.label)}</a>`;
+        const target = item.target === "blank" ? ` target="_blank"` : "";
+        const rel = item.rel ? ` rel="${escapeCwlHtmlText(item.rel)}"` : "";
+        return `<a class="${cls}${active}" href="${escapeCwlHtmlText(item.href)}"${target}${rel}>${escapeCwlHtmlText(item.label)}</a>`;
       })
       .join("");
   });
@@ -120,6 +122,8 @@ export function composeLayoutChromeHtml(chrome, body, opts = {}) {
   if (shell.includes(CWL_HTML_HEAD_SLOT)) shell = shell.replace(CWL_HTML_HEAD_SLOT, head);
   let html = shell.includes(CWL_HTML_BODY_SLOT) ? shell.replace(CWL_HTML_BODY_SLOT, body) : `${shell}${body}`;
   html = expandCwlAssets(html, opts.styles, opts.images);
+  html = expandCwlScripts(html, opts.scripts);
+  html = expandCwlForms(html, opts.forms);
   if (opts.hostFirebase) html = insertHostNote(html, opts.hostFirebase);
   if (opts.drawer && chromeHasDrawerTargets(html, opts.drawer)) html = insertDrawerScript(html, opts.drawer);
   return html;
@@ -164,6 +168,52 @@ function insertHostNote(html, host) {
   const body = html.lastIndexOf("</body>");
   if (body >= 0) return `${html.slice(0, body)}${note}${html.slice(body)}`;
   return `${note}${html}`;
+}
+
+/**
+ * Script URL markers. CWL names the file. It does not parse or run it.
+ * @param {string} html
+ * @param {string[] | undefined} scripts
+ */
+function expandCwlScripts(html, scripts) {
+  const files = Array.isArray(scripts) ? scripts : [];
+  if (!files.length || !String(html).includes("<!-- cwl:script -->")) return html;
+  const tags = files.map((src) => `<script src="${escapeCwlHtmlText(src)}" defer></script>`).join("");
+  return String(html).split("<!-- cwl:script -->").join(tags);
+}
+
+/**
+ * Same-site forms. Refused off-site actions are not written.
+ * @param {string} html
+ * @param {Array<{ id: string, method: string, action: string, fields: Array<{ name: string, type: string }>, submit?: string, refused?: boolean }> | undefined} forms
+ */
+function expandCwlForms(html, forms) {
+  let out = String(html);
+  for (const form of forms ?? []) {
+    if (form.refused) continue;
+    const token = `<!-- cwl:form ${form.id} -->`;
+    if (!out.includes(token)) continue;
+    const fields = (form.fields ?? [])
+      .map((field) => `<input name="${escapeCwlHtmlText(field.name)}" type="${escapeCwlHtmlText(field.type)}" />`)
+      .join("");
+    const submit = form.submit ? `<button type="submit">${escapeCwlHtmlText(form.submit)}</button>` : "";
+    const tag = `<form method="${form.method}" action="${escapeCwlHtmlText(form.action)}">${fields}${submit}</form>`;
+    out = out.split(token).join(tag);
+  }
+  return out;
+}
+
+/** @param {string} surface */
+export function surfaceHasScriptSlot(surface) {
+  return String(surface ?? "").includes("<!-- cwl:script -->");
+}
+
+/**
+ * @param {string} surface
+ * @param {string} id
+ */
+export function surfaceHasFormSlot(surface, id) {
+  return String(surface ?? "").includes(`<!-- cwl:form ${id} -->`);
 }
 
 /** @param {string} surface */
@@ -260,6 +310,16 @@ export function mergeLayoutOntoRoute(route, layout) {
   if (Array.isArray(layout.styles) && layout.styles.length) route.styles = layout.styles.slice();
   if (Array.isArray(layout.images) && layout.images.length) route.images = layout.images.slice();
   if (layout.hostFirebase) route.hostFirebase = layout.hostFirebase;
+  if (Array.isArray(layout.scripts) && layout.scripts.length) route.scripts = layout.scripts.slice();
+  if (Array.isArray(layout.forms) && layout.forms.length) route.forms = layout.forms.map((form) => ({ ...form, fields: form.fields.slice() }));
+  for (const hole of layout.formHoles ?? []) {
+    if (!route.attachmentHoles.includes(hole)) {
+      route.attachmentHoles.push(hole);
+      route.attachmentHoleLines.push(route.line ?? 1);
+      route.attachmentHoleCharacters.push(0);
+      route.attachmentHoleEndCharacters.push(4);
+    }
+  }
   if (Array.isArray(layout.links) && layout.links.length) route.navLinks = layout.links.slice();
 }
 

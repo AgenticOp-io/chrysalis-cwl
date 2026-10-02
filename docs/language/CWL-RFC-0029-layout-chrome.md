@@ -1,7 +1,7 @@
 # CWL RFC-0029 — Layout chrome wrap
 
 **Status:** accepted (2026-09-14); document shell deepened (2026-09-30); per-page head and shared nav id (2026-10-01)  
-**Tip:** **1.0.66** (chrome prefix since 1.0.27)  
+**Tip:** **1.0.67** (chrome prefix since 1.0.27)  
 **Extends:** [RFC-0011](CWL-RFC-0011-full-stack-layouts.md) (import merge stays; this adds wrap)  
 **Ask:** [CWL-EXPAND.md](../history/CWL-EXPAND.md) §1
 
@@ -81,6 +81,14 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 
 `style "<href>";` fills every `<!-- cwl:style -->` with a stylesheet link. `image <id> "<path>";` fills `<!-- cwl:image <id> -->` with that path. `host firebase "<target>" public "<dir>" error "<path>";` records the Hosting target, the public directory, and the error document in the composed page. A stylesheet or image with no slot is `cwl:missing-style-slot` or `cwl:missing-image-slot`. CWL does not parse CSS, read image bytes, or deploy.
 
+## Deepen — script, form, off-site anchor (tip 1.0.67)
+
+`script "<href>";` fills every `<!-- cwl:script -->` with `<script src="…" defer>`. CWL does not parse or run that file. A script with no slot is `cwl:missing-script-slot`.
+
+`form <id> method get|post action "<path>";` with following `field <name> "<type>";` and optional `submit "<label>";` fills `<!-- cwl:form <id> -->`. The action must be a same-site path. An off-site or protocol-relative action is `unsupported:offsite-form` and is not written. A form with no slot is `cwl:missing-form-slot`.
+
+`link <id> "<href>" "<label>" target blank rel <token>;` emits `target="_blank"` and `rel`. An anchor may name another origin. A form may not post to one.
+
 ## Syntax
 
 | Construct | Meaning |
@@ -100,6 +108,11 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 | `style "<href>";` | Stylesheet link for `<!-- cwl:style -->` (tip 1.0.66) |
 | `image <id> "<path>";` | Image path for `<!-- cwl:image <id> -->` (tip 1.0.66) |
 | `host firebase "<target>" public "<dir>";` | Firebase Hosting target and public root (tip 1.0.66) |
+| `script "<href>";` | Deferred script tag for `<!-- cwl:script -->` (tip 1.0.67) |
+| `form <id> method post action "<path>";` | Same-site form for `<!-- cwl:form <id> -->` (tip 1.0.67) |
+| `field <name> "<type>";` | Input on the current form (tip 1.0.67) |
+| `submit "<label>";` | Submit button on the current form (tip 1.0.67) |
+| `link … target blank rel <token>` | Off-site anchor attributes (tip 1.0.67) |
 | `<!-- cwl:page -->` | Nav id when `nav` is set; otherwise the page decl name |
 | `<!-- cwl:active <page> <class> -->` | Inserts ` <class>` only when the page name matches |
 | `return html """` … `""";` | Multi-line page body; quotes and newlines stay (tip 1.0.60) |
@@ -128,3 +141,4 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 - Gold `fixtures/language-gold/72-site-nav-links`
 - Gold `fixtures/language-gold/73-site-shell-behavior`
 - Gold `fixtures/language-gold/74-site-assets`
+- Gold `fixtures/language-gold/75-site-page`

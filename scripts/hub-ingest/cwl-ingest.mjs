@@ -5,7 +5,7 @@ import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lo
 import { lowerCwlHtmlTemplateBody } from "./cwl-html-template.mjs";
 import { lowerCwlUiTreeBody, resolveCwlUiComponent } from "./cwl-ui-tree.mjs";
 import { parseCwlModuleResolved, resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";
-import { chromeHasDeviceSlot, chromeHasDrawerTargets, chromeHasHeadSlot, chromeHasLinkGroups, chromeHasYearSlot, composeLayoutChromeHtml, surfaceHasImageSlot, surfaceHasStyleSlot } from "./cwl-layout.mjs";
+import { chromeHasDeviceSlot, chromeHasDrawerTargets, chromeHasHeadSlot, chromeHasLinkGroups, chromeHasYearSlot, composeLayoutChromeHtml, surfaceHasFormSlot, surfaceHasImageSlot, surfaceHasScriptSlot, surfaceHasStyleSlot } from "./cwl-layout.mjs";
 import { liftCwlModuleMiddlewareToWebir } from "./hub-cwl-middleware.mjs";
 import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
 import { cwlEffectsToWebir, wrapCwlCookiePurposes, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
@@ -297,6 +297,15 @@ export function liftCwlFileToWebir(opts) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-image-slot")) r.attachmentHoles.push("cwl:missing-image-slot");
     }
+    if (Array.isArray(r.scripts) && r.scripts.length && !surfaceHasScriptSlot(assetSurface)) {
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-script-slot")) r.attachmentHoles.push("cwl:missing-script-slot");
+    }
+    for (const form of r.forms ?? []) {
+      if (form.refused || surfaceHasFormSlot(assetSurface, form.id)) continue;
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-form-slot")) r.attachmentHoles.push("cwl:missing-form-slot");
+    }
     if (r.drawer && !chromeHasDrawerTargets(r.layoutChromeHtml, r.drawer)) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-drawer-target")) r.attachmentHoles.push("cwl:missing-drawer-target");
@@ -315,6 +324,8 @@ export function liftCwlFileToWebir(opts) {
             drawer: r.drawer,
             styles: r.styles,
             images: r.images,
+            scripts: r.scripts,
+            forms: r.forms,
             hostFirebase: r.hostFirebase,
           })
         : null;
