@@ -209,6 +209,30 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: 'image ${1:logo} "${2:/logo.svg}";',
   },
   {
+    label: "script",
+    kind: KIND_SNIPPET,
+    detail: "Script URL. <!-- cwl:script --> expands the tag. CWL does not parse or run the file.",
+    insertText: 'script "${1:/site.js}";',
+  },
+  {
+    label: "form",
+    kind: KIND_SNIPPET,
+    detail: "Same-site form. <!-- cwl:form id --> expands it. Off-site actions stay a hole.",
+    insertText: 'form ${1:contact} method ${2:post} action "${3:/contact}";',
+  },
+  {
+    label: "field",
+    kind: KIND_SNIPPET,
+    detail: "Input on the current form.",
+    insertText: 'field ${1:email} "${2:email}";',
+  },
+  {
+    label: "submit",
+    kind: KIND_SNIPPET,
+    detail: "Submit button label on the current form.",
+    insertText: 'submit "${1:Send}";',
+  },
+  {
     label: "host firebase",
     kind: KIND_SNIPPET,
     detail: "Firebase Hosting target and public root. CWL does not deploy.",

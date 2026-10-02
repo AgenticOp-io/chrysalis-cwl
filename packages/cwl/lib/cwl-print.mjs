@@ -341,6 +341,12 @@ export function printCwlModule(mod, opts = {}) {
       );
     }
     for (const href of L.styles ?? []) lines.push(`  style ${JSON.stringify(href)};`);
+    for (const src of L.scripts ?? []) lines.push(`  script ${JSON.stringify(src)};`);
+    for (const form of L.forms ?? []) {
+      lines.push(`  form ${form.id} method ${form.method} action ${JSON.stringify(form.action)};`);
+      for (const field of form.fields ?? []) lines.push(`  field ${field.name} ${JSON.stringify(field.type)};`);
+      if (form.submit) lines.push(`  submit ${JSON.stringify(form.submit)};`);
+    }
     for (const image of L.images ?? []) lines.push(`  image ${image.id} ${JSON.stringify(image.path)};`);
     if (L.hostFirebase) {
       const error = L.hostFirebase.errorDoc ? ` error ${JSON.stringify(L.hostFirebase.errorDoc)}` : "";
@@ -356,7 +362,9 @@ export function printCwlModule(mod, opts = {}) {
         printedGroup = group;
       }
       const cls = link.className ? ` class ${link.className}` : "";
-      lines.push(`  link ${link.id} ${JSON.stringify(link.href)} ${JSON.stringify(link.label)}${cls};`);
+      const target = link.target === "blank" ? " target blank" : "";
+      const rel = link.rel ? ` rel ${link.rel}` : "";
+      lines.push(`  link ${link.id} ${JSON.stringify(link.href)} ${JSON.stringify(link.label)}${cls}${target}${rel};`);
     }
     for (const hole of L.holes ?? []) {
       const r = String(hole ?? "cwl:hole");

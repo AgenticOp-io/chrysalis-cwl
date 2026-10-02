@@ -1,8 +1,8 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA of web languages — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Goal:** CWL is a language in its own right. It must be able to replace any web page. Golds `68`–`74` replace a static document shell (markup, nav, drawer, device token, stylesheet link, image path, Firebase public root). They do not yet replace every web page. Form actions, websocket duplex, SQL engines, and arbitrary client script stay named holes.  
-**Tip:** **`1.0.66`** - stylesheet, image, Firebase public root (RFC-0029 deepen)
+**Goal:** CWL is a language in its own right. It must be able to replace any web page. Golds `68`–`75` replace a document with navigation, a drawer, a device token, named assets, a same-site form, and an off-site anchor. WebSocket duplex, SQL engines, and unclassified client script stay named holes.  
+**Tip:** **`1.0.67`** - script file, same-site form, off-site anchor (RFC-0029 deepen)
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -62,6 +62,7 @@
 | P0 | Shared nav list (`72`) | **done** (`1.0.64`) — one `link` list fills every nav slot; drawer click and device sniff stay holes |
 | P0 | Shell behavior (`73`) | **done** (`1.0.65`) — drawer script, device token, named footer list; no viewport or user-agent read |
 | P0 | Site assets (`74`) | **done** (`1.0.66`) — stylesheet, image path, Firebase public root; no CSS parse, image bytes, or deploy |
+| P0 | Site page (`75`) | **done** (`1.0.67`) — script URL, same-site form, off-site anchor; no script execution; off-site form post stays a hole |
 | P0 | Replace any web page | **open** — goal of the language. Document shell through gold `74` is the start. Remaining page behaviors stay holes until an honest RFC |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
@@ -77,6 +78,7 @@
 | Tip pin **1.0.64** | Convert + Secure — **asked** |
 | Tip pin **1.0.65** | Convert + Secure — **asked** |
 | Tip pin **1.0.66** | Convert + Secure — **asked** |
+| Tip pin **1.0.67** | Convert + Secure — **asked** |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |

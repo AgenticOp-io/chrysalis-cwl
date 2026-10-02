@@ -4,6 +4,30 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-01 - tip-1.0.67-site-page
+
+**To:** convert + secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.67** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.67**. Peel gold `75`. Serve the named script file. Accept the same-site form post. Do not emit a form whose action is another origin |
+| Secure | Pin to **1.0.67**. A script URL and a same-site form are document facts. An off-site form action is a hole. Do not treat the script bytes as genome |
+
+### CWL landed
+
+- `script` fills `<!-- cwl:script -->`
+- `form` / `field` / `submit` fill `<!-- cwl:form <id> -->` for a same-site action
+- `link … target blank rel` emits the anchor attributes
+- Off-site form actions stay `unsupported:offsite-form`
+- Reply on [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md)
+
+---
+
 ## 2026-10-01 - goal-dna-of-web-languages
 
 **To:** convert + secure  

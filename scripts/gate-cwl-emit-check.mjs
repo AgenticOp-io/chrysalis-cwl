@@ -46,6 +46,7 @@ const SITE_YEAR = join(ROOT, "fixtures/language-gold/71-site-year/routes.cwl");
 const SITE_LINKS = join(ROOT, "fixtures/language-gold/72-site-nav-links/routes.cwl");
 const SITE_SHELL_BEHAVIOR = join(ROOT, "fixtures/language-gold/73-site-shell-behavior/routes.cwl");
 const SITE_ASSETS = join(ROOT, "fixtures/language-gold/74-site-assets/routes.cwl");
+const SITE_PAGE = join(ROOT, "fixtures/language-gold/75-site-page/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -706,6 +707,29 @@ runEmitCheck(
       /404\.html/.test(text) &&
       !/<!-- cwl:style -->/.test(text) &&
       !/<!-- cwl:image /.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-75-site-page",
+  SITE_PAGE,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeReasons ?? []).includes("cwl:missing-script-slot") &&
+      (rep.holeReasons ?? []).includes("cwl:missing-form-slot") &&
+      (rep.holeReasons ?? []).includes("unsupported:offsite-form") &&
+      /<script src=\\"\/site\.js\\" defer><\/script>/.test(text) &&
+      /<form method=\\"post\\" action=\\"\/contact\\">/.test(text) &&
+      /name=\\"email\\" type=\\"email\\"/.test(text) &&
+      /type=\\"submit\\">Send</.test(text) &&
+      /target=\\"_blank\\" rel=\\"noopener\\"/.test(text) &&
+      /github\.com\/AgenticOp-io/.test(text) &&
+      !/<form method=\\"post\\" action=\\"https:\/\/evil\.example/.test(text) &&
+      !/<!-- cwl:script -->/.test(text) &&
+      !/<!-- cwl:form contact -->/.test(text)
     );
   },
   { stdout: true },

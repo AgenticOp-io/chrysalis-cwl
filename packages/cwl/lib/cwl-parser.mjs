@@ -51,9 +51,9 @@ const PROXY_UPSTREAM_RE = /^proxy\s+upstream\s+(.+);$/i;
 const LAYOUT_DECL_RE = /^layout\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\{/;
 const LAYOUT_USE_RE = /^layout\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;$/;
 const NAV_ID_RE = /^nav\s+([A-Za-z_][A-Za-z0-9_]*)\s*;$/;
-/** Shared nav row. Optional class replaces the slot's base class (contact CTA). */
+/** Shared nav row. Optional class, target blank, and rel. */
 const LINK_RE =
-  /^link\s+([A-Za-z_][A-Za-z0-9_]*)\s+"([^"]*)"\s+"([^"]*)"(?:\s+class\s+([A-Za-z][A-Za-z0-9_-]*))?\s*;$/;
+  /^link\s+([A-Za-z_][A-Za-z0-9_]*)\s+"([^"]*)"\s+"([^"]*)"(?:\s+class\s+([A-Za-z][A-Za-z0-9_-]*))?(?:\s+target\s+(blank))?(?:\s+rel\s+([A-Za-z][A-Za-z0-9_-]*))?\s*;$/;
 /** Following `link` rows belong to this named list until the next `links` statement. */
 const LINKS_GROUP_RE = /^links\s+([A-Za-z_][A-Za-z0-9_]*)\s*;$/;
 /** Host device classes. CWL does not read the viewport or the user agent. */
@@ -68,6 +68,15 @@ const IMAGE_RE = /^image\s+([A-Za-z_][A-Za-z0-9_]*)\s+"([^"]+)"\s*;$/;
 /** Firebase Hosting target. CWL does not deploy. */
 const HOST_FIREBASE_RE =
   /^host\s+firebase\s+"([^"]+)"\s+public\s+"([^"]+)"(?:\s+error\s+"([^"]*)")?\s*;$/;
+/** Script URL. The file stays on the host. CWL does not parse or run it. */
+const SCRIPT_RE = /^script\s+"([^"]+)"\s*;$/;
+/** Same-site form. Off-site actions are refused. */
+const FORM_RE = /^form\s+([A-Za-z_][A-Za-z0-9_]*)\s+method\s+(get|post)\s+action\s+"([^"]+)"\s*;$/;
+/** Input on the current form. */
+const FIELD_RE = /^field\s+([A-Za-z_][A-Za-z0-9_]*)\s+"([^"]+)"\s*;$/;
+/** Submit label on the current form. */
+const SUBMIT_RE = /^submit\s+"([^"]+)"\s*;$/;
+const FIELD_TYPES = new Set(["text", "email", "password", "hidden", "search", "url", "tel", "number"]);
 const CLIENT_UI_START_RE = /^client\s+ui\b/;
 const CHROME_HTML_PREFIX_RE = /^chrome\s+html\s+/i;
 
@@ -229,8 +238,16 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
   const images = [];
   /** @type {{ target: string, publicDir: string, errorDoc?: string } | null} */
   let hostFirebase = null;
-  /** @type {Array<{ id: string, href: string, label: string, className?: string, group?: string }>} */
+  /** @type {Array<{ id: string, href: string, label: string, className?: string, group?: string, target?: string, rel?: string }>} */
   const links = [];
+  /** @type {string[]} */
+  const scripts = [];
+  /** @type {Array<{ id: string, method: string, action: string, fields: Array<{ name: string, type: string }>, submit?: string, refused?: boolean }>} */
+  const forms = [];
+  /** @type {{ id: string, method: string, action: string, fields: Array<{ name: string, type: string }>, submit?: string, refused?: boolean } | null} */
+  let currentForm = null;
+  /** @type {string[]} Holes derived from form statements. Not reprinted as `hole` lines. */
+  const formHoles = [];
   /** @type {object[]} */
   const pageIslands = [];
   let i = startIdx + 1;
@@ -256,6 +273,9 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
           ...(styles.length ? { styles } : {}),
           ...(images.length ? { images } : {}),
           ...(hostFirebase ? { hostFirebase } : {}),
+          ...(scripts.length ? { scripts } : {}),
+          ...(forms.length ? { forms } : {}),
+          ...(formHoles.length ? { formHoles } : {}),
           ...(links.length ? { links } : {}),
         },
         consumed: i,
@@ -307,6 +327,43 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
       if (host[3]) hostFirebase.errorDoc = host[3];
       continue;
     }
+    const script = SCRIPT_RE.exec(line);
+    if (script) {
+      scripts.push(script[1]);
+      continue;
+    }
+    const formLine = FORM_RE.exec(line);
+    if (formLine) {
+      const action = formLine[3];
+      const refused = !sameOriginRedirectPath(action);
+      currentForm = { id: formLine[1], method: formLine[2], action, fields: [] };
+      if (refused) {
+        currentForm.refused = true;
+        if (!formHoles.includes("unsupported:offsite-form")) formHoles.push("unsupported:offsite-form");
+      }
+      forms.push(currentForm);
+      continue;
+    }
+    const field = FIELD_RE.exec(line);
+    if (field) {
+      if (!currentForm) {
+        if (!formHoles.includes("cwl:orphan-field")) formHoles.push("cwl:orphan-field");
+      } else if (!FIELD_TYPES.has(field[2])) {
+        if (!formHoles.includes("cwl:unknown-field-type")) formHoles.push("cwl:unknown-field-type");
+      } else {
+        currentForm.fields.push({ name: field[1], type: field[2] });
+      }
+      continue;
+    }
+    const submit = SUBMIT_RE.exec(line);
+    if (submit) {
+      if (!currentForm) {
+        if (!formHoles.includes("cwl:orphan-field")) formHoles.push("cwl:orphan-field");
+      } else {
+        currentForm.submit = submit[1];
+      }
+      continue;
+    }
     const group = LINKS_GROUP_RE.exec(line);
     if (group) {
       linkGroup = group[1];
@@ -316,6 +373,8 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
     if (link) {
       const row = { id: link[1], href: link[2], label: link[3] };
       if (link[4]) row.className = link[4];
+      if (link[5]) row.target = link[5];
+      if (link[6]) row.rel = link[6];
       if (linkGroup) row.group = linkGroup;
       links.push(row);
       continue;

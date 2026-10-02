@@ -28,14 +28,14 @@ Convert peels may hear PHP, Express, Python, Go, Java, C#, Ruby, Rust, framework
 
 Modeled surfaces: `@route` / `@page`, request/response shapes, effects (including named cookie / CORS / rate / CSRF / db table policy), modules, UI trees / islands, control (`if` / `foreach`), nested structured literals (RFC-0025), multipart (0026), SSE (0027), named UI islands (0028), layout chrome (0029), page HTML + sibling islands (0030), repeated markup (0031), credential/session effects (0032), proxy upstream (0033), holes, DNA bridge (0022/0023).
 
-Language golds: `fixtures/language-gold/01`–`74`. Tip: [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md). `style` and `image` name host files. `host firebase` names the public root. CWL does not parse CSS, read image bytes, or deploy.
+Language golds: `fixtures/language-gold/01`–`75`. Tip: [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md). `style`, `image`, and `script` name host files. `form` writes a same-site form. `host firebase` names the public root. CWL does not parse CSS, read image bytes, run scripts, or deploy.
 
 ## What stays holes / out of scope
 
 | Concern | Status |
 | --- | --- |
 | Wasm modules, vendor SDKs, opaque scripts | Catalogued `unsupported:*` holes (RFC-0024) — do not invent grammar |
-| Form actions, complex framework loads | Hole until an RFC can lower honestly |
+| Framework form actions | Hole (`hub-svelte:form-action` and kin). A same-site HTML form is `form` / `field` / `submit` (tip 1.0.67). An off-site action is `unsupported:offsite-form` |
 | SQL engines, queues, Mongo, GenieACS, NGFW | Non-goals in this pillar (`db.read table X` names intent only) |
 | WebSocket duplex | Kept hole (`unsupported:websocket`) until an honest peel |
 | Tracking cookies | Kept hole (`unsupported:tracking-cookie`, RFC-0034). Session, CSRF, and an enumerated preference stay |

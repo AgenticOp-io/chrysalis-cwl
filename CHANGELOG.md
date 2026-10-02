@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.67 - 2026-10-01
+
+- RFC-0029 deepen: `script` fills `<!-- cwl:script -->`. `form` / `field` / `submit` fill `<!-- cwl:form <id> -->` for a same-site action. `link` may say `target blank` and `rel`
+- Gold `75-site-page`. CWL does not parse or run the script file. An off-site form action is `unsupported:offsite-form`
+- A missing slot is `cwl:missing-script-slot` or `cwl:missing-form-slot`
+
 ## Goal - 2026-10-01
 
 - CWL is the DNA of web languages. It is a language in its own right. It must be able to replace any web page
