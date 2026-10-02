@@ -24,7 +24,7 @@ SECURE_NEXT: pin 1.0.66
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | 50f95e4 | tip **1.0.66** land |
+| **CWL** | `main` | 71396d3 | goal: DNA of web languages (tip **1.0.66**) |
 
 ## Who builds next
 
