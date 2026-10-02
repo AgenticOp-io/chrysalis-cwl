@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.66 - 2026-10-01
+
+- RFC-0029 deepen: `style` fills `<!-- cwl:style -->`. `image` fills `<!-- cwl:image <id> -->`. `host firebase` names the Hosting target, public directory, and error document
+- Gold `74-site-assets`. CWL does not parse CSS, read image bytes, or deploy
+- A missing slot is `cwl:missing-style-slot` or `cwl:missing-image-slot`
+
 ## 1.0.65 - 2026-10-01
 
 - RFC-0029 deepen: `drawer` is the menu toggle (click, Escape, link). `device host` keeps `<!-- cwl:device -->`. `links <name>` is a separate list for footer columns

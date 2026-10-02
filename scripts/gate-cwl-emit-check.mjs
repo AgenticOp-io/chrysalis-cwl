@@ -45,6 +45,7 @@ const SITE_NAV = join(ROOT, "fixtures/language-gold/70-site-nav-id/routes.cwl");
 const SITE_YEAR = join(ROOT, "fixtures/language-gold/71-site-year/routes.cwl");
 const SITE_LINKS = join(ROOT, "fixtures/language-gold/72-site-nav-links/routes.cwl");
 const SITE_SHELL_BEHAVIOR = join(ROOT, "fixtures/language-gold/73-site-shell-behavior/routes.cwl");
+const SITE_ASSETS = join(ROOT, "fixtures/language-gold/74-site-assets/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -684,6 +685,27 @@ runEmitCheck(
       !/userAgent/.test(text) &&
       !/matchMedia/.test(text) &&
       !/data-ao-device=\\"(mobile|desktop)\\"/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-74-site-assets",
+  SITE_ASSETS,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeReasons ?? []).includes("cwl:missing-style-slot") &&
+      (rep.holeReasons ?? []).includes("cwl:missing-image-slot") &&
+      /rel=\\"stylesheet\\" href=\\"\/agenticops\.css\\"/.test(text) &&
+      /src=\\"\/logo\.svg\\"/.test(text) &&
+      /cwl-host/.test(text) &&
+      /agenticops/.test(text) &&
+      /public=/.test(text) &&
+      /404\.html/.test(text) &&
+      !/<!-- cwl:style -->/.test(text) &&
+      !/<!-- cwl:image /.test(text)
     );
   },
   { stdout: true },

@@ -4,6 +4,30 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-01 - tip-1.0.66-site-assets
+
+**To:** convert + secure  
+**Priority:** P1  
+**Status:** **open**  
+**CWL tip:** **1.0.66** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.66**. Peel gold `74`. Serve the named stylesheet and image. Deploy the named Firebase public root. Do not parse CSS or image bytes inside CWL |
+| Secure | Pin to **1.0.66**. A stylesheet URL, an image path, and a hosting target are document facts. Do not treat the CSS file or the image bytes as genome |
+
+### CWL landed
+
+- `style` fills `<!-- cwl:style -->`
+- `image <id>` fills `<!-- cwl:image <id> -->`
+- `host firebase` names the target, public directory, and error document
+- Missing slots stay named holes
+- Reply on [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md)
+
+---
+
 ## 2026-10-01 - tip-1.0.65-site-shell-behavior
 
 **To:** convert + secure  

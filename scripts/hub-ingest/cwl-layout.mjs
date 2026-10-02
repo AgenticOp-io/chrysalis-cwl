@@ -119,8 +119,64 @@ export function composeLayoutChromeHtml(chrome, body, opts = {}) {
   shell = expandCwlLinks(shell, opts.links, navName);
   if (shell.includes(CWL_HTML_HEAD_SLOT)) shell = shell.replace(CWL_HTML_HEAD_SLOT, head);
   let html = shell.includes(CWL_HTML_BODY_SLOT) ? shell.replace(CWL_HTML_BODY_SLOT, body) : `${shell}${body}`;
+  html = expandCwlAssets(html, opts.styles, opts.images);
+  if (opts.hostFirebase) html = insertHostNote(html, opts.hostFirebase);
   if (opts.drawer && chromeHasDrawerTargets(html, opts.drawer)) html = insertDrawerScript(html, opts.drawer);
   return html;
+}
+
+/**
+ * Stylesheet and image markers. CWL names the files. It does not parse CSS or image bytes.
+ * @param {string} html
+ * @param {string[] | undefined} styles
+ * @param {Array<{ id: string, path: string }> | undefined} images
+ */
+function expandCwlAssets(html, styles, images) {
+  let out = String(html);
+  const sheets = Array.isArray(styles) ? styles : [];
+  if (sheets.length && out.includes("<!-- cwl:style -->")) {
+    const tags = sheets
+      .map((href) => `<link rel="stylesheet" href="${escapeCwlHtmlText(href)}" />`)
+      .join("");
+    out = out.split("<!-- cwl:style -->").join(tags);
+  }
+  for (const image of images ?? []) {
+    const token = `<!-- cwl:image ${image.id} -->`;
+    if (!out.includes(token)) continue;
+    out = out.split(token).join(escapeCwlHtmlText(image.path));
+  }
+  return out;
+}
+
+/**
+ * @param {string} html
+ * @param {{ target: string, publicDir: string, errorDoc?: string }} host
+ */
+function insertHostNote(html, host) {
+  if (html.includes("cwl-host ")) return html;
+  const error = host.errorDoc ? ` error="${escapeCwlHtmlText(host.errorDoc)}"` : "";
+  const note = `<!-- cwl-host firebase="${escapeCwlHtmlText(host.target)}" public="${escapeCwlHtmlText(host.publicDir)}"${error} -->`;
+  const head = html.indexOf("<head>");
+  if (head >= 0) {
+    const at = head + "<head>".length;
+    return `${html.slice(0, at)}${note}${html.slice(at)}`;
+  }
+  const body = html.lastIndexOf("</body>");
+  if (body >= 0) return `${html.slice(0, body)}${note}${html.slice(body)}`;
+  return `${note}${html}`;
+}
+
+/** @param {string} surface */
+export function surfaceHasStyleSlot(surface) {
+  return String(surface ?? "").includes("<!-- cwl:style -->");
+}
+
+/**
+ * @param {string} surface
+ * @param {string} id
+ */
+export function surfaceHasImageSlot(surface, id) {
+  return String(surface ?? "").includes(`<!-- cwl:image ${id} -->`);
 }
 
 /** True when a declared head has nowhere to sit in the shell. */
@@ -201,6 +257,9 @@ export function mergeLayoutOntoRoute(route, layout) {
   if (layout.yearHost) route.yearHost = true;
   if (layout.deviceHost) route.deviceHost = layout.deviceHost;
   if (layout.drawer) route.drawer = layout.drawer;
+  if (Array.isArray(layout.styles) && layout.styles.length) route.styles = layout.styles.slice();
+  if (Array.isArray(layout.images) && layout.images.length) route.images = layout.images.slice();
+  if (layout.hostFirebase) route.hostFirebase = layout.hostFirebase;
   if (Array.isArray(layout.links) && layout.links.length) route.navLinks = layout.links.slice();
 }
 

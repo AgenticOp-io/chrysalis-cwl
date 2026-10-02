@@ -13,6 +13,7 @@ CWL reads this on coordinator ticks. Tip bumps only for **contract gaps**.
 
 | When | From | Note |
 | --- | --- | --- |
+| 2026-10-01 | parent | agenticop.io stylesheet, image, Firebase root — **done** in tip **1.0.66** (gold 74). No CSS parse, image bytes, or deploy. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |
 | 2026-10-01 | parent | agenticop.io drawer, device, footer lists — **done** in tip **1.0.65** (gold 73). No viewport or user-agent read. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |
 | 2026-10-01 | parent | agenticop.io empty header — **done** in tip **1.0.64** (gold 72). Drawer click and device switch stay holes. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |
 | 2026-10-01 | parent | agenticop.io footer year — **done** in tip **1.0.63** (gold 71). Menu toggle and device switch stay holes. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |

@@ -61,6 +61,13 @@ const DEVICE_HOST_RE = /^device\s+host\s+([A-Za-z][A-Za-z0-9_-]*)\s+([A-Za-z][A-
 /** Menu drawer. The host document gets the bounded toggle script. */
 const DRAWER_RE =
   /^drawer\s+([A-Za-z][A-Za-z0-9_-]*)\s+toggle\s+([A-Za-z][A-Za-z0-9_-]*)\s+class\s+([A-Za-z][A-Za-z0-9_-]*)(?:\s+panel\s+([A-Za-z][A-Za-z0-9_-]*))?\s*;$/;
+/** Stylesheet URL. The file stays on the host. */
+const STYLE_RE = /^style\s+"([^"]+)"\s*;$/;
+/** Image URL by id. The bytes stay on the host. */
+const IMAGE_RE = /^image\s+([A-Za-z_][A-Za-z0-9_]*)\s+"([^"]+)"\s*;$/;
+/** Firebase Hosting target. CWL does not deploy. */
+const HOST_FIREBASE_RE =
+  /^host\s+firebase\s+"([^"]+)"\s+public\s+"([^"]+)"(?:\s+error\s+"([^"]*)")?\s*;$/;
 const CLIENT_UI_START_RE = /^client\s+ui\b/;
 const CHROME_HTML_PREFIX_RE = /^chrome\s+html\s+/i;
 
@@ -216,6 +223,12 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
   let drawer = null;
   /** @type {string} */
   let linkGroup = "";
+  /** @type {string[]} */
+  const styles = [];
+  /** @type {Array<{ id: string, path: string }>} */
+  const images = [];
+  /** @type {{ target: string, publicDir: string, errorDoc?: string } | null} */
+  let hostFirebase = null;
   /** @type {Array<{ id: string, href: string, label: string, className?: string, group?: string }>} */
   const links = [];
   /** @type {object[]} */
@@ -240,6 +253,9 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
           ...(yearHost ? { yearHost: true } : {}),
           ...(deviceHost ? { deviceHost } : {}),
           ...(drawer ? { drawer } : {}),
+          ...(styles.length ? { styles } : {}),
+          ...(images.length ? { images } : {}),
+          ...(hostFirebase ? { hostFirebase } : {}),
           ...(links.length ? { links } : {}),
         },
         consumed: i,
@@ -273,6 +289,22 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
     if (drawerLine) {
       drawer = { navId: drawerLine[1], toggleClass: drawerLine[2], openClass: drawerLine[3] };
       if (drawerLine[4]) drawer.panelId = drawerLine[4];
+      continue;
+    }
+    const style = STYLE_RE.exec(line);
+    if (style) {
+      styles.push(style[1]);
+      continue;
+    }
+    const image = IMAGE_RE.exec(line);
+    if (image) {
+      images.push({ id: image[1], path: image[2] });
+      continue;
+    }
+    const host = HOST_FIREBASE_RE.exec(line);
+    if (host) {
+      hostFirebase = { target: host[1], publicDir: host[2] };
+      if (host[3]) hostFirebase.errorDoc = host[3];
       continue;
     }
     const group = LINKS_GROUP_RE.exec(line);
