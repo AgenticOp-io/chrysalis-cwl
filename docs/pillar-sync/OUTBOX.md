@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-01 - goal-dna-of-web-languages
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.66** (no grammar change)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Treat CWL as the page language. The goal is to replace any web page. Pin stays **1.0.66** until the open 1.0.63–1.0.66 asks land. Do not redefine the goal in Convert |
+| Secure | A CWL bridge speaks this language. The goal is page replacement, not a second grammar. Pin stays **1.0.66**. Do not redefine the goal in Secure |
+
+### CWL landed
+
+- Constitution, README, scope, Rosetta path, and `LANGUAGE_VERSION.md` state the goal
+- Golds `68`–`74` replace a document shell. Form actions, websocket, SQL engines, and arbitrary client script stay holes
+- Umbrella `THREE_PILLARS.md` is not edited from this repo
+
+---
+
 ## 2026-10-01 - tip-1.0.66-site-assets
 
 **To:** convert + secure  

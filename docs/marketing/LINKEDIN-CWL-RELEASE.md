@@ -10,7 +10,7 @@ Canonical site copy also lives in `brand/agenticops-web/docs/LINKEDIN-CWL-RELEAS
 
 **CWL is public.**
 
-Chrysalis Web Language is the DNA of the web — a readable genome for what an app *is*:
+Chrysalis Web Language is the DNA of web languages — a language in its own right, able to replace any web page:
 
 routes · pages · data · UI · effects · **honest holes** when a claim is unsafe
 

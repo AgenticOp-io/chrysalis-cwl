@@ -1,6 +1,6 @@
 # AGENTS.md — chrysalis-cwl
 
-You own **CWL — the DNA of the web** (Rosetta inscription + tongue for the Universal Translator). Convert and Secure consume you; they do not redefine you.
+You own **CWL — the DNA of web languages**. It is a language in its own right. The goal is to replace any web page. Convert and Secure consume you; they do not redefine you.
 
 **This workspace / chat is CWL-only.** Separate agents own Convert (`chrysalis-convert`) and Secure (`chrysalis-security`). Do **not** edit those trees from here.
 
@@ -23,7 +23,7 @@ You own **CWL — the DNA of the web** (Rosetta inscription + tongue for the Uni
 
 ## Mission
 
-Make CWL the **heritable identity** of web apps — so the Universal Translator (Convert), security bridges, runtimes, and emit all share one Rosetta bar (RFCs, fixtures, parse/print, versioning). Never invent what you cannot translate: `hole reason;`.
+Make CWL the language that **replaces any web page**. The page's source is CWL. Emit produces that page. Convert, security bridges, runtimes, and emit share one Rosetta bar (RFCs, fixtures, parse/print, versioning). A behavior that cannot yet be said is `hole reason;` — then close that gap. Do not invent a gene you cannot translate.
 
 ## Do
 

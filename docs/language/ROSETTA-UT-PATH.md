@@ -1,8 +1,8 @@
-# Rosetta → Universal Translator → DNA of the web
+# Rosetta → Universal Translator → DNA of web languages
 
-**CWL is the Rosetta Stone of the web.**  
-**Convert is the Universal Translator that speaks through it.**  
-**Together they make CWL the DNA of the web** — the genetic identity of what a web app *is*.
+**CWL is a language in its own right.**  
+**Goal:** replace any web page. The page's source is CWL. Emit produces that page.  
+**Convert is the Universal Translator** that hears other web languages and speaks them as CWL.
 
 ## The chain (follow this)
 
@@ -18,21 +18,21 @@
               hear any stack as CWL
               speak CWL into any stack
 
-                      DNA OF THE WEB
-              heritable identity: routes, pages, data,
-              UI, effects, honest holes — versioned,
+                      DNA OF WEB LANGUAGES
+              CWL replaces any web page: routes, pages,
+              data, UI, effects, honest holes — versioned,
               verified, never silently invented
 ```
 
 | Metaphor | Means | Owner |
 | --- | --- | --- |
-| **Rosetta Stone** | Same app meaning recoverable across frameworks | **CWL** + WebIR |
+| **Rosetta Stone** | Same page meaning recoverable across web languages | **CWL** + WebIR |
 | **Universal Translator** | Device that peels/emits without inventing culture | **Convert** |
-| **DNA of the web** | That meaning as *genetic identity* — heritable, comparable, enforceable | **CWL** (genome) · Convert (heredity) · Secure (phenotype check) |
+| **DNA of web languages** | CWL is that language. It can replace any web page | **CWL** (genome) · Convert (heredity) · Secure (phenotype check) |
 
-## Why “DNA of the web” (not “of all programming”)
+## Why “DNA of web languages”
 
-DNA here is **web-app identity**: what the program is on the wire and in the UI surface — not a replacement for C++, SQL, or vendor SDKs. Those stay bridges or `hole reason;` until they can be translated honestly.
+DNA here is the **web page**: what the page is in markup, behavior, and declared host facts. C++, SQL engines, and vendor SDKs stay bridges or `hole reason;` until a page behavior can be said honestly. A hole is a page CWL cannot yet replace. The next language change closes that gap.
 
 Star Trek’s UT preserves meaning across tongues.  
 Rosetta proves one decree in many scripts.  

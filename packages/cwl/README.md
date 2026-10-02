@@ -9,13 +9,13 @@
 
 | Pillar | Repository | Role |
 |--------|------------|------|
-| **CWL** | [chrysalis-cwl](https://github.com/AgenticOp-io/chrysalis-cwl) | Chrysalis Web Language — DNA of the web |
+| **CWL** | [chrysalis-cwl](https://github.com/AgenticOp-io/chrysalis-cwl) | Chrysalis Web Language — DNA of web languages |
 | **Convert** | [chrysalis](https://github.com/AgenticOp-io/chrysalis) | Universal Translator — origin → WebIR/CWL → emit |
 | **Secure** | [chrysalis-security](https://github.com/AgenticOp-io/chrysalis-security) | Helix DNA firewall — allow only what certified traffic proves |
 
 ## Purpose
 
-**CWL** is the **DNA of the web** (Rosetta meaning) for AgenticOps: a single surface for routes, pages, data, UI, effects, and honest holes, mapped 1:1 to **WebIR**. Convert is the Universal Translator through it — PHP is one peel, not the product identity.
+**CWL** is the **DNA of web languages**. It is a language in its own right. The goal is to replace any web page. Routes, pages, data, UI, effects, and honest holes map 1:1 to **WebIR**. Convert translates other web languages through it. PHP is one peel.
 
 ## Public API
 

@@ -1,18 +1,18 @@
-# CWL language scope — DNA of the web ≠ all programming languages
+# CWL language scope — DNA of web languages
 
 **Status:** constitutional (read with [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md) · [`ROSETTA-UT-PATH.md`](./ROSETTA-UT-PATH.md))
 
 ## Verdict
 
-**We have not “added all programming languages” to CWL — and we must not.**
+**Goal:** CWL is the DNA of web languages. It is a language in its own right. It must be able to replace any web page.
 
-CWL is the **DNA of the web**: the heritable identity of a **web application** (routes, pages, data, UI, effects, honest holes). It is **not** a universal programming language, not a replacement for Go/Java/Python/SQL/COBOL, and not a place to absorb every vendor SDK.
+CWL has not absorbed every programming language, and it must not. It is not a replacement for a SQL engine, an operating system, or a vendor SDK. It **is** the language a web page is written in. A page that still cannot be written here is an open language gap.
 
 | Metaphor | Means | Owner |
 | --- | --- | --- |
 | **Rosetta** | One app meaning ↔ CWL / WebIR | **CWL** |
 | **Universal Translator** | Hear origin stacks → speak emit targets | **Convert** |
-| **DNA of the web** | What the web app *is* | **CWL genome** |
+| **DNA of web languages** | The language that replaces any web page | **CWL genome** |
 
 Convert peels may hear PHP, Express, Python, Go, Java, C#, Ruby, Rust, frameworks, COBOL layouts, etc. Those peels **map into** this genome (or leave catalogued holes). They do **not** expand the genome into those languages. PHP is **one peel**, not the product identity of Chrysalis.
 
@@ -20,7 +20,7 @@ Convert peels may hear PHP, Express, Python, Go, Java, C#, Ruby, Rust, framework
 
 | Pillar | Repository | Role |
 |--------|------------|------|
-| **CWL** | [**chrysalis-cwl**](https://github.com/AgenticOp-io/chrysalis-cwl) | Chrysalis Web Language — DNA of the web |
+| **CWL** | [**chrysalis-cwl**](https://github.com/AgenticOp-io/chrysalis-cwl) | Chrysalis Web Language — DNA of web languages |
 | **Convert** | [**chrysalis**](https://github.com/AgenticOp-io/chrysalis) | Universal Translator — origin → WebIR/CWL → emit |
 | **Secure** | [**chrysalis-security**](https://github.com/AgenticOp-io/chrysalis-security) | Helix DNA firewall — allow only what certified traffic proves |
 
@@ -44,8 +44,9 @@ Language golds: `fixtures/language-gold/01`–`74`. Tip: [`LANGUAGE_VERSION.md`]
 
 ## How to grow (honestly)
 
-1. New **named hole reasons** when Convert peels need vocabulary (RFC/catalog first).
-2. New **surfaces** only with RFC + language gold (never “looks green” façades).
-3. Broader **origin hearing** = Convert peel work, not CWL grammar forks.
+1. Close a page gap with an RFC + language gold when a web page still cannot be written here.
+2. New **named hole reasons** when Convert peels need vocabulary (RFC/catalog first).
+3. New **surfaces** only with RFC + language gold (never “looks green” façades).
+4. Broader **origin hearing** = Convert peel work, not CWL grammar forks.
 
-If someone asks “when will CWL support language X?”: answer **Convert peels X into CWL surfaces or holes** — CWL already is the DNA those peels write.
+If someone asks “when will CWL support language X?”: Convert may peel X into CWL. The goal is stricter. If X is how a web page is written, CWL must be able to replace that page.

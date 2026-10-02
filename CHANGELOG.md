@@ -1,5 +1,12 @@
 # CWL language changelog
 
+## Goal - 2026-10-01
+
+- CWL is the DNA of web languages. It is a language in its own right. It must be able to replace any web page
+- The page's source is CWL. Emit produces that page. A behavior that cannot yet be said stays a named hole
+- Tip stays **1.0.66**. Golds `68`–`74` replace a document shell. They do not yet replace every web page
+- No grammar change
+
 ## 1.0.66 - 2026-10-01
 
 - RFC-0029 deepen: `style` fills `<!-- cwl:style -->`. `image` fills `<!-- cwl:image <id> -->`. `host firebase` names the Hosting target, public directory, and error document

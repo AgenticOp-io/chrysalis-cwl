@@ -1,4 +1,4 @@
-﻿# CWL — DNA of the web (Rosetta + Universal Translator)
+﻿# CWL — DNA of web languages (a language that replaces any web page)
 
 **Home:** `engines/chrysalis-cwl`  
 **Repo:** https://github.com/AgenticOp-io/chrysalis-cwl  
@@ -10,7 +10,9 @@
 
 ## 1. Thesis
 
-**Chrysalis Web Language (CWL) is the DNA of the web** — the genetic identity of what a web application *is*.
+**Chrysalis Web Language (CWL) is the DNA of web languages.** It is a language in its own right. A web page written in another web language must be writable in CWL, and the emitted page must be that page.
+
+That is the goal. Other web languages arrive by translation into CWL. The page itself is written in CWL.
 
 That DNA is reached by a deliberate path:
 
@@ -22,9 +24,9 @@ That DNA is reached by a deliberate path:
 | --- | --- |
 | **Rosetta Stone** | One app meaning, many stack scripts — recoverable and human-readable in `.cwl` |
 | **Universal Translator** | Convert: origin ↔ CWL/WebIR ↔ emit |
-| **DNA of the web** | CWL as genome of routes, pages, data, UI, effects, honest holes |
+| **DNA of web languages** | CWL is the language those tongues share. It can replace any web page |
 
-CWL is not “another framework dialect” and not a general-purpose PL. It is the **canonical inscription** of web-app identity:
+CWL is a web language. SQL engines and operating systems stay outside it. It is the **source** of a web page:
 
 - HTTP routes and handlers (**CWL API**)
 - Pages and HTML (**CWL Pages**)
@@ -42,7 +44,7 @@ Neither owns the grammar. Both **need** the Rosetta tongue — the web’s DNA �
 ```text
                     ┌──────────────────────────┐
                     │   CWL  (this pillar)     │
-                    │   DNA of the web         │
+                    │   DNA of web languages   │
                     │   (Rosetta inscription)  │
                     └────────────┬─────────────┘
                                  │
@@ -57,7 +59,7 @@ Neither owns the grammar. Both **need** the Rosetta tongue — the web’s DNA �
      └────────────────┘                    └────────────────┘
 ```
 
-**North star:** any honest web stack can be *heard* as CWL and *spoken* back without silent invention — holes where translation fails. That heritable meaning **is** the DNA of the web.
+**Goal:** CWL replaces any web page. The page's source is CWL. Emit produces that page. Where a page behavior cannot yet be said, the gap is a named hole, and the next language change closes it. Hearing another stack as CWL remains Convert's job. It does not lower this goal.
 
 ---
 
@@ -319,8 +321,8 @@ Starter paste: [`docs/history/NEW_AGENT_STARTER.md`](../history/NEW_AGENT_STARTE
 
 | Doc | Role |
 | --- | --- |
-| [`ROSETTA-UT-PATH.md`](./ROSETTA-UT-PATH.md) | Rosetta → UT → DNA of the web |
-| [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) | DNA ≠ all programming languages |
+| [`ROSETTA-UT-PATH.md`](./ROSETTA-UT-PATH.md) | Rosetta → UT → DNA of web languages |
+| [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) | DNA of web languages; replace any web page |
 | [`CWL.md`](./CWL.md) | Language overview |
 | [`CWL.md`](./CWL.md) | Language reference |
 | [`CWL-RFC.md`](./CWL-RFC.md) | RFC index |
@@ -335,4 +337,4 @@ Starter paste: [`docs/history/NEW_AGENT_STARTER.md`](../history/NEW_AGENT_STARTE
 
 ## One line
 
-**CWL is the DNA of the web (Rosetta meaning). Convert is the Universal Translator through it. Secure proves live identity — and speaks CWL when bridging surface to DNA.**
+**CWL is the DNA of web languages.** It is a language in its own right and it must be able to replace any web page. Convert translates other stacks through it. Secure proves live identity — and speaks CWL when bridging surface to DNA.

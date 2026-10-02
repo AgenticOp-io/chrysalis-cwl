@@ -1,14 +1,14 @@
 ---
-description: CWL is the DNA of the web (Rosetta + UT) — this repo/chat is CWL-only
+description: CWL is the DNA of web languages — a language that replaces any web page; this repo/chat is CWL-only
 alwaysApply: true
 ---
 
-# CWL — DNA of the web
+# CWL — DNA of web languages
 
 Canonical constitution: [`docs/language/CWL-PILLAR-HOME.md`](../../docs/language/CWL-PILLAR-HOME.md)  
 Path: [`docs/language/ROSETTA-UT-PATH.md`](../../docs/language/ROSETTA-UT-PATH.md)
 
-CWL is not a side format. It is the **DNA of the web** for Chrysalis: Rosetta meaning (CWL ↔ WebIR) that the Universal Translator (Convert) hears and speaks — routes, pages, data, UI, effects, honest holes.
+CWL is a language in its own right. It is the **DNA of web languages**. The goal is to replace any web page: the page's source is CWL, and emit produces that page. Rosetta meaning (CWL ↔ WebIR) is what the Universal Translator (Convert) hears and speaks — routes, pages, data, UI, effects, honest holes.
 
 | Pillar | Relationship to CWL |
 | --- | --- |
