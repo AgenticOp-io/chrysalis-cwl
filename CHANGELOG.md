@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## Site genome - 2026-10-02
+
+- `fixtures/sites/agenticop-io/site.cwl` is the source of the 26 public AgenticOps pages
+- The shell names the stylesheet, the logo, the Firebase public root, the year token, and the device token. `drawer` is the menu. The module does not load `ao-layout.js`
+- `npm run smoke:agenticop-site`. Tip stays **1.0.67**. CWL still does not read the clock, parse CSS, read image bytes, or deploy
+
 ## 1.0.67 - 2026-10-01
 
 - RFC-0029 deepen: `script` fills `<!-- cwl:script -->`. `form` / `field` / `submit` fill `<!-- cwl:form <id> -->` for a same-site action. `link` may say `target blank` and `rel`

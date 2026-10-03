@@ -63,6 +63,7 @@
 | P0 | Shell behavior (`73`) | **done** (`1.0.65`) — drawer script, device token, named footer list; no viewport or user-agent read |
 | P0 | Site assets (`74`) | **done** (`1.0.66`) — stylesheet, image path, Firebase public root; no CSS parse, image bytes, or deploy |
 | P0 | Site page (`75`) | **done** (`1.0.67`) — script URL, same-site form, off-site anchor; no script execution; off-site form post stays a hole |
+| P0 | AgenticOps site genome | **done** (tip `1.0.67`) — `fixtures/sites/agenticop-io/site.cwl`, 26 pages, `smoke:agenticop-site`. No `ao-layout.js`. Clock, CSS bytes, image bytes, and Firebase deploy stay on the host |
 | P0 | Replace any web page | **open** — goal of the language. Document shell through gold `74` is the start. Remaining page behaviors stay holes until an honest RFC |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
