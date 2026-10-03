@@ -24,13 +24,14 @@ SECURE_NEXT: pin 1.0.68
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | b6402dc | AgenticOps site genome (tip **1.0.67**) |
+| **CWL** | `main` | e5452e1 | tip **1.0.68** named viewport cut |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
 | **P0** | Convert / Secure | Tip pin **1.0.68**. Host device script uses declared `below` |
+| **done** | CWL | tip **1.0.68** named viewport cut, land `e5452e1` |
 | **done** | Convert | Emit 26 pages, PR #77 `73af128b` |
 | **done** | Secure | Tip pin **1.0.67** and site genome, `831bd11` |
 | **done** | Convert | Tip pin **1.0.67** (golds 71–75), PR #76 `355f6c5` |
