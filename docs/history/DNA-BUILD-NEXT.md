@@ -78,14 +78,14 @@
 | --- | --- |
 | Tip pin **1.0.61** | Convert + Secure — **done** (candidate branches) |
 | Tip pin **1.0.62** | Convert + Secure — **done** (candidate / Convert main) |
-| Tip pin **1.0.63** | Convert + Secure — **asked** |
-| Tip pin **1.0.64** | Convert + Secure — **asked** |
-| Tip pin **1.0.65** | Convert + Secure — **asked** |
-| Tip pin **1.0.66** | Convert + Secure — **asked** |
+| Tip pin **1.0.63** | Convert + Secure — **done** |
+| Tip pin **1.0.64** | Convert + Secure — **done** |
+| Tip pin **1.0.65** | Convert + Secure — **done** |
+| Tip pin **1.0.66** | Convert + Secure — **done** |
 | Tip pin **1.0.67** | Convert + Secure — **done** |
-| Tip pin **1.0.68** | Convert + Secure — **asked** |
-| Tip pin **1.0.69** | Convert + Secure — **asked** |
-| Tip pin **1.0.70** | Convert + Secure — **asked** |
+| Tip pin **1.0.68** | Convert + Secure — **done** (Convert `920d1329`, Secure `24750e2`) |
+| Tip pin **1.0.69** | Convert + Secure — **done** (Convert `920d1329`, Secure `24750e2`) |
+| Tip pin **1.0.70** | Convert + Secure — **done** (Convert `920d1329`, Secure `24750e2`) |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |

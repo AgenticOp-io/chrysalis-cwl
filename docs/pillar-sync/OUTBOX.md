@@ -8,7 +8,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done**  
 **CWL tip:** **1.0.70** (RFC-0029 deepen)
 
 ### Ask
@@ -22,7 +22,8 @@ Pushed asks for siblings. Newest first.
 
 - Gold `78`. `cwl:meta-not-url`, `cwl:meta-theme`, `cwl:meta-og-type`, and `cwl:meta-twitter-card` are not written
 - The public site genome names the card on the pages that have one
-- Land `efc006c`. Pins for **1.0.68**, **1.0.69**, and **1.0.70** are still open
+- Land `efc006c`. Convert `920d1329` peels golds `76`–`78`. Secure `24750e2` pins **1.0.70**. Tag `cwl-v1.0.70` is at `d043649`
+- The live site is still the old HTML. The site lane writes `brand/agenticops-web` and deploys Firebase project `agenticops`
 
 ---
 
@@ -30,7 +31,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done**  
 **CWL tip:** **1.0.69** (RFC-0029 deepen)
 
 ### Ask
@@ -52,7 +53,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done**  
 **CWL tip:** **1.0.68** (RFC-0029 deepen)
 
 ### Ask
