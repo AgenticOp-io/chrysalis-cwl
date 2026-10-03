@@ -24,13 +24,14 @@ SECURE_NEXT: pin 1.0.70
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | 5c8dbfd | tip **1.0.69** document identity |
+| **CWL** | `main` | efc006c | tip **1.0.70** social card |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
 | **P0** | Convert / Secure | Tip pin **1.0.70**. Peel gold `78`. Host device script uses declared `below` |
+| **done** | CWL | tip **1.0.70** social card, land `efc006c` |
 | **done** | CWL | tip **1.0.69** document identity, land `5c8dbfd` |
 | **done** | CWL | tip **1.0.68** named viewport cut, land `e5452e1` |
 | **done** | Convert | Emit 26 pages, PR #77 `73af128b` |
