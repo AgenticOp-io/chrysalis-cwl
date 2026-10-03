@@ -24,7 +24,7 @@ SECURE_NEXT: pin 1.0.67
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | dafbce0 | tip **1.0.67** land |
+| **CWL** | `main` | b6402dc | AgenticOps site genome (tip **1.0.67**) |
 
 ## Who builds next
 
