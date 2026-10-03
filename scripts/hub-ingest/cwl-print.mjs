@@ -331,6 +331,8 @@ export function printCwlModule(mod, opts = {}) {
       lines.push(`  ${formatCookieDecl(c, purpose)};`);
     }
     if (L.yearHost) lines.push("  year host;");
+    if (L.charset === "utf-8") lines.push("  charset utf-8;");
+    if (L.viewportDevice) lines.push("  viewport device;");
     if (L.deviceHost?.values?.length === 2) {
       const below = L.deviceHost.below ? ` below ${L.deviceHost.below}` : "";
       lines.push(`  device host ${L.deviceHost.values[0]} ${L.deviceHost.values[1]}${below};`);
@@ -413,6 +415,9 @@ export function printCwlModule(mod, opts = {}) {
     if (route.navId) {
       lines.push(`  nav ${route.navId};`);
     }
+    if (typeof route.title === "string") lines.push(`  title ${JSON.stringify(route.title)};`);
+    if (typeof route.description === "string") lines.push(`  description ${JSON.stringify(route.description)};`);
+    if (typeof route.canonical === "string") lines.push(`  canonical ${JSON.stringify(route.canonical)};`);
 
     if (route.redirect?.path) {
       lines.push(`  ${formatRedirectStatement(route.redirect)};`);

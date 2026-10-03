@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-02 - tip-1.0.69-document-identity
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.69** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.69**. Peel gold `77`. Emit `title`, `description`, `canonical`, `charset utf-8`, and `viewport device` from the site genome. The viewport meta content stays `width=device-width, initial-scale=1`. Do not evaluate it. Keep reading `deviceHost.below` for the host device script. Do not hardcode `820`. Do not deploy Firebase project `agenticops` |
+| Secure | Pin to **1.0.69**. Charset, viewport meta, title, description, and canonical are document facts. A media-query evaluation is not genome |
+
+### CWL landed
+
+- Gold `77`. A non-URL canonical is `cwl:canonical-not-url` and is not written
+- The public site genome names those facts on all 26 pages. Open Graph stays in `head html`
+- Tip **1.0.68** `below 820` is included. Convert and Secure pins for **1.0.68** are still open
+
+---
+
 ## 2026-10-02 - tip-1.0.68-device-below
 
 **To:** convert + secure  

@@ -5,6 +5,8 @@ module agenticop_site;
 
 layout site {
   year host;
+  charset utf-8;
+  viewport device;
   device host mobile desktop below 820;
   drawer ao-site-nav toggle ao-nav-toggle class is-open panel ao-nav-drawer;
   style "/agenticops.css";
@@ -51,6 +53,11 @@ layout site {
 <!DOCTYPE html>
 <html lang="en" data-ao-device="<!-- cwl:device -->">
 <head>
+<!-- cwl:charset -->
+<!-- cwl:viewport -->
+<!-- cwl:title -->
+<!-- cwl:description -->
+<!-- cwl:canonical -->
 <!-- cwl:head -->
 <!-- cwl:style -->
 </head>
@@ -129,12 +136,19 @@ layout site {
 }
 
 layout missing {
+  charset utf-8;
+  viewport device;
   style "/agenticops.css";
   image logo "/logo.svg";
   chrome html """
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- cwl:charset -->
+<!-- cwl:viewport -->
+<!-- cwl:title -->
+<!-- cwl:description -->
+<!-- cwl:canonical -->
 <!-- cwl:head -->
 <!-- cwl:style -->
 </head>
@@ -157,16 +171,14 @@ page home {
   effects: none;
   nav home;
   layout site;
+  title "AgenticOps | CWL — DNA of the web";
+  description "CWL (Chrysalis Web Language) is the readable DNA of any web app — routes, pages, data, UI, effects, and honest holes. Tip 1.0.26 is public. Convert and Secure consume it; traffic decides.";
+  canonical "https://agenticop.io/";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AgenticOps | CWL — DNA of the web</title>
-  <meta name="description" content="CWL (Chrysalis Web Language) is the readable DNA of any web app — routes, pages, data, UI, effects, and honest holes. Tip 1.0.26 is public. Convert and Secure consume it; traffic decides." />
-  <meta name="keywords" content="CWL, Chrysalis Web Language, DNA of the web, AgenticOps, Universal Translator, WebIR, honest holes, Helix" />
+<meta name="keywords" content="CWL, Chrysalis Web Language, DNA of the web, AgenticOps, Universal Translator, WebIR, honest holes, Helix" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="AgenticOps" />
   <meta name="theme-color" content="#020208" />
-  <link rel="canonical" href="https://agenticop.io/" />
   <link rel="alternate" type="text/plain" href="https://agenticop.io/llms.txt" title="LLM digest" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="AgenticOps" />
@@ -561,11 +573,9 @@ page home {
 page missing {
   effects: none;
   layout missing;
+  title "404 — AgenticOps";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>404 — AgenticOps</title>
-  <meta name="robots" content="noindex" />
+<meta name="robots" content="noindex" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -596,15 +606,13 @@ page about {
   effects: none;
   nav about;
   layout site;
+  title "About · Building the DNA of the web | AgenticOps";
+  description "AgenticOps builds Chrysalis: CWL as the DNA of the web, Convert as the Universal Translator, Secure as traffic-proven identity. Migrations without guesswork.";
+  canonical "https://agenticop.io/about.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About · Building the DNA of the web | AgenticOps</title>
-  <meta name="description" content="AgenticOps builds Chrysalis: CWL as the DNA of the web, Convert as the Universal Translator, Secure as traffic-proven identity. Migrations without guesswork." />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="AgenticOps" />
   <meta name="theme-color" content="#020208" />
-  <link rel="canonical" href="https://agenticop.io/about.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="AgenticOps" />
   <meta property="og:url" content="https://agenticop.io/about.html" />
@@ -823,16 +831,14 @@ page chrysalis {
   effects: none;
   nav chrysalis;
   layout site;
+  title "CWL · DNA of the web — readable genome | AgenticOps";
+  description "CWL is Chrysalis Web Language: the readable DNA of any web app. Routes, handlers, pages, data, effects — and honest holes. Convert and Secure consume it; they do not redefine it.";
+  canonical "https://agenticop.io/chrysalis.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CWL · DNA of the web — readable genome | AgenticOps</title>
-  <meta name="description" content="CWL is Chrysalis Web Language: the readable DNA of any web app. Routes, handlers, pages, data, effects — and honest holes. Convert and Secure consume it; they do not redefine it." />
-  <meta name="keywords" content="CWL, Chrysalis Web Language, DNA of the web, readable genome, WebIR, honest holes, AgenticOps, Chrysalis" />
+<meta name="keywords" content="CWL, Chrysalis Web Language, DNA of the web, readable genome, WebIR, honest holes, AgenticOps, Chrysalis" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="AgenticOps" />
   <meta name="theme-color" content="#020208" />
-  <link rel="canonical" href="https://agenticop.io/chrysalis.html" />
   <link rel="alternate" type="text/plain" href="https://agenticop.io/llms.txt" title="LLM digest" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="AgenticOps" />
@@ -1040,12 +1046,11 @@ page contact {
   effects: none;
   nav contact;
   layout site;
+  title "Contact � Start a Pilot | AgenticOps";
+  description "VP Eng / CTO with a legacy stack? Start a fixed-scope Pilot. hello@agenticop.io � DNA of the web, Universal Translator, traffic-proven cutover.";
+  canonical "https://agenticop.io/contact.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact � Start a Pilot | AgenticOps</title>
-  <meta name="description" content="VP Eng / CTO with a legacy stack? Start a fixed-scope Pilot. hello@agenticop.io � DNA of the web, Universal Translator, traffic-proven cutover." />
-  <meta name="theme-color" content="#020208" />
+<meta name="theme-color" content="#020208" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="AgenticOps" />
   <meta property="og:type" content="website" />
@@ -1059,7 +1064,6 @@ page contact {
   <meta name="twitter:title" content="Contact � AgenticOps" />
   <meta name="twitter:description" content="VP Eng / CTO with a legacy stack? Start a fixed-scope Pilot. hello@agenticop.io � DNA of the web, Universal Translator, traffic-proven cutover." />
   <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
-  <link rel="canonical" href="https://agenticop.io/contact.html" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
   <script type="application/ld+json">
@@ -1131,16 +1135,14 @@ page convert {
   effects: none;
   nav convert;
   layout site;
+  title "Convert · Universal Translator — origin to modern | AgenticOps";
+  description "Chrysalis Convert is the Universal Translator: PHP, COBOL, SvelteKit, Express, Java and more → WebIR + CWL → TypeScript, Python, Go, Hono. AI proposes; verify disposes. Honest holes — no façades.";
+  canonical "https://agenticop.io/convert.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Convert · Universal Translator — origin to modern | AgenticOps</title>
-  <meta name="description" content="Chrysalis Convert is the Universal Translator: PHP, COBOL, SvelteKit, Express, Java and more → WebIR + CWL → TypeScript, Python, Go, Hono. AI proposes; verify disposes. Honest holes — no façades." />
-  <meta name="keywords" content="Universal Translator, Chrysalis Convert, WebIR, CWL, PHP modernization, language pairs, legacy migration" />
+<meta name="keywords" content="Universal Translator, Chrysalis Convert, WebIR, CWL, PHP modernization, language pairs, legacy migration" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="AgenticOps" />
   <meta name="theme-color" content="#020208" />
-  <link rel="canonical" href="https://agenticop.io/convert.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="AgenticOps" />
   <meta property="og:url" content="https://agenticop.io/convert.html" />
@@ -1289,13 +1291,11 @@ page docs {
   effects: none;
   nav docs;
   layout site;
+  title "Docs — technical papers & references | AgenticOps";
+  description "Technical documentation for Chrysalis: CWL tip 1.0.26, WebIR, Convert, Helix, traffic-decides bar, RFCs, and project references.";
+  canonical "https://agenticop.io/docs.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Docs — technical papers &amp; references | AgenticOps</title>
-  <meta name="description" content="Technical documentation for Chrysalis: CWL tip 1.0.26, WebIR, Convert, Helix, traffic-decides bar, RFCs, and project references." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://agenticop.io/docs.html" />
+<meta name="robots" content="index, follow" />
   <meta property="og:title" content="Docs — AgenticOps" />
   <meta property="og:description" content="Whitepapers and technical references. CWL is flagship." />
   <meta property="og:url" content="https://agenticop.io/docs.html" />
@@ -1437,13 +1437,11 @@ page fde {
   effects: none;
   nav projects;
   layout site;
+  title "Fragility Discovery Engine | AgenticOps";
+  description "FDE v0.6.7: directed search over discrete-time simulations, evidence contracts, CLI and workbench at fragility.agenticop.io.";
+  canonical "https://agenticop.io/fde.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fragility Discovery Engine | AgenticOps</title>
-  <meta name="description" content="FDE v0.6.7: directed search over discrete-time simulations, evidence contracts, CLI and workbench at fragility.agenticop.io." />
-  <link rel="canonical" href="https://agenticop.io/fde.html" />
-  <meta property="og:title" content="Fragility Discovery Engine" />
+<meta property="og:title" content="Fragility Discovery Engine" />
   <meta property="og:url" content="https://agenticop.io/fde.html" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
@@ -1506,13 +1504,11 @@ page field {
   effects: none;
   nav projects;
   layout site;
+  title "Lane & PathfinderSSH MSP | AgenticOps";
+  description "Lane last-mile plane and PathfinderSSH MSP fork. Upstream PathfinderSSH is Scott Peterman’s — AgenticOps does not claim it.";
+  canonical "https://agenticop.io/field.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lane &amp; PathfinderSSH MSP | AgenticOps</title>
-  <meta name="description" content="Lane last-mile plane and PathfinderSSH MSP fork. Upstream PathfinderSSH is Scott Peterman’s — AgenticOps does not claim it." />
-  <link rel="canonical" href="https://agenticop.io/field.html" />
-  <meta property="og:title" content="Lane &amp; PathfinderSSH MSP" />
+<meta property="og:title" content="Lane &amp; PathfinderSSH MSP" />
   <meta property="og:url" content="https://agenticop.io/field.html" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
@@ -1573,13 +1569,11 @@ page ghosts {
   effects: none;
   nav projects;
   layout site;
+  title "Ghost Museum — still-answering hall | AgenticOps";
+  description "Ghost Museum: public hall of interfaces that outlived their obituaries. Evidence of incomplete sunsets — not a scanner or exploit kit.";
+  canonical "https://agenticop.io/ghosts.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ghost Museum — still-answering hall | AgenticOps</title>
-  <meta name="description" content="Ghost Museum: public hall of interfaces that outlived their obituaries. Evidence of incomplete sunsets — not a scanner or exploit kit." />
-  <link rel="canonical" href="https://agenticop.io/ghosts.html" />
-  <meta property="og:title" content="Ghost Museum" />
+<meta property="og:title" content="Ghost Museum" />
   <meta property="og:url" content="https://agenticop.io/ghosts.html" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
@@ -1626,13 +1620,11 @@ page hub {
   effects: none;
   nav hub;
   layout site;
+  title "Hub · Projects & hostnames · AgenticOps";
+  description "AgenticOps projects: Chrysalis Translation Hub, Fragility Discovery Engine workbench, corporate site, and operator endpoints.";
+  canonical "https://agenticop.io/hub.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hub · Projects &amp; hostnames · AgenticOps</title>
-  <meta name="description" content="AgenticOps projects: Chrysalis Translation Hub, Fragility Discovery Engine workbench, corporate site, and operator endpoints." />
-  <meta name="theme-color" content="#020208" />
-  <link rel="canonical" href="https://agenticop.io/hub.html" />
+<meta name="theme-color" content="#020208" />
   <meta property="og:url" content="https://agenticop.io/hub.html" />
   <meta property="og:title" content="Hub · AgenticOps project directory" />
   <meta property="og:description" content="One branded list of live hostnames — Translation Hub, FDE workbench, corporate site, and operator endpoints." />
@@ -1844,12 +1836,11 @@ page method {
   effects: none;
   nav method;
   layout site;
+  title "Method · Traffic-proven migration through CWL DNA | AgenticOps";
+  description "Record real traffic, describe the app in CWL (DNA of the web), let Convert translate, verify answers, then cut over carefully. AI drafts — traffic decides.";
+  canonical "https://agenticop.io/method.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Method &middot; Traffic-proven migration through CWL DNA | AgenticOps</title>
-  <meta name="description" content="Record real traffic, describe the app in CWL (DNA of the web), let Convert translate, verify answers, then cut over carefully. AI drafts &mdash; traffic decides." />
-  <meta name="theme-color" content="#020208" />
+<meta name="theme-color" content="#020208" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="AgenticOps" />
   <meta property="og:type" content="website" />
@@ -1858,7 +1849,6 @@ page method {
   <meta property="og:title" content="Method &middot; AgenticOps" />
   <meta property="og:description" content="Record real traffic, describe the app in CWL, Convert translates, traffic decides what ships." />
   <meta property="og:image" content="https://agenticop.io/logo.svg" />
-  <link rel="canonical" href="https://agenticop.io/method.html" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
@@ -1982,13 +1972,11 @@ page paper_convert {
   effects: none;
   nav docs;
   layout site;
+  title "Convert whitepaper — Universal Translator | AgenticOps";
+  description "From code: Hub :19090, peel/emit modules, oracle TraceCorpus, D6448 residual ledger, COBOL EXTFMAP, Pilot Kit tokens, CWL junctions.";
+  canonical "https://agenticop.io/paper-convert.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Convert whitepaper — Universal Translator | AgenticOps</title>
-  <meta name="description" content="From code: Hub :19090, peel/emit modules, oracle TraceCorpus, D6448 residual ledger, COBOL EXTFMAP, Pilot Kit tokens, CWL junctions." />
-  <link rel="canonical" href="https://agenticop.io/paper-convert.html" />
-  <meta property="og:title" content="Convert — Universal Translator whitepaper" />
+<meta property="og:title" content="Convert — Universal Translator whitepaper" />
   <meta property="og:url" content="https://agenticop.io/paper-convert.html" />
   <meta property="og:image" content="https://agenticop.io/chrysalis-explainer.png" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
@@ -2288,13 +2276,11 @@ page paper_cwl {
   effects: none;
   nav docs;
   layout site;
+  title "CWL whitepaper — Chrysalis Web Language tip 1.0.26 | AgenticOps";
+  description "Technical whitepaper from chrysalis-cwl code: packages, hand-written parser AST, golds 01–35, RFCs, dna-seed fields, diagnose codes, UT spine steps, tip 1.0.26.";
+  canonical "https://agenticop.io/paper-cwl.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CWL whitepaper — Chrysalis Web Language tip 1.0.26 | AgenticOps</title>
-  <meta name="description" content="Technical whitepaper from chrysalis-cwl code: packages, hand-written parser AST, golds 01–35, RFCs, dna-seed fields, diagnose codes, UT spine steps, tip 1.0.26." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://agenticop.io/paper-cwl.html" />
+<meta name="robots" content="index, follow" />
   <meta property="og:title" content="CWL whitepaper — tip 1.0.26" />
   <meta property="og:description" content="Readable DNA of the web: grammar, packages, golds, DNA seed, and the spine Convert and Secure consume." />
   <meta property="og:url" content="https://agenticop.io/paper-cwl.html" />
@@ -2753,13 +2739,11 @@ page paper_helix {
   effects: none;
   nav docs;
   layout site;
+  title "Helix whitepaper — traffic DNA firewall | AgenticOps";
+  description "From code: helix-proxy modes, app-dna-v1 schema, dna-core fingerprints, HX-* hole codes, seed-cwl/cutover CLI, signed DNA, NGFW placement.";
+  canonical "https://agenticop.io/paper-helix.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Helix whitepaper — traffic DNA firewall | AgenticOps</title>
-  <meta name="description" content="From code: helix-proxy modes, app-dna-v1 schema, dna-core fingerprints, HX-* hole codes, seed-cwl/cutover CLI, signed DNA, NGFW placement." />
-  <link rel="canonical" href="https://agenticop.io/paper-helix.html" />
-  <meta property="og:title" content="Helix — traffic DNA firewall whitepaper" />
+<meta property="og:title" content="Helix — traffic DNA firewall whitepaper" />
   <meta property="og:url" content="https://agenticop.io/paper-helix.html" />
   <meta property="og:image" content="https://agenticop.io/helix-explainer.png" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
@@ -3029,13 +3013,11 @@ page paper_traffic {
   effects: none;
   nav docs;
   layout site;
+  title "Traffic decides — whitepaper | AgenticOps";
+  description "From code: TRAFFIC-DECIDES-BAR gates, smoke:ut-spine steps, declared vs observed, command tokens, ownership matrix, soak residual.";
+  canonical "https://agenticop.io/paper-traffic.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Traffic decides — whitepaper | AgenticOps</title>
-  <meta name="description" content="From code: TRAFFIC-DECIDES-BAR gates, smoke:ut-spine steps, declared vs observed, command tokens, ownership matrix, soak residual." />
-  <link rel="canonical" href="https://agenticop.io/paper-traffic.html" />
-  <meta property="og:title" content="Traffic decides whitepaper" />
+<meta property="og:title" content="Traffic decides whitepaper" />
   <meta property="og:url" content="https://agenticop.io/paper-traffic.html" />
   <meta property="og:image" content="https://agenticop.io/logo.svg" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
@@ -3251,13 +3233,11 @@ page paper_webir {
   effects: none;
   nav docs;
   layout site;
+  title "WebIR & Rosetta whitepaper | AgenticOps";
+  description "From code: @chrysalis/webir 2.0.2 Module/Effect dialects, ingest→emit pipeline, core vs peel, DNA seed fingerprints, Hub grades, WPTP boundary.";
+  canonical "https://agenticop.io/paper-webir.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WebIR &amp; Rosetta whitepaper | AgenticOps</title>
-  <meta name="description" content="From code: @chrysalis/webir 2.0.2 Module/Effect dialects, ingest→emit pipeline, core vs peel, DNA seed fingerprints, Hub grades, WPTP boundary." />
-  <link rel="canonical" href="https://agenticop.io/paper-webir.html" />
-  <meta property="og:title" content="WebIR &amp; Rosetta whitepaper" />
+<meta property="og:title" content="WebIR &amp; Rosetta whitepaper" />
   <meta property="og:url" content="https://agenticop.io/paper-webir.html" />
   <meta property="og:image" content="https://agenticop.io/chrysalis-explainer.png" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
@@ -3520,13 +3500,11 @@ page press {
   effects: none;
   nav press;
   layout site;
+  title "CWL tip 1.0.26 is public — AgenticOps opens the Chrysalis stack | Press";
+  description "Press release: Chrysalis Web Language tip 1.0.26 is public. Convert and Secure consume it. Full open-source catalog under AgenticOp-io — WPTP, FDE, Ghost Museum, Lane, and more.";
+  canonical "https://agenticop.io/press.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CWL tip 1.0.26 is public — AgenticOps opens the Chrysalis stack | Press</title>
-  <meta name="description" content="Press release: Chrysalis Web Language tip 1.0.26 is public. Convert and Secure consume it. Full open-source catalog under AgenticOp-io — WPTP, FDE, Ghost Museum, Lane, and more." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://agenticop.io/press.html" />
+<meta name="robots" content="index, follow" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="CWL tip 1.0.26 is public — Chrysalis stack open under AgenticOp-io" />
   <meta property="og:description" content="Readable DNA of the web. Convert translates. Helix proves from traffic. Full public catalog now on agenticop.io." />
@@ -3691,13 +3669,11 @@ page projects {
   effects: none;
   nav projects;
   layout site;
+  title "Projects — AgenticOp-io catalog | AgenticOps";
+  description "Full project catalog: CWL, Convert, Secure, WPTP, FDE, Ghost Museum, Lane, PathfinderSSH MSP, wisptools proof links.";
+  canonical "https://agenticop.io/projects.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Projects — AgenticOp-io catalog | AgenticOps</title>
-  <meta name="description" content="Full project catalog: CWL, Convert, Secure, WPTP, FDE, Ghost Museum, Lane, PathfinderSSH MSP, wisptools proof links." />
-  <link rel="canonical" href="https://agenticop.io/projects.html" />
-  <meta property="og:title" content="Projects catalog" />
+<meta property="og:title" content="Projects catalog" />
   <meta property="og:url" content="https://agenticop.io/projects.html" />
   <meta property="og:image" content="https://agenticop.io/logo.svg" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
@@ -3877,12 +3853,11 @@ page proof {
   effects: none;
   nav proof;
   layout site;
+  title "Proof · Chrysalis works today | AgenticOps";
+  description "AI drafts. Recorded traffic decides. Chrysalis proves Convert (oracle dispose) and Secure (Helix DNA) before anything ships. Honest holes. No facades.";
+  canonical "https://agenticop.io/proof.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Proof &middot; Chrysalis works today | AgenticOps</title>
-  <meta name="description" content="AI drafts. Recorded traffic decides. Chrysalis proves Convert (oracle dispose) and Secure (Helix DNA) before anything ships. Honest holes. No facades." />
-  <meta name="theme-color" content="#020208" />
+<meta name="theme-color" content="#020208" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="AgenticOps" />
   <meta property="og:type" content="website" />
@@ -3891,7 +3866,6 @@ page proof {
   <meta property="og:title" content="Proof &middot; AgenticOps" />
   <meta property="og:description" content="Open-source Chrysalis, honest Hub grades, and wisptools.io as shipped proof." />
   <meta property="og:image" content="https://agenticop.io/logo.svg" />
-  <link rel="canonical" href="https://agenticop.io/proof.html" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
@@ -4065,13 +4039,11 @@ page published {
   effects: none;
   nav published;
   layout site;
+  title "Published work — links, repos, DOIs | AgenticOps";
+  description "Everything AgenticOps / David Peterson has published: CWL tip 1.0.26, Chrysalis pillars, WPTP, FDE Zenodo DOIs, Ghost Museum, Lane, wisptools proof, live demos.";
+  canonical "https://agenticop.io/published.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Published work — links, repos, DOIs | AgenticOps</title>
-  <meta name="description" content="Everything AgenticOps / David Peterson has published: CWL tip 1.0.26, Chrysalis pillars, WPTP, FDE Zenodo DOIs, Ghost Museum, Lane, wisptools proof, live demos." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://agenticop.io/published.html" />
+<meta name="robots" content="index, follow" />
   <meta property="og:title" content="Published work — AgenticOps" />
   <meta property="og:description" content="Full catalog of public repos, demos, packages, and citations." />
   <meta property="og:url" content="https://agenticop.io/published.html" />
@@ -4394,16 +4366,14 @@ page secure {
   effects: none;
   nav secure;
   layout site;
+  title "Helix · DNA firewall — if it isn’t certified, it doesn’t pass | AgenticOps";
+  description "Helix is Chrysalis Secure: a DNA firewall that learns, shadows, then enforces from live traffic. Allow while securing. Augment your NGFW without NAT homework. Optional CWL bridge.";
+  canonical "https://agenticop.io/secure.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Helix · DNA firewall — if it isn’t certified, it doesn’t pass | AgenticOps</title>
-  <meta name="description" content="Helix is Chrysalis Secure: a DNA firewall that learns, shadows, then enforces from live traffic. Allow while securing. Augment your NGFW without NAT homework. Optional CWL bridge." />
-  <meta name="keywords" content="Helix, DNA firewall, traffic DNA, learn shadow enforce, app identity, Chrysalis Secure, NGFW, AgenticOps" />
+<meta name="keywords" content="Helix, DNA firewall, traffic DNA, learn shadow enforce, app identity, Chrysalis Secure, NGFW, AgenticOps" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="AgenticOps" />
   <meta name="theme-color" content="#020208" />
-  <link rel="canonical" href="https://agenticop.io/secure.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="AgenticOps" />
   <meta property="og:url" content="https://agenticop.io/secure.html" />
@@ -4707,12 +4677,11 @@ page services {
   effects: none;
   nav services;
   layout site;
+  title "Services · Pilots on the DNA of the web | AgenticOps";
+  description "Fixed-scope pilots with AgenticOps: inventory legacy apps in CWL, translate with Convert, verify against recorded traffic. Honest holes. No facades.";
+  canonical "https://agenticop.io/services.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Services &middot; Pilots on the DNA of the web | AgenticOps</title>
-  <meta name="description" content="Fixed-scope pilots with AgenticOps: inventory legacy apps in CWL, translate with Convert, verify against recorded traffic. Honest holes. No facades." />
-  <meta name="theme-color" content="#020208" />
+<meta name="theme-color" content="#020208" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="AgenticOps" />
   <meta property="og:type" content="website" />
@@ -4721,7 +4690,6 @@ page services {
   <meta property="og:title" content="Services &middot; AgenticOps" />
   <meta property="og:description" content="Pilot, Run, Enablement &mdash; inventory in CWL, Convert translates, traffic decides." />
   <meta property="og:image" content="https://agenticop.io/logo.svg" />
-  <link rel="canonical" href="https://agenticop.io/services.html" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
@@ -4800,12 +4768,11 @@ page trust {
   effects: none;
   nav trust;
   layout site;
+  title "Trust · Propose, verify, honest holes | AgenticOps";
+  description "Rules we will not break: propose is not dispose, traffic is the oracle, holes stay labeled, no facades. How AgenticOps earns trust.";
+  canonical "https://agenticop.io/trust.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Trust &middot; Propose, verify, honest holes | AgenticOps</title>
-  <meta name="description" content="Rules we will not break: propose is not dispose, traffic is the oracle, holes stay labeled, no facades. How AgenticOps earns trust." />
-  <meta name="theme-color" content="#020208" />
+<meta name="theme-color" content="#020208" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="AgenticOps" />
   <meta property="og:type" content="website" />
@@ -4814,7 +4781,6 @@ page trust {
   <meta property="og:title" content="Trust &middot; AgenticOps" />
   <meta property="og:description" content="Propose &ne; dispose. Traffic is the oracle. Holes stay labeled. No facades." />
   <meta property="og:image" content="https://agenticop.io/logo.svg" />
-  <link rel="canonical" href="https://agenticop.io/trust.html" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
@@ -4880,13 +4846,11 @@ page whitepaper {
   effects: none;
   nav about;
   layout site;
+  title "How Chrysalis works — CWL, Convert, Secure | AgenticOps";
+  description "Technical overview of Chrysalis: how CWL (DNA of the web), Convert (Universal Translator), and Secure (Helix) work together — WebIR, honest holes, traffic decides.";
+  canonical "https://agenticop.io/whitepaper.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>How Chrysalis works — CWL, Convert, Secure | AgenticOps</title>
-  <meta name="description" content="Technical overview of Chrysalis: how CWL (DNA of the web), Convert (Universal Translator), and Secure (Helix) work together — WebIR, honest holes, traffic decides." />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-  <link rel="canonical" href="https://agenticop.io/whitepaper.html" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="AgenticOps" />
   <meta property="og:title" content="How Chrysalis works — CWL, Convert, Secure" />
@@ -5461,13 +5425,11 @@ page wptp {
   effects: none;
   nav projects;
   layout site;
+  title "WPTP — WebIR platforms | AgenticOps";
+  description "WPTP: @wptp/ir, OpenAPI/HAR adapters, Hono/Next/Fastify emitters, compatibility matrix. Related to Chrysalis WebIR; does not own CWL.";
+  canonical "https://agenticop.io/wptp.html";
   head html """
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WPTP — WebIR platforms | AgenticOps</title>
-  <meta name="description" content="WPTP: @wptp/ir, OpenAPI/HAR adapters, Hono/Next/Fastify emitters, compatibility matrix. Related to Chrysalis WebIR; does not own CWL." />
-  <link rel="canonical" href="https://agenticop.io/wptp.html" />
-  <meta property="og:title" content="WPTP platforms" />
+<meta property="og:title" content="WPTP platforms" />
   <meta property="og:url" content="https://agenticop.io/wptp.html" />
   <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />

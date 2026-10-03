@@ -48,6 +48,7 @@ const SITE_SHELL_BEHAVIOR = join(ROOT, "fixtures/language-gold/73-site-shell-beh
 const SITE_ASSETS = join(ROOT, "fixtures/language-gold/74-site-assets/routes.cwl");
 const SITE_PAGE = join(ROOT, "fixtures/language-gold/75-site-page/routes.cwl");
 const SITE_DEVICE_BELOW = join(ROOT, "fixtures/language-gold/76-site-device-below/routes.cwl");
+const SITE_DOCUMENT_IDENTITY = join(ROOT, "fixtures/language-gold/77-site-document/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -747,6 +748,32 @@ runEmitCheck(
       !/matchMedia/.test(text) &&
       !/userAgent/.test(text) &&
       !/data-ao-device=\\"(mobile|desktop)\\"/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-77-site-document",
+  SITE_DOCUMENT_IDENTITY,
+  (rep, text) => {
+    const holes = rep.holeReasons ?? [];
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      holes.includes("cwl:missing-charset-slot") &&
+      holes.includes("cwl:missing-viewport-slot") &&
+      holes.includes("cwl:missing-title-slot") &&
+      holes.includes("cwl:missing-description-slot") &&
+      holes.includes("cwl:canonical-not-url") &&
+      /<meta charset=\\"utf-8\\"/.test(text) &&
+      /name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\"/.test(text) &&
+      /<title>Proof · AgenticOps<\/title>/.test(text) &&
+      /name=\\"description\\" content=\\"Recorded traffic decides\.\\"/.test(text) &&
+      /rel=\\"canonical\\" href=\\"https:\/\/agenticop\.io\/proof\.html\\"/.test(text) &&
+      /property=\\"og:title\\"/.test(text) &&
+      !/rel=\\"canonical\\" href=\\"javascript:/.test(text) &&
+      !/matchMedia/.test(text) &&
+      !/<!-- cwl:title -->/.test(text)
     );
   },
   { stdout: true },

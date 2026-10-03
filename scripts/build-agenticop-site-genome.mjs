@@ -23,6 +23,11 @@ const BG = `<div class="ao-bg-fx" aria-hidden="true">
 const CHROME = `<!DOCTYPE html>
 <html lang="en" data-ao-device="<!-- cwl:device -->">
 <head>
+<!-- cwl:charset -->
+<!-- cwl:viewport -->
+<!-- cwl:title -->
+<!-- cwl:description -->
+<!-- cwl:canonical -->
 <!-- cwl:head -->
 <!-- cwl:style -->
 </head>
@@ -95,6 +100,11 @@ const CHROME = `<!DOCTYPE html>
 const MISSING_CHROME = `<!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- cwl:charset -->
+<!-- cwl:viewport -->
+<!-- cwl:title -->
+<!-- cwl:description -->
+<!-- cwl:canonical -->
 <!-- cwl:head -->
 <!-- cwl:style -->
 </head>
@@ -128,9 +138,56 @@ function pagePath(file) {
   return `/${file}`;
 }
 
+function decodeEntities(value) {
+  return value
+    .replace(/&middot;/g, "·")
+    .replace(/&mdash;/g, "—")
+    .replace(/&ndash;/g, "–")
+    .replace(/&rarr;/g, "→")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'");
+}
+
+function takeDocumentFacts(head) {
+  let title = null;
+  let description = null;
+  let canonical = null;
+  const kept = [];
+  for (const line of head.split("\n")) {
+    const t = line.trim();
+    const titleMatch = /^<title>([\s\S]*)<\/title>$/i.exec(t);
+    if (titleMatch) {
+      title = decodeEntities(titleMatch[1]);
+      continue;
+    }
+    if (/^<meta\s+charset=/i.test(t)) continue;
+    if (/<meta\s+[^>]*name=["']viewport["']/i.test(t)) continue;
+    const described =
+      /<meta\s+[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i.exec(t) ||
+      /<meta\s+[^>]*content=["']([^"']*)["'][^>]*name=["']description["']/i.exec(t);
+    if (described) {
+      description = decodeEntities(described[1]);
+      continue;
+    }
+    const canon =
+      /<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i.exec(t) ||
+      /<link\s+[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["']/i.exec(t);
+    if (canon) {
+      canonical = canon[1];
+      continue;
+    }
+    kept.push(line);
+  }
+  return { title, description, canonical, head: kept.join("\n").trim() };
+}
+
 function cleanHead(head) {
-  const lines = head.split("\n").filter((line) => !/href=["']\/agenticops\.css["']/.test(line));
-  return lines.join("\n").replaceAll('href="/logo.svg"', 'href="<!-- cwl:image logo -->"');
+  const facts = takeDocumentFacts(head);
+  const lines = facts.head.split("\n").filter((line) => line && !/href=["']\/agenticops\.css["']/.test(line));
+  return { ...facts, head: lines.join("\n").replaceAll('href="/logo.svg"', 'href="<!-- cwl:image logo -->"').trim() };
 }
 
 function betweenHeaderAndFooter(html) {
@@ -156,7 +213,9 @@ for (const file of files) {
   const html = readFileSync(join(SITE, file), "utf8");
   const headRaw = inner(html, "<head>", "</head>");
   if (headRaw == null) throw new Error(`${file} has no head`);
-  const head = cleanHead(headRaw).trim();
+  const facts = cleanHead(headRaw);
+  const head = facts.head;
+  if (!facts.title) throw new Error(`${file} has no title`);
   const nav = /data-ao-page="([^"]+)"/.exec(html)?.[1] ?? "";
   const isMissing = file === "404.html";
   if (!isMissing && !nav) throw new Error(`${file} has no data-ao-page`);
@@ -165,7 +224,18 @@ for (const file of files) {
   if (body.includes("/ao-layout.js")) throw new Error(`${file} still names ao-layout.js`);
   assertBlockSafe(file, head);
   assertBlockSafe(file, body);
-  pages.push({ file, name: pageName(file), path: pagePath(file), nav, head, body, layout: isMissing ? "missing" : "site" });
+  pages.push({
+    file,
+    name: pageName(file),
+    path: pagePath(file),
+    nav,
+    head,
+    body,
+    title: facts.title,
+    description: facts.description,
+    canonical: facts.canonical,
+    layout: isMissing ? "missing" : "site",
+  });
 }
 
 const lines = [];
@@ -176,6 +246,8 @@ lines.push("module agenticop_site;");
 lines.push("");
 lines.push("layout site {");
 lines.push("  year host;");
+lines.push("  charset utf-8;");
+lines.push("  viewport device;");
 lines.push("  device host mobile desktop below 820;");
 lines.push("  drawer ao-site-nav toggle ao-nav-toggle class is-open panel ao-nav-drawer;");
 lines.push('  style "/agenticops.css";');
@@ -224,6 +296,8 @@ lines.push("  \"\"\";");
 lines.push("}");
 lines.push("");
 lines.push("layout missing {");
+lines.push("  charset utf-8;");
+lines.push("  viewport device;");
 lines.push('  style "/agenticops.css";');
 lines.push('  image logo "/logo.svg";');
 lines.push("  chrome html \"\"\"");
@@ -238,9 +312,14 @@ for (const page of pages) {
   lines.push("  effects: none;");
   if (page.nav) lines.push(`  nav ${page.nav};`);
   lines.push(`  layout ${page.layout};`);
-  lines.push("  head html \"\"\"");
-  lines.push(page.head);
-  lines.push("  \"\"\";");
+  if (page.title) lines.push(`  title ${JSON.stringify(page.title)};`);
+  if (page.description) lines.push(`  description ${JSON.stringify(page.description)};`);
+  if (page.canonical) lines.push(`  canonical ${JSON.stringify(page.canonical)};`);
+  if (page.head) {
+    lines.push("  head html \"\"\"");
+    lines.push(page.head);
+    lines.push("  \"\"\";");
+  }
   lines.push("  return html \"\"\"");
   lines.push(page.body);
   lines.push("  \"\"\";");
