@@ -84,6 +84,14 @@ const VIEWPORT_RE = /^viewport\s+device\s*;$/;
 const TITLE_RE = /^title\s+"((?:\\.|[^"\\])*)"\s*;$/;
 const DESCRIPTION_RE = /^description\s+"((?:\\.|[^"\\])*)"\s*;$/;
 const CANONICAL_RE = /^canonical\s+"((?:\\.|[^"\\])*)"\s*;$/;
+const META_QUOTE = '"((?:\\\\.|[^"\\\\])*)"';
+const META_ROBOTS_RE = new RegExp(`^meta\\s+robots\\s+${META_QUOTE}\\s*;$`);
+const META_AUTHOR_RE = new RegExp(`^meta\\s+author\\s+${META_QUOTE}\\s*;$`);
+const META_THEME_RE = new RegExp(`^meta\\s+theme\\s+${META_QUOTE}\\s*;$`);
+const META_OG_RE = new RegExp(`^meta\\s+og\\s+(type|site|locale|url|title|description|image)\\s+${META_QUOTE}\\s*;$`);
+const META_TWITTER_RE = new RegExp(`^meta\\s+twitter\\s+(card|title|description|image)\\s+${META_QUOTE}\\s*;$`);
+const OG_TYPES = new Set(["website", "article", "profile"]);
+const TWITTER_CARDS = new Set(["summary", "summary_large_image", "app", "player"]);
 
 /**
  * @param {string} raw
@@ -99,6 +107,73 @@ function cwlQuoted(raw) {
 function canonicalHrefOk(href) {
   if (href.startsWith("/") && !href.startsWith("//")) return true;
   return /^https?:\/\//.test(href);
+}
+
+/**
+ * @returns {{ robots?: string, author?: string, theme?: string, og: Record<string, string>, twitter: Record<string, string> }}
+ */
+function emptyMetaCard() {
+  return { og: {}, twitter: {} };
+}
+
+/**
+ * @param {ReturnType<typeof emptyMetaCard>} card
+ */
+function metaCardHasFacts(card) {
+  return Boolean(card?.robots || card?.author || card?.theme || Object.keys(card?.og ?? {}).length || Object.keys(card?.twitter ?? {}).length);
+}
+
+/**
+ * Closed social-card vocabulary. Invalid values become holes and are not stored.
+ * @param {string} line
+ * @param {ReturnType<typeof emptyMetaCard>} card
+ * @param {string[]} holes
+ */
+function applyMetaLine(line, card, holes) {
+  const robots = META_ROBOTS_RE.exec(line);
+  if (robots) {
+    card.robots = cwlQuoted(robots[1]);
+    return true;
+  }
+  const author = META_AUTHOR_RE.exec(line);
+  if (author) {
+    card.author = cwlQuoted(author[1]);
+    return true;
+  }
+  const theme = META_THEME_RE.exec(line);
+  if (theme) {
+    const value = cwlQuoted(theme[1]);
+    if (/^#[0-9A-Fa-f]{6}$/.test(value)) card.theme = value;
+    else if (!holes.includes("cwl:meta-theme")) holes.push("cwl:meta-theme");
+    return true;
+  }
+  const og = META_OG_RE.exec(line);
+  if (og) {
+    const key = og[1];
+    const value = cwlQuoted(og[2]);
+    if (key === "type" && !OG_TYPES.has(value)) {
+      if (!holes.includes("cwl:meta-og-type")) holes.push("cwl:meta-og-type");
+    } else if ((key === "url" || key === "image") && !canonicalHrefOk(value)) {
+      if (!holes.includes("cwl:meta-not-url")) holes.push("cwl:meta-not-url");
+    } else {
+      card.og[key] = value;
+    }
+    return true;
+  }
+  const twitter = META_TWITTER_RE.exec(line);
+  if (twitter) {
+    const key = twitter[1];
+    const value = cwlQuoted(twitter[2]);
+    if (key === "card" && !TWITTER_CARDS.has(value)) {
+      if (!holes.includes("cwl:meta-twitter-card")) holes.push("cwl:meta-twitter-card");
+    } else if (key === "image" && !canonicalHrefOk(value)) {
+      if (!holes.includes("cwl:meta-not-url")) holes.push("cwl:meta-not-url");
+    } else {
+      card.twitter[key] = value;
+    }
+    return true;
+  }
+  return false;
 }
 const FIELD_TYPES = new Set(["text", "email", "password", "hidden", "search", "url", "tel", "number"]);
 const CLIENT_UI_START_RE = /^client\s+ui\b/;
@@ -252,6 +327,7 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
   let yearHost = false;
   let charset = null;
   let viewportDevice = false;
+  const metaCard = emptyMetaCard();
   /** @type {{ values: string[] } | null} */
   let deviceHost = null;
   /** @type {{ navId: string, toggleClass: string, openClass: string, panelId?: string } | null} */
@@ -296,6 +372,7 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
           ...(yearHost ? { yearHost: true } : {}),
           ...(charset ? { charset } : {}),
           ...(viewportDevice ? { viewportDevice: true } : {}),
+          ...(metaCardHasFacts(metaCard) ? { metaCard } : {}),
           ...(deviceHost ? { deviceHost } : {}),
           ...(drawer ? { drawer } : {}),
           ...(styles.length ? { styles } : {}),
@@ -336,6 +413,7 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
       viewportDevice = true;
       continue;
     }
+    if (applyMetaLine(line, metaCard, holes)) continue;
     const device = DEVICE_HOST_RE.exec(line);
     if (device) {
       deviceHost = { values: [device[1], device[2]] };
@@ -1111,6 +1189,7 @@ export function parseCwlModule(source, file) {
     let description = null;
     /** @type {string | null} Canonical href. Refused values are not stored. */
     let canonical = null;
+    const metaCard = emptyMetaCard();
     /** @type {object[]} RFC-0030 page-level client islands (sibling to return html) */
     const pageIslands = [];
     let body = {
@@ -1162,6 +1241,7 @@ export function parseCwlModule(source, file) {
         else if (!attachmentHoles.includes("cwl:canonical-not-url")) attachmentHoles.push("cwl:canonical-not-url");
         continue;
       }
+      if (applyMetaLine(inner, metaCard, attachmentHoles)) continue;
       if (CLIENT_UI_START_RE.test(inner) && !UI_RETURN_RE.test(inner)) {
         const islandParsed = parseCwlStandaloneIslandBlock(lines, i - 1);
         if (islandParsed.ok) {
@@ -1576,6 +1656,7 @@ export function parseCwlModule(source, file) {
       ...(typeof title === "string" ? { title } : {}),
       ...(typeof description === "string" ? { description } : {}),
       ...(typeof canonical === "string" ? { canonical } : {}),
+      ...(metaCardHasFacts(metaCard) ? { metaCard } : {}),
       pageIslands,
       htmlRepeats,
       body,

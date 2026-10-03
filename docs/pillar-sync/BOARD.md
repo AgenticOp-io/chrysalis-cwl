@@ -1,23 +1,23 @@
 ﻿# Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-02 · tip **1.0.69** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. The public site genome names charset, the viewport meta, title, description, and canonical. WebSocket, SQL, and unclassified script stay holes.  
+**Updated:** 2026-10-02 · tip **1.0.70** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. The public site genome names the social card. JSON-LD stays in the head fragment. WebSocket, SQL, and unclassified script stay holes.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: Convert/Secure pin 1.0.69 · peel gold 77 · host device script uses declared below 820
-CONVERT_NEXT: pin 1.0.69 · peel gold 77 · read deviceHost.below · do not hardcode 820 · do not deploy Firebase agenticops from CWL
-SECURE_NEXT: pin 1.0.69
+DISPATCH: Convert/Secure pin 1.0.70 · peel gold 78 · host device script uses declared below 820
+CONVERT_NEXT: pin 1.0.70 · peel gold 78 · read deviceHost.below · do not hardcode 820 · do not deploy Firebase agenticops from CWL
+SECURE_NEXT: pin 1.0.70
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.69`** |
-| Packages | **`@agenticop-io/cwl@1.0.69`** (pin; Packages publish when tagged) |
+| **CWL tip** | **`1.0.70`** |
+| Packages | **`@agenticop-io/cwl@1.0.70`** (pin; Packages publish when tagged) |
 | Tags | `cwl-v1.0.46` · `cwl-v1.0.47` · `cwl-v1.0.56` · `cwl-v1.0.61` · `cwl-v1.0.62` · `cwl-v1.0.67` |
 
 ## Latest SHAs
@@ -30,7 +30,7 @@ SECURE_NEXT: pin 1.0.69
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert / Secure | Tip pin **1.0.69**. Peel gold `77`. Host device script uses declared `below` |
+| **P0** | Convert / Secure | Tip pin **1.0.70**. Peel gold `78`. Host device script uses declared `below` |
 | **done** | CWL | tip **1.0.69** document identity, land `5c8dbfd` |
 | **done** | CWL | tip **1.0.68** named viewport cut, land `e5452e1` |
 | **done** | Convert | Emit 26 pages, PR #77 `73af128b` |
@@ -46,4 +46,4 @@ SECURE_NEXT: pin 1.0.69
 
 ## Honesty
 
-Goal: CWL is the DNA of web languages and must be able to replace any web page. The public pages are `fixtures/sites/agenticop-io/site.cwl`. Tip **1.0.69** names `charset utf-8`, `viewport device`, `title`, `description`, and `canonical`. The viewport meta is a fixed content string. CWL does not evaluate it. Open Graph stays in `head html`. The genome also declares `device host mobile desktop below 820`. Tip **1.0.68** names that cut and leaves `<!-- cwl:device -->`. CWL does not call `matchMedia`. Tip **1.0.67** names a script file, writes a same-site form, and emits an off-site anchor. It does not run the script. An off-site form action is `unsupported:offsite-form`. WebSocket and SQL stay holes. No SQL invent. Cookie values never enter CWL. A cookie is session, csrf, or an enumerated preference. A redirect is a same-site path; off-site targets are `unsupported:open-redirect`. A page body may be a multi-line HTML document. `<!-- cwl:head -->` is that page's title and meta. `nav <id>;` is the shared nav id for `<!-- cwl:page -->` and `<!-- cwl:active <page> <class> -->`. No `nav` statement uses the page name. `<!-- cwl:year -->` is the host calendar year. CWL does not read the clock. `link` rows fill every `<!-- cwl:links -->` slot. `links <name>` is a separate list. `drawer` is the menu toggle. `<!-- cwl:device -->` is the host device class. CWL does not read the viewport or the user agent. `style` and `image` name host files. `host firebase` names the public root. CWL does not parse CSS, read image bytes, or deploy. WebSocket stays a hole. No SMTP / CORS / CDN / HTTP-client invent.
+Goal: CWL is the DNA of web languages and must be able to replace any web page. The public pages are `fixtures/sites/agenticop-io/site.cwl`. Tip **1.0.70** names `meta robots`, `meta author`, `meta theme`, `meta og`, and `meta twitter`. JSON-LD stays in `head html`. Tip **1.0.69** names `charset utf-8`, `viewport device`, `title`, `description`, and `canonical`. The viewport meta is a fixed content string. CWL does not evaluate it. The genome also declares `device host mobile desktop below 820`. Tip **1.0.68** names that cut and leaves `<!-- cwl:device -->`. CWL does not call `matchMedia`. Tip **1.0.67** names a script file, writes a same-site form, and emits an off-site anchor. It does not run the script. An off-site form action is `unsupported:offsite-form`. WebSocket and SQL stay holes. No SQL invent. Cookie values never enter CWL. A cookie is session, csrf, or an enumerated preference. A redirect is a same-site path; off-site targets are `unsupported:open-redirect`. A page body may be a multi-line HTML document. `<!-- cwl:head -->` is that page's title and meta. `nav <id>;` is the shared nav id for `<!-- cwl:page -->` and `<!-- cwl:active <page> <class> -->`. No `nav` statement uses the page name. `<!-- cwl:year -->` is the host calendar year. CWL does not read the clock. `link` rows fill every `<!-- cwl:links -->` slot. `links <name>` is a separate list. `drawer` is the menu toggle. `<!-- cwl:device -->` is the host device class. CWL does not read the viewport or the user agent. `style` and `image` name host files. `host firebase` names the public root. CWL does not parse CSS, read image bytes, or deploy. WebSocket stays a hole. No SMTP / CORS / CDN / HTTP-client invent.

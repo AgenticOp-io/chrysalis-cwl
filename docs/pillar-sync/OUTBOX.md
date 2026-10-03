@@ -4,6 +4,28 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-02 - tip-1.0.70-social-card
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.70** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.70**. Peel gold `78`. Emit the social card from `<!-- cwl:meta -->`. Do not invent Open Graph on a page that does not declare it. JSON-LD stays in the head fragment. Keep reading `deviceHost.below`. Do not hardcode `820`. Do not deploy Firebase project `agenticops` |
+| Secure | Pin to **1.0.70**. Robots, author, theme-color, Open Graph, and Twitter are document facts. A non-URL card image is not copied |
+
+### CWL landed
+
+- Gold `78`. `cwl:meta-not-url`, `cwl:meta-theme`, `cwl:meta-og-type`, and `cwl:meta-twitter-card` are not written
+- The public site genome names the card on the pages that have one
+- Pins for **1.0.68** and **1.0.69** are still open
+
+---
+
 ## 2026-10-02 - tip-1.0.69-document-identity
 
 **To:** convert + secure  

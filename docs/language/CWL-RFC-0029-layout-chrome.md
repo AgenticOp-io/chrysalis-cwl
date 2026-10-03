@@ -1,7 +1,7 @@
 # CWL RFC-0029 — Layout chrome wrap
 
 **Status:** accepted (2026-09-14); document shell deepened (2026-09-30); per-page head and shared nav id (2026-10-01)  
-**Tip:** **1.0.69** (chrome prefix since 1.0.27)  
+**Tip:** **1.0.70** (chrome prefix since 1.0.27)  
 **Extends:** [RFC-0011](CWL-RFC-0011-full-stack-layouts.md) (import merge stays; this adds wrap)  
 **Ask:** [CWL-EXPAND.md](../history/CWL-EXPAND.md) §1
 
@@ -95,7 +95,11 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 
 ## Deepen — document identity (tip 1.0.69)
 
-HTML names the charset, the viewport meta, the title, the description, and the canonical URL. Those facts were still an opaque `head html` blob. `charset utf-8;` fills `<!-- cwl:charset -->`. `viewport device;` fills `<!-- cwl:viewport -->` with `width=device-width, initial-scale=1`. CWL does not evaluate that content. `title`, `description`, and `canonical` fill their markers. A canonical value must be an absolute `http`/`https` URL or a same-site path. Anything else is `cwl:canonical-not-url` and is not written. A declared fact with no marker is `cwl:missing-charset-slot`, `cwl:missing-viewport-slot`, `cwl:missing-title-slot`, `cwl:missing-description-slot`, or `cwl:missing-canonical-slot`. Open Graph, Twitter, and JSON-LD stay in `head html`.
+HTML names the charset, the viewport meta, the title, the description, and the canonical URL. Those facts were still an opaque `head html` blob. `charset utf-8;` fills `<!-- cwl:charset -->`. `viewport device;` fills `<!-- cwl:viewport -->` with `width=device-width, initial-scale=1`. CWL does not evaluate that content. `title`, `description`, and `canonical` fill their markers. A canonical value must be an absolute `http`/`https` URL or a same-site path. Anything else is `cwl:canonical-not-url` and is not written. A declared fact with no marker is `cwl:missing-charset-slot`, `cwl:missing-viewport-slot`, `cwl:missing-title-slot`, `cwl:missing-description-slot`, or `cwl:missing-canonical-slot`.
+
+## Deepen — social card (tip 1.0.70)
+
+`meta robots`, `meta author`, `meta theme`, `meta og`, and `meta twitter` fill `<!-- cwl:meta -->`. Open Graph fields are `type`, `site`, `locale`, `url`, `title`, `description`, and `image`. Twitter fields are `card`, `title`, `description`, and `image`. `theme` is `#rrggbb` and becomes `theme-color`. A card image or URL that is not an absolute `http`/`https` URL or a same-site path is `cwl:meta-not-url` and is not written. A theme that is not `#rrggbb` is `cwl:meta-theme`. An unknown Open Graph type is `cwl:meta-og-type`. An unknown Twitter card is `cwl:meta-twitter-card`. A declared card with no marker is `cwl:missing-meta-slot`. JSON-LD stays in `head html`.
 
 ## Syntax
 
@@ -119,6 +123,11 @@ HTML names the charset, the viewport meta, the title, the description, and the c
 | `title "…";` | Document title for `<!-- cwl:title -->` (tip 1.0.69) |
 | `description "…";` | Meta description for `<!-- cwl:description -->` (tip 1.0.69) |
 | `canonical "…";` | Canonical link for `<!-- cwl:canonical -->` (tip 1.0.69) |
+| `meta robots "…";` | Robots meta inside `<!-- cwl:meta -->` (tip 1.0.70) |
+| `meta author "…";` | Author meta inside `<!-- cwl:meta -->` (tip 1.0.70) |
+| `meta theme "#rrggbb";` | `theme-color` inside `<!-- cwl:meta -->` (tip 1.0.70) |
+| `meta og <field> "…";` | Open Graph property inside `<!-- cwl:meta -->` (tip 1.0.70) |
+| `meta twitter <field> "…";` | Twitter card meta inside `<!-- cwl:meta -->` (tip 1.0.70) |
 | `style "<href>";` | Stylesheet link for `<!-- cwl:style -->` (tip 1.0.66) |
 | `image <id> "<path>";` | Image path for `<!-- cwl:image <id> -->` (tip 1.0.66) |
 | `host firebase "<target>" public "<dir>";` | Firebase Hosting target and public root (tip 1.0.66) |
@@ -158,3 +167,4 @@ HTML names the charset, the viewport meta, the title, the description, and the c
 - Gold `fixtures/language-gold/75-site-page`
 - Gold `fixtures/language-gold/76-site-device-below`
 - Gold `fixtures/language-gold/77-site-document`
+- Gold `fixtures/language-gold/78-site-social`
