@@ -5,7 +5,7 @@ module agenticop_site;
 
 layout site {
   year host;
-  device host mobile desktop;
+  device host mobile desktop below 820;
   drawer ao-site-nav toggle ao-nav-toggle class is-open panel ao-nav-drawer;
   style "/agenticops.css";
   image logo "/logo.svg";

@@ -1,7 +1,7 @@
 # CWL RFC-0029 — Layout chrome wrap
 
 **Status:** accepted (2026-09-14); document shell deepened (2026-09-30); per-page head and shared nav id (2026-10-01)  
-**Tip:** **1.0.67** (chrome prefix since 1.0.27)  
+**Tip:** **1.0.68** (chrome prefix since 1.0.27)  
 **Extends:** [RFC-0011](CWL-RFC-0011-full-stack-layouts.md) (import merge stays; this adds wrap)  
 **Ask:** [CWL-EXPAND.md](../history/CWL-EXPAND.md) §1
 
@@ -89,6 +89,10 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 
 `link <id> "<href>" "<label>" target blank rel <token>;` emits `target="_blank"` and `rel`. An anchor may name another origin. A form may not post to one.
 
+## Deepen — named viewport cut (tip 1.0.68)
+
+`device host <a> <b> below <px>;` names the narrow-viewport cut in pixels. `<!-- cwl:device -->` stays. CWL does not call `matchMedia`, read the user agent, or write either class. A declaration with no token is still `cwl:missing-device-slot`. The public site genome uses `below 820`.
+
 ## Syntax
 
 | Construct | Meaning |
@@ -105,6 +109,7 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 | `<!-- cwl:links <name> <base> <active> -->` | Expands that named list (tip 1.0.65) |
 | `drawer …;` | Menu toggle script. No viewport or user-agent read (tip 1.0.65) |
 | `device host <a> <b>;` | Host device classes. `<!-- cwl:device -->` stays (tip 1.0.65) |
+| `device host <a> <b> below <px>;` | Named viewport cut. The token stays (tip 1.0.68) |
 | `style "<href>";` | Stylesheet link for `<!-- cwl:style -->` (tip 1.0.66) |
 | `image <id> "<path>";` | Image path for `<!-- cwl:image <id> -->` (tip 1.0.66) |
 | `host firebase "<target>" public "<dir>";` | Firebase Hosting target and public root (tip 1.0.66) |
@@ -142,3 +147,4 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 - Gold `fixtures/language-gold/73-site-shell-behavior`
 - Gold `fixtures/language-gold/74-site-assets`
 - Gold `fixtures/language-gold/75-site-page`
+- Gold `fixtures/language-gold/76-site-device-below`

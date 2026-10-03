@@ -193,8 +193,8 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
   {
     label: "device host",
     kind: KIND_SNIPPET,
-    detail: "Host device classes. <!-- cwl:device --> stays. CWL does not read the viewport or the user agent.",
-    insertText: "device host ${1:mobile} ${2:desktop};",
+    detail: "Host device classes. Optional below <px> names the cut. <!-- cwl:device --> stays. CWL does not call matchMedia.",
+    insertText: "device host ${1:mobile} ${2:desktop} below ${3:820};",
   },
   {
     label: "style",

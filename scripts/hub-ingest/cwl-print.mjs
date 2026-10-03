@@ -332,7 +332,8 @@ export function printCwlModule(mod, opts = {}) {
     }
     if (L.yearHost) lines.push("  year host;");
     if (L.deviceHost?.values?.length === 2) {
-      lines.push(`  device host ${L.deviceHost.values[0]} ${L.deviceHost.values[1]};`);
+      const below = L.deviceHost.below ? ` below ${L.deviceHost.below}` : "";
+      lines.push(`  device host ${L.deviceHost.values[0]} ${L.deviceHost.values[1]}${below};`);
     }
     if (L.drawer) {
       const panel = L.drawer.panelId ? ` panel ${L.drawer.panelId}` : "";

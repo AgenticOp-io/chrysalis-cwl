@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.68 - 2026-10-02
+
+- RFC-0029 deepen: `device host <a> <b> below <px>` names the viewport cut. `<!-- cwl:device -->` stays
+- Gold `76-site-device-below`. CWL does not call `matchMedia` or write either class
+- The public site genome declares `below 820`
+
 ## Site genome - 2026-10-02
 
 - `fixtures/sites/agenticop-io/site.cwl` is the source of the 26 public AgenticOps pages

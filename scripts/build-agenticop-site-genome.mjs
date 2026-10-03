@@ -176,7 +176,7 @@ lines.push("module agenticop_site;");
 lines.push("");
 lines.push("layout site {");
 lines.push("  year host;");
-lines.push("  device host mobile desktop;");
+lines.push("  device host mobile desktop below 820;");
 lines.push("  drawer ao-site-nav toggle ao-nav-toggle class is-open panel ao-nav-drawer;");
 lines.push('  style "/agenticops.css";');
 lines.push('  image logo "/logo.svg";');

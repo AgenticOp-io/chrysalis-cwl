@@ -47,6 +47,7 @@ const SITE_LINKS = join(ROOT, "fixtures/language-gold/72-site-nav-links/routes.c
 const SITE_SHELL_BEHAVIOR = join(ROOT, "fixtures/language-gold/73-site-shell-behavior/routes.cwl");
 const SITE_ASSETS = join(ROOT, "fixtures/language-gold/74-site-assets/routes.cwl");
 const SITE_PAGE = join(ROOT, "fixtures/language-gold/75-site-page/routes.cwl");
+const SITE_DEVICE_BELOW = join(ROOT, "fixtures/language-gold/76-site-device-below/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -730,6 +731,22 @@ runEmitCheck(
       !/<form method=\\"post\\" action=\\"https:\/\/evil\.example/.test(text) &&
       !/<!-- cwl:script -->/.test(text) &&
       !/<!-- cwl:form contact -->/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-76-site-device-below",
+  SITE_DEVICE_BELOW,
+  (rep, text) => {
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      (rep.holeReasons ?? []).includes("cwl:missing-device-slot") &&
+      /<!-- cwl:device -->/.test(text) &&
+      !/matchMedia/.test(text) &&
+      !/userAgent/.test(text) &&
+      !/data-ao-device=\\"(mobile|desktop)\\"/.test(text)
     );
   },
   { stdout: true },
