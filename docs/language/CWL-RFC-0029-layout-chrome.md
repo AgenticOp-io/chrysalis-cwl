@@ -1,7 +1,7 @@
 # CWL RFC-0029 — Layout chrome wrap
 
 **Status:** accepted (2026-09-14); document shell deepened (2026-09-30); per-page head and shared nav id (2026-10-01)  
-**Tip:** **1.0.68** (chrome prefix since 1.0.27)  
+**Tip:** **1.0.69** (chrome prefix since 1.0.27)  
 **Extends:** [RFC-0011](CWL-RFC-0011-full-stack-layouts.md) (import merge stays; this adds wrap)  
 **Ask:** [CWL-EXPAND.md](../history/CWL-EXPAND.md) §1
 
@@ -93,6 +93,10 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 
 `device host <a> <b> below <px>;` names the narrow-viewport cut in pixels. `<!-- cwl:device -->` stays. CWL does not call `matchMedia`, read the user agent, or write either class. A declaration with no token is still `cwl:missing-device-slot`. The public site genome uses `below 820`.
 
+## Deepen — document identity (tip 1.0.69)
+
+HTML names the charset, the viewport meta, the title, the description, and the canonical URL. Those facts were still an opaque `head html` blob. `charset utf-8;` fills `<!-- cwl:charset -->`. `viewport device;` fills `<!-- cwl:viewport -->` with `width=device-width, initial-scale=1`. CWL does not evaluate that content. `title`, `description`, and `canonical` fill their markers. A canonical value must be an absolute `http`/`https` URL or a same-site path. Anything else is `cwl:canonical-not-url` and is not written. A declared fact with no marker is `cwl:missing-charset-slot`, `cwl:missing-viewport-slot`, `cwl:missing-title-slot`, `cwl:missing-description-slot`, or `cwl:missing-canonical-slot`. Open Graph, Twitter, and JSON-LD stay in `head html`.
+
 ## Syntax
 
 | Construct | Meaning |
@@ -110,6 +114,11 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 | `drawer …;` | Menu toggle script. No viewport or user-agent read (tip 1.0.65) |
 | `device host <a> <b>;` | Host device classes. `<!-- cwl:device -->` stays (tip 1.0.65) |
 | `device host <a> <b> below <px>;` | Named viewport cut. The token stays (tip 1.0.68) |
+| `charset utf-8;` | Charset meta for `<!-- cwl:charset -->` (tip 1.0.69) |
+| `viewport device;` | HTML viewport meta for `<!-- cwl:viewport -->`. Not evaluated (tip 1.0.69) |
+| `title "…";` | Document title for `<!-- cwl:title -->` (tip 1.0.69) |
+| `description "…";` | Meta description for `<!-- cwl:description -->` (tip 1.0.69) |
+| `canonical "…";` | Canonical link for `<!-- cwl:canonical -->` (tip 1.0.69) |
 | `style "<href>";` | Stylesheet link for `<!-- cwl:style -->` (tip 1.0.66) |
 | `image <id> "<path>";` | Image path for `<!-- cwl:image <id> -->` (tip 1.0.66) |
 | `host firebase "<target>" public "<dir>";` | Firebase Hosting target and public root (tip 1.0.66) |
@@ -148,3 +157,4 @@ The live header is empty. `ao-layout.js` writes the same link list into the desk
 - Gold `fixtures/language-gold/74-site-assets`
 - Gold `fixtures/language-gold/75-site-page`
 - Gold `fixtures/language-gold/76-site-device-below`
+- Gold `fixtures/language-gold/77-site-document`

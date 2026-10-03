@@ -191,6 +191,36 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: "links ${1:primary};",
   },
   {
+    label: "charset",
+    kind: KIND_SNIPPET,
+    detail: "Document charset. <!-- cwl:charset --> becomes the meta tag.",
+    insertText: "charset utf-8;",
+  },
+  {
+    label: "viewport device",
+    kind: KIND_SNIPPET,
+    detail: "HTML viewport meta. <!-- cwl:viewport --> stays a fixed content string. CWL does not evaluate it.",
+    insertText: "viewport device;",
+  },
+  {
+    label: "title",
+    kind: KIND_SNIPPET,
+    detail: "Document title. <!-- cwl:title --> becomes the title element.",
+    insertText: 'title "${1:Page title}";',
+  },
+  {
+    label: "description",
+    kind: KIND_SNIPPET,
+    detail: "Meta description. <!-- cwl:description --> becomes the meta tag.",
+    insertText: 'description "${1:Page description}";',
+  },
+  {
+    label: "canonical",
+    kind: KIND_SNIPPET,
+    detail: "Canonical URL. An absolute http(s) URL or a same-site path. javascript: is cwl:canonical-not-url.",
+    insertText: 'canonical "${1:https://agenticop.io/}";',
+  },
+  {
     label: "device host",
     kind: KIND_SNIPPET,
     detail: "Host device classes. Optional below <px> names the cut. <!-- cwl:device --> stays. CWL does not call matchMedia.",

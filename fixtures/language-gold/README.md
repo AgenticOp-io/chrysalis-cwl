@@ -84,6 +84,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `74-site-assets` | Stylesheet, image path, Firebase public root | 0029 |
 | `75-site-page` | Script file, same-site form, off-site anchor | 0029 |
 | `76-site-device-below` | Named viewport cut. The device token stays | 0029 |
+| `77-site-document` | Charset, viewport meta, title, description, canonical | 0029 |
 
 ## Parseable subset notes (0.1.8)
 

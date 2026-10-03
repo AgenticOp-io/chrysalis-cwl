@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.69 - 2026-10-02
+
+- RFC-0029 deepen: `charset utf-8`, `viewport device`, `title`, `description`, and `canonical` fill document markers
+- Gold `77-site-document`. The viewport meta is a fixed content string. CWL does not evaluate it. A non-URL canonical is `cwl:canonical-not-url` and is not written
+- The public site genome names those facts. Open Graph, Twitter, and JSON-LD stay in `head html`
+
 ## 1.0.68 - 2026-10-02
 
 - RFC-0029 deepen: `device host <a> <b> below <px>` names the viewport cut. `<!-- cwl:device -->` stays

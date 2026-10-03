@@ -77,6 +77,29 @@ const FORM_RE = /^form\s+([A-Za-z_][A-Za-z0-9_]*)\s+method\s+(get|post)\s+action
 const FIELD_RE = /^field\s+([A-Za-z_][A-Za-z0-9_]*)\s+"([^"]+)"\s*;$/;
 /** Submit label on the current form. */
 const SUBMIT_RE = /^submit\s+"([^"]+)"\s*;$/;
+/** Document charset. Only utf-8. The bytes stay a document fact. */
+const CHARSET_RE = /^charset\s+utf-8\s*;$/;
+/** HTML viewport meta. CWL writes the standard content and does not evaluate it. */
+const VIEWPORT_RE = /^viewport\s+device\s*;$/;
+const TITLE_RE = /^title\s+"((?:\\.|[^"\\])*)"\s*;$/;
+const DESCRIPTION_RE = /^description\s+"((?:\\.|[^"\\])*)"\s*;$/;
+const CANONICAL_RE = /^canonical\s+"((?:\\.|[^"\\])*)"\s*;$/;
+
+/**
+ * @param {string} raw
+ */
+function cwlQuoted(raw) {
+  return JSON.parse(`"${raw}"`);
+}
+
+/**
+ * A canonical href is an absolute http(s) URL or a same-site path.
+ * @param {string} href
+ */
+function canonicalHrefOk(href) {
+  if (href.startsWith("/") && !href.startsWith("//")) return true;
+  return /^https?:\/\//.test(href);
+}
 const FIELD_TYPES = new Set(["text", "email", "password", "hidden", "search", "url", "tel", "number"]);
 const CLIENT_UI_START_RE = /^client\s+ui\b/;
 const CHROME_HTML_PREFIX_RE = /^chrome\s+html\s+/i;
@@ -227,6 +250,8 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
   /** @type {string | null} */
   let chromeHtml = null;
   let yearHost = false;
+  let charset = null;
+  let viewportDevice = false;
   /** @type {{ values: string[] } | null} */
   let deviceHost = null;
   /** @type {{ navId: string, toggleClass: string, openClass: string, panelId?: string } | null} */
@@ -269,6 +294,8 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
           chromeHtml,
           pageIslands,
           ...(yearHost ? { yearHost: true } : {}),
+          ...(charset ? { charset } : {}),
+          ...(viewportDevice ? { viewportDevice: true } : {}),
           ...(deviceHost ? { deviceHost } : {}),
           ...(drawer ? { drawer } : {}),
           ...(styles.length ? { styles } : {}),
@@ -299,6 +326,14 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
     }
     if (/^year\s+host\s*;$/.test(line)) {
       yearHost = true;
+      continue;
+    }
+    if (CHARSET_RE.test(line)) {
+      charset = "utf-8";
+      continue;
+    }
+    if (VIEWPORT_RE.test(line)) {
+      viewportDevice = true;
       continue;
     }
     const device = DEVICE_HOST_RE.exec(line);
@@ -1070,6 +1105,12 @@ export function parseCwlModule(source, file) {
     let navId = null;
     /** @type {string | null} Per-page head fragment (RFC-0029 deepen) */
     let headHtml = null;
+    /** @type {string | null} Document title. */
+    let title = null;
+    /** @type {string | null} Meta description. */
+    let description = null;
+    /** @type {string | null} Canonical href. Refused values are not stored. */
+    let canonical = null;
     /** @type {object[]} RFC-0030 page-level client islands (sibling to return html) */
     const pageIslands = [];
     let body = {
@@ -1102,6 +1143,23 @@ export function parseCwlModule(source, file) {
       const navUse = NAV_ID_RE.exec(inner);
       if (navUse) {
         navId = navUse[1];
+        continue;
+      }
+      const titleUse = TITLE_RE.exec(inner);
+      if (titleUse) {
+        title = cwlQuoted(titleUse[1]);
+        continue;
+      }
+      const descriptionUse = DESCRIPTION_RE.exec(inner);
+      if (descriptionUse) {
+        description = cwlQuoted(descriptionUse[1]);
+        continue;
+      }
+      const canonicalUse = CANONICAL_RE.exec(inner);
+      if (canonicalUse) {
+        const href = cwlQuoted(canonicalUse[1]);
+        if (canonicalHrefOk(href)) canonical = href;
+        else if (!attachmentHoles.includes("cwl:canonical-not-url")) attachmentHoles.push("cwl:canonical-not-url");
         continue;
       }
       if (CLIENT_UI_START_RE.test(inner) && !UI_RETURN_RE.test(inner)) {
@@ -1515,6 +1573,9 @@ export function parseCwlModule(source, file) {
       layoutName,
       ...(navId ? { navId } : {}),
       ...(typeof headHtml === "string" ? { headHtml } : {}),
+      ...(typeof title === "string" ? { title } : {}),
+      ...(typeof description === "string" ? { description } : {}),
+      ...(typeof canonical === "string" ? { canonical } : {}),
       pageIslands,
       htmlRepeats,
       body,

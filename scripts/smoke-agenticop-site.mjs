@@ -32,6 +32,11 @@ if (parsed.routes.length !== 26) fail(`expected 26 pages, got ${parsed.routes.le
 for (const route of parsed.routes) {
   const html = composeLayoutChromeHtml(route.layoutChromeHtml, route.body?.value ?? "", {
     head: route.headHtml ?? "",
+    charset: route.charset,
+    viewportDevice: route.viewportDevice,
+    title: route.title,
+    description: route.description,
+    canonical: route.canonical,
     pageName: route.name,
     navId: route.navId,
     links: route.navLinks,
@@ -50,6 +55,16 @@ for (const route of parsed.routes) {
   if (html.includes("<!-- cwl:image ")) fail(`${route.name} left an image slot`);
   if (html.includes("<!-- cwl:body -->")) fail(`${route.name} left a body slot`);
   if (html.includes("<!-- cwl:head -->")) fail(`${route.name} left a head slot`);
+  if (html.includes("<!-- cwl:title -->") || html.includes("<!-- cwl:charset -->") || html.includes("<!-- cwl:viewport -->")) {
+    fail(`${route.name} left a document slot`);
+  }
+  if (!route.title || !html.includes(`<title>${route.title.replace(/&/g, "&amp;")}</title>`)) fail(`${route.name} missing title`);
+  if (route.charset !== "utf-8" || !html.includes('<meta charset="utf-8" />')) fail(`${route.name} missing charset`);
+  if (!route.viewportDevice || !html.includes('content="width=device-width, initial-scale=1"')) fail(`${route.name} missing viewport meta`);
+  if (route.description && !html.includes(`content="${route.description.replace(/&/g, "&amp;").replace(/"/g, "&quot;")}"`)) {
+    fail(`${route.name} missing description`);
+  }
+  if (route.canonical && !html.includes(`rel="canonical" href="${route.canonical}"`)) fail(`${route.name} missing canonical`);
   if (!html.includes('rel="stylesheet" href="/agenticops.css"')) fail(`${route.name} missing stylesheet`);
   if (!html.includes('src="/logo.svg"') && !html.includes('href="/logo.svg"') && !html.includes('href="<!-- cwl:image')) {
     if (!html.includes("/logo.svg")) fail(`${route.name} missing logo path`);
