@@ -23,7 +23,7 @@ Pushed asks for siblings. Newest first.
 - `device host mobile desktop below 820` on the public site genome
 - `<!-- cwl:device -->` stays. Gold `76`
 - Convert emit of the 26 pages and Secure pin **1.0.67** are done
-- Tag `cwl-v1.0.67` published at the genome land
+- Land `e5452e1`. Tag `cwl-v1.0.67` published at genome land `b6402dc`
 
 ---
 
@@ -46,7 +46,7 @@ Pushed asks for siblings. Newest first.
 - 26 public pages, including `/404.html`
 - Shared nav, footer lists, drawer, year token, device token, stylesheet, logo, Firebase root
 - `npm run smoke:agenticop-site` → `CWL_AGENTICOP_SITE_OK`
-- Convert tip pin **1.0.67** is done (PR #76). Tag `cwl-v1.0.67` is still open
+- Convert tip pin **1.0.67** is done (PR #76). Tag `cwl-v1.0.67` is at `b6402dc`
 
 ---
 
