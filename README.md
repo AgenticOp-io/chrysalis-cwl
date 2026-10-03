@@ -42,7 +42,8 @@ CWL is a web language. It is not a universal programming language and not “PHP
 | `docs/history/DNA-BUILD-NEXT.md` | Phase 1.x deepen queue |
 | `docs/history/ROADMAP.md` | Pillar roadmap |
 | `docs/pillar-sync/` | Sibling BOARD / OUTBOX (Convert · Secure) |
-| `fixtures/language-gold/` | Golden `.cwl` fixtures (`01`–`56`) |
+| `fixtures/language-gold/` | Golden `.cwl` fixtures (`01`–`75`) |
+| `fixtures/sites/agenticop-io/` | Public site genome (`npm run smoke:agenticop-site`) |
 | `packages/cwl` | Language package surface |
 | `packages/runtime-cwl*` | Runtimes |
 | `packages/emit-runtime-cwl` | Emit deployable projects |

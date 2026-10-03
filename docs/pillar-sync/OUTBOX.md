@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-02 - agenticop-site-genome
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.67**
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Emit `fixtures/sites/agenticop-io/site.cwl`. Serve `/agenticops.css` and `/logo.svg`. Replace `<!-- cwl:year -->` and `<!-- cwl:device -->` on the host. Deploy the named Firebase public root. Do not inject `ao-layout.js` |
+| Secure | Pin to **1.0.67**. The page source is this genome. Stylesheet bytes, image bytes, and the script file are not genome |
+
+### CWL landed
+
+- 26 public pages, including `/404.html`
+- Shared nav, footer lists, drawer, year token, device token, stylesheet, logo, Firebase root
+- `npm run smoke:agenticop-site` → `CWL_AGENTICOP_SITE_OK`
+- Convert tip pin **1.0.67** is done (PR #76). Tag `cwl-v1.0.67` is still open
+
+---
+
 ## 2026-10-01 - tip-1.0.67-site-page
 
 **To:** convert + secure  
