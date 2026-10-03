@@ -122,6 +122,7 @@ export function composeLayoutChromeHtml(chrome, body, opts = {}) {
   if (shell.includes(CWL_HTML_HEAD_SLOT)) shell = shell.replace(CWL_HTML_HEAD_SLOT, head);
   let html = shell.includes(CWL_HTML_BODY_SLOT) ? shell.replace(CWL_HTML_BODY_SLOT, body) : `${shell}${body}`;
   html = expandCwlDocument(html, opts);
+  html = expandCwlMeta(html, opts.metaCard);
   html = expandCwlAssets(html, opts.styles, opts.images);
   html = expandCwlScripts(html, opts.scripts);
   html = expandCwlForms(html, opts.forms);
@@ -182,6 +183,77 @@ function expandCwlDocument(html, doc) {
  */
 export function surfaceHasDocumentSlot(surface, slot) {
   return String(surface ?? "").includes(slot);
+}
+
+const CWL_HTML_META_SLOT = "<!-- cwl:meta -->";
+
+/**
+ * @param {{ robots?: string, author?: string, theme?: string, og?: Record<string, string>, twitter?: Record<string, string> } | null | undefined} card
+ */
+export function cwlMetaCardHasFacts(card) {
+  return Boolean(
+    card?.robots || card?.author || card?.theme || Object.keys(card?.og ?? {}).length || Object.keys(card?.twitter ?? {}).length,
+  );
+}
+
+/**
+ * Layout facts are the base. Page facts replace the same field.
+ * @param {object | null | undefined} base
+ * @param {object | null | undefined} over
+ */
+export function mergeCwlMetaCard(base, over) {
+  const card = {
+    og: { ...(base?.og ?? {}), ...(over?.og ?? {}) },
+    twitter: { ...(base?.twitter ?? {}), ...(over?.twitter ?? {}) },
+  };
+  for (const key of ["robots", "author", "theme"]) {
+    if (typeof base?.[key] === "string") card[key] = base[key];
+    if (typeof over?.[key] === "string") card[key] = over[key];
+  }
+  return cwlMetaCardHasFacts(card) ? card : null;
+}
+
+/**
+ * Social card and the repeated head metas. JSON-LD stays in head html.
+ * An unused marker is removed.
+ * @param {string} html
+ * @param {object | null | undefined} card
+ */
+function expandCwlMeta(html, card) {
+  const out = String(html);
+  if (!out.includes(CWL_HTML_META_SLOT)) return out;
+  if (!cwlMetaCardHasFacts(card)) return out.split(CWL_HTML_META_SLOT).join("");
+  /** @type {string[]} */
+  const tags = [];
+  if (card.robots) tags.push(`<meta name="robots" content="${escapeCwlHtmlText(card.robots)}" />`);
+  if (card.author) tags.push(`<meta name="author" content="${escapeCwlHtmlText(card.author)}" />`);
+  if (card.theme) tags.push(`<meta name="theme-color" content="${escapeCwlHtmlText(card.theme)}" />`);
+  const ogNames = {
+    type: "og:type",
+    site: "og:site_name",
+    locale: "og:locale",
+    url: "og:url",
+    title: "og:title",
+    description: "og:description",
+    image: "og:image",
+  };
+  for (const key of Object.keys(ogNames)) {
+    if (typeof card.og?.[key] === "string") {
+      tags.push(`<meta property="${ogNames[key]}" content="${escapeCwlHtmlText(card.og[key])}" />`);
+    }
+  }
+  const twitterNames = {
+    card: "twitter:card",
+    title: "twitter:title",
+    description: "twitter:description",
+    image: "twitter:image",
+  };
+  for (const key of Object.keys(twitterNames)) {
+    if (typeof card.twitter?.[key] === "string") {
+      tags.push(`<meta name="${twitterNames[key]}" content="${escapeCwlHtmlText(card.twitter[key])}" />`);
+    }
+  }
+  return out.split(CWL_HTML_META_SLOT).join(tags.join(""));
 }
 
 /**
@@ -362,6 +434,10 @@ export function mergeLayoutOntoRoute(route, layout) {
   if (layout.yearHost) route.yearHost = true;
   if (layout.charset) route.charset = layout.charset;
   if (layout.viewportDevice) route.viewportDevice = true;
+  if (layout.metaCard || route.metaCard) {
+    const merged = mergeCwlMetaCard(layout.metaCard, route.metaCard);
+    if (merged) route.metaCard = merged;
+  }
   if (layout.deviceHost) route.deviceHost = layout.deviceHost;
   if (layout.drawer) route.drawer = layout.drawer;
   if (Array.isArray(layout.styles) && layout.styles.length) route.styles = layout.styles.slice();

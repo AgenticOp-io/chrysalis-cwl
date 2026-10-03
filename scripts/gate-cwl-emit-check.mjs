@@ -49,6 +49,7 @@ const SITE_ASSETS = join(ROOT, "fixtures/language-gold/74-site-assets/routes.cwl
 const SITE_PAGE = join(ROOT, "fixtures/language-gold/75-site-page/routes.cwl");
 const SITE_DEVICE_BELOW = join(ROOT, "fixtures/language-gold/76-site-device-below/routes.cwl");
 const SITE_DOCUMENT_IDENTITY = join(ROOT, "fixtures/language-gold/77-site-document/routes.cwl");
+const SITE_SOCIAL = join(ROOT, "fixtures/language-gold/78-site-social/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -774,6 +775,33 @@ runEmitCheck(
       !/rel=\\"canonical\\" href=\\"javascript:/.test(text) &&
       !/matchMedia/.test(text) &&
       !/<!-- cwl:title -->/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-78-site-social",
+  SITE_SOCIAL,
+  (rep, text) => {
+    const holes = rep.holeReasons ?? [];
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      holes.includes("cwl:missing-meta-slot") &&
+      holes.includes("cwl:meta-theme") &&
+      holes.includes("cwl:meta-not-url") &&
+      holes.includes("cwl:meta-twitter-card") &&
+      /name=\\"robots\\" content=\\"index, follow\\"/.test(text) &&
+      /name=\\"author\\" content=\\"AgenticOps\\"/.test(text) &&
+      /name=\\"theme-color\\" content=\\"#020208\\"/.test(text) &&
+      /property=\\"og:title\\" content=\\"Proof\\"/.test(text) &&
+      /property=\\"og:site_name\\" content=\\"AgenticOps\\"/.test(text) &&
+      /name=\\"twitter:card\\" content=\\"summary_large_image\\"/.test(text) &&
+      /application\/ld\+json/.test(text) &&
+      !/property=\\"og:image\\" content=\\"javascript:/.test(text) &&
+      !/content=\\"red\\"/.test(text) &&
+      !/content=\\"tracker\\"/.test(text) &&
+      !/<!-- cwl:meta -->/.test(text)
     );
   },
   { stdout: true },

@@ -28,6 +28,7 @@ const CHROME = `<!DOCTYPE html>
 <!-- cwl:title -->
 <!-- cwl:description -->
 <!-- cwl:canonical -->
+<!-- cwl:meta -->
 <!-- cwl:head -->
 <!-- cwl:style -->
 </head>
@@ -105,6 +106,7 @@ const MISSING_CHROME = `<!DOCTYPE html>
 <!-- cwl:title -->
 <!-- cwl:description -->
 <!-- cwl:canonical -->
+<!-- cwl:meta -->
 <!-- cwl:head -->
 <!-- cwl:style -->
 </head>
@@ -155,7 +157,24 @@ function takeDocumentFacts(head) {
   let title = null;
   let description = null;
   let canonical = null;
+  /** @type {string[]} */
+  const metaLines = [];
   const kept = [];
+  const ogKeys = {
+    "og:type": "type",
+    "og:site_name": "site",
+    "og:locale": "locale",
+    "og:url": "url",
+    "og:title": "title",
+    "og:description": "description",
+    "og:image": "image",
+  };
+  const twitterKeys = {
+    "twitter:card": "card",
+    "twitter:title": "title",
+    "twitter:description": "description",
+    "twitter:image": "image",
+  };
   for (const line of head.split("\n")) {
     const t = line.trim();
     const titleMatch = /^<title>([\s\S]*)<\/title>$/i.exec(t);
@@ -179,9 +198,56 @@ function takeDocumentFacts(head) {
       canonical = canon[1];
       continue;
     }
+    if (/^<meta\s/i.test(t)) {
+      const named = /(?:name|property)=["']([^"']+)["']/i.exec(t)?.[1] ?? "";
+      const content = /content=["']([^"']*)["']/i.exec(t)?.[1];
+      if (content != null) {
+        const value = decodeEntities(content);
+        if (named === "robots") {
+          metaLines.push(`meta robots ${JSON.stringify(value)};`);
+          continue;
+        }
+        if (named === "author") {
+          metaLines.push(`meta author ${JSON.stringify(value)};`);
+          continue;
+        }
+        if (named === "theme-color" && /^#[0-9A-Fa-f]{6}$/.test(value)) {
+          metaLines.push(`meta theme ${JSON.stringify(value)};`);
+          continue;
+        }
+        if (ogKeys[named]) {
+          const key = ogKeys[named];
+          const urlOk = value.startsWith("/") && !value.startsWith("//") || /^https?:\/\//.test(value);
+          if (key === "type" && !["website", "article", "profile"].includes(value)) {
+            kept.push(line);
+            continue;
+          }
+          if ((key === "url" || key === "image") && !urlOk) {
+            kept.push(line);
+            continue;
+          }
+          metaLines.push(`meta og ${key} ${JSON.stringify(value)};`);
+          continue;
+        }
+        if (twitterKeys[named]) {
+          const key = twitterKeys[named];
+          const urlOk = value.startsWith("/") && !value.startsWith("//") || /^https?:\/\//.test(value);
+          if (key === "card" && !["summary", "summary_large_image", "app", "player"].includes(value)) {
+            kept.push(line);
+            continue;
+          }
+          if (key === "image" && !urlOk) {
+            kept.push(line);
+            continue;
+          }
+          metaLines.push(`meta twitter ${key} ${JSON.stringify(value)};`);
+          continue;
+        }
+      }
+    }
     kept.push(line);
   }
-  return { title, description, canonical, head: kept.join("\n").trim() };
+  return { title, description, canonical, metaLines, head: kept.join("\n").trim() };
 }
 
 function cleanHead(head) {
@@ -234,6 +300,7 @@ for (const file of files) {
     title: facts.title,
     description: facts.description,
     canonical: facts.canonical,
+    metaLines: facts.metaLines,
     layout: isMissing ? "missing" : "site",
   });
 }
@@ -315,6 +382,7 @@ for (const page of pages) {
   if (page.title) lines.push(`  title ${JSON.stringify(page.title)};`);
   if (page.description) lines.push(`  description ${JSON.stringify(page.description)};`);
   if (page.canonical) lines.push(`  canonical ${JSON.stringify(page.canonical)};`);
+  for (const meta of page.metaLines ?? []) lines.push(`  ${meta}`);
   if (page.head) {
     lines.push("  head html \"\"\"");
     lines.push(page.head);

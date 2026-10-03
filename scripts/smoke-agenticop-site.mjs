@@ -37,6 +37,7 @@ for (const route of parsed.routes) {
     title: route.title,
     description: route.description,
     canonical: route.canonical,
+    metaCard: route.metaCard,
     pageName: route.name,
     navId: route.navId,
     links: route.navLinks,
@@ -55,8 +56,14 @@ for (const route of parsed.routes) {
   if (html.includes("<!-- cwl:image ")) fail(`${route.name} left an image slot`);
   if (html.includes("<!-- cwl:body -->")) fail(`${route.name} left a body slot`);
   if (html.includes("<!-- cwl:head -->")) fail(`${route.name} left a head slot`);
-  if (html.includes("<!-- cwl:title -->") || html.includes("<!-- cwl:charset -->") || html.includes("<!-- cwl:viewport -->")) {
+  if (html.includes("<!-- cwl:title -->") || html.includes("<!-- cwl:charset -->") || html.includes("<!-- cwl:viewport -->") || html.includes("<!-- cwl:meta -->")) {
     fail(`${route.name} left a document slot`);
+  }
+  if (route.metaCard?.og?.title && !html.includes(`property="og:title" content="${route.metaCard.og.title.replace(/&/g, "&amp;").replace(/"/g, "&quot;")}"`)) {
+    fail(`${route.name} missing Open Graph title`);
+  }
+  if (route.metaCard?.robots && !html.includes(`name="robots" content="${route.metaCard.robots.replace(/&/g, "&amp;").replace(/"/g, "&quot;")}"`)) {
+    fail(`${route.name} missing robots`);
   }
   if (!route.title || !html.includes(`<title>${route.title.replace(/&/g, "&amp;")}</title>`)) fail(`${route.name} missing title`);
   if (route.charset !== "utf-8" || !html.includes('<meta charset="utf-8" />')) fail(`${route.name} missing charset`);
@@ -84,7 +91,9 @@ for (const route of parsed.routes) {
     if (!html.includes(`data-ao-page="${nav}"`)) fail(`${route.name} page id is not ${nav}`);
   }
   if (route.name === "home" && !html.includes("is the DNA of the web.")) fail("home heading missing");
+  if (route.name === "home" && !html.includes("application/ld+json")) fail("home lost JSON-LD");
   if (route.name === "missing" && html.includes("data-cwl-drawer")) fail("404 gained a drawer");
+  if (route.name === "missing" && html.includes('property="og:title"')) fail("404 invented an Open Graph title");
   if (route.name === "contact" && !html.includes("ao-nav-cta ao-nav-link-active")) fail("contact CTA is not active");
   if (/<form[^>]+action="https?:/.test(html)) fail(`${route.name} posts a form off-site`);
 }

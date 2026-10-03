@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.70 - 2026-10-02
+
+- RFC-0029 deepen: `meta robots`, `meta author`, `meta theme`, `meta og`, and `meta twitter` fill `<!-- cwl:meta -->`
+- Gold `78-site-social`. A non-URL card image is `cwl:meta-not-url` and is not written. JSON-LD stays in `head html`
+- The public site genome names the social card on the pages that have one
+
 ## 1.0.69 - 2026-10-02
 
 - RFC-0029 deepen: `charset utf-8`, `viewport device`, `title`, `description`, and `canonical` fill document markers

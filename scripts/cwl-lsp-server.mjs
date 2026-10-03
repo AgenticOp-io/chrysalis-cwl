@@ -215,6 +215,36 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: 'description "${1:Page description}";',
   },
   {
+    label: "meta robots",
+    kind: KIND_SNIPPET,
+    detail: "Robots meta. <!-- cwl:meta --> expands the card.",
+    insertText: 'meta robots "${1:index, follow}";',
+  },
+  {
+    label: "meta author",
+    kind: KIND_SNIPPET,
+    detail: "Author meta.",
+    insertText: 'meta author "${1:AgenticOps}";',
+  },
+  {
+    label: "meta theme",
+    kind: KIND_SNIPPET,
+    detail: "theme-color as #rrggbb. Other values are cwl:meta-theme.",
+    insertText: 'meta theme "${1:#020208}";',
+  },
+  {
+    label: "meta og",
+    kind: KIND_SNIPPET,
+    detail: "Open Graph field: type, site, locale, url, title, description, image.",
+    insertText: 'meta og ${1|type,site,locale,url,title,description,image|} "${2:website}";',
+  },
+  {
+    label: "meta twitter",
+    kind: KIND_SNIPPET,
+    detail: "Twitter card field: card, title, description, image.",
+    insertText: 'meta twitter ${1|card,title,description,image|} "${2:summary_large_image}";',
+  },
+  {
     label: "canonical",
     kind: KIND_SNIPPET,
     detail: "Canonical URL. An absolute http(s) URL or a same-site path. javascript: is cwl:canonical-not-url.",

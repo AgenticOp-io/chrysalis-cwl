@@ -5,7 +5,7 @@ import { emitHubRoute, hubHandlerBodyHole, hubOrigin, HUB_T, lowerHubLiteral, lo
 import { lowerCwlHtmlTemplateBody } from "./cwl-html-template.mjs";
 import { lowerCwlUiTreeBody, resolveCwlUiComponent } from "./cwl-ui-tree.mjs";
 import { parseCwlModuleResolved, resolveCwlModuleFromPath } from "./cwl-module-graph.mjs";
-import { chromeHasDeviceSlot, chromeHasDrawerTargets, chromeHasHeadSlot, chromeHasLinkGroups, chromeHasYearSlot, composeLayoutChromeHtml, surfaceHasDocumentSlot, surfaceHasFormSlot, surfaceHasImageSlot, surfaceHasScriptSlot, surfaceHasStyleSlot } from "./cwl-layout.mjs";
+import { chromeHasDeviceSlot, chromeHasDrawerTargets, chromeHasHeadSlot, chromeHasLinkGroups, chromeHasYearSlot, composeLayoutChromeHtml, cwlMetaCardHasFacts, surfaceHasDocumentSlot, surfaceHasFormSlot, surfaceHasImageSlot, surfaceHasScriptSlot, surfaceHasStyleSlot } from "./cwl-layout.mjs";
 import { liftCwlModuleMiddlewareToWebir } from "./hub-cwl-middleware.mjs";
 import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
 import { cwlEffectsToWebir, wrapCwlCookiePurposes, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
@@ -327,6 +327,10 @@ export function liftCwlFileToWebir(opts) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-description-slot")) r.attachmentHoles.push("cwl:missing-description-slot");
     }
+    if (cwlMetaCardHasFacts(r.metaCard) && !surfaceHasDocumentSlot(documentSurface, "<!-- cwl:meta -->")) {
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-meta-slot")) r.attachmentHoles.push("cwl:missing-meta-slot");
+    }
     if (typeof r.canonical === "string" && !surfaceHasDocumentSlot(documentSurface, "<!-- cwl:canonical -->")) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-canonical-slot")) r.attachmentHoles.push("cwl:missing-canonical-slot");
@@ -344,6 +348,7 @@ export function liftCwlFileToWebir(opts) {
             title: r.title,
             description: r.description,
             canonical: r.canonical,
+            metaCard: r.metaCard,
             pageName: r.name,
             navId: r.navId,
             links: r.navLinks,
