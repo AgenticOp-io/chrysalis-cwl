@@ -12,7 +12,7 @@ This repo **owns the genome**. Convert translates into/out of it. Secure may bri
 | **Convert** | [**chrysalis**](https://github.com/AgenticOp-io/chrysalis) | Universal Translator — origin → WebIR/CWL → emit |
 | **Secure** | [**chrysalis-security**](https://github.com/AgenticOp-io/chrysalis-security) | Helix DNA firewall — allow only what certified traffic proves |
 
-**Tip:** see [`LANGUAGE_VERSION.md`](./LANGUAGE_VERSION.md) (currently **1.0.67**). Phase 1.x deepen continues — RFCs **0001–0034**, language golds `01`–`75`.
+**Tip:** see [`LANGUAGE_VERSION.md`](./LANGUAGE_VERSION.md) (currently **1.0.68**). Phase 1.x deepen continues — RFCs **0001–0034**, language golds `01`–`76`.
 
 **Start here:** [`docs/language/CWL-HOWTO.md`](./docs/language/CWL-HOWTO.md) · [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md) · [`docs/language/ROSETTA-UT-PATH.md`](./docs/language/ROSETTA-UT-PATH.md) · [`docs/language/CWL-LANGUAGE-SCOPE.md`](./docs/language/CWL-LANGUAGE-SCOPE.md)
 
@@ -42,7 +42,7 @@ CWL is a web language. It is not a universal programming language and not “PHP
 | `docs/history/DNA-BUILD-NEXT.md` | Phase 1.x deepen queue |
 | `docs/history/ROADMAP.md` | Pillar roadmap |
 | `docs/pillar-sync/` | Sibling BOARD / OUTBOX (Convert · Secure) |
-| `fixtures/language-gold/` | Golden `.cwl` fixtures (`01`–`75`) |
+| `fixtures/language-gold/` | Golden `.cwl` fixtures (`01`–`76`) |
 | `fixtures/sites/agenticop-io/` | Public site genome (`npm run smoke:agenticop-site`) |
 | `packages/cwl` | Language package surface |
 | `packages/runtime-cwl*` | Runtimes |

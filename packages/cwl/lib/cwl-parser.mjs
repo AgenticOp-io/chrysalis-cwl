@@ -56,8 +56,9 @@ const LINK_RE =
   /^link\s+([A-Za-z_][A-Za-z0-9_]*)\s+"([^"]*)"\s+"([^"]*)"(?:\s+class\s+([A-Za-z][A-Za-z0-9_-]*))?(?:\s+target\s+(blank))?(?:\s+rel\s+([A-Za-z][A-Za-z0-9_-]*))?\s*;$/;
 /** Following `link` rows belong to this named list until the next `links` statement. */
 const LINKS_GROUP_RE = /^links\s+([A-Za-z_][A-Za-z0-9_]*)\s*;$/;
-/** Host device classes. CWL does not read the viewport or the user agent. */
-const DEVICE_HOST_RE = /^device\s+host\s+([A-Za-z][A-Za-z0-9_-]*)\s+([A-Za-z][A-Za-z0-9_-]*)\s*;$/;
+/** Host device classes. Optional `below <px>` names the viewport cut. CWL does not read it. */
+const DEVICE_HOST_RE =
+  /^device\s+host\s+([A-Za-z][A-Za-z0-9_-]*)\s+([A-Za-z][A-Za-z0-9_-]*)(?:\s+below\s+([1-9]\d{1,3}))?\s*;$/;
 /** Menu drawer. The host document gets the bounded toggle script. */
 const DRAWER_RE =
   /^drawer\s+([A-Za-z][A-Za-z0-9_-]*)\s+toggle\s+([A-Za-z][A-Za-z0-9_-]*)\s+class\s+([A-Za-z][A-Za-z0-9_-]*)(?:\s+panel\s+([A-Za-z][A-Za-z0-9_-]*))?\s*;$/;
@@ -303,6 +304,7 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
     const device = DEVICE_HOST_RE.exec(line);
     if (device) {
       deviceHost = { values: [device[1], device[2]] };
+      if (device[3]) deviceHost.below = Number(device[3]);
       continue;
     }
     const drawerLine = DRAWER_RE.exec(line);

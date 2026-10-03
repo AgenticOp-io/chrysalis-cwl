@@ -4,11 +4,34 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-10-02 - agenticop-site-genome
+## 2026-10-02 - tip-1.0.68-device-below
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
+**CWL tip:** **1.0.68** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.68**. Peel gold `76`. The host device script must use the declared `below` width. Do not hardcode `820`. Do not call `matchMedia` inside CWL. Deploy of Firebase project `agenticops` stays with the site lane |
+| Secure | Pin to **1.0.68**. `below 820` is a document fact. A media-query evaluation is not genome |
+
+### CWL landed
+
+- `device host mobile desktop below 820` on the public site genome
+- `<!-- cwl:device -->` stays. Gold `76`
+- Convert emit of the 26 pages and Secure pin **1.0.67** are done
+- Tag `cwl-v1.0.67` published at the genome land
+
+---
+
+## 2026-10-02 - agenticop-site-genome
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **done**  
 **CWL tip:** **1.0.67**
 
 ### Ask
@@ -31,7 +54,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P1  
-**Status:** **open**  
+**Status:** **done**  
 **CWL tip:** **1.0.67** (RFC-0029 deepen)
 
 ### Ask

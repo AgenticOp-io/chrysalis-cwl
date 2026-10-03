@@ -58,6 +58,8 @@ for (const route of parsed.routes) {
     if (!html.includes('data-cwl-drawer="1"')) fail(`${route.name} missing drawer script`);
     if (!html.includes("<!-- cwl:year -->")) fail(`${route.name} missing year token`);
     if (!html.includes("<!-- cwl:device -->")) fail(`${route.name} missing device token`);
+    if (route.deviceHost?.below !== 820) fail(`${route.name} device cut is not 820`);
+    if (html.includes("matchMedia")) fail(`${route.name} evaluates a media query`);
     if (!html.includes("cwl-host")) fail(`${route.name} missing firebase host note`);
     if (!html.includes('id="ao-site-nav"')) fail(`${route.name} missing nav`);
     if (html.includes('id="ao-site-nav"></header>')) fail(`${route.name} nav is empty`);
