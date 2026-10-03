@@ -22,7 +22,7 @@ Pushed asks for siblings. Newest first.
 
 - Gold `78`. `cwl:meta-not-url`, `cwl:meta-theme`, `cwl:meta-og-type`, and `cwl:meta-twitter-card` are not written
 - The public site genome names the card on the pages that have one
-- Pins for **1.0.68** and **1.0.69** are still open
+- Land `efc006c`. Pins for **1.0.68**, **1.0.69**, and **1.0.70** are still open
 
 ---
 
