@@ -22,7 +22,7 @@ Pushed asks for siblings. Newest first.
 
 - `node scripts/cwl-live.mjs` reads the `.cwl` file on each request and composes the document
 - Gold `80`. Declared `param` and `query` names are escaped into the page. Unknown paths return `/404.html` with status 404
-- Language land SHA is still `4bc7b6b` until this tip is merged. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
+- Land `425b01f`. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
 - The public site files are still the old HTML
 
 ---
