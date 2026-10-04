@@ -24,7 +24,7 @@ SECURE_NEXT: pin 1.0.72 · request path and query fill HTML · device token is n
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | 4bc7b6b | tip **1.0.71** remaining head facts |
+| **CWL** | `main` | 425b01f | tip **1.0.72** live document |
 | **Convert** | `main` | 920d1329 | peel golds `76`–`78`, host script reads `below` |
 | **Secure** | `main` | 24750e2 | tip pin **1.0.70** |
 
@@ -34,6 +34,7 @@ SECURE_NEXT: pin 1.0.72 · request path and query fill HTML · device token is n
 | --- | --- | --- |
 | **P0** | Convert | Pin **1.0.72**. Peel gold `79`. No new grammar in the live host. Do not deploy Firebase project `agenticops` |
 | **P0** | Secure | Pin **1.0.72** |
+| **done** | CWL | tip **1.0.72** live document, land `425b01f` |
 | **done** | CWL | tip **1.0.71** remaining head facts, land `4bc7b6b` |
 | **done** | Convert | Tip pin **1.0.70**, golds `76`–`78`, `920d1329` |
 | **done** | Secure | Tip pin **1.0.70**, `24750e2` |
