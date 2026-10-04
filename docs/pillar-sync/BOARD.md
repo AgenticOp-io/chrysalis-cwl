@@ -1,23 +1,23 @@
 ﻿# Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-02 · tip **1.0.70** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. Convert `920d1329` peels golds `76`–`78`. The live site is still the old HTML until the site lane deploys.  
+**Updated:** 2026-10-03 · tip **1.0.71** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. Convert `920d1329` peels golds `76`–`78`. Tip **1.0.71** names the remaining head facts. The live site is still the old HTML.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: yes
-DISPATCH: site lane writes the 1.0.70 emit into brand/agenticops-web and deploys Firebase agenticops
-CONVERT_NEXT: none · tip 1.0.70 peeled · golds 76-78 · deviceHost.below · do not deploy Firebase agenticops from Convert
-SECURE_NEXT: none · tip 1.0.70 pinned
+CWL_FLEET_IDLE: no
+DISPATCH: Convert pins 1.0.71 and peels gold 79. Secure pins 1.0.71. Do not deploy Firebase agenticops
+CONVERT_NEXT: pin 1.0.71 · peel gold 79 · keywords, icon, alternate, preconnect, jsonld · do not deploy Firebase agenticops
+SECURE_NEXT: pin 1.0.71 · remaining head facts are document facts · schema.org is not interpreted
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.70`** |
-| Packages | **`@agenticop-io/cwl@1.0.70`** (pin; Packages publish when tagged) |
+| **CWL tip** | **`1.0.71`** |
+| Packages | **`@agenticop-io/cwl@1.0.71`** (pin; Packages publish when tagged) |
 | Tags | `cwl-v1.0.46` · `cwl-v1.0.47` · `cwl-v1.0.56` · `cwl-v1.0.61` · `cwl-v1.0.62` · `cwl-v1.0.67` · `cwl-v1.0.70` |
 
 ## Latest SHAs
@@ -32,7 +32,8 @@ SECURE_NEXT: none · tip 1.0.70 pinned
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Site lane | Write the 1.0.70 emit into `brand/agenticops-web` and deploy Firebase project `agenticops` |
+| **P0** | Convert | Pin **1.0.71**. Peel gold `79`. Do not deploy Firebase project `agenticops` |
+| **P0** | Secure | Pin **1.0.71** |
 | **done** | Convert | Tip pin **1.0.70**, golds `76`–`78`, `920d1329` |
 | **done** | Secure | Tip pin **1.0.70**, `24750e2` |
 | **done** | CWL | tip **1.0.70** social card, land `efc006c` |
@@ -51,4 +52,4 @@ SECURE_NEXT: none · tip 1.0.70 pinned
 
 ## Honesty
 
-Goal: CWL is the DNA of web languages and must be able to replace any web page. The public pages are `fixtures/sites/agenticop-io/site.cwl`. Convert `920d1329` peels that genome, including `deviceHost.below`, title, description, canonical, and the social card. JSON-LD stays in `head html`. The live HTML files and Firebase project `agenticops` stay the site lane. Tip **1.0.70** names `meta robots`, `meta author`, `meta theme`, `meta og`, and `meta twitter`. Tip **1.0.69** names `charset utf-8`, `viewport device`, `title`, `description`, and `canonical`. The viewport meta is a fixed content string. CWL does not evaluate it. The genome also declares `device host mobile desktop below 820`. Tip **1.0.68** names that cut and leaves `<!-- cwl:device -->`. CWL does not call `matchMedia`. Tip **1.0.67** names a script file, writes a same-site form, and emits an off-site anchor. It does not run the script. An off-site form action is `unsupported:offsite-form`. WebSocket and SQL stay holes. No SQL invent. Cookie values never enter CWL. A cookie is session, csrf, or an enumerated preference. A redirect is a same-site path; off-site targets are `unsupported:open-redirect`. A page body may be a multi-line HTML document. `<!-- cwl:head -->` is that page's title and meta. `nav <id>;` is the shared nav id for `<!-- cwl:page -->` and `<!-- cwl:active <page> <class> -->`. No `nav` statement uses the page name. `<!-- cwl:year -->` is the host calendar year. CWL does not read the clock. `link` rows fill every `<!-- cwl:links -->` slot. `links <name>` is a separate list. `drawer` is the menu toggle. `<!-- cwl:device -->` is the host device class. CWL does not read the viewport or the user agent. `style` and `image` name host files. `host firebase` names the public root. CWL does not parse CSS, read image bytes, or deploy. WebSocket stays a hole. No SMTP / CORS / CDN / HTTP-client invent.
+Goal: CWL is the DNA of web languages and must be able to replace any web page. The public pages are `fixtures/sites/agenticop-io/site.cwl`. Tip **1.0.71** names `meta keywords`, `icon`, `alternate`, `preconnect`, a page `style`, and `jsonld`. Schema.org is not interpreted. Apple touch icons are written only when declared. Convert `920d1329` still peels golds `76`–`78`. The live HTML files and Firebase project `agenticops` stay the site lane. Tip **1.0.70** names `meta robots`, `meta author`, `meta theme`, `meta og`, and `meta twitter`. Tip **1.0.69** names `charset utf-8`, `viewport device`, `title`, `description`, and `canonical`. The viewport meta is a fixed content string. CWL does not evaluate it. The genome also declares `device host mobile desktop below 820`. Tip **1.0.68** names that cut and leaves `<!-- cwl:device -->`. CWL does not call `matchMedia`. Tip **1.0.67** names a script file, writes a same-site form, and emits an off-site anchor. It does not run the script. An off-site form action is `unsupported:offsite-form`. WebSocket and SQL stay holes. No SQL invent. Cookie values never enter CWL. A cookie is session, csrf, or an enumerated preference. A redirect is a same-site path; off-site targets are `unsupported:open-redirect`. A page body may be a multi-line HTML document. `<!-- cwl:head -->` is that page's title and meta. `nav <id>;` is the shared nav id for `<!-- cwl:page -->` and `<!-- cwl:active <page> <class> -->`. No `nav` statement uses the page name. `<!-- cwl:year -->` is the host calendar year. CWL does not read the clock. `link` rows fill every `<!-- cwl:links -->` slot. `links <name>` is a separate list. `drawer` is the menu toggle. `<!-- cwl:device -->` is the host device class. CWL does not read the viewport or the user agent. `style` and `image` name host files. `host firebase` names the public root. CWL does not parse CSS, read image bytes, or deploy. WebSocket stays a hole. No SMTP / CORS / CDN / HTTP-client invent.

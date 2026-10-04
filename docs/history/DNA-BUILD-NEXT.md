@@ -1,8 +1,8 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA of web languages — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Goal:** CWL is a language in its own right. It must be able to replace any web page. Golds `68`–`78` replace a document with navigation, a drawer, a device token, named assets, a same-site form, an off-site anchor, a named viewport cut, document identity, and a social card. WebSocket duplex, SQL engines, and unclassified client script stay named holes.  
-**Tip:** **`1.0.70`** - social card (RFC-0029 deepen)
+**Goal:** CWL is a language in its own right. It must be able to replace any web page. Golds `68`–`79` replace a document with navigation, a drawer, a device token, named assets, a same-site form, an off-site anchor, a named viewport cut, document identity, a social card, and the remaining head facts. WebSocket duplex, SQL engines, and unclassified client script stay named holes.  
+**Tip:** **`1.0.71`** - remaining head facts (RFC-0029 deepen)
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -67,6 +67,7 @@
 | P0 | Device viewport cut (`76`) | **done** (`1.0.68`) — `below 820` on the site genome. Token stays. No `matchMedia` |
 | P0 | Document identity (`77`) | **done** (`1.0.69`) — charset, viewport meta, title, description, canonical. Viewport content is not evaluated |
 | P0 | Social card (`78`) | **done** (`1.0.70`) — robots, author, theme-color, Open Graph, Twitter. JSON-LD stays in `head html` |
+| P0 | Remaining head facts (`79`) | **done** (`1.0.71`) — keywords, icon, alternate, preconnect, page style, JSON-LD. Schema.org is not interpreted |
 | P0 | Replace any web page | **open** — goal of the language. Document shell through gold `74` is the start. Remaining page behaviors stay holes until an honest RFC |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
@@ -86,6 +87,7 @@
 | Tip pin **1.0.68** | Convert + Secure — **done** (Convert `920d1329`, Secure `24750e2`) |
 | Tip pin **1.0.69** | Convert + Secure — **done** (Convert `920d1329`, Secure `24750e2`) |
 | Tip pin **1.0.70** | Convert + Secure — **done** (Convert `920d1329`, Secure `24750e2`) |
+| Tip pin **1.0.71** | Convert + Secure — **open** (peel gold `79`; do not deploy Firebase `agenticops`) |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |

@@ -50,6 +50,7 @@ const SITE_PAGE = join(ROOT, "fixtures/language-gold/75-site-page/routes.cwl");
 const SITE_DEVICE_BELOW = join(ROOT, "fixtures/language-gold/76-site-device-below/routes.cwl");
 const SITE_DOCUMENT_IDENTITY = join(ROOT, "fixtures/language-gold/77-site-document/routes.cwl");
 const SITE_SOCIAL = join(ROOT, "fixtures/language-gold/78-site-social/routes.cwl");
+const SITE_HEAD_REST = join(ROOT, "fixtures/language-gold/79-site-head-rest/routes.cwl");
 const REPEAT_IF = join(ROOT, "fixtures/language-gold/47-html-repeat-if/routes.cwl");
 const REPEAT_ELSE = join(ROOT, "fixtures/language-gold/48-html-repeat-else/routes.cwl");
 const REPEAT_NESTED = join(ROOT, "fixtures/language-gold/49-html-repeat-nested/routes.cwl");
@@ -802,6 +803,41 @@ runEmitCheck(
       !/content=\\"red\\"/.test(text) &&
       !/content=\\"tracker\\"/.test(text) &&
       !/<!-- cwl:meta -->/.test(text)
+    );
+  },
+  { stdout: true },
+);
+
+runEmitCheck(
+  "emit-check-79-site-head-rest",
+  SITE_HEAD_REST,
+  (rep, text) => {
+    const holes = rep.holeReasons ?? [];
+    return (
+      rep.token === "CWL_EMIT_CHECK_OK" &&
+      holes.includes("cwl:missing-icon-slot") &&
+      holes.includes("cwl:missing-alternate-slot") &&
+      holes.includes("cwl:missing-jsonld-slot") &&
+      holes.includes("cwl:missing-preconnect-slot") &&
+      holes.includes("cwl:unknown-icon") &&
+      holes.includes("cwl:alternate-not-url") &&
+      holes.includes("cwl:preconnect-not-url") &&
+      holes.includes("cwl:jsonld-not-json") &&
+      holes.includes("cwl:jsonld-closes-script") &&
+      /name=\\"keywords\\" content=\\"CWL, WebIR\\"/.test(text) &&
+      /rel=\\"icon\\" href=\\"\/logo\.svg\\" type=\\"image\/svg\+xml\\"/.test(text) &&
+      /rel=\\"apple-touch-icon\\" href=\\"\/logo\.svg\\"/.test(text) &&
+      /rel=\\"alternate\\" type=\\"text\/plain\\" href=\\"https:\/\/agenticop\.io\/llms\.txt\\" title=\\"LLM digest\\"/.test(text) &&
+      /rel=\\"preconnect\\" href=\\"https:\/\/fonts\.googleapis\.com\\" crossorigin/.test(text) &&
+      /rel=\\"stylesheet\\" href=\\"\/agenticops\.css\\"/.test(text) &&
+      /fonts\.googleapis\.com\/css2/.test(text) &&
+      /application\/ld\+json/.test(text) &&
+      /\\"@type\\":\\"WebPage\\"/.test(text) &&
+      !/rel=\\"preconnect\\" href=\\"javascript:/.test(text) &&
+      !/rel=\\"alternate\\"[^>]*href=\\"javascript:/.test(text) &&
+      !/<\/script><script>/.test(text) &&
+      !/<!-- cwl:icon -->/.test(text) &&
+      !/<!-- cwl:jsonld -->/.test(text)
     );
   },
   { stdout: true },

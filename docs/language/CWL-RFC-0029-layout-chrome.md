@@ -1,7 +1,7 @@
 # CWL RFC-0029 — Layout chrome wrap
 
 **Status:** accepted (2026-09-14); document shell deepened (2026-09-30); per-page head and shared nav id (2026-10-01)  
-**Tip:** **1.0.70** (chrome prefix since 1.0.27)  
+**Tip:** **1.0.71** (chrome prefix since 1.0.27)  
 **Extends:** [RFC-0011](CWL-RFC-0011-full-stack-layouts.md) (import merge stays; this adds wrap)  
 **Ask:** [CWL-EXPAND.md](../history/CWL-EXPAND.md) §1
 
@@ -99,7 +99,11 @@ HTML names the charset, the viewport meta, the title, the description, and the c
 
 ## Deepen — social card (tip 1.0.70)
 
-`meta robots`, `meta author`, `meta theme`, `meta og`, and `meta twitter` fill `<!-- cwl:meta -->`. Open Graph fields are `type`, `site`, `locale`, `url`, `title`, `description`, and `image`. Twitter fields are `card`, `title`, `description`, and `image`. `theme` is `#rrggbb` and becomes `theme-color`. A card image or URL that is not an absolute `http`/`https` URL or a same-site path is `cwl:meta-not-url` and is not written. A theme that is not `#rrggbb` is `cwl:meta-theme`. An unknown Open Graph type is `cwl:meta-og-type`. An unknown Twitter card is `cwl:meta-twitter-card`. A declared card with no marker is `cwl:missing-meta-slot`. JSON-LD stays in `head html`.
+`meta robots`, `meta author`, `meta theme`, `meta og`, and `meta twitter` fill `<!-- cwl:meta -->`. Open Graph fields are `type`, `site`, `locale`, `url`, `title`, `description`, and `image`. Twitter fields are `card`, `title`, `description`, and `image`. `theme` is `#rrggbb` and becomes `theme-color`. A card image or URL that is not an absolute `http`/`https` URL or a same-site path is `cwl:meta-not-url` and is not written. A theme that is not `#rrggbb` is `cwl:meta-theme`. An unknown Open Graph type is `cwl:meta-og-type`. An unknown Twitter card is `cwl:meta-twitter-card`. A declared card with no marker is `cwl:missing-meta-slot`.
+
+## Deepen — remaining head facts (tip 1.0.71)
+
+`meta keywords` joins the card in `<!-- cwl:meta -->`. `icon <imageId>` fills `<!-- cwl:icon -->` from a declared `image`. `apple` adds the touch icon only when it is written. An unknown id is `cwl:unknown-icon` and is not written. `alternate` fills `<!-- cwl:alternate -->`. `preconnect` fills `<!-- cwl:preconnect -->`. Optional `crossorigin` is copied. A page `style` joins the layout styles in `<!-- cwl:style -->`. `jsonld` fills `<!-- cwl:jsonld -->` with the raw JSON text. Schema.org is not interpreted. A value that is not JSON is `cwl:jsonld-not-json`. A block that contains `</script>` is `cwl:jsonld-closes-script`. A non-URL alternate or preconnect is `cwl:alternate-not-url` or `cwl:preconnect-not-url`. Those values are not written. A declared fact with no marker is `cwl:missing-icon-slot`, `cwl:missing-alternate-slot`, `cwl:missing-jsonld-slot`, or `cwl:missing-preconnect-slot`. CWL does not fetch the font host.
 
 ## Syntax
 
@@ -128,6 +132,11 @@ HTML names the charset, the viewport meta, the title, the description, and the c
 | `meta theme "#rrggbb";` | `theme-color` inside `<!-- cwl:meta -->` (tip 1.0.70) |
 | `meta og <field> "…";` | Open Graph property inside `<!-- cwl:meta -->` (tip 1.0.70) |
 | `meta twitter <field> "…";` | Twitter card meta inside `<!-- cwl:meta -->` (tip 1.0.70) |
+| `meta keywords "…";` | Keywords meta inside `<!-- cwl:meta -->` (tip 1.0.71) |
+| `icon <id>;` | Icon link from a declared image. Optional `apple` (tip 1.0.71) |
+| `alternate "<type>" "<href>" "<title>";` | Alternate link for `<!-- cwl:alternate -->` (tip 1.0.71) |
+| `preconnect "<href>";` | Preconnect hint. Optional `crossorigin` (tip 1.0.71) |
+| `jsonld """` … `""";` | Raw JSON-LD for `<!-- cwl:jsonld -->`. Schema.org is not interpreted (tip 1.0.71) |
 | `style "<href>";` | Stylesheet link for `<!-- cwl:style -->` (tip 1.0.66) |
 | `image <id> "<path>";` | Image path for `<!-- cwl:image <id> -->` (tip 1.0.66) |
 | `host firebase "<target>" public "<dir>";` | Firebase Hosting target and public root (tip 1.0.66) |
@@ -168,3 +177,4 @@ HTML names the charset, the viewport meta, the title, the description, and the c
 - Gold `fixtures/language-gold/76-site-device-below`
 - Gold `fixtures/language-gold/77-site-document`
 - Gold `fixtures/language-gold/78-site-social`
+- Gold `fixtures/language-gold/79-site-head-rest`

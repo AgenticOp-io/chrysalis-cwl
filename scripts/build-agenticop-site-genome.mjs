@@ -29,6 +29,10 @@ const CHROME = `<!DOCTYPE html>
 <!-- cwl:description -->
 <!-- cwl:canonical -->
 <!-- cwl:meta -->
+<!-- cwl:icon -->
+<!-- cwl:alternate -->
+<!-- cwl:jsonld -->
+<!-- cwl:preconnect -->
 <!-- cwl:head -->
 <!-- cwl:style -->
 </head>
@@ -107,6 +111,10 @@ const MISSING_CHROME = `<!DOCTYPE html>
 <!-- cwl:description -->
 <!-- cwl:canonical -->
 <!-- cwl:meta -->
+<!-- cwl:icon -->
+<!-- cwl:alternate -->
+<!-- cwl:jsonld -->
+<!-- cwl:preconnect -->
 <!-- cwl:head -->
 <!-- cwl:style -->
 </head>
@@ -207,6 +215,10 @@ function takeDocumentFacts(head) {
           metaLines.push(`meta robots ${JSON.stringify(value)};`);
           continue;
         }
+        if (named === "keywords") {
+          metaLines.push(`meta keywords ${JSON.stringify(value)};`);
+          continue;
+        }
         if (named === "author") {
           metaLines.push(`meta author ${JSON.stringify(value)};`);
           continue;
@@ -250,10 +262,73 @@ function takeDocumentFacts(head) {
   return { title, description, canonical, metaLines, head: kept.join("\n").trim() };
 }
 
+function peelResidual(head) {
+  const lines = head.split("\n");
+  const kept = [];
+  let icon = false;
+  let apple = false;
+  /** @type {Array<{ type: string, href: string, title: string }>} */
+  const alternates = [];
+  /** @type {Array<{ href: string, crossorigin?: boolean }>} */
+  const preconnects = [];
+  /** @type {string[]} */
+  const styles = [];
+  /** @type {string[]} */
+  const jsonlds = [];
+  for (let i = 0; i < lines.length; i += 1) {
+    const t = lines[i].trim();
+    if (!t) continue;
+    if (/rel=["']icon["']/i.test(t)) {
+      icon = /href=["']([^"']+)["']/i.exec(t)?.[1] ?? "";
+      continue;
+    }
+    if (/apple-touch-icon/i.test(t)) {
+      apple = /href=["']([^"']+)["']/i.exec(t)?.[1] ?? "";
+      continue;
+    }
+    const alt = /rel=["']alternate["'][^>]*type=["']([^"']+)["'][^>]*href=["']([^"']+)["'][^>]*title=["']([^"']*)["']/i.exec(t);
+    if (alt) {
+      alternates.push({ type: alt[1], href: alt[2], title: decodeEntities(alt[3]) });
+      continue;
+    }
+    const pre = /rel=["']preconnect["'][^>]*href=["']([^"']+)["']/i.exec(t);
+    if (pre) {
+      preconnects.push(/crossorigin/i.test(t) ? { href: pre[1], crossorigin: true } : { href: pre[1] });
+      continue;
+    }
+    if (/fonts\.googleapis\.com\/css2?\?/i.test(t) && /stylesheet/i.test(t)) {
+      const href = /href=["']([^"']+)["']/i.exec(t)?.[1];
+      if (href) {
+        styles.push(decodeEntities(href));
+        continue;
+      }
+    }
+    if (/<script[^>]*application\/ld\+json/i.test(t)) {
+      const same = /<script[^>]*>([\s\S]*)<\/script>/i.exec(t);
+      if (same && same[1].trim()) {
+        jsonlds.push(same[1].trim());
+        continue;
+      }
+      const parts = [];
+      i += 1;
+      while (i < lines.length && !/<\/script>/i.test(lines[i])) {
+        parts.push(lines[i]);
+        i += 1;
+      }
+      const json = parts.join("\n").trim();
+      if (json) jsonlds.push(json);
+      continue;
+    }
+    kept.push(lines[i]);
+  }
+  return { icon, apple, alternates, preconnects, styles, jsonlds, head: kept.join("\n").trim() };
+}
+
 function cleanHead(head) {
   const facts = takeDocumentFacts(head);
-  const lines = facts.head.split("\n").filter((line) => line && !/href=["']\/agenticops\.css["']/.test(line));
-  return { ...facts, head: lines.join("\n").replaceAll('href="/logo.svg"', 'href="<!-- cwl:image logo -->"').trim() };
+  const residual = peelResidual(facts.head);
+  const lines = residual.head.split("\n").filter((line) => line && !/href=["']\/agenticops\.css["']/.test(line));
+  return { ...facts, ...residual, head: lines.join("\n").replaceAll('href="/logo.svg"', 'href="<!-- cwl:image logo -->"').trim() };
 }
 
 function betweenHeaderAndFooter(html) {
@@ -290,6 +365,9 @@ for (const file of files) {
   if (body.includes("/ao-layout.js")) throw new Error(`${file} still names ao-layout.js`);
   assertBlockSafe(file, head);
   assertBlockSafe(file, body);
+  for (const json of facts.jsonlds ?? []) assertBlockSafe(file, json);
+  if (facts.icon !== "/logo.svg") throw new Error(`${file} icon is ${facts.icon || "missing"}`);
+  if (facts.apple && facts.apple !== "/logo.svg") throw new Error(`${file} apple icon is ${facts.apple}`);
   pages.push({
     file,
     name: pageName(file),
@@ -301,6 +379,12 @@ for (const file of files) {
     description: facts.description,
     canonical: facts.canonical,
     metaLines: facts.metaLines,
+    icon: true,
+    apple: Boolean(facts.apple),
+    alternates: facts.alternates,
+    preconnects: facts.preconnects,
+    styles: facts.styles,
+    jsonlds: facts.jsonlds,
     layout: isMissing ? "missing" : "site",
   });
 }
@@ -383,6 +467,19 @@ for (const page of pages) {
   if (page.description) lines.push(`  description ${JSON.stringify(page.description)};`);
   if (page.canonical) lines.push(`  canonical ${JSON.stringify(page.canonical)};`);
   for (const meta of page.metaLines ?? []) lines.push(`  ${meta}`);
+  lines.push(`  icon logo${page.apple ? " apple" : ""};`);
+  for (const link of page.preconnects ?? []) {
+    lines.push(`  preconnect ${JSON.stringify(link.href)}${link.crossorigin ? " crossorigin" : ""};`);
+  }
+  for (const link of page.alternates ?? []) {
+    lines.push(`  alternate ${JSON.stringify(link.type)} ${JSON.stringify(link.href)} ${JSON.stringify(link.title)};`);
+  }
+  for (const href of page.styles ?? []) lines.push(`  style ${JSON.stringify(href)};`);
+  for (const json of page.jsonlds ?? []) {
+    lines.push("  jsonld \"\"\"");
+    lines.push(json);
+    lines.push("  \"\"\";");
+  }
   if (page.head) {
     lines.push("  head html \"\"\"");
     lines.push(page.head);

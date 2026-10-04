@@ -38,6 +38,10 @@ for (const route of parsed.routes) {
     description: route.description,
     canonical: route.canonical,
     metaCard: route.metaCard,
+    icons: route.icons,
+    alternates: route.alternates,
+    jsonlds: route.jsonlds,
+    preconnects: route.preconnects,
     pageName: route.name,
     navId: route.navId,
     links: route.navLinks,
@@ -56,9 +60,16 @@ for (const route of parsed.routes) {
   if (html.includes("<!-- cwl:image ")) fail(`${route.name} left an image slot`);
   if (html.includes("<!-- cwl:body -->")) fail(`${route.name} left a body slot`);
   if (html.includes("<!-- cwl:head -->")) fail(`${route.name} left a head slot`);
-  if (html.includes("<!-- cwl:title -->") || html.includes("<!-- cwl:charset -->") || html.includes("<!-- cwl:viewport -->") || html.includes("<!-- cwl:meta -->")) {
+  if (html.includes("<!-- cwl:title -->") || html.includes("<!-- cwl:charset -->") || html.includes("<!-- cwl:viewport -->") || html.includes("<!-- cwl:meta -->") || html.includes("<!-- cwl:icon -->") || html.includes("<!-- cwl:jsonld -->") || html.includes("<!-- cwl:preconnect -->") || html.includes("<!-- cwl:alternate -->")) {
     fail(`${route.name} left a document slot`);
   }
+  if (!html.includes('rel="icon"')) fail(`${route.name} missing icon`);
+  if (!html.includes("fonts.googleapis.com/css")) fail(`${route.name} missing font stylesheet`);
+  if (route.icons?.some((icon) => icon.apple) && !html.includes("apple-touch-icon")) fail(`${route.name} missing apple icon`);
+  if (route.icons?.length && !route.icons.some((icon) => icon.apple) && html.includes("apple-touch-icon")) {
+    fail(`${route.name} invented an apple icon`);
+  }
+  if (route.jsonlds?.length && !html.includes('type="application/ld+json"')) fail(`${route.name} missing JSON-LD`);
   if (route.metaCard?.og?.title && !html.includes(`property="og:title" content="${route.metaCard.og.title.replace(/&/g, "&amp;").replace(/"/g, "&quot;")}"`)) {
     fail(`${route.name} missing Open Graph title`);
   }
