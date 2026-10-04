@@ -3,16 +3,16 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Goal** | DNA of web languages. A language in its own right. Able to replace any web page. Tip `1.0.73` builds HTML from the request and host data (golds `68`–`81`). WebSocket duplex, SQL engines, and unclassified client script stay holes. |
-| **Version** | `1.0.73` |
-| **Status** | Dynamic HTML emit |
-| **Date** | 2026-10-03 |
+| **Goal** | DNA of web languages. A language in its own right. Able to replace any web page. Tip `1.0.74` names tables and bound row operations (golds `68`–`82`). The host runs them on sqlite, postgres, mysql, mariadb, sqlserver, or oracle. WebSocket duplex, raw SQL text, and unclassified client script stay holes. |
+| **Version** | `1.0.74` |
+| **Status** | Database |
+| **Date** | 2026-10-04 |
 
 ## What this version means
 
-- **Dynamic HTML:** `repeat` walks host rows, including a nested list and `else html` for an empty collection. `if` / `else if` / `else` choose a different document when the comparison is against the request or that data. CWL does not query a database
-- **Gold `81`:** the same board page renders open notes, an empty list, or a closed document. A note page renders one host record or the missing branch
-- Prior tip **1.0.72:** live document host (gold `80`)
+- **Database:** `engine` names sqlite, postgres, mysql, mariadb, sqlserver, or oracle. `table` names columns. `db select`, `db insert`, `db update`, and `db delete` are the same statements on every engine. Request values are parameters. An unknown engine, an unknown column, or an update without `where` does not run
+- **Gold `82`:** sqlite executes the module. The same insert is compiled for every engine, and a title that looks like SQL stays a parameter
+- Prior tip **1.0.73:** dynamic HTML from host data (gold `81`)
 
 ## Gate
 

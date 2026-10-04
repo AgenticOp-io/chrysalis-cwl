@@ -26,6 +26,7 @@ const FILES = [
   "cwl-module-graph.mjs",
   "cwl-layout.mjs",
   "cwl-dna-seed.mjs",
+  "cwl-db.mjs",
 ];
 
 mkdirSync(LIB, { recursive: true });

@@ -28,7 +28,7 @@ Convert peels may hear PHP, Express, Python, Go, Java, C#, Ruby, Rust, framework
 
 Modeled surfaces: `@route` / `@page`, request/response shapes, effects (including named cookie / CORS / rate / CSRF / db table policy), modules, UI trees / islands, control (`if` / `foreach`), nested structured literals (RFC-0025), multipart (0026), SSE (0027), named UI islands (0028), layout chrome (0029), page HTML + sibling islands (0030), repeated markup (0031), credential/session effects (0032), proxy upstream (0033), holes, DNA bridge (0022/0023).
 
-Language golds: `fixtures/language-gold/01`–`81`. Tip: [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md). Dynamic HTML emit builds a page from the CWL source, the request, and host data (`npm run live -- file.cwl --data data.json`). CWL does not query a database. `style`, `image`, and `script` name host files. `form` writes a same-site form. `host firebase` names the public root. CWL does not parse CSS, read image bytes, run scripts, or deploy.
+Language golds: `fixtures/language-gold/01`–`82`. Tip: [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md). Dynamic HTML emit builds a page from the CWL source, the request, and rows (`npm run live -- file.cwl --data data.json`). `engine` names sqlite, postgres, mysql, mariadb, sqlserver, or oracle. `table` plus `db select` / `insert` / `update` / `delete` are bound row operations on that engine (`--db` is a sqlite file or that engine's URL). Request values are parameters. Raw SQL text is not a statement. `style`, `image`, and `script` name host files. `form` writes a same-site form. `host firebase` names the public root. CWL does not parse CSS, read image bytes, run scripts, or deploy.
 
 ## What stays holes / out of scope
 
@@ -36,7 +36,7 @@ Language golds: `fixtures/language-gold/01`–`81`. Tip: [`LANGUAGE_VERSION.md`]
 | --- | --- |
 | Wasm modules, vendor SDKs, opaque scripts | Catalogued `unsupported:*` holes (RFC-0024) — do not invent grammar |
 | Framework form actions | Hole (`hub-svelte:form-action` and kin). A same-site HTML form is `form` / `field` / `submit` (tip 1.0.67). An off-site action is `unsupported:offsite-form` |
-| SQL engines, queues, Mongo, GenieACS, NGFW | Non-goals in this pillar (`db.read table X` names intent only) |
+| Raw SQL text, queues, Mongo, GenieACS, NGFW | A SQL string is not CWL. Named tables and bound row operations are (tip `1.0.74`) on sqlite, postgres, mysql, mariadb, sqlserver, and oracle. Any other engine is `cwl:unknown-db-engine` |
 | WebSocket duplex | Kept hole (`unsupported:websocket`) until an honest peel |
 | Tracking cookies | Kept hole (`unsupported:tracking-cookie`, RFC-0034). Session, CSRF, and an enumerated preference stay |
 | Open redirect | Kept hole (`unsupported:open-redirect`, RFC-0006). Same-site `redirect "/path"` stays |

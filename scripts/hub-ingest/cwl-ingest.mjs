@@ -11,6 +11,58 @@ import { liftCwlAuthPresetsToWebir } from "./hub-cwl-auth-presets.mjs";
 import { cwlEffectsToWebir, wrapCwlCookiePurposes, wrapCwlExecutableEffects } from "./hub-cwl-effects.mjs";
 import { cwlPathParamsForWebir, extractPathParamsFromCwlPath } from "./hub-cwl-path-params.mjs";
 import { appendForeachBindings, wrapWithEarlyGuards } from "./cwl-control-lower.mjs";
+import { printCwlDbTarget } from "./cwl-db.mjs";
+
+/**
+ * Lower bound row operations to WebIR calls. The host still runs them.
+ * @param {{ data: object, webir: object, file: string }} ctx
+ * @param {string | undefined} valueId
+ * @param {object[]} ops
+ * @param {{ file: string, line: number }} loc
+ * @param {string | null} engine
+ */
+function wrapCwlDbOps(ctx, valueId, ops, loc, engine) {
+  if (!ops?.length || !valueId) return valueId;
+  const { data, webir } = ctx;
+  const origin = { file: loc.file, line: loc.line ?? 1, column: 1 };
+  const statements = ops.map((op) => {
+    const locName = `cwl:db-${op.op}`;
+    return data.call({
+      callee: `__cwl_db_${op.op}`,
+      args: [
+        data.literal({
+          value: op.table,
+          type: HUB_T.string,
+          origin,
+          provenance: [webir.provenance("hub-ingest", `${locName}-table`)],
+        }),
+        data.literal({
+          value: printCwlDbTarget(op),
+          type: HUB_T.string,
+          origin,
+          provenance: [webir.provenance("hub-ingest", `${locName}-target`)],
+        }),
+        data.literal({
+          value: engine || "sqlite",
+          type: HUB_T.string,
+          origin,
+          provenance: [webir.provenance("hub-ingest", `${locName}-engine`)],
+        }),
+      ],
+      argNames: ["table", "target", "engine"],
+      type: HUB_T.unknown,
+      origin,
+      provenance: [webir.provenance("hub-ingest", locName)],
+    });
+  });
+  statements.push(valueId);
+  return data.block({
+    statements,
+    type: HUB_T.unknown,
+    origin,
+    provenance: [webir.provenance("hub-ingest", "cwl:db")],
+  });
+}
 
 /**
  * @param {string} language
@@ -523,6 +575,7 @@ export function liftCwlFileToWebir(opts) {
         provenance: [webir.provenance("hub-ingest", "cwl:page-islands")],
       });
     }
+    valueId = wrapCwlDbOps({ data, webir, file }, valueId, r.dbOps ?? [], loc, parsed.engine ?? null);
     valueId = wrapCwlExecutableEffects({ data, webir, builder, file }, valueId, r.effects ?? [], loc);
     valueId = wrapCwlCookiePurposes(
       { data, webir, file },

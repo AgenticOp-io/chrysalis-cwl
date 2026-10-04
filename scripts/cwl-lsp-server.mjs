@@ -346,6 +346,42 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     detail: "Per-page head fragment for <!-- cwl:head --> (RFC-0029)",
     insertText: 'head html "${1:<title></title>}";',
   },
+  {
+    label: "engine",
+    kind: KIND_SNIPPET,
+    detail: "Database engine. Statements stay the same. The host speaks that dialect.",
+    insertText: "engine ${1|sqlite,postgres,mysql,mariadb,sqlserver,oracle|};",
+  },
+  {
+    label: "table",
+    kind: KIND_SNIPPET,
+    detail: "Named table. The host stores the rows. No SQL string.",
+    insertText: "table ${1:notes} {\n  ${2:id} text key;\n  ${3:title} text;\n}",
+  },
+  {
+    label: "db select",
+    kind: KIND_SNIPPET,
+    detail: "Bound select. Request values stay parameters.",
+    insertText: "db select ${1:notes} where ${2:open} == true as ${3:notes};",
+  },
+  {
+    label: "db insert",
+    kind: KIND_SNIPPET,
+    detail: "Bound insert into a declared table.",
+    insertText: "db insert ${1:notes} { id: ${2:id}, title: ${3:title} };",
+  },
+  {
+    label: "db update",
+    kind: KIND_SNIPPET,
+    detail: "Bound update. A missing where is a hole.",
+    insertText: "db update ${1:notes} where id == ${2:id} { title: ${3:title} };",
+  },
+  {
+    label: "db delete",
+    kind: KIND_SNIPPET,
+    detail: "Bound delete. A missing where is a hole.",
+    insertText: "db delete ${1:notes} where id == ${2:id};",
+  },
 ]);
 
 /** @type {ReadonlyArray<{ label: string, kind: number, detail: string }>} */

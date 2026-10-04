@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-04 - tip-1.0.74-database
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.74**
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.74**. Peel gold `79`. Gold `82` is the database host inside CWL. Do not freeze that module into one HTML file. Do not invent a SQL dialect. Do not deploy Firebase project `agenticops` |
+| Secure | Pin to **1.0.74**. `engine` names sqlite, postgres, mysql, mariadb, sqlserver, or oracle. A row value is a parameter. It is not SQL text, not a media-query evaluation, and not a stored cookie value |
+
+### CWL landed
+
+- `engine`, `table`, and `db select` / `insert` / `update` / `delete` are one set of statements. The host speaks that engine
+- Gold `82`. SQLite executes the module. The same insert compiles for the other five engines with the title left as a parameter
+- Language land SHA is still `4d849ec` until this tip is merged. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
+- The public site files are still the old HTML
+
+---
+
 ## 2026-10-03 - tip-1.0.73-dynamic-html
 
 **To:** convert + secure  

@@ -12,6 +12,7 @@ import { resolveCwlModuleFromPath } from "./hub-ingest/cwl-module-graph.mjs";
 import { composeLayoutChromeHtml } from "./hub-ingest/cwl-layout.mjs";
 import { splitCwlHtmlTemplate } from "./hub-ingest/cwl-html-template.mjs";
 import { finishCwlDynamicHtml, selectCwlDynamicSource } from "./cwl-dynamic-html.mjs";
+import { applyCwlDb, openCwlEngine } from "./cwl-db-host.mjs";
 
 const YEAR_SLOT = "<!-- cwl:year -->";
 
@@ -151,17 +152,18 @@ function findRoute(routes, method, pathname) {
 
 /**
  * @param {string} file
- * @param {{ method?: string, path?: string, query?: Record<string, string> }} request
- * @param {{ year?: number, data?: Record<string, unknown> | ((request: object) => Record<string, unknown>) }} [host]
+ * @param {{ method?: string, path?: string, query?: Record<string, string>, body?: Record<string, unknown> }} request
+ * @param {{ year?: number, data?: Record<string, unknown> | ((request: object) => Record<string, unknown>), database?: { raw: object } }} [host]
  */
-export function renderCwlLiveDocument(file, request, host = {}) {
+export async function renderCwlLiveDocument(file, request, host = {}) {
   const parsed = resolveCwlModuleFromPath(resolve(file));
   const method = String(request.method ?? "GET").toUpperCase();
   const pathname = request.path || "/";
-  if (method !== "GET" && method !== "HEAD") {
+  const read = method === "GET" || method === "HEAD";
+  const found = findRoute(parsed.routes ?? [], method, pathname);
+  if (!read && (!found || found.missing || found.route.body?.kind !== "html")) {
     return { status: 405, contentType: "text/plain; charset=utf-8", body: "method not allowed", matched: false };
   }
-  const found = findRoute(parsed.routes ?? [], method, pathname);
   if (!found || found.route.body?.kind !== "html") {
     return { status: 404, contentType: "text/plain; charset=utf-8", body: "not found", matched: false };
   }
@@ -169,7 +171,17 @@ export function renderCwlLiveDocument(file, request, host = {}) {
   const values = bindingValues(route, params, request.query ?? {});
   const data = typeof host.data === "function"
     ? host.data({ method, path: pathname, query: request.query ?? {}, pathParams: params }) ?? {}
-    : host.data ?? {};
+    : { ...(host.data ?? {}) };
+  if (route.dbOps?.length) {
+    if (!host.database) {
+      return { status: 500, contentType: "text/plain; charset=utf-8", body: "cwl:db-closed", matched: true };
+    }
+    await applyCwlDb(host.database, parsed.tables ?? [], route.dbOps, {
+      path: values.path,
+      query: values.query,
+      body: request.body ?? {},
+    }, data);
+  }
   const selected = selectCwlDynamicSource(route, { path: values.path, query: values.query, data });
   const bindings = { path: route.handlerPathParams ?? [], query: route.handlerQueryParams ?? [] };
   const templated = fillCwlRequestHtml(selected.html, bindings, values);
@@ -189,13 +201,23 @@ export function renderCwlLiveDocument(file, request, host = {}) {
 }
 
 /**
- * @param {{ file: string, host?: string, port?: number, year?: number, data?: Record<string, unknown> | ((request: object) => Record<string, unknown>), dataPath?: string }} opts
+ * @param {{ file: string, host?: string, port?: number, year?: number, data?: Record<string, unknown> | ((request: object) => Record<string, unknown>), dataPath?: string, dbPath?: string, database?: { raw: object, close?: () => void } }} opts
  */
-export function startCwlLiveServer(opts) {
+export async function startCwlLiveServer(opts) {
   const file = resolve(opts.file);
   const year = Number.isInteger(opts.year) ? opts.year : new Date().getUTCFullYear();
   const dataPath = opts.dataPath ? resolve(opts.dataPath) : null;
-  const server = createServer((req, res) => {
+  const parsed = resolveCwlModuleFromPath(file);
+  const named = String(opts.engine ?? parsed.engine ?? "sqlite").toLowerCase();
+  if (parsed.engine && opts.engine && String(opts.engine).toLowerCase() !== parsed.engine) {
+    throw new Error("cwl:db-engine");
+  }
+  const ownsDatabase = !opts.database && (Boolean(opts.dbPath) || (parsed.tables?.length ?? 0) > 0);
+  const database = opts.database
+    ?? (ownsDatabase
+      ? await openCwlEngine(named, named === "sqlite" ? (opts.dbPath ? resolve(opts.dbPath) : ":memory:") : opts.dbPath ?? "")
+      : null);
+  const server = createServer(async (req, res) => {
     const url = new URL(req.url ?? "/", "http://127.0.0.1");
     /** @type {Record<string, string>} */
     const query = {};
@@ -206,7 +228,12 @@ export function startCwlLiveServer(opts) {
     try {
       const fileData = dataPath ? JSON.parse(readFileSync(dataPath, "utf8")) : {};
       const data = typeof opts.data === "function" ? opts.data : { ...fileData, ...(opts.data ?? {}) };
-      rendered = renderCwlLiveDocument(file, { method: req.method, path: url.pathname, query }, { year, data });
+      const body = await readRequestRecord(req);
+      rendered = await renderCwlLiveDocument(
+        file,
+        { method: req.method, path: url.pathname, query, body },
+        { year, data, ...(database ? { database } : {}) },
+      );
     } catch (error) {
       res.writeHead(500, { "content-type": "text/plain; charset=utf-8" });
       res.end(error instanceof Error ? error.message : "live render failed");
@@ -227,9 +254,77 @@ export function startCwlLiveServer(opts) {
         port: actual,
         close: () =>
           new Promise((done, fail) => {
-            server.close((err) => (err ? fail(err) : done()));
+            Promise.resolve(ownsDatabase ? database?.close?.() : null).then(
+              () => server.close((err) => (err ? fail(err) : done())),
+              fail,
+            );
           }),
       });
     });
   });
+}
+
+/**
+ * Declared body fields arrive as JSON or urlencoded scalars.
+ * Nested objects are not copied into a row.
+ * @param {import("node:http").IncomingMessage} req
+ */
+function readRequestRecord(req) {
+  const method = String(req.method ?? "GET").toUpperCase();
+  if (method === "GET" || method === "HEAD") return Promise.resolve({});
+  return new Promise((resolvePromise, reject) => {
+    /** @type {Buffer[]} */
+    const chunks = [];
+    let size = 0;
+    req.on("data", (chunk) => {
+      const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+      size += buf.length;
+      if (size > 1_000_000) {
+        reject(new Error("cwl:db-body"));
+        req.destroy();
+        return;
+      }
+      chunks.push(buf);
+    });
+    req.on("end", () => {
+      const text = Buffer.concat(chunks).toString("utf8");
+      if (!text) {
+        resolvePromise({});
+        return;
+      }
+      const type = String(req.headers["content-type"] ?? "");
+      try {
+        if (type.includes("json")) {
+          const parsed = JSON.parse(text);
+          resolvePromise(scalarRecord(parsed));
+          return;
+        }
+        const params = new URLSearchParams(text);
+        /** @type {Record<string, string>} */
+        const out = {};
+        for (const [key, value] of params) {
+          if (out[key] == null) out[key] = value;
+        }
+        resolvePromise(out);
+      } catch {
+        resolvePromise({});
+      }
+    });
+    req.on("error", reject);
+  });
+}
+
+/**
+ * @param {unknown} value
+ */
+function scalarRecord(value) {
+  /** @type {Record<string, unknown>} */
+  const out = {};
+  if (value == null || typeof value !== "object" || Array.isArray(value)) return out;
+  for (const [key, item] of Object.entries(value)) {
+    if (item == null || typeof item === "string" || typeof item === "number" || typeof item === "boolean") {
+      out[key] = item;
+    }
+  }
+  return out;
 }

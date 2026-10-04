@@ -45,6 +45,7 @@
     "smoke:agenticop-site": "node scripts/smoke-agenticop-site.mjs",
     "smoke:cwl-live": "node scripts/smoke-cwl-live.mjs",
     "smoke:cwl-dynamic": "node scripts/smoke-cwl-dynamic.mjs",
+    "smoke:cwl-db": "node scripts/smoke-cwl-db.mjs",
     "live": "node scripts/cwl-live.mjs",
     "smoke:cwl-ingest": "node scripts/smoke-cwl-ingest.mjs",
     "smoke:cwl-emit": "node scripts/smoke-cwl-emit.mjs",

@@ -89,6 +89,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `79-site-head-rest` | Keywords, icon, alternate, preconnect, page style, JSON-LD | 0029 |
 | `80-live-document` | Request-time HTML. Path and query fill the page. Unknown path is 404 | 0014 |
 | `81-dynamic-site` | Dynamic HTML. Repeats, nested lists, and request branches | 0031 |
+| `82-database` | `engine` plus bound select, insert, update, and delete | 0020 |
 
 ## Parseable subset notes (0.1.8)
 

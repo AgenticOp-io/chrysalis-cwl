@@ -1,8 +1,8 @@
 # DNA build — Phase 1.x genome deepen (OPEN)
 
 **Path:** Rosetta → UT → DNA of web languages — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
-**Goal:** CWL is a language in its own right. It must be able to replace any web page. Golds `68`–`81` replace a document with navigation, a drawer, a device token, named assets, a same-site form, an off-site anchor, a named viewport cut, document identity, a social card, the remaining head facts, request-time HTML, and dynamic HTML built from host data. WebSocket duplex, SQL engines, and unclassified client script stay named holes.  
-**Tip:** **`1.0.73`** - dynamic HTML emit. The document is built from the request and host data.
+**Goal:** CWL is a language in its own right. It must be able to replace any web page. Golds `68`–`82` replace a document with navigation, a drawer, a device token, named assets, a same-site form, an off-site anchor, a named viewport cut, document identity, a social card, the remaining head facts, request-time HTML, dynamic HTML, and bound database operations. WebSocket duplex, raw SQL text, and unclassified client script stay named holes.  
+**Tip:** **`1.0.74`** - database. `engine` names sqlite, postgres, mysql, mariadb, sqlserver, or oracle. The row statements stay the same.
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -69,7 +69,8 @@
 | P0 | Social card (`78`) | **done** (`1.0.70`) — robots, author, theme-color, Open Graph, Twitter. JSON-LD stays in `head html` |
 | P0 | Remaining head facts (`79`) | **done** (`1.0.71`) — keywords, icon, alternate, preconnect, page style, JSON-LD. Schema.org is not interpreted |
 | P0 | Live document (`80`) | **done** (`1.0.72`) — each request composes the page. Path and query fill the HTML |
-| P0 | Dynamic HTML (`81`) | **done** (`1.0.73`) — `repeat`, nested lists, and `if` build the document from host data. No database in CWL |
+| P0 | Dynamic HTML (`81`) | **done** (`1.0.73`) — `repeat`, nested lists, and `if` build the document from host data |
+| P0 | Database (`82`) | **done** (`1.0.74`) — `engine` plus bound `db select` / `insert` / `update` / `delete`. Six engines. Raw SQL stays out |
 | P0 | Replace any web page | **open** — goal of the language. Document shell through gold `74` is the start. Remaining page behaviors stay holes until an honest RFC |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
@@ -91,7 +92,8 @@
 | Tip pin **1.0.70** | Convert + Secure — **done** (Convert `920d1329`, Secure `24750e2`) |
 | Tip pin **1.0.71** | Convert + Secure — **open** (peel gold `79`; included in the **1.0.72** pin) |
 | Tip pin **1.0.72** | Convert + Secure — **open** (included in the **1.0.73** pin) |
-| Tip pin **1.0.73** | Convert + Secure — **open** (dynamic HTML is a CWL host; peel gold `79` still; do not deploy Firebase `agenticops`) |
+| Tip pin **1.0.73** | Convert + Secure — **open** (included in the **1.0.74** pin) |
+| Tip pin **1.0.74** | Convert + Secure — **open** (database is a CWL host; peel gold `79` still; do not invent a SQL dialect; do not deploy Firebase `agenticops`) |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |
