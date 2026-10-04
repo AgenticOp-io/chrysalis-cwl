@@ -18,27 +18,27 @@ function check(id, ok) {
   if (!ok) failures.push(id);
 }
 
-const open = renderCwlLiveDocument(GOLD, { path: "/board", query: { view: "today" } }, { data: { notes } });
+const open = await renderCwlLiveDocument(GOLD, { path: "/board", query: { view: "today" } }, { data: { notes } });
 check("open-status", open.status === 200);
 check("open-view", open.body.includes("<p>today</p>"));
 check("open-alpha", open.body.includes("<li>Alpha<ul><li>cwl</li><li>html</li></ul></li>"));
 check("open-hides-beta", !open.body.includes("Beta"));
 check("open-document", open.body.includes("<title>Board</title>") && open.body.includes('<meta charset="utf-8" />'));
 
-const empty = renderCwlLiveDocument(GOLD, { path: "/board", query: { view: "today" } }, { data: { notes: [] } });
+const empty = await renderCwlLiveDocument(GOLD, { path: "/board", query: { view: "today" } }, { data: { notes: [] } });
 check("empty", empty.body.includes("<li>No notes</li>") && !empty.body.includes("Alpha"));
 
-const closed = renderCwlLiveDocument(GOLD, { path: "/board", query: { view: "closed" } }, { data: { notes } });
+const closed = await renderCwlLiveDocument(GOLD, { path: "/board", query: { view: "closed" } }, { data: { notes } });
 check("closed", closed.status === 503 && closed.body.includes("<h1>Closed</h1>") && !closed.body.includes("Alpha"));
 
-const unsafe = renderCwlLiveDocument(
+const unsafe = await renderCwlLiveDocument(
   GOLD,
   { path: "/board", query: { view: "today" } },
   { data: { notes: [{ id: "x", title: "<b>", open: true, tags: ["<i>"] }] } },
 );
 check("escape", unsafe.body.includes("&lt;b&gt;") && unsafe.body.includes("&lt;i&gt;") && !unsafe.body.includes("<li><b>"));
 
-const filtered = renderCwlLiveDocument(
+const filtered = await renderCwlLiveDocument(
   GOLD,
   { path: "/board" },
   { data: { notes: [{ id: "b", title: "Beta", open: false, tags: [] }] } },
@@ -50,10 +50,10 @@ function dataFor(request) {
   return { notes, note: notes.find((note) => note.id === id) ?? null };
 }
 
-const detail = renderCwlLiveDocument(GOLD, { path: "/notes/a" }, { data: dataFor });
+const detail = await renderCwlLiveDocument(GOLD, { path: "/notes/a" }, { data: dataFor });
 check("detail", detail.status === 200 && detail.body.includes("<h1>Alpha</h1>") && detail.body.includes("<p>a</p>"));
 
-const gone = renderCwlLiveDocument(GOLD, { path: "/notes/missing" }, { data: dataFor });
+const gone = await renderCwlLiveDocument(GOLD, { path: "/notes/missing" }, { data: dataFor });
 check("detail-missing", gone.status === 404 && gone.body.includes("<h1>Missing note</h1>"));
 
 const server = await startCwlLiveServer({ file: GOLD, dataPath: DATA, port: 0, year: 2026 });

@@ -1,7 +1,7 @@
 /**
  * Dynamic HTML emit.
  * The page source stays CWL. Each call builds the HTML from that source,
- * the request, and host data. CWL does not query a database.
+ * the request, and host data. Row operations are a separate host.
  * `repeat` walks a host array. `if` / `else if` / `else` choose a document
  * when the condition is a comparison against the request or that data.
  */

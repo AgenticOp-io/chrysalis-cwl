@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.74 - 2026-10-04
+
+- `engine` names sqlite, postgres, mysql, mariadb, sqlserver, or oracle. `table` and `db select` / `insert` / `update` / `delete` are the same bound operations on each. Request values stay parameters
+- Gold `82-database`. SQLite executes the module. The other engines compile that insert without pasting the title into SQL. An unknown engine does not run. Update and delete require `where`
+
 ## 1.0.73 - 2026-10-03
 
 - Dynamic HTML emit builds the document from the page, the request, and host data. The HTML is not frozen when the module is written

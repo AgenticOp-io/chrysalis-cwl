@@ -60,6 +60,12 @@ const LABEL_TO_WORDS = {
   alternate: ["alternate"],
   "host firebase": ["host", "firebase"],
   "proxy upstream": ["proxy", "upstream"],
+  table: ["table"],
+  engine: ["engine"],
+  "db select": ["db", "select"],
+  "db insert": ["db", "insert"],
+  "db update": ["db", "update"],
+  "db delete": ["db", "delete"],
   "session.mint cookie": ["cookie"],
   "session.revoke cookie": ["cookie"],
 };

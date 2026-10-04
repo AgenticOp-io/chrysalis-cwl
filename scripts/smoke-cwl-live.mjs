@@ -20,27 +20,27 @@ function check(id, ok) {
   if (!ok) fail(id);
 }
 
-const hello = renderCwlLiveDocument(GOLD, { path: "/hello", query: { name: "Ada" } }, { year: 2026 });
+const hello = await renderCwlLiveDocument(GOLD, { path: "/hello", query: { name: "Ada" } }, { year: 2026 });
 check("hello-status", hello.status === 200 && hello.matched);
 check("hello-name", hello.body.includes("<h1>Hello Ada</h1>"));
 check("hello-title", hello.body.includes("<title>Hello</title>"));
 check("hello-year", hello.body.includes("© 2026") && !hello.body.includes("<!-- cwl:year -->"));
 check("hello-charset", hello.body.includes('<meta charset="utf-8" />'));
 
-const raw = renderCwlLiveDocument(GOLD, { path: "/hello", query: { name: "<b>" } }, { year: 2026 });
+const raw = await renderCwlLiveDocument(GOLD, { path: "/hello", query: { name: "<b>" } }, { year: 2026 });
 check("escape", raw.body.includes("Hello &lt;b&gt;") && !raw.body.includes("<h1>Hello <b>"));
 
-const doc = renderCwlLiveDocument(GOLD, { path: "/docs/cwl" }, { year: 2026 });
+const doc = await renderCwlLiveDocument(GOLD, { path: "/docs/cwl" }, { year: 2026 });
 check("param", doc.status === 200 && doc.body.includes("<article>cwl</article>"));
 
-const missing = renderCwlLiveDocument(GOLD, { path: "/nope" }, { year: 2026 });
+const missing = await renderCwlLiveDocument(GOLD, { path: "/nope" }, { year: 2026 });
 check("missing", missing.status === 404 && missing.body.includes("<h1>Missing</h1>"));
 
-const held = renderCwlLiveDocument(GOLD, { path: "/hello", query: { name: "Ada" } });
+const held = await renderCwlLiveDocument(GOLD, { path: "/hello", query: { name: "Ada" } });
 check("year-held", held.body.includes("<!-- cwl:year -->") && !held.body.includes("© 2026"));
 check("no-match-media", !hello.body.includes("matchMedia") && !hello.body.includes("userAgent"));
 
-const home = renderCwlLiveDocument(SITE, { path: "/" }, { year: 2026 });
+const home = await renderCwlLiveDocument(SITE, { path: "/" }, { year: 2026 });
 check("site-home", home.status === 200 && home.body.includes("AgenticOps | CWL"));
 check("site-icon", home.body.includes('rel="icon"'));
 check("site-jsonld", home.body.includes('type="application/ld+json"'));
@@ -48,7 +48,7 @@ check("site-no-layout-js", !home.body.includes("/ao-layout.js"));
 check("site-year", home.body.includes("2026") && !home.body.includes("<!-- cwl:year -->"));
 check("site-device", home.body.includes("<!-- cwl:device -->") && !home.body.includes("matchMedia"));
 
-const siteMissing = renderCwlLiveDocument(SITE, { path: "/not-a-page" }, { year: 2026 });
+const siteMissing = await renderCwlLiveDocument(SITE, { path: "/not-a-page" }, { year: 2026 });
 check("site-404", siteMissing.status === 404 && siteMissing.body.includes("404"));
 
 const server = await startCwlLiveServer({ file: GOLD, port: 0, year: 2026 });

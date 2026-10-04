@@ -422,11 +422,16 @@ npm run smoke:cwl-live
 
 `year host` becomes digits only because this process is the host and it passes the UTC year. `<!-- cwl:device -->` stays. The host does not call `matchMedia`. An unknown path returns the module's `/404.html` page with status 404.
 
-Dynamic emit is the same server. `repeat` walks arrays in `--data`. A nested `repeat item.field` fills the leaf name inside the outer fragment. `else html` is the empty collection. `if` / `else if` / `else` choose another HTML document when the condition is `==`, `!=`, `!`, `&&`, or `||` against the request or that data. CWL does not query a database. The host owns the rows.
+Dynamic emit is the same server. `repeat` walks arrays in `--data`. A nested `repeat item.field` fills the leaf name inside the outer fragment. `else html` is the empty collection. `if` / `else if` / `else` choose another HTML document when the condition is `==`, `!=`, `!`, `&&`, or `||` against the request or that data.
+
+`engine` names where the rows live: `sqlite`, `postgres`, `mysql`, `mariadb`, `sqlserver`, or `oracle`. The statements do not change. `table` names the columns. `db select`, `db insert`, `db update`, and `db delete` bind request values as parameters. SQLite runs in this process. The other engines open with `--db` and their driver (`pg`, `mysql2`, `mssql`, `oracledb`). An unknown engine does not run. Update and delete require `where`.
 
 ```bash
 npm run live -- fixtures/language-gold/81-dynamic-site/routes.cwl --data fixtures/language-gold/81-dynamic-site/data.json --port 8791
 npm run smoke:cwl-dynamic
+npm run live -- fixtures/language-gold/82-database/routes.cwl --port 8791
+npm run live -- routes.cwl --engine postgres --db postgres://localhost/app
+npm run smoke:cwl-db
 ```
 
 Related: `runtime-cwl-browser`, `runtime-cwl-worker` for non-Node surfaces.
