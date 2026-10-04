@@ -22,7 +22,7 @@ Pushed asks for siblings. Newest first.
 
 - `engine`, `table`, and `db select` / `insert` / `update` / `delete` are one set of statements. The host speaks that engine
 - Gold `82`. SQLite executes the module. The same insert compiles for the other five engines with the title left as a parameter
-- Language land SHA is still `4d849ec` until this tip is merged. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
+- Land `9f62655`. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
 - The public site files are still the old HTML
 
 ---
