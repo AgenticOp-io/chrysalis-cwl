@@ -6,10 +6,12 @@
  * The device token stays. This host does not call matchMedia or read a user agent.
  */
 import { createServer } from "node:http";
+import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { resolveCwlModuleFromPath } from "./hub-ingest/cwl-module-graph.mjs";
 import { composeLayoutChromeHtml } from "./hub-ingest/cwl-layout.mjs";
 import { splitCwlHtmlTemplate } from "./hub-ingest/cwl-html-template.mjs";
+import { finishCwlDynamicHtml, selectCwlDynamicSource } from "./cwl-dynamic-html.mjs";
 
 const YEAR_SLOT = "<!-- cwl:year -->";
 
@@ -150,7 +152,7 @@ function findRoute(routes, method, pathname) {
 /**
  * @param {string} file
  * @param {{ method?: string, path?: string, query?: Record<string, string> }} request
- * @param {{ year?: number }} [host]
+ * @param {{ year?: number, data?: Record<string, unknown> | ((request: object) => Record<string, unknown>) }} [host]
  */
 export function renderCwlLiveDocument(file, request, host = {}) {
   const parsed = resolveCwlModuleFromPath(resolve(file));
@@ -165,14 +167,19 @@ export function renderCwlLiveDocument(file, request, host = {}) {
   }
   const { route, params, missing } = found;
   const values = bindingValues(route, params, request.query ?? {});
+  const data = typeof host.data === "function"
+    ? host.data({ method, path: pathname, query: request.query ?? {}, pathParams: params }) ?? {}
+    : host.data ?? {};
+  const selected = selectCwlDynamicSource(route, { path: values.path, query: values.query, data });
   const bindings = { path: route.handlerPathParams ?? [], query: route.handlerQueryParams ?? [] };
-  const body = fillCwlRequestHtml(route.body.value, bindings, values);
+  const templated = fillCwlRequestHtml(selected.html, bindings, values);
+  const body = finishCwlDynamicHtml(templated, route.htmlRepeats ?? [], data);
   const head = fillCwlRequestHtml(route.headHtml ?? "", bindings, values);
   let html = composeRoute(route, body, head);
   if (route.yearHost && Number.isInteger(host.year)) {
     html = html.split(YEAR_SLOT).join(String(host.year));
   }
-  const status = missing || route.path === "/404.html" ? 404 : route.responseStatus ?? 200;
+  const status = missing || route.path === "/404.html" ? 404 : selected.status;
   return {
     status,
     contentType: route.responseContentType || "text/html; charset=utf-8",
@@ -182,11 +189,12 @@ export function renderCwlLiveDocument(file, request, host = {}) {
 }
 
 /**
- * @param {{ file: string, host?: string, port?: number, year?: number }} opts
+ * @param {{ file: string, host?: string, port?: number, year?: number, data?: Record<string, unknown> | ((request: object) => Record<string, unknown>), dataPath?: string }} opts
  */
 export function startCwlLiveServer(opts) {
   const file = resolve(opts.file);
   const year = Number.isInteger(opts.year) ? opts.year : new Date().getUTCFullYear();
+  const dataPath = opts.dataPath ? resolve(opts.dataPath) : null;
   const server = createServer((req, res) => {
     const url = new URL(req.url ?? "/", "http://127.0.0.1");
     /** @type {Record<string, string>} */
@@ -196,13 +204,15 @@ export function startCwlLiveServer(opts) {
     }
     let rendered;
     try {
-      rendered = renderCwlLiveDocument(file, { method: req.method, path: url.pathname, query }, { year });
+      const fileData = dataPath ? JSON.parse(readFileSync(dataPath, "utf8")) : {};
+      const data = typeof opts.data === "function" ? opts.data : { ...fileData, ...(opts.data ?? {}) };
+      rendered = renderCwlLiveDocument(file, { method: req.method, path: url.pathname, query }, { year, data });
     } catch (error) {
       res.writeHead(500, { "content-type": "text/plain; charset=utf-8" });
       res.end(error instanceof Error ? error.message : "live render failed");
       return;
     }
-    res.writeHead(rendered.status, { "content-type": rendered.contentType });
+    res.writeHead(rendered.status, { "content-type": rendered.contentType, connection: "close" });
     res.end(rendered.body);
   });
   const host = opts.host ?? "127.0.0.1";

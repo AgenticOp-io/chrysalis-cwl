@@ -72,4 +72,4 @@ const report = {
 };
 console.log(JSON.stringify(report, null, 2));
 if (ok) console.log("CWL_LIVE_DOCUMENT_OK");
-process.exit(ok ? 0 : 1);
+process.exitCode = ok ? 0 : 1;
