@@ -22,7 +22,7 @@ Pushed asks for siblings. Newest first.
 
 - `repeat` and `if` build the document when `npm run live` runs. `--data` is the host bag
 - Gold `81`. The board page changes with the rows and with `?view=closed`. The note page changes with the host record
-- Language land SHA is still `425b01f` until this tip is merged. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
+- Land `4d849ec`. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
 - The public site files are still the old HTML
 
 ---

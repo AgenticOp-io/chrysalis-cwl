@@ -24,7 +24,7 @@ SECURE_NEXT: pin 1.0.73 · host rows fill repeat · request branches choose the 
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | 425b01f | tip **1.0.72** live document |
+| **CWL** | `main` | 4d849ec | tip **1.0.73** dynamic HTML |
 | **Convert** | `main` | 920d1329 | peel golds `76`–`78`, host script reads `below` |
 | **Secure** | `main` | 24750e2 | tip pin **1.0.70** |
 
@@ -34,6 +34,7 @@ SECURE_NEXT: pin 1.0.73 · host rows fill repeat · request branches choose the 
 | --- | --- | --- |
 | **P0** | Convert | Pin **1.0.73**. Peel gold `79`. Dynamic emit stays in CWL. Do not deploy Firebase project `agenticops` |
 | **P0** | Secure | Pin **1.0.73** |
+| **done** | CWL | tip **1.0.73** dynamic HTML, land `4d849ec` |
 | **done** | CWL | tip **1.0.72** live document, land `425b01f` |
 | **done** | CWL | tip **1.0.71** remaining head facts, land `4bc7b6b` |
 | **done** | Convert | Tip pin **1.0.70**, golds `76`–`78`, `920d1329` |
