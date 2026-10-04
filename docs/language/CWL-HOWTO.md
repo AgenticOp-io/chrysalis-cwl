@@ -411,6 +411,17 @@ pnpm exec chrysalis-cwl-serve --cwl path/to/routes.cwl --port 8787
 
 API sketch: `loadModuleFromCwlFile`, `createCwlRuntime`, `startCwlServer` — see [`packages/runtime-cwl/README.md`](../../packages/runtime-cwl/README.md).
 
+### 8.1.1 Live document
+
+`runtime-cwl` simulates a WebIR module. The live document host does not. It reads the `.cwl` file on each request, composes the layout, and fills declared `param` and `query` names in that page's HTML.
+
+```bash
+npm run live -- fixtures/sites/agenticop-io/site.cwl --port 8791
+npm run smoke:cwl-live
+```
+
+`year host` becomes digits only because this process is the host and it passes the UTC year. `<!-- cwl:device -->` stays. The host does not call `matchMedia`. An unknown path returns the module's `/404.html` page with status 404. Load collections and `repeat` stay on `chrysalis-cwl-serve`.
+
 Related: `runtime-cwl-browser`, `runtime-cwl-worker` for non-Node surfaces.
 
 ### 8.2 `@chrysalis/emit-runtime-cwl`

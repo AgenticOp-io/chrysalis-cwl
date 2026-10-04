@@ -43,6 +43,8 @@
     "smoke:webir": "node scripts/smoke-webir-resolve.mjs",
     "pack:cwl-vsix": "node scripts/pack-cwl-vsix.mjs",
     "smoke:agenticop-site": "node scripts/smoke-agenticop-site.mjs",
+    "smoke:cwl-live": "node scripts/smoke-cwl-live.mjs",
+    "live": "node scripts/cwl-live.mjs",
     "smoke:cwl-ingest": "node scripts/smoke-cwl-ingest.mjs",
     "smoke:cwl-emit": "node scripts/smoke-cwl-emit.mjs",
     "smoke:cwl-runtime-gold": "node scripts/smoke-cwl-runtime-gold.mjs",

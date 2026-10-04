@@ -8,6 +8,9 @@ CWL does not read the clock, parse the CSS file, read the image bytes, or deploy
 
 ```bash
 npm run smoke:agenticop-site
+npm run live -- fixtures/sites/agenticop-io/site.cwl --port 8791
 ```
+
+`npm run live` composes each page from this file on the request. It does not read an HTML file. `<!-- cwl:year -->` becomes the host year. `<!-- cwl:device -->` stays.
 
 Rebuild the snapshot from the current public HTML with `node scripts/build-agenticop-site-genome.mjs`. That reads `brand/agenticops-web` and does not edit it.

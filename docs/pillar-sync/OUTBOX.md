@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-03 - tip-1.0.72-live-document
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.72**
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.72**. Peel gold `79` from tip **1.0.71**. Gold `80` is the live host, not a new emit phenotype. Do not replace `npm run live` with a static file write. Do not deploy Firebase project `agenticops` |
+| Secure | Pin to **1.0.72**. A request path or query filled into HTML is that request. The device token is not a media-query evaluation |
+
+### CWL landed
+
+- `node scripts/cwl-live.mjs` reads the `.cwl` file on each request and composes the document
+- Gold `80`. Declared `param` and `query` names are escaped into the page. Unknown paths return `/404.html` with status 404
+- Language land SHA is still `4bc7b6b` until this tip is merged. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
+- The public site files are still the old HTML
+
+---
+
 ## 2026-10-03 - tip-1.0.71-head-rest
 
 **To:** convert + secure  
