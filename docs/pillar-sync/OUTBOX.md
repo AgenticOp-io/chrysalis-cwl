@@ -22,7 +22,7 @@ Pushed asks for siblings. Newest first.
 
 - Gold `79`. `cwl:unknown-icon`, `cwl:alternate-not-url`, `cwl:preconnect-not-url`, `cwl:jsonld-not-json`, and `cwl:jsonld-closes-script` are not written
 - The public site genome names those facts on the pages that have them
-- Language land SHA is still `efc006c` until this tip is merged. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
+- Land `4bc7b6b`. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
 - The live site is still the old HTML. The site lane writes `brand/agenticops-web` and deploys Firebase project `agenticops` after Convert peels
 
 ---

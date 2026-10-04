@@ -24,7 +24,7 @@ SECURE_NEXT: pin 1.0.71 · remaining head facts are document facts · schema.org
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | efc006c | tip **1.0.70** social card |
+| **CWL** | `main` | 4bc7b6b | tip **1.0.71** remaining head facts |
 | **Convert** | `main` | 920d1329 | peel golds `76`–`78`, host script reads `below` |
 | **Secure** | `main` | 24750e2 | tip pin **1.0.70** |
 
@@ -34,6 +34,7 @@ SECURE_NEXT: pin 1.0.71 · remaining head facts are document facts · schema.org
 | --- | --- | --- |
 | **P0** | Convert | Pin **1.0.71**. Peel gold `79`. Do not deploy Firebase project `agenticops` |
 | **P0** | Secure | Pin **1.0.71** |
+| **done** | CWL | tip **1.0.71** remaining head facts, land `4bc7b6b` |
 | **done** | Convert | Tip pin **1.0.70**, golds `76`–`78`, `920d1329` |
 | **done** | Secure | Tip pin **1.0.70**, `24750e2` |
 | **done** | CWL | tip **1.0.70** social card, land `efc006c` |
