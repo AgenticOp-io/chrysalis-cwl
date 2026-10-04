@@ -239,6 +239,36 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: 'meta og ${1|type,site,locale,url,title,description,image|} "${2:website}";',
   },
   {
+    label: "meta keywords",
+    kind: KIND_SNIPPET,
+    detail: "Keywords meta. <!-- cwl:meta --> expands it with the rest of the card.",
+    insertText: 'meta keywords "${1:CWL, WebIR}";',
+  },
+  {
+    label: "jsonld",
+    kind: KIND_SNIPPET,
+    detail: "JSON-LD document. <!-- cwl:jsonld --> becomes the script tag. Schema.org is not interpreted.",
+    insertText: "jsonld \"\"\"\n${1:{\"@context\":\"https://schema.org\"}}\n\"\"\";",
+  },
+  {
+    label: "icon",
+    kind: KIND_SNIPPET,
+    detail: "Icon from a declared image. Optional apple adds the touch icon.",
+    insertText: "icon ${1:logo} apple;",
+  },
+  {
+    label: "preconnect",
+    kind: KIND_SNIPPET,
+    detail: "Preconnect hint. Optional crossorigin. CWL does not fetch the host.",
+    insertText: 'preconnect "${1:https://fonts.googleapis.com}" crossorigin;',
+  },
+  {
+    label: "alternate",
+    kind: KIND_SNIPPET,
+    detail: "Alternate link. Type, href, and title.",
+    insertText: 'alternate "${1:text/plain}" "${2:https://agenticop.io/llms.txt}" "${3:LLM digest}";',
+  },
+  {
     label: "meta twitter",
     kind: KIND_SNIPPET,
     detail: "Twitter card field: card, title, description, image.",

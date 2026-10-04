@@ -327,6 +327,28 @@ export function liftCwlFileToWebir(opts) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-description-slot")) r.attachmentHoles.push("cwl:missing-description-slot");
     }
+    if (Array.isArray(r.icons) && r.icons.length) {
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      const imageIds = new Set((r.images ?? []).map((image) => image.id));
+      if (r.icons.some((icon) => !imageIds.has(icon.id)) && !r.attachmentHoles.includes("cwl:unknown-icon")) {
+        r.attachmentHoles.push("cwl:unknown-icon");
+      }
+      if (!surfaceHasDocumentSlot(documentSurface, "<!-- cwl:icon -->") && !r.attachmentHoles.includes("cwl:missing-icon-slot")) {
+        r.attachmentHoles.push("cwl:missing-icon-slot");
+      }
+    }
+    if (Array.isArray(r.alternates) && r.alternates.length && !surfaceHasDocumentSlot(documentSurface, "<!-- cwl:alternate -->")) {
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-alternate-slot")) r.attachmentHoles.push("cwl:missing-alternate-slot");
+    }
+    if (Array.isArray(r.jsonlds) && r.jsonlds.length && !surfaceHasDocumentSlot(documentSurface, "<!-- cwl:jsonld -->")) {
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-jsonld-slot")) r.attachmentHoles.push("cwl:missing-jsonld-slot");
+    }
+    if (Array.isArray(r.preconnects) && r.preconnects.length && !surfaceHasDocumentSlot(documentSurface, "<!-- cwl:preconnect -->")) {
+      r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
+      if (!r.attachmentHoles.includes("cwl:missing-preconnect-slot")) r.attachmentHoles.push("cwl:missing-preconnect-slot");
+    }
     if (cwlMetaCardHasFacts(r.metaCard) && !surfaceHasDocumentSlot(documentSurface, "<!-- cwl:meta -->")) {
       r.attachmentHoles = Array.isArray(r.attachmentHoles) ? r.attachmentHoles : [];
       if (!r.attachmentHoles.includes("cwl:missing-meta-slot")) r.attachmentHoles.push("cwl:missing-meta-slot");
@@ -349,6 +371,10 @@ export function liftCwlFileToWebir(opts) {
             description: r.description,
             canonical: r.canonical,
             metaCard: r.metaCard,
+            icons: r.icons,
+            alternates: r.alternates,
+            jsonlds: r.jsonlds,
+            preconnects: r.preconnects,
             pageName: r.name,
             navId: r.navId,
             links: r.navLinks,

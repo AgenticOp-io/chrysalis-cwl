@@ -59,6 +59,10 @@ layout site {
 <!-- cwl:description -->
 <!-- cwl:canonical -->
 <!-- cwl:meta -->
+<!-- cwl:icon -->
+<!-- cwl:alternate -->
+<!-- cwl:jsonld -->
+<!-- cwl:preconnect -->
 <!-- cwl:head -->
 <!-- cwl:style -->
 </head>
@@ -151,6 +155,10 @@ layout missing {
 <!-- cwl:description -->
 <!-- cwl:canonical -->
 <!-- cwl:meta -->
+<!-- cwl:icon -->
+<!-- cwl:alternate -->
+<!-- cwl:jsonld -->
+<!-- cwl:preconnect -->
 <!-- cwl:head -->
 <!-- cwl:style -->
 </head>
@@ -176,6 +184,7 @@ page home {
   title "AgenticOps | CWL — DNA of the web";
   description "CWL (Chrysalis Web Language) is the readable DNA of any web app — routes, pages, data, UI, effects, and honest holes. Tip 1.0.26 is public. Convert and Secure consume it; traffic decides.";
   canonical "https://agenticop.io/";
+  meta keywords "CWL, Chrysalis Web Language, DNA of the web, AgenticOps, Universal Translator, WebIR, honest holes, Helix";
   meta robots "index, follow, max-image-preview:large, max-snippet:-1";
   meta author "AgenticOps";
   meta theme "#020208";
@@ -190,13 +199,13 @@ page home {
   meta twitter title "CWL — DNA of the web";
   meta twitter description "Chrysalis Web Language tip 1.0.26 is public. Honest holes. Traffic decides.";
   meta twitter image "https://agenticop.io/cwl-explainer.png";
-  head html """
-<meta name="keywords" content="CWL, Chrysalis Web Language, DNA of the web, AgenticOps, Universal Translator, WebIR, honest holes, Helix" />
-  <link rel="alternate" type="text/plain" href="https://agenticop.io/llms.txt" title="LLM digest" />
-  <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
-  <script type="application/ld+json">
-  {
+  icon logo apple;
+  preconnect "https://fonts.googleapis.com";
+  preconnect "https://fonts.gstatic.com" crossorigin;
+  alternate "text/plain" "https://agenticop.io/llms.txt" "LLM digest";
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap";
+  jsonld """
+{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -233,10 +242,6 @@ page home {
       }
     ]
   }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
   """;
   return html """
 <main id="main">
@@ -577,12 +582,10 @@ page missing {
   layout missing;
   title "404 — AgenticOps";
   meta robots "noindex";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  preconnect "https://fonts.googleapis.com";
+  preconnect "https://fonts.gstatic.com" crossorigin;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap";
   return html """
 <main class="ao-section ao-cta" style="padding-top: 140px;">
     <div class="ao-wrap ao-cta-inner">
@@ -623,12 +626,10 @@ page about {
   meta twitter card "summary";
   meta twitter title "About AgenticOps";
   meta twitter description "Building the DNA of the web with Chrysalis — CWL, Convert, Secure.";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  <script type="application/ld+json">
-  {
+  icon logo apple;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
+  jsonld """
+{
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "url": "https://agenticop.io/about.html",
@@ -643,7 +644,6 @@ page about {
       ]
     }
   }
-  </script>
   """;
   return html """
 <main class="ao-page-main">
@@ -836,6 +836,7 @@ page chrysalis {
   title "CWL · DNA of the web — readable genome | AgenticOps";
   description "CWL is Chrysalis Web Language: the readable DNA of any web app. Routes, handlers, pages, data, effects — and honest holes. Convert and Secure consume it; they do not redefine it.";
   canonical "https://agenticop.io/chrysalis.html";
+  meta keywords "CWL, Chrysalis Web Language, DNA of the web, readable genome, WebIR, honest holes, AgenticOps, Chrysalis";
   meta robots "index, follow, max-image-preview:large, max-snippet:-1";
   meta author "AgenticOps";
   meta theme "#020208";
@@ -850,16 +851,13 @@ page chrysalis {
   meta twitter title "CWL — DNA of the web";
   meta twitter description "Chrysalis Web Language: the readable genome Convert and Secure consume — they do not own.";
   meta twitter image "https://agenticop.io/cwl-explainer.png";
-  head html """
-<meta name="keywords" content="CWL, Chrysalis Web Language, DNA of the web, readable genome, WebIR, honest holes, AgenticOps, Chrysalis" />
-  <link rel="alternate" type="text/plain" href="https://agenticop.io/llms.txt" title="LLM digest" />
-  <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  <script type="application/ld+json">
-  {
+  icon logo apple;
+  preconnect "https://fonts.googleapis.com";
+  preconnect "https://fonts.gstatic.com" crossorigin;
+  alternate "text/plain" "https://agenticop.io/llms.txt" "LLM digest";
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
+  jsonld """
+{
     "@context": "https://schema.org",
     "@type": "WebPage",
     "url": "https://agenticop.io/chrysalis.html",
@@ -875,7 +873,6 @@ page chrysalis {
       ]
     }
   }
-  </script>
   """;
   return html """
 <main id="main" class="ao-page-main">
@@ -1064,12 +1061,10 @@ page contact {
   meta twitter card "summary";
   meta twitter title "Contact � AgenticOps";
   meta twitter description "VP Eng / CTO with a legacy stack? Start a fixed-scope Pilot. hello@agenticop.io � DNA of the web, Universal Translator, traffic-proven cutover.";
-  head html """
-<link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
-  <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  <script type="application/ld+json">
-  {
+  icon logo apple;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
+  jsonld """
+{
     "@context": "https://schema.org",
     "@type": "WebPage",
     "url": "https://agenticop.io/contact.html",
@@ -1084,7 +1079,6 @@ page contact {
       ]
     }
   }
-  </script>
   """;
   return html """
 <main class="ao-page-main">
@@ -1140,6 +1134,7 @@ page convert {
   title "Convert · Universal Translator — origin to modern | AgenticOps";
   description "Chrysalis Convert is the Universal Translator: PHP, COBOL, SvelteKit, Express, Java and more → WebIR + CWL → TypeScript, Python, Go, Hono. AI proposes; verify disposes. Honest holes — no façades.";
   canonical "https://agenticop.io/convert.html";
+  meta keywords "Universal Translator, Chrysalis Convert, WebIR, CWL, PHP modernization, language pairs, legacy migration";
   meta robots "index, follow, max-image-preview:large, max-snippet:-1";
   meta author "AgenticOps";
   meta theme "#020208";
@@ -1153,15 +1148,12 @@ page convert {
   meta twitter title "Convert — Universal Translator";
   meta twitter description "Languages in → WebIR + CWL → languages out. Honest holes when origin is missing.";
   meta twitter image "https://agenticop.io/chrysalis-explainer.png";
-  head html """
-<meta name="keywords" content="Universal Translator, Chrysalis Convert, WebIR, CWL, PHP modernization, language pairs, legacy migration" />
-  <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  <script type="application/ld+json">
-  {
+  icon logo apple;
+  preconnect "https://fonts.googleapis.com";
+  preconnect "https://fonts.gstatic.com" crossorigin;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
+  jsonld """
+{
     "@context": "https://schema.org",
     "@type": "WebPage",
     "url": "https://agenticop.io/convert.html",
@@ -1177,7 +1169,6 @@ page convert {
       ]
     }
   }
-  </script>
   """;
   return html """
 <main id="main" class="ao-page-main">
@@ -1301,10 +1292,8 @@ page docs {
   meta og description "Whitepapers and technical references. CWL is flagship.";
   meta og url "https://agenticop.io/docs.html";
   meta og image "https://agenticop.io/cwl-explainer.png";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main ao-doc">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -1444,10 +1433,8 @@ page fde {
   canonical "https://agenticop.io/fde.html";
   meta og title "Fragility Discovery Engine";
   meta og url "https://agenticop.io/fde.html";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main ao-doc">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -1511,10 +1498,8 @@ page field {
   canonical "https://agenticop.io/field.html";
   meta og title "Lane & PathfinderSSH MSP";
   meta og url "https://agenticop.io/field.html";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main ao-doc">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -1576,10 +1561,8 @@ page ghosts {
   canonical "https://agenticop.io/ghosts.html";
   meta og title "Ghost Museum";
   meta og url "https://agenticop.io/ghosts.html";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main ao-doc">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -1630,12 +1613,10 @@ page hub {
   meta og title "Hub · AgenticOps project directory";
   meta og description "One branded list of live hostnames — Translation Hub, FDE workbench, corporate site, and operator endpoints.";
   meta og image "https://agenticop.io/logo.svg";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  preconnect "https://fonts.googleapis.com";
+  preconnect "https://fonts.gstatic.com" crossorigin;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main class="ao-page-main">
     <section class="ao-section ao-page-hero">
@@ -1850,11 +1831,8 @@ page method {
   meta og title "Method · AgenticOps";
   meta og description "Record real traffic, describe the app in CWL, Convert translates, traffic decides what ships.";
   meta og image "https://agenticop.io/logo.svg";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo apple;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main class="ao-page-main">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -1980,10 +1958,8 @@ page paper_convert {
   meta og title "Convert — Universal Translator whitepaper";
   meta og url "https://agenticop.io/paper-convert.html";
   meta og image "https://agenticop.io/chrysalis-explainer.png";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main ao-doc">
     <section class="ao-section ao-page-hero ao-page-hero--brand ao-page-hero--convert">
@@ -2286,10 +2262,8 @@ page paper_cwl {
   meta og description "Readable DNA of the web: grammar, packages, golds, DNA seed, and the spine Convert and Secure consume.";
   meta og url "https://agenticop.io/paper-cwl.html";
   meta og image "https://agenticop.io/cwl-explainer.png";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main ao-doc">
     <section class="ao-section ao-page-hero ao-page-hero--brand ao-page-hero--cwl">
@@ -2747,10 +2721,8 @@ page paper_helix {
   meta og title "Helix — traffic DNA firewall whitepaper";
   meta og url "https://agenticop.io/paper-helix.html";
   meta og image "https://agenticop.io/helix-explainer.png";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main ao-doc">
     <section class="ao-section ao-page-hero ao-page-hero--brand ao-page-hero--secure">
@@ -3021,10 +2993,8 @@ page paper_traffic {
   meta og title "Traffic decides whitepaper";
   meta og url "https://agenticop.io/paper-traffic.html";
   meta og image "https://agenticop.io/logo.svg";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main ao-doc">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -3241,10 +3211,8 @@ page paper_webir {
   meta og title "WebIR & Rosetta whitepaper";
   meta og url "https://agenticop.io/paper-webir.html";
   meta og image "https://agenticop.io/chrysalis-explainer.png";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main ao-doc">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -3515,11 +3483,10 @@ page press {
   meta twitter title "CWL tip 1.0.26 is public";
   meta twitter description "Chrysalis Web Language and the AgenticOps open-source catalog.";
   meta twitter image "https://agenticop.io/linkedin-cwl-release.png";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  <script type="application/ld+json">
-  {
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
+  jsonld """
+{
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     "headline": "CWL tip 1.0.26 is public — Chrysalis stack open under AgenticOp-io",
@@ -3531,7 +3498,6 @@ page press {
     "mainEntityOfPage": "https://agenticop.io/press.html",
     "description": "Chrysalis Web Language tip 1.0.26 is public. Convert and Secure consume it. Full open-source catalog under AgenticOp-io."
   }
-  </script>
   """;
   return html """
 <main id="main" class="ao-page-main ao-doc">
@@ -3677,10 +3643,8 @@ page projects {
   meta og title "Projects catalog";
   meta og url "https://agenticop.io/projects.html";
   meta og image "https://agenticop.io/logo.svg";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -3867,11 +3831,8 @@ page proof {
   meta og title "Proof · AgenticOps";
   meta og description "Open-source Chrysalis, honest Hub grades, and wisptools.io as shipped proof.";
   meta og image "https://agenticop.io/logo.svg";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo apple;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main class="ao-page-main">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -4049,10 +4010,8 @@ page published {
   meta og description "Full catalog of public repos, demos, packages, and citations.";
   meta og url "https://agenticop.io/published.html";
   meta og image "https://agenticop.io/cwl-explainer.png";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main ao-doc">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -4371,6 +4330,7 @@ page secure {
   title "Helix · DNA firewall — if it isn’t certified, it doesn’t pass | AgenticOps";
   description "Helix is Chrysalis Secure: a DNA firewall that learns, shadows, then enforces from live traffic. Allow while securing. Augment your NGFW without NAT homework. Optional CWL bridge.";
   canonical "https://agenticop.io/secure.html";
+  meta keywords "Helix, DNA firewall, traffic DNA, learn shadow enforce, app identity, Chrysalis Secure, NGFW, AgenticOps";
   meta robots "index, follow, max-image-preview:large, max-snippet:-1";
   meta author "AgenticOps";
   meta theme "#020208";
@@ -4384,15 +4344,12 @@ page secure {
   meta twitter title "Helix — DNA firewall";
   meta twitter description "Trust nothing until certified. Traffic still flows while you secure.";
   meta twitter image "https://agenticop.io/helix-explainer.png";
-  head html """
-<meta name="keywords" content="Helix, DNA firewall, traffic DNA, learn shadow enforce, app identity, Chrysalis Secure, NGFW, AgenticOps" />
-  <link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  <script type="application/ld+json">
-  {
+  icon logo apple;
+  preconnect "https://fonts.googleapis.com";
+  preconnect "https://fonts.gstatic.com" crossorigin;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
+  jsonld """
+{
     "@context": "https://schema.org",
     "@type": "WebPage",
     "url": "https://agenticop.io/secure.html",
@@ -4408,7 +4365,6 @@ page secure {
       ]
     }
   }
-  </script>
   """;
   return html """
 <main id="main" class="ao-page-main">
@@ -4691,11 +4647,8 @@ page services {
   meta og title "Services · AgenticOps";
   meta og description "Pilot, Run, Enablement — inventory in CWL, Convert translates, traffic decides.";
   meta og image "https://agenticop.io/logo.svg";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo apple;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main class="ao-page-main">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -4782,11 +4735,8 @@ page trust {
   meta og title "Trust · AgenticOps";
   meta og description "Propose &ne; dispose. Traffic is the oracle. Holes stay labeled. No facades.";
   meta og image "https://agenticop.io/logo.svg";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="<!-- cwl:image logo -->" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo apple;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main class="ao-page-main">
     <section class="ao-section ao-page-hero ao-page-hero--brand">
@@ -4862,13 +4812,12 @@ page whitepaper {
   meta twitter title "How Chrysalis works";
   meta twitter description "CWL is the language of record. Convert translates. Helix proves live identity. Traffic decides.";
   meta twitter image "https://agenticop.io/chrysalis-explainer.png";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  <script type="application/ld+json">
-  {
+  icon logo;
+  preconnect "https://fonts.googleapis.com";
+  preconnect "https://fonts.gstatic.com" crossorigin;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
+  jsonld """
+{
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "How Chrysalis works — CWL, Convert, Secure",
@@ -4879,7 +4828,6 @@ page whitepaper {
     "image": "https://agenticop.io/chrysalis-explainer.png",
     "dateModified": "2026-09-10"
   }
-  </script>
   """;
   return html """
 <main id="main" class="ao-page-main ao-doc">
@@ -5432,10 +5380,8 @@ page wptp {
   canonical "https://agenticop.io/wptp.html";
   meta og title "WPTP platforms";
   meta og url "https://agenticop.io/wptp.html";
-  head html """
-<link rel="icon" href="<!-- cwl:image logo -->" type="image/svg+xml" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-  """;
+  icon logo;
+  style "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap";
   return html """
 <main id="main" class="ao-page-main ao-doc">
     <section class="ao-section ao-page-hero ao-page-hero--brand">

@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.71 - 2026-10-03
+
+- RFC-0029 deepen: `meta keywords`, `icon`, `alternate`, `preconnect`, a page `style`, and `jsonld` fill the remaining head markers
+- Gold `79-site-head-rest`. An unknown icon, a non-URL alternate or preconnect, JSON that is not JSON, and JSON that closes the script tag are not written. Schema.org is not interpreted
+- The public site genome names those facts on the pages that have them. Apple touch icons stay off the pages that do not declare them
+
 ## 1.0.70 - 2026-10-02
 
 - RFC-0029 deepen: `meta robots`, `meta author`, `meta theme`, `meta og`, and `meta twitter` fill `<!-- cwl:meta -->`

@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-03 - tip-1.0.71-head-rest
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.71** (RFC-0029 deepen)
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.71**. Peel gold `79`. Emit `meta keywords`, `icon`, `alternate`, `preconnect`, page `style`, and `jsonld` from their markers. Do not invent an apple touch icon on a page that does not declare `apple`. Do not interpret schema.org. Do not deploy Firebase project `agenticops` |
+| Secure | Pin to **1.0.71**. Keywords, icon, alternate, preconnect, and JSON-LD are document facts. A non-URL alternate or preconnect is not copied |
+
+### CWL landed
+
+- Gold `79`. `cwl:unknown-icon`, `cwl:alternate-not-url`, `cwl:preconnect-not-url`, `cwl:jsonld-not-json`, and `cwl:jsonld-closes-script` are not written
+- The public site genome names those facts on the pages that have them
+- Language land SHA is still `efc006c` until this tip is merged. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
+- The live site is still the old HTML. The site lane writes `brand/agenticops-web` and deploys Firebase project `agenticops` after Convert peels
+
+---
+
 ## 2026-10-02 - tip-1.0.70-social-card
 
 **To:** convert + secure  
