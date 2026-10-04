@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.72 - 2026-10-03
+
+- A CWL module can answer HTTP itself. `node scripts/cwl-live.mjs <file.cwl>` composes each page from the source on that request
+- Declared `param` and `query` names in the page HTML are filled from the request and escaped. `year host` stays `<!-- cwl:year -->` until the live host passes a year. The device token is not evaluated
+- Gold `80-live-document`. An unknown path returns the module's `/404.html` document with status 404. Load collections and repeats stay on the WebIR simulator
+
 ## 1.0.71 - 2026-10-03
 
 - RFC-0029 deepen: `meta keywords`, `icon`, `alternate`, `preconnect`, a page `style`, and `jsonld` fill the remaining head markers

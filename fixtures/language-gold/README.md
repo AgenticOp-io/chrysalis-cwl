@@ -87,6 +87,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `77-site-document` | Charset, viewport meta, title, description, canonical | 0029 |
 | `78-site-social` | Robots, author, theme-color, Open Graph, Twitter card | 0029 |
 | `79-site-head-rest` | Keywords, icon, alternate, preconnect, page style, JSON-LD | 0029 |
+| `80-live-document` | Request-time HTML. Path and query fill the page. Unknown path is 404 | 0014 |
 
 ## Parseable subset notes (0.1.8)
 
