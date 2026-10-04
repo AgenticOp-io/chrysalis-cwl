@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.73 - 2026-10-03
+
+- Dynamic HTML emit builds the document from the page, the request, and host data. The HTML is not frozen when the module is written
+- `repeat` writes one fragment per host row, including one nested list and `else html` when the collection is empty. `if` chooses another document for `==`, `!=`, `!`, `&&`, and `||` against the request or that data
+- Gold `81-dynamic-site`. CWL does not query a database. `--data data.json` is the host bag. Load collections that are not in that bag stay empty
+
 ## 1.0.72 - 2026-10-03
 
 - A CWL module can answer HTTP itself. `node scripts/cwl-live.mjs <file.cwl>` composes each page from the source on that request

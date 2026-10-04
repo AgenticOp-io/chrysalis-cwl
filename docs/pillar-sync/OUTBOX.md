@@ -4,6 +4,29 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-03 - tip-1.0.73-dynamic-html
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.73**
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.73**. Peel gold `79`. Gold `81` is dynamic HTML emit inside CWL. Do not freeze that page into one HTML file. Do not add a database. Do not deploy Firebase project `agenticops` |
+| Secure | Pin to **1.0.73**. A repeated row is host data for that request. A branch is a comparison against the request or that data. It is not a media-query evaluation and not a stored cookie value |
+
+### CWL landed
+
+- `repeat` and `if` build the document when `npm run live` runs. `--data` is the host bag
+- Gold `81`. The board page changes with the rows and with `?view=closed`. The note page changes with the host record
+- Language land SHA is still `425b01f` until this tip is merged. Convert `920d1329` and Secure `24750e2` remain the **1.0.70** pins
+- The public site files are still the old HTML
+
+---
+
 ## 2026-10-03 - tip-1.0.72-live-document
 
 **To:** convert + secure  

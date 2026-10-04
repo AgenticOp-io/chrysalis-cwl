@@ -420,7 +420,14 @@ npm run live -- fixtures/sites/agenticop-io/site.cwl --port 8791
 npm run smoke:cwl-live
 ```
 
-`year host` becomes digits only because this process is the host and it passes the UTC year. `<!-- cwl:device -->` stays. The host does not call `matchMedia`. An unknown path returns the module's `/404.html` page with status 404. Load collections and `repeat` stay on `chrysalis-cwl-serve`.
+`year host` becomes digits only because this process is the host and it passes the UTC year. `<!-- cwl:device -->` stays. The host does not call `matchMedia`. An unknown path returns the module's `/404.html` page with status 404.
+
+Dynamic emit is the same server. `repeat` walks arrays in `--data`. A nested `repeat item.field` fills the leaf name inside the outer fragment. `else html` is the empty collection. `if` / `else if` / `else` choose another HTML document when the condition is `==`, `!=`, `!`, `&&`, or `||` against the request or that data. CWL does not query a database. The host owns the rows.
+
+```bash
+npm run live -- fixtures/language-gold/81-dynamic-site/routes.cwl --data fixtures/language-gold/81-dynamic-site/data.json --port 8791
+npm run smoke:cwl-dynamic
+```
 
 Related: `runtime-cwl-browser`, `runtime-cwl-worker` for non-Node surfaces.
 

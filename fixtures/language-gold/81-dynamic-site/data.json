@@ -1,0 +1,6 @@
+{
+  "notes": [
+    { "id": "a", "title": "Alpha", "open": true, "tags": ["cwl", "html"] },
+    { "id": "b", "title": "Beta", "open": false, "tags": ["draft"] }
+  ]
+}
