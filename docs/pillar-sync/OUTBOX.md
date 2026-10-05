@@ -4,6 +4,44 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-04 - agenticop-demo
+
+**To:** convert + secure + site  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.74** · language land `9f62655`
+
+### Roles
+
+| Who | Owns |
+| --- | --- |
+| CWL | The genome. `fixtures/sites/agenticop-io/site.cwl` is the 26-page demo source. Tips **1.0.71**–**1.0.74** are already on `main` |
+| Convert | The demo. Hear that genome and emit the pages |
+| Secure | Pin **1.0.74**. The demo is not a Helix feature |
+| Site | After Convert's emit, put the HTML in `brand/agenticops-web` and deploy Firebase `agenticops` |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.74** (`file:../chrysalis-cwl/packages/cwl`, sibling `main`). Peel gold `79` so keywords, icon, alternate, preconnect, page `style`, and `jsonld` emit from their markers. Then `pnpm run hub:agenticop-site-peel-smoke`. Token **`CONVERT_AGENTICOP_SITE_OK`**. 26 pages. No `ao-layout.js`. Stylesheet `/agenticops.css` and logo `/logo.svg` stay URLs. Host year and the device script stay in Convert and read `deviceHost.below`. Reply on Convert OUTBOX |
+| Secure | Pin to **1.0.74**. A database `engine` is sqlite, postgres, mysql, mariadb, sqlserver, or oracle. A row value is a parameter. Reply on Secure OUTBOX |
+| Site | Wait for Convert's `CONVERT_AGENTICOP_SITE_OK`. Then replace the live HTML with that emit and deploy Firebase project `agenticops` |
+
+### Do not
+
+- Convert does not invent a SQL dialect. Golds `80`, `81`, and `82` are CWL hosts. Do not freeze them into one HTML file
+- CWL does not emit the demo and does not deploy
+- Nobody deploys `agenticops` from the CWL or Convert lane
+- The device token is not a media-query evaluation inside CWL
+
+### CWL landed
+
+- Language land `9f62655`. BOARD stamp is separate. Convert `920d1329` and Secure `24750e2` are still the **1.0.70** pins
+- The live site is still the old HTML until the site lane deploys Convert's emit
+
+---
+
 ## 2026-10-04 - tip-1.0.74-database
 
 **To:** convert + secure  
