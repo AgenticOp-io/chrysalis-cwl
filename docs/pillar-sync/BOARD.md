@@ -7,9 +7,10 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: Convert creates the AgenticOps demo. Pin 1.0.74. Peel gold 79. Emit the 26-page genome. Secure pins 1.0.74. Do not deploy Firebase agenticops
-CONVERT_NEXT: pin 1.0.74 · peel gold 79 · hub:agenticop-site-peel-smoke · CONVERT_AGENTICOP_SITE_OK · source fixtures/sites/agenticop-io/site.cwl · do not freeze golds 80-82 · do not deploy Firebase agenticops
-SECURE_NEXT: pin 1.0.74 · engine names the database · row values are parameters · the demo is Convert's emit
+DISPATCH: ORDER agenticop-demo-order. Convert creates the demo. Secure pins 1.0.74. Site deploys only after CONVERT_AGENTICOP_SITE_OK
+CONVERT_NEXT: 1 raise pin floor to 1.0.74 in hub-cwl-pin-smoke · 2 pnpm run hub:cwl-pin-smoke · 3 peel gold 79-site-head-rest · 4 pnpm run hub:agenticop-site-peel-smoke on fixtures/sites/agenticop-io/site.cwl · token CONVERT_AGENTICOP_SITE_OK · reply on Convert OUTBOX · push candidate
+SECURE_NEXT: 1 pin file:../chrysalis-cwl/packages/cwl at 1.0.74 · 2 record tips 1.0.71-1.0.74 as document facts · 3 npm run cutover-smoke · token CUTOVER_TIP_1_0_74_OK · reply on Secure OUTBOX · push candidate
+SITE_NEXT: wait. After CONVERT_AGENTICOP_SITE_OK, write the 26 pages into brand/agenticops-web and deploy Firebase agenticops. CWL and Convert do not deploy
 ```
 
 ## Tips / pins
@@ -32,9 +33,9 @@ SECURE_NEXT: pin 1.0.74 · engine names the database · row values are parameter
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Create the AgenticOps demo. Pin **1.0.74**. Peel gold `79`. Run `hub:agenticop-site-peel-smoke` on `fixtures/sites/agenticop-io/site.cwl`. Token `CONVERT_AGENTICOP_SITE_OK`. Do not freeze golds `80`–`82`. Do not deploy Firebase project `agenticops` |
-| **P1** | Secure | Pin **1.0.74** |
-| **P1** | Site | After Convert's emit, write the 26 pages into `brand/agenticops-web` and deploy Firebase `agenticops`. CWL and Convert do not deploy |
+| **P0** | Convert | **Order `agenticop-demo-order`.** Raise the pin floor to **1.0.74**. Peel gold `79-site-head-rest`. Emit `fixtures/sites/agenticop-io/site.cwl`. Token `CONVERT_AGENTICOP_SITE_OK`. Reply on Convert OUTBOX. Push `candidate/*` |
+| **P1** | Secure | **Order `agenticop-demo-order`.** Pin **1.0.74**. Tips **1.0.71**–**1.0.74** stay document facts. Token `CUTOVER_TIP_1_0_74_OK`. Reply on Secure OUTBOX. Push `candidate/*` |
+| **P1** | Site | **Wait.** After `CONVERT_AGENTICOP_SITE_OK`, write the 26 pages into `brand/agenticops-web` and deploy Firebase `agenticops`. CWL and Convert do not deploy |
 | **done** | CWL | tip **1.0.74** database, land `9f62655` |
 | **done** | CWL | tip **1.0.73** dynamic HTML, land `4d849ec` |
 | **done** | CWL | tip **1.0.72** live document, land `425b01f` |
