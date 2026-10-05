@@ -7,10 +7,10 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: ORDER agenticop-demo-order. Secure pin 1.0.74 is done at 44446dc. Convert creates the demo. Site deploys only after CONVERT_AGENTICOP_SITE_OK
-CONVERT_NEXT: 1 raise pin floor to 1.0.74 in hub-cwl-pin-smoke · 2 pnpm run hub:cwl-pin-smoke · 3 peel gold 79-site-head-rest · 4 pnpm run hub:agenticop-site-peel-smoke on fixtures/sites/agenticop-io/site.cwl · token CONVERT_AGENTICOP_SITE_OK · reply on Convert OUTBOX · push candidate
+DISPATCH: ORDER agenticop-demo-order. Convert demo proof is done at 360588ad. Secure pin 1.0.74 is done at 44446dc. Site writes the 26 pages and deploys
+CONVERT_NEXT: done · CONVERT_AGENTICOP_SITE_OK · CONVERT_TIP_1_0_74_OK · main 360588ad · feature d3f2bc34 · 26 pages · peel smoke does not write HTML files
 SECURE_NEXT: done · CUTOVER_TIP_1_0_74_OK · main 44446dc · feature 92aa197
-SITE_NEXT: wait. After CONVERT_AGENTICOP_SITE_OK, write the 26 pages into brand/agenticops-web and deploy Firebase agenticops. CWL and Convert do not deploy
+SITE_NEXT: token is on Convert main 360588ad. Write the 26 hosted pages into brand/agenticops-web from that emit, then firebase deploy --only hosting:agenticops --project agenticop-io. CWL and Convert do not deploy
 ```
 
 ## Tips / pins
@@ -26,16 +26,16 @@ SITE_NEXT: wait. After CONVERT_AGENTICOP_SITE_OK, write the 26 pages into brand/
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
 | **CWL** | `main` | 9f62655 | tip **1.0.74** database |
-| **Convert** | `main` | 920d1329 | peel golds `76`–`78`, host script reads `below` |
+| **Convert** | `main` | 360588ad | demo peel **1.0.74**, `CONVERT_AGENTICOP_SITE_OK`, feature `d3f2bc34` |
 | **Secure** | `main` | 44446dc | tip pin **1.0.74**, feature `92aa197` |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | **Order `agenticop-demo-order`.** Raise the pin floor to **1.0.74**. Peel gold `79-site-head-rest`. Emit `fixtures/sites/agenticop-io/site.cwl`. Token `CONVERT_AGENTICOP_SITE_OK`. Reply on Convert OUTBOX. Push `candidate/*` |
+| **P0** | Site | **Order `agenticop-demo-order`.** `CONVERT_AGENTICOP_SITE_OK` is on Convert `main` `360588ad`. Write the 26 hosted pages into `brand/agenticops-web`, then `firebase deploy --only hosting:agenticops --project agenticop-io`. The peel smoke does not write those files. CWL and Convert do not deploy |
+| **done** | Convert | Demo peel **1.0.74**, `CONVERT_AGENTICOP_SITE_OK`, 26 pages, main `360588ad` |
 | **done** | Secure | Tip pin **1.0.74**, `CUTOVER_TIP_1_0_74_OK`, main `44446dc` |
-| **P1** | Site | **Wait.** After `CONVERT_AGENTICOP_SITE_OK`, write the 26 pages into `brand/agenticops-web` and deploy Firebase `agenticops`. CWL and Convert do not deploy |
 | **done** | CWL | tip **1.0.74** database, land `9f62655` |
 | **done** | CWL | tip **1.0.73** dynamic HTML, land `4d849ec` |
 | **done** | CWL | tip **1.0.72** live document, land `425b01f` |

@@ -14,9 +14,11 @@ Pushed asks for siblings. Newest first.
 
 Pull `chrysalis-cwl` `main` first. This section is the order. Work only your lane. Commit as `AgenticOp-io <opensource@agenticop.io>`. Push `candidate/*`. Reply on your own `docs/pillar-sync/OUTBOX.md` with status **done** and the token below. Leave the dirty Convert WISP and COBOL files unstaged.
 
-### Convert — create the demo
+### Convert — create the demo — **done**
 
-Source genome: `engines/chrysalis-cwl/fixtures/sites/agenticop-io/site.cwl` (26 pages). Start from current Convert HEAD `920d1329` on `candidate/wptp-convert-orbit`. Open a new candidate branch. Do not check out Convert `main` (local `main` is behind and the dirty tree blocks it).
+Reply `CONVERT_AGENTICOP_SITE_OK` and `CONVERT_TIP_1_0_74_OK` on Convert `main` `360588ad` (feature `d3f2bc34`, [PR #79](https://github.com/AgenticOp-io/chrysalis/pull/79)). 26 pages. Pin floor is **1.0.74**. Gold `79` peels through ingest. The peel smoke does not write HTML files into `brand/agenticops-web`.
+
+Original order, kept for the record. Source genome: `engines/chrysalis-cwl/fixtures/sites/agenticop-io/site.cwl` (26 pages). Start from current Convert HEAD `920d1329` on `candidate/wptp-convert-orbit`. Open a new candidate branch. Do not check out Convert `main` (local `main` is behind and the dirty tree blocks it).
 
 1. Keep `"@chrysalis/cwl": "file:../chrysalis-cwl/packages/cwl"`.
 2. In `scripts/hub-ingest/hub-cwl-pin-smoke.mjs`, raise the tip floor from `1.0.70` to **`1.0.74`**. Check id and detail should name **1.0.74**.
@@ -64,13 +66,13 @@ HEARTBEAT: waiting
 
 The demo is Convert's emit. Do not deploy Firebase project `agenticops`. Do not edit `chrysalis-cwl`, `chrysalis-convert`, or `brand/agenticops-web`. Do not delete GCE instances `agenticop-master` or `fusion-lab`.
 
-### Site — after the emit
+### Site — write the pages and deploy — **open**
 
-Wait until Convert's OUTBOX shows `CONVERT_AGENTICOP_SITE_OK`. Then write those 26 pages into `brand/agenticops-web` and deploy Firebase project `agenticops`. Until that token exists, the live site stays the old HTML. CWL and Convert do not deploy.
+`CONVERT_AGENTICOP_SITE_OK` is on Convert `main` `360588ad`. Write the 26 hosted pages into `brand/agenticops-web` from that emit. Keep `/agenticops.css` and `/logo.svg` as URLs. Then `firebase deploy --only hosting:agenticops --project agenticop-io`. The peel smoke proved the emit and did not write those files. Until the site lane deploys, the live site stays the old HTML. CWL and Convert do not deploy.
 
 ### CWL
 
-Language land stays `9f62655`. Secure pin **1.0.74** is done at `44446dc`. Convert `920d1329` is still the **1.0.70** peel until `CONVERT_AGENTICOP_SITE_OK`.
+Language land stays `9f62655`. Secure pin **1.0.74** is done at `44446dc`. Convert demo proof is done at `360588ad`.
 
 ---
 
