@@ -1,15 +1,15 @@
 ﻿# Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-04 · tip **1.0.74** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. Tip **1.0.74** names the database engine and bound row operations. Convert still peels gold `79`. The live site is still the old HTML.  
+**Updated:** 2026-10-04 · tip **1.0.74** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. CWL holds the genome. Convert emits the AgenticOps demo from it. The live site is still the old HTML.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: Convert pins 1.0.74 and peels gold 79. Secure pins 1.0.74. The database host stays in CWL. Do not deploy Firebase agenticops
-CONVERT_NEXT: pin 1.0.74 · peel gold 79 · do not invent a SQL dialect · do not deploy Firebase agenticops
-SECURE_NEXT: pin 1.0.74 · engine names the database · row values are parameters · not SQL text
+DISPATCH: Convert creates the AgenticOps demo. Pin 1.0.74. Peel gold 79. Emit the 26-page genome. Secure pins 1.0.74. Do not deploy Firebase agenticops
+CONVERT_NEXT: pin 1.0.74 · peel gold 79 · hub:agenticop-site-peel-smoke · CONVERT_AGENTICOP_SITE_OK · source fixtures/sites/agenticop-io/site.cwl · do not freeze golds 80-82 · do not deploy Firebase agenticops
+SECURE_NEXT: pin 1.0.74 · engine names the database · row values are parameters · the demo is Convert's emit
 ```
 
 ## Tips / pins
@@ -32,8 +32,9 @@ SECURE_NEXT: pin 1.0.74 · engine names the database · row values are parameter
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Pin **1.0.74**. Peel gold `79`. Do not invent a SQL dialect. Do not deploy Firebase project `agenticops` |
-| **P0** | Secure | Pin **1.0.74** |
+| **P0** | Convert | Create the AgenticOps demo. Pin **1.0.74**. Peel gold `79`. Run `hub:agenticop-site-peel-smoke` on `fixtures/sites/agenticop-io/site.cwl`. Token `CONVERT_AGENTICOP_SITE_OK`. Do not freeze golds `80`–`82`. Do not deploy Firebase project `agenticops` |
+| **P1** | Secure | Pin **1.0.74** |
+| **P1** | Site | After Convert's emit, write the 26 pages into `brand/agenticops-web` and deploy Firebase `agenticops`. CWL and Convert do not deploy |
 | **done** | CWL | tip **1.0.74** database, land `9f62655` |
 | **done** | CWL | tip **1.0.73** dynamic HTML, land `4d849ec` |
 | **done** | CWL | tip **1.0.72** live document, land `425b01f` |
