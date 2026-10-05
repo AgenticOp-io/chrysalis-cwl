@@ -7,9 +7,9 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: ORDER agenticop-demo-order. Convert creates the demo. Secure pins 1.0.74. Site deploys only after CONVERT_AGENTICOP_SITE_OK
+DISPATCH: ORDER agenticop-demo-order. Secure pin 1.0.74 is done at 44446dc. Convert creates the demo. Site deploys only after CONVERT_AGENTICOP_SITE_OK
 CONVERT_NEXT: 1 raise pin floor to 1.0.74 in hub-cwl-pin-smoke · 2 pnpm run hub:cwl-pin-smoke · 3 peel gold 79-site-head-rest · 4 pnpm run hub:agenticop-site-peel-smoke on fixtures/sites/agenticop-io/site.cwl · token CONVERT_AGENTICOP_SITE_OK · reply on Convert OUTBOX · push candidate
-SECURE_NEXT: 1 pin file:../chrysalis-cwl/packages/cwl at 1.0.74 · 2 record tips 1.0.71-1.0.74 as document facts · 3 npm run cutover-smoke · token CUTOVER_TIP_1_0_74_OK · reply on Secure OUTBOX · push candidate
+SECURE_NEXT: done · CUTOVER_TIP_1_0_74_OK · main 44446dc · feature 92aa197
 SITE_NEXT: wait. After CONVERT_AGENTICOP_SITE_OK, write the 26 pages into brand/agenticops-web and deploy Firebase agenticops. CWL and Convert do not deploy
 ```
 
@@ -27,14 +27,14 @@ SITE_NEXT: wait. After CONVERT_AGENTICOP_SITE_OK, write the 26 pages into brand/
 | --- | --- | --- | --- |
 | **CWL** | `main` | 9f62655 | tip **1.0.74** database |
 | **Convert** | `main` | 920d1329 | peel golds `76`–`78`, host script reads `below` |
-| **Secure** | `main` | 24750e2 | tip pin **1.0.70** |
+| **Secure** | `main` | 44446dc | tip pin **1.0.74**, feature `92aa197` |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
 | **P0** | Convert | **Order `agenticop-demo-order`.** Raise the pin floor to **1.0.74**. Peel gold `79-site-head-rest`. Emit `fixtures/sites/agenticop-io/site.cwl`. Token `CONVERT_AGENTICOP_SITE_OK`. Reply on Convert OUTBOX. Push `candidate/*` |
-| **P1** | Secure | **Order `agenticop-demo-order`.** Pin **1.0.74**. Tips **1.0.71**–**1.0.74** stay document facts. Token `CUTOVER_TIP_1_0_74_OK`. Reply on Secure OUTBOX. Push `candidate/*` |
+| **done** | Secure | Tip pin **1.0.74**, `CUTOVER_TIP_1_0_74_OK`, main `44446dc` |
 | **P1** | Site | **Wait.** After `CONVERT_AGENTICOP_SITE_OK`, write the 26 pages into `brand/agenticops-web` and deploy Firebase `agenticops`. CWL and Convert do not deploy |
 | **done** | CWL | tip **1.0.74** database, land `9f62655` |
 | **done** | CWL | tip **1.0.73** dynamic HTML, land `4d849ec` |

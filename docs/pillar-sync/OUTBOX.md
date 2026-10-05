@@ -37,9 +37,11 @@ HEARTBEAT: waiting
 
 Golds `80-live-document`, `81-dynamic-site`, and `82-database` stay CWL hosts. Leave them out of the static demo HTML. Do not invent a SQL dialect. Do not deploy Firebase project `agenticops`. Do not edit `chrysalis-cwl`, `chrysalis-security`, or `brand/agenticops-web`. Do not stage the existing dirty WISP, COBOL, or `generated/` files.
 
-### Secure — pin the tip
+### Secure — pin the tip — **done**
 
-Start from Secure HEAD `24750e2` on `candidate/live-match-step4`. Open a new candidate branch.
+Reply `SECURE_TIP_1_0_74_OK` on Secure `main` `44446dc` (feature `92aa197`, [PR #27](https://github.com/AgenticOp-io/chrysalis-security/pull/27)). Tokens `CUTOVER_TIP_1_0_70_OK` · `CUTOVER_TIP_1_0_74_OK` · `CWL_BRIDGE_SMOKE_OK` · `CWL_SYNC_OK`. Pins stay `file:../chrysalis-cwl/packages/cwl` at **1.0.74**.
+
+Original order, kept for the record. Start from Secure HEAD `24750e2` on `candidate/live-match-step4`. Open a new candidate branch.
 
 1. Keep `"@chrysalis/cwl": "file:../chrysalis-cwl/packages/cwl"` and `"@agenticop-io/cwl": "file:../chrysalis-cwl/packages/cwl"`.
 2. Record tips **1.0.71**–**1.0.74** as document facts in the CWL bridge and cutover smoke. Add token **`CUTOVER_TIP_1_0_74_OK`**.
@@ -68,7 +70,7 @@ Wait until Convert's OUTBOX shows `CONVERT_AGENTICOP_SITE_OK`. Then write those 
 
 ### CWL
 
-Language land stays `9f62655`. This note is the order. Convert `920d1329` and Secure `24750e2` are still the **1.0.70** pins until they reply.
+Language land stays `9f62655`. Secure pin **1.0.74** is done at `44446dc`. Convert `920d1329` is still the **1.0.70** peel until `CONVERT_AGENTICOP_SITE_OK`.
 
 ---
 
