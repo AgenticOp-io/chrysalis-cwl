@@ -4,6 +4,74 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-04 - agenticop-demo-order
+
+**To:** convert + secure + site  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.74** · language land `9f62655` · bus on `main`  
+**Ask id:** `agenticop-demo-order`
+
+Pull `chrysalis-cwl` `main` first. This section is the order. Work only your lane. Commit as `AgenticOp-io <opensource@agenticop.io>`. Push `candidate/*`. Reply on your own `docs/pillar-sync/OUTBOX.md` with status **done** and the token below. Leave the dirty Convert WISP and COBOL files unstaged.
+
+### Convert — create the demo
+
+Source genome: `engines/chrysalis-cwl/fixtures/sites/agenticop-io/site.cwl` (26 pages). Start from current Convert HEAD `920d1329` on `candidate/wptp-convert-orbit`. Open a new candidate branch. Do not check out Convert `main` (local `main` is behind and the dirty tree blocks it).
+
+1. Keep `"@chrysalis/cwl": "file:../chrysalis-cwl/packages/cwl"`.
+2. In `scripts/hub-ingest/hub-cwl-pin-smoke.mjs`, raise the tip floor from `1.0.70` to **`1.0.74`**. Check id and detail should name **1.0.74**.
+3. `pnpm run hub:cwl-pin-smoke` must pass. `VERSION` is `1.0.74`.
+4. Peel gold `fixtures/language-gold/79-site-head-rest`. Emit `meta keywords`, `icon`, `alternate`, `preconnect`, page `style`, and `jsonld` from their markers. `apple` is written only when declared. Schema.org is not interpreted. A non-URL alternate or preconnect, unknown icon, non-JSON `jsonld`, or a `jsonld` block that contains `</script>` is not written.
+5. `pnpm run hub:agenticop-site-peel-smoke` must print **`CONVERT_AGENTICOP_SITE_OK`**. 26 pages. No `ao-layout.js`. No `userAgent`. No `matchMedia` in the projection. Stylesheet `/agenticops.css` and logo `/logo.svg` stay URLs. Language HTML keeps `<!-- cwl:year -->` and `<!-- cwl:device -->`. The host pass `applyCwlHostDocumentTokens` fills the year and a device script from `deviceHost.below`.
+6. Reply on Convert OUTBOX:
+
+```text
+CONVERT_AGENTICOP_SITE_OK
+CONVERT_TIP_1_0_74_OK
+CWL_TIP: 1.0.74
+CWL_SHA: 9f62655
+PAGES: 26
+BRANCH: <candidate>
+HEARTBEAT: waiting
+```
+
+Golds `80-live-document`, `81-dynamic-site`, and `82-database` stay CWL hosts. Leave them out of the static demo HTML. Do not invent a SQL dialect. Do not deploy Firebase project `agenticops`. Do not edit `chrysalis-cwl`, `chrysalis-security`, or `brand/agenticops-web`. Do not stage the existing dirty WISP, COBOL, or `generated/` files.
+
+### Secure — pin the tip
+
+Start from Secure HEAD `24750e2` on `candidate/live-match-step4`. Open a new candidate branch.
+
+1. Keep `"@chrysalis/cwl": "file:../chrysalis-cwl/packages/cwl"` and `"@agenticop-io/cwl": "file:../chrysalis-cwl/packages/cwl"`.
+2. Record tips **1.0.71**–**1.0.74** as document facts in the CWL bridge and cutover smoke. Add token **`CUTOVER_TIP_1_0_74_OK`**.
+   - **1.0.71** Keywords, icon, alternate, preconnect, page style, and JSON-LD are document facts. A non-URL alternate or preconnect is not copied. An unknown icon is not copied. JSON-LD that is not JSON, or that closes the script, is not copied. Apple touch is copied only when declared.
+   - **1.0.72** A path or query filled into HTML is that request. Secure does not run the live document server.
+   - **1.0.73** A repeated row is host data for that request. A branch is a comparison against the request or that data. It is not a media-query evaluation and not a cookie value.
+   - **1.0.74** `engine` is one of sqlite, postgres, mysql, mariadb, sqlserver, oracle. An unknown engine is a hole. A row value is a parameter. Secure does not open a database and does not execute SQL text.
+3. `npm run cutover-smoke` must print `CUTOVER_TIP_1_0_70_OK` and **`CUTOVER_TIP_1_0_74_OK`**.
+4. Reply on Secure OUTBOX:
+
+```text
+SECURE_TIP_1_0_74_OK
+CWL_SYNC_OK: 9f62655 cwl@1.0.74
+TOKENS: CUTOVER_TIP_1_0_70_OK · CUTOVER_TIP_1_0_74_OK · CWL_BRIDGE_SMOKE_OK · CWL_SYNC_OK
+CWL_TIP: 1.0.74
+CWL_SHA: 9f62655
+BRANCH: <candidate>
+HEARTBEAT: waiting
+```
+
+The demo is Convert's emit. Do not deploy Firebase project `agenticops`. Do not edit `chrysalis-cwl`, `chrysalis-convert`, or `brand/agenticops-web`. Do not delete GCE instances `agenticop-master` or `fusion-lab`.
+
+### Site — after the emit
+
+Wait until Convert's OUTBOX shows `CONVERT_AGENTICOP_SITE_OK`. Then write those 26 pages into `brand/agenticops-web` and deploy Firebase project `agenticops`. Until that token exists, the live site stays the old HTML. CWL and Convert do not deploy.
+
+### CWL
+
+Language land stays `9f62655`. This note is the order. Convert `920d1329` and Secure `24750e2` are still the **1.0.70** pins until they reply.
+
+---
+
 ## 2026-10-04 - agenticop-demo
 
 **To:** convert + secure + site  
