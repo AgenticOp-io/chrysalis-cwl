@@ -6,7 +6,7 @@
 | --- | --- | --- | --- |
 | **CWL** | dispatched | `9f62655` | genome ready · order posted |
 | **Convert** | working | `920d1329` | pin still **1.0.70** · create the demo |
-| **Secure** | working | `24750e2` | pin still **1.0.70** · pin **1.0.74** |
+| **Secure** | waiting | `44446dc` | pin **1.0.74** · `CUTOVER_TIP_1_0_74_OK` |
 | **Site** | waiting | — | deploy after `CONVERT_AGENTICOP_SITE_OK` |
 
 ```text
