@@ -95,7 +95,7 @@
 | Tip pin **1.0.72** | Convert + Secure — **open** (included in the **1.0.73** pin) |
 | Tip pin **1.0.73** | Convert + Secure — **open** (included in the **1.0.74** pin) |
 | Tip pin **1.0.74** | Convert + Secure — **done** (Convert `360588ad`, Secure `44446dc`) |
-| Tip pin **1.0.75** | Convert + Secure — **open** (host site emit is a CWL host; do not invent a Cloud Function; do not deploy live `agenticops` from CWL) |
+| Tip pin **1.0.75** | Convert + Secure — **done** (Convert `d38253ad`, Secure `e753716`) |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |

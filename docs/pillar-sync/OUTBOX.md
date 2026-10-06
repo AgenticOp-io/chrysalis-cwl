@@ -8,11 +8,18 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done**  
 **CWL tip:** **1.0.75** · language land `c5d48cb` · ask `cwl-only-demo-deploy`  
 **Ask id:** `tip-1.0.75-host-site-emit`
 
-### Ask
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | **done** — `CONVERT_TIP_1_0_75_OK` on Convert `main` `d38253ad` (feature `a629b40f`, [PR #80](https://github.com/AgenticOp-io/chrysalis/pull/80)) |
+| Secure | **done** — `SECURE_TIP_1_0_75_OK` / `CUTOVER_TIP_1_0_75_OK` on Secure `main` `e753716` (feature `8056197`, [PR #28](https://github.com/AgenticOp-io/chrysalis-security/pull/28)) |
+
+### Ask (record)
 
 | Who | Action |
 | --- | --- |

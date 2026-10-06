@@ -7,11 +7,11 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.75 host site emit lands. Convert/Secure pin 1.0.75. Live agenticop.io stays site lane
-CONVERT_NEXT: pin 1.0.75 · peel stays gold 79 · do not invent Cloud Function · do not deploy live agenticops
-SECURE_NEXT: pin 1.0.75 · host site emit is document/host facts · demo Hosting is not Helix
+DISPATCH: tip 1.0.75 pins done. Convert d38253ad · Secure e753716. Optional operator deploy:demo. Live agenticop.io stays site lane
+CONVERT_NEXT: done · CONVERT_TIP_1_0_75_OK · main d38253ad · feature a629b40f
+SECURE_NEXT: done · SECURE_TIP_1_0_75_OK · CUTOVER_TIP_1_0_75_OK · main e753716 · feature 8056197
 CWL_NEXT: done · tip 1.0.75 land c5d48cb · CWL_HOST_SITE_OK · ask cwl-only-demo-deploy closed
-SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate
+SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate · demo Hosting is npm run deploy:demo from CWL
 ```
 
 ## Tips / pins
@@ -27,16 +27,17 @@ SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
 | **CWL** | `main` | c5d48cb | tip **1.0.75** host site emit |
-| **Convert** | `main` | 360588ad | demo peel **1.0.74**, `CONVERT_AGENTICOP_SITE_OK`, feature `d3f2bc34` |
-| **Secure** | `main` | 44446dc | tip pin **1.0.74**, feature `92aa197` |
+| **Convert** | `main` | d38253ad | tip pin **1.0.75**, `CONVERT_TIP_1_0_75_OK`, feature `a629b40f` |
+| **Secure** | `main` | e753716 | tip pin **1.0.75**, `CUTOVER_TIP_1_0_75_OK`, feature `8056197` |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Pin **1.0.75**. Host site emit is a CWL host. Do not invent a Cloud Function. Do not deploy live `agenticops` |
-| **P1** | Secure | Pin **1.0.75**. Demo Hosting is not a Helix feature |
-| **P1** | Site | Live `agenticop-demo-order` pages into `brand/agenticops-web` + `hosting:agenticops` — separate |
+| **P1** | Site | Live `agenticop-demo-order` pages into `brand/agenticops-web` + `hosting:agenticops` — separate from demo Hosting |
+| **P2** | Operator | Optional: `npm run deploy:demo` (omit `--dry-run`) to refresh https://agenticop-cwl-demo.web.app |
+| **done** | Convert | Tip pin **1.0.75**, `CONVERT_TIP_1_0_75_OK`, main `d38253ad` |
+| **done** | Secure | Tip pin **1.0.75**, `SECURE_TIP_1_0_75_OK`, main `e753716` |
 | **done** | CWL | tip **1.0.75** host site emit, gold `83`, `CWL_HOST_SITE_OK`, land `c5d48cb` |
 | **done** | Convert | Demo peel **1.0.74**, `CONVERT_AGENTICOP_SITE_OK`, 26 pages, main `360588ad` |
 | **done** | Secure | Tip pin **1.0.74**, `CUTOVER_TIP_1_0_74_OK`, main `44446dc` |
