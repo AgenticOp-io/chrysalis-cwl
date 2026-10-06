@@ -7,11 +7,11 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.76 site-100-cwl. Convert pins + sync ALWAYS. Secure pins. Site drops ao-layout.js and redeploys when parent authorizes
+DISPATCH: tip 1.0.76. Convert/Secure pin. Site tree ready (PR open); live deploy waits on parent auth
 CONVERT_NEXT: pin 1.0.76 · npm run sync:convert picks up cwl-db.mjs · peel stays gold 79 · do not invent CSS dialect · do not deploy live agenticops
 SECURE_NEXT: pin 1.0.76 · site 100% host effects are not Helix · off-site fonts stay document facts
 CWL_NEXT: done · tip 1.0.76 land bfd1122 · CWL_SITE_100_OK · tags cwl-v1.0.75 + cwl-v1.0.76
-SITE_NEXT: after tip · delete ao-layout.js · mirror assets from fixtures/sites/agenticop-io/assets · do not hand-edit page HTML · redeploy hosting:agenticops when parent authorizes
+SITE_NEXT: prepared · ao-layout.js deleted · 26 pages + assets from emit:site · PR AgenticOp-io/agenticops-web#1 · commit 3f1a3ba · live firebase deploy blocked until parent authorizes
 ```
 
 ## Tips / pins
@@ -36,7 +36,8 @@ SITE_NEXT: after tip · delete ao-layout.js · mirror assets from fixtures/sites
 | --- | --- | --- |
 | **P0** | Convert | Pin **1.0.76**. Run `npm run sync:convert` from CWL (or pull ALWAYS including `cwl-db.mjs`). Peel stays gold `79`. Do not invent CSS. Do not deploy live `agenticops` |
 | **P1** | Secure | Pin **1.0.76**. Host effects and off-site fonts are document/host facts, not Helix |
-| **P0** | Site | After tip: delete `ao-layout.js`, treat brand as assets/ops only, mirror `fixtures/sites/agenticop-io/assets`, redeploy when parent authorizes |
+| **P0** | Parent / Site | Live deploy: merge [agenticops-web#1](https://github.com/AgenticOp-io/agenticops-web/pull/1) then `firebase deploy --only hosting:agenticops --project agenticop-io` when authorized |
+| **done** | Site | Tree prepared — `ao-layout.js` gone, 26 pages + assets from tip **1.0.76** emit, PR #1 `3f1a3ba` (deploy skipped) |
 | **done** | CWL | tip **1.0.76** site 100% contract, land `bfd1122`, tags `cwl-v1.0.75`/`cwl-v1.0.76` |
 | **done** | Convert | Tip pin **1.0.75**, sync `7c970301` |
 | **done** | Secure | Tip pin **1.0.75**, `e753716` |
