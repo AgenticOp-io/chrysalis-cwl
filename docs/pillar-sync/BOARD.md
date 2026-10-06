@@ -10,7 +10,7 @@ CWL_FLEET_IDLE: no
 DISPATCH: tip 1.0.75 host site emit lands. Convert/Secure pin 1.0.75. Live agenticop.io stays site lane
 CONVERT_NEXT: pin 1.0.75 · peel stays gold 79 · do not invent Cloud Function · do not deploy live agenticops
 SECURE_NEXT: pin 1.0.75 · host site emit is document/host facts · demo Hosting is not Helix
-CWL_NEXT: land tip 1.0.75 · token CWL_HOST_SITE_OK · ask cwl-only-demo-deploy closes when land SHA is stamped
+CWL_NEXT: done · tip 1.0.75 land c5d48cb · CWL_HOST_SITE_OK · ask cwl-only-demo-deploy closed
 SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate
 ```
 
@@ -26,7 +26,7 @@ SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | pending | tip **1.0.75** host site emit (land SHA after merge) |
+| **CWL** | `main` | c5d48cb | tip **1.0.75** host site emit |
 | **Convert** | `main` | 360588ad | demo peel **1.0.74**, `CONVERT_AGENTICOP_SITE_OK`, feature `d3f2bc34` |
 | **Secure** | `main` | 44446dc | tip pin **1.0.74**, feature `92aa197` |
 
@@ -37,7 +37,7 @@ SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate
 | **P0** | Convert | Pin **1.0.75**. Host site emit is a CWL host. Do not invent a Cloud Function. Do not deploy live `agenticops` |
 | **P1** | Secure | Pin **1.0.75**. Demo Hosting is not a Helix feature |
 | **P1** | Site | Live `agenticop-demo-order` pages into `brand/agenticops-web` + `hosting:agenticops` — separate |
-| **done** | CWL | tip **1.0.75** host site emit, gold `83`, `CWL_HOST_SITE_OK` (land pending) |
+| **done** | CWL | tip **1.0.75** host site emit, gold `83`, `CWL_HOST_SITE_OK`, land `c5d48cb` |
 | **done** | Convert | Demo peel **1.0.74**, `CONVERT_AGENTICOP_SITE_OK`, 26 pages, main `360588ad` |
 | **done** | Secure | Tip pin **1.0.74**, `CUTOVER_TIP_1_0_74_OK`, main `44446dc` |
 | **done** | CWL | tip **1.0.74** database, land `9f62655` |
