@@ -7,8 +7,8 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.76. Convert/Secure pin. Site owns merge + live hosting:agenticops deploy. CWL does not deploy
-CONVERT_NEXT: pin 1.0.76 · npm run sync:convert picks up cwl-db.mjs · peel stays gold 79 · do not invent CSS dialect · do not deploy live agenticops
+DISPATCH: tip 1.0.76. Convert pin done. Secure pins. Site owns merge + live hosting:agenticops deploy. CWL does not deploy
+CONVERT_NEXT: done · CONVERT_TIP_1_0_76_OK · main be58a179 · feature 03d62fa4 · cwl-db identical · peel gold 79
 SECURE_NEXT: pin 1.0.76 · site 100% host effects are not Helix · off-site fonts stay document facts
 CWL_NEXT: done · tip 1.0.76 land bfd1122 · CWL_SITE_100_OK · tags cwl-v1.0.75 + cwl-v1.0.76 · language only
 SITE_NEXT: open · merge agenticops-web#1 (3f1a3ba) · firebase deploy --only hosting:agenticops · Site lane owns deploy · CWL and Convert do not
@@ -27,16 +27,16 @@ SITE_NEXT: open · merge agenticops-web#1 (3f1a3ba) · firebase deploy --only ho
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
 | **CWL** | `main` | bfd1122 | tip **1.0.76** site 100% contract |
-| **Convert** | `main` | 7c970301 | tip **1.0.75** sync · ask-back cwl-db ALWAYS + tag |
+| **Convert** | `main` | be58a179 | tip pin **1.0.76**, `CONVERT_TIP_1_0_76_OK`, feature `03d62fa4` |
 | **Secure** | `main` | e753716 | tip pin **1.0.75** |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Pin **1.0.76**. Run `npm run sync:convert` from CWL (or pull ALWAYS including `cwl-db.mjs`). Peel stays gold `79`. Do not invent CSS. Do not deploy live `agenticops` |
+| **P0** | Site | **Site deploys.** Merge [agenticops-web#1](https://github.com/AgenticOp-io/agenticops-web/pull/1) (`3f1a3ba`). Then `firebase deploy --only hosting:agenticops --project agenticop-io`. CWL does not deploy |
 | **P1** | Secure | Pin **1.0.76**. Host effects and off-site fonts are document/host facts, not Helix |
-| **P0** | Site | **Site deploys.** Merge [agenticops-web#1](https://github.com/AgenticOp-io/agenticops-web/pull/1) (`3f1a3ba`: `ao-layout.js` gone, 26 pages + assets from tip **1.0.76** emit). Then `firebase deploy --only hosting:agenticops --project agenticop-io`. CWL does not deploy |
+| **done** | Convert | Tip pin **1.0.76**, `CONVERT_TIP_1_0_76_OK`, main `be58a179` |
 | **done** | CWL | tip **1.0.76** site 100% contract, land `bfd1122`, tags `cwl-v1.0.75`/`cwl-v1.0.76` |
 | **done** | Convert | Tip pin **1.0.75**, sync `7c970301` |
 | **done** | Secure | Tip pin **1.0.75**, `e753716` |
