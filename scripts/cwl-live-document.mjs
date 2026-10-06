@@ -3,7 +3,8 @@
  * Each request reads the source, matches one page, and composes the document.
  * Declared path and query names in the page HTML are filled from that request.
  * `year host` digits are filled only when the caller passes a host year.
- * The device token stays. This host does not call matchMedia or read a user agent.
+ * The device token is filled by the host pass from declared classes and below.
+ * This host does not read a user agent.
  */
 import { createServer } from "node:http";
 import { readFileSync } from "node:fs";
@@ -13,8 +14,7 @@ import { composeLayoutChromeHtml } from "./hub-ingest/cwl-layout.mjs";
 import { splitCwlHtmlTemplate } from "./hub-ingest/cwl-html-template.mjs";
 import { finishCwlDynamicHtml, selectCwlDynamicSource } from "./cwl-dynamic-html.mjs";
 import { applyCwlDb, openCwlEngine } from "./cwl-db-host.mjs";
-
-const YEAR_SLOT = "<!-- cwl:year -->";
+import { applyCwlHostDocumentTokens } from "./cwl-host-document.mjs";
 
 /**
  * @param {unknown} value
@@ -188,8 +188,12 @@ export async function renderCwlLiveDocument(file, request, host = {}) {
   const body = finishCwlDynamicHtml(templated, route.htmlRepeats ?? [], data);
   const head = fillCwlRequestHtml(route.headHtml ?? "", bindings, values);
   let html = composeRoute(route, body, head);
-  if (route.yearHost && Number.isInteger(host.year)) {
-    html = html.split(YEAR_SLOT).join(String(host.year));
+  if (route.yearHost || route.deviceHost) {
+    html = applyCwlHostDocumentTokens(html, {
+      year: route.yearHost ? host.year : undefined,
+      devices: route.deviceHost?.values,
+      below: route.deviceHost?.below,
+    });
   }
   const status = missing || route.path === "/404.html" ? 404 : selected.status;
   return {

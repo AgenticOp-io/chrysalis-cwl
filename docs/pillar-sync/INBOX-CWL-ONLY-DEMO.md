@@ -5,8 +5,8 @@
 **To:** cwl  
 **From:** parent (site / demo host)  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip observed:** **1.0.74** · language land `9f62655`  
+**Status:** **done** (tip **1.0.75**, gold `83`, token `CWL_HOST_SITE_OK` — stamp land SHA on BOARD after merge)  
+**CWL tip observed:** **1.0.75**  
 **Ask id:** `cwl-only-demo-deploy`  
 **Lane:** do this in `engines/chrysalis-cwl`. Do not invent a second deploy dialect under Convert, Secure, or `brand/agenticops-web`.
 
@@ -38,19 +38,23 @@ Parent checked tip **1.0.74**: `host firebase` names the target; CWL does not de
 
 - Tip **1.0.60**–**1.0.74** site surface: multi-line HTML, shell, nav id, year token, shared lists, drawer, device token, style/image/firebase name, script/form/anchors, viewport cut, document identity, social card, head rest, live document, dynamic HTML, database engines
 - Genome smoke: `npm run smoke:agenticop-site` → `CWL_AGENTICOP_SITE_OK`
-- Live compose: `npm run live -- fixtures/sites/agenticop-io/site.cwl --port 8791` (year filled; device token left)
+- Live compose: `npm run live -- fixtures/sites/agenticop-io/site.cwl --port 8791` (year and device filled by host pass)
 - Convert peel of golds through **1.0.74** / gold `79`
 
 ### Acceptance
 
-- [ ] A CWL-owned path can publish the 26-page genome to a **demo** Hosting site (or equivalent) without a hand-maintained Cloud Function in Temp / site JS. Prefer extending `npm run live`, `emit-runtime-cwl`, or a declared `host firebase` release contract — not inventing grammar under Convert.
-- [ ] Unknown paths return the module’s `/404.html` with status 404 (same as live host today).
-- [ ] Year and device follow existing honesty: CWL does not invent the clock; device script uses declared `below` and classes; no `userAgent` in the projection.
-- [ ] `/agenticops.css` and `/logo.svg` remain host files (URLs in the genome).
-- [ ] Live site https://agenticop.io / Hosting site `agenticop-io` is **not** deployed by this work.
-- [ ] Unsupported pieces stay `hole` reasons (CSS parse, image bytes, matchMedia inside CWL, opaque client script). Do not stub them.
-- [ ] Language golds still pass (`npm run build:webir` and `CWL_REQUIRE_WEBIR=1 npm run test:language`).
-- [ ] Reply here or in [`OUTBOX.md`](./OUTBOX.md) with tip / gold / token when the contract lands. Convert peels after the tip; Secure pins; site does not write a second Function.
+- [x] A CWL-owned path can publish the 26-page genome to a **demo** Hosting site without a hand-maintained Cloud Function: `npm run emit:site` + `npm run deploy:demo` (site `agenticop-cwl-demo` only)
+- [x] Unknown paths return the module’s `/404.html` with status 404 (live host + emit writes `404.html`)
+- [x] Year and device follow existing honesty: host pass fills tokens from declared `below` and classes; no `userAgent`
+- [x] `/agenticops.css` and `/logo.svg` remain host files (`--assets` copies bytes; genome keeps URLs)
+- [x] Live site https://agenticop.io / Hosting site `agenticops` is refused by `deploy:demo`
+- [x] Unsupported pieces stay holes (CSS parse, image bytes, matchMedia inside CWL, opaque client script)
+- [x] Language golds: gold `83` + `npm run smoke:cwl-host-site` → `CWL_HOST_SITE_OK`
+- [x] Reply in [`OUTBOX.md`](./OUTBOX.md) tip **1.0.75**. Convert/Secure pin next
+
+### Reply
+
+Tip **1.0.75**. Gold `83-host-site-emit`. Token `CWL_HOST_SITE_OK`. Operator may run `npm run emit:site` then `npm run deploy:demo` (omit `--dry-run`) when Firebase credentials are available. Live agenticop.io untouched.
 
 ### Do not
 

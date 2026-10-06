@@ -4,6 +4,30 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-05 - tip-1.0.75-host-site-emit
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.75** · ask `cwl-only-demo-deploy`  
+**Ask id:** `tip-1.0.75-host-site-emit`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.75**. Host site emit is a CWL host (`emit:site`, `deploy:demo`, gold `83`). Keep peeling gold `79` for the static site genome. Do not invent a Cloud Function. Do not deploy live Firebase `agenticops`. Reply on Convert OUTBOX |
+| Secure | Pin to **1.0.75**. Year and device host passes are host honesty. Demo Hosting `agenticop-cwl-demo` is not Helix. Reply on Secure OUTBOX |
+
+### CWL landed
+
+- `applyCwlHostDocumentTokens` fills year and device from declared classes and `below`
+- `npm run emit:site` writes static HTML. `npm run deploy:demo` publishes only `agenticop-cwl-demo` and refuses live `agenticops` / `agenticop-io`
+- Gold `83`. Token `CWL_HOST_SITE_OK`. The 26-page genome emits the same way
+- Live https://agenticop.io is untouched
+
+---
+
 ## 2026-10-04 - agenticop-demo-order
 
 **To:** convert + secure + site  

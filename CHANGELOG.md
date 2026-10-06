@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.75 - 2026-10-05
+
+- The host emits a static Hosting site from a `.cwl` module. `year host` and `device host` are filled by the host pass. CSS and image bytes stay host files
+- `npm run emit:site` writes the pages. `npm run deploy:demo` publishes only `agenticop-cwl-demo` and refuses live `agenticops` / `agenticop-io`. No Cloud Function
+- Gold `83-host-site-emit`. The AgenticOps genome emits 26 pages the same way
+
 ## 1.0.74 - 2026-10-04
 
 - `engine` names sqlite, postgres, mysql, mariadb, sqlserver, or oracle. `table` and `db select` / `insert` / `update` / `delete` are the same bound operations on each. Request values stay parameters

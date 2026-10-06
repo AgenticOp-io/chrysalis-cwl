@@ -1,32 +1,32 @@
 ﻿# Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-05 · tip **1.0.74** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. CWL holds the genome. Convert peels it. Parent asks for a CWL-owned demo deploy (no hand JS Function). The live site is still the old HTML.  
+**Updated:** 2026-10-05 · tip **1.0.75** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. CWL holds the genome. Host site emit publishes the demo Hosting site without a Cloud Function. Live agenticop.io stays the site lane.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: ASK cwl-only-demo-deploy (parent INBOX). Convert/Secure demo pin 1.0.74 stays done. Live agenticop.io deploy stays site lane and is not this ask
-CONVERT_NEXT: idle · CONVERT_AGENTICOP_SITE_OK · tip 1.0.74 · main 360588ad · wait for CWL tip if deploy contract lands
-SECURE_NEXT: idle · CUTOVER_TIP_1_0_74_OK · main 44446dc · wait for tip pin if CWL bumps
-CWL_NEXT: open · parent ask cwl-only-demo-deploy · INBOX-CWL-ONLY-DEMO.md · genome → CWL host → demo Hosting · do not touch live agenticop-io
-SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate from the CWL-only demo ask
+DISPATCH: tip 1.0.75 host site emit lands. Convert/Secure pin 1.0.75. Live agenticop.io stays site lane
+CONVERT_NEXT: pin 1.0.75 · peel stays gold 79 · do not invent Cloud Function · do not deploy live agenticops
+SECURE_NEXT: pin 1.0.75 · host site emit is document/host facts · demo Hosting is not Helix
+CWL_NEXT: land tip 1.0.75 · token CWL_HOST_SITE_OK · ask cwl-only-demo-deploy closes when land SHA is stamped
+SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.74`** |
-| Packages | **`@agenticop-io/cwl@1.0.74`** (pin; Packages publish when tagged) |
+| **CWL tip** | **`1.0.75`** |
+| Packages | **`@agenticop-io/cwl@1.0.75`** (pin; Packages publish when tagged) |
 | Tags | `cwl-v1.0.46` · `cwl-v1.0.47` · `cwl-v1.0.56` · `cwl-v1.0.61` · `cwl-v1.0.62` · `cwl-v1.0.67` · `cwl-v1.0.70` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | 9f62655 | tip **1.0.74** database |
+| **CWL** | `main` | pending | tip **1.0.75** host site emit (land SHA after merge) |
 | **Convert** | `main` | 360588ad | demo peel **1.0.74**, `CONVERT_AGENTICOP_SITE_OK`, feature `d3f2bc34` |
 | **Secure** | `main` | 44446dc | tip pin **1.0.74**, feature `92aa197` |
 
@@ -34,8 +34,10 @@ SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate fr
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | CWL | **Ask `cwl-only-demo-deploy`.** Parent: deploy/serve the 26-page genome on the demo Hosting site without a hand-written Cloud Function. Details: [`INBOX-CWL-ONLY-DEMO.md`](./INBOX-CWL-ONLY-DEMO.md). Do not deploy live `agenticop-io`. CSS/image bytes, clock, and `matchMedia` stay host honesty |
-| **P1** | Site | Live `agenticop-demo-order` pages into `brand/agenticops-web` + `hosting:agenticops` — separate from the CWL-only demo ask; wait unless parent says otherwise |
+| **P0** | Convert | Pin **1.0.75**. Host site emit is a CWL host. Do not invent a Cloud Function. Do not deploy live `agenticops` |
+| **P1** | Secure | Pin **1.0.75**. Demo Hosting is not a Helix feature |
+| **P1** | Site | Live `agenticop-demo-order` pages into `brand/agenticops-web` + `hosting:agenticops` — separate |
+| **done** | CWL | tip **1.0.75** host site emit, gold `83`, `CWL_HOST_SITE_OK` (land pending) |
 | **done** | Convert | Demo peel **1.0.74**, `CONVERT_AGENTICOP_SITE_OK`, 26 pages, main `360588ad` |
 | **done** | Secure | Tip pin **1.0.74**, `CUTOVER_TIP_1_0_74_OK`, main `44446dc` |
 | **done** | CWL | tip **1.0.74** database, land `9f62655` |
