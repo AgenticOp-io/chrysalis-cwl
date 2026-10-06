@@ -85,9 +85,11 @@ try {
     check("site-no-ao-layout", !siteHome.includes("/ao-layout.js"));
     check("site-year", siteHome.includes("2026") && !siteHome.includes("<!-- cwl:year -->"));
     check(
-      "site-device",
-      siteHome.includes('data-cwl-device="1"') &&
-        siteHome.includes("max-width: 820px") &&
+      "site-complete-menu",
+      siteHome.includes('id="ao-nav-open"') &&
+        !siteHome.includes('data-cwl-device="1"') &&
+        !siteHome.includes('data-cwl-drawer="1"') &&
+        !siteHome.includes("matchMedia") &&
         !siteHome.includes("userAgent"),
     );
     check("site-css", siteHome.includes('href="/agenticops.css"'));

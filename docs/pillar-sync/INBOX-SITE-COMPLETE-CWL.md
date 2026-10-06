@@ -5,7 +5,7 @@
 **To:** cwl  
 **From:** parent (live https://agenticop.io · demo https://agenticop-cwl-demo.web.app)  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done** (tip **1.0.78**, gold `86`, token `CWL_SITE_COMPLETE_OK`)  
 **CWL tip observed:** **1.0.77** · land `55238a6` · tag `cwl-v1.0.77` · bus `6a18011`  
 **Ask id:** `site-complete-cwl`  
 **Lane:** do this in `engines/chrysalis-cwl`. Do not invent a second IR under Convert, Secure, or hand-edited HTML in `brand/agenticops-web`.

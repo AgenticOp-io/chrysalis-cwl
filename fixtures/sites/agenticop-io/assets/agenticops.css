@@ -224,6 +224,17 @@ img { max-width: 100%; display: block; }
   color: #fff;
   border-bottom-color: var(--ao-cyan);
 }
+.ao-nav-open {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 .ao-nav-toggle {
   display: none;
   align-items: center;
@@ -299,7 +310,8 @@ img { max-width: 100%; display: block; }
     visibility: hidden;
     transition: opacity .18s ease, transform .18s ease, visibility .18s;
   }
-  .ao-nav.is-open .ao-nav-drawer {
+  .ao-nav.is-open .ao-nav-drawer,
+  .ao-nav:has(.ao-nav-open:checked) .ao-nav-drawer {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;

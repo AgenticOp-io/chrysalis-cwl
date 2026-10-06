@@ -1,50 +1,45 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-05 · tip **1.0.77** · **Goal:** DNA of web languages. Tip 1.0.77 closed fonts/100% contract; parent asks for **complete** CWL (no unexplained host leftovers). Site lane still deploys live.  
+**Updated:** 2026-10-05 · tip **1.0.78** · **Goal:** DNA of web languages. CWL creates the language. The site lane deploys live agenticop.io. Convert peels. CWL does not deploy.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: ASK site-complete-cwl (parent INBOX). Tip 1.0.77 pins stay done. Close drawer/device/year/assets/host-path/deploy for a complete claim
-CONVERT_NEXT: idle · tip 1.0.77 · wait if complete tip lands
-SECURE_NEXT: idle · tip 1.0.77 · wait if complete tip lands
-CWL_NEXT: open · parent ask site-complete-cwl · INBOX-SITE-COMPLETE-CWL.md
-SITE_NEXT: wait · redeploy demo/live after complete tip · parent auth · CWL does not deploy live
+DISPATCH: tip 1.0.78 complete site. Convert + Secure pin. Site refresh emit + hosting:agenticops + deploy:demo. CWL does not deploy live
+CONVERT_NEXT: pin 1.0.78 · CONVERT_TIP_1_0_78_OK · no CSS invent · no live agenticops deploy
+SECURE_NEXT: pin 1.0.78 · literal year + CSS menu are document facts · SECURE_TIP_1_0_78_OK
+CWL_NEXT: done · tip 1.0.78 land pending · CWL_SITE_COMPLETE_OK · language only
+SITE_NEXT: open · refresh emit:site · deploy:demo + firebase hosting:agenticops · Site owns live deploy
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.77`** |
-| Packages | **`@agenticop-io/cwl@1.0.77`** (pin; Packages publish when tagged) |
-| Tags | `cwl-v1.0.46` · `cwl-v1.0.47` · `cwl-v1.0.56` · `cwl-v1.0.61` · `cwl-v1.0.62` · `cwl-v1.0.67` · `cwl-v1.0.70` · `cwl-v1.0.75` · `cwl-v1.0.76` · `cwl-v1.0.77` |
+| **CWL tip** | **`1.0.78`** |
+| Packages | **`@agenticop-io/cwl@1.0.78`** (pin; Packages publish when tagged) |
+| Tags | `cwl-v1.0.75` · `cwl-v1.0.76` · `cwl-v1.0.77` · `cwl-v1.0.78` (after land) |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | 55238a6 | tip **1.0.77** owned fonts · merge `a8945e0` · tag `cwl-v1.0.77` |
-| **Convert** | `main` | 419164ca | tip pin **1.0.77**, `CONVERT_TIP_1_0_77_OK` |
-| **Secure** | `main` | 630ccf6 | tip pin **1.0.77**, `SECURE_TIP_1_0_77_OK` |
-| **Site** | `main` | 805f43b | tip **1.0.77** emit live · `SITE_DEPLOY_OK` |
+| **CWL** | `main` | pending | tip **1.0.78** complete site (land after PR) |
+| **Convert** | `main` | 419164ca | tip pin **1.0.77** |
+| **Secure** | `main` | 630ccf6 | tip pin **1.0.77** |
+| **Site** | `main` | 805f43b | tip **1.0.77** live |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | CWL | **Ask `site-complete-cwl`.** Parent: complete the public site beyond tip **1.0.77** (drawer/device/year host JS, asset-bytes rule, emit vs genome, deploy boundary). Details: [`INBOX-SITE-COMPLETE-CWL.md`](./INBOX-SITE-COMPLETE-CWL.md) |
-| **P1** | Site | After tip: refresh demo (`deploy:demo`) + live when parent authorizes |
-| **done** | Site | Deployed tip **1.0.77** emit to `hosting:agenticops` · main `805f43b` · PR #2 |
-| **done** | Convert | Tip pin **1.0.77**, main `419164ca`, [PR #84](https://github.com/AgenticOp-io/chrysalis/pull/84) |
-| **done** | Secure | Tip pin **1.0.77**, main `630ccf6`, [PR #30](https://github.com/AgenticOp-io/chrysalis-security/pull/30) |
-| **done** | CWL | tip **1.0.77** owned fonts, land `55238a6`, tag `cwl-v1.0.77` |
-| **done** | Secure | Tip pin **1.0.76**, main `9f61d00` |
-| **done** | Convert | Tip pin **1.0.76**, main `be58a179` |
-| **done** | CWL | tip **1.0.76** site 100% contract, land `bfd1122` |
+| **P0** | Site | **Site deploys.** Refresh from tip **1.0.78** `emit:site`. Demo via CWL `deploy:demo` or site ops. Live `firebase deploy --only hosting:agenticops`. CWL does not deploy live |
+| **P0** | Convert | Pin **1.0.78**. Reply `CONVERT_TIP_1_0_78_OK` |
+| **P0** | Secure | Pin **1.0.78**. Literal year + CSS menu are document facts. Reply `SECURE_TIP_1_0_78_OK` |
+| **done** | CWL | tip **1.0.77** owned fonts, land `55238a6` |
 
 ## Honesty
 
-See [`../language/CWL-SITE-100.md`](../language/CWL-SITE-100.md). Genome SoR is `fixtures/sites/agenticop-io/site.cwl`. Asset bytes SoR is `fixtures/sites/agenticop-io/assets/` (includes owned fonts). Official public host is certified `emit:site`. Year/device/drawer are certified host effects. Live Firebase CLI is site/ops. Tip **1.0.75** demo deploy refuses live `agenticops`.
+See [`../language/CWL-SITE-COMPLETE.md`](../language/CWL-SITE-COMPLETE.md). Complete marketing genome uses `year 2026;`, checkbox menu, owned assets, certified `emit:site`. No host drawer/device JS. Deploy is site/ops.

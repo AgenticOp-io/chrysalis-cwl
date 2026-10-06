@@ -339,6 +339,8 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
   /** @type {string | null} */
   let chromeHtml = null;
   let yearHost = false;
+  /** @type {number | null} */
+  let yearLiteral = null;
   let charset = null;
   let viewportDevice = false;
   const metaCard = emptyMetaCard();
@@ -384,6 +386,7 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
           chromeHtml,
           pageIslands,
           ...(yearHost ? { yearHost: true } : {}),
+          ...(yearLiteral != null ? { yearLiteral } : {}),
           ...(charset ? { charset } : {}),
           ...(viewportDevice ? { viewportDevice: true } : {}),
           ...(metaCardHasFacts(metaCard) ? { metaCard } : {}),
@@ -417,6 +420,16 @@ function parseLayoutDeclBlock(lines, startIdx, lineNo) {
     }
     if (/^year\s+host\s*;$/.test(line)) {
       yearHost = true;
+      yearLiteral = null;
+      continue;
+    }
+    const yearLit = /^year\s+(\d{4})\s*;$/.exec(line);
+    if (yearLit) {
+      const n = Number(yearLit[1]);
+      if (n >= 1970 && n <= 9999) {
+        yearLiteral = n;
+        yearHost = false;
+      }
       continue;
     }
     if (CHARSET_RE.test(line)) {

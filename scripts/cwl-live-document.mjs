@@ -125,6 +125,7 @@ function composeRoute(route, body, head) {
     navId: route.navId,
     links: route.navLinks,
     drawer: route.drawer,
+    yearLiteral: route.yearLiteral,
     styles: route.styles,
     images: route.images,
     scripts: route.scripts,
@@ -188,7 +189,9 @@ export async function renderCwlLiveDocument(file, request, host = {}) {
   const body = finishCwlDynamicHtml(templated, route.htmlRepeats ?? [], data);
   const head = fillCwlRequestHtml(route.headHtml ?? "", bindings, values);
   let html = composeRoute(route, body, head);
-  if (route.yearHost || route.deviceHost) {
+  if (Number.isInteger(route.yearLiteral)) {
+    html = applyCwlHostDocumentTokens(html, { year: route.yearLiteral });
+  } else if (route.yearHost || route.deviceHost) {
     html = applyCwlHostDocumentTokens(html, {
       year: route.yearHost ? host.year : undefined,
       devices: route.deviceHost?.values,

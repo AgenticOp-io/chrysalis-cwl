@@ -4,6 +4,38 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-05 - tip-1.0.78-site-complete
+
+**To:** convert + secure + site  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.78** · ask `site-complete-cwl`  
+**Ask id:** `tip-1.0.78-site-complete`
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | open |
+| Secure | open |
+| Site | open — Site deploys |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.78**. Peel gold `79` still. No CSS invent. No live `agenticops` deploy. Reply `CONVERT_TIP_1_0_78_OK` |
+| Secure | Pin to **1.0.78**. Literal year + CSS checkbox menu are document facts (not Helix). Reply `SECURE_TIP_1_0_78_OK` / `CUTOVER_TIP_1_0_78_OK` |
+| Site | **Site deploys.** Refresh from CWL `npm run emit:site` (tip **1.0.78**). Demo: CWL `deploy:demo` or site ops. Live: `firebase deploy --only hosting:agenticops --project agenticop-io`. CWL does not deploy live |
+
+### CWL landed (this tip)
+
+- Contract: [`docs/language/CWL-SITE-COMPLETE.md`](../language/CWL-SITE-COMPLETE.md)
+- `year 2026;` · checkbox menu · owned CSS/fonts · no host drawer/device JS
+- Gold `86-site-complete`. Token `CWL_SITE_COMPLETE_OK`
+
+---
+
 ## 2026-10-05 - tip-1.0.77-owned-fonts
 
 **To:** convert + secure + site  

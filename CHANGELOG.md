@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.78 - 2026-10-05
+
+- Complete CWL marketing site: `year 2026;` literal, checkbox menu + owned CSS (no host drawer/device JS), emit freeze, deploy stays ops
+- Gold `86-site-complete`. Token `CWL_SITE_COMPLETE_OK`. Contract [`docs/language/CWL-SITE-COMPLETE.md`](./docs/language/CWL-SITE-COMPLETE.md)
+- AgenticOps genome drops `year host`, `device host`, and `drawer` statements
+
 ## 1.0.77 - 2026-10-05
 
 - Owned font faces for agenticop.io: layout `style "/fonts.css"`, latin woff2 under `fixtures/sites/agenticop-io/assets/fonts/`. Google Fonts CDN removed from the genome
