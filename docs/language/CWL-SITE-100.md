@@ -1,6 +1,6 @@
 # What “100% CWL” means for agenticop.io
 
-**Tip:** **1.0.76** · Ask `site-100-cwl` · Genome: `fixtures/sites/agenticop-io/site.cwl`
+**Tip:** **1.0.77** · Ask `site-owned-fonts` · Genome: `fixtures/sites/agenticop-io/site.cwl`
 
 ## Official host path
 
@@ -15,14 +15,14 @@ Request-time compose (`npm run live`) remains a valid CWL host for dynamic modul
 | --- | --- |
 | Pages | 26 `@page` routes in `site.cwl` |
 | Shell / nav / drawer name / device cut | Layout statements + golds `68`–`79` |
-| Stylesheet and logo URLs | `style` / `image` |
+| Stylesheet, fonts, and logo URLs | `style` / `image` |
 | Explainer and card images | Paths in page HTML / meta |
 | Firebase name | `host firebase` (record only) |
 
 ## CWL-owned asset bytes
 
-Bytes for this site live under **`fixtures/sites/agenticop-io/assets/`** (stylesheet, logo, explainer PNGs).  
-`emit:site` copies those files next to the HTML when `--assets` is omitted and that directory exists.  
+Bytes for this site live under **`fixtures/sites/agenticop-io/assets/`** (stylesheet, `/fonts.css`, latin woff2 faces, logo, explainer PNGs).  
+`emit:site` copies those files next to the HTML when `--assets` is omitted and that directory exists. CSS `url(/…)` faces are copied after `/fonts.css`.  
 CWL still does **not** parse CSS or invent image pixels. Ownership means SoR path, not a CSS dialect.
 
 `brand/agenticops-web` is **assets/ops only** after cutover. It is not a second page source. Do not hand-edit emitted HTML there.
@@ -41,7 +41,6 @@ These scripts are **not** opaque leftover chrome. They are gold-tested host effe
 
 | Gap | Status |
 | --- | --- |
-| Off-site Google Fonts CSS | Declared URL / preconnect. Bytes are not in the genome. Hole class: off-site stylesheet. Self-host later if needed. |
 | Live Firebase CLI deploy | Ops. `deploy:demo` publishes only `agenticop-cwl-demo`. Live `agenticops` / `agenticop-io` stay site/ops under parent auth. |
 | Dead `ao-layout.js` | Not referenced by any page. Site deletes it on redeploy. |
 
@@ -54,7 +53,6 @@ These scripts are **not** opaque leftover chrome. They are gold-tested host effe
 CWL creates the language. **The site lane deploys.** CWL does not run `firebase deploy` for live agenticop.io.
 
 1. Stop hand-editing page HTML in `brand/agenticops-web`  
-2. Refresh assets from `fixtures/sites/agenticop-io/assets/` when bytes change  
+2. Refresh assets from `fixtures/sites/agenticop-io/assets/` when bytes change (include `fonts.css` + `fonts/`)  
 3. Delete `ao-layout.js`  
 4. Site merges and runs `firebase deploy --only hosting:agenticops`  
-

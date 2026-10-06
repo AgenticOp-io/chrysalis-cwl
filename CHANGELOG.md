@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.77 - 2026-10-05
+
+- Owned font faces for agenticop.io: layout `style "/fonts.css"`, latin woff2 under `fixtures/sites/agenticop-io/assets/fonts/`. Google Fonts CDN removed from the genome
+- `emit:site` copies CSS `url(/…)` face files. Gold `85-site-owned-fonts`. Token `CWL_SITE_100_OK`
+- Live Firebase CLI remains ops. Site lane deploys; CWL does not
+
 ## 1.0.76 - 2026-10-05
 
 - Site 100% contract for agenticop.io: certified `emit:site` freeze, asset bytes under `fixtures/sites/agenticop-io/assets/`, year/device/drawer as host effects, off-site fonts and live Firebase CLI named outside

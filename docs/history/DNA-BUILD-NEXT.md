@@ -2,7 +2,7 @@
 
 **Path:** Rosetta → UT → DNA of web languages — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
 **Goal:** CWL is a language in its own right. It must be able to replace any web page. Golds `68`–`82` replace a document with navigation, a drawer, a device token, named assets, a same-site form, an off-site anchor, a named viewport cut, document identity, a social card, the remaining head facts, request-time HTML, dynamic HTML, and bound database operations. WebSocket duplex, raw SQL text, and unclassified client script stay named holes.  
-**Tip:** **`1.0.76`** - site 100% contract. Genome pages + owned assets + certified host effects. Live Firebase CLI stays ops.
+**Tip:** **`1.0.77`** - owned font faces for agenticop.io. Live Firebase CLI stays ops.
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -73,6 +73,7 @@
 | P0 | Database (`82`) | **done** (`1.0.74`) — `engine` plus bound `db select` / `insert` / `update` / `delete`. Six engines. Raw SQL stays out |
 | P0 | Host site emit (`83`) | **done** (`1.0.75`) — static Hosting emit + demo deploy host. No Cloud Function. Live `agenticops` refused |
 | P0 | Site 100% contract (`84`) | **done** (`1.0.76`) — CWL-SITE-100.md · owned assets · host effects · named outsides |
+| P0 | Site owned fonts (`85`) | **done** (`1.0.77`) — `/fonts.css` + latin woff2 under assets; Google Fonts CDN removed |
 | P0 | Replace any web page | **open** — goal of the language. Document shell through gold `74` is the start. Remaining page behaviors stay holes until an honest RFC |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
@@ -97,7 +98,8 @@
 | Tip pin **1.0.73** | Convert + Secure — **open** (included in the **1.0.74** pin) |
 | Tip pin **1.0.74** | Convert + Secure — **done** (Convert `360588ad`, Secure `44446dc`) |
 | Tip pin **1.0.75** | Convert + Secure — **done** (Convert `7c970301`, Secure `e753716`) |
-| Tip pin **1.0.76** | Convert — **done** (`be58a179`); Secure — **open**; Site deploys live (not Convert) |
+| Tip pin **1.0.76** | Convert — **done** (`be58a179`); Secure — **done** (`9f61d00`) |
+| Tip pin **1.0.77** | Convert + Secure — **asked**; Site refreshes emit + deploys (not CWL) |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |
