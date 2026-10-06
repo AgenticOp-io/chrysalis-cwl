@@ -6,12 +6,12 @@
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.78 complete site. Convert + Secure pin. Site refresh emit + hosting:agenticops + deploy:demo. CWL does not deploy live
-CONVERT_NEXT: pin 1.0.78 · CONVERT_TIP_1_0_78_OK · no CSS invent · no live agenticops deploy
-SECURE_NEXT: pin 1.0.78 · literal year + CSS menu are document facts · SECURE_TIP_1_0_78_OK
-CWL_NEXT: done · tip 1.0.78 land pending · CWL_SITE_COMPLETE_OK · language only
-SITE_NEXT: open · refresh emit:site · deploy:demo + firebase hosting:agenticops · Site owns live deploy
+CWL_FLEET_IDLE: yes
+DISPATCH: tip 1.0.78 closed. Convert + Secure pinned. Site deployed hosting:agenticops + demo. CWL does not deploy live
+CONVERT_NEXT: done · CONVERT_TIP_1_0_78_OK · main 767ecbaa
+SECURE_NEXT: done · SECURE_TIP_1_0_78_OK · main 77cc8a0
+CWL_NEXT: done · tip 1.0.78 land a172cb8 · merge 9bf1efd · tag cwl-v1.0.78 · CWL_SITE_COMPLETE_OK
+SITE_NEXT: done · SITE_DEPLOY_OK · main 5d17e69 · hosting:agenticops + demo live
 ```
 
 ## Tips / pins
@@ -20,26 +20,26 @@ SITE_NEXT: open · refresh emit:site · deploy:demo + firebase hosting:agenticop
 | --- | --- |
 | **CWL tip** | **`1.0.78`** |
 | Packages | **`@agenticop-io/cwl@1.0.78`** (pin; Packages publish when tagged) |
-| Tags | `cwl-v1.0.75` · `cwl-v1.0.76` · `cwl-v1.0.77` · `cwl-v1.0.78` (after land) |
+| Tags | `cwl-v1.0.75` · `cwl-v1.0.76` · `cwl-v1.0.77` · `cwl-v1.0.78` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | pending | tip **1.0.78** complete site (land after PR) |
-| **Convert** | `main` | 419164ca | tip pin **1.0.77** |
-| **Secure** | `main` | 630ccf6 | tip pin **1.0.77** |
-| **Site** | `main` | 805f43b | tip **1.0.77** live |
+| **CWL** | `main` | a172cb8 | tip **1.0.78** complete · merge `9bf1efd` · tag `cwl-v1.0.78` |
+| **Convert** | `main` | 767ecbaa | tip pin **1.0.78**, `CONVERT_TIP_1_0_78_OK` |
+| **Secure** | `main` | 77cc8a0 | tip pin **1.0.78**, `SECURE_TIP_1_0_78_OK` |
+| **Site** | `main` | 5d17e69 | tip **1.0.78** emit live · `SITE_DEPLOY_OK` |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Site | **Site deploys.** Refresh from tip **1.0.78** `emit:site`. Demo via CWL `deploy:demo` or site ops. Live `firebase deploy --only hosting:agenticops`. CWL does not deploy live |
-| **P0** | Convert | Pin **1.0.78**. Reply `CONVERT_TIP_1_0_78_OK` |
-| **P0** | Secure | Pin **1.0.78**. Literal year + CSS menu are document facts. Reply `SECURE_TIP_1_0_78_OK` |
-| **done** | CWL | tip **1.0.77** owned fonts, land `55238a6` |
+| **done** | Site | Deployed tip **1.0.78** · main `5d17e69` · [PR #3](https://github.com/AgenticOp-io/agenticops-web/pull/3) |
+| **done** | Convert | Tip pin **1.0.78**, main `767ecbaa`, [PR #86](https://github.com/AgenticOp-io/chrysalis/pull/86) |
+| **done** | Secure | Tip pin **1.0.78**, main `77cc8a0`, [PR #31](https://github.com/AgenticOp-io/chrysalis-security/pull/31) |
+| **done** | CWL | tip **1.0.78** complete site, land `a172cb8`, tag `cwl-v1.0.78` |
 
 ## Honesty
 
-See [`../language/CWL-SITE-COMPLETE.md`](../language/CWL-SITE-COMPLETE.md). Complete marketing genome uses `year 2026;`, checkbox menu, owned assets, certified `emit:site`. No host drawer/device JS. Deploy is site/ops.
+See [`../language/CWL-SITE-COMPLETE.md`](../language/CWL-SITE-COMPLETE.md). Complete marketing genome: `year 2026;`, checkbox menu, owned assets, certified `emit:site`. No host drawer/device JS. Deploy is site/ops.

@@ -8,25 +8,25 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure + site  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip:** **1.0.78** · ask `site-complete-cwl`  
+**Status:** **done**  
+**CWL tip:** **1.0.78** · language land `a172cb8` · merge `9bf1efd` · ask `site-complete-cwl`  
 **Ask id:** `tip-1.0.78-site-complete`
 
 ### Replies
 
 | Who | Status |
 | --- | --- |
-| Convert | open |
-| Secure | open |
-| Site | open — Site deploys |
+| Convert | **done** — `CONVERT_TIP_1_0_78_OK` on Convert `main` `767ecbaa` ([PR #86](https://github.com/AgenticOp-io/chrysalis/pull/86)) |
+| Secure | **done** — `SECURE_TIP_1_0_78_OK` / `CUTOVER_TIP_1_0_78_OK` on Secure `main` `77cc8a0` ([PR #31](https://github.com/AgenticOp-io/chrysalis-security/pull/31)) |
+| Site | **done** — `SITE_DEPLOY_OK` on agenticops-web `main` `5d17e69` ([PR #3](https://github.com/AgenticOp-io/agenticops-web/pull/3)); demo + live |
 
-### Ask
+### Ask (record)
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.78**. Peel gold `79` still. No CSS invent. No live `agenticops` deploy. Reply `CONVERT_TIP_1_0_78_OK` |
-| Secure | Pin to **1.0.78**. Literal year + CSS checkbox menu are document facts (not Helix). Reply `SECURE_TIP_1_0_78_OK` / `CUTOVER_TIP_1_0_78_OK` |
-| Site | **Site deploys.** Refresh from CWL `npm run emit:site` (tip **1.0.78**). Demo: CWL `deploy:demo` or site ops. Live: `firebase deploy --only hosting:agenticops --project agenticop-io`. CWL does not deploy live |
+| Convert | **done** (record): Pin to **1.0.78** |
+| Secure | **done** (record): Pin to **1.0.78** |
+| Site | **done** (record): emit refresh + deploy |
 
 ### CWL landed (this tip)
 
