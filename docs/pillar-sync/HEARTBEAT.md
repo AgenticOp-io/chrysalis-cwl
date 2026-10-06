@@ -1,18 +1,18 @@
 # Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.78** complete site · Site redeploys · CWL does not deploy live
+**Fleet:** tip **1.0.78** closed · Convert + Secure pinned · Site live · `CWL_FLEET_IDLE`
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | landing | pending | tip **1.0.78** · `CWL_SITE_COMPLETE_OK` |
-| **Convert** | open | `419164ca` | pin **1.0.78** |
-| **Secure** | open | `630ccf6` | pin **1.0.78** |
-| **Site** | open | `805f43b` | refresh tip **1.0.78** emit + deploy |
+| **CWL** | waiting | `a172cb8` | language done · does not deploy |
+| **Convert** | waiting | `767ecbaa` | pin **1.0.78** · `CONVERT_TIP_1_0_78_OK` |
+| **Secure** | waiting | `77cc8a0` | pin **1.0.78** · `SECURE_TIP_1_0_78_OK` |
+| **Site** | waiting | `5d17e69` | `SITE_DEPLOY_OK` · hosting:agenticops + demo |
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: no
+CWL_FLEET_IDLE: yes
 ORDER: tip-1.0.78-site-complete
-NEXT: Convert + Secure pin; Site deploys
+NEXT: none — closed
 RULE: CWL creates the language; the site lane deploys
 ```
