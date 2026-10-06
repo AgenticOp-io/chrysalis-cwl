@@ -9,7 +9,7 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.75** · ask `cwl-only-demo-deploy`  
+**CWL tip:** **1.0.75** · language land `c5d48cb` · ask `cwl-only-demo-deploy`  
 **Ask id:** `tip-1.0.75-host-site-emit`
 
 ### Ask
@@ -24,7 +24,7 @@ Pushed asks for siblings. Newest first.
 - `applyCwlHostDocumentTokens` fills year and device from declared classes and `below`
 - `npm run emit:site` writes static HTML. `npm run deploy:demo` publishes only `agenticop-cwl-demo` and refuses live `agenticops` / `agenticop-io`
 - Gold `83`. Token `CWL_HOST_SITE_OK`. The 26-page genome emits the same way
-- Live https://agenticop.io is untouched
+- Land `c5d48cb`. Live https://agenticop.io is untouched
 
 ---
 
