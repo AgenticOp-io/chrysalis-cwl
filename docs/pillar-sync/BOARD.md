@@ -6,12 +6,12 @@
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.77 owned fonts. Convert + Secure pin. Site refresh emit + hosting:agenticops deploy. CWL does not deploy
-CONVERT_NEXT: pin 1.0.77 · CONVERT_TIP_1_0_77_OK · peel gold 79 still · no CSS invent · no live agenticops deploy
-SECURE_NEXT: pin 1.0.77 · owned fonts are document/host asset facts · not Helix · SECURE_TIP_1_0_77_OK
-CWL_NEXT: done · tip 1.0.77 land 55238a6 · merge a8945e0 · CWL_SITE_100_OK · tag cwl-v1.0.77 · language only
-SITE_NEXT: open · after language land: emit:site refresh · merge/update agenticops-web · firebase deploy --only hosting:agenticops · Site owns deploy
+CWL_FLEET_IDLE: yes
+DISPATCH: tip 1.0.77 closed. Convert + Secure pinned. Site deployed hosting:agenticops. CWL does not deploy
+CONVERT_NEXT: done · CONVERT_TIP_1_0_77_OK · main 419164ca
+SECURE_NEXT: done · SECURE_TIP_1_0_77_OK · main 630ccf6
+CWL_NEXT: done · tip 1.0.77 land 55238a6 · merge a8945e0 · tag cwl-v1.0.77 · language only
+SITE_NEXT: done · SITE_DEPLOY_OK · main 805f43b · hosting:agenticops live
 ```
 
 ## Tips / pins
@@ -27,21 +27,22 @@ SITE_NEXT: open · after language land: emit:site refresh · merge/update agenti
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
 | **CWL** | `main` | 55238a6 | tip **1.0.77** owned fonts · merge `a8945e0` · tag `cwl-v1.0.77` |
-| **Convert** | `main` | be58a179 | tip pin **1.0.76**, `CONVERT_TIP_1_0_76_OK` |
-| **Secure** | `main` | 9f61d00 | tip pin **1.0.76**, `SECURE_TIP_1_0_76_OK` |
+| **Convert** | `main` | 419164ca | tip pin **1.0.77**, `CONVERT_TIP_1_0_77_OK` |
+| **Secure** | `main` | 630ccf6 | tip pin **1.0.77**, `SECURE_TIP_1_0_77_OK` |
+| **Site** | `main` | 805f43b | tip **1.0.77** emit live · `SITE_DEPLOY_OK` |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Pin **1.0.77**. Reply `CONVERT_TIP_1_0_77_OK`. No live deploy |
-| **P0** | Secure | Pin **1.0.77**. Owned `/fonts.css` faces are document facts. Reply `SECURE_TIP_1_0_77_OK` |
-| **P0** | Site | **Site deploys.** Refresh from `emit:site` (include `fonts.css` + `fonts/`). Merge/update PR. `firebase deploy --only hosting:agenticops --project agenticop-io`. CWL does not deploy |
+| **done** | Site | Deployed tip **1.0.77** emit to `hosting:agenticops` · main `805f43b` · PR #2 |
+| **done** | Convert | Tip pin **1.0.77**, main `419164ca`, [PR #84](https://github.com/AgenticOp-io/chrysalis/pull/84) |
+| **done** | Secure | Tip pin **1.0.77**, main `630ccf6`, [PR #30](https://github.com/AgenticOp-io/chrysalis-security/pull/30) |
+| **done** | CWL | tip **1.0.77** owned fonts, land `55238a6`, tag `cwl-v1.0.77` |
 | **done** | Secure | Tip pin **1.0.76**, main `9f61d00` |
 | **done** | Convert | Tip pin **1.0.76**, main `be58a179` |
-| **done** | CWL | tip **1.0.77** owned fonts, land `55238a6`, tag `cwl-v1.0.77` |
 | **done** | CWL | tip **1.0.76** site 100% contract, land `bfd1122` |
 
 ## Honesty
 
-See [`../language/CWL-SITE-100.md`](../language/CWL-SITE-100.md). Genome SoR is `fixtures/sites/agenticop-io/site.cwl`. Asset bytes SoR is `fixtures/sites/agenticop-io/assets/` (now includes owned fonts). Official public host is certified `emit:site`. Year/device/drawer are certified host effects. Live Firebase CLI is outside language bytes. Tip **1.0.75** demo deploy refuses live `agenticops`.
+See [`../language/CWL-SITE-100.md`](../language/CWL-SITE-100.md). Genome SoR is `fixtures/sites/agenticop-io/site.cwl`. Asset bytes SoR is `fixtures/sites/agenticop-io/assets/` (includes owned fonts). Official public host is certified `emit:site`. Year/device/drawer are certified host effects. Live Firebase CLI is site/ops. Tip **1.0.75** demo deploy refuses live `agenticops`.
