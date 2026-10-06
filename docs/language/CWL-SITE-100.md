@@ -51,7 +51,10 @@ These scripts are **not** opaque leftover chrome. They are gold-tested host effe
 
 ## Site lane after this tip
 
+CWL creates the language. **The site lane deploys.** CWL does not run `firebase deploy` for live agenticop.io.
+
 1. Stop hand-editing page HTML in `brand/agenticops-web`  
 2. Refresh assets from `fixtures/sites/agenticop-io/assets/` when bytes change  
 3. Delete `ao-layout.js`  
-4. Redeploy live Hosting only when parent authorizes  
+4. Site merges and runs `firebase deploy --only hosting:agenticops`  
+

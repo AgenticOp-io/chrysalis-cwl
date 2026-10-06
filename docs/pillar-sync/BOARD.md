@@ -1,17 +1,17 @@
 ﻿# Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-05 · tip **1.0.76** · **Goal:** DNA of web languages. Site 100% contract defines genome pages, owned assets, and host effects for agenticop.io. Live Firebase CLI stays ops.  
+**Updated:** 2026-10-05 · tip **1.0.76** · **Goal:** DNA of web languages. CWL creates the language. The site lane deploys live agenticop.io. Convert peels. CWL does not deploy.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.76. Convert/Secure pin. Site tree ready (PR open); live deploy waits on parent auth
+DISPATCH: tip 1.0.76. Convert/Secure pin. Site owns merge + live hosting:agenticops deploy. CWL does not deploy
 CONVERT_NEXT: pin 1.0.76 · npm run sync:convert picks up cwl-db.mjs · peel stays gold 79 · do not invent CSS dialect · do not deploy live agenticops
 SECURE_NEXT: pin 1.0.76 · site 100% host effects are not Helix · off-site fonts stay document facts
-CWL_NEXT: done · tip 1.0.76 land bfd1122 · CWL_SITE_100_OK · tags cwl-v1.0.75 + cwl-v1.0.76
-SITE_NEXT: prepared · ao-layout.js deleted · 26 pages + assets from emit:site · PR AgenticOp-io/agenticops-web#1 · commit 3f1a3ba · live firebase deploy blocked until parent authorizes
+CWL_NEXT: done · tip 1.0.76 land bfd1122 · CWL_SITE_100_OK · tags cwl-v1.0.75 + cwl-v1.0.76 · language only
+SITE_NEXT: open · merge agenticops-web#1 (3f1a3ba) · firebase deploy --only hosting:agenticops · Site lane owns deploy · CWL and Convert do not
 ```
 
 ## Tips / pins
@@ -36,8 +36,7 @@ SITE_NEXT: prepared · ao-layout.js deleted · 26 pages + assets from emit:site 
 | --- | --- | --- |
 | **P0** | Convert | Pin **1.0.76**. Run `npm run sync:convert` from CWL (or pull ALWAYS including `cwl-db.mjs`). Peel stays gold `79`. Do not invent CSS. Do not deploy live `agenticops` |
 | **P1** | Secure | Pin **1.0.76**. Host effects and off-site fonts are document/host facts, not Helix |
-| **P0** | Parent / Site | Live deploy: merge [agenticops-web#1](https://github.com/AgenticOp-io/agenticops-web/pull/1) then `firebase deploy --only hosting:agenticops --project agenticop-io` when authorized |
-| **done** | Site | Tree prepared — `ao-layout.js` gone, 26 pages + assets from tip **1.0.76** emit, PR #1 `3f1a3ba` (deploy skipped) |
+| **P0** | Site | **Site deploys.** Merge [agenticops-web#1](https://github.com/AgenticOp-io/agenticops-web/pull/1) (`3f1a3ba`: `ao-layout.js` gone, 26 pages + assets from tip **1.0.76** emit). Then `firebase deploy --only hosting:agenticops --project agenticop-io`. CWL does not deploy |
 | **done** | CWL | tip **1.0.76** site 100% contract, land `bfd1122`, tags `cwl-v1.0.75`/`cwl-v1.0.76` |
 | **done** | Convert | Tip pin **1.0.75**, sync `7c970301` |
 | **done** | Secure | Tip pin **1.0.75**, `e753716` |
