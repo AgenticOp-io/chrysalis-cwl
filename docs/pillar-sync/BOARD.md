@@ -1,17 +1,17 @@
 ﻿# Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-05 · tip **1.0.75** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. CWL holds the genome. Host site emit publishes the demo Hosting site without a Cloud Function. Live agenticop.io stays the site lane.  
+**Updated:** 2026-10-05 · tip **1.0.75** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. Live agenticop.io is genome-emitted (26 pages) but not yet 100% CWL. Parent ask `site-100-cwl` is open.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.75 pins done. Convert d38253ad · Secure e753716. Optional operator deploy:demo. Live agenticop.io stays site lane
-CONVERT_NEXT: done · CONVERT_TIP_1_0_75_OK · main d38253ad · feature a629b40f
-SECURE_NEXT: done · SECURE_TIP_1_0_75_OK · CUTOVER_TIP_1_0_75_OK · main e753716 · feature 8056197
-CWL_NEXT: done · tip 1.0.75 land c5d48cb · CWL_HOST_SITE_OK · ask cwl-only-demo-deploy closed
-SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate · demo Hosting is npm run deploy:demo from CWL
+DISPATCH: ASK site-100-cwl (parent INBOX). Tip 1.0.75 pins stay done. Live pages already emitted; 100% contract is the gap
+CONVERT_NEXT: idle · tip 1.0.75 · wait for site-100-cwl tip if contract lands
+SECURE_NEXT: idle · tip 1.0.75 · wait for tip pin if CWL bumps
+CWL_NEXT: open · parent ask site-100-cwl · INBOX-SITE-100-CWL.md · CSS/image bytes, drawer/device, year, fonts, live vs emit, deploy boundary
+SITE_NEXT: wait · delete dead ao-layout.js + redeploy after CWL 100% tip · do not hand-edit page HTML
 ```
 
 ## Tips / pins
@@ -34,8 +34,9 @@ SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate ·
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P1** | Site | Live `agenticop-demo-order` pages into `brand/agenticops-web` + `hosting:agenticops` — separate from demo Hosting |
-| **P2** | Operator | Optional: `npm run deploy:demo` (omit `--dry-run`) to refresh https://agenticop-cwl-demo.web.app |
+| **P0** | CWL | **Ask `site-100-cwl`.** Parent: close gaps so https://agenticop.io is 100% CWL (CSS/image bytes, drawer/device JS, year, fonts, live vs emit, deploy boundary). Details: [`INBOX-SITE-100-CWL.md`](./INBOX-SITE-100-CWL.md). Live is already genome-emitted; tip **1.0.75** alone is not enough |
+| **P1** | Site | After CWL tip: drop dead `ao-layout.js`, keep brand as assets/ops only, redeploy when parent authorizes |
+| **P2** | Operator | Optional: `npm run deploy:demo` for https://agenticop-cwl-demo.web.app |
 | **done** | Convert | Tip pin **1.0.75**, `CONVERT_TIP_1_0_75_OK`, main `d38253ad` |
 | **done** | Secure | Tip pin **1.0.75**, `SECURE_TIP_1_0_75_OK`, main `e753716` |
 | **done** | CWL | tip **1.0.75** host site emit, gold `83`, `CWL_HOST_SITE_OK`, land `c5d48cb` |

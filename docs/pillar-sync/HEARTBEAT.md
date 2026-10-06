@@ -1,17 +1,17 @@
 # Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.75** land `c5d48cb` · Convert + Secure pins **done**
+**Fleet:** tip **1.0.75** · parent ask `site-100-cwl` is **open**
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | waiting | `c5d48cb` | tip **1.0.75** · `CWL_HOST_SITE_OK` |
-| **Convert** | waiting | `d38253ad` | pin **1.0.75** · `CONVERT_TIP_1_0_75_OK` |
-| **Secure** | waiting | `e753716` | pin **1.0.75** · `CUTOVER_TIP_1_0_75_OK` |
-| **Site** | wait | — | live `hosting:agenticops` stays separate |
+| **CWL** | open | `c5d48cb` | develop 100% site contract · [`INBOX-SITE-100-CWL.md`](./INBOX-SITE-100-CWL.md) |
+| **Convert** | idle | `d38253ad` | pin **1.0.75** · wait for tip if contract lands |
+| **Secure** | idle | `e753716` | pin **1.0.75** · wait for tip if CWL bumps |
+| **Site** | wait | — | live already genome-emitted; no hand HTML; redeploy after tip |
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-ORDER: tip-1.0.75-host-site-emit done
-NEXT: optional operator deploy:demo; site lane for live agenticop.io
+ASK: site-100-cwl
+NEXT: CWL defines and closes 100% CWL gaps for agenticop.io; Convert/Secure pin afterward; site cleans leftovers on parent redeploy
 ```
