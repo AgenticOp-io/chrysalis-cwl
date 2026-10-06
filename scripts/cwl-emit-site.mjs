@@ -29,7 +29,9 @@ export async function emitCwlSite(opts) {
   const file = resolve(opts.file);
   const outDir = resolve(opts.outDir);
   const year = Number.isInteger(opts.year) ? opts.year : new Date().getUTCFullYear();
-  const assetsDir = opts.assetsDir ? resolve(opts.assetsDir) : null;
+  const assetsDir = opts.assetsDir
+    ? resolve(opts.assetsDir)
+    : defaultCwlSiteAssetsDir(file);
   const parsed = resolveCwlModuleFromPath(file);
   const routes = (parsed.routes ?? []).filter(
     (route) => String(route.method).toUpperCase() === "GET" && route.body?.kind === "html",
@@ -56,21 +58,39 @@ export async function emitCwlSite(opts) {
     written.push(rel);
   }
   const assetNames = new Set();
+  const localAssetRe = /(?:src|href)=["']\/([A-Za-z0-9._/-]+\.(?:css|svg|png|jpe?g|webp|ico|gif))["']/g;
   for (const route of routes) {
     for (const href of route.styles ?? []) {
-      if (typeof href === "string" && href.startsWith("/")) assetNames.add(href.slice(1));
+      if (typeof href === "string" && href.startsWith("/") && !href.startsWith("//")) {
+        assetNames.add(href.slice(1));
+      }
     }
     for (const image of route.images ?? []) {
       const href = typeof image === "string" ? image : image?.path;
-      if (typeof href === "string" && href.startsWith("/")) assetNames.add(href.slice(1));
+      if (typeof href === "string" && href.startsWith("/") && !href.startsWith("//")) {
+        assetNames.add(href.slice(1));
+      }
+    }
+  }
+  for (const rel of written) {
+    const html = readFileSync(join(outDir, rel), "utf8");
+    localAssetRe.lastIndex = 0;
+    let match;
+    while ((match = localAssetRe.exec(html)) != null) {
+      assetNames.add(match[1]);
     }
   }
   /** @type {string[]} */
   const copied = [];
+  /** @type {string[]} */
+  const missingAssets = [];
   if (assetsDir) {
     for (const name of assetNames) {
       const src = join(assetsDir, name);
-      if (!existsSync(src)) continue;
+      if (!existsSync(src)) {
+        missingAssets.push(name);
+        continue;
+      }
       const dest = join(outDir, name);
       mkdirSync(dirname(dest), { recursive: true });
       copyFileSync(src, dest);
@@ -100,8 +120,19 @@ export async function emitCwlSite(opts) {
     pages: written.length,
     written,
     assets: copied,
+    missingAssets,
+    assetsDir,
     errorDocument: errorDoc,
   };
+}
+
+/**
+ * Default asset root next to a site genome: <dir>/assets
+ * @param {string} cwlFile
+ */
+export function defaultCwlSiteAssetsDir(cwlFile) {
+  const beside = join(dirname(resolve(cwlFile)), "assets");
+  return existsSync(beside) ? beside : null;
 }
 
 async function main(argv) {
@@ -120,10 +151,11 @@ async function main(argv) {
     console.error("usage: node scripts/cwl-emit-site.mjs <file.cwl> --out <dir> [--assets <dir>] [--year 2026]");
     process.exit(1);
   }
+  const resolvedAssets = assetsDir ?? defaultCwlSiteAssetsDir(file);
   const report = await emitCwlSite({
     file,
     outDir,
-    assetsDir,
+    assetsDir: resolvedAssets,
     ...(Number.isInteger(year) ? { year } : {}),
   });
   process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);

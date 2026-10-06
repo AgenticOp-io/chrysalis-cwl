@@ -29,6 +29,8 @@ export const ALWAYS = [
   "cwl-diagnose.mjs",
   "cwl-fullstack-holes.mjs",
   "cwl-layout.mjs",
+  // Bound database statements — parser/print import this module.
+  "cwl-db.mjs",
   // RFC-0031 / RFC-0028 surfaces Convert peels at tip — keep ALWAYS, not fat copies.
   "cwl-html-template.mjs",
   "cwl-emit-ui.mjs",

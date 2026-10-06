@@ -91,6 +91,7 @@ Convert may keep separate hub golds; they must not contradict this grammar.
 | `81-dynamic-site` | Dynamic HTML. Repeats, nested lists, and request branches | 0031 |
 | `82-database` | `engine` plus bound select, insert, update, and delete | 0020 |
 | `83-host-site-emit` | static Hosting emit; host fills year and device; demo deploy refuses live `agenticops` | 0029 |
+| `84-site-100-contract` | 100% CWL contract: owned assets, host effects, named outsides | 0029 |
 
 ## Parseable subset notes (0.1.8)
 

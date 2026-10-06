@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "chrysalisVersion": "0.0.0",
+    "createdAt": "1970-01-01T00:00:00.000Z",
+    "sourceApp": "cwl-ingest-smoke"
+  },
+  "nodes": [
+    {
+      "attrs": {
+        "value": "<!doctype html>\n<html>\n<head><!-- cwl-host firebase=\"agenticop-cwl-demo\" public=\".\" error=\"/404.html\" -->\n<meta charset=\"utf-8\" />\n<title>Site 100</title>\n<link rel=\"stylesheet\" href=\"/agenticops.css\" />\n</head>\n<body>\n<header id=\"ao-site-nav\">\n  <button type=\"button\" class=\"ao-nav-toggle\" aria-expanded=\"false\" aria-controls=\"ao-nav-drawer\">Menu</button>\n  <div id=\"ao-nav-drawer\" class=\"ao-nav-drawer\" aria-hidden=\"true\"></div>\n</header>\n<p>© <!-- cwl:year --></p>\n<!-- cwl:device -->\n<img src=\"/logo.svg\" alt=\"\" />\n<img src=\"/cwl-explainer.png\" alt=\"\" />\n<main>\n<section><h1>Contract</h1></section>\n</main>\n<script data-cwl-drawer=\"1\">(function(){var nav=document.getElementById(\"ao-site-nav\");var toggle=nav&&nav.querySelector(\".ao-nav-toggle\");var panel=document.getElementById(\"ao-nav-drawer\");if(!nav||!toggle)return;function setOpen(open){nav.classList.toggle(\"is-open\",open);toggle.setAttribute(\"aria-expanded\",open?\"true\":\"false\");if(panel)panel.setAttribute(\"aria-hidden\",open?\"false\":\"true\");}toggle.addEventListener(\"click\",function(){setOpen(!nav.classList.contains(\"is-open\"));});nav.addEventListener(\"click\",function(e){var t=e.target;if(t&&t.closest&&t.closest(\"a\"))setOpen(false);});document.addEventListener(\"keydown\",function(e){if(e.key===\"Escape\")setOpen(false);});})();</script></body>\n</html>"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n0",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 37
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-literal",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n1",
+      "op": "response",
+      "operands": [
+        "n0"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 37
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "home",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n2",
+      "op": "handler",
+      "operands": [
+        "n1"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 37
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n3",
+      "op": "route",
+      "operands": [
+        "n2"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 37
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "value": "<!doctype html>\n<html>\n<head><!-- cwl-host firebase=\"agenticop-cwl-demo\" public=\".\" error=\"/404.html\" -->\n<meta charset=\"utf-8\" />\n<title>Missing</title>\n<link rel=\"stylesheet\" href=\"/agenticops.css\" />\n</head>\n<body>\n<header id=\"ao-site-nav\">\n  <button type=\"button\" class=\"ao-nav-toggle\" aria-expanded=\"false\" aria-controls=\"ao-nav-drawer\">Menu</button>\n  <div id=\"ao-nav-drawer\" class=\"ao-nav-drawer\" aria-hidden=\"true\"></div>\n</header>\n<p>© <!-- cwl:year --></p>\n<!-- cwl:device -->\n<img src=\"/logo.svg\" alt=\"\" />\n<img src=\"/cwl-explainer.png\" alt=\"\" />\n<main>\n<section><h1>Missing</h1></section>\n</main>\n<script data-cwl-drawer=\"1\">(function(){var nav=document.getElementById(\"ao-site-nav\");var toggle=nav&&nav.querySelector(\".ao-nav-toggle\");var panel=document.getElementById(\"ao-nav-drawer\");if(!nav||!toggle)return;function setOpen(open){nav.classList.toggle(\"is-open\",open);toggle.setAttribute(\"aria-expanded\",open?\"true\":\"false\");if(panel)panel.setAttribute(\"aria-hidden\",open?\"false\":\"true\");}toggle.addEventListener(\"click\",function(){setOpen(!nav.classList.contains(\"is-open\"));});nav.addEventListener(\"click\",function(e){var t=e.target;if(t&&t.closest&&t.closest(\"a\"))setOpen(false);});document.addEventListener(\"keydown\",function(e){if(e.key===\"Escape\")setOpen(false);});})();</script></body>\n</html>"
+      },
+      "dialect": "data",
+      "effects": [],
+      "id": "n4",
+      "op": "literal",
+      "operands": [],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 47
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-literal",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "string"
+      }
+    },
+    {
+      "attrs": {
+        "contentType": "text/html; charset=utf-8",
+        "kind": "html",
+        "status": 200
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n5",
+      "op": "response",
+      "operands": [
+        "n4"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 47
+      },
+      "provenance": [
+        {
+          "locator": "cwl-page-html-response",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    },
+    {
+      "attrs": {
+        "input": {
+          "kind": "unknown"
+        },
+        "name": "missing",
+        "output": {
+          "kind": "unknown"
+        }
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n6",
+      "op": "handler",
+      "operands": [
+        "n5"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 47
+      },
+      "provenance": [
+        {
+          "locator": "hub-lift:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "unknown"
+      }
+    },
+    {
+      "attrs": {
+        "method": "GET",
+        "path": "/404.html",
+        "pathParams": []
+      },
+      "dialect": "web.request",
+      "effects": [],
+      "id": "n7",
+      "op": "route",
+      "operands": [
+        "n6"
+      ],
+      "origin": {
+        "column": 1,
+        "file": "routes.cwl",
+        "line": 47
+      },
+      "provenance": [
+        {
+          "locator": "route:cwl",
+          "source": "hub-ingest"
+        }
+      ],
+      "type": {
+        "kind": "void"
+      }
+    }
+  ],
+  "roots": [
+    "n3",
+    "n7"
+  ]
+}

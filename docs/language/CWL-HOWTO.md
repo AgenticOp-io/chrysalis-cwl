@@ -434,6 +434,16 @@ npm run smoke:cwl-host-site
 
 `deploy:demo` publishes `agenticop-cwl-demo` only. Live `agenticops` / `agenticop-io` are refused. Gold `83`.
 
+### 8.1.3 Site 100% contract
+
+What “100% CWL” means for https://agenticop.io is in [`CWL-SITE-100.md`](./CWL-SITE-100.md). Official public host is the certified `emit:site` freeze. Asset bytes for that genome live under `fixtures/sites/agenticop-io/assets/`. Year, device, and drawer are genome-declared host effects. Off-site fonts and live Firebase CLI stay outside language bytes.
+
+```bash
+npm run smoke:cwl-site-100
+```
+
+Token `CWL_SITE_100_OK`. Gold `84`.
+
 Dynamic emit is the same server. `repeat` walks arrays in `--data`. A nested `repeat item.field` fills the leaf name inside the outer fragment. `else html` is the empty collection. `if` / `else if` / `else` choose another HTML document when the condition is `==`, `!=`, `!`, `&&`, or `||` against the request or that data.
 
 `engine` names where the rows live: `sqlite`, `postgres`, `mysql`, `mariadb`, `sqlserver`, or `oracle`. The statements do not change. `table` names the columns. `db select`, `db insert`, `db update`, and `db delete` bind request values as parameters. SQLite runs in this process. The other engines open with `--db` and their driver (`pg`, `mysql2`, `mssql`, `oracledb`). An unknown engine does not run. Update and delete require `where`.

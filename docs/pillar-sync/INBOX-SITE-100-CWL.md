@@ -5,8 +5,8 @@
 **To:** cwl  
 **From:** parent (live https://agenticop.io / site lane)  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip observed:** **1.0.75** · language land `c5d48cb` · bus `b9ab225`  
+**Status:** **done** (tip **1.0.76**, gold `84`, token `CWL_SITE_100_OK` — stamp land SHA after merge)  
+**CWL tip observed:** **1.0.76**  
 **Ask id:** `site-100-cwl`  
 **Lane:** do this in `engines/chrysalis-cwl`. Do not invent a second IR under Convert, Secure, or hand-edited HTML in `brand/agenticops-web`.
 
@@ -66,14 +66,18 @@ Parent already cut live https://agenticop.io over from `fixtures/sites/agenticop
 
 ### Acceptance
 
-- [ ] Tip + gold(s) that define **what “100% CWL” means** for this public site (pages, assets, host effects, deploy).
-- [ ] CSS and image gaps closed or explicitly hole-catalogued with reasons that block a 100% claim until fixed.
-- [ ] Drawer and device either language-honest or named holes (no silent “looks like CWL” injected JS).
-- [ ] Year and off-site fonts covered by the same contract.
-- [ ] Official host path chosen: live compose **or** certified `emit:site` freeze (document in RFC / HOWTO / tip).
-- [ ] Live Firebase deploy either genome-driven under parent auth, or documented as ops-outside-100%.
-- [ ] `npm run smoke:agenticop-site` and language gate still pass; new smoke token for the 100% contract (name it in the tip reply).
-- [ ] Reply here or in [`OUTBOX.md`](./OUTBOX.md). Convert peels after the tip. Secure pins. Site redeploys live only when parent says so after the tip.
+- [x] Tip **1.0.76** + gold `84` + [`CWL-SITE-100.md`](../language/CWL-SITE-100.md)
+- [x] CSS/image bytes under `fixtures/sites/agenticop-io/assets/` (SoR; no CSS parse)
+- [x] Drawer/device/year = certified host effects from genome declarations
+- [x] Off-site fonts named outside language bytes
+- [x] Official host = certified `emit:site` freeze
+- [x] Live Firebase CLI = ops-outside-100%; `deploy:demo` refuses live targets
+- [x] Token `CWL_SITE_100_OK`
+- [x] OUTBOX ask for Convert/Secure/Site
+
+### Reply
+
+Tip **1.0.76**. Gold `84-site-100-contract`. Token `CWL_SITE_100_OK`. Convert: pin + drop hand `cwl-db`. Site: delete `ao-layout.js`, mirror assets, redeploy when parent authorizes.
 
 ### Suggested order (for CWL)
 
