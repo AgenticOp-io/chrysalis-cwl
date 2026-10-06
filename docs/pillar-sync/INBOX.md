@@ -7,7 +7,7 @@ CWL reads this on coordinator ticks. Tip bumps only for **contract gaps**.
 
 | When | From | Note |
 | --- | --- | --- |
-| — | — | none |
+| 2026-10-05 | parent | **Site complete CWL** — close drawer/device/year host JS, asset-bytes rule, emit vs live genome, deploy boundary beyond tip 1.0.77. [`INBOX-SITE-COMPLETE-CWL.md`](./INBOX-SITE-COMPLETE-CWL.md) ask `site-complete-cwl` |
 
 ## Closed recently
 
