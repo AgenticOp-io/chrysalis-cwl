@@ -46,6 +46,7 @@ for (const route of parsed.routes) {
     navId: route.navId,
     links: route.navLinks,
     drawer: route.drawer,
+    yearLiteral: route.yearLiteral,
     styles: route.styles,
     images: route.images,
     scripts: route.scripts,
@@ -64,7 +65,6 @@ for (const route of parsed.routes) {
     fail(`${route.name} left a document slot`);
   }
   if (!html.includes('rel="icon"')) fail(`${route.name} missing icon`);
-  if (!html.includes("fonts.googleapis.com/css")) fail(`${route.name} missing font stylesheet`);
   if (route.icons?.some((icon) => icon.apple) && !html.includes("apple-touch-icon")) fail(`${route.name} missing apple icon`);
   if (route.icons?.length && !route.icons.some((icon) => icon.apple) && html.includes("apple-touch-icon")) {
     fail(`${route.name} invented an apple icon`);
@@ -84,15 +84,18 @@ for (const route of parsed.routes) {
   }
   if (route.canonical && !html.includes(`rel="canonical" href="${route.canonical}"`)) fail(`${route.name} missing canonical`);
   if (!html.includes('rel="stylesheet" href="/agenticops.css"')) fail(`${route.name} missing stylesheet`);
+  if (route.layoutName === "site" || route.layoutName === "missing") {
+    if (!html.includes('rel="stylesheet" href="/fonts.css"')) fail(`${route.name} missing font stylesheet`);
+  }
   if (!html.includes('src="/logo.svg"') && !html.includes('href="/logo.svg"') && !html.includes('href="<!-- cwl:image')) {
     if (!html.includes("/logo.svg")) fail(`${route.name} missing logo path`);
   }
   if (route.layoutName === "site") {
-    if (!html.includes('data-cwl-drawer="1"')) fail(`${route.name} missing drawer script`);
-    if (!html.includes("<!-- cwl:year -->")) fail(`${route.name} missing year token`);
-    if (!html.includes("<!-- cwl:device -->")) fail(`${route.name} missing device token`);
-    if (route.deviceHost?.below !== 820) fail(`${route.name} device cut is not 820`);
-    if (html.includes("matchMedia")) fail(`${route.name} evaluates a media query`);
+    if (html.includes('data-cwl-drawer="1"')) fail(`${route.name} still injects drawer script`);
+    if (html.includes('data-cwl-device="1"') || html.includes("matchMedia")) fail(`${route.name} still injects device script`);
+    if (route.yearLiteral !== 2026) fail(`${route.name} year literal is not 2026`);
+    if (!html.includes("© 2026") || html.includes("<!-- cwl:year -->")) fail(`${route.name} year literal not filled`);
+    if (!html.includes('id="ao-nav-open"') || !html.includes('for="ao-nav-open"')) fail(`${route.name} missing CSS menu checkbox`);
     if (!html.includes("cwl-host")) fail(`${route.name} missing firebase host note`);
     if (!html.includes('id="ao-site-nav"')) fail(`${route.name} missing nav`);
     if (html.includes('id="ao-site-nav"></header>')) fail(`${route.name} nav is empty`);

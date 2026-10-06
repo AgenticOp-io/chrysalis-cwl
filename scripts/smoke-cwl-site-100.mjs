@@ -98,8 +98,9 @@ try {
   const siteHome = readFileSync(join(siteOut, "index.html"), "utf8");
   check("site-no-ao-layout", !siteHome.includes("/ao-layout.js"));
   check("site-year", siteHome.includes("2026") && !siteHome.includes("<!-- cwl:year -->"));
-  check("site-device", siteHome.includes('data-cwl-device="1"'));
-  check("site-drawer", siteHome.includes('data-cwl-drawer="1"'));
+  check("site-complete-no-device-js", !siteHome.includes('data-cwl-device="1"') && !siteHome.includes("matchMedia"));
+  check("site-complete-no-drawer-js", !siteHome.includes('data-cwl-drawer="1"'));
+  check("site-complete-checkbox", siteHome.includes('id="ao-nav-open"'));
   check("site-owned-font", siteHome.includes("/fonts.css"));
   check("site-no-google-font", !siteHome.includes("fonts.googleapis.com") && !siteHome.includes("fonts.gstatic.com"));
   check("site-css-bytes", existsSync(join(siteOut, "agenticops.css")));

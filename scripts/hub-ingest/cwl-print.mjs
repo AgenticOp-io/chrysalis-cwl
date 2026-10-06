@@ -358,6 +358,7 @@ export function printCwlModule(mod, opts = {}) {
       lines.push(`  ${formatCookieDecl(c, purpose)};`);
     }
     if (L.yearHost) lines.push("  year host;");
+    else if (Number.isInteger(L.yearLiteral)) lines.push(`  year ${L.yearLiteral};`);
     if (L.charset === "utf-8") lines.push("  charset utf-8;");
     if (L.viewportDevice) lines.push("  viewport device;");
     printMetaCard(L.metaCard, "  ", lines);

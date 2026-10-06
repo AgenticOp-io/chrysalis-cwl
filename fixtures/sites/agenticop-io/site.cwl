@@ -1,14 +1,12 @@
 # AgenticOps public site genome. Page source is CWL. Emit produces the page.
 # Host files stay host files: CSS bytes, image bytes, and Firebase deploy are not in this module.
-# The menu is drawer. This genome does not load ao-layout.js.
+# Menu open state is checkbox + owned CSS. No host drawer/device JS. No ao-layout.js.
 module agenticop_site;
 
 layout site {
-  year host;
+  year 2026;
   charset utf-8;
   viewport device;
-  device host mobile desktop below 820;
-  drawer ao-site-nav toggle ao-nav-toggle class is-open panel ao-nav-drawer;
   style "/agenticops.css";
   style "/fonts.css";
   image logo "/logo.svg";
@@ -52,7 +50,7 @@ layout site {
   link linkedin "https://www.linkedin.com/in/vibe-architect/" "LinkedIn" target blank rel noopener;
   chrome html """
 <!DOCTYPE html>
-<html lang="en" data-ao-device="<!-- cwl:device -->">
+<html lang="en">
 <head>
 <!-- cwl:charset -->
 <!-- cwl:viewport -->
@@ -87,10 +85,11 @@ layout site {
       <nav class="ao-nav-links ao-nav-links--desktop" aria-label="Primary">
         <!-- cwl:links primary ao-nav-link ao-nav-link-active -->
       </nav>
-      <button type="button" class="ao-nav-toggle" aria-expanded="false" aria-controls="ao-nav-drawer">
+      <input type="checkbox" id="ao-nav-open" class="ao-nav-open" />
+      <label for="ao-nav-open" class="ao-nav-toggle">
         <span class="ao-nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
         Menu
-      </button>
+      </label>
     </div>
     <div id="ao-nav-drawer" class="ao-nav-drawer">
       <nav class="ao-nav-links ao-nav-links--mobile" aria-label="Mobile">
@@ -132,7 +131,7 @@ layout site {
         </div>
       </div>
       <div class="ao-footer-bottom">
-        <p class="ao-footer-fine">© <!-- cwl:year --> AgenticOps. CWL tip 1.0.26 is public — Convert and Secure consume it; traffic decides what ships.</p>
+        <p class="ao-footer-fine">© <!-- cwl:year --> AgenticOps. CWL tip 1.0.78 is public — Convert and Secure consume it; traffic decides what ships.</p>
       </div>
     </div>
   </footer>

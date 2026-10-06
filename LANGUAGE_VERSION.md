@@ -3,21 +3,22 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Goal** | DNA of web languages. Tip `1.0.77` owns agenticop.io font faces under genome assets (golds `68`–`85`). Live Firebase CLI stays ops. |
-| **Version** | `1.0.77` |
-| **Status** | Site owned fonts |
+| **Goal** | DNA of web languages. Tip `1.0.78` defines a complete CWL marketing site: literal year, CSS menu, owned assets, emit freeze (golds `68`–`86`). |
+| **Version** | `1.0.78` |
+| **Status** | Site complete |
 | **Date** | 2026-10-05 |
 
 ## What this version means
 
-- **Owned fonts:** layout loads `/fonts.css`; latin DM Sans / JetBrains Mono woff2 live under `fixtures/sites/agenticop-io/assets/fonts/`. No Google Fonts CDN. Gold `85`. Token still `CWL_SITE_100_OK`
-- **Emit:** `emit:site` copies CSS `url(/…)` face files after stylesheets
-- Prior tip **1.0.76:** site 100% contract (pages, assets, host effects, named outsides)
+- **Complete site:** [`docs/language/CWL-SITE-COMPLETE.md`](./docs/language/CWL-SITE-COMPLETE.md). Public genome uses `year 2026;`, checkbox menu + owned CSS, no host drawer/device JS. Token `CWL_SITE_COMPLETE_OK`
+- **`year N;`** fills `<!-- cwl:year -->` at compose. `year host;` remains for dynamic hosts
+- Prior tip **1.0.77:** owned fonts under assets
 
 ## Gate
 
 ```bash
 npm run build:webir
 CWL_REQUIRE_WEBIR=1 npm run test:language
-npm run smoke:cwl-site-100
+npm run smoke:agenticop-site
+npm run smoke:cwl-site-complete
 ```
