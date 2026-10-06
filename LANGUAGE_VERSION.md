@@ -3,17 +3,16 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Goal** | DNA of web languages. Tip `1.0.76` defines 100% CWL for agenticop.io: genome pages, owned asset bytes, certified host effects, named outsides (golds `68`–`84`). |
-| **Version** | `1.0.76` |
-| **Status** | Site 100% contract |
+| **Goal** | DNA of web languages. Tip `1.0.77` owns agenticop.io font faces under genome assets (golds `68`–`85`). Live Firebase CLI stays ops. |
+| **Version** | `1.0.77` |
+| **Status** | Site owned fonts |
 | **Date** | 2026-10-05 |
 
 ## What this version means
 
-- **Site 100% contract:** [`docs/language/CWL-SITE-100.md`](./docs/language/CWL-SITE-100.md). Official public host is certified `emit:site` freeze. Asset bytes for this site live under `fixtures/sites/agenticop-io/assets/`. Year, device, and drawer are genome-declared host effects. Off-site fonts and live Firebase CLI stay outside language bytes
-- **Gold `84`:** contract module emits with owned assets and host effects. Token `CWL_SITE_100_OK`
-- **Convert sync:** `cwl-db.mjs` is in `sync-to-convert` ALWAYS
-- Prior tip **1.0.75:** host site emit / demo deploy without a Cloud Function
+- **Owned fonts:** layout loads `/fonts.css`; latin DM Sans / JetBrains Mono woff2 live under `fixtures/sites/agenticop-io/assets/fonts/`. No Google Fonts CDN. Gold `85`. Token still `CWL_SITE_100_OK`
+- **Emit:** `emit:site` copies CSS `url(/…)` face files after stylesheets
+- Prior tip **1.0.76:** site 100% contract (pages, assets, host effects, named outsides)
 
 ## Gate
 

@@ -58,7 +58,9 @@ export async function emitCwlSite(opts) {
     written.push(rel);
   }
   const assetNames = new Set();
-  const localAssetRe = /(?:src|href)=["']\/([A-Za-z0-9._/-]+\.(?:css|svg|png|jpe?g|webp|ico|gif))["']/g;
+  const localAssetRe =
+    /(?:src|href)=["']\/([A-Za-z0-9._/-]+\.(?:css|svg|png|jpe?g|webp|ico|gif|woff2?|ttf|otf))["']/g;
+  const cssUrlRe = /url\(\s*["']?\/([A-Za-z0-9._/-]+\.(?:css|svg|png|jpe?g|webp|ico|gif|woff2?|ttf|otf))["']?\s*\)/g;
   for (const route of routes) {
     for (const href of route.styles ?? []) {
       if (typeof href === "string" && href.startsWith("/") && !href.startsWith("//")) {
@@ -85,7 +87,10 @@ export async function emitCwlSite(opts) {
   /** @type {string[]} */
   const missingAssets = [];
   if (assetsDir) {
-    for (const name of assetNames) {
+    const pending = [...assetNames];
+    while (pending.length) {
+      const name = pending.pop();
+      if (copied.includes(name) || missingAssets.includes(name)) continue;
       const src = join(assetsDir, name);
       if (!existsSync(src)) {
         missingAssets.push(name);
@@ -95,6 +100,17 @@ export async function emitCwlSite(opts) {
       mkdirSync(dirname(dest), { recursive: true });
       copyFileSync(src, dest);
       copied.push(name);
+      if (/\.css$/i.test(name)) {
+        const css = readFileSync(src, "utf8");
+        cssUrlRe.lastIndex = 0;
+        let match;
+        while ((match = cssUrlRe.exec(css)) != null) {
+          if (!assetNames.has(match[1])) {
+            assetNames.add(match[1]);
+            pending.push(match[1]);
+          }
+        }
+      }
     }
   }
   const hosting = {

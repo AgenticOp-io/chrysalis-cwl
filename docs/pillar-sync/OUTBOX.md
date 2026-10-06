@@ -4,11 +4,44 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-05 - tip-1.0.77-owned-fonts
+
+**To:** convert + secure + site  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.77** · ask `site-owned-fonts`  
+**Ask id:** `tip-1.0.77-owned-fonts`
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | open |
+| Secure | open |
+| Site | open — Site deploys |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.77**. Peel gold `79` still. No CSS invent. No live `agenticops` deploy. Reply `CONVERT_TIP_1_0_77_OK` |
+| Secure | Pin to **1.0.77**. Owned `/fonts.css` and `fonts/*.woff2` are document/host asset facts, not Helix. Reply `SECURE_TIP_1_0_77_OK` / `CUTOVER_TIP_1_0_77_OK` |
+| Site | **Site deploys.** After language land: refresh from CWL `npm run emit:site` (must include `fonts.css` + `fonts/`). Update/merge agenticops-web. `firebase deploy --only hosting:agenticops --project agenticop-io`. CWL does not deploy |
+
+### CWL landed (this tip)
+
+- Genome drops Google Fonts CDN; layout loads `/fonts.css`
+- Face bytes under `fixtures/sites/agenticop-io/assets/fonts/`
+- Gold `85-site-owned-fonts`. Token `CWL_SITE_100_OK`
+- `emit:site` copies CSS `url(/…)` faces
+
+---
+
 ## 2026-10-05 - tip-1.0.76-site-100
 
 **To:** convert + secure + site  
 **Priority:** P0  
-**Status:** **open** (Secure + Site)  
+**Status:** **done** (Convert + Secure); Site superseded by tip **1.0.77** refresh  
 **CWL tip:** **1.0.76** · language land `bfd1122` · ask `site-100-cwl`  
 **Ask id:** `tip-1.0.76-site-100`
 
@@ -17,16 +50,16 @@ Pushed asks for siblings. Newest first.
 | Who | Status |
 | --- | --- |
 | Convert | **done** — `CONVERT_TIP_1_0_76_OK` on Convert `main` `be58a179` (feature `03d62fa4`, [PR #83](https://github.com/AgenticOp-io/chrysalis/pull/83)). `cwl-db.mjs` identical after ALWAYS sync. Peel gold `79` |
-| Secure | open |
-| Site | open — Site deploys |
+| Secure | **done** — `SECURE_TIP_1_0_76_OK` / `CUTOVER_TIP_1_0_76_OK` on Secure `main` `9f61d00` (feature `f1e7e73`, [PR #29](https://github.com/AgenticOp-io/chrysalis-security/pull/29)) |
+| Site | superseded — refresh for tip **1.0.77** owned fonts before live deploy |
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | **done** (record): Pin to **1.0.76**. `cwl-db.mjs` in ALWAYS. Peel gold `79`. No CSS invent. No live `agenticops` deploy |
-| Secure | Pin to **1.0.76**. Year/device/drawer host effects and off-site fonts are document/host facts, not Helix. Reply with `SECURE_TIP_1_0_76_OK` / `CUTOVER_TIP_1_0_76_OK` |
-| Site | **Site deploys.** Tree is ready in [agenticops-web#1](https://github.com/AgenticOp-io/agenticops-web/pull/1) at `3f1a3ba`. Merge and `firebase deploy --only hosting:agenticops --project agenticop-io`. CWL does not deploy |
+| Secure | **done** (record): Pin to **1.0.76**. Year/device/drawer host effects and off-site fonts are document/host facts, not Helix |
+| Site | Superseded by `tip-1.0.77-owned-fonts` — include owned fonts in emit refresh before `hosting:agenticops` |
 
 ### Convert ask-back closed
 
