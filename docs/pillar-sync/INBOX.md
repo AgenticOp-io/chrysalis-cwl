@@ -7,7 +7,7 @@ CWL reads this on coordinator ticks. Tip bumps only for **contract gaps**.
 
 | When | From | Note |
 | --- | --- | --- |
-| — | — | none |
+| 2026-10-05 | parent | **CWL-only demo deploy** — no hand JS Function; genome → CWL host → demo Hosting. Live agenticop.io untouched. [`INBOX-CWL-ONLY-DEMO.md`](./INBOX-CWL-ONLY-DEMO.md) ask `cwl-only-demo-deploy` |
 
 ## Closed recently
 

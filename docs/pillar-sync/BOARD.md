@@ -1,16 +1,17 @@
 ﻿# Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-04 · tip **1.0.74** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. CWL holds the genome. Convert emits the AgenticOps demo from it. The live site is still the old HTML.  
+**Updated:** 2026-10-05 · tip **1.0.74** · **Goal:** DNA of web languages — a language in its own right, able to replace any web page. CWL holds the genome. Convert peels it. Parent asks for a CWL-owned demo deploy (no hand JS Function). The live site is still the old HTML.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: ORDER agenticop-demo-order. Convert demo proof is done at 360588ad. Secure pin 1.0.74 is done at 44446dc. Site writes the 26 pages and deploys
-CONVERT_NEXT: done · CONVERT_AGENTICOP_SITE_OK · CONVERT_TIP_1_0_74_OK · main 360588ad · feature d3f2bc34 · 26 pages · peel smoke does not write HTML files
-SECURE_NEXT: done · CUTOVER_TIP_1_0_74_OK · main 44446dc · feature 92aa197
-SITE_NEXT: token is on Convert main 360588ad. Write the 26 hosted pages into brand/agenticops-web from that emit, then firebase deploy --only hosting:agenticops --project agenticop-io. CWL and Convert do not deploy
+DISPATCH: ASK cwl-only-demo-deploy (parent INBOX). Convert/Secure demo pin 1.0.74 stays done. Live agenticop.io deploy stays site lane and is not this ask
+CONVERT_NEXT: idle · CONVERT_AGENTICOP_SITE_OK · tip 1.0.74 · main 360588ad · wait for CWL tip if deploy contract lands
+SECURE_NEXT: idle · CUTOVER_TIP_1_0_74_OK · main 44446dc · wait for tip pin if CWL bumps
+CWL_NEXT: open · parent ask cwl-only-demo-deploy · INBOX-CWL-ONLY-DEMO.md · genome → CWL host → demo Hosting · do not touch live agenticop-io
+SITE_NEXT: wait · live brand/agenticops-web + hosting:agenticops is separate from the CWL-only demo ask
 ```
 
 ## Tips / pins
@@ -33,7 +34,8 @@ SITE_NEXT: token is on Convert main 360588ad. Write the 26 hosted pages into bra
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Site | **Order `agenticop-demo-order`.** `CONVERT_AGENTICOP_SITE_OK` is on Convert `main` `360588ad`. Write the 26 hosted pages into `brand/agenticops-web`, then `firebase deploy --only hosting:agenticops --project agenticop-io`. The peel smoke does not write those files. CWL and Convert do not deploy |
+| **P0** | CWL | **Ask `cwl-only-demo-deploy`.** Parent: deploy/serve the 26-page genome on the demo Hosting site without a hand-written Cloud Function. Details: [`INBOX-CWL-ONLY-DEMO.md`](./INBOX-CWL-ONLY-DEMO.md). Do not deploy live `agenticop-io`. CSS/image bytes, clock, and `matchMedia` stay host honesty |
+| **P1** | Site | Live `agenticop-demo-order` pages into `brand/agenticops-web` + `hosting:agenticops` — separate from the CWL-only demo ask; wait unless parent says otherwise |
 | **done** | Convert | Demo peel **1.0.74**, `CONVERT_AGENTICOP_SITE_OK`, 26 pages, main `360588ad` |
 | **done** | Secure | Tip pin **1.0.74**, `CUTOVER_TIP_1_0_74_OK`, main `44446dc` |
 | **done** | CWL | tip **1.0.74** database, land `9f62655` |
