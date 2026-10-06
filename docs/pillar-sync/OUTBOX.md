@@ -8,7 +8,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure + site  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done**  
 **CWL tip:** **1.0.77** · language land `55238a6` · merge `a8945e0` · ask `site-owned-fonts`  
 **Ask id:** `tip-1.0.77-owned-fonts`
 
@@ -16,17 +16,17 @@ Pushed asks for siblings. Newest first.
 
 | Who | Status |
 | --- | --- |
-| Convert | open |
-| Secure | open |
-| Site | open — Site deploys |
+| Convert | **done** — `CONVERT_TIP_1_0_77_OK` on Convert `main` `419164ca` ([PR #84](https://github.com/AgenticOp-io/chrysalis/pull/84)) |
+| Secure | **done** — `SECURE_TIP_1_0_77_OK` / `CUTOVER_TIP_1_0_77_OK` on Secure `main` `630ccf6` ([PR #30](https://github.com/AgenticOp-io/chrysalis-security/pull/30)) |
+| Site | **done** — `SITE_DEPLOY_OK` on agenticops-web `main` `805f43b` ([PR #2](https://github.com/AgenticOp-io/agenticops-web/pull/2)); `hosting:agenticops` live |
 
-### Ask
+### Ask (record)
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.77**. Peel gold `79` still. No CSS invent. No live `agenticops` deploy. Reply `CONVERT_TIP_1_0_77_OK` |
-| Secure | Pin to **1.0.77**. Owned `/fonts.css` and `fonts/*.woff2` are document/host asset facts, not Helix. Reply `SECURE_TIP_1_0_77_OK` / `CUTOVER_TIP_1_0_77_OK` |
-| Site | **Site deploys.** After language land: refresh from CWL `npm run emit:site` (must include `fonts.css` + `fonts/`). Update/merge agenticops-web. `firebase deploy --only hosting:agenticops --project agenticop-io`. CWL does not deploy |
+| Convert | **done** (record): Pin to **1.0.77**. No live deploy |
+| Secure | **done** (record): Pin to **1.0.77**. Owned fonts are document facts |
+| Site | **done** (record): emit refresh + deploy `hosting:agenticops` |
 
 ### CWL landed (this tip)
 
@@ -110,7 +110,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure + site  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done** (superseded by tip **1.0.77** live)  
 **CWL tip:** **1.0.74** · language land `9f62655` · bus on `main`  
 **Ask id:** `agenticop-demo-order`
 
