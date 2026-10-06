@@ -420,7 +420,19 @@ npm run live -- fixtures/sites/agenticop-io/site.cwl --port 8791
 npm run smoke:cwl-live
 ```
 
-`year host` becomes digits only because this process is the host and it passes the UTC year. `<!-- cwl:device -->` stays. The host does not call `matchMedia`. An unknown path returns the module's `/404.html` page with status 404.
+`year host` becomes digits only because this process is the host and it passes the UTC year. `device host` is filled by the host pass from the declared classes and `below` cut. The language does not read a user agent. An unknown path returns the module's `/404.html` page with status 404.
+
+### 8.1.2 Host site emit (demo Hosting)
+
+Static Hosting does not need a Cloud Function. Emit the genome, copy host CSS/image files, then deploy only the demo site.
+
+```bash
+npm run emit:site -- fixtures/sites/agenticop-io/site.cwl --out out/agenticop-cwl-demo --assets ../../brand/agenticops-web --year 2026
+npm run deploy:demo -- --dir out/agenticop-cwl-demo --site agenticop-cwl-demo --dry-run
+npm run smoke:cwl-host-site
+```
+
+`deploy:demo` publishes `agenticop-cwl-demo` only. Live `agenticops` / `agenticop-io` are refused. Gold `83`.
 
 Dynamic emit is the same server. `repeat` walks arrays in `--data`. A nested `repeat item.field` fills the leaf name inside the outer fragment. `else html` is the empty collection. `if` / `else if` / `else` choose another HTML document when the condition is `==`, `!=`, `!`, `&&`, or `||` against the request or that data.
 

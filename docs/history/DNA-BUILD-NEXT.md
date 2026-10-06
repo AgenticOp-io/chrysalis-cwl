@@ -2,7 +2,7 @@
 
 **Path:** Rosetta → UT → DNA of web languages — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
 **Goal:** CWL is a language in its own right. It must be able to replace any web page. Golds `68`–`82` replace a document with navigation, a drawer, a device token, named assets, a same-site form, an off-site anchor, a named viewport cut, document identity, a social card, the remaining head facts, request-time HTML, dynamic HTML, and bound database operations. WebSocket duplex, raw SQL text, and unclassified client script stay named holes.  
-**Tip:** **`1.0.74`** - database. `engine` names sqlite, postgres, mysql, mariadb, sqlserver, or oracle. The row statements stay the same.
+**Tip:** **`1.0.75`** - host site emit. Static Hosting pages from the genome. Demo deploy refuses live `agenticops`.
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -71,6 +71,7 @@
 | P0 | Live document (`80`) | **done** (`1.0.72`) — each request composes the page. Path and query fill the HTML |
 | P0 | Dynamic HTML (`81`) | **done** (`1.0.73`) — `repeat`, nested lists, and `if` build the document from host data |
 | P0 | Database (`82`) | **done** (`1.0.74`) — `engine` plus bound `db select` / `insert` / `update` / `delete`. Six engines. Raw SQL stays out |
+| P0 | Host site emit (`83`) | **done** (`1.0.75`) — static Hosting emit + demo deploy host. No Cloud Function. Live `agenticops` refused |
 | P0 | Replace any web page | **open** — goal of the language. Document shell through gold `74` is the start. Remaining page behaviors stay holes until an honest RFC |
 | P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
 | P2 | Richer UI (hydration still non-goal) | open if peels demand |
@@ -93,7 +94,8 @@
 | Tip pin **1.0.71** | Convert + Secure — **open** (peel gold `79`; included in the **1.0.72** pin) |
 | Tip pin **1.0.72** | Convert + Secure — **open** (included in the **1.0.73** pin) |
 | Tip pin **1.0.73** | Convert + Secure — **open** (included in the **1.0.74** pin) |
-| Tip pin **1.0.74** | Convert + Secure — **open** (database is a CWL host; peel gold `79` still; do not invent a SQL dialect; do not deploy Firebase `agenticops`) |
+| Tip pin **1.0.74** | Convert + Secure — **done** (Convert `360588ad`, Secure `44446dc`) |
+| Tip pin **1.0.75** | Convert + Secure — **open** (host site emit is a CWL host; do not invent a Cloud Function; do not deploy live `agenticops` from CWL) |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |

@@ -46,7 +46,13 @@ check("site-icon", home.body.includes('rel="icon"'));
 check("site-jsonld", home.body.includes('type="application/ld+json"'));
 check("site-no-layout-js", !home.body.includes("/ao-layout.js"));
 check("site-year", home.body.includes("2026") && !home.body.includes("<!-- cwl:year -->"));
-check("site-device", home.body.includes("<!-- cwl:device -->") && !home.body.includes("matchMedia"));
+check(
+  "site-device",
+  home.body.includes('data-cwl-device="1"') &&
+    home.body.includes("max-width: 820px") &&
+    !home.body.includes("<!-- cwl:device -->") &&
+    !home.body.includes("userAgent"),
+);
 
 const siteMissing = await renderCwlLiveDocument(SITE, { path: "/not-a-page" }, { year: 2026 });
 check("site-404", siteMissing.status === 404 && siteMissing.body.includes("404"));
