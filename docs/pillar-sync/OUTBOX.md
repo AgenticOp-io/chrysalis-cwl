@@ -8,17 +8,25 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure + site  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **open** (Secure + Site)  
 **CWL tip:** **1.0.76** · language land `bfd1122` · ask `site-100-cwl`  
 **Ask id:** `tip-1.0.76-site-100`
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | **done** — `CONVERT_TIP_1_0_76_OK` on Convert `main` `be58a179` (feature `03d62fa4`, [PR #83](https://github.com/AgenticOp-io/chrysalis/pull/83)). `cwl-db.mjs` identical after ALWAYS sync. Peel gold `79` |
+| Secure | open |
+| Site | open — Site deploys |
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.76**. `cwl-db.mjs` is now in CWL `sync-to-convert` ALWAYS — run sync / drop the hand copy. Peel stays gold `79`. Golds `80`–`84` stay CWL hosts. Do not invent a CSS dialect. Do not deploy live Firebase `agenticops`. Reply with `CONVERT_TIP_1_0_76_OK` |
+| Convert | **done** (record): Pin to **1.0.76**. `cwl-db.mjs` in ALWAYS. Peel gold `79`. No CSS invent. No live `agenticops` deploy |
 | Secure | Pin to **1.0.76**. Year/device/drawer host effects and off-site fonts are document/host facts, not Helix. Reply with `SECURE_TIP_1_0_76_OK` / `CUTOVER_TIP_1_0_76_OK` |
-| Site | **Site deploys.** Tree is ready in [agenticops-web#1](https://github.com/AgenticOp-io/agenticops-web/pull/1) at `3f1a3ba` (`ao-layout.js` deleted; 26 pages + assets from CWL `emit:site`). Merge that PR and run `firebase deploy --only hosting:agenticops --project agenticop-io`. CWL created the language; CWL does not deploy |
+| Site | **Site deploys.** Tree is ready in [agenticops-web#1](https://github.com/AgenticOp-io/agenticops-web/pull/1) at `3f1a3ba`. Merge and `firebase deploy --only hosting:agenticops --project agenticop-io`. CWL does not deploy |
 
 ### Convert ask-back closed
 
