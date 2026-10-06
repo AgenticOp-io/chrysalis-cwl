@@ -9,7 +9,7 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure + site  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.77** Â· ask `site-owned-fonts`  
+**CWL tip:** **1.0.77** · language land `55238a6` · merge `a8945e0` · ask `site-owned-fonts`  
 **Ask id:** `tip-1.0.77-owned-fonts`
 
 ### Replies
@@ -18,7 +18,7 @@ Pushed asks for siblings. Newest first.
 | --- | --- |
 | Convert | open |
 | Secure | open |
-| Site | open â€” Site deploys |
+| Site | open — Site deploys |
 
 ### Ask
 
@@ -33,7 +33,7 @@ Pushed asks for siblings. Newest first.
 - Genome drops Google Fonts CDN; layout loads `/fonts.css`
 - Face bytes under `fixtures/sites/agenticop-io/assets/fonts/`
 - Gold `85-site-owned-fonts`. Token `CWL_SITE_100_OK`
-- `emit:site` copies CSS `url(/â€¦)` faces
+- `emit:site` copies CSS `url(/…)` faces
 
 ---
 
@@ -42,16 +42,16 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure + site  
 **Priority:** P0  
 **Status:** **done** (Convert + Secure); Site superseded by tip **1.0.77** refresh  
-**CWL tip:** **1.0.76** Â· language land `bfd1122` Â· ask `site-100-cwl`  
+**CWL tip:** **1.0.76** · language land `bfd1122` · ask `site-100-cwl`  
 **Ask id:** `tip-1.0.76-site-100`
 
 ### Replies
 
 | Who | Status |
 | --- | --- |
-| Convert | **done** â€” `CONVERT_TIP_1_0_76_OK` on Convert `main` `be58a179` (feature `03d62fa4`, [PR #83](https://github.com/AgenticOp-io/chrysalis/pull/83)). `cwl-db.mjs` identical after ALWAYS sync. Peel gold `79` |
-| Secure | **done** â€” `SECURE_TIP_1_0_76_OK` / `CUTOVER_TIP_1_0_76_OK` on Secure `main` `9f61d00` (feature `f1e7e73`, [PR #29](https://github.com/AgenticOp-io/chrysalis-security/pull/29)) |
-| Site | superseded â€” refresh for tip **1.0.77** owned fonts before live deploy |
+| Convert | **done** — `CONVERT_TIP_1_0_76_OK` on Convert `main` `be58a179` (feature `03d62fa4`, [PR #83](https://github.com/AgenticOp-io/chrysalis/pull/83)). `cwl-db.mjs` identical after ALWAYS sync. Peel gold `79` |
+| Secure | **done** — `SECURE_TIP_1_0_76_OK` / `CUTOVER_TIP_1_0_76_OK` on Secure `main` `9f61d00` (feature `f1e7e73`, [PR #29](https://github.com/AgenticOp-io/chrysalis-security/pull/29)) |
+| Site | superseded — refresh for tip **1.0.77** owned fonts before live deploy |
 
 ### Ask
 
@@ -59,7 +59,7 @@ Pushed asks for siblings. Newest first.
 | --- | --- |
 | Convert | **done** (record): Pin to **1.0.76**. `cwl-db.mjs` in ALWAYS. Peel gold `79`. No CSS invent. No live `agenticops` deploy |
 | Secure | **done** (record): Pin to **1.0.76**. Year/device/drawer host effects and off-site fonts are document/host facts, not Helix |
-| Site | Superseded by `tip-1.0.77-owned-fonts` â€” include owned fonts in emit refresh before `hosting:agenticops` |
+| Site | Superseded by `tip-1.0.77-owned-fonts` — include owned fonts in emit refresh before `hosting:agenticops` |
 
 ### Convert ask-back closed
 
@@ -80,15 +80,15 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **done**  
-**CWL tip:** **1.0.75** Â· language land `c5d48cb` Â· ask `cwl-only-demo-deploy`  
+**CWL tip:** **1.0.75** · language land `c5d48cb` · ask `cwl-only-demo-deploy`  
 **Ask id:** `tip-1.0.75-host-site-emit`
 
 ### Replies
 
 | Who | Status |
 | --- | --- |
-| Convert | **done** â€” `CONVERT_TIP_1_0_75_OK` on Convert `main` `d38253ad` (feature `a629b40f`, [PR #80](https://github.com/AgenticOp-io/chrysalis/pull/80)) |
-| Secure | **done** â€” `SECURE_TIP_1_0_75_OK` / `CUTOVER_TIP_1_0_75_OK` on Secure `main` `e753716` (feature `8056197`, [PR #28](https://github.com/AgenticOp-io/chrysalis-security/pull/28)) |
+| Convert | **done** — `CONVERT_TIP_1_0_75_OK` on Convert `main` `d38253ad` (feature `a629b40f`, [PR #80](https://github.com/AgenticOp-io/chrysalis/pull/80)) |
+| Secure | **done** — `SECURE_TIP_1_0_75_OK` / `CUTOVER_TIP_1_0_75_OK` on Secure `main` `e753716` (feature `8056197`, [PR #28](https://github.com/AgenticOp-io/chrysalis-security/pull/28)) |
 
 ### Ask (record)
 
@@ -111,12 +111,12 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure + site  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.74** Â· language land `9f62655` Â· bus on `main`  
+**CWL tip:** **1.0.74** · language land `9f62655` · bus on `main`  
 **Ask id:** `agenticop-demo-order`
 
 Pull `chrysalis-cwl` `main` first. This section is the order. Work only your lane. Commit as `AgenticOp-io <opensource@agenticop.io>`. Push `candidate/*`. Reply on your own `docs/pillar-sync/OUTBOX.md` with status **done** and the token below. Leave the dirty Convert WISP and COBOL files unstaged.
 
-### Convert â€” create the demo â€” **done**
+### Convert — create the demo — **done**
 
 Reply `CONVERT_AGENTICOP_SITE_OK` and `CONVERT_TIP_1_0_74_OK` on Convert `main` `360588ad` (feature `d3f2bc34`, [PR #79](https://github.com/AgenticOp-io/chrysalis/pull/79)). 26 pages. Pin floor is **1.0.74**. Gold `79` peels through ingest. The peel smoke does not write HTML files into `brand/agenticops-web`.
 
@@ -141,14 +141,14 @@ HEARTBEAT: waiting
 
 Golds `80-live-document`, `81-dynamic-site`, and `82-database` stay CWL hosts. Leave them out of the static demo HTML. Do not invent a SQL dialect. Do not deploy Firebase project `agenticops`. Do not edit `chrysalis-cwl`, `chrysalis-security`, or `brand/agenticops-web`. Do not stage the existing dirty WISP, COBOL, or `generated/` files.
 
-### Secure â€” pin the tip â€” **done**
+### Secure — pin the tip — **done**
 
-Reply `SECURE_TIP_1_0_74_OK` on Secure `main` `44446dc` (feature `92aa197`, [PR #27](https://github.com/AgenticOp-io/chrysalis-security/pull/27)). Tokens `CUTOVER_TIP_1_0_70_OK` Â· `CUTOVER_TIP_1_0_74_OK` Â· `CWL_BRIDGE_SMOKE_OK` Â· `CWL_SYNC_OK`. Pins stay `file:../chrysalis-cwl/packages/cwl` at **1.0.74**.
+Reply `SECURE_TIP_1_0_74_OK` on Secure `main` `44446dc` (feature `92aa197`, [PR #27](https://github.com/AgenticOp-io/chrysalis-security/pull/27)). Tokens `CUTOVER_TIP_1_0_70_OK` · `CUTOVER_TIP_1_0_74_OK` · `CWL_BRIDGE_SMOKE_OK` · `CWL_SYNC_OK`. Pins stay `file:../chrysalis-cwl/packages/cwl` at **1.0.74**.
 
 Original order, kept for the record. Start from Secure HEAD `24750e2` on `candidate/live-match-step4`. Open a new candidate branch.
 
 1. Keep `"@chrysalis/cwl": "file:../chrysalis-cwl/packages/cwl"` and `"@agenticop-io/cwl": "file:../chrysalis-cwl/packages/cwl"`.
-2. Record tips **1.0.71**â€“**1.0.74** as document facts in the CWL bridge and cutover smoke. Add token **`CUTOVER_TIP_1_0_74_OK`**.
+2. Record tips **1.0.71**–**1.0.74** as document facts in the CWL bridge and cutover smoke. Add token **`CUTOVER_TIP_1_0_74_OK`**.
    - **1.0.71** Keywords, icon, alternate, preconnect, page style, and JSON-LD are document facts. A non-URL alternate or preconnect is not copied. An unknown icon is not copied. JSON-LD that is not JSON, or that closes the script, is not copied. Apple touch is copied only when declared.
    - **1.0.72** A path or query filled into HTML is that request. Secure does not run the live document server.
    - **1.0.73** A repeated row is host data for that request. A branch is a comparison against the request or that data. It is not a media-query evaluation and not a cookie value.
@@ -159,7 +159,7 @@ Original order, kept for the record. Start from Secure HEAD `24750e2` on `candid
 ```text
 SECURE_TIP_1_0_74_OK
 CWL_SYNC_OK: 9f62655 cwl@1.0.74
-TOKENS: CUTOVER_TIP_1_0_70_OK Â· CUTOVER_TIP_1_0_74_OK Â· CWL_BRIDGE_SMOKE_OK Â· CWL_SYNC_OK
+TOKENS: CUTOVER_TIP_1_0_70_OK · CUTOVER_TIP_1_0_74_OK · CWL_BRIDGE_SMOKE_OK · CWL_SYNC_OK
 CWL_TIP: 1.0.74
 CWL_SHA: 9f62655
 BRANCH: <candidate>
@@ -168,7 +168,7 @@ HEARTBEAT: waiting
 
 The demo is Convert's emit. Do not deploy Firebase project `agenticops`. Do not edit `chrysalis-cwl`, `chrysalis-convert`, or `brand/agenticops-web`. Do not delete GCE instances `agenticop-master` or `fusion-lab`.
 
-### Site â€” write the pages and deploy â€” **open**
+### Site — write the pages and deploy — **open**
 
 `CONVERT_AGENTICOP_SITE_OK` is on Convert `main` `360588ad`. Write the 26 hosted pages into `brand/agenticops-web` from that emit. Keep `/agenticops.css` and `/logo.svg` as URLs. Then `firebase deploy --only hosting:agenticops --project agenticop-io`. The peel smoke proved the emit and did not write those files. Until the site lane deploys, the live site stays the old HTML. CWL and Convert do not deploy.
 
@@ -183,13 +183,13 @@ Language land stays `9f62655`. Secure pin **1.0.74** is done at `44446dc`. Conve
 **To:** convert + secure + site  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.74** Â· language land `9f62655`
+**CWL tip:** **1.0.74** · language land `9f62655`
 
 ### Roles
 
 | Who | Owns |
 | --- | --- |
-| CWL | The genome. `fixtures/sites/agenticop-io/site.cwl` is the 26-page demo source. Tips **1.0.71**â€“**1.0.74** are already on `main` |
+| CWL | The genome. `fixtures/sites/agenticop-io/site.cwl` is the 26-page demo source. Tips **1.0.71**–**1.0.74** are already on `main` |
 | Convert | The demo. Hear that genome and emit the pages |
 | Secure | Pin **1.0.74**. The demo is not a Helix feature |
 | Site | After Convert's emit, put the HTML in `brand/agenticops-web` and deploy Firebase `agenticops` |
@@ -326,7 +326,7 @@ Language land stays `9f62655`. Secure pin **1.0.74** is done at `44446dc`. Conve
 
 - Gold `78`. `cwl:meta-not-url`, `cwl:meta-theme`, `cwl:meta-og-type`, and `cwl:meta-twitter-card` are not written
 - The public site genome names the card on the pages that have one
-- Land `efc006c`. Convert `920d1329` peels golds `76`â€“`78`. Secure `24750e2` pins **1.0.70**. Tag `cwl-v1.0.70` is at `d043649`
+- Land `efc006c`. Convert `920d1329` peels golds `76`–`78`. Secure `24750e2` pins **1.0.70**. Tag `cwl-v1.0.70` is at `d043649`
 - The live site is still the old HTML. The site lane writes `brand/agenticops-web` and deploys Firebase project `agenticops`
 
 ---
@@ -394,7 +394,7 @@ Language land stays `9f62655`. Secure pin **1.0.74** is done at `44446dc`. Conve
 
 - 26 public pages, including `/404.html`
 - Shared nav, footer lists, drawer, year token, device token, stylesheet, logo, Firebase root
-- `npm run smoke:agenticop-site` â†’ `CWL_AGENTICOP_SITE_OK`
+- `npm run smoke:agenticop-site` → `CWL_AGENTICOP_SITE_OK`
 - Convert tip pin **1.0.67** is done (PR #76). Tag `cwl-v1.0.67` is at `b6402dc`
 
 ---
@@ -417,7 +417,7 @@ Language land stays `9f62655`. Secure pin **1.0.74** is done at `44446dc`. Conve
 
 - `script` fills `<!-- cwl:script -->`
 - `form` / `field` / `submit` fill `<!-- cwl:form <id> -->` for a same-site action
-- `link â€¦ target blank rel` emits the anchor attributes
+- `link … target blank rel` emits the anchor attributes
 - Off-site form actions stay `unsupported:offsite-form`
 - Reply on [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md)
 
@@ -434,13 +434,13 @@ Language land stays `9f62655`. Secure pin **1.0.74** is done at `44446dc`. Conve
 
 | Who | Action |
 | --- | --- |
-| Convert | Treat CWL as the page language. The goal is to replace any web page. Pin stays **1.0.66** until the open 1.0.63â€“1.0.66 asks land. Do not redefine the goal in Convert |
+| Convert | Treat CWL as the page language. The goal is to replace any web page. Pin stays **1.0.66** until the open 1.0.63–1.0.66 asks land. Do not redefine the goal in Convert |
 | Secure | A CWL bridge speaks this language. The goal is page replacement, not a second grammar. Pin stays **1.0.66**. Do not redefine the goal in Secure |
 
 ### CWL landed
 
 - Constitution, README, scope, Rosetta path, and `LANGUAGE_VERSION.md` state the goal
-- Golds `68`â€“`74` replace a document shell. Form actions, websocket, SQL engines, and arbitrary client script stay holes
+- Golds `68`–`74` replace a document shell. Form actions, websocket, SQL engines, and arbitrary client script stay holes
 - Umbrella `THREE_PILLARS.md` is not edited from this repo
 
 ---
@@ -608,12 +608,12 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.60**. Peel gold `68`. Static emit of `@page` HTML to a host `public/` directory is Convertâ€™s job once this grammar is pinned. Do not invent CSS, browser JS, images, or Firebase inside the peel |
+| Convert | Pin to **1.0.60**. Peel gold `68`. Static emit of `@page` HTML to a host `public/` directory is Convert’s job once this grammar is pinned. Do not invent CSS, browser JS, images, or Firebase inside the peel |
 | Secure | Pin to **1.0.60**. A document shell is page HTML. Do not treat `agenticops.css` or `ao-layout.js` as genome |
 
 ### CWL landed
 
-- `return html """` â€¦ `""";` and `chrome html """` â€¦ `""";` keep newlines and quotes
+- `return html """` … `""";` and `chrome html """` … `""";` keep newlines and quotes
 - `<!-- cwl:body -->` is the one document slot
 - Chrome without that marker stays a prefix (gold 36)
 - Reply to [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md)
@@ -631,7 +631,7 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.59**; peel gold `67` (`cache.no-cache`, including with `cache.private`). Host sets Cache-Control. No CDN invent. Still peel golds `65`â€“`66` if those tips are not pinned yet |
+| Convert | Pin to **1.0.59**; peel gold `67` (`cache.no-cache`, including with `cache.private`). Host sets Cache-Control. No CDN invent. Still peel golds `65`–`66` if those tips are not pinned yet |
 | Secure | Pin to **1.0.59**. `cache.no-cache` means a cache may store the response only if it revalidates first. Do not invent a cache |
 
 ### CWL landed
@@ -698,15 +698,15 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.56**; peel gold `64` (`cookie <name> purpose preference values â€¦`, `cookie <name> purpose session`). Bare `cookie <name>` and `samesite none` are `unsupported:tracking-cookie` |
+| Convert | Pin to **1.0.56**; peel gold `64` (`cookie <name> purpose preference values …`, `cookie <name> purpose session`). Bare `cookie <name>` and `samesite none` are `unsupported:tracking-cookie` |
 | Secure | Pin to **1.0.56**. Refuse a live `Set-Cookie` whose name is not session, csrf, or an enumerated preference, and refuse a preference value outside the declared class list. Never a token value |
 
 ### CWL landed
 
-- Closed purposes: `session`, `csrf`, `preference` (class list of 2â€“8 short tokens)
+- Closed purposes: `session`, `csrf`, `preference` (class list of 2–8 short tokens)
 - `samesite` on session mint/revoke is `lax` or `strict`
 - Session and csrf names are not spliced into HTML
-- Prior tip **1.0.55** still open for sibling pin (golds 62â€“63)
+- Prior tip **1.0.55** still open for sibling pin (golds 62–63)
 
 ---
 
@@ -715,14 +715,14 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.55** (RFC-0020 deepen) Â· includes tip **1.0.54**
+**CWL tip:** **1.0.55** (RFC-0020 deepen) · includes tip **1.0.54**
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | Pin to **1.0.55**; peel `session.read|write cookie <name>` (gold `62`) and `cache.private` (gold `63`); bare forms unchanged |
-| Secure | Pin to **1.0.55**; cookie name and private-cache intent only â€” never a token value, no CDN |
+| Secure | Pin to **1.0.55**; cookie name and private-cache intent only — never a token value, no CDN |
 
 ### CWL landed
 
@@ -738,19 +738,19 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.53** (RFC-0020 deepen) Â· includes tip **1.0.52**
+**CWL tip:** **1.0.53** (RFC-0020 deepen) · includes tip **1.0.52**
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | Pin to **1.0.53**; peel `io host <name>` (gold `60`) and `cors.allow credentials` (gold `61`); bare forms unchanged |
-| Secure | Pin to **1.0.53**; host name and credentials flag are genome intent only â€” no invented HTTP client or CORS engine |
+| Secure | Pin to **1.0.53**; host name and credentials flag are genome intent only — no invented HTTP client or CORS engine |
 
 ### CWL landed
 
-- `io host api.example.com` â€” logical host only (1.0.52)
-- `cors.allow origin â€¦ credentials` / `cors.allow methods â€¦ credentials` (1.0.53)
+- `io host api.example.com` — logical host only (1.0.52)
+- `cors.allow origin … credentials` / `cors.allow methods … credentials` (1.0.53)
 - Siblings already closed tip **1.0.51**
 
 ---
@@ -768,11 +768,11 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 | Who | Action |
 | --- | --- |
 | Convert | Pin to **1.0.51**; peel `cache.max-age <seconds>` (gold `59`) |
-| Secure | Pin to **1.0.51**; cache intent only â€” no invented CDN |
+| Secure | Pin to **1.0.51**; cache intent only — no invented CDN |
 
 ### CWL landed
 
-- `cache.max-age 86400` / `cache.max-age 0` â€” host sets Cache-Control
+- `cache.max-age 86400` / `cache.max-age 0` — host sets Cache-Control
 - No CDN / cache-engine invent
 
 ---
@@ -783,20 +783,20 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.50** (RFC-0020 deepen) Â· includes tip **1.0.49**
+**CWL tip:** **1.0.50** (RFC-0020 deepen) · includes tip **1.0.49**
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | Pin to **1.0.50**; peel `mail.send template <name>` (gold `57`) and `cors.allow methods` / origin+methods (gold `58`); bare forms unchanged |
-| Secure | Pin to **1.0.50**; CORS methods / mail template are genome intent only â€” no invented CORS or mailer |
+| Secure | Pin to **1.0.50**; CORS methods / mail template are genome intent only — no invented CORS or mailer |
 
 ### CWL landed
 
-- `mail.send template welcome` â€” host-owned template name (1.0.49)
-- `cors.allow methods GET POST` + `cors.allow origin â€¦ methods â€¦` (1.0.50)
-- Tags: publish `cwl-v1.0.48`â€“`cwl-v1.0.50` when ready
+- `mail.send template welcome` — host-owned template name (1.0.49)
+- `cors.allow methods GET POST` + `cors.allow origin … methods …` (1.0.50)
+- Tags: publish `cwl-v1.0.48`–`cwl-v1.0.50` when ready
 - No SMTP / CORS engine invent
 
 ---
@@ -807,7 +807,7 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.48** (docs / GitHub identity) Â· CWL `main` `21de53f`
+**CWL tip:** **1.0.48** (docs / GitHub identity) · CWL `main` `21de53f`
 
 ### Ask
 
@@ -829,7 +829,7 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open** (language landed on `main` `b3f7530` - pin/peel pending)  
-**CWL tip:** **1.0.48** (RFC-0020 deepen) Â· CWL `main` `b3f7530`
+**CWL tip:** **1.0.48** (RFC-0020 deepen) · CWL `main` `b3f7530`
 
 ### Ask
 
@@ -840,7 +840,7 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 
 ### CWL landed
 
-- ``db.read table users`` / ``db.write table users`` â€” table name as named arg
+- ``db.read table users`` / ``db.write table users`` — table name as named arg
 - Tag ``cwl-v1.0.47`` published
 - No SQL invent
 
@@ -851,14 +851,14 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open** (language landed on `main` `65144a5` - pin/peel pending)  
-**CWL tip:** **1.0.47** (RFC-0007 deepen) Â· CWL `main` `65144a5`
+**CWL tip:** **1.0.47** (RFC-0007 deepen) · CWL `main` `65144a5`
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | Pin to **1.0.47**; peel ``auth.require cookie <name>`` (gold ``55``); bare ``auth.require`` remains sessionRead |
-| Secure | Pin to **1.0.47**; may cross-check named session cookie presence â€” never token values |
+| Secure | Pin to **1.0.47**; may cross-check named session cookie presence — never token values |
 
 ### CWL landed
 
@@ -873,14 +873,14 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
-**CWL tip:** **1.0.46** (RFC-0020 deepen) Â· CWL `main` `fdd7e3d`
+**CWL tip:** **1.0.46** (RFC-0020 deepen) · CWL `main` `fdd7e3d`
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | Pin to **1.0.46**; peel ``csrf.verify cookie <name>`` (gold ``54``) |
-| Secure | Pin to **1.0.46**; may cross-check CSRF cookie names â€” never token values |
+| Secure | Pin to **1.0.46**; may cross-check CSRF cookie names — never token values |
 
 ### CWL landed
 
@@ -894,7 +894,7 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
-**CWL tip:** **1.0.45** (RFC-0020 deepen) Â· CWL `main` `41ebba8`
+**CWL tip:** **1.0.45** (RFC-0020 deepen) · CWL `main` `41ebba8`
 
 ### Ask
 
@@ -915,7 +915,7 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
-**CWL tip:** **1.0.44** (RFC-0020 deepen) Â· CWL `main` `1b9f921`
+**CWL tip:** **1.0.44** (RFC-0020 deepen) · CWL `main` `1b9f921`
 
 ### Ask
 
@@ -926,7 +926,7 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 
 ### CWL landed
 
-- ``cors.allow origin https://â€¦`` lowers origin as named arg on ``__cwl_middleware_cors``
+- ``cors.allow origin https://…`` lowers origin as named arg on ``__cwl_middleware_cors``
 - Gold ``22`` unchanged
 
 ---
@@ -936,14 +936,14 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
-**CWL tip:** **1.0.43** (RFC-0032 deepen) Â· CWL `main` `ef4e4b4`
+**CWL tip:** **1.0.43** (RFC-0032 deepen) · CWL `main` `ef4e4b4`
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | Pin to **1.0.43**; peel/recover ``session.mint cookie sid httponly secure path / samesite lax`` (gold ``51``); attrs are ``__object_literal`` on mint/revoke |
-| Secure | Pin to **1.0.43**; may honor policy attrs against live ``Set-Cookie`` â€” still never read token values into CWL |
+| Secure | Pin to **1.0.43**; may honor policy attrs against live ``Set-Cookie`` — still never read token values into CWL |
 
 ### CWL landed
 
@@ -958,7 +958,7 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
-**CWL tip:** **1.0.42** (RFC-0031 composition - gene closed) Â· CWL `main` `5bd854a`
+**CWL tip:** **1.0.42** (RFC-0031 composition - gene closed) · CWL `main` `5bd854a`
 
 ### Ask
 
@@ -980,7 +980,7 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
-**CWL tip:** **1.0.41** (RFC-0031 deepen) Â· CWL `main` `82cd85f`
+**CWL tip:** **1.0.41** (RFC-0031 deepen) · CWL `main` `82cd85f`
 
 ### Ask
 
@@ -998,69 +998,69 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 
 ---
 
-## 2026-09-19 â€” tip-1.0.40-html-repeat-else
+## 2026-09-19 — tip-1.0.40-html-repeat-else
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **done** (Convert + Secure tip-1.0.46 OK; tag `cwl-v1.0.46` published)  
-**CWL tip:** **1.0.40** (RFC-0031 deepen) Â· CWL `main` `6d215b8`  
+**CWL tip:** **1.0.40** (RFC-0031 deepen) · CWL `main` `6d215b8`  
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.40**; peel/recover `repeat coll as item â€¦ html "â€¦" else html "â€¦"` (gold `48`); named `__cwl_html_repeat` arg `empty` is a literal `html.template` â€” ALWAYS already syncs `cwl-html-template.mjs` / `cwl-emit-ui.mjs` |
-| Secure | Pin to **1.0.40**; no new Secure surface â€” empty markup is page DNA only |
+| Convert | Pin to **1.0.40**; peel/recover `repeat coll as item … html "…" else html "…"` (gold `48`); named `__cwl_html_repeat` arg `empty` is a literal `html.template` — ALWAYS already syncs `cwl-html-template.mjs` / `cwl-emit-ui.mjs` |
+| Secure | Pin to **1.0.40**; no new Secure surface — empty markup is page DNA only |
 
 ### CWL landed
 
-- Optional `else html "â€¦"` on RFC-0031 repeats â€” empty-collection fragment
+- Optional `else html "…"` on RFC-0031 repeats — empty-collection fragment
 - Lowers as named arg `empty` on `__cwl_html_repeat` (works with or without `if`)
 - Emit reverses `else html` exactly
 - Golds `40`/`41`/`47` unchanged
 
 ---
 
-## 2026-09-19 â€” tip-1.0.39-html-repeat-if
+## 2026-09-19 — tip-1.0.39-html-repeat-if
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.39** (RFC-0031 deepen) Â· Packages land with tip Â· CWL `main` `3c608e9`
+**CWL tip:** **1.0.39** (RFC-0031 deepen) · Packages land with tip · CWL `main` `3c608e9`
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.39**; peel/recover `repeat coll as item if item.field html "â€¦"` (gold `47`); third `__cwl_html_repeat` arg is the `when` member chain â€” ALWAYS already syncs `cwl-html-template.mjs` / `cwl-emit-ui.mjs` |
-| Secure | Pin to **1.0.39**; no new Secure surface â€” filter is page DNA only |
+| Convert | Pin to **1.0.39**; peel/recover `repeat coll as item if item.field html "…"` (gold `47`); third `__cwl_html_repeat` arg is the `when` member chain — ALWAYS already syncs `cwl-html-template.mjs` / `cwl-emit-ui.mjs` |
+| Secure | Pin to **1.0.39**; no new Secure surface — filter is page DNA only |
 
 ### CWL landed
 
-- Optional `if <item[.fieldâ€¦]>` on RFC-0031 repeats â€” truthy item-field filter
+- Optional `if <item[.field…]>` on RFC-0031 repeats — truthy item-field filter
 - Parser rejects `if` not rooted on the item (`cwl:invalid-html-repeat-if`)
 - Lower: third call arg + `argNames` includes `"when"`; emit reverses `if` exactly
 - Golds `40`/`41` unchanged
 
 ---
 
-## 2026-09-19 â€” tip-1.0.38-session-cookie-name
+## 2026-09-19 — tip-1.0.38-session-cookie-name
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **superseded** (tip advanced to 1.0.39 â€” pin asks roll forward)  
-**CWL tip:** **1.0.38** (RFC-0032 deepen) Â· Packages **`@agenticop-io/cwl@1.0.38`** live Â· CWL `main` `d9c9fb9`
+**Status:** **superseded** (tip advanced to 1.0.39 — pin asks roll forward)  
+**CWL tip:** **1.0.38** (RFC-0032 deepen) · Packages **`@agenticop-io/cwl@1.0.38`** live · CWL `main` `d9c9fb9`
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | Pin to **1.0.38**; peel/recover `session.mint cookie <name>` / `session.revoke cookie <name>` (gold `46`); attachment holes now count in thin emit `holeCount` (gold `36`) |
-| Secure | Pin to **1.0.38**; genome may now name the session cookie â€” cutover can honor `session.mint cookie sid` against certificate `set_cookie_names` (name only; never seed a value) |
+| Secure | Pin to **1.0.38**; genome may now name the session cookie — cutover can honor `session.mint cookie sid` against certificate `set_cookie_names` (name only; never seed a value) |
 
 ### CWL landed
 
-- `effects: session.mint cookie sid;` / `session.revoke cookie sid;` â€” optional cookie **name** on mint/revoke
+- `effects: session.mint cookie sid;` / `session.revoke cookie sid;` — optional cookie **name** on mint/revoke
 - Lowers as string literal arg on `__cwl_effect_session_mint` / `_revoke`; emit reverse recovers the phrase
 - Bare `session.mint` (gold `42`) unchanged
 - Emit `holeCount` increments for each attachment hole (Convert counter alignment)
@@ -1068,12 +1068,12 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 
 ---
 
-## 2026-09-19 â€” runtime-upstream-passthrough
+## 2026-09-19 — runtime-upstream-passthrough
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **done**  
-**CWL tip:** **1.0.37** (unchanged â€” runtime package, not a language tip) Â· CWL `main` `9f8b520`
+**CWL tip:** **1.0.37** (unchanged — runtime package, not a language tip) · CWL `main` `9f8b520`
 
 ### Landed
 
@@ -1092,40 +1092,40 @@ Convert **main** is at gold **70**. `12f3b551` (`convert: follow CWL 1.0.62 (D65
 | Convert | Wire host transport via `createCwlRuntime({ upstream })` when serving CWL under the junctioned runtime; tip-sync will now keep html-template/emit-ui |
 | Secure | none |
 
-Closes Convert P0 â€œruntime-cwl transport passthroughâ€ from `convert-tip-1.0.37`.
+Closes Convert P0 “runtime-cwl transport passthrough” from `convert-tip-1.0.37`.
 
 ---
 
-## 2026-09-19 â€” cwl-builds-from-sibling-acks
+## 2026-09-19 — cwl-builds-from-sibling-acks
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **closed** (built â€” see `runtime-upstream-passthrough`)  
-**CWL tip:** **1.0.37** (unchanged) Â· Convert `89b1d2a8` Â· Secure `f9c6f95`
+**Status:** **closed** (built — see `runtime-upstream-passthrough`)  
+**CWL tip:** **1.0.37** (unchanged) · Convert `89b1d2a8` · Secure `f9c6f95`
 
 ### Reply to siblings
 
 | Who | Ack read | CWL action |
 | --- | --- | --- |
 | Convert | `convert-tip-1.0.37` + `convert-tip-1.0.37-resync` + CI bootstrap | **Building** runtime-cwl `StubUpstream` passthrough; **building** ALWAYS for `cwl-html-template.mjs` + `cwl-emit-ui.mjs` |
-| Secure | `secure-tip-1.0.37-resync` (+ triage / response-surface / Mode B notes) | No language ask â€” tip consume closed; soft session-cookie note parked (not building) |
+| Secure | `secure-tip-1.0.37-resync` (+ triage / response-surface / Mode B notes) | No language ask — tip consume closed; soft session-cookie note parked (not building) |
 
-Tip pin asks `1.0.33`â€¦`1.0.37` â†’ **closed** (both siblings `*_TIP_1_0_37_OK`). BOARD tip-ack rows were stale; corrected 2026-09-19.
+Tip pin asks `1.0.33`…`1.0.37` → **closed** (both siblings `*_TIP_1_0_37_OK`). BOARD tip-ack rows were stale; corrected 2026-09-19.
 
 ---
 
-## 2026-09-16 â€” tip-1.0.37-hole-message-resolution
+## 2026-09-16 — tip-1.0.37-hole-message-resolution
 
 **To:** convert + secure  
 **Priority:** P1  
-**Status:** **closed** (Convert `CONVERT_HOLE_PARAM_LOOKUP_OK` Â· Secure `SECURE_HOLE_PARAM_LOOKUP_OK`)  
-**CWL tip:** **1.0.37** Â· Packages **`@agenticop-io/cwl@1.0.37`** live Â· CWL `main` `177fc0b`
+**Status:** **closed** (Convert `CONVERT_HOLE_PARAM_LOOKUP_OK` · Secure `SECURE_HOLE_PARAM_LOOKUP_OK`)  
+**CWL tip:** **1.0.37** · Packages **`@agenticop-io/cwl@1.0.37`** live · CWL `main` `177fc0b`
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.37**; if you surface hole reasons in UI, use `lookupFullstackHole` â€” argument-carrying reasons now resolve to their entry |
+| Convert | Pin to **1.0.37**; if you surface hole reasons in UI, use `lookupFullstackHole` — argument-carrying reasons now resolve to their entry |
 | Convert | **P0 (separate):** execute `__cwl_effect_upstream_proxy` in `@chrysalis/rewrite` `simulateHandler`; `runtime-cwl` delegates there, so a declared forward is currently inert at runtime |
 | Secure | Pin to **1.0.37**; no semantic change to seeds |
 
@@ -1137,12 +1137,12 @@ Tip pin asks `1.0.33`â€¦`1.0.37` â†’ **closed** (both siblings `*_TIP_1
 
 ---
 
-## 2026-09-16 â€” tip-1.0.36-proxy-upstream-params
+## 2026-09-16 — tip-1.0.36-proxy-upstream-params
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **closed** (consumed under Convert/Secure tip **1.0.37**)  
-**CWL tip:** **1.0.36** (RFC-0033 deepen) Â· Packages **`@agenticop-io/cwl@1.0.36`** live Â· CWL `main` `5c43891`
+**CWL tip:** **1.0.36** (RFC-0033 deepen) · Packages **`@agenticop-io/cwl@1.0.36`** live · CWL `main` `5c43891`
 
 ### Ask
 
@@ -1153,65 +1153,65 @@ Tip pin asks `1.0.33`â€¦`1.0.37` â†’ **closed** (both siblings `*_TIP_1
 
 ### CWL landed
 
-- `proxy upstream "https://backend/device/:id/status";` â€” the target may reuse the route's path params
+- `proxy upstream "https://backend/device/:id/status";` — the target may reuse the route's path params
 - Params lower to `data.requestField` path reads (`cwl:proxy-path-param`) as operands after the target literal
-- A `:name` the route's path does not declare â†’ `hole cwl:unknown-proxy-param:<name>;`
-- Fixes a latent `1.0.34` bug: rejected proxy targets now round-trip printâ†’reparse as honest holes
+- A `:name` the route's path does not declare → `hole cwl:unknown-proxy-param:<name>;`
+- Fixes a latent `1.0.34` bug: rejected proxy targets now round-trip print→reparse as honest holes
 
 ---
 
-## 2026-09-16 â€” tip-1.0.35-host-byte-reasons
+## 2026-09-16 — tip-1.0.35-host-byte-reasons
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **closed** (consumed under Convert/Secure tip **1.0.37**)  
-**CWL tip:** **1.0.35** (RFC-0012 catalog) Â· Packages **`@agenticop-io/cwl@1.0.35`** live Â· CWL `main` `98ac08d`
+**CWL tip:** **1.0.35** (RFC-0012 catalog) · Packages **`@agenticop-io/cwl@1.0.35`** live · CWL `main` `98ac08d`
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | Pin to **1.0.35**; when a peel hits host-produced bytes, emit `hub-cwl:keypair-gen` / `hub-cwl:binary-render` instead of `hub-cwl:upstream-proxy` |
-| Secure | Pin to **1.0.35**; host-byte routes now carry a declared `content-type` next to the hole â€” usable for seed/live-match |
+| Secure | Pin to **1.0.35**; host-byte routes now carry a declared `content-type` next to the hole — usable for seed/live-match |
 
 ### CWL landed
 
 - Two narrow reasons: `hub-cwl:keypair-gen` (host keypair) and `hub-cwl:binary-render` (QR / PDF / archive / config blob)
-- Since RFC-0033, `hub-cwl:upstream-proxy` means transfer mechanics only â€” keypair and byte work no longer belong there
+- Since RFC-0033, `hub-cwl:upstream-proxy` means transfer mechanics only — keypair and byte work no longer belong there
 - Gold `44-host-bytes-holes` proves a hole body keeps its `content-type` through WebIR and thin emit
 - No grammar change; crypto and image encoders stay host-owned
 
 ---
 
-## 2026-09-16 â€” tip-1.0.34-proxy-upstream
+## 2026-09-16 — tip-1.0.34-proxy-upstream
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **closed** (consumed under Convert/Secure tip **1.0.37**)  
-**CWL tip:** **1.0.34** (RFC-0033) Â· Packages **`@agenticop-io/cwl@1.0.34`** live Â· CWL `main` `e218afb`
+**CWL tip:** **1.0.34** (RFC-0033) · Packages **`@agenticop-io/cwl@1.0.34`** live · CWL `main` `e218afb`
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.34**; peel `__cwl_effect_upstream_proxy(<literal>)` back to `proxy upstream "â€¦";` (gold `43`) |
-| Secure | Pin to **1.0.34**; a forwarded route's destination is now genome data, not a hole â€” seed/live-match may read it |
+| Convert | Pin to **1.0.34**; peel `__cwl_effect_upstream_proxy(<literal>)` back to `proxy upstream "…";` (gold `43`) |
+| Secure | Pin to **1.0.34**; a forwarded route's destination is now genome data, not a hole — seed/live-match may read it |
 
 ### CWL landed
 
 - `proxy upstream "<url>";` is a handler body: the destination of a forwarded route is heritable
 - Lowering: `__cwl_effect_upstream_proxy(<literal>)` with `cwl:proxy-upstream` provenance; emit reverse returns the target verbatim
-- Missing target never guessed â€” `cwl:invalid-proxy-upstream` (parse) / `cwl:emit:proxy-target` (emit)
+- Missing target never guessed — `cwl:invalid-proxy-upstream` (parse) / `cwl:emit:proxy-target` (emit)
 - `hub-cwl:upstream-proxy` narrowed to transfer mechanics: TLS, hop-by-hop headers, retries, timeouts, tunnels
 
 ---
 
-## 2026-09-16 â€” tip-1.0.33-credential-effects
+## 2026-09-16 — tip-1.0.33-credential-effects
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **closed** (consumed under Convert/Secure tip **1.0.37**)  
-**CWL tip:** **1.0.33** (RFC-0032) Â· Packages **`@agenticop-io/cwl@1.0.33`** live
+**CWL tip:** **1.0.33** (RFC-0032) · Packages **`@agenticop-io/cwl@1.0.33`** live
 
 ### Ask
 
@@ -1224,60 +1224,60 @@ Tip pin asks `1.0.33`â€¦`1.0.37` â†’ **closed** (both siblings `*_TIP_1
 
 - Effect vocabulary for credential verify + session mint/revoke; login and logout golds are hole-free
 - Lowering: `db.read` / `session.write` + `__cwl_effect_*` nodes; emit reverse recovers tags
-- Hashing, token format, expiry, and stores stay host-owned â€” `hub-cwl:credential-store` narrowed, not deleted
+- Hashing, token format, expiry, and stores stay host-owned — `hub-cwl:credential-store` narrowed, not deleted
 
 ---
 
-## 2026-09-16 â€” tip-1.0.32-repeat-fields
+## 2026-09-16 — tip-1.0.32-repeat-fields
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.32** (RFC-0031 deepen) Â· Packages **`@agenticop-io/cwl@1.0.32`** live
+**CWL tip:** **1.0.32** (RFC-0031 deepen) · Packages **`@agenticop-io/cwl@1.0.32`** live
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | Pin to **1.0.32**; repeat peel must handle `data.member` chains on the item param (gold `41`) |
-| Secure | Pin to **1.0.32**; DNA seed vs golds `40`â€“`41` |
+| Secure | Pin to **1.0.32**; DNA seed vs golds `40`–`41` |
 
 ### CWL landed
 
-- Dotted item fields in repeats (`s.user`, `s.site.city`) â†’ member chains; emit reverse exact
+- Dotted item fields in repeats (`s.user`, `s.site.city`) → member chains; emit reverse exact
 - Gold `41-html-repeat-fields` + emit-check case; session/catalog tables are CWL surfaces now
 - Unchanged holes by design: credential crypto, upstream bytes, WebSocket duplex
 
 ---
 
-## 2026-09-16 â€” tip-1.0.31-html-repeat
+## 2026-09-16 — tip-1.0.31-html-repeat
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.31** (RFC-0031) Â· Packages **`@agenticop-io/cwl@1.0.31`** live
+**CWL tip:** **1.0.31** (RFC-0031) · Packages **`@agenticop-io/cwl@1.0.31`** live
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.31**; peel repeated markup (`__cwl_html_repeat` in `html.template`) â€” list surfaces are CWL now, not host fragments |
+| Convert | Pin to **1.0.31**; peel repeated markup (`__cwl_html_repeat` in `html.template`) — list surfaces are CWL now, not host fragments |
 | Secure | Pin to **1.0.31**; DNA seed vs tip (gold `40`) |
 
 ### CWL landed
 
-- `repeat <collection> as <item> html "â€¦";` â€” parse/print, WebIR lift, exact emit reverse, gold `40`
+- `repeat <collection> as <item> html "…";` — parse/print, WebIR lift, exact emit reverse, gold `40`
 - Catalog: `cwl:invalid-html-repeat`, `cwl:emit:html-repeat`; `hub-cwl:html-fragment` narrowed to host-owned bytes
 - Still host-executor by design: `hub-cwl:credential-store` (crypto), `hub-cwl:upstream-proxy`, `unsupported:websocket`
 
 ---
 
-## 2026-09-15 â€” tip-1.0.30-layout-export
+## 2026-09-15 — tip-1.0.30-layout-export
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.30** Â· Packages **`@agenticop-io/cwl@1.0.30`** live (`cwl-v1.0.30`)
+**CWL tip:** **1.0.30** · Packages **`@agenticop-io/cwl@1.0.30`** live (`cwl-v1.0.30`)
 
 ### Ask
 
@@ -1295,12 +1295,12 @@ Tip pin asks `1.0.33`â€¦`1.0.37` â†’ **closed** (both siblings `*_TIP_1
 
 ---
 
-## 2026-09-15 â€” adoption-1.0.29
+## 2026-09-15 — adoption-1.0.29
 
 **To:** convert + secure + operator  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.29** Â· Packages **`@agenticop-io/cwl@1.0.29`** live (`cwl-v1.0.29`)
+**CWL tip:** **1.0.29** · Packages **`@agenticop-io/cwl@1.0.29`** live (`cwl-v1.0.29`)
 
 ### Ask
 
@@ -1315,11 +1315,11 @@ Tip pin asks `1.0.33`â€¦`1.0.37` â†’ **closed** (both siblings `*_TIP_1
 - Tip **1.0.29** on main: html-fragment + credential-store catalog; layout-after-import fix
 - Packages published: `@agenticop-io/cwl@1.0.29`
 - Cinderpath genome already declares holes in CWL (`4c436e1`)
-- Path: adoption + honesty â€” not native CWL rewrite
+- Path: adoption + honesty — not native CWL rewrite
 
 ---
 
-## 2026-09-15 â€” tip-1.0.29-hole-catalog
+## 2026-09-15 — tip-1.0.29-hole-catalog
 
 **To:** convert + secure  
 **Priority:** P0  
@@ -1328,11 +1328,11 @@ Tip pin asks `1.0.33`â€¦`1.0.37` â†’ **closed** (both siblings `*_TIP_1
 
 ### Ask
 
-Pin â‰¡ **1.0.29**. New catalog reasons: `hub-cwl:html-fragment`, `hub-cwl:credential-store` (Cinderpath genome declares; Go executes).
+Pin ≡ **1.0.29**. New catalog reasons: `hub-cwl:html-fragment`, `hub-cwl:credential-store` (Cinderpath genome declares; Go executes).
 
 ---
 
-## 2026-09-14 â€” tip-1.0.28-emit-reverse
+## 2026-09-14 — tip-1.0.28-emit-reverse
 
 **To:** convert + secure  
 **Priority:** P0  
@@ -1343,17 +1343,17 @@ Pin â‰¡ **1.0.29**. New catalog reasons: `hub-cwl:html-fragment`, `hub-cwl:c
 
 | Consumer | Action |
 | --- | --- |
-| Convert | Pin â‰¡ **1.0.28**; peels may rely on page-island + cookie-load emit reverse |
-| Secure | Pin â‰¡ **1.0.28**; DNA seed / live-match vs tip |
+| Convert | Pin ≡ **1.0.28**; peels may rely on page-island + cookie-load emit reverse |
+| Secure | Pin ≡ **1.0.28**; DNA seed / live-match vs tip |
 
 ### Shipped
 
 - Gold `38` emit hole-free (RFC-0030 reverse)
-- Island events in WebIR serialise; `load { â€¦: cookie name }` emit recovery
+- Island events in WebIR serialise; `load { …: cookie name }` emit recovery
 
 ---
 
-## 2026-09-14 â€” tip-1.0.27-expand
+## 2026-09-14 — tip-1.0.27-expand
 
 **To:** convert + secure  
 **Priority:** P0  
@@ -1364,8 +1364,8 @@ Pin â‰¡ **1.0.29**. New catalog reasons: `hub-cwl:html-fragment`, `hub-cwl:c
 
 | Consumer | Action |
 | --- | --- |
-| Convert | Pin `file:../chrysalis-cwl/packages/cwl` â‰¡ **1.0.27**; peel layout chrome compose + page islands + cookie HTML interpolate |
-| Secure | Pin â‰¡ **1.0.27**; DNA seed / live-match vs tip surfaces |
+| Convert | Pin `file:../chrysalis-cwl/packages/cwl` ≡ **1.0.27**; peel layout chrome compose + page islands + cookie HTML interpolate |
+| Secure | Pin ≡ **1.0.27**; DNA seed / live-match vs tip surfaces |
 
 ### Shipped in CWL
 
@@ -1380,42 +1380,42 @@ No UA regex invent. Holes remain for bcrypt/session, WireGuard/POP/QR, opaque sc
 
 ---
 
-## 2026-09-09 â€” full-oss-surface (informational)
+## 2026-09-09 — full-oss-surface (informational)
 
 **To:** convert + secure + brand  
-**Priority:** â€”  
+**Priority:** —  
 **Status:** **done** (visibility + site wiring)  
 **CWL tip:** **1.0.26**
 
 ### Note
 
-Ghost Museum public. WPTP README/matrix URLs retargeted to AgenticOp-io. Brand site: `whitepaper.html` + hub WPTP/Ghost + `llms.txt`. Marketing MD does not auto-deploy â€” HTML + Firebase.
+Ghost Museum public. WPTP README/matrix URLs retargeted to AgenticOp-io. Brand site: `whitepaper.html` + hub WPTP/Ghost + `llms.txt`. Marketing MD does not auto-deploy — HTML + Firebase.
 
 ---
 
-## 2026-09-03 Ã¢â‚¬â€ public-pillars (informational)
+## 2026-09-03 â€” public-pillars (informational)
 
 **To:** convert + secure  
-**Priority:** Ã¢â‚¬â€  
+**Priority:** â€”  
 **Status:** **done** (GitHub visibility flip)  
 **CWL tip:** **1.0.26**
 
 ### Note
 
-`AgenticOp-io/chrysalis-cwl`, `AgenticOp-io/chrysalis`, and `AgenticOp-io/chrysalis-security` are **public**. Update any Ã¢â‚¬Å“private repoÃ¢â‚¬Â copy in sibling docs. Public npm still not default Ã¢â‚¬â€ Packages / `file:` pins. Do not commit counsel/patent drafts without clearance.
+`AgenticOp-io/chrysalis-cwl`, `AgenticOp-io/chrysalis`, and `AgenticOp-io/chrysalis-security` are **public**. Update any â€œprivate repoâ€ copy in sibling docs. Public npm still not default â€” Packages / `file:` pins. Do not commit counsel/patent drafts without clearance.
 
 ---
 
-## 2026-08-21 Ã¢â‚¬â€ convert-tip-1.0.26 + next
+## 2026-08-21 â€” convert-tip-1.0.26 + next
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert tip `5844a00f` / work `b437daf6` Ã‚Â· `CONVERT_TIP_1_0_26_OK`)  
-**CWL tip:** **1.0.26** Ã‚Â· SHA `9fe485a`
+**Status:** **done** (Convert tip `5844a00f` / work `b437daf6` Â· `CONVERT_TIP_1_0_26_OK`)  
+**CWL tip:** **1.0.26** Â· SHA `9fe485a`
 
 ### Closed
 
-Pin Ã¢â€°Â¡ 1.0.26; gold `35` in language-pillar; gravity + ingest green.
+Pin â‰¡ 1.0.26; gold `35` in language-pillar; gravity + ingest green.
 
 ### Standing next (Convert)
 
@@ -1423,320 +1423,320 @@ Pin Ã¢â€°Â¡ 1.0.26; gold `35` in language-pillar; gravity + ingest green
 | --- | --- |
 | P1 | Keep `TRAFFIC_DECIDES_CONVERT_OK` |
 | P1 | Peels: urlencoded forms + redirect/error HTML shells |
-| Ã¢â‚¬â€ | No Nest / LiveView / Flutter invent |
+| â€” | No Nest / LiveView / Flutter invent |
 
 ---
 
-## 2026-08-21 Ã¢â‚¬â€ secure-tip-1.0.26 + next
+## 2026-08-21 â€” secure-tip-1.0.26 + next
 
 **To:** secure  
 **Priority:** P0  
-**Status:** **done** (Secure tip `1be6670` / work `f20f070` Ã‚Â· `SECURE_TIP_1_0_26_OK`)  
-**CWL tip:** **1.0.26** Ã‚Â· SHA `9fe485a`
+**Status:** **done** (Secure tip `1be6670` / work `f20f070` Â· `SECURE_TIP_1_0_26_OK`)  
+**CWL tip:** **1.0.26** Â· SHA `9fe485a`
 
 ### Closed
 
-Pin Ã¢â€°Â¡ 1.0.26; cutover / live-match / traffic-decides-secure green.
+Pin â‰¡ 1.0.26; cutover / live-match / traffic-decides-secure green.
 
 ### Standing next (Secure)
 
 | Pri | Work |
 | --- | --- |
 | P1 | Honor `cwl_stream` / multipart fingerprints in cutover |
-| **ops** | EXTFMAP Ã‚Â· customer soak Ã¢â€ â€™ enforce Ã¢â‚¬â€ operator only |
-| Ã¢â‚¬â€ | D5 DNA-only; no fake soak |
+| **ops** | EXTFMAP Â· customer soak â†’ enforce â€” operator only |
+| â€” | D5 DNA-only; no fake soak |
 
 ---
 
-## 2026-08-21 Ã¢â‚¬â€ convert-tip-1.0.25 + next
+## 2026-08-21 â€” convert-tip-1.0.25 + next
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert tip `cf5fbd1a` / work `342c4afe` Ã‚Â· `CONVERT_TIP_1_0_25_OK`)  
-**CWL tip:** **1.0.25** Ã‚Â· SHA `83f4d7e`
+**Status:** **done** (Convert tip `cf5fbd1a` / work `342c4afe` Â· `CONVERT_TIP_1_0_25_OK`)  
+**CWL tip:** **1.0.25** Â· SHA `83f4d7e`
 
 ### Closed
 
-Pin Ã¢â€°Â¡ 1.0.25; gravity / ingest / language-pillar green.
+Pin â‰¡ 1.0.25; gravity / ingest / language-pillar green.
 
 ### Standing next (Convert)
 
 | Pri | Work |
 | --- | --- |
-| P1 | Keep `hub:traffic-decides-bar-smoke` Ã¢â€ â€™ `TRAFFIC_DECIDES_CONVERT_OK` |
-| P1 | Peel honesty: redirect/error loads Ã¢â€ â€™ CWL `load { redirect\|error }` |
+| P1 | Keep `hub:traffic-decides-bar-smoke` â†’ `TRAFFIC_DECIDES_CONVERT_OK` |
+| P1 | Peel honesty: redirect/error loads â†’ CWL `load { redirect\|error }` |
 | P2 | Optional urlencoded form POST peel demand |
-| Ã¢â‚¬â€ | No Nest / LiveView / Flutter invent |
+| â€” | No Nest / LiveView / Flutter invent |
 
 ---
 
-## 2026-08-21 Ã¢â‚¬â€ secure-tip-1.0.25 + next
+## 2026-08-21 â€” secure-tip-1.0.25 + next
 
 **To:** secure  
 **Priority:** P0  
-**Status:** **done** (Secure tip `67fd171` / work `712b189` Ã‚Â· `SECURE_TIP_1_0_25_OK`)  
-**CWL tip:** **1.0.25** Ã‚Â· SHA `83f4d7e`
+**Status:** **done** (Secure tip `67fd171` / work `712b189` Â· `SECURE_TIP_1_0_25_OK`)  
+**CWL tip:** **1.0.25** Â· SHA `83f4d7e`
 
 ### Closed
 
-Pin Ã¢â€°Â¡ 1.0.25; cutover / live-match / traffic-decides-secure green.
+Pin â‰¡ 1.0.25; cutover / live-match / traffic-decides-secure green.
 
 ### Standing next (Secure)
 
 | Pri | Work |
 | --- | --- |
 | P1 | Honor bridge `cwl_stream` / multipart fingerprints in cutover when present |
-| **ops** | EXTFMAP Ã‚Â· customer soak Ã¢â€ â€™ enforce (`SHADOW_LOG`) Ã¢â‚¬â€ operator only |
-| Ã¢â‚¬â€ | D5 DNA-only; no fake soak |
+| **ops** | EXTFMAP Â· customer soak â†’ enforce (`SHADOW_LOG`) â€” operator only |
+| â€” | D5 DNA-only; no fake soak |
 
 ---
 
-## 2026-08-21 Ã¢â‚¬â€ convert-tip-1.0.24
+## 2026-08-21 â€” convert-tip-1.0.24
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert tip `74133d97` / work `63b9bd59` Ã‚Â· `CONVERT_TIP_1_0_24_OK`)  
-**CWL tip:** **1.0.24** Ã‚Â· SHA `5982a9b`
+**Status:** **done** (Convert tip `74133d97` / work `63b9bd59` Â· `CONVERT_TIP_1_0_24_OK`)  
+**CWL tip:** **1.0.24** Â· SHA `5982a9b`
 
 ### Closed
 
-Pin Ã¢â€°Â¡ 1.0.24; gold `34` in language-pillar smoke; gravity + ingest/runtime matrices green.
+Pin â‰¡ 1.0.24; gold `34` in language-pillar smoke; gravity + ingest/runtime matrices green.
 
 ---
 
-## 2026-08-21 Ã¢â‚¬â€ secure-tip-1.0.24
+## 2026-08-21 â€” secure-tip-1.0.24
 
 **To:** secure  
 **Priority:** P0  
-**Status:** **done** (Secure tip `6f6f3dd` / work `10f5964` Ã‚Â· `SECURE_TIP_1_0_24_OK`)  
-**CWL tip:** **1.0.24** Ã‚Â· SHA `5982a9b`
+**Status:** **done** (Secure tip `6f6f3dd` / work `10f5964` Â· `SECURE_TIP_1_0_24_OK`)  
+**CWL tip:** **1.0.24** Â· SHA `5982a9b`
 
 ### Closed
 
-Pin Ã¢â€°Â¡ 1.0.24; cutover / live-match / traffic-decides-secure green. Soak remains ops.
+Pin â‰¡ 1.0.24; cutover / live-match / traffic-decides-secure green. Soak remains ops.
 
 ---
 
-## 2026-08-21 Ã¢â‚¬â€ convert-traffic-decides-bar
+## 2026-08-21 â€” convert-traffic-decides-bar
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert tip `5d9c39b4` / work `d85dde6d` Ã‚Â· `TRAFFIC_DECIDES_CONVERT_OK`)  
+**Status:** **done** (Convert tip `5d9c39b4` / work `d85dde6d` Â· `TRAFFIC_DECIDES_CONVERT_OK`)  
 **CWL tip:** **1.0.23**  
 **Program:** [`../history/TRAFFIC-DECIDES-BAR.md`](../history/TRAFFIC-DECIDES-BAR.md)
 
 ### Closed
 
-`pnpm run hub:traffic-decides-bar-smoke` Ã¢â€ â€™ dispose + verify-gated apply + `verify:flagship` oracle Ã¢â€ â€™ `TRAFFIC_DECIDES_CONVERT_OK`.
+`pnpm run hub:traffic-decides-bar-smoke` â†’ dispose + verify-gated apply + `verify:flagship` oracle â†’ `TRAFFIC_DECIDES_CONVERT_OK`.
 
 ---
 
-## 2026-08-21 Ã¢â‚¬â€ secure-traffic-decides-bar
+## 2026-08-21 â€” secure-traffic-decides-bar
 
 **To:** secure  
 **Priority:** P0  
-**Status:** **done** (Secure tip `7db986f` / work `d7cb765` Ã‚Â· `TRAFFIC_DECIDES_SECURE_OK`)  
+**Status:** **done** (Secure tip `7db986f` / work `d7cb765` Â· `TRAFFIC_DECIDES_SECURE_OK`)  
 **CWL tip:** **1.0.23**  
 **Program:** [`../history/TRAFFIC-DECIDES-BAR.md`](../history/TRAFFIC-DECIDES-BAR.md)
 
 ### Closed
 
-`npm run traffic-decides-bar-smoke` Ã¢â€ â€™ `SOAK_PREFLIGHT_OK` Ã‚Â· `LIVE_MATCH_OK` Ã‚Â· `TRAFFIC_DECIDES_SECURE_OK`. Customer soakÃ¢â€ â€™enforce remains ops.
+`npm run traffic-decides-bar-smoke` â†’ `SOAK_PREFLIGHT_OK` Â· `LIVE_MATCH_OK` Â· `TRAFFIC_DECIDES_SECURE_OK`. Customer soakâ†’enforce remains ops.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ try-soak-and-ui
+## 2026-08-11 â€” try-soak-and-ui
 
 **To:** secure + convert (informational)  
-**Priority:** Ã¢â‚¬â€  
-**Status:** **done** (agent attempt Ã¢â‚¬â€ both blocked honestly)  
+**Priority:** â€”  
+**Status:** **done** (agent attempt â€” both blocked honestly)  
 **CWL tip:** **1.0.23**
 
 ### Tried
 
-1. **Soak (#2):** re-ran `soak-preflight-smoke` Ã¢â€ â€™ `SOAK_PREFLIGHT_OK`. Live soakÃ¢â€ â€™enforce still needs operator customer traffic + `SHADOW_LOG` (no fake traffic).
-2. **UI (#3):** scanned Convert consume Ã¢â‚¬â€ no peel demand beyond RFC-0028 / gold 33. No CWL tip bump.
+1. **Soak (#2):** re-ran `soak-preflight-smoke` â†’ `SOAK_PREFLIGHT_OK`. Live soakâ†’enforce still needs operator customer traffic + `SHADOW_LOG` (no fake traffic).
+2. **UI (#3):** scanned Convert consume â€” no peel demand beyond RFC-0028 / gold 33. No CWL tip bump.
 
 ### Still operator
 
-EXTFMAP Ã‚Â· customer soak host/log Ã‚Â· named peel demand for next UI gene.
+EXTFMAP Â· customer soak host/log Â· named peel demand for next UI gene.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ fleet-idle-ops
+## 2026-08-11 â€” fleet-idle-ops
 
 **To:** convert + secure (informational)  
-**Priority:** Ã¢â‚¬â€  
-**Status:** **done** (no agent ask Ã¢â‚¬â€ operator owns residuals)  
+**Priority:** â€”  
+**Status:** **done** (no agent ask â€” operator owns residuals)  
 **CWL tip:** **1.0.23**
 
 ### Note
 
-CWL invent drained. EXTFMAP close and customer soak are **operator-only** (see `docs/history/OPERATOR-NEXT-1.0.23.md`). Do not invent ABSENT, fake soak traffic, or dialect faÃƒÂ§ades. Heartbeat `waiting` is correct until operator evidence lands.
+CWL invent drained. EXTFMAP close and customer soak are **operator-only** (see `docs/history/OPERATOR-NEXT-1.0.23.md`). Do not invent ABSENT, fake soak traffic, or dialect faÃ§ades. Heartbeat `waiting` is correct until operator evidence lands.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-tip-1.0.23
+## 2026-08-11 â€” convert-tip-1.0.23
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert tip `26b54df6` / work `13c2937a` Ã‚Â· `CONVERT_TIP_1_0_23_OK`)  
+**Status:** **done** (Convert tip `26b54df6` / work `13c2937a` Â· `CONVERT_TIP_1_0_23_OK`)  
 **CWL tip:** **1.0.23**
 
 ### Closed
 
-ALWAYS mirrors + pin floor Ã¢â€°Â¥ 1.0.23; gold 33; island-id simulate kept; no faÃƒÂ§ades.
+ALWAYS mirrors + pin floor â‰¥ 1.0.23; gold 33; island-id simulate kept; no faÃ§ades.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-tip-1.0.23
+## 2026-08-11 â€” secure-tip-1.0.23
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (Secure tip `87aa654` / work `5c508a9` Ã‚Â· `SECURE_TIP_1_0_23_OK`)  
+**Status:** **done** (Secure tip `87aa654` / work `5c508a9` Â· `SECURE_TIP_1_0_23_OK`)  
 **CWL tip:** **1.0.23**
 
 ### Closed
 
-Pin Ã¢â€ â€™ 1.0.23; bridge/cutover/live-match/DNA core OK. Soak remains ops.
+Pin â†’ 1.0.23; bridge/cutover/live-match/DNA core OK. Soak remains ops.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-tip-1.0.22
+## 2026-08-11 â€” convert-tip-1.0.22
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert tip `6b3f84aa` / work `c1132cbc` Ã‚Â· `CONVERT_TIP_1_0_22_OK`)  
+**Status:** **done** (Convert tip `6b3f84aa` / work `c1132cbc` Â· `CONVERT_TIP_1_0_22_OK`)  
 **CWL tip:** **1.0.22**
 
 ### Closed
 
-ALWAYS mirrors + pin floor Ã¢â€°Â¥ 1.0.22; gold 32; no faÃƒÂ§ades.
+ALWAYS mirrors + pin floor â‰¥ 1.0.22; gold 32; no faÃ§ades.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-tip-1.0.22
+## 2026-08-11 â€” secure-tip-1.0.22
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (Secure tip `2f3a7f3` / work `729f675` Ã‚Â· `SECURE_TIP_1_0_22_OK`)  
+**Status:** **done** (Secure tip `2f3a7f3` / work `729f675` Â· `SECURE_TIP_1_0_22_OK`)  
 **CWL tip:** **1.0.22**
 
 ### Closed
 
-Pin Ã¢â€ â€™ 1.0.22; bridge/cutover/live-match/DNA core OK. Soak remains ops.
+Pin â†’ 1.0.22; bridge/cutover/live-match/DNA core OK. Soak remains ops.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-tip-1.0.21
+## 2026-08-11 â€” convert-tip-1.0.21
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert tip `77eb576b` / work `d1de17be` Ã‚Â· `CONVERT_TIP_1_0_21_OK`)  
+**Status:** **done** (Convert tip `77eb576b` / work `d1de17be` Â· `CONVERT_TIP_1_0_21_OK`)  
 **CWL tip:** **1.0.21**
 
 ### Closed
 
-ALWAYS mirrors + pin floor Ã¢â€°Â¥ 1.0.21; gold 31; no faÃƒÂ§ades.
+ALWAYS mirrors + pin floor â‰¥ 1.0.21; gold 31; no faÃ§ades.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-tip-1.0.21
+## 2026-08-11 â€” secure-tip-1.0.21
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (Secure tip `970e160` / work `a159514` Ã‚Â· `SECURE_TIP_1_0_21_OK`)  
+**Status:** **done** (Secure tip `970e160` / work `a159514` Â· `SECURE_TIP_1_0_21_OK`)  
 **CWL tip:** **1.0.21**
 
 ### Closed
 
-Pin Ã¢â€ â€™ 1.0.21; bridge/cutover/live-match/DNA core OK. Soak remains ops.
+Pin â†’ 1.0.21; bridge/cutover/live-match/DNA core OK. Soak remains ops.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-tip-1.0.20
+## 2026-08-11 â€” convert-tip-1.0.20
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert tip `fa254370` / work `cefd7a15` Ã‚Â· `CONVERT_TIP_1_0_20_OK`)  
+**Status:** **done** (Convert tip `fa254370` / work `cefd7a15` Â· `CONVERT_TIP_1_0_20_OK`)  
 **CWL tip:** **1.0.20**
 
 ### Closed
 
-ALWAYS mirrors + pin floor Ã¢â€°Â¥ 1.0.20; gold 30; simulate stubs kept; no faÃƒÂ§ades.
+ALWAYS mirrors + pin floor â‰¥ 1.0.20; gold 30; simulate stubs kept; no faÃ§ades.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-tip-1.0.20
+## 2026-08-11 â€” secure-tip-1.0.20
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (Secure tip `bb083a8` / work `b06f773` Ã‚Â· `SECURE_TIP_1_0_20_OK`)  
+**Status:** **done** (Secure tip `bb083a8` / work `b06f773` Â· `SECURE_TIP_1_0_20_OK`)  
 **CWL tip:** **1.0.20**
 
 ### Closed
 
-Pin Ã¢â€ â€™ 1.0.20; bridge/cutover/live-match/DNA core OK. Soak remains ops.
+Pin â†’ 1.0.20; bridge/cutover/live-match/DNA core OK. Soak remains ops.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-tip-1.0.19
+## 2026-08-11 â€” convert-tip-1.0.19
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert tip `4ed7468a` / work `3182f87f` Ã‚Â· `CONVERT_TIP_1_0_19_OK`)  
+**Status:** **done** (Convert tip `4ed7468a` / work `3182f87f` Â· `CONVERT_TIP_1_0_19_OK`)  
 **CWL tip:** **1.0.19**
 
 ### Closed
 
-ALWAYS mirrors + pin floor Ã¢â€°Â¥ 1.0.19; golds 27Ã¢â‚¬â€œ29; no faÃƒÂ§ades.
+ALWAYS mirrors + pin floor â‰¥ 1.0.19; golds 27â€“29; no faÃ§ades.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-tip-1.0.19
+## 2026-08-11 â€” secure-tip-1.0.19
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (Secure tip `cc770d3` / work `659bf87` Ã‚Â· `SECURE_TIP_1_0_19_OK`)  
+**Status:** **done** (Secure tip `cc770d3` / work `659bf87` Â· `SECURE_TIP_1_0_19_OK`)  
 **CWL tip:** **1.0.19**
 
 ### Closed
 
-Pin Ã¢â€ â€™ 1.0.19; bridge/cutover/live-match/DNA core OK. Soak remains ops.
+Pin â†’ 1.0.19; bridge/cutover/live-match/DNA core OK. Soak remains ops.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-tip-1.0.18
+## 2026-08-11 â€” convert-tip-1.0.18
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert tip `e7e7c7f2` / work `766c473f` Ã‚Â· `CONVERT_TIP_1_0_18_OK`)  
+**Status:** **done** (Convert tip `e7e7c7f2` / work `766c473f` Â· `CONVERT_TIP_1_0_18_OK`)  
 **CWL tip:** **1.0.18**
 
 ### Closed
 
-ALWAYS mirrors + pin floor Ã¢â€°Â¥ 1.0.18; ingest matrix / gravity OK. No faÃƒÂ§ades.
+ALWAYS mirrors + pin floor â‰¥ 1.0.18; ingest matrix / gravity OK. No faÃ§ades.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-tip-1.0.18
+## 2026-08-11 â€” secure-tip-1.0.18
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (Secure tip `db7309f` / work `76309e5` Ã‚Â· `SECURE_TIP_1_0_18_OK`)  
+**Status:** **done** (Secure tip `db7309f` / work `76309e5` Â· `SECURE_TIP_1_0_18_OK`)  
 **CWL tip:** **1.0.18**
 
 ### Closed
 
-Pin Ã¢â€ â€™ tip 1.0.18; bridge/cutover/live-match/DNA core OK. Soak remains ops.
+Pin â†’ tip 1.0.18; bridge/cutover/live-match/DNA core OK. Soak remains ops.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-runtime-lockfile
+## 2026-08-11 â€” convert-runtime-lockfile
 
 **To:** convert  
 **Priority:** P1  
-**Status:** **done** (Convert tip `ca3c06de` / OUTBOX stamp `d9d99e70` Ã‚Â· `CONVERT_RUNTIME_LOCKFILE_OK`)  
+**Status:** **done** (Convert tip `ca3c06de` / OUTBOX stamp `d9d99e70` Â· `CONVERT_RUNTIME_LOCKFILE_OK`)  
 **CWL tip:** **1.0.17**  
 **CWL SHA:** `b176e04`
 
@@ -1746,25 +1746,25 @@ Convert `.pnpmfile.cjs` + junction link scripts; recursive runtime/emit build ex
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-public-claim
+## 2026-08-11 â€” convert-public-claim
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (tip `3c6a62e3` / work `e9133baf` Ã‚Â· `PUBLIC_CLAIM_OK`)  
+**Status:** **done** (tip `3c6a62e3` / work `e9133baf` Â· `PUBLIC_CLAIM_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
 
 Public claim smoke/gate; honest gaps listed (visibility, BFG, brand CTA, EXTFMAP, counsel).  
-**Convert agent invent queue exhausted** Ã¢â‚¬â€ next Convert build needs operator EXTFMAP or a new charter.
+**Convert agent invent queue exhausted** â€” next Convert build needs operator EXTFMAP or a new charter.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-oss-scrub
+## 2026-08-11 â€” convert-oss-scrub
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (tip `f486a0be` / work `74db4b0c` Ã‚Â· `OSS_SCRUB_OK`)  
+**Status:** **done** (tip `f486a0be` / work `74db4b0c` Â· `OSS_SCRUB_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1773,25 +1773,25 @@ G10109 OSS scrub smoke hardened with `OSS_SCRUB_OK`.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-static-smoke-pack
+## 2026-08-11 â€” secure-static-smoke-pack
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (tip `60b875c` / work `6c15fc8` Ã‚Â· `STATIC_SMOKE_OK`)  
+**Status:** **done** (tip `60b875c` / work `6c15fc8` Â· `STATIC_SMOKE_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
 
 Static DNA learn/collapse JS+CSS + deny; in gce-smoke.  
-**Fleet idle** Ã¢â‚¬â€ Secure agent pack exhausted; customer soak = operator.
+**Fleet idle** â€” Secure agent pack exhausted; customer soak = operator.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-schema-drift-pack
+## 2026-08-11 â€” secure-schema-drift-pack
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (tip `a6fca96` / work `7c53afd` Ã‚Â· `SCHEMA_DRIFT_SMOKE_OK`)  
+**Status:** **done** (tip `a6fca96` / work `7c53afd` Â· `SCHEMA_DRIFT_SMOKE_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1800,11 +1800,11 @@ Schema-drift unit/fixture/enforce/shadow deepen; in gce-smoke.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-pilot-kit
+## 2026-08-11 â€” convert-pilot-kit
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (tip `098efbd1` / work `1c40bd30` Ã‚Â· `PILOT_KIT_OK`)  
+**Status:** **done** (tip `098efbd1` / work `1c40bd30` Â· `PILOT_KIT_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1813,11 +1813,11 @@ Cursor Pilot Kit 15-min path + packaging smoke.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-nest-di-honesty
+## 2026-08-11 â€” convert-nest-di-honesty
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (tip `1f85dcc1` / work `dce503bb` Ã‚Â· G10136 `NEST_DI_HONESTY_OK`)  
+**Status:** **done** (tip `1f85dcc1` / work `dce503bb` Â· G10136 `NEST_DI_HONESTY_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1826,11 +1826,11 @@ Nest DI honesty catalog + smoke; refuse DI runtime 20/20; nestjs route-surface g
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-l1-polka-honesty
+## 2026-08-11 â€” convert-l1-polka-honesty
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (tip `568e76c4` / work `6a666d7f` Ã‚Â· G10135 `POLKA_HONESTY_OK`)  
+**Status:** **done** (tip `568e76c4` / work `6a666d7f` Â· G10135 `POLKA_HONESTY_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1839,11 +1839,11 @@ Polka honesty catalog + smoke; pass-through ceiling held.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-sign-fixture
+## 2026-08-11 â€” secure-sign-fixture
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (tip `a75255b` / work `03c3b14` Ã‚Â· `SIGN_FIXTURE_OK`)  
+**Status:** **done** (tip `a75255b` / work `03c3b14` Â· `SIGN_FIXTURE_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1852,11 +1852,11 @@ Signed promote ok / unsigned reject; SIGN_SMOKE + ED25519 covered.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-gce-smoke-pack
+## 2026-08-11 â€” secure-gce-smoke-pack
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (tip `3c2c154` / work `ca0d379` Ã‚Â· `GCE_SMOKE_OK`)  
+**Status:** **done** (tip `3c2c154` / work `ca0d379` Â· `GCE_SMOKE_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1865,11 +1865,11 @@ soak/siem/reload fixtures wired into `gce-smoke.mjs`; win32 green.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-l1-restify-honesty
+## 2026-08-11 â€” convert-l1-restify-honesty
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (tip `56d0b585` / work `315b812e` Ã‚Â· G10134 `RESTIFY_HONESTY_OK`)  
+**Status:** **done** (tip `56d0b585` / work `315b812e` Â· G10134 `RESTIFY_HONESTY_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1878,24 +1878,24 @@ Restify honesty catalog + smoke; pass-through ceiling held.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-reload-fixture
+## 2026-08-11 â€” secure-reload-fixture
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (tip `28b8971` / work `76dcb58` Ã‚Â· `RELOAD_FIXTURE_OK`)  
+**Status:** **done** (tip `28b8971` / work `76dcb58` Â· `RELOAD_FIXTURE_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
 
-Hot reload fixture: denyÃ¢â€ â€™promoteÃ¢â€ â€™`POST /__helix/reload`Ã¢â€ â€™allow same PID.
+Hot reload fixture: denyâ†’promoteâ†’`POST /__helix/reload`â†’allow same PID.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-l1-elysia-honesty
+## 2026-08-11 â€” convert-l1-elysia-honesty
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (tip `82c3f8a3` / work `f1845ed6` Ã‚Â· G10133 `ELYSIA_HONESTY_OK`)  
+**Status:** **done** (tip `82c3f8a3` / work `f1845ed6` Â· G10133 `ELYSIA_HONESTY_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1904,11 +1904,11 @@ Elysia honesty catalog + smoke; empty-lifecycle ceiling held.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-l1-koa-honesty
+## 2026-08-11 â€” convert-l1-koa-honesty
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (tip `7a7c2198` / work `aea4abb2` Ã‚Â· G10132 `KOA_HONESTY_OK`)  
+**Status:** **done** (tip `7a7c2198` / work `aea4abb2` Â· G10132 `KOA_HONESTY_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1917,11 +1917,11 @@ Koa honesty residual catalog + smoke; G9959/G10005 ceiling held.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-cutover-multihost
+## 2026-08-11 â€” secure-cutover-multihost
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (tip `ce853ff` / work `72b2e16` Ã‚Â· `CUTOVER_MULTIHOST_OK`)  
+**Status:** **done** (tip `ce853ff` / work `72b2e16` Â· `CUTOVER_MULTIHOST_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1930,11 +1930,11 @@ Non-`default` host=`api` cutover profile prove; CUTOVER_SMOKE_OK.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-siem-fixture
+## 2026-08-11 â€” secure-siem-fixture
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (tip `9af2c0e` / work `7a04388` Ã‚Â· `SIEM_FIXTURE_OK`)  
+**Status:** **done** (tip `9af2c0e` / work `7a04388` Â· `SIEM_FIXTURE_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1943,11 +1943,11 @@ Generic SIEM_LOG file sink smoke (shadow + enforce); no vendor invent.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-l1-honest-peels
+## 2026-08-11 â€” convert-l1-honest-peels
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (tip `f455ed7b` / work `245ea296` Ã‚Â· G10131 Hono `HONO_HONESTY_OK`)  
+**Status:** **done** (tip `f455ed7b` / work `245ea296` Â· G10131 Hono `HONO_HONESTY_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1956,11 +1956,11 @@ Hono L1 honesty peel; refuse middleware/RPC/JSX 20/20.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-mode-a-failclosed
+## 2026-08-11 â€” secure-mode-a-failclosed
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (tip `d6cd4ae` / work `a7c2976` Ã‚Â· `MODE_A_FAILCLOSED_OK`)  
+**Status:** **done** (tip `d6cd4ae` / work `a7c2976` Â· `MODE_A_FAILCLOSED_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1969,11 +1969,11 @@ Mode A divert DNA + Helix-down fail-closed + teardown; GCE `NFT_SMOKE_OK` / `GCE
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-rails-filters-honesty
+## 2026-08-11 â€” convert-rails-filters-honesty
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert OUTBOX Ã‚Â· tip `b3e2ae02` / work `e00600c5` Ã‚Â· G10130 `RAILS_FILTERS_HONESTY_OK`)  
+**Status:** **done** (Convert OUTBOX Â· tip `b3e2ae02` / work `e00600c5` Â· G10130 `RAILS_FILTERS_HONESTY_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1982,11 +1982,11 @@ Rails filters/resources honesty catalog; G10115 remains sole Rails ST gold.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-flutter-honesty
+## 2026-08-11 â€” convert-flutter-honesty
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert OUTBOX Ã‚Â· tip `397a0deb` / work `d727f976` Ã‚Â· G10129 `FLUTTER_HONESTY_OK`)  
+**Status:** **done** (Convert OUTBOX Â· tip `397a0deb` / work `d727f976` Â· G10129 `FLUTTER_HONESTY_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -1995,11 +1995,11 @@ Flutter residual catalog + `hub:flutter-honesty-smoke`; Shelf remains sole Dart 
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-liveview-honesty
+## 2026-08-11 â€” convert-liveview-honesty
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert OUTBOX Ã‚Â· SHA `588dfd34` / `3d5a8ade` Ã‚Â· G10128 `LIVEVIEW_HONESTY_OK`)  
+**Status:** **done** (Convert OUTBOX Â· SHA `588dfd34` / `3d5a8ade` Â· G10128 `LIVEVIEW_HONESTY_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -2008,7 +2008,7 @@ Phoenix LiveView honesty residual catalog + `hub:phoenix-liveview-honesty-smoke`
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-mode-a-failclosed
+## 2026-08-11 â€” secure-mode-a-failclosed
 
 **To:** secure  
 **Priority:** P1  
@@ -2019,8 +2019,8 @@ Phoenix LiveView honesty residual catalog + `hub:phoenix-liveview-honesty-smoke`
 
 Mode A host-redirect **fail-closed** deepen (mirror Mode B L2 FAILCLOSED/TEARDOWN tokens):
 
-1. Extend nft/host-redirect smoke: divert on + Helix down Ã¢â€ â€™ no silent allow  
-2. Teardown divert Ã¢â€ â€™ path restored  
+1. Extend nft/host-redirect smoke: divert on + Helix down â†’ no silent allow  
+2. Teardown divert â†’ path restored  
 3. Win32 = honest SKIP; GCE Linux green if reachable  
 4. Docs: INSTALL-MODE-A / GCE as needed  
 5. Reply `SECURE_MODE_A_FAILCLOSED` + SHA  
@@ -2033,24 +2033,24 @@ Mode A host-redirect **fail-closed** deepen (mirror Mode B L2 FAILCLOSED/TEARDOW
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-soak-preflight
+## 2026-08-11 â€” secure-soak-preflight
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (Secure OUTBOX Ã‚Â· tip `ba3c886` / work `92f80d8` Ã‚Â· `SOAK_PREFLIGHT_OK`)  
+**Status:** **done** (Secure OUTBOX Â· tip `ba3c886` / work `92f80d8` Â· `SOAK_PREFLIGHT_OK`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
 
-Fixture learnÃ¢â€ â€™reportÃ¢â€ â€™promoteÃ¢â€ â€™shadowÃ¢â€ â€™ready preflight; dirty fail / clean ok; SOAK.md operator path.
+Fixture learnâ†’reportâ†’promoteâ†’shadowâ†’ready preflight; dirty fail / clean ok; SOAK.md operator path.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-mode-b-phase2
+## 2026-08-11 â€” secure-mode-b-phase2
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (Secure OUTBOX `SECURE_MODE_B_P2` Ã‚Â· tip `d26c10a` / work `9bc2cd9`)  
+**Status:** **done** (Secure OUTBOX `SECURE_MODE_B_P2` Â· tip `d26c10a` / work `9bc2cd9`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -2059,24 +2059,24 @@ Mode B Phase 2 dual-iface lab + GCE `BRIDGE_L2_P2_*` + `GCE_SYNC_OK`; win32 hone
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-fleet-standby
+## 2026-08-11 â€” secure-fleet-standby
 
 **To:** secure  
 **Priority:** P2  
-**Status:** **done** (Secure OUTBOX `SECURE_STANDBY` Ã‚Â· SHA `191cd19` / `9250541`)  
+**Status:** **done** (Secure OUTBOX `SECURE_STANDBY` Â· SHA `191cd19` / `9250541`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
 
-Heartbeat waiting Ã‚Â· no Phase 2/soak invent. Fleet idle declared.
+Heartbeat waiting Â· no Phase 2/soak invent. Fleet idle declared.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ secure-gce-l2-prove
+## 2026-08-11 â€” secure-gce-l2-prove
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (Secure OUTBOX `SECURE_NEXT` Ã‚Â· SHA `6c2d624` / `95fbd21`)  
+**Status:** **done** (Secure OUTBOX `SECURE_NEXT` Â· SHA `6c2d624` / `95fbd21`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
@@ -2085,69 +2085,69 @@ Heartbeat waiting Ã‚Â· no Phase 2/soak invent. Fleet idle declared.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-fleet-standby
+## 2026-08-11 â€” convert-fleet-standby
 
 **To:** convert  
 **Priority:** P2  
-**Status:** **done** (Convert OUTBOX `CONVERT_STANDBY` Ã‚Â· SHA `8355f992` / `50b6baca`)  
+**Status:** **done** (Convert OUTBOX `CONVERT_STANDBY` Â· SHA `8355f992` / `50b6baca`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
 
-Standby heartbeat waiting Ã‚Â· no invent Ã‚Â· EXTFMAP operator-only. Fleet idle declared.
+Standby heartbeat waiting Â· no invent Â· EXTFMAP operator-only. Fleet idle declared.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ convert-dual-primary-extfmap (honesty done)
+## 2026-08-11 â€” convert-dual-primary-extfmap (honesty done)
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** for honesty gate (Convert OUTBOX `CONVERT_DUAL_PRIMARY` Ã‚Â· SHA `af72d8ae` / `01ea3870`)  
+**Status:** **done** for honesty gate (Convert OUTBOX `CONVERT_DUAL_PRIMARY` Â· SHA `af72d8ae` / `01ea3870`)  
 **CWL tip:** **1.0.17**
 
 ### Closed (agent)
 
-G10127 `EXTFMAP_RESIDUAL_HONEST_OK` Ã¢â‚¬â€ statusÃ¢â€ â€drop, sole open P0=`copy:EXTFMAP`, refuse force-close.
+G10127 `EXTFMAP_RESIDUAL_HONEST_OK` â€” statusâ†”drop, sole open P0=`copy:EXTFMAP`, refuse force-close.
 
 ### Still open (operator)
 
-Licensed EXTFMAP drop **or** `CHRYSALIS_EXTFMAP_ABSENT=1` after ZD&T hunt Ã¢â‚¬â€ no invent / no ABSENT without hunt.
+Licensed EXTFMAP drop **or** `CHRYSALIS_EXTFMAP_ABSENT=1` after ZD&T hunt â€” no invent / no ABSENT without hunt.
 
 ---
 
-## 2026-08-11 Ã¢â‚¬â€ mode-b-l2-deepen (charter closed)
+## 2026-08-11 â€” mode-b-l2-deepen (charter closed)
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (Secure OUTBOX `SECURE_DEEPEN` Ã‚Â· SHA `8f64f13`)  
+**Status:** **done** (Secure OUTBOX `SECURE_DEEPEN` Â· SHA `8f64f13`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
 
-Mode B L2 Phase 1 deepen Ã¢â‚¬â€ nft divert Ã‚Â· DNA via divert Ã‚Â· Helix-down fail-closed Ã‚Â· divert teardown. No CWL invent.
+Mode B L2 Phase 1 deepen â€” nft divert Â· DNA via divert Â· Helix-down fail-closed Â· divert teardown. No CWL invent.
 
 ---
 
-## 2026-08-10 Ã¢â‚¬â€ sync-convert-execute
+## 2026-08-10 â€” sync-convert-execute
 
 **To:** convert  
 **Priority:** P0  
-**Status:** **done** (Convert OUTBOX `CONVERT_SYNC` Ã‚Â· SHA `bc7d43e2`)  
+**Status:** **done** (Convert OUTBOX `CONVERT_SYNC` Â· SHA `bc7d43e2`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
 
-Phase 2 smokes green Ã‚Â· Phase 3 **A** COBOL (G10124 COPY REPLACING) Ã‚Â· EXTFMAP remains honest sole P0.
+Phase 2 smokes green Â· Phase 3 **A** COBOL (G10124 COPY REPLACING) Â· EXTFMAP remains honest sole P0.
 
 ---
 
-## 2026-08-10 Ã¢â‚¬â€ sync-secure-tip-wrap
+## 2026-08-10 â€” sync-secure-tip-wrap
 
 **To:** secure  
 **Priority:** P1  
-**Status:** **done** (Secure OUTBOX `SECURE_SYNC` Ã‚Â· SHA `bf399ac` / `177dce0`)  
+**Status:** **done** (Secure OUTBOX `SECURE_SYNC` Â· SHA `bf399ac` / `177dce0`)  
 **CWL tip:** **1.0.17**
 
 ### Closed
 
-Pin `^1.0.17` Ã‚Â· `pathTemplateShapeEqual` thin-wrap from dna-seed Ã‚Â· bridge/cutover/live-match smokes.
+Pin `^1.0.17` Â· `pathTemplateShapeEqual` thin-wrap from dna-seed Â· bridge/cutover/live-match smokes.
