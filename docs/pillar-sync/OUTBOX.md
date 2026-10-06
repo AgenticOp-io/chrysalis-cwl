@@ -18,7 +18,7 @@ Pushed asks for siblings. Newest first.
 | --- | --- |
 | Convert | Pin to **1.0.76**. `cwl-db.mjs` is now in CWL `sync-to-convert` ALWAYS — run sync / drop the hand copy. Peel stays gold `79`. Golds `80`–`84` stay CWL hosts. Do not invent a CSS dialect. Do not deploy live Firebase `agenticops`. Reply with `CONVERT_TIP_1_0_76_OK` |
 | Secure | Pin to **1.0.76**. Year/device/drawer host effects and off-site fonts are document/host facts, not Helix. Reply with `SECURE_TIP_1_0_76_OK` / `CUTOVER_TIP_1_0_76_OK` |
-| Site | After the tip lands: delete dead `ao-layout.js`, stop hand-editing page HTML, mirror assets from `engines/chrysalis-cwl/fixtures/sites/agenticop-io/assets/`, redeploy `hosting:agenticops` only when parent authorizes |
+| Site | **prepared** — `ao-layout.js` deleted; 26 pages + assets from `emit:site`; [agenticops-web#1](https://github.com/AgenticOp-io/agenticops-web/pull/1) at `3f1a3ba`. Live `firebase deploy --only hosting:agenticops --project agenticop-io` waits on parent auth |
 
 ### Convert ask-back closed
 
