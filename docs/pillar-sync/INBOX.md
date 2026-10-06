@@ -7,12 +7,13 @@ CWL reads this on coordinator ticks. Tip bumps only for **contract gaps**.
 
 | When | From | Note |
 | --- | --- | --- |
-| 2026-10-05 | parent | **Site 100% CWL** — close CSS/image bytes, drawer/device JS, year, fonts, live vs emit, deploy boundary. Live already genome-emitted (26 pages). [`INBOX-SITE-100-CWL.md`](./INBOX-SITE-100-CWL.md) ask `site-100-cwl` |
+| — | — | none |
 
 ## Closed recently
 
 | When | From | Note |
 | --- | --- | --- |
+| 2026-10-05 | parent | **Site 100% CWL** — **done** tip **1.0.76** / gold `84` / `CWL_SITE_100_OK`. [`INBOX-SITE-100-CWL.md`](./INBOX-SITE-100-CWL.md) |
 | 2026-10-05 | parent | CWL-only demo deploy — **done** tip **1.0.75** / gold `83` / `CWL_HOST_SITE_OK`. [`INBOX-CWL-ONLY-DEMO.md`](./INBOX-CWL-ONLY-DEMO.md) |
 | 2026-10-01 | parent | agenticop.io stylesheet, image, Firebase root — **done** in tip **1.0.66** (gold 74). No CSS parse, image bytes, or deploy. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |
 | 2026-10-01 | parent | agenticop.io drawer, device, footer lists — **done** in tip **1.0.65** (gold 73). No viewport or user-agent read. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |

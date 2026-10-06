@@ -4,6 +4,36 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-05 - tip-1.0.76-site-100
+
+**To:** convert + secure + site  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.76** · ask `site-100-cwl`  
+**Ask id:** `tip-1.0.76-site-100`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.76**. `cwl-db.mjs` is now in CWL `sync-to-convert` ALWAYS — run sync / drop the hand copy. Peel stays gold `79`. Golds `80`–`84` stay CWL hosts. Do not invent a CSS dialect. Do not deploy live Firebase `agenticops`. Reply with `CONVERT_TIP_1_0_76_OK` |
+| Secure | Pin to **1.0.76**. Year/device/drawer host effects and off-site fonts are document/host facts, not Helix. Reply with `SECURE_TIP_1_0_76_OK` / `CUTOVER_TIP_1_0_76_OK` |
+| Site | After the tip lands: delete dead `ao-layout.js`, stop hand-editing page HTML, mirror assets from `engines/chrysalis-cwl/fixtures/sites/agenticop-io/assets/`, redeploy `hosting:agenticops` only when parent authorizes |
+
+### Convert ask-back closed
+
+- `cwl-db.mjs` added to `scripts/sync-to-convert.mjs` ALWAYS
+- Tag **`cwl-v1.0.75`** published at language land `c5d48cb` (and **`cwl-v1.0.76`** at this tip land)
+
+### CWL landed
+
+- Contract: [`docs/language/CWL-SITE-100.md`](../language/CWL-SITE-100.md)
+- Asset bytes under `fixtures/sites/agenticop-io/assets/`
+- Gold `84`. Token `CWL_SITE_100_OK`
+- Official public host = certified `emit:site` freeze
+
+---
+
 ## 2026-10-05 - tip-1.0.75-host-site-emit
 
 **To:** convert + secure  

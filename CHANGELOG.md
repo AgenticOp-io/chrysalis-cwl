@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.76 - 2026-10-05
+
+- Site 100% contract for agenticop.io: certified `emit:site` freeze, asset bytes under `fixtures/sites/agenticop-io/assets/`, year/device/drawer as host effects, off-site fonts and live Firebase CLI named outside
+- Gold `84-site-100-contract`. Token `CWL_SITE_100_OK`
+- `cwl-db.mjs` added to `sync-to-convert` ALWAYS so Convert does not keep a hand copy
+
 ## 1.0.75 - 2026-10-05
 
 - The host emits a static Hosting site from a `.cwl` module. `year host` and `device host` are filled by the host pass. CSS and image bytes stay host files

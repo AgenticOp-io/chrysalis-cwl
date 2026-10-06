@@ -47,6 +47,7 @@
     "smoke:cwl-dynamic": "node scripts/smoke-cwl-dynamic.mjs",
     "smoke:cwl-db": "node scripts/smoke-cwl-db.mjs",
     "smoke:cwl-host-site": "node scripts/smoke-cwl-host-site.mjs",
+    "smoke:cwl-site-100": "node scripts/smoke-cwl-site-100.mjs",
     "emit:site": "node scripts/cwl-emit-site.mjs",
     "deploy:demo": "node scripts/cwl-deploy-site.mjs",
     "live": "node scripts/cwl-live.mjs",

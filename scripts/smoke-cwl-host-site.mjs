@@ -73,11 +73,11 @@ try {
 
   const siteOut = mkdtempSync(join(tmpdir(), "cwl-agenticop-emit-"));
   try {
-    const brandAssets = resolve(ROOT, "../../brand/agenticops-web");
+    const siteAssets = resolve(ROOT, "fixtures/sites/agenticop-io/assets");
     const siteReport = await emitCwlSite({
       file: SITE,
       outDir: siteOut,
-      assetsDir: brandAssets,
+      assetsDir: siteAssets,
       year: 2026,
     });
     check("site-pages", siteReport.pages === 26);
