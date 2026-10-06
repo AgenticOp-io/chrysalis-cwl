@@ -11,3 +11,4 @@ data/
 # Local prove artifacts
 reports/
 dist-editors/
+out/
