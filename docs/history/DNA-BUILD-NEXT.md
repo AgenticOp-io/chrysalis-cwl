@@ -99,7 +99,7 @@
 | Tip pin **1.0.74** | Convert + Secure — **done** (Convert `360588ad`, Secure `44446dc`) |
 | Tip pin **1.0.75** | Convert + Secure — **done** (Convert `7c970301`, Secure `e753716`) |
 | Tip pin **1.0.76** | Convert — **done** (`be58a179`); Secure — **done** (`9f61d00`) |
-| Tip pin **1.0.77** | Convert + Secure — **asked**; Site refreshes emit + deploys (not CWL) |
+| Tip pin **1.0.77** | Convert — **done** (`419164ca`); Secure — **done** (`630ccf6`); Site — **done** (`805f43b`, live) |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |
