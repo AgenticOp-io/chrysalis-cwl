@@ -1,19 +1,18 @@
 # Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.81** closed · Convert + Secure pinned · Operator EXTFMAP/soak · `CWL_FLEET_IDLE`
+**Fleet:** tip **1.0.82** DNA identity · Convert + Secure pin
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | done | `77e09bc` | tip **1.0.81** · merge `84aec5e` · tag `cwl-v1.0.81` |
-| **Convert** | done | `fbfd45e7` | `CONVERT_TIP_1_0_81_OK` · peels 40–63 |
-| **Secure** | done | `975f734` | `SECURE_TIP_1_0_81_OK` · live-match |
+| **CWL** | landing | pending | tip **1.0.82** |
+| **Convert** | open | `fbfd45e7` | pin **1.0.82** |
+| **Secure** | open | `975f734` | pin **1.0.82** |
 | **Site** | idle | `ce6a72f` | no emit change |
-| **Operator** | open | — | EXTFMAP · soak → enforce |
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: yes
-ORDER: tip-1.0.81-framework-residuals
-NEXT: Operator EXTFMAP/soak (human)
-RULE: name residuals; never invent façades
+CWL_FLEET_IDLE: no
+ORDER: tip-1.0.82-dna-identity
+NEXT: Convert + Secure pin
+RULE: DNA identity facts; never invent façades
 ```

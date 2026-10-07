@@ -4,6 +4,35 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-06 - tip-1.0.82-dna-identity
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.82** · ask `dna-identity`  
+**Ask id:** `tip-1.0.82-dna-identity`
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | open |
+| Secure | open |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.82**. Consume gold `91` (`replaces` / `from peel` / `capability` / `works without client`). No invent. Reply `CONVERT_TIP_1_0_82_OK` |
+| Secure | Pin to **1.0.82**. DNA identity statements are document facts. Reply `SECURE_TIP_1_0_82_OK` / `CUTOVER_TIP_1_0_82_OK` |
+
+### CWL landed (this tip)
+
+- RFC-0039 DNA identity · gold `91`
+- Genes other web languages lack as first-class syntax
+
+---
+
 ## 2026-10-06 - tip-1.0.81-framework-residuals
 
 **To:** convert + secure + operator  
