@@ -8,7 +8,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (Convert) · Secure **done**  
+**Status:** **done**  
 **CWL tip:** **1.0.79** · language land `f67abb5` · merge `b75082f` · tag `cwl-v1.0.79` · ask `transport-jobs-ui`  
 **Ask id:** `tip-1.0.79-transport-jobs-ui`
 
@@ -16,14 +16,14 @@ Pushed asks for siblings. Newest first.
 
 | Who | Status |
 | --- | --- |
-| Convert | open |
+| Convert | **done** — `CONVERT_TIP_1_0_79_OK` on Convert `main` `f3757d5f` ([PR #87](https://github.com/AgenticOp-io/chrysalis/pull/87)); Dependabot removed |
 | Secure | **done** — `SECURE_TIP_1_0_79_OK` / `CUTOVER_TIP_1_0_79_OK` on Secure `main` `5ec8c50` ([PR #32](https://github.com/AgenticOp-io/chrysalis-security/pull/32)) |
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.79**. Consume golds `87`–`89`. No WS/runtime invent. Reply `CONVERT_TIP_1_0_79_OK` |
+| Convert | **done** (record): Pin to **1.0.79**. Golds `87`–`89`. Dependabot removed |
 | Secure | **done** (record): Pin to **1.0.79**. Document facts only |
 
 ### CWL landed (this tip)
