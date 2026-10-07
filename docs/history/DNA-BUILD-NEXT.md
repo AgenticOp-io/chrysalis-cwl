@@ -115,7 +115,7 @@
 | Tip pin **1.0.81** | Convert — **done** (`fbfd45e7`, peels 40–63); Secure — **done** (`975f734`, live-match) |
 | Tip pin **1.0.82** | Convert + Secure — **done** |
 | Tip pin **1.0.83** | Convert — **done** (`e86d2571`); Secure — **done** (`f250247`) |
-| Tip pin **1.0.84** | Convert — **done** (`c39088c4`); Secure pin · consume gold `93` — **open** |
+| Tip pin **1.0.84** | Convert — **done** (`c39088c4`); Secure — **done** (`a8a3f58`) |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **done** (`fbfd45e7`) |
 | Live-match / cutover vs tip seed | Secure — **done** (`975f734`, tip **1.0.81**) |
 | EXTFMAP / customer soak → enforce | **Operator** — see [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) (agents will not invent) |
