@@ -4,7 +4,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | land | (this tip) | tip **1.0.84** · tag `cwl-v1.0.84` |
+| **CWL** | done | `ca346e2` | tip **1.0.84** · land `ed50c0b` · tag `cwl-v1.0.84` |
 | **Convert** | open | `bab05bea` | pin **1.0.84** |
 | **Secure** | open | `666cf77` | pin **1.0.84** |
 | **Site** | idle | `ce6a72f` | no emit change |
