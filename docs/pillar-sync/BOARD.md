@@ -1,45 +1,46 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-06 · tip **1.0.80** · **Goal:** DNA of web languages. CWL creates the language. The site lane deploys live agenticop.io. Convert peels. CWL does not deploy.  
+**Updated:** 2026-10-06 · tip **1.0.81** · **Goal:** DNA of web languages. CWL creates the language. Convert peels. Secure pins. Site deploys.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: yes
-DISPATCH: tip 1.0.80 closed. Convert + Secure pinned. Site deployed hosting:agenticops + demo. CWL does not deploy live
-CONVERT_NEXT: done · CONVERT_TIP_1_0_80_OK · main a716b985
-SECURE_NEXT: done · SECURE_TIP_1_0_80_OK · main 518f509
-CWL_NEXT: done · tip 1.0.80 land 15dd5f7 · merge 75ba56a · tag cwl-v1.0.80
-SITE_NEXT: done · SITE_DEPLOY_OK · main ce6a72f · hosting:agenticops + demo live
+CWL_FLEET_IDLE: no
+DISPATCH: tip 1.0.81 framework residuals catalogued. Convert peels 40–63 + pin. Secure pin + live-match. Operator owns EXTFMAP/soak. CWL does not invent façades
+CONVERT_NEXT: pin 1.0.81 · peels golds 40–63 · CONVERT_TIP_1_0_81_OK
+SECURE_NEXT: pin 1.0.81 · live-match vs tip seed · SECURE_TIP_1_0_81_OK
+CWL_NEXT: landing · tip 1.0.81 · RFC-0038 gold 90
+SITE_NEXT: idle · no site emit change required
+OPERATOR_NEXT: EXTFMAP hunt/attest · customer soak → enforce
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.80`** |
-| Packages | **`@agenticop-io/cwl@1.0.80`** (pin; Packages publish when tagged) |
-| Tags | `cwl-v1.0.79` · `cwl-v1.0.80` |
+| **CWL tip** | **`1.0.81`** |
+| Packages | **`@agenticop-io/cwl@1.0.81`** |
+| Tags | `cwl-v1.0.80` · `cwl-v1.0.81` (after land) |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | 15dd5f7 | tip **1.0.80** · merge `75ba56a` · tag `cwl-v1.0.80` |
-| **Convert** | `main` | a716b985 | tip pin **1.0.80**, `CONVERT_TIP_1_0_80_OK` |
-| **Secure** | `main` | 518f509 | tip pin **1.0.80**, `SECURE_TIP_1_0_80_OK` |
-| **Site** | `main` | ce6a72f | tip **1.0.80** emit live · `SITE_DEPLOY_OK` |
+| **CWL** | `main` | pending | tip **1.0.81** |
+| **Convert** | `main` | a716b985 | tip pin **1.0.80** — pin **1.0.81** + peels open |
+| **Secure** | `main` | 518f509 | tip pin **1.0.80** — pin **1.0.81** open |
+| **Site** | `main` | ce6a72f | tip **1.0.80** live · idle for **1.0.81** |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **done** | Site | Deployed tip **1.0.80** · main `ce6a72f` · [PR #4](https://github.com/AgenticOp-io/agenticops-web/pull/4) |
-| **done** | Convert | Tip pin **1.0.80**, main `a716b985`, [PR #88](https://github.com/AgenticOp-io/chrysalis/pull/88) |
-| **done** | Secure | Tip pin **1.0.80**, main `518f509`, [PR #33](https://github.com/AgenticOp-io/chrysalis-security/pull/33) |
-| **done** | CWL | tip **1.0.80** land `15dd5f7`, merge `75ba56a`, tag `cwl-v1.0.80` |
+| **P0** | Convert | Pin **1.0.81**. Peel golds **40–63** (no invent). Reply `CONVERT_TIP_1_0_81_OK` |
+| **P0** | Secure | Pin **1.0.81**. Live-match vs tip seed (page DNA). Reply `SECURE_TIP_1_0_81_OK` |
+| **P0** | Operator | EXTFMAP hunt/attest · customer soak → enforce ([OPERATOR-NEXT](../history/OPERATOR-NEXT-1.0.23.md)) |
+| **landing** | CWL | tip **1.0.81** RFC-0038 |
 
 ## Honesty
 
-Marketing genome: verify dispose / no façades. No route `hole` statements. Language gene `hole reason;` remains for peels — not a slogan. Live agenticop.io confirms no “honest holes” copy.
+Nest / LiveView / Flutter / onion / raw SQL are **named residuals**, not genes. Do not invent façades. EXTFMAP and soak need live systems — agents will not fake them.

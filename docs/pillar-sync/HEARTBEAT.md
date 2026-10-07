@@ -1,18 +1,19 @@
 # Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.80** closed · Site live · Convert + Secure pinned · `CWL_FLEET_IDLE`
+**Fleet:** tip **1.0.81** framework residuals · Convert peels + Secure pin · Operator EXTFMAP/soak
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | done | `15dd5f7` | tip **1.0.80** · merge `75ba56a` · tag `cwl-v1.0.80` |
-| **Convert** | done | `a716b985` | `CONVERT_TIP_1_0_80_OK` |
-| **Secure** | done | `518f509` | `SECURE_TIP_1_0_80_OK` |
-| **Site** | done | `ce6a72f` | `SITE_DEPLOY_OK` · live + demo |
+| **CWL** | landing | pending | tip **1.0.81** |
+| **Convert** | open | `a716b985` | pin **1.0.81** + peels 40–63 |
+| **Secure** | open | `518f509` | pin **1.0.81** + live-match |
+| **Site** | idle | `ce6a72f` | no emit change |
+| **Operator** | open | — | EXTFMAP · soak → enforce |
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: yes
-ORDER: tip-1.0.80-verify-dispose-messaging
-NEXT: idle
-RULE: CWL creates the language; the site lane deploys
+CWL_FLEET_IDLE: no
+ORDER: tip-1.0.81-framework-residuals
+NEXT: Convert peels + Secure pin · Operator EXTFMAP/soak
+RULE: name residuals; never invent façades
 ```

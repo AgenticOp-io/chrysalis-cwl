@@ -1,10 +1,10 @@
-# Operator next — after CWL tip 1.0.23
+# Operator next — after CWL tip 1.0.23 (still current at tip 1.0.81)
 
-**Status:** agent invent queues **idle** · human/ops owns the residual closes  
-**CWL tip:** **1.0.23** · bus tip `d8b4ed7` · language `9ecc691`  
-**Date:** 2026-08-11
+**Status:** agent invent queues **idle** · human/ops owns residual closes that need live systems  
+**CWL tip:** **1.0.81** · framework residuals catalogued (RFC-0038) — not closed by invent  
+**Date:** 2026-10-06 (refreshed)
 
-Agents will **not** invent Nest DI / LiveView / Flutter / onion / WebSocket duplex / EXTFMAP books / fake customer soak.
+Agents will **not** invent Nest DI / LiveView / Flutter / onion façades / fake customer soak / EXTFMAP books.
 
 ## 1. Convert — EXTFMAP (sole COBOL P0)
 
@@ -17,35 +17,25 @@ Needs **live z/OS ZD&T** hunt on `B5C551` / SDFHCOB **or** operator ABSENT attes
 | Close path A | Land licensed EXTFMAP (or equivalent) on disk → peel → reopen Convert ask |
 | Close path B | After hunt: set `CHRYSALIS_EXTFMAP_ABSENT=1` + written attest — never invent |
 
-## 2. Secure — customer soak → enforce
+## 2. Convert — peels golds 40–63
 
-| Attempt (2026-08-11) | Result |
+Language golds exist through **90**. Convert should consume peels for golds **40–63** (+ mail/CORS as prior ask) without inventing runtimes. Reply on Convert OUTBOX; CWL ask id `tip-1.0.81-framework-residuals`.
+
+## 3. Secure — customer soak → enforce + live-match
+
+| Attempt | Result |
 | --- | --- |
-| `npm run soak-preflight-smoke` | **green** → `SOAK_PREFLIGHT_OK` (tooling path) |
-| Live customer soak → enforce | **blocked** — no customer/shadow traffic available to agents; SOAK.md forbids synthetic traffic |
+| `npm run soak-preflight-smoke` | tooling path may be green |
+| Live customer soak → enforce | **blocked** without customer/shadow traffic — SOAK.md forbids synthetic traffic |
+| Live-match / cutover vs tip seed | Secure pin ask with tip **1.0.81** — page DNA only for nests |
 
 | Step (ops) | Action |
 | --- | --- |
 | Runbook | `chrysalis-security/docs/SOAK.md` |
 | Need from you | App host already behind Helix + durable `SHADOW_LOG` path + soak window |
 | Exit | `helix ready --target enforce --shadow-log <path> --max-shadow-holes 0` → exit 0 only |
-| Then | `MODE=enforce` + `POST /__helix/reload` |
-| Not soak | GCE L2 / lab divert (`gce-sync -WithL2`) · fixture preflight |
+| Not soak | GCE L2 / lab divert · fixture preflight |
 
-## 3. CWL — further UI
+## 4. CWL — further UI
 
-| Attempt (2026-08-11) | Result |
-| --- | --- |
-| Convert peel demand for new island/event gene | **none** — tip **1.0.23** already consumed (gold 33 / D6568); no peel asks for props/slots/hydration |
-| Tip bump / invent | **refused** — hydration / silent React-Svelte lower remain non-goals |
-
-Reopen when Convert names a missing contract (e.g. peel emits anonymous island but needs named id / event metadata).
-
-## Fleet
-
-```text
-CWL_FLEET_IDLE: yes
-DISPATCH: none
-```
-
-Reopen fleet when operator lands EXTFMAP evidence, soak logs, or a named peel demand for a CWL gene.
+Hydration / silent React-Svelte lower remain **non-goals**. Tip **1.0.81** only names framework residuals.

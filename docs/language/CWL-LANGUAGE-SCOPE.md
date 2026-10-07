@@ -35,8 +35,9 @@ Language golds: `fixtures/language-gold/01`–`89`. Tip: [`LANGUAGE_VERSION.md`]
 | Concern | Status |
 | --- | --- |
 | Wasm modules, vendor SDKs, opaque scripts | Catalogued `unsupported:*` holes (RFC-0024) — do not invent grammar |
+| Nest DI / LiveView / Flutter / middleware onion | Catalogued residuals (RFC-0038, tip `1.0.81`) — never façade genes |
 | Framework form actions | Hole (`hub-svelte:form-action` and kin). A same-site HTML form is `form` / `field` / `submit` (tip 1.0.67). An off-site action is `unsupported:offsite-form` |
-| Raw SQL text, queues, Mongo, GenieACS, NGFW | A SQL string is not CWL. Named tables and bound row operations are (tip `1.0.74`) on sqlite, postgres, mysql, mariadb, sqlserver, and oracle. Any other engine is `cwl:unknown-db-engine` |
+| Raw SQL text, queues, Mongo, GenieACS, NGFW | A SQL string is `unsupported:raw-sql` (RFC-0038). Named tables and bound row operations are (tip `1.0.74`) on sqlite, postgres, mysql, mariadb, sqlserver, and oracle. Any other engine is `cwl:unknown-db-engine` |
 | WebSocket duplex | `stream websocket;` (RFC-0035). Residual / undeclared duplex stays `unsupported:websocket` |
 | Background jobs | `job.enqueue` / `job.enqueue name <id>` (RFC-0036). Queue engines stay host-side |
 | Tracking cookies | Kept hole (`unsupported:tracking-cookie`, RFC-0034). Session, CSRF, and an enumerated preference stay |

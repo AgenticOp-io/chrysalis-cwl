@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.81 - 2026-10-06
+
+- RFC-0038 framework façade residuals: Nest DI, LiveView, Flutter, middleware onion, raw SQL — catalogued, never invented
+- Gold `90-framework-residuals`. Convert peels / Secure soak / EXTFMAP stay sibling or operator
+
 ## 1.0.80 - 2026-10-06
 
 - Public agenticop.io genome drops “honest holes” slogans; leads with verify dispose and no façades

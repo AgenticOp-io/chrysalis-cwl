@@ -1,7 +1,7 @@
 # CWL genome deepen — Phase 1.x
 
 **Status:** active (reopened 2026-08-11)  
-**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.80**  
+**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.81**  
 **Authority:** [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md) · [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) · [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ## Thesis
@@ -41,7 +41,7 @@ Convert still **hears** origin stacks; Secure still **checks** live DNA. Neither
 | **UI event contracts** | `input` / `focus` / `blur` / `keydown` (RFC-0037) — no hydration |
 | **Cinderpath product asks** | Working note [`CWL-EXPAND.md`](../history/CWL-EXPAND.md) — consume process documented; genome tip bump in Cinderpath after pin |
 | **CWL UI** | Hydration / silent React-Svelte lower remain non-goals |
-| **Holes** | More precise `unsupported:*` / `cwl:*` reasons as peels demand; argument-carrying reasons resolve to their entry — done (`1.0.37`) |
+| **Holes** | More precise `unsupported:*` / `cwl:*` reasons as peels demand; argument-carrying reasons resolve to their entry — done (`1.0.37`); Nest/LiveView/Flutter/onion/raw-SQL residuals (RFC-0038) — done (`1.0.81`) |
 
 ## Explicit non-goals (unchanged)
 
