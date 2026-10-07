@@ -1,7 +1,8 @@
 # Complete CWL site (agenticop.io)
 
-**Tip:** **1.0.78** · Ask `site-complete-cwl` · Genome: `fixtures/sites/agenticop-io/site.cwl`  
-**Supersedes for the complete claim:** tip **1.0.77** “100% contract” host-JS leftovers.
+**Tip:** **1.0.80** (messaging) · complete claim from **1.0.78** · Genome: `fixtures/sites/agenticop-io/site.cwl`  
+**Supersedes for the complete claim:** tip **1.0.77** “100% contract” host-JS leftovers.  
+**Public copy:** tip **1.0.80** leads with verify dispose — not hole slogans. Route bodies have no `hole` statements.
 
 ## What “complete” means
 

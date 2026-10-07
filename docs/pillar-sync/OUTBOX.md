@@ -4,6 +4,38 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-06 - tip-1.0.80-verify-dispose-messaging
+
+**To:** convert + secure + site  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.80** · ask `verify-dispose-messaging`  
+**Ask id:** `tip-1.0.80-verify-dispose-messaging`
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | open |
+| Secure | open |
+| Site | open |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.80**. No runtime invent. Reply `CONVERT_TIP_1_0_80_OK` |
+| Secure | Pin to **1.0.80**. Reply `SECURE_TIP_1_0_80_OK` / `CUTOVER_TIP_1_0_80_OK` |
+| Site | Refresh from CWL `emit:site` (tip **1.0.80** genome). Deploy demo + live `hosting:agenticops`. Reply `SITE_DEPLOY_OK` |
+
+### CWL landed (this tip)
+
+- Marketing genome: no “honest holes” slogans; verify dispose / no façades
+- Complete-site contract unchanged; route bodies had no `hole` statements to fill
+- Language `hole reason;` gene kept for peels and syntax docs
+
+---
+
 ## 2026-10-06 - tip-1.0.79-transport-jobs-ui
 
 **To:** convert + secure  

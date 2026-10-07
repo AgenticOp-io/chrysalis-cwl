@@ -14,7 +14,7 @@ CWL has not absorbed every programming language, and it must not. It is not a re
 | **Universal Translator** | Hear origin stacks → speak emit targets | **Convert** |
 | **DNA of web languages** | The language that replaces any web page | **CWL genome** |
 
-Convert peels may hear PHP, Express, Python, Go, Java, C#, Ruby, Rust, frameworks, COBOL layouts, etc. Those peels **map into** this genome (or leave catalogued holes). They do **not** expand the genome into those languages. PHP is **one peel**, not the product identity of Chrysalis.
+Convert peels may hear PHP, Express, Python, Go, Java, C#, Ruby, Rust, frameworks, COBOL layouts, etc. Those peels **map into** this genome (or leave a named residual). They do **not** expand the genome into those languages. PHP is **one peel**, not the product identity of Chrysalis.
 
 ## Chrysalis (open source)
 
@@ -26,7 +26,7 @@ Convert peels may hear PHP, Express, Python, Go, Java, C#, Ruby, Rust, framework
 
 ## What is in the genome (RFCs 0001–0034)
 
-Modeled surfaces: `@route` / `@page`, request/response shapes, effects (including named cookie / CORS / rate / CSRF / db table / job enqueue policy), modules, UI trees / islands, control (`if` / `foreach`), nested structured literals (RFC-0025), multipart (0026), SSE (0027), named UI islands (0028), layout chrome (0029), page HTML + sibling islands (0030), repeated markup (0031), credential/session effects (0032), proxy upstream (0033), WebSocket duplex (0035), job enqueue (0036), broader UI events (0037), holes, DNA bridge (0022/0023).
+Modeled surfaces: `@route` / `@page`, request/response shapes, effects (including named cookie / CORS / rate / CSRF / db table / job enqueue policy), modules, UI trees / islands, control (`if` / `foreach`), nested structured literals (RFC-0025), multipart (0026), SSE (0027), named UI islands (0028), layout chrome (0029), page HTML + sibling islands (0030), repeated markup (0031), credential/session effects (0032), proxy upstream (0033), WebSocket duplex (0035), job enqueue (0036), broader UI events (0037), named residuals (`hole reason;` gene), DNA bridge (0022/0023).
 
 Language golds: `fixtures/language-gold/01`–`89`. Tip: [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md). Dynamic HTML emit builds a page from the CWL source, the request, and rows (`npm run live -- file.cwl --data data.json`). `engine` names sqlite, postgres, mysql, mariadb, sqlserver, or oracle. `table` plus `db select` / `insert` / `update` / `delete` are bound row operations on that engine (`--db` is a sqlite file or that engine's URL). Request values are parameters. Raw SQL text is not a statement. `stream websocket;` names duplex upgrade intent. `job.enqueue` names background work. `style`, `image`, and `script` name host files. `form` writes a same-site form. `host firebase` names the public root. CWL does not parse CSS, read image bytes, run scripts, or deploy.
 

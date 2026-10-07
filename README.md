@@ -12,7 +12,7 @@ This repo **owns the genome**. Convert translates into/out of it. Secure may bri
 | **Convert** | [**chrysalis**](https://github.com/AgenticOp-io/chrysalis) | Universal Translator — origin → WebIR/CWL → emit |
 | **Secure** | [**chrysalis-security**](https://github.com/AgenticOp-io/chrysalis-security) | Helix DNA firewall — allow only what certified traffic proves |
 
-**Tip:** see [`LANGUAGE_VERSION.md`](./LANGUAGE_VERSION.md) (currently **1.0.79**). Phase 1.x deepen continues — RFCs **0001–0037**, language golds `01`–`89`.
+**Tip:** see [`LANGUAGE_VERSION.md`](./LANGUAGE_VERSION.md) (currently **1.0.80**). Phase 1.x deepen continues — RFCs **0001–0037**, language golds `01`–`89`.
 
 **Start here:** [`docs/language/CWL-HOWTO.md`](./docs/language/CWL-HOWTO.md) · [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md) · [`docs/language/ROSETTA-UT-PATH.md`](./docs/language/ROSETTA-UT-PATH.md) · [`docs/language/CWL-LANGUAGE-SCOPE.md`](./docs/language/CWL-LANGUAGE-SCOPE.md)
 
@@ -24,7 +24,7 @@ This repo **owns the genome**. Convert translates into/out of it. Secure may bri
 | **Universal Translator** | Hear origin stacks → speak emit targets | **Convert** (`AgenticOp-io/chrysalis`) |
 | **DNA of web languages** | The language that can replace any web page | **CWL genome** |
 
-CWL is a web language. It is not a universal programming language and not “PHP migration syntax.” Convert peels may hear PHP, Express, Go, Java, COBOL layouts, etc. — they **map into** this genome or leave catalogued holes. A hole is a page CWL cannot yet replace. Secure’s out-of-box path is **traffic DNA**; any CWL bridge must match this tip.
+CWL is a web language. It is not a universal programming language and not “PHP migration syntax.” Convert peels may hear PHP, Express, Go, Java, COBOL layouts, etc. — they **map into** this genome or leave a named residual. A residual is a page CWL cannot yet replace. Secure’s out-of-box path is **traffic DNA**; any CWL bridge must match this tip.
 
 ## What’s here
 
