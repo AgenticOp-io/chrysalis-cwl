@@ -2,18 +2,17 @@
 
 `site.cwl` is the source of the 26 public pages (home through the 404 document). Emit produces those pages.
 
-The shared shell names the stylesheet, the logo, the Firebase public root, the host year token, `charset utf-8`, `viewport device`, and `device host mobile desktop below 820`. Each page names `title`, and names `description`, `canonical`, the social card, `meta keywords`, `icon`, `alternate`, `preconnect`, a font `style`, and `jsonld` when the HTML page has them. `apple` is only on the pages that have a touch icon. Header and footer lists are `link` rows. The menu is `drawer`. The module does not load `ao-layout.js`. Schema.org is not interpreted.
+**Tip 1.0.78 complete form:** literal `year 2026;`, checkbox menu + owned CSS (no host drawer/device JS), owned fonts under [`assets/`](./assets/), certified `emit:site` freeze for Firebase. Contract: [`docs/language/CWL-SITE-COMPLETE.md`](../../../docs/language/CWL-SITE-COMPLETE.md). Token `CWL_SITE_COMPLETE_OK`.
 
-**100% contract:** [`docs/language/CWL-SITE-100.md`](../../../docs/language/CWL-SITE-100.md). Asset bytes live in [`assets/`](./assets/). Brand `agenticops-web` is ops/mirrors only — not a second page source.
+The shell names stylesheet, fonts, logo, Firebase public root, charset, and viewport. Each page names `title`, and names `description`, `canonical`, social card, keywords, `icon`, `alternate`, and `jsonld` when present. Header and footer lists are `link` rows. The module does not load `ao-layout.js`. Schema.org is not interpreted.
+
+Brand `agenticops-web` is ops/mirrors only — not a second page source.
 
 ```bash
 npm run smoke:agenticop-site
-npm run smoke:cwl-site-100
-npm run live -- fixtures/sites/agenticop-io/site.cwl --port 8791
-npm run emit:site -- fixtures/sites/agenticop-io/site.cwl --out out/agenticop-cwl-demo --year 2026
-npm run deploy:demo -- --dir out/agenticop-cwl-demo --site agenticop-cwl-demo --dry-run
+npm run smoke:cwl-site-complete
+npm run emit:site -- fixtures/sites/agenticop-io/site.cwl --out out/agenticop-site
+npm run deploy:demo -- --dir out/agenticop-site --site agenticop-cwl-demo
 ```
 
-`emit:site` defaults `--assets` to `./assets` when present. Host effects fill year, device, and drawer. Live Firebase `agenticops` deploy stays ops.
-
-Rebuild the snapshot from the current public HTML with `node scripts/build-agenticop-site-genome.mjs`. That reads `brand/agenticops-web` and does not edit it.
+`emit:site` defaults `--assets` to `./assets` when present. Live Firebase `hosting:agenticops` deploy stays the site lane.
