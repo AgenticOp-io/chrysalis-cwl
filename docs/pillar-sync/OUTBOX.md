@@ -9,7 +9,7 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.83** · ask `asset-integrity`  
+**CWL tip:** **1.0.83** · language land `ac8f7bf` · merge `5f4b571` · tag `cwl-v1.0.83` · ask `asset-integrity`  
 **Ask id:** `tip-1.0.83-asset-integrity`
 
 ### Replies
