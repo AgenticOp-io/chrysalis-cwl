@@ -313,8 +313,8 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
   {
     label: "style",
     kind: KIND_SNIPPET,
-    detail: "Stylesheet URL. <!-- cwl:style --> expands the link tag. CWL does not parse CSS.",
-    insertText: 'style "${1:/agenticops.css}";',
+    detail: "Stylesheet URL with optional integrity / crossorigin (RFC-0040). <!-- cwl:style --> expands the link tag. CWL does not parse CSS.",
+    insertText: 'style "${1:/agenticops.css}" integrity "${2:sha384-…}" crossorigin;',
   },
   {
     label: "image",
@@ -325,8 +325,14 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
   {
     label: "script",
     kind: KIND_SNIPPET,
-    detail: "Script URL. <!-- cwl:script --> expands the tag. CWL does not parse or run the file.",
-    insertText: 'script "${1:/site.js}";',
+    detail: "Script URL with optional module / integrity / crossorigin (RFC-0040). <!-- cwl:script --> expands the tag. CWL does not parse or run the file.",
+    insertText: 'script "${1:/site.js}" integrity "${2:sha384-…}" crossorigin;',
+  },
+  {
+    label: "integrity",
+    kind: KIND_SNIPPET,
+    detail: "SRI token on script/style (RFC-0040). sha256 / sha384 / sha512 + base64.",
+    insertText: 'integrity "${1:sha384-…}"',
   },
   {
     label: "form",

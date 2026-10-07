@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.83 - 2026-10-06
+
+- Progressive asset integrity (RFC-0040): `script` / `style` may declare `integrity`, optional `module`, optional `crossorigin`
+- Gold `92-asset-integrity`. Named assets deepen DNA; no JS/CSS runtime invent
+
 ## 1.0.82 - 2026-10-06
 
 - DNA identity (RFC-0039): `replaces`, `from peel … at …`, `capability`, `works without client` — genes other web languages lack
