@@ -6,7 +6,7 @@
 | --- | --- | --- | --- |
 | **CWL** | done | `ca346e2` | tip **1.0.84** · land `ed50c0b` · tag `cwl-v1.0.84` |
 | **Convert** | open | `e86d2571` | pin **1.0.84** (1.0.83 done) |
-| **Secure** | open | `666cf77` | pin **1.0.84** |
+| **Secure** | open | `f250247` | pin **1.0.84** (1.0.83 done) |
 | **Site** | idle | `ce6a72f` | no emit change |
 
 ```text
