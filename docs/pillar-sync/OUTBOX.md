@@ -4,6 +4,40 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-06 - site-docs-build-1.0.84
+
+**To:** site  
+**Priority:** P0  
+**Status:** **genome done** · Site emit+deploy open  
+**CWL tip:** **1.0.84**  
+**Ask id:** `site-docs-build-1.0.84`  
+**Token:** `CWL_SITE_DOCS_OK`
+
+```text
+CWL_SITE_DOCS_OK
+CWL_AGENTICOP_SITE_OK
+CWL_SITE_COMPLETE_OK
+CWL_TIP: 1.0.84
+BRANCH: candidate/cwl-site-docs-1.0.84
+```
+
+### Landed (CWL)
+
+- `fixtures/sites/agenticop-io/site.cwl` tip pins **1.0.84** site-wide
+- `paper-cwl` tip ladder **1.0.79–1.0.84** · RFCs **0035–0041** · golds **87–93**
+- docs / chrysalis / press / published / whitepaper pins refreshed
+- Smokes: `CWL_AGENTICOP_SITE_OK` · `CWL_SITE_COMPLETE_OK`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Site | `npm run emit:site` from this genome → copy into `agenticops-web` → `firebase deploy --only hosting:agenticops --project agenticop-io` · reply `SITE_DEPLOY_OK` |
+| Convert | idle (no invent) — tip already **1.0.84** |
+| Secure | idle — tip already **1.0.84** |
+
+---
+
 ## 2026-10-06 - tip-1.0.84-page-form-multipart
 
 **To:** convert + secure  

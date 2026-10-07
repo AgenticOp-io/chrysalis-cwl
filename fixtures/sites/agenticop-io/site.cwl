@@ -131,7 +131,7 @@ layout site {
         </div>
       </div>
       <div class="ao-footer-bottom">
-        <p class="ao-footer-fine">© <!-- cwl:year --> AgenticOps. CWL tip 1.0.80 is public — Convert and Secure consume it; traffic decides what ships.</p>
+        <p class="ao-footer-fine">© <!-- cwl:year --> AgenticOps. CWL tip 1.0.84 is public — Convert and Secure consume it; traffic decides what ships.</p>
       </div>
     </div>
   </footer>
@@ -183,9 +183,9 @@ page home {
   nav home;
   layout site;
   title "AgenticOps | CWL — DNA of the web";
-  description "CWL tip 1.0.80: this site is a complete CWL marketing genome on Firebase — owned fonts and CSS, literal year, no host menu/device JS. Convert and Secure consume the language; traffic decides.";
+  description "CWL tip 1.0.84: this site is a complete CWL marketing genome on Firebase — owned fonts and CSS, literal year, no host menu/device JS. Convert and Secure consume the language; traffic decides.";
   canonical "https://agenticop.io/";
-  meta keywords "CWL, Chrysalis Web Language, tip 1.0.80, complete CWL site, DNA of the web, AgenticOps, Universal Translator, WebIR, Helix, Firebase";
+  meta keywords "CWL, Chrysalis Web Language, tip 1.0.84, complete CWL site, DNA of the web, AgenticOps, Universal Translator, WebIR, Helix, Firebase";
   meta robots "index, follow, max-image-preview:large, max-snippet:-1";
   meta author "AgenticOps";
   meta theme "#020208";
@@ -194,11 +194,11 @@ page home {
   meta og locale "en_US";
   meta og url "https://agenticop.io/";
   meta og title "CWL — DNA of the web · AgenticOps";
-  meta og description "Tip 1.0.80 complete CWL site on Firebase. Genome + owned assets + emit:site. Convert and Secure consume — they do not own.";
+  meta og description "Tip 1.0.84 complete CWL site on Firebase. Genome + owned assets + emit:site. Convert and Secure consume — they do not own.";
   meta og image "https://agenticop.io/cwl-explainer.png";
   meta twitter card "summary_large_image";
   meta twitter title "CWL — DNA of the web";
-  meta twitter description "CWL tip 1.0.80 — complete marketing site in CWL on Firebase. Traffic decides. No façades.";
+  meta twitter description "CWL tip 1.0.84 — complete marketing site in CWL on Firebase. Traffic decides. No façades.";
   meta twitter image "https://agenticop.io/cwl-explainer.png";
   icon logo apple;
   alternate "text/plain" "https://agenticop.io/llms.txt" "LLM digest";
@@ -260,7 +260,7 @@ page home {
             <p class="ao-hero-domain">agenticop.io</p>
           </div>
           <div class="ao-hero-copy">
-            <p class="ao-eyebrow"><span class="ao-pulse"></span> CWL tip 1.0.80 &middot; complete site on Firebase</p>
+            <p class="ao-eyebrow"><span class="ao-pulse"></span> CWL tip 1.0.84 &middot; complete site on Firebase</p>
             <h1 class="ao-title">
               <span class="ao-grad">CWL</span>
               is the DNA of the web.
@@ -268,14 +268,14 @@ page home {
             <p class="ao-lead ao-lead--tight">
               Chrysalis Web Language describes what an app <em>is</em> —
               routes, pages, data, UI, effects — only what can be <strong>verified</strong>.
-              <strong>This site is that genome:</strong> tip <strong>1.0.80</strong> on Firebase via certified <code>emit:site</code> —
+              <strong>This site is that genome:</strong> tip <strong>1.0.84</strong> on Firebase via certified <code>emit:site</code> —
               owned fonts and CSS, literal year, CSS menu, no host menu or device JavaScript.
               Convert and Secure consume the language — they do not redefine it.
             </p>
             <div class="ao-hero-ctas">
               <a class="ao-btn ao-btn-primary" href="/chrysalis.html">Explore CWL</a>
               <a class="ao-btn ao-btn-ghost" href="https://github.com/AgenticOp-io/chrysalis-cwl" target="_blank" rel="noopener">chrysalis-cwl on GitHub</a>
-              <a class="ao-btn ao-btn-link" href="/press.html">Press · tip 1.0.80 &rarr;</a>
+              <a class="ao-btn ao-btn-link" href="/press.html">Press · tip 1.0.84 &rarr;</a>
             </div>
           </div>
         </div>
@@ -313,7 +313,7 @@ page home {
         <h2 class="ao-h2">CWL first. Convert and Secure consume it.</h2>
         <p class="ao-sub">
           The genome matures on its own so migration deadlines and firewall rollouts do not fork the language.
-          Tip <strong>1.0.80</strong> — complete marketing genome: site shell, owned fonts/CSS, literal year, CSS menu, golds through <code>86</code>, certified <code>emit:site</code> on Firebase.
+          Tip <strong>1.0.84</strong> — complete marketing genome: site shell, owned fonts/CSS, literal year, CSS menu, golds through <code>93</code>, certified <code>emit:site</code> on Firebase.
         </p>
 <div class="ao-dna-grid">
           <a class="ao-dna-card ao-dna-card--cwl" href="/chrysalis.html">
@@ -347,7 +347,7 @@ page home {
         <div class="ao-open-pillars" aria-label="Public Chrysalis repositories">
           <div class="ao-open-pillars-head">
             <p class="ao-kicker">Open source</p>
-            <p><strong>CWL leads.</strong> Convert and Secure pin tip <strong>1.0.80</strong>. This public site is emitted from <code>site.cwl</code> — Apache-2.0.</p>
+            <p><strong>CWL leads.</strong> Convert and Secure pin tip <strong>1.0.84</strong>. This public site is emitted from <code>site.cwl</code> — Apache-2.0.</p>
           </div>
           <ul class="ao-open-pillars-list">
             <li>
@@ -403,7 +403,7 @@ page home {
       <div class="ao-diagram-stack">
         <a class="ao-diagram-tile ao-diagram-tile--cwl" href="/chrysalis.html">
           <span class="ao-diagram-label">01 &middot; CWL &middot; DNA of the web</span>
-          <img class="ao-explainer-img" src="/cwl-explainer.png" alt="CWL tip 1.0.80 complete site on Firebase: describe into a readable genome; Convert, Secure, and Hosting consume emit:site" width="1200" height="675" loading="lazy" />
+          <img class="ao-explainer-img" src="/cwl-explainer.png" alt="CWL tip 1.0.84 complete site on Firebase: describe into a readable genome; Convert, Secure, and Hosting consume emit:site" width="1200" height="675" loading="lazy" />
           <span class="ao-diagram-go">Open DNA / Chrysalis &rarr;</span>
         </a>
         <div class="ao-diagram-pair">
@@ -524,7 +524,7 @@ page home {
           <a class="ao-hub-card" href="/chrysalis.html">
             <span class="ao-hub-card-num">00</span>
             <h3>CWL / DNA</h3>
-            <p>Complete genome — tip 1.0.80 on Firebase. Convert and Secure consume; they do not own.</p>
+            <p>Complete genome — tip 1.0.84 on Firebase. Convert and Secure consume; they do not own.</p>
             <span class="ao-hub-card-go">Open →</span>
           </a>
           <a class="ao-hub-card" href="/services.html">
@@ -772,7 +772,7 @@ page about {
         <div class="ao-open-pillars" style="margin-top:1.5rem" aria-label="Public Chrysalis repositories">
           <div class="ao-open-pillars-head">
             <p class="ao-kicker">Open source</p>
-            <p>Three public pillars · tip <strong>1.0.80</strong> · complete site · Apache-2.0</p>
+            <p>Three public pillars · tip <strong>1.0.84</strong> · complete site · Apache-2.0</p>
           </div>
           <ul class="ao-open-pillars-list">
             <li>
@@ -871,7 +871,7 @@ page chrysalis {
 <main id="main" class="ao-page-main">
     <section class="ao-section ao-page-hero ao-page-hero--brand ao-page-hero--cwl">
       <div class="ao-wrap">
-        <p class="ao-kicker ao-kicker--loud">CWL &middot; tip 1.0.80 &middot; this page is the genome</p>
+        <p class="ao-kicker ao-kicker--loud">CWL &middot; tip 1.0.84 &middot; this page is the genome</p>
         <h1 class="ao-page-title ao-page-title--cwl">
           Chrysalis Web Language &mdash;
           <span class="ao-grad">the genome Convert and Secure consume.</span>
@@ -879,7 +879,7 @@ page chrysalis {
         <p class="ao-lead ao-lead--cwl">
           <strong>Chrysalis Web Language</strong> describes what a web app <em>is</em>:
           routes, handlers, pages, data, UI, effects &mdash; only what can be <strong>verified</strong>.
-          Tip <strong>1.0.80</strong> ships a <strong>complete marketing genome</strong> —
+          Tip <strong>1.0.84</strong> ships a <strong>complete marketing genome</strong> —
           the same language that powers <a href="/">agenticop.io</a> on Firebase via <code>emit:site</code>.
           Convert and Secure consume it — they do not redefine it.
         </p>
@@ -912,12 +912,12 @@ page chrysalis {
           src="/cwl-explainer.png"
           width="1200"
           height="675"
-          alt="CWL tip 1.0.80 complete site: describe routes, pages, data, and assets into a readable genome; Convert, Secure, and Firebase Hosting consume emit:site; verify dispose; no façades."
+          alt="CWL tip 1.0.84 complete site: describe routes, pages, data, and assets into a readable genome; Convert, Secure, and Firebase Hosting consume emit:site; verify dispose; no façades."
           loading="eager"
           decoding="async"
         />
         <p class="ao-doc-meta" style="margin-top:1rem;max-width:52rem">
-          Tip <strong>1.0.80</strong> complete marketing genome on Firebase:
+          Tip <strong>1.0.84</strong> complete marketing genome on Firebase:
           owned fonts and CSS, literal year, CSS menu, certified <code>emit:site</code>.
           Convert and Secure consume the language — they do not own it.
         </p>
@@ -951,17 +951,19 @@ page chrysalis {
           <p><strong>Grammar of its own.</strong> <strong>Not a migration dialect.</strong> <strong>Convert &amp; Secure consume &mdash; do not redefine.</strong></p>
         </div>
 
-        <h3 class="ao-h3">Surfaces (tip 1.0.80)</h3>
+        <h3 class="ao-h3">Surfaces (tip 1.0.84)</h3>
         <div class="ao-doc-table-wrap" tabindex="0">
           <table class="ao-doc-table">
             <thead><tr><th>Surface</th><th>Status</th></tr></thead>
             <tbody>
               <tr><th scope="row">API <code>@route</code></th><td>Shipped — RFC-0001–0008</td></tr>
-              <tr><th scope="row">Pages <code>@page</code></th><td>Shipped — RFC-0010/0011/0014</td></tr>
+              <tr><th scope="row">Pages <code>@page</code></th><td>Shipped — RFC-0010/0011/0014 · multipart form RFC-0041</td></tr>
               <tr><th scope="row">Data <code>load</code></th><td>Partial — RFC-0013</td></tr>
-              <tr><th scope="row">UI islands</th><td>Language shipped — RFC-0017–0019, 0024, 0028</td></tr>
-              <tr><th scope="row">Effects</th><td>Declarative — RFC-0007, 0020</td></tr>
-              <tr><th scope="row">DNA bridge</th><td>Contract — RFC-0022 (<code>app-dna-v1</code>)</td></tr>
+              <tr><th scope="row">UI islands</th><td>Language shipped — RFC-0017–0019, 0024, 0028, 0037</td></tr>
+              <tr><th scope="row">Effects / jobs</th><td>Declarative — RFC-0007, 0020 · <code>job.enqueue</code> RFC-0036</td></tr>
+              <tr><th scope="row">DNA bridge / identity</th><td>Contract — RFC-0022 · identity genes RFC-0039</td></tr>
+              <tr><th scope="row">Transport</th><td>multipart/SSE shipped · websocket residual RFC-0035</td></tr>
+              <tr><th scope="row">Framework residuals</th><td>Catalogued — RFC-0038 (never invented)</td></tr>
             </tbody>
           </table>
         </div>
@@ -983,7 +985,7 @@ page chrysalis {
         <div class="ao-open-pillars" style="margin-top:2rem" aria-label="Public Chrysalis repositories">
           <div class="ao-open-pillars-head">
             <p class="ao-kicker">Open source</p>
-            <p>All three pillars are public on GitHub. Tip language <strong>1.0.78</strong>. This site is that genome on Firebase.</p>
+            <p>All three pillars are public on GitHub. Tip language <strong>1.0.84</strong>. This site is that genome on Firebase.</p>
           </div>
           <ul class="ao-open-pillars-list">
             <li>
@@ -1281,7 +1283,7 @@ page docs {
   nav docs;
   layout site;
   title "Docs — technical papers & references | AgenticOps";
-  description "Technical documentation for Chrysalis: CWL tip 1.0.80 complete site, WebIR, Convert, Helix, traffic-decides bar, RFCs, and project references.";
+  description "Technical documentation for Chrysalis: CWL tip 1.0.84 complete site, WebIR, Convert, Helix, traffic-decides bar, RFCs, and project references.";
   canonical "https://agenticop.io/docs.html";
   meta robots "index, follow";
   meta og title "Docs — AgenticOps";
@@ -1317,9 +1319,9 @@ page docs {
             <div class="ao-project-top">
               <div>
                 <h3 class="ao-project-name"><a href="/paper-cwl.html">CWL — language whitepaper</a></h3>
-                <p class="ao-project-desc">From code: packages, parser AST, golds 01–86 (site shell through complete marketing genome), RFCs, dna-seed, diagnose, <code>smoke:ut-spine</code>, <code>emit:site</code>.</p>
+                <p class="ao-project-desc">From code: packages, parser AST, golds 01–93 (site shell through complete marketing genome), RFCs, dna-seed, diagnose, <code>smoke:ut-spine</code>, <code>emit:site</code>.</p>
               </div>
-              <span class="ao-pill ao-pill-live">1.0.78</span>
+              <span class="ao-pill ao-pill-live">1.0.84</span>
             </div>
             <div class="ao-project-actions">
               <a class="ao-btn ao-btn-primary" href="/paper-cwl.html">Read</a>
@@ -1405,7 +1407,7 @@ page docs {
           <li><a href="/method.html">Method</a> — watch → write DNA → emit → verify → cut over.</li>
           <li><a href="/trust.html">Trust</a> — standing bar in short form.</li>
           <li><a href="/published.html">Published work</a> — every public repo, host, PyPI, Zenodo DOI, COBOL note.</li>
-          <li><a href="/press.html">Press</a> — CWL tip 1.0.80 complete site on Firebase; open-source catalog.</li>
+          <li><a href="/press.html">Press</a> — CWL tip 1.0.84 complete site on Firebase; open-source catalog.</li>
           <li><a href="/projects.html">Projects catalog</a> — narrative index of surfaces.</li>
           <li><a href="/llms.txt">llms.txt</a> — machine digest.</li>
           <li>Repo docs (language source of truth):
@@ -2173,7 +2175,7 @@ page paper_convert {
               <tbody>
                 <tr><th scope="row"><code>packages/cwl</code></th><td>Junction → <code>chrysalis-cwl/packages/cwl</code></td></tr>
                 <tr><th scope="row"><code>packages/webir</code></th><td>Junction → <code>chrysalis-cwl/packages/webir</code></td></tr>
-                <tr><th scope="row">Pin</th><td><code>file:../chrysalis-cwl/packages/cwl</code> (tip 1.0.80) or <code>@agenticop-io/cwl</code></td></tr>
+                <tr><th scope="row">Pin</th><td><code>file:../chrysalis-cwl/packages/cwl</code> (tip 1.0.84) or <code>@agenticop-io/cwl</code></td></tr>
                 <tr><th scope="row">Prove</th><td><code>hub:cwl-pin-smoke</code>, <code>hub:cwl-language-pillar-smoke</code></td></tr>
                 <tr><th scope="row">Cutover consume</th><td><code>hub:cwl-helix-cutover-smoke</code> → <code>CWL_HELIX_CUTOVER_OK</code> or honest <code>SKIP</code></td></tr>
                 <tr><th scope="row">Fat stay Convert</th><td><code>cwl-ingest.mjs</code>, <code>cwl-control-lower.mjs</code> (not thin junction)</td></tr>
@@ -2241,11 +2243,11 @@ page paper_cwl {
   effects: none;
   nav docs;
   layout site;
-  title "CWL whitepaper — Chrysalis Web Language tip 1.0.80 | AgenticOps";
-  description "Technical whitepaper from chrysalis-cwl code: packages, parser, golds 01–86, site complete contract, emit:site, RFCs, dna-seed, UT spine, tip 1.0.80.";
+  title "CWL whitepaper — Chrysalis Web Language tip 1.0.84 | AgenticOps";
+  description "Technical whitepaper from chrysalis-cwl code: packages, parser, golds 01–93, site complete contract, emit:site, RFCs, dna-seed, UT spine, tip 1.0.84.";
   canonical "https://agenticop.io/paper-cwl.html";
   meta robots "index, follow";
-  meta og title "CWL whitepaper — tip 1.0.80";
+  meta og title "CWL whitepaper — tip 1.0.84";
   meta og description "Readable DNA of the web: grammar, packages, golds, DNA seed, and the spine Convert and Secure consume.";
   meta og url "https://agenticop.io/paper-cwl.html";
   meta og image "https://agenticop.io/cwl-explainer.png";
@@ -2257,9 +2259,9 @@ page paper_cwl {
         <p class="ao-kicker ao-kicker--loud">Whitepaper · language · from code</p>
         <h1 class="ao-page-title">Chrysalis Web Language</h1>
         <p class="ao-lead ao-lead--doc">
-          Tip <strong>1.0.80</strong> (2026-10-05). Package <code>@chrysalis/cwl</code> / <code>@agenticop-io/cwl</code> · Apache-2.0 ·
+          Tip <strong>1.0.84</strong> (2026-10-05). Package <code>@chrysalis/cwl</code> / <code>@agenticop-io/cwl</code> · Apache-2.0 ·
           <a href="https://github.com/AgenticOp-io/chrysalis-cwl" target="_blank" rel="noopener">AgenticOp-io/chrysalis-cwl</a>.
-          This paper follows the pillar tree: hand-written parser, WebIR twin, language golds 01–35,
+          This paper follows the pillar tree: hand-written parser, WebIR twin, language golds 01–93,
           <code>dna-seed</code>, diagnose codes, and <code>smoke:ut-spine</code>.
         </p>
         <p class="ao-doc-meta">
@@ -2286,7 +2288,7 @@ page paper_cwl {
           <li><a href="#rfcs">RFCs</a></li>
           <li><a href="#dna">DNA seed</a></li>
           <li><a href="#diagnose">Diagnose</a></li>
-          <li><a href="#tip">1.0.78</a></li>
+          <li><a href="#tip">1.0.84</a></li>
           <li><a href="#tooling">CLI &amp; gates</a></li>
           <li><a href="#spine">UT spine</a></li>
           <li><a href="#nongoals">Non-goals</a></li>
@@ -2325,7 +2327,7 @@ page paper_cwl {
             <table class="ao-doc-table">
               <thead><tr><th>Package</th><th>Version</th><th>Role</th></tr></thead>
               <tbody>
-                <tr><th scope="row"><code>@chrysalis/cwl</code></th><td>1.0.78</td><td>Language pin + CLI. Site complete: <code>emit:site</code>, owned assets, golds 68–86. Exports <code>parser</code>, <code>print</code>, <code>diagnose</code>, <code>lsp-map</code>, <code>dna-seed</code></td></tr>
+                <tr><th scope="row"><code>@chrysalis/cwl</code></th><td>1.0.84</td><td>Language pin + CLI. Site complete + tips 79–84: <code>emit:site</code>, owned assets, golds 68–93. Exports <code>parser</code>, <code>print</code>, <code>diagnose</code>, <code>lsp-map</code>, <code>dna-seed</code></td></tr>
                 <tr><th scope="row"><code>@chrysalis/webir</code></th><td>2.0.2</td><td>Semantic IR: <code>Module</code>, <code>Effect</code>, dialects <code>web-request</code> / <code>effect</code> / <code>data</code></td></tr>
                 <tr><th scope="row"><code>@chrysalis/runtime-cwl</code></th><td>2.0.2</td><td>In-process HTTP simulate — <code>createCwlRuntime</code>, <code>compileCwlRoutes</code>, <code>startCwlServer</code></td></tr>
                 <tr><th scope="row"><code>runtime-cwl-browser</code></th><td>2.0.2</td><td>RFC-0019 island contract markers (<code>data-cwl-island</code>) — no hydration claim</td></tr>
@@ -2422,7 +2424,10 @@ foreach_bind ::= "foreach" IDENT "as" [IDENT "=>"] IDENT "{" (return)* "}"</code
                 <tr><th scope="row">Control</th><td><code>if</code> / <code>foreach</code></td><td>0021</td><td>Accepted · golds 19, 23</td></tr>
                 <tr><th scope="row">Modules</th><td><code>module</code>, <code>import</code></td><td>0009</td><td>Shipped · gold 12</td></tr>
                 <tr><th scope="row">DNA bridge</th><td>surface ↔ <code>app-dna-v1</code></td><td>0022, 0023</td><td>Contract · golds 24, 34</td></tr>
-                <tr><th scope="row">Transport</th><td>multipart · SSE</td><td>0026, 0027</td><td>Accepted · golds 31, 32</td></tr>
+                <tr><th scope="row">Transport</th><td>multipart · SSE · websocket · jobs</td><td>0026–0027, 0035–0036, 0041</td><td>Language facts · host owns queues/uploads · websocket residual</td></tr>
+                <tr><th scope="row">DNA identity</th><td><code>replaces</code> · peel · capability</td><td>0039</td><td>Genes · no runtime invent</td></tr>
+                <tr><th scope="row">Asset integrity</th><td><code>integrity</code> / <code>module</code> / <code>crossorigin</code></td><td>0040</td><td>Named facts only</td></tr>
+                <tr><th scope="row">Framework residuals</th><td>Nest · LiveView · Flutter · onion · raw SQL</td><td>0038</td><td>Catalogued holes — never façades</td></tr>
               </tbody>
             </table>
           </div>
@@ -2465,9 +2470,9 @@ handler legacy_post {
 
       <section id="golds" class="ao-section">
         <div class="ao-wrap ao-wrap--doc">
-          <h2 class="ao-h2">Language golds 01–35</h2>
+          <h2 class="ao-h2">Language golds 01–93</h2>
           <div class="ao-prose">
-            <p>Under <code>fixtures/language-gold/</code>. Gate: <code>npm run test:language</code>.</p>
+            <p>Under <code>fixtures/language-gold/</code> (site golds under host/site fixtures). Gate: <code>npm run test:language</code>. Public record: <strong>01–93</strong>.</p>
           </div>
           <div class="ao-doc-table-wrap" tabindex="0">
             <table class="ao-doc-table">
@@ -2481,6 +2486,10 @@ handler legacy_post {
                 <tr><th scope="row">25–28</th><td>Island kinds, nested literals, load redirect/error/cookie, Set-Cookie header</td></tr>
                 <tr><th scope="row">29–33</th><td>Transport holes, executable effects, multipart, SSE, named island contracts</td></tr>
                 <tr><th scope="row">35</th><td>Urlencoded form POST + body (tip 1.0.26 · runtime-ok)</td></tr>
+                <tr><th scope="row">68–78</th><td>Site document / shell / nav / year / links / behavior / assets / page / device / identity / social / head-rest</td></tr>
+                <tr><th scope="row">79–86</th><td>Site head-rest deepen · owned fonts (85) · complete marketing genome (86)</td></tr>
+                <tr><th scope="row">87–89</th><td>WebSocket duplex · job.enqueue · broader island events (tip 1.0.79)</td></tr>
+                <tr><th scope="row">90–93</th><td>Framework residuals · DNA identity · asset integrity · page form multipart (tips 1.0.81–1.0.84)</td></tr>
               </tbody>
             </table>
           </div>
@@ -2526,6 +2535,14 @@ handler legacy_post {
                 <tr><th scope="row">0026</th><td>Multipart field/file part bindings</td></tr>
                 <tr><th scope="row">0027</th><td>SSE single-shot <code>stream sse;</code></td></tr>
                 <tr><th scope="row">0028</th><td>Named client islands + form event contracts</td></tr>
+                <tr><th scope="row">0029–0034</th><td>Host / site deepen (shell, year, assets, fonts, complete site, host emit)</td></tr>
+                <tr><th scope="row">0035</th><td><code>stream websocket;</code> duplex (residual <code>unsupported:websocket</code>)</td></tr>
+                <tr><th scope="row">0036</th><td><code>job.enqueue</code> background intent (host owns queue)</td></tr>
+                <tr><th scope="row">0037</th><td>Island events <code>input</code> / <code>focus</code> / <code>blur</code> / <code>keydown</code></td></tr>
+                <tr><th scope="row">0038</th><td>Framework façade residuals (Nest / LiveView / Flutter / onion / raw SQL)</td></tr>
+                <tr><th scope="row">0039</th><td>DNA identity genes (<code>replaces</code>, <code>from peel</code>, <code>capability</code>, <code>works without client</code>)</td></tr>
+                <tr><th scope="row">0040</th><td>Asset integrity (<code>integrity</code> / <code>module</code> / <code>crossorigin</code>)</td></tr>
+                <tr><th scope="row">0041</th><td>Page form <code>enctype multipart</code> + <code>field … "file"</code></td></tr>
               </tbody>
             </table>
           </div>
@@ -2602,22 +2619,35 @@ handler legacy_post {
 
       <section id="tip" class="ao-section">
         <div class="ao-wrap ao-wrap--doc">
-          <h2 class="ao-h2">Tip 1.0.80</h2>
+          <h2 class="ao-h2">Tip 1.0.84</h2>
           <div class="ao-prose">
             <p>
-              <strong>Complete CWL marketing site</strong> (2026-10-05): public genome uses
-              <code>year 2026;</code>, checkbox menu + owned CSS (no host drawer/device JS),
-              owned fonts under <code>assets/</code>, certified <code>emit:site</code> freeze for Firebase.
-              Gold <code>86-site-complete</code>. Token <code>CWL_SITE_COMPLETE_OK</code>.
-              Contract: <code>docs/language/CWL-SITE-COMPLETE.md</code>.
+              Language tip <strong>1.0.84</strong> (2026-10-06). Package <code>@agenticop-io/cwl</code> / <code>@chrysalis/cwl</code>.
+              The public marketing genome remains the <strong>complete site</strong> contract from tip <strong>1.0.78</strong>
+              (gold <code>86-site-complete</code>, <code>CWL_SITE_COMPLETE_OK</code>):
+              <code>year 2026;</code>, checkbox menu + owned CSS, owned fonts, certified <code>emit:site</code>.
+              Tips <strong>1.0.79–1.0.84</strong> deepen the <em>language</em> — they are not required on marketing routes.
             </p>
             <p>
-              Recent path: host site emit (1.0.75) · 100% contract + asset SoR (1.0.76) · owned fonts (1.0.77) · complete (1.0.78).
-              Earlier public land (1.0.26): HTML shell preserve + urlencoded forms (golds 27 / 35).
-              WebSocket duplex remains <code>unsupported:websocket</code>. Deploy CLI stays ops.
+              Path: host site emit (1.0.75) · 100% contract (1.0.76) · owned fonts (1.0.77) · complete site (1.0.78) ·
+              verify-dispose marketing copy (1.0.80) · language ladder below · public docs refresh (1.0.84).
+              Deploy CLI stays ops. No Nest/LiveView/Flutter/upload middleware invent.
             </p>
           </div>
           <div class="ao-doc-table-wrap" tabindex="0">
+            <table class="ao-doc-table">
+              <thead><tr><th>Tip</th><th>RFC</th><th>Gold</th><th>What landed</th><th>Honesty</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">1.0.79</th><td>0035–0037</td><td>87–89</td><td><code>stream websocket;</code> · <code>job.enqueue</code> · island <code>input</code>/<code>focus</code>/<code>blur</code>/<code>keydown</code></td><td>WebSocket residual <code>unsupported:websocket</code>; host owns queues; no hydration invent</td></tr>
+                <tr><th scope="row">1.0.80</th><td>—</td><td>—</td><td>Public copy: verify dispose · no façades (not hole slogans)</td><td>Complete-site routes unchanged</td></tr>
+                <tr><th scope="row">1.0.81</th><td>0038</td><td>90</td><td>Framework façade residuals: Nest DI, LiveView, Flutter, middleware onion, raw SQL</td><td>Catalogued only — never invented</td></tr>
+                <tr><th scope="row">1.0.82</th><td>0039</td><td>91</td><td>DNA identity genes: <code>replaces</code>, <code>from peel</code>, <code>capability</code>, <code>works without client</code></td><td>Facts for Convert/Secure; no runtime invent</td></tr>
+                <tr><th scope="row">1.0.83</th><td>0040</td><td>92</td><td>Asset integrity: <code>integrity</code> / <code>module</code> / <code>crossorigin</code> on script/style</td><td>Named assets deepen DNA; no JS/CSS runtime invent</td></tr>
+                <tr><th scope="row">1.0.84</th><td>0041</td><td>93</td><td>Page form <code>enctype multipart</code> + <code>field … "file"</code></td><td>Host owns transfer/storage; no upload middleware invent</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="ao-doc-table-wrap" tabindex="0" style="margin-top:1.5rem">
             <table class="ao-doc-table">
               <thead><tr><th>Smoke</th><th>Token</th></tr></thead>
               <tbody>
@@ -3469,17 +3499,17 @@ page press {
   effects: none;
   nav press;
   layout site;
-  title "CWL tip 1.0.80 — complete site on Firebase | AgenticOps Press";
-  description "Press: CWL tip 1.0.80 ships a complete marketing site in CWL on Firebase — owned fonts/CSS, no host menu JS. Convert and Secure pin the tip. Full AgenticOp-io catalog.";
+  title "CWL tip 1.0.84 — complete site on Firebase | AgenticOps Press";
+  description "Press: CWL tip 1.0.84 ships a complete marketing site in CWL on Firebase — owned fonts/CSS, no host menu JS. Convert and Secure pin the tip. Full AgenticOp-io catalog.";
   canonical "https://agenticop.io/press.html";
   meta robots "index, follow";
   meta og type "article";
-  meta og title "CWL tip 1.0.80 — complete CWL site on Firebase";
-  meta og description "agenticop.io is emitted from site.cwl (tip 1.0.80). Convert translates. Helix proves from traffic.";
+  meta og title "CWL tip 1.0.84 — complete CWL site on Firebase";
+  meta og description "agenticop.io is emitted from site.cwl (tip 1.0.84). Convert translates. Helix proves from traffic.";
   meta og url "https://agenticop.io/press.html";
   meta og image "https://agenticop.io/linkedin-cwl-release.png";
   meta twitter card "summary_large_image";
-  meta twitter title "CWL tip 1.0.80 — complete on Firebase";
+  meta twitter title "CWL tip 1.0.84 — complete on Firebase";
   meta twitter description "Chrysalis Web Language and the AgenticOps open-source catalog.";
   meta twitter image "https://agenticop.io/linkedin-cwl-release.png";
   icon logo;
@@ -3487,14 +3517,14 @@ page press {
 {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "headline": "CWL tip 1.0.80 — complete marketing site on Firebase",
+    "headline": "CWL tip 1.0.84 — complete marketing site on Firebase",
     "datePublished": "2026-09-10",
     "dateModified": "2026-10-06",
     "author": { "@type": "Person", "name": "David Peterson", "url": "https://agenticop.io/about.html" },
     "publisher": { "@type": "Organization", "name": "AgenticOps", "url": "https://agenticop.io/" },
     "image": "https://agenticop.io/linkedin-cwl-release.png",
     "mainEntityOfPage": "https://agenticop.io/press.html",
-    "description": "CWL tip 1.0.80: complete CWL marketing genome on Firebase. Convert and Secure pin it. Full AgenticOp-io catalog."
+    "description": "CWL tip 1.0.84: complete CWL marketing genome on Firebase. Convert and Secure pin it. Full AgenticOp-io catalog."
   }
   """;
   return html """
@@ -3503,12 +3533,12 @@ page press {
       <header class="ao-section ao-page-hero ao-page-hero--brand ao-page-hero--cwl">
         <div class="ao-wrap ao-wrap--doc">
           <p class="ao-kicker">Press · updated 6 October 2026</p>
-          <h1 class="ao-page-title">CWL tip 1.0.80 — complete on Firebase</h1>
+          <h1 class="ao-page-title">CWL tip 1.0.84 — complete on Firebase</h1>
           <p class="ao-lead ao-lead--doc">
             <strong>agenticop.io</strong> is now a <strong>complete CWL marketing site</strong>:
             the public pages are the genome <code>site.cwl</code>, frozen with certified <code>emit:site</code>,
             hosted on Firebase — owned fonts and CSS, literal year, CSS menu, no host menu or device JavaScript.
-            Tip <strong>1.0.80</strong> is the language pin Convert and Secure consume.
+            Tip <strong>1.0.84</strong> is the language pin Convert and Secure consume.
           </p>
           <p class="ao-doc-meta">
             Contact: <a href="mailto:hello@agenticop.io">hello@agenticop.io</a>
@@ -3524,7 +3554,7 @@ page press {
             <p>
               <strong>CWL</strong> describes what a web app <em>is</em>: routes, pages, data, UI, effects —
               and <strong>verified claims</strong> when a claim cannot be made safely.
-              Tip <strong>1.0.80</strong> is available under Apache-2.0 at
+              Tip <strong>1.0.84</strong> is available under Apache-2.0 at
               <a href="https://github.com/AgenticOp-io/chrysalis-cwl" target="_blank" rel="noopener">github.com/AgenticOp-io/chrysalis-cwl</a>.
               The complete-site contract is
               <a href="https://github.com/AgenticOp-io/chrysalis-cwl/blob/main/docs/language/CWL-SITE-COMPLETE.md" target="_blank" rel="noopener">CWL-SITE-COMPLETE.md</a>
@@ -3553,10 +3583,10 @@ page press {
               src="/linkedin-cwl-release.png"
               width="1280"
               height="720"
-              alt="CWL tip 1.0.80 — complete marketing site on Firebase, AgenticOp-io"
+              alt="CWL tip 1.0.84 — complete marketing site on Firebase, AgenticOp-io"
               loading="eager"
             />
-            <figcaption class="ao-doc-meta" style="margin-top:0.75rem">CWL tip 1.0.80 — complete site — AgenticOp-io</figcaption>
+            <figcaption class="ao-doc-meta" style="margin-top:0.75rem">CWL tip 1.0.84 — complete site — AgenticOp-io</figcaption>
           </figure>
         </div>
       </section>
@@ -3682,7 +3712,7 @@ page projects {
             <div class="ao-project-top">
               <div>
                 <h3 class="ao-project-name">CWL — chrysalis-cwl</h3>
-                <p class="ao-project-desc">DNA of the web. Tip 1.0.80 complete site. Golds 01–86. Owns UT spine smokes.</p>
+                <p class="ao-project-desc">DNA of the web. Tip 1.0.84 complete site. Golds 01–86. Owns UT spine smokes.</p>
               </div>
               <span class="ao-pill ao-pill-live">Flagship</span>
             </div>
@@ -4012,7 +4042,7 @@ page published {
   nav published;
   layout site;
   title "Published work — links, repos, DOIs | AgenticOps";
-  description "Everything AgenticOps has published: CWL tip 1.0.80 complete site, Chrysalis pillars, WPTP, FDE Zenodo DOIs, Ghost Museum, Lane, wisptools proof, live demos.";
+  description "Everything AgenticOps has published: CWL tip 1.0.84 complete site, Chrysalis pillars, WPTP, FDE Zenodo DOIs, Ghost Museum, Lane, wisptools proof, live demos.";
   canonical "https://agenticop.io/published.html";
   meta robots "index, follow";
   meta og title "Published work — AgenticOps";
@@ -4091,7 +4121,7 @@ page published {
         <div class="ao-wrap ao-wrap--doc">
           <h2 class="ao-h2">Chrysalis pillars (public OSS)</h2>
           <div class="ao-prose">
-            <p>Apache-2.0 under AgenticOp-io. CWL tip <strong>1.0.80</strong> is the language pin Convert and Secure consume — and this site is that genome on Firebase.</p>
+            <p>Apache-2.0 under AgenticOp-io. CWL tip <strong>1.0.84</strong> is the language pin Convert and Secure consume — and this site is that genome on Firebase.</p>
           </div>
           <div class="ao-doc-table-wrap" tabindex="0">
             <table class="ao-doc-table">
@@ -4131,7 +4161,7 @@ page published {
           <h2 class="ao-h2">CWL technical papers (Zenodo)</h2>
           <div class="ao-prose">
             <p>
-              Zenodo pack for the public papers (CWL, WebIR, Convert, Helix, traffic-decides, system overview). Language tip now <strong>1.0.78</strong>.
+              Zenodo pack for the public papers (CWL, WebIR, Convert, Helix, traffic-decides, system overview). Language tip now <strong>1.0.84</strong>.
               CC-BY-4.0 documentation deposit; language code remains Apache-2.0 in chrysalis-cwl.
             </p>
             <ul>
@@ -4840,7 +4870,7 @@ page whitepaper {
           <strong>CWL</strong> is the language of record — the readable DNA of a web app.
           <strong>Convert</strong> is the Universal Translator that peels origins into that DNA and emits modern stacks.
           <strong>Secure (Helix)</strong> certifies live identity from traffic DNA, and may bridge to CWL when surface must match what is live.
-          Tip language <strong>1.0.78</strong>. Complete CWL marketing site on Firebase. Apache-2.0 under AgenticOp-io. <strong>Traffic decides what ships.</strong>
+          Tip language <strong>1.0.84</strong>. Complete CWL marketing site on Firebase. Apache-2.0 under AgenticOp-io. <strong>Traffic decides what ships.</strong>
         </p>
         <ol class="ao-flow-strip ao-flow-strip--hero" aria-label="Pillar spine">
           <li class="ao-flow-step ao-flow-step--cwl">
@@ -4984,7 +5014,7 @@ page whitepaper {
               It is the <strong>canonical inscription</strong> of web-app identity — what the app <em>is</em> on the wire and on the page —
               written so people can audit it and so Convert / Secure can consume the same meaning.
             </p>
-            <p>Tip <strong>1.0.80</strong> is public at
+            <p>Tip <strong>1.0.84</strong> is public at
               <a href="https://github.com/AgenticOp-io/chrysalis-cwl" target="_blank" rel="noopener">AgenticOp-io/chrysalis-cwl</a>.
               CWL maps <strong>1:1</strong> to <strong>WebIR</strong>: WebIR is the semantic IR; CWL is the readable surface.
             </p>
@@ -5332,7 +5362,7 @@ page whitepaper {
           <div class="ao-open-pillars" aria-label="Public Chrysalis repositories">
             <div class="ao-open-pillars-head">
               <p class="ao-kicker">Open source</p>
-              <p>All three pillars are public. Tip language <strong>1.0.78</strong>. This site is that genome on Firebase.</p>
+              <p>All three pillars are public. Tip language <strong>1.0.84</strong>. This site is that genome on Firebase.</p>
             </div>
             <ul class="ao-open-pillars-list">
               <li>

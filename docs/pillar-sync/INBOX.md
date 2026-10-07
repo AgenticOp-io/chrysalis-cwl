@@ -7,13 +7,13 @@ CWL reads this on coordinator ticks. Tip bumps only for **contract gaps**.
 
 | When | From | Note |
 | --- | --- | --- |
-| 2026-10-06 | parent (site SoR) | **Public site docs build** — tip pins / papers / golds lag language tip **1.0.84**. Live still cites **1.0.80** · golds through **86**. Need genome refresh for tips **1.0.79–1.0.84**, RFCs **0035–0041**, golds **87–93**. [`INBOX-SITE-DOCS-BUILD.md`](./INBOX-SITE-DOCS-BUILD.md) · ask `site-docs-build-1.0.84` |
-
+| — | — | none |
 
 ## Closed recently
 
 | When | From | Note |
 | --- | --- | --- |
+| 2026-10-06 | parent (site SoR) | **Public site docs build** — **done** tip **1.0.84** genome · golds **01–93** · RFCs **0035–0041**. Site emit+deploy next. [`INBOX-SITE-DOCS-BUILD.md`](./INBOX-SITE-DOCS-BUILD.md) |
 | 2026-10-05 | parent | **Site 100% CWL** — **done** tip **1.0.76** / gold `84` / `CWL_SITE_100_OK`. [`INBOX-SITE-100-CWL.md`](./INBOX-SITE-100-CWL.md) |
 | 2026-10-05 | parent | CWL-only demo deploy — **done** tip **1.0.75** / gold `83` / `CWL_HOST_SITE_OK`. [`INBOX-CWL-ONLY-DEMO.md`](./INBOX-CWL-ONLY-DEMO.md) |
 | 2026-10-01 | parent | agenticop.io stylesheet, image, Firebase root — **done** in tip **1.0.66** (gold 74). No CSS parse, image bytes, or deploy. [`INBOX-SITE-CWL.md`](./INBOX-SITE-CWL.md) |

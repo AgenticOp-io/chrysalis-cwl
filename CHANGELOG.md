@@ -1,5 +1,9 @@
 # CWL language changelog
 
+## Site docs - 2026-10-06
+
+- Public `site.cwl` docs build for tip **1.0.84**: tip pins, paper-cwl tip ladder **1.0.79–1.0.84**, RFCs **0035–0041**, golds **01–93**. Token `CWL_SITE_DOCS_OK`. Site lane emits + deploys.
+
 ## 1.0.84 - 2026-10-06
 
 - Page form multipart (RFC-0041): `form … enctype multipart` + `field … "file"`

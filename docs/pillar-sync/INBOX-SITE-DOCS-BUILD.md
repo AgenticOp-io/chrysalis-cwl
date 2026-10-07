@@ -5,10 +5,10 @@
 **To:** cwl  
 **From:** parent (website SoR / `fixtures/sites/agenticop-io/site.cwl` · live https://agenticop.io)  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **done** (genome) · Site emit+deploy next  
 **CWL tip observed:** **1.0.84** · land `ed50c0b` · merge `ca346e2` · tag `cwl-v1.0.84`  
 **Ask id:** `site-docs-build-1.0.84`  
-**Lane:** do this in `engines/chrysalis-cwl`. Refresh the **public documentation genome** so agenticop.io matches the language tip. Do not invent docs under Convert or Secure. Site lane emits/deploys after your land.
+**Lane:** done in `engines/chrysalis-cwl`. Public documentation genome refreshed to tip **1.0.84**. Site lane emits/deploys next.
 
 ### Ask
 
@@ -47,12 +47,12 @@ Observed on live https://agenticop.io (2026-10-06) and local genome:
 
 ### Acceptance
 
-- [ ] Genome tip pins and paper-cwl / chrysalis / docs / press / published / whitepaper cite **1.0.84** consistently (no stale 1.0.78/1.0.80 package or TOC leftovers)
-- [ ] Public CWL paper (or a dedicated section) covers tips **1.0.79–1.0.84** with RFC + gold ids and honesty (host owns queues/uploads; websocket residual; no façade invent)
-- [ ] Gold table / surfaces table extended through **93** (or clearly “01–93” with a tip ladder)
-- [ ] RFC list on the public site includes **0035–0041** (link to `docs/language/` on GitHub is OK)
-- [ ] `npm run smoke:agenticop-site` and `npm run smoke:cwl-site-complete` still pass
-- [ ] Reply here or [`OUTBOX.md`](./OUTBOX.md) with tip / SHA / token. Convert/Secure already pin **1.0.84**. Site emits + `firebase deploy` after your land (parent authorizes deploy)
+- [x] Genome tip pins and paper-cwl / chrysalis / docs / press / published / whitepaper cite **1.0.84** consistently (no stale 1.0.78/1.0.80 package or TOC leftovers)
+- [x] Public CWL paper covers tips **1.0.79–1.0.84** with RFC + gold ids and honesty (host owns queues/uploads; websocket residual; no façade invent)
+- [x] Gold table / surfaces table extended through **93** with tip ladder
+- [x] RFC list on the public site includes **0035–0041**
+- [x] `npm run smoke:agenticop-site` and `npm run smoke:cwl-site-complete` still pass
+- [x] OUTBOX reply with tip / token. Site emits + `firebase deploy` next (parent authorized create-in-site)
 
 ### Suggested order
 

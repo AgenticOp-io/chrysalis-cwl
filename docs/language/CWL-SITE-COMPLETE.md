@@ -1,8 +1,8 @@
 # Complete CWL site (agenticop.io)
 
-**Tip:** **1.0.80** (messaging) · complete claim from **1.0.78** · Genome: `fixtures/sites/agenticop-io/site.cwl`  
+**Tip:** **1.0.84** (public docs) · messaging from **1.0.80** · complete claim from **1.0.78** · Genome: `fixtures/sites/agenticop-io/site.cwl`  
 **Supersedes for the complete claim:** tip **1.0.77** “100% contract” host-JS leftovers.  
-**Public copy:** tip **1.0.80** leads with verify dispose — not hole slogans. Route bodies have no `hole` statements.
+**Public copy:** tip **1.0.84** pins language tip + tips **1.0.79–1.0.84** / RFCs **0035–0041** / golds **87–93** on papers. Marketing still leads with verify dispose — not hole slogans. Route bodies have no `hole` statements.
 
 ## What “complete” means
 
