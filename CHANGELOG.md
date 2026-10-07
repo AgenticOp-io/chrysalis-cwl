@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.80 - 2026-10-06
+
+- Public agenticop.io genome drops “honest holes” slogans; leads with verify dispose and no façades
+- Tip copy bump on the marketing site. Complete-site contract unchanged (no route `hole` statements to fill)
+- Language `hole reason;` gene kept for peels and syntax docs — not a marketing slogan
+
 ## 1.0.79 - 2026-10-06
 
 - `stream websocket;` duplex surface (RFC-0035). Gold `87`. Residual stays `unsupported:websocket`

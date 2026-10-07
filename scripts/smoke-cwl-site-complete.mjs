@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Prove the complete CWL marketing-site contract (tip 1.0.78).
+ * Prove the complete CWL marketing-site contract (tip 1.0.78+; messaging 1.0.80).
  * Token: CWL_SITE_COMPLETE_OK
  */
 import { copyFileSync, existsSync, mkdtempSync, mkdirSync, readFileSync, readdirSync, rmSync } from "node:fs";
@@ -77,6 +77,7 @@ try {
   check("site-no-device-js", !siteHome.includes('data-cwl-device="1"') && !siteHome.includes("matchMedia"));
   check("site-no-google", !siteHome.includes("fonts.googleapis.com"));
   check("site-no-ao-layout", !siteHome.includes("/ao-layout.js"));
+  check("site-no-hole-slogan", !/honest\s+holes/i.test(siteHome));
   check("site-fonts", existsSync(join(siteOut, "fonts.css")));
   check("site-css", existsSync(join(siteOut, "agenticops.css")));
   check("forbid-live-deploy", (() => {
