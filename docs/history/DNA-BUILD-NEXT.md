@@ -114,7 +114,7 @@
 | Tip pin **1.0.80** | Convert — **done** (`a716b985`); Secure — **done** (`518f509`); Site — **done** (`ce6a72f`, live + demo) |
 | Tip pin **1.0.81** | Convert — **done** (`fbfd45e7`, peels 40–63); Secure — **done** (`975f734`, live-match) |
 | Tip pin **1.0.82** | Convert + Secure — **done** |
-| Tip pin **1.0.83** | Convert + Secure pin · consume gold `92` — **asked** (superseded by **1.0.84** ask if still open) |
+| Tip pin **1.0.83** | Convert — **done** (`e86d2571`); Secure — superseded by **1.0.84** ask |
 | Tip pin **1.0.84** | Convert + Secure pin · consume gold `93` — **asked** |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **done** (`fbfd45e7`) |
 | Live-match / cutover vs tip seed | Secure — **done** (`975f734`, tip **1.0.81**) |

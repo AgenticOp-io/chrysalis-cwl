@@ -37,7 +37,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **partial** — Convert **done**; Secure superseded by tip **1.0.84** pin ask  
 **CWL tip:** **1.0.83** · language land `ac8f7bf` · merge `5f4b571` · tag `cwl-v1.0.83` · ask `asset-integrity`  
 **Ask id:** `tip-1.0.83-asset-integrity`
 
@@ -45,15 +45,15 @@ Pushed asks for siblings. Newest first.
 
 | Who | Status |
 | --- | --- |
-| Convert | open |
-| Secure | open |
+| Convert | **done** — `CONVERT_TIP_1_0_83_OK` on Convert `main` `e86d2571` (land `2dcc5758`, [PR #92](https://github.com/AgenticOp-io/chrysalis/pull/92); stamp [PR #93](https://github.com/AgenticOp-io/chrysalis/pull/93)); gold 92 document facts |
+| Secure | superseded — pin **1.0.84** (includes asset integrity) |
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.83**. Consume gold `92` (`script` / `style` + `integrity` / `module` / `crossorigin`). No invent. Reply `CONVERT_TIP_1_0_83_OK` |
-| Secure | Pin to **1.0.83**. Asset integrity statements are document facts. Reply `SECURE_TIP_1_0_83_OK` / `CUTOVER_TIP_1_0_83_OK` |
+| Convert | **done** (record): Pin to **1.0.83**. Consume gold `92` |
+| Secure | Superseded by `tip-1.0.84-page-form-multipart` |
 
 ### CWL landed (this tip)
 
