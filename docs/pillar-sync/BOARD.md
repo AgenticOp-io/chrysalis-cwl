@@ -7,9 +7,9 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.80 landed. Convert + Secure pin. Site emit + deploy. CWL does not deploy live
-CONVERT_NEXT: pin 1.0.80 · CONVERT_TIP_1_0_80_OK
-SECURE_NEXT: pin 1.0.80 · SECURE_TIP_1_0_80_OK
+DISPATCH: tip 1.0.80 landed. Convert + Secure pinned. Site emit + deploy open. CWL does not deploy live
+CONVERT_NEXT: done · CONVERT_TIP_1_0_80_OK · main a716b985
+SECURE_NEXT: done · SECURE_TIP_1_0_80_OK · main 518f509
 CWL_NEXT: done · tip 1.0.80 land 15dd5f7 · merge 75ba56a · tag cwl-v1.0.80
 SITE_NEXT: emit:site refresh + deploy hosting:agenticops + demo · SITE_DEPLOY_OK
 ```
@@ -27,8 +27,8 @@ SITE_NEXT: emit:site refresh + deploy hosting:agenticops + demo · SITE_DEPLOY_O
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
 | **CWL** | `main` | 15dd5f7 | tip **1.0.80** · merge `75ba56a` · tag `cwl-v1.0.80` |
-| **Convert** | `main` | f3757d5f | tip pin **1.0.79** — pin **1.0.80** open |
-| **Secure** | `main` | 5ec8c50 | tip pin **1.0.79** — pin **1.0.80** open |
+| **Convert** | `main` | a716b985 | tip pin **1.0.80**, `CONVERT_TIP_1_0_80_OK` |
+| **Secure** | `main` | 518f509 | tip pin **1.0.80**, `SECURE_TIP_1_0_80_OK` |
 | **Site** | `main` | 5d17e69 | tip **1.0.78** live — emit/deploy **1.0.80** open |
 
 ## Who builds next
@@ -36,8 +36,8 @@ SITE_NEXT: emit:site refresh + deploy hosting:agenticops + demo · SITE_DEPLOY_O
 | Priority | Owner | Work |
 | --- | --- | --- |
 | **P0** | Site | Refresh from `emit:site`, deploy demo + `hosting:agenticops`. Reply `SITE_DEPLOY_OK` |
-| **P0** | Convert | Pin **1.0.80**. Reply `CONVERT_TIP_1_0_80_OK` |
-| **P0** | Secure | Pin **1.0.80**. Reply `SECURE_TIP_1_0_80_OK` |
+| **done** | Convert | Tip pin **1.0.80**, main `a716b985`, [PR #88](https://github.com/AgenticOp-io/chrysalis/pull/88) |
+| **done** | Secure | Tip pin **1.0.80**, main `518f509`, [PR #33](https://github.com/AgenticOp-io/chrysalis-security/pull/33) |
 | **done** | CWL | tip **1.0.80** land `15dd5f7`, merge `75ba56a`, tag `cwl-v1.0.80` |
 
 ## Honesty
