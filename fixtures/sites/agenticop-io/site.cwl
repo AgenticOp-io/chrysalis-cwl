@@ -403,7 +403,7 @@ page home {
       <div class="ao-diagram-stack">
         <a class="ao-diagram-tile ao-diagram-tile--cwl" href="/chrysalis.html">
           <span class="ao-diagram-label">01 &middot; CWL &middot; DNA of the web</span>
-          <img class="ao-explainer-img" src="/cwl-explainer.png" alt="CWL DNA of the web: surfaces describe into a readable genome" width="1200" height="675" loading="lazy" />
+          <img class="ao-explainer-img" src="/cwl-explainer.png" alt="CWL tip 1.0.80 complete site on Firebase: describe into a readable genome; Convert, Secure, and Hosting consume emit:site" width="1200" height="675" loading="lazy" />
           <span class="ao-diagram-go">Open DNA / Chrysalis &rarr;</span>
         </a>
         <div class="ao-diagram-pair">
@@ -912,10 +912,15 @@ page chrysalis {
           src="/cwl-explainer.png"
           width="1200"
           height="675"
-          alt="CWL DNA of the web: routes, pages, data, and contracts describe into a readable genome. Unproven when a claim is unsafe. Convert and Secure consume it; people can read it."
+          alt="CWL tip 1.0.80 complete site: describe routes, pages, data, and assets into a readable genome; Convert, Secure, and Firebase Hosting consume emit:site; verify dispose; no façades."
           loading="eager"
           decoding="async"
         />
+        <p class="ao-doc-meta" style="margin-top:1rem;max-width:52rem">
+          Tip <strong>1.0.80</strong> complete marketing genome on Firebase:
+          owned fonts and CSS, literal year, CSS menu, certified <code>emit:site</code>.
+          Convert and Secure consume the language — they do not own it.
+        </p>
       </div>
     </section>
 
@@ -3545,10 +3550,10 @@ page press {
           <figure class="ao-explainer-band ao-explainer-band--inset" style="margin-top:1.75rem">
             <img
               class="ao-explainer-img"
-              src="/linkedin-cwl-release.svg"
+              src="/linkedin-cwl-release.png"
               width="1280"
               height="720"
-              alt="CWL — DNA of the web, tip 1.0.80 complete site, AgenticOp-io"
+              alt="CWL tip 1.0.80 — complete marketing site on Firebase, AgenticOp-io"
               loading="eager"
             />
             <figcaption class="ao-doc-meta" style="margin-top:0.75rem">CWL tip 1.0.80 — complete site — AgenticOp-io</figcaption>
