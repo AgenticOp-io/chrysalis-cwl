@@ -6,11 +6,11 @@
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.82 landed. Secure pinned. Convert pin open. DNA identity facts only
-CONVERT_NEXT: pin 1.0.82 · consume gold 91 · CONVERT_TIP_1_0_82_OK
-SECURE_NEXT: done · SECURE_TIP_1_0_82_OK · main 666cf77
-CWL_NEXT: done · tip 1.0.82 land 6ff748b · merge 125f965 · tag cwl-v1.0.82
+CWL_FLEET_IDLE: yes
+DISPATCH: tip 1.0.82 closed. DNA identity facts consumed. Operator EXTFMAP/soak still open from 1.0.81
+CONVERT_NEXT: idle · CONVERT_TIP_1_0_82_OK · main cc5f2248
+SECURE_NEXT: idle · SECURE_TIP_1_0_82_OK · main 666cf77
+CWL_NEXT: idle · tip 1.0.82 land 6ff748b · merge 125f965 · tag cwl-v1.0.82
 SITE_NEXT: idle · no site emit change required
 ```
 
@@ -27,7 +27,7 @@ SITE_NEXT: idle · no site emit change required
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
 | **CWL** | `main` | 6ff748b | tip **1.0.82** · merge `125f965` · tag `cwl-v1.0.82` |
-| **Convert** | `main` | fbfd45e7 | tip pin **1.0.81** — pin **1.0.82** open |
+| **Convert** | `main` | cc5f2248 | tip pin **1.0.82**, `CONVERT_TIP_1_0_82_OK` |
 | **Secure** | `main` | 666cf77 | tip pin **1.0.82**, `SECURE_TIP_1_0_82_OK` |
 | **Site** | `main` | ce6a72f | idle for **1.0.82** |
 
@@ -35,9 +35,10 @@ SITE_NEXT: idle · no site emit change required
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Pin **1.0.82**. Consume gold `91`. Reply `CONVERT_TIP_1_0_82_OK` |
+| **done** | Convert | Tip pin **1.0.82**, main `cc5f2248`, [PR #90](https://github.com/AgenticOp-io/chrysalis/pull/90) |
 | **done** | Secure | Tip pin **1.0.82**, main `666cf77`, [PR #35](https://github.com/AgenticOp-io/chrysalis-security/pull/35) |
 | **done** | CWL | tip **1.0.82** land `6ff748b`, merge `125f965`, tag `cwl-v1.0.82` |
+| **open** | Operator | EXTFMAP / soak → enforce (from tip **1.0.81**; human) |
 
 ## Honesty
 

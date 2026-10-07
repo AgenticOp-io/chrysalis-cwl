@@ -8,7 +8,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (Convert) · Secure **done**  
+**Status:** **done**  
 **CWL tip:** **1.0.82** · language land `6ff748b` · merge `125f965` · tag `cwl-v1.0.82` · ask `dna-identity`  
 **Ask id:** `tip-1.0.82-dna-identity`
 
@@ -16,14 +16,14 @@ Pushed asks for siblings. Newest first.
 
 | Who | Status |
 | --- | --- |
-| Convert | open |
+| Convert | **done** — `CONVERT_TIP_1_0_82_OK` on Convert `main` `cc5f2248` ([PR #90](https://github.com/AgenticOp-io/chrysalis/pull/90)); gold 91 document facts |
 | Secure | **done** — `SECURE_TIP_1_0_82_OK` / `CUTOVER_TIP_1_0_82_OK` on Secure `main` `666cf77` ([PR #35](https://github.com/AgenticOp-io/chrysalis-security/pull/35)) |
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.82**. Consume gold `91` (`replaces` / `from peel` / `capability` / `works without client`). No invent. Reply `CONVERT_TIP_1_0_82_OK` |
+| Convert | **done** (record): Pin to **1.0.82**. Consume gold `91` (`replaces` / `from peel` / `capability` / `works without client`). No invent |
 | Secure | **done** (record): Pin to **1.0.82**. DNA identity document facts only |
 
 ### CWL landed (this tip)
