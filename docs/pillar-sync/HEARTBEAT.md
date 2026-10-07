@@ -1,18 +1,18 @@
 # Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.83** · Convert + Secure pin open
+**Fleet:** tip **1.0.84** · Convert + Secure pin open
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | done | `5f4b571` | tip **1.0.83** · land `ac8f7bf` · tag `cwl-v1.0.83` |
-| **Convert** | open | `bab05bea` | pin **1.0.83** |
-| **Secure** | open | `666cf77` | pin **1.0.83** |
+| **CWL** | land | (this tip) | tip **1.0.84** · tag `cwl-v1.0.84` |
+| **Convert** | open | `bab05bea` | pin **1.0.84** |
+| **Secure** | open | `666cf77` | pin **1.0.84** |
 | **Site** | idle | `ce6a72f` | no emit change |
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-ORDER: tip-1.0.83-asset-integrity
+ORDER: tip-1.0.84-page-form-multipart
 NEXT: Convert + Secure pin
-RULE: SRI document facts; never invent JS runtimes
+RULE: page upload UI facts; never invent middleware
 ```

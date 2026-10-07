@@ -4,6 +4,35 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-06 - tip-1.0.84-page-form-multipart
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.84** · ask `page-form-multipart`  
+**Ask id:** `tip-1.0.84-page-form-multipart`
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | open |
+| Secure | open |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.84**. Consume gold `93` (`form … enctype multipart` + `field … "file"`). No invent. Reply `CONVERT_TIP_1_0_84_OK` |
+| Secure | Pin to **1.0.84**. Page form multipart statements are document facts. Reply `SECURE_TIP_1_0_84_OK` / `CUTOVER_TIP_1_0_84_OK` |
+
+### CWL landed (this tip)
+
+- RFC-0041 page form multipart · gold `93`
+- Upload UI as document facts; transfer/storage stay host
+
+---
+
 ## 2026-10-06 - tip-1.0.83-asset-integrity
 
 **To:** convert + secure  

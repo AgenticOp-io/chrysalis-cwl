@@ -2,7 +2,7 @@
 
 **Path:** Rosetta → UT → DNA of web languages — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
 **Goal:** CWL is a language in its own right. It must be able to replace any web page. Golds `68`–`82` replace a document with navigation, a drawer, a device token, named assets, a same-site form, an off-site anchor, a named viewport cut, document identity, a social card, the remaining head facts, request-time HTML, dynamic HTML, and bound database operations. WebSocket duplex, raw SQL text, and unclassified client script stay named holes.  
-**Tip:** **`1.0.83`** - Progressive asset integrity (RFC-0040): script/style + SRI · module · crossorigin.
+**Tip:** **`1.0.84`** - Page form multipart (RFC-0041): enctype multipart · field file.
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -82,6 +82,7 @@
 | P0 | Framework façade residuals (`90`, RFC-0038) | **done** (`1.0.81`) — Nest/LiveView/Flutter/onion/raw-SQL named; never invent |
 | P0 | DNA identity (`91`, RFC-0039) | **done** (`1.0.82`) — replaces / from peel / capability / works without client |
 | P0 | Progressive asset integrity (`92`, RFC-0040) | **done** (`1.0.83`) — script/style integrity · module · crossorigin |
+| P0 | Page form multipart (`93`, RFC-0041) | **done** (`1.0.84`) — enctype multipart · field file |
 | P0 | Replace any web page | **open** — goal of the language. Remaining page behaviors stay named residuals until an honest RFC |
 | P1 | WebSocket duplex gene | **done** (`1.0.79`) — residual `unsupported:websocket` for undeclared peels |
 | P2 | Richer UI (hydration still non-goal) | **done** (`1.0.79`) for event contracts; hydration remains non-goal |
@@ -113,7 +114,8 @@
 | Tip pin **1.0.80** | Convert — **done** (`a716b985`); Secure — **done** (`518f509`); Site — **done** (`ce6a72f`, live + demo) |
 | Tip pin **1.0.81** | Convert — **done** (`fbfd45e7`, peels 40–63); Secure — **done** (`975f734`, live-match) |
 | Tip pin **1.0.82** | Convert + Secure — **done** |
-| Tip pin **1.0.83** | Convert + Secure pin · consume gold `92` — **asked** |
+| Tip pin **1.0.83** | Convert + Secure pin · consume gold `92` — **asked** (superseded by **1.0.84** ask if still open) |
+| Tip pin **1.0.84** | Convert + Secure pin · consume gold `93` — **asked** |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **done** (`fbfd45e7`) |
 | Live-match / cutover vs tip seed | Secure — **done** (`975f734`, tip **1.0.81**) |
 | EXTFMAP / customer soak → enforce | **Operator** — see [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) (agents will not invent) |

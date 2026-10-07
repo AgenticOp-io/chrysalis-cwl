@@ -337,14 +337,20 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
   {
     label: "form",
     kind: KIND_SNIPPET,
-    detail: "Same-site form. <!-- cwl:form id --> expands it. Off-site actions stay a hole.",
-    insertText: 'form ${1:contact} method ${2:post} action "${3:/contact}";',
+    detail: "Same-site form. Optional enctype multipart for file fields (RFC-0041). <!-- cwl:form id --> expands it. Off-site actions stay a hole.",
+    insertText: 'form ${1:upload} method post action "${2:/upload}" enctype multipart;',
+  },
+  {
+    label: "enctype",
+    kind: KIND_SNIPPET,
+    detail: "Form encoding. Only multipart (RFC-0041). Requires POST.",
+    insertText: "enctype multipart",
   },
   {
     label: "field",
     kind: KIND_SNIPPET,
-    detail: "Input on the current form.",
-    insertText: 'field ${1:email} "${2:email}";',
+    detail: "Input on the current form. Type file requires enctype multipart (RFC-0041).",
+    insertText: 'field ${1:resume} "${2|file,text,email,password,hidden,search,url,tel,number|}";',
   },
   {
     label: "submit",
