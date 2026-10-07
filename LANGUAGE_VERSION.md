@@ -3,17 +3,16 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Goal** | DNA of web languages. Tip `1.0.82` adds DNA identity: replace · peel · capability · progressive certificate — genes no other web language has as first-class syntax. |
-| **Version** | `1.0.82` |
-| **Status** | DNA identity |
+| **Goal** | DNA of web languages. Tip `1.0.83` deepens named assets with Subresource Integrity, optional module scripts, and crossorigin — document facts that shrink opaque-script without inventing a JS runtime. |
+| **Version** | `1.0.83` |
+| **Status** | Progressive asset integrity |
 | **Date** | 2026-10-06 |
 
 ## What this version means
 
-- RFC-0039 + gold `91`: `replaces`, `from peel … at …`, `capability`, `works without client`
-- Declares which URL a surface replaces, where Convert heard it, what it may do, and that HTML alone is enough
-- Host / Secure consume the facts — no capability browser invent
-- Prior tip **1.0.81:** framework façade residuals catalogued
+- RFC-0040 + gold `92`: `script` / `style` with `integrity`, optional `module`, optional `crossorigin`
+- Emit writes SRI tags from genome facts; CWL does not hash or run the file
+- Prior tip **1.0.82:** DNA identity (`replaces` / `from peel` / `capability` / `works without client`)
 
 ## Gate
 

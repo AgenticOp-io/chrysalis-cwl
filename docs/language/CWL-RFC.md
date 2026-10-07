@@ -37,6 +37,8 @@ CWL evolves by **RFC**: each proposal must cite cross-language evidence (path kn
 | [0031](CWL-RFC-0031-html-repeat.md) | Repeated markup `repeat … as … html` (+ item fields) | accepted |
 | [0032](CWL-RFC-0032-credential-effects.md) | Credential / session effects (`auth.verify`, `session.mint`, `session.revoke`) | accepted |
 | [0033](CWL-RFC-0033-proxy-upstream.md) | Declared upstream forwards (`proxy upstream "…"`) | accepted |
+| [0039](CWL-RFC-0039-dna-identity.md) | DNA identity (`replaces` / `from peel` / `capability` / `works without client`) | accepted |
+| [0040](CWL-RFC-0040-asset-integrity.md) | Progressive asset integrity (`script` / `style` + SRI / module / crossorigin) | accepted |
 
 **Process**
 

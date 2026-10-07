@@ -4,6 +4,35 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-06 - tip-1.0.83-asset-integrity
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.83** · ask `asset-integrity`  
+**Ask id:** `tip-1.0.83-asset-integrity`
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | open |
+| Secure | open |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.83**. Consume gold `92` (`script` / `style` + `integrity` / `module` / `crossorigin`). No invent. Reply `CONVERT_TIP_1_0_83_OK` |
+| Secure | Pin to **1.0.83**. Asset integrity statements are document facts. Reply `SECURE_TIP_1_0_83_OK` / `CUTOVER_TIP_1_0_83_OK` |
+
+### CWL landed (this tip)
+
+- RFC-0040 progressive asset integrity · gold `92`
+- Named assets deepen DNA; JS/CSS runtime stays outside
+
+---
+
 ## 2026-10-06 - tip-1.0.82-dna-identity
 
 **To:** convert + secure  
