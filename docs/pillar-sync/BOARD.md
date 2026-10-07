@@ -7,8 +7,8 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.81 landed. Convert peels 40–63 + pin. Secure pin + live-match. Operator owns EXTFMAP/soak. No façades
-CONVERT_NEXT: pin 1.0.81 · peels golds 40–63 · CONVERT_TIP_1_0_81_OK
+DISPATCH: tip 1.0.81 landed. Convert pinned + peels 40–63 done. Secure pin + live-match open. Operator owns EXTFMAP/soak
+CONVERT_NEXT: done · CONVERT_TIP_1_0_81_OK · main fbfd45e7 · peels 40–63
 SECURE_NEXT: pin 1.0.81 · live-match vs tip seed · SECURE_TIP_1_0_81_OK
 CWL_NEXT: done · tip 1.0.81 land 77e09bc · merge 84aec5e · tag cwl-v1.0.81
 SITE_NEXT: idle · no site emit change required
@@ -28,7 +28,7 @@ OPERATOR_NEXT: EXTFMAP hunt/attest · customer soak → enforce
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
 | **CWL** | `main` | 77e09bc | tip **1.0.81** · merge `84aec5e` · tag `cwl-v1.0.81` |
-| **Convert** | `main` | a716b985 | tip pin **1.0.80** — pin **1.0.81** + peels open |
+| **Convert** | `main` | fbfd45e7 | tip pin **1.0.81**, peels 40–63, `CONVERT_TIP_1_0_81_OK` |
 | **Secure** | `main` | 518f509 | tip pin **1.0.80** — pin **1.0.81** open |
 | **Site** | `main` | ce6a72f | tip **1.0.80** live · idle for **1.0.81** |
 
@@ -36,9 +36,9 @@ OPERATOR_NEXT: EXTFMAP hunt/attest · customer soak → enforce
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Pin **1.0.81**. Peel golds **40–63**. Reply `CONVERT_TIP_1_0_81_OK` |
 | **P0** | Secure | Pin **1.0.81**. Live-match vs tip seed. Reply `SECURE_TIP_1_0_81_OK` |
 | **P0** | Operator | EXTFMAP hunt/attest · customer soak → enforce |
+| **done** | Convert | Tip pin **1.0.81** + peels 40–63, main `fbfd45e7`, [PR #89](https://github.com/AgenticOp-io/chrysalis/pull/89) |
 | **done** | CWL | tip **1.0.81** land `77e09bc`, merge `84aec5e`, tag `cwl-v1.0.81` |
 
 ## Honesty
