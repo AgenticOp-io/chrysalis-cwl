@@ -4,6 +4,37 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-06 - tip-1.0.81-framework-residuals
+
+**To:** convert + secure + operator  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.81** · ask `framework-residuals`  
+**Ask id:** `tip-1.0.81-framework-residuals`
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | open |
+| Secure | open |
+| Operator | open |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.81**. Consume gold `90`. Peel golds **40–63** without inventing Nest/LiveView/Flutter/onion. Reply `CONVERT_TIP_1_0_81_OK` |
+| Secure | Pin to **1.0.81**. Live-match / cutover vs tip seed (page DNA only). Reply `SECURE_TIP_1_0_81_OK` / `CUTOVER_TIP_1_0_81_OK` |
+| Operator | EXTFMAP hunt or ABSENT attest; customer soak → enforce when shadow traffic exists. See [`OPERATOR-NEXT-1.0.23.md`](../history/OPERATOR-NEXT-1.0.23.md) |
+
+### CWL landed (this tip)
+
+- RFC-0038 Nest / LiveView / Flutter / onion / raw-SQL residuals · gold `90`
+- No façades invented
+
+---
+
 ## 2026-10-06 - tip-1.0.80-verify-dispose-messaging
 
 **To:** convert + secure + site  
