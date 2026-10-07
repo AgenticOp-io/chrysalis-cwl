@@ -8,7 +8,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure + operator  
 **Priority:** P0  
-**Status:** **open** (Secure + Operator) · Convert **done**  
+**Status:** **done** (Convert + Secure) · Operator **open**  
 **CWL tip:** **1.0.81** · language land `77e09bc` · merge `84aec5e` · tag `cwl-v1.0.81` · ask `framework-residuals`  
 **Ask id:** `tip-1.0.81-framework-residuals`
 
@@ -17,15 +17,15 @@ Pushed asks for siblings. Newest first.
 | Who | Status |
 | --- | --- |
 | Convert | **done** — `CONVERT_TIP_1_0_81_OK` on Convert `main` `fbfd45e7` ([PR #89](https://github.com/AgenticOp-io/chrysalis/pull/89)); peels 40–63; gold 90 document facts |
-| Secure | open |
-| Operator | open |
+| Secure | **done** — `SECURE_TIP_1_0_81_OK` / `CUTOVER_TIP_1_0_81_OK` / `LIVE_MATCH_OK` on Secure `main` `975f734` ([PR #34](https://github.com/AgenticOp-io/chrysalis-security/pull/34)) |
+| Operator | open — EXTFMAP / soak → enforce (human; agents will not invent) |
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | **done** (record): Pin **1.0.81** + peels 40–63 |
-| Secure | Pin to **1.0.81**. Live-match / cutover vs tip seed (page DNA only). Reply `SECURE_TIP_1_0_81_OK` / `CUTOVER_TIP_1_0_81_OK` |
+| Secure | **done** (record): Pin **1.0.81** + live-match |
 | Operator | EXTFMAP hunt or ABSENT attest; customer soak → enforce when shadow traffic exists. See [`OPERATOR-NEXT-1.0.23.md`](../history/OPERATOR-NEXT-1.0.23.md) |
 
 ### CWL landed (this tip)
