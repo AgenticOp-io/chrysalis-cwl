@@ -16,7 +16,7 @@ Pushed asks for siblings. Newest first.
 
 | Who | Status |
 | --- | --- |
-| Convert | **done** — `CONVERT_TIP_1_0_82_OK` on Convert `main` `cc5f2248` ([PR #90](https://github.com/AgenticOp-io/chrysalis/pull/90)); gold 91 document facts |
+| Convert | **done** — `CONVERT_TIP_1_0_82_OK` on Convert `main` `bab05bea` (land `cc5f2248`, [PR #90](https://github.com/AgenticOp-io/chrysalis/pull/90); stamp [PR #91](https://github.com/AgenticOp-io/chrysalis/pull/91)); gold 91 document facts |
 | Secure | **done** — `SECURE_TIP_1_0_82_OK` / `CUTOVER_TIP_1_0_82_OK` on Secure `main` `666cf77` ([PR #35](https://github.com/AgenticOp-io/chrysalis-security/pull/35)) |
 
 ### Ask
