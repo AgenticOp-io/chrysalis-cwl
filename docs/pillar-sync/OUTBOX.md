@@ -8,7 +8,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure + site  
 **Priority:** P0  
-**Status:** **open** (Site) · Convert + Secure **done**  
+**Status:** **done**  
 **CWL tip:** **1.0.80** · language land `15dd5f7` · merge `75ba56a` · tag `cwl-v1.0.80` · ask `verify-dispose-messaging`  
 **Ask id:** `tip-1.0.80-verify-dispose-messaging`
 
@@ -18,7 +18,7 @@ Pushed asks for siblings. Newest first.
 | --- | --- |
 | Convert | **done** — `CONVERT_TIP_1_0_80_OK` on Convert `main` `a716b985` ([PR #88](https://github.com/AgenticOp-io/chrysalis/pull/88)) |
 | Secure | **done** — `SECURE_TIP_1_0_80_OK` / `CUTOVER_TIP_1_0_80_OK` on Secure `main` `518f509` ([PR #33](https://github.com/AgenticOp-io/chrysalis-security/pull/33)) |
-| Site | open |
+| Site | **done** — `SITE_DEPLOY_OK` on agenticops-web `main` `ce6a72f` ([PR #4](https://github.com/AgenticOp-io/agenticops-web/pull/4)); demo + live |
 
 ### Ask
 
@@ -26,7 +26,7 @@ Pushed asks for siblings. Newest first.
 | --- | --- |
 | Convert | **done** (record): Pin to **1.0.80** |
 | Secure | **done** (record): Pin to **1.0.80** |
-| Site | Refresh from CWL `emit:site` (tip **1.0.80** genome). Deploy demo + live `hosting:agenticops`. Reply `SITE_DEPLOY_OK` |
+| Site | **done** (record): emit refresh + deploy |
 
 ### CWL landed (this tip)
 

@@ -107,7 +107,7 @@
 | Tip pin **1.0.77** | Convert — **done** (`419164ca`); Secure — **done** (`630ccf6`); Site — **done** (`805f43b`, live) |
 | Tip pin **1.0.78** | Convert — **done** (`767ecbaa`); Secure — **done** (`77cc8a0`); Site — **done** (`5d17e69`, live + demo) |
 | Tip pin **1.0.79** | Convert — **done** (`f3757d5f`); Secure — **done** (`5ec8c50`); Dependabot removed from Convert |
-| Tip pin **1.0.80** | Convert + Secure pin · Site emit/deploy — **asked** |
+| Tip pin **1.0.80** | Convert — **done** (`a716b985`); Secure — **done** (`518f509`); Site — **done** (`ce6a72f`, live + demo) |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |
