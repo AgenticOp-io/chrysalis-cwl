@@ -1,7 +1,7 @@
 # CWL genome deepen — Phase 1.x
 
 **Status:** active (reopened 2026-08-11)  
-**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.78**  
+**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.79**  
 **Authority:** [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md) · [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) · [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ## Thesis
@@ -36,7 +36,9 @@ Convert still **hears** origin stacks; Secure still **checks** live DNA. Neither
 | **Credential / session intent** | `auth.verify` / `session.mint` / `session.revoke` (`42`, RFC-0032) — done (`1.0.33`); cookie **names** (`46`, `session.mint cookie sid`) — done (`1.0.38`); crypto + values stay host |
 | **Upstream forward** | `proxy upstream "…"` (`43`, RFC-0033) — done (`1.0.34`); path params in targets (`45`) — done (`1.0.36`); transfer mechanics stay host |
 | **Host-byte residuals** | `keypair-gen` / `binary-render` reasons with declared media type (`44`) — done (`1.0.35`) |
-| **WebSocket duplex** | Kept honest hole (`unsupported:websocket`) |
+| **WebSocket duplex** | `stream websocket;` (RFC-0035) — residual hole kept |
+| **Job enqueue** | `job.enqueue` (RFC-0036) — queue host-side |
+| **UI event contracts** | `input` / `focus` / `blur` / `keydown` (RFC-0037) — no hydration |
 | **Cinderpath product asks** | Working note [`CWL-EXPAND.md`](../history/CWL-EXPAND.md) — consume process documented; genome tip bump in Cinderpath after pin |
 | **CWL UI** | Hydration / silent React-Svelte lower remain non-goals |
 | **Holes** | More precise `unsupported:*` / `cwl:*` reasons as peels demand; argument-carrying reasons resolve to their entry — done (`1.0.37`) |

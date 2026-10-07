@@ -2,7 +2,7 @@
 
 **Path:** Rosetta → UT → DNA of web languages — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
 **Goal:** CWL is a language in its own right. It must be able to replace any web page. Golds `68`–`82` replace a document with navigation, a drawer, a device token, named assets, a same-site form, an off-site anchor, a named viewport cut, document identity, a social card, the remaining head facts, request-time HTML, dynamic HTML, and bound database operations. WebSocket duplex, raw SQL text, and unclassified client script stay named holes.  
-**Tip:** **`1.0.78`** - complete CWL marketing site. Live Firebase CLI stays ops.
+**Tip:** **`1.0.79`** - WebSocket duplex, job enqueue, broader UI events.
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -75,9 +75,12 @@
 | P0 | Site 100% contract (`84`) | **done** (`1.0.76`) — CWL-SITE-100.md · owned assets · host effects · named outsides |
 | P0 | Site owned fonts (`85`) | **done** (`1.0.77`) — `/fonts.css` + latin woff2 under assets; Google Fonts CDN removed |
 | P0 | Site complete (`86`) | **done** (`1.0.78`) — literal year, CSS menu, no host drawer/device JS, emit freeze, deploy ops |
-| P0 | Replace any web page | **open** — goal of the language. Document shell through gold `74` is the start. Remaining page behaviors stay holes until an honest RFC |
-| P1 | WebSocket duplex gene | **kept hole** (`unsupported:websocket`) — duplex upgrade not forged |
-| P2 | Richer UI (hydration still non-goal) | open if peels demand |
+| P0 | WebSocket duplex (`87`) | **done** (`1.0.79`) — `stream websocket;` RFC-0035; residual hole kept |
+| P0 | Job enqueue (`88`) | **done** (`1.0.79`) — `job.enqueue` RFC-0036; queue host-side |
+| P0 | UI event contracts (`89`) | **done** (`1.0.79`) — input/focus/blur/keydown RFC-0037; no hydration |
+| P0 | Replace any web page | **open** — goal of the language. Remaining page behaviors stay holes until an honest RFC |
+| P1 | WebSocket duplex gene | **done** (`1.0.79`) — residual `unsupported:websocket` for undeclared peels |
+| P2 | Richer UI (hydration still non-goal) | **done** (`1.0.79`) for event contracts; hydration remains non-goal |
 | — | **Cinderpath consume** | genome declares holes in CWL; Go executor only |
 
 ## Sibling
@@ -102,6 +105,7 @@
 | Tip pin **1.0.76** | Convert — **done** (`be58a179`); Secure — **done** (`9f61d00`) |
 | Tip pin **1.0.77** | Convert — **done** (`419164ca`); Secure — **done** (`630ccf6`); Site — **done** (`805f43b`, live) |
 | Tip pin **1.0.78** | Convert — **done** (`767ecbaa`); Secure — **done** (`77cc8a0`); Site — **done** (`5d17e69`, live + demo) |
+| Tip pin **1.0.79** | Convert + Secure — **asked** |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **asked** |
 | Live-match / cutover vs tip seed | Secure — **asked** (page DNA only for nests) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |

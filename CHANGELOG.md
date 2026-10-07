@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.79 - 2026-10-06
+
+- `stream websocket;` duplex surface (RFC-0035). Gold `87`. Residual stays `unsupported:websocket`
+- `job.enqueue` / `job.enqueue name <id>` background intent (RFC-0036). Gold `88`. Host owns the queue
+- Broader island events `input` / `focus` / `blur` / `keydown` (RFC-0037). Gold `89`. No hydration invent
+
 ## 1.0.78 - 2026-10-05
 
 - Complete CWL marketing site: `year 2026;` literal, checkbox menu + owned CSS (no host drawer/device JS), emit freeze, deploy stays ops

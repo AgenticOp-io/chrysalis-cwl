@@ -131,8 +131,8 @@ function objectEntriesToPlain(body) {
  * @param {{ streamKind?: string | null }} [opts]
  */
 export function contentClassFromBody(body, surfaceKind, opts = {}) {
-  // SSE wire is text/event-stream — not certified JSON traffic DNA (RFC-0022 deepen 1.0.24).
-  if (opts.streamKind === "sse") return "other";
+  // SSE / WebSocket wires are not certified JSON traffic DNA (RFC-0022 deepen).
+  if (opts.streamKind === "sse" || opts.streamKind === "websocket") return "other";
   if (body?.kind === "html" || body?.kind === "ui") return "html";
   if (body?.kind === "object") return "json";
   if (body?.kind === "literal" && body.value && typeof body.value === "object" && !Array.isArray(body.value)) {
@@ -308,7 +308,7 @@ export function cwlSurfaceToDraftDna(mod, opts = {}) {
       cwl_surface: surfaceKind === "page" ? "page" : "route",
       cwl_effects: effectsList(r.effects),
     };
-    if (streamKind === "sse") ann.cwl_stream = "sse";
+    if (streamKind === "sse" || streamKind === "websocket") ann.cwl_stream = streamKind;
     const mpFields = Array.isArray(r.handlerMultipartFields) ? r.handlerMultipartFields : [];
     const mpFiles = Array.isArray(r.handlerMultipartFiles) ? r.handlerMultipartFiles : [];
     if (mpFields.length) ann.cwl_multipart_fields = [...mpFields];

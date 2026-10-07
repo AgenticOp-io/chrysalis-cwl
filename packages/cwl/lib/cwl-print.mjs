@@ -465,6 +465,8 @@ export function printCwlModule(mod, opts = {}) {
     }
     if (route.streamKind === "sse") {
       lines.push(`  stream sse;`);
+    } else if (route.streamKind === "websocket") {
+      lines.push(`  stream websocket;`);
     } else if (route.responseContentType) {
       const defaultHtml =
         (route.body?.kind === "html" || route.body?.kind === "ui") &&
