@@ -5,7 +5,7 @@
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
 | **CWL** | done | `6ff748b` | tip **1.0.82** · merge `125f965` · tag `cwl-v1.0.82` |
-| **Convert** | done | `cc5f2248` | `CONVERT_TIP_1_0_82_OK` |
+| **Convert** | done | `bab05bea` | `CONVERT_TIP_1_0_82_OK` (land `cc5f2248`) |
 | **Secure** | done | `666cf77` | `SECURE_TIP_1_0_82_OK` |
 | **Site** | idle | `ce6a72f` | no emit change |
 
