@@ -7,6 +7,7 @@ CWL reads this on coordinator ticks. Tip bumps only for **contract gaps**.
 
 | When | From | Note |
 | --- | --- | --- |
+| 2026-10-06 | parent (site SoR) | **Public site docs build** — tip pins / papers / golds lag language tip **1.0.84**. Live still cites **1.0.80** · golds through **86**. Need genome refresh for tips **1.0.79–1.0.84**, RFCs **0035–0041**, golds **87–93**. [`INBOX-SITE-DOCS-BUILD.md`](./INBOX-SITE-DOCS-BUILD.md) · ask `site-docs-build-1.0.84` |
 
 
 ## Closed recently

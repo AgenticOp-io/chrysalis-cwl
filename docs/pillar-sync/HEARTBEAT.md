@@ -1,18 +1,18 @@
 # Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.84** closed · idle
+**Fleet:** tip **1.0.84** language closed · **site docs ask open**
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | done | `ca346e2` | tip **1.0.84** · land `ed50c0b` · tag `cwl-v1.0.84` |
+| **CWL** | open | `799a858` | `site-docs-build-1.0.84` · public docs lag |
 | **Convert** | done | `c39088c4` | `CONVERT_TIP_1_0_84_OK` |
 | **Secure** | done | `a8a3f58` | `SECURE_TIP_1_0_84_OK` |
-| **Site** | idle | `ce6a72f` | no emit change |
+| **Site** | blocked | `ce6a72f` | wait docs genome · then emit |
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: yes
-ORDER: tip-1.0.84-page-form-multipart
-NEXT: Operator EXTFMAP/soak (1.0.81 carry) or next DNA ask
-RULE: page upload UI facts; never invent middleware
+CWL_FLEET_IDLE: no
+ORDER: site-docs-build-1.0.84
+NEXT: CWL refresh site.cwl docs to tip 1.0.84 · then Site emit+deploy
+RULE: docs honesty for tips 1.0.79–1.0.84; no façade invent; Site deploys after land
 ```
