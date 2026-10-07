@@ -109,8 +109,8 @@
 | Tip pin **1.0.78** | Convert — **done** (`767ecbaa`); Secure — **done** (`77cc8a0`); Site — **done** (`5d17e69`, live + demo) |
 | Tip pin **1.0.79** | Convert — **done** (`f3757d5f`); Secure — **done** (`5ec8c50`); Dependabot removed from Convert |
 | Tip pin **1.0.80** | Convert — **done** (`a716b985`); Secure — **done** (`518f509`); Site — **done** (`ce6a72f`, live + demo) |
-| Tip pin **1.0.81** | Convert + Secure pin · consume gold `90` — **asked** |
-| Peels golds 40–63 + mail template / CORS methods | Convert — **asked** (re-open with tip **1.0.81**) |
+| Tip pin **1.0.81** | Convert — **done** (`fbfd45e7`, peels 40–63); Secure — **asked** |
+| Peels golds 40–63 + mail template / CORS methods | Convert — **done** (`fbfd45e7`) |
 | Live-match / cutover vs tip seed | Secure — **asked** (re-open with tip **1.0.81**; page DNA only) |
 | EXTFMAP / customer soak → enforce | **Operator** — see [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) (agents will not invent) |
 | **runtime-cwl `StubUpstream` passthrough** | **CWL** — **done** (`createCwlRuntime({ upstream })` → `simulateHandler`) |
