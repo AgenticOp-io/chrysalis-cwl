@@ -7,10 +7,10 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.80 verify-dispose site messaging. Convert + Secure pin. Site emit + deploy. CWL does not deploy live
+DISPATCH: tip 1.0.80 landed. Convert + Secure pin. Site emit + deploy. CWL does not deploy live
 CONVERT_NEXT: pin 1.0.80 · CONVERT_TIP_1_0_80_OK
 SECURE_NEXT: pin 1.0.80 · SECURE_TIP_1_0_80_OK
-CWL_NEXT: landing · tip 1.0.80 · no hole slogans on marketing genome
+CWL_NEXT: done · tip 1.0.80 land 15dd5f7 · merge 75ba56a · tag cwl-v1.0.80
 SITE_NEXT: emit:site refresh + deploy hosting:agenticops + demo · SITE_DEPLOY_OK
 ```
 
@@ -19,14 +19,14 @@ SITE_NEXT: emit:site refresh + deploy hosting:agenticops + demo · SITE_DEPLOY_O
 | Surface | Value |
 | --- | --- |
 | **CWL tip** | **`1.0.80`** |
-| Packages | **`@agenticop-io/cwl@1.0.80`** |
-| Tags | `cwl-v1.0.79` · `cwl-v1.0.80` (after land) |
+| Packages | **`@agenticop-io/cwl@1.0.80`** (pin; Packages publish when tagged) |
+| Tags | `cwl-v1.0.79` · `cwl-v1.0.80` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | pending | tip **1.0.80** |
+| **CWL** | `main` | 15dd5f7 | tip **1.0.80** · merge `75ba56a` · tag `cwl-v1.0.80` |
 | **Convert** | `main` | f3757d5f | tip pin **1.0.79** — pin **1.0.80** open |
 | **Secure** | `main` | 5ec8c50 | tip pin **1.0.79** — pin **1.0.80** open |
 | **Site** | `main` | 5d17e69 | tip **1.0.78** live — emit/deploy **1.0.80** open |
@@ -38,7 +38,7 @@ SITE_NEXT: emit:site refresh + deploy hosting:agenticops + demo · SITE_DEPLOY_O
 | **P0** | Site | Refresh from `emit:site`, deploy demo + `hosting:agenticops`. Reply `SITE_DEPLOY_OK` |
 | **P0** | Convert | Pin **1.0.80**. Reply `CONVERT_TIP_1_0_80_OK` |
 | **P0** | Secure | Pin **1.0.80**. Reply `SECURE_TIP_1_0_80_OK` |
-| **landing** | CWL | tip **1.0.80** verify-dispose messaging |
+| **done** | CWL | tip **1.0.80** land `15dd5f7`, merge `75ba56a`, tag `cwl-v1.0.80` |
 
 ## Honesty
 
