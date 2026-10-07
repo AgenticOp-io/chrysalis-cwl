@@ -7,10 +7,10 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.79 websocket + job.enqueue + UI events. Convert + Secure pin. CWL does not deploy
+DISPATCH: tip 1.0.79 landed. Convert + Secure pin. CWL does not deploy
 CONVERT_NEXT: pin 1.0.79 · CONVERT_TIP_1_0_79_OK · golds 87–89
 SECURE_NEXT: pin 1.0.79 · stream websocket + job.enqueue are document facts · SECURE_TIP_1_0_79_OK
-CWL_NEXT: done · tip 1.0.79 land pending · language only
+CWL_NEXT: done · tip 1.0.79 land f67abb5 · merge b75082f · tag cwl-v1.0.79
 SITE_NEXT: idle · no site emit change required
 ```
 
@@ -19,24 +19,25 @@ SITE_NEXT: idle · no site emit change required
 | Surface | Value |
 | --- | --- |
 | **CWL tip** | **`1.0.79`** |
-| Packages | **`@agenticop-io/cwl@1.0.79`** |
-| Tags | `cwl-v1.0.78` · `cwl-v1.0.79` (after land) |
+| Packages | **`@agenticop-io/cwl@1.0.79`** (pin; Packages publish when tagged) |
+| Tags | `cwl-v1.0.78` · `cwl-v1.0.79` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | pending | tip **1.0.79** |
-| **Convert** | `main` | 767ecbaa | tip pin **1.0.78** |
-| **Secure** | `main` | 77cc8a0 | tip pin **1.0.78** |
+| **CWL** | `main` | f67abb5 | tip **1.0.79** · merge `b75082f` · tag `cwl-v1.0.79` |
+| **Convert** | `main` | 767ecbaa | tip pin **1.0.78** — pin **1.0.79** open |
+| **Secure** | `main` | 77cc8a0 | tip pin **1.0.78** — pin **1.0.79** open |
+| **Site** | `main` | 5d17e69 | idle · no emit change for **1.0.79** |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Pin **1.0.79**. Reply `CONVERT_TIP_1_0_79_OK` |
+| **P0** | Convert | Pin **1.0.79**. Consume golds `87`–`89`. Reply `CONVERT_TIP_1_0_79_OK` |
 | **P0** | Secure | Pin **1.0.79**. `stream websocket` + `job.enqueue` are document facts. Reply `SECURE_TIP_1_0_79_OK` |
-| **done** | CWL | tip **1.0.78** complete site |
+| **done** | CWL | tip **1.0.79** land `f67abb5`, merge `b75082f`, tag `cwl-v1.0.79` |
 
 ## Honesty
 
