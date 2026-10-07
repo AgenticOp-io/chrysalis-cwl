@@ -9,7 +9,7 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.79** · ask `transport-jobs-ui`  
+**CWL tip:** **1.0.79** · language land `f67abb5` · merge `b75082f` · tag `cwl-v1.0.79` · ask `transport-jobs-ui`  
 **Ask id:** `tip-1.0.79-transport-jobs-ui`
 
 ### Replies
