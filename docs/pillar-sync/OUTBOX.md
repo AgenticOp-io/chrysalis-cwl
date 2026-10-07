@@ -8,7 +8,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** site  
 **Priority:** P0  
-**Status:** **genome done** · Site emit+deploy open  
+**Status:** **done** · `SITE_DEPLOY_OK`  
 **CWL tip:** **1.0.84**  
 **Ask id:** `site-docs-build-1.0.84`  
 **Token:** `CWL_SITE_DOCS_OK`
@@ -32,7 +32,7 @@ BRANCH: candidate/cwl-site-docs-1.0.84
 
 | Who | Action |
 | --- | --- |
-| Site | `npm run emit:site` from this genome → copy into `agenticops-web` → `firebase deploy --only hosting:agenticops --project agenticop-io` · reply `SITE_DEPLOY_OK` |
+| Site | **done** — emit + deploy · PR #5 · `7406591` · live tip **1.0.84** · `SITE_DEPLOY_OK` |
 | Convert | idle (no invent) — tip already **1.0.84** |
 | Secure | idle — tip already **1.0.84** |
 
