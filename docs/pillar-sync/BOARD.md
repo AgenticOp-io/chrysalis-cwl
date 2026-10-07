@@ -27,7 +27,7 @@ SITE_NEXT: idle · no site emit change required
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
 | **CWL** | `main` | ca346e2 | tip **1.0.84** · land `ed50c0b` · tag `cwl-v1.0.84` |
-| **Convert** | `main` | bab05bea | tip pin **1.0.82** — pin **1.0.84** open |
+| **Convert** | `main` | e86d2571 | tip pin **1.0.83** — pin **1.0.84** open |
 | **Secure** | `main` | 666cf77 | tip pin **1.0.82** — pin **1.0.84** open |
 | **Site** | `main` | ce6a72f | idle for **1.0.84** |
 
