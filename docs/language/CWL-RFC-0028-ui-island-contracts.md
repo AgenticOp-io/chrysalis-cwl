@@ -39,7 +39,8 @@ return ui {
 
 - Hydration / client JS execution
 - Silent React/Svelte/Vue lowering
-- WebSocket duplex façades (remain `unsupported:websocket`)
+- WebSocket duplex façades — use RFC-0035 or `unsupported:websocket`
+- Broader field events (`input` / `focus` / `blur` / `keydown`) — see RFC-0037
 
 ## Verify
 

@@ -33,4 +33,4 @@ Sandbox prove returns the JSON value with that content-type (single shot). Conti
 
 - Browser EventSource runtime invent
 - LiveView / Phoenix channel façades
-- WebSocket duplex (separate gene or honest hole)
+- WebSocket duplex — see RFC-0035 (`stream websocket;`)

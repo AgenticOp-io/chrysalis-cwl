@@ -50,6 +50,7 @@ export type Effect =
   | { kind: "session.read" }
   | { kind: "session.write" }
   | { kind: "mail.send" }
+  | { kind: "job.enqueue" }
   | { kind: "http.fetch"; host?: string }
   | { kind: "cache.read" }
   | { kind: "cache.write" }

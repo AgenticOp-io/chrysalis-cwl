@@ -4,6 +4,36 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-06 - tip-1.0.79-transport-jobs-ui
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.79** · ask `transport-jobs-ui`  
+**Ask id:** `tip-1.0.79-transport-jobs-ui`
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | open |
+| Secure | open |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.79**. Consume golds `87`–`89`. No WS/runtime invent. Reply `CONVERT_TIP_1_0_79_OK` |
+| Secure | Pin to **1.0.79**. `stream websocket` + `job.enqueue` + UI event contracts are document facts. Reply `SECURE_TIP_1_0_79_OK` / `CUTOVER_TIP_1_0_79_OK` |
+
+### CWL landed (this tip)
+
+- RFC-0035 `stream websocket;` · gold `87`
+- RFC-0036 `job.enqueue` · gold `88`
+- RFC-0037 UI events · gold `89`
+
+---
+
 ## 2026-10-05 - tip-1.0.78-site-complete
 
 **To:** convert + secure + site  
