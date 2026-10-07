@@ -8,7 +8,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open** (Secure) · Convert **done**  
+**Status:** **done**  
 **CWL tip:** **1.0.84** · language land `ed50c0b` · merge `ca346e2` · tag `cwl-v1.0.84` · ask `page-form-multipart`  
 **Ask id:** `tip-1.0.84-page-form-multipart`
 
@@ -17,14 +17,14 @@ Pushed asks for siblings. Newest first.
 | Who | Status |
 | --- | --- |
 | Convert | **done** — `CONVERT_TIP_1_0_84_OK` on Convert `main` `c39088c4` ([PR #94](https://github.com/AgenticOp-io/chrysalis/pull/94); stamp [PR #95](https://github.com/AgenticOp-io/chrysalis/pull/95)); gold 93 document facts |
-| Secure | open |
+| Secure | **done** — `SECURE_TIP_1_0_84_OK` / `CUTOVER_TIP_1_0_84_OK` on Secure `main` `a8a3f58` ([PR #38](https://github.com/AgenticOp-io/chrysalis-security/pull/38); stamp [PR #39](https://github.com/AgenticOp-io/chrysalis-security/pull/39)) |
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | **done** (record): Pin to **1.0.84**. Consume gold `93` (`form … enctype multipart` + `field … "file"`). No invent |
-| Secure | Pin to **1.0.84**. Page form multipart statements are document facts. Reply `SECURE_TIP_1_0_84_OK` / `CUTOVER_TIP_1_0_84_OK` |
+| Secure | **done** (record): Pin to **1.0.84**. Page form multipart document facts only |
 
 ### CWL landed (this tip)
 
