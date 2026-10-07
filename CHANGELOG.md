@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.84 - 2026-10-06
+
+- Page form multipart (RFC-0041): `form … enctype multipart` + `field … "file"`
+- Gold `93-page-form-multipart`. Upload UI as document facts; no upload middleware invent
+
 ## 1.0.83 - 2026-10-06
 
 - Progressive asset integrity (RFC-0040): `script` / `style` may declare `integrity`, optional `module`, optional `crossorigin`
