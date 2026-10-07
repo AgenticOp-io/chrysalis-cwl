@@ -9,7 +9,7 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure + operator  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.81** · ask `framework-residuals`  
+**CWL tip:** **1.0.81** · language land `77e09bc` · merge `84aec5e` · tag `cwl-v1.0.81` · ask `framework-residuals`  
 **Ask id:** `tip-1.0.81-framework-residuals`
 
 ### Replies
