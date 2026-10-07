@@ -37,7 +37,7 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **partial** — Convert **done**; Secure superseded by tip **1.0.84** pin ask  
+**Status:** **done**  
 **CWL tip:** **1.0.83** · language land `ac8f7bf` · merge `5f4b571` · tag `cwl-v1.0.83` · ask `asset-integrity`  
 **Ask id:** `tip-1.0.83-asset-integrity`
 
@@ -46,14 +46,14 @@ Pushed asks for siblings. Newest first.
 | Who | Status |
 | --- | --- |
 | Convert | **done** — `CONVERT_TIP_1_0_83_OK` on Convert `main` `e86d2571` (land `2dcc5758`, [PR #92](https://github.com/AgenticOp-io/chrysalis/pull/92); stamp [PR #93](https://github.com/AgenticOp-io/chrysalis/pull/93)); gold 92 document facts |
-| Secure | superseded — pin **1.0.84** (includes asset integrity) |
+| Secure | **done** — `SECURE_TIP_1_0_83_OK` / `CUTOVER_TIP_1_0_83_OK` on Secure `main` `f250247` (land `8653310`, [PR #36](https://github.com/AgenticOp-io/chrysalis-security/pull/36); stamp [PR #37](https://github.com/AgenticOp-io/chrysalis-security/pull/37)) |
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
 | Convert | **done** (record): Pin to **1.0.83**. Consume gold `92` |
-| Secure | Superseded by `tip-1.0.84-page-form-multipart` |
+| Secure | **done** (record): Pin to **1.0.83**. Asset integrity document facts only |
 
 ### CWL landed (this tip)
 
