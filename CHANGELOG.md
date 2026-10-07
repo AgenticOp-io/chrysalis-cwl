@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.82 - 2026-10-06
+
+- DNA identity (RFC-0039): `replaces`, `from peel … at …`, `capability`, `works without client` — genes other web languages lack
+- Gold `91-dna-identity`. Facts for Convert/Secure; no runtime invent
+
 ## 1.0.81 - 2026-10-06
 
 - RFC-0038 framework façade residuals: Nest DI, LiveView, Flutter, middleware onion, raw SQL — catalogued, never invented

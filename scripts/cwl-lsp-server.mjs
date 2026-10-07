@@ -281,6 +281,30 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: 'canonical "${1:https://agenticop.io/}";',
   },
   {
+    label: "replaces",
+    kind: KIND_SNIPPET,
+    detail: "DNA identity: live URL this surface replaces (RFC-0039)",
+    insertText: 'replaces "${1:https://legacy.example/path}";',
+  },
+  {
+    label: "from peel",
+    kind: KIND_SNIPPET,
+    detail: "DNA identity: Rosetta peel provenance (RFC-0039)",
+    insertText: 'from peel "${1:php}" at "${2:legacy/path.php}";',
+  },
+  {
+    label: "capability",
+    kind: KIND_SNIPPET,
+    detail: "DNA identity: closed capability class (RFC-0039)",
+    insertText: "capability ${1|cookies,network-same-origin,network-cross-origin,storage,client|};",
+  },
+  {
+    label: "works without client",
+    kind: KIND_SNIPPET,
+    detail: "DNA identity: progressive certificate — complete without island (RFC-0039)",
+    insertText: "works without client;",
+  },
+  {
     label: "device host",
     kind: KIND_SNIPPET,
     detail: "Host device classes. Optional below <px> names the cut. <!-- cwl:device --> stays. CWL does not call matchMedia.",
