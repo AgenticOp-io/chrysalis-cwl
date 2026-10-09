@@ -4,7 +4,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | land | *(candidate)* | tip **1.0.85** · RFC-0042 · gold `94` |
+| **CWL** | land | `5215e9c` | tip **1.0.85** · RFC-0042 · gold `94` |
 | **Convert** | open | `d0d709b6` | pin **1.0.85** · gold `94` |
 | **Secure** | open | `ec2cee2` | pin **1.0.85** · live-match bind |
 | **Site** | idle | `ce6a72f` | prior docs ask optional |

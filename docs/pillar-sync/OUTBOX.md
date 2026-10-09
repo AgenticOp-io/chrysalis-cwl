@@ -9,7 +9,7 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.85** · language land *(this candidate)* · ask `dna-fingerprint`  
+**CWL tip:** **1.0.85** · language land `5215e9c` · ask `dna-fingerprint`  
 **Ask id:** `tip-1.0.85-dna-fingerprint`
 
 ### Ask

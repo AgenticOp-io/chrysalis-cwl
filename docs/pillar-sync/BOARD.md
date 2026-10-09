@@ -26,7 +26,7 @@ SITE_NEXT: idle · prior site-docs-build-1.0.84 may still apply after pins
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | candidate | *(this land)* | tip **1.0.85** language · RFC-0042 · gold `94` |
+| **CWL** | `candidate/cwl-1.0.85-dna-fingerprint` | 5215e9c | tip **1.0.85** language · RFC-0042 · gold `94` |
 | **Convert** | `main` | d0d709b6 | tip pin **1.0.84** · **pin 1.0.85 asked** |
 | **Secure** | `main` | ec2cee2 | tip pin **1.0.84** · **pin 1.0.85 asked** |
 | **Site** | `main` | ce6a72f | idle / prior docs ask |
