@@ -7,10 +7,10 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.86 language land · DNA fingerprint strength sha384+
-CONVERT_NEXT: open · pin tip 1.0.86 · consume gold 95 (lane: convert only)
-SECURE_NEXT: open · pin tip 1.0.86 · refuse weak DNA digests in consume (lane: secure only)
-CWL_NEXT: tip 1.0.86 candidate · wait Convert/Secure pins
+DISPATCH: tip 1.0.86 · Convert pin done · Secure pin still open
+CONVERT_NEXT: idle · CONVERT_TIP_1_0_86_OK · PR #98 · c12a505c
+SECURE_NEXT: open · pin tip 1.0.86 · refuse weak DNA digests (lane: secure only)
+CWL_NEXT: merge/tag tip 1.0.86 · wait Secure pin
 SITE_NEXT: idle
 ```
 
@@ -18,26 +18,26 @@ SITE_NEXT: idle
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.86`** (candidate) |
-| Packages | **`@agenticop-io/cwl@1.0.86`** (pin after merge/tag) |
+| **CWL tip** | **`1.0.86`** (landing) |
+| Packages | **`@agenticop-io/cwl@1.0.86`** |
 | Tags | `cwl-v1.0.85` · next `cwl-v1.0.86` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` / candidate | 14ed452 · 61f4ba3 | tip **1.0.85** tagged · **1.0.86** candidate |
-| **Convert** | candidate | 13f43a1d | tip **1.0.85** pin PR · **1.0.86 asked** |
-| **Secure** | candidate | 38f0796 | tip **1.0.85** pin PR · **1.0.86 asked** |
+| **CWL** | candidate | 61f4ba3 | tip **1.0.86** · RFC-0043 · gold `95` |
+| **Convert** | `candidate/convert-tip-1.0.86` | c12a505c | **CONVERT_TIP_1_0_86_OK** · [PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98) |
+| **Secure** | candidate | 65c4995 | tip **1.0.86** pin in progress · no PR yet |
 | **Site** | `main` | ce6a72f | idle |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | **Lane only.** Pin to **1.0.86**. Consume gold `95`. No CWL/Secure edits |
-| **P0** | Secure | **Lane only.** Pin to **1.0.86**. DNA fingerprint floor sha384+; PQ cert signing stays Secure. No CWL/Convert edits |
-| **done** | CWL | tip **1.0.85** merge + tag `cwl-v1.0.85` · tip **1.0.86** language land |
+| **P0** | Secure | **Lane only.** Pin to **1.0.86**. DNA fingerprint floor sha384+; open PR. No CWL/Convert edits |
+| **done** | Convert | Tip pin **1.0.86**, [PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98), `CONVERT_TIP_1_0_86_OK` |
+| **done** | CWL | tip **1.0.86** language land · golds 94–95 |
 | **open** | Operator | EXTFMAP / soak → enforce (human) |
 
 ## Honesty

@@ -8,16 +8,23 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
+**Status:** **open** (Convert done · Secure open)  
 **CWL tip:** **1.0.86** · language land `61f4ba3` · ask `dna-fingerprint-strong`  
 **Ask id:** `tip-1.0.86-dna-fingerprint-strong`  
 **Lane rule:** Convert edits only `chrysalis-convert`. Secure edits only `chrysalis-security`. Neither edits CWL.
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | **done** — `CONVERT_TIP_1_0_86_OK` · [PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98) · `c12a505c` (feature `f61dedda`); golds 94–95 |
+| Secure | **open** — pin tip **1.0.86** (local `65c4995`; PR pending) |
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.86**. Consume gold `95` (`dna fingerprint` sha384/sha512; `cwl:dna-fingerprint-too-weak`). Document facts only |
+| Convert | **done** (record): Pin to **1.0.86**. Consume gold `95` |
 | Secure | Pin to **1.0.86**. Enforce / refuse weak DNA digests in live-match consume. PQ certificate signatures stay Secure — do not invent CWL crypto |
 
 ### CWL landed (this tip)
