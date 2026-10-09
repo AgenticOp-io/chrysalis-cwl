@@ -313,8 +313,8 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
   {
     label: "dna fingerprint",
     kind: KIND_SNIPPET,
-    detail: "SRI digest of the bound DNA certificate (RFC-0042). CWL does not invent hashes.",
-    insertText: 'dna fingerprint "${1:sha256-…}";',
+    detail: "SRI digest of the bound DNA certificate (RFC-0043: sha384/sha512). CWL does not invent hashes.",
+    insertText: 'dna fingerprint "${1:sha384-…}";',
   },
   {
     label: "dna bank",

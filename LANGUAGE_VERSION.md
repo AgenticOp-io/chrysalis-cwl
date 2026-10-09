@@ -3,16 +3,16 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Goal** | DNA of web languages. Tip `1.0.85` binds genomes to traffic DNA certificates — fingerprint, bank, and `match live` — so identity can be coded, proofed, and handed to Secure without inventing Helix. |
-| **Version** | `1.0.85` |
-| **Status** | DNA certificate fingerprint |
-| **Date** | 2026-10-08 |
+| **Goal** | DNA of web languages. Tip `1.0.86` raises DNA fingerprint digests to `sha384` / `sha512` so long-lived genome binds keep a stronger Grover margin — without inventing PQ hashes in CWL. |
+| **Version** | `1.0.86` |
+| **Status** | DNA fingerprint strength |
+| **Date** | 2026-10-09 |
 
 ## What this version means
 
-- RFC-0042 + gold `94`: `dna certificate`, `dna fingerprint`, `dna bank`, `match live`
-- Document facts for Convert/Secure live-match; CWL does not hash or enforce
-- Prior tip **1.0.84:** page form multipart (`enctype multipart` + `field … "file"`)
+- RFC-0043 + gold `95`: `dna fingerprint` requires `sha384-` / `sha512-`; `sha256-` → `cwl:dna-fingerprint-too-weak`
+- Asset integrity (RFC-0040) may still declare `sha256`
+- Prior tip **1.0.85:** DNA certificate / fingerprint / bank / `match live` (RFC-0042)
 
 ## Gate
 

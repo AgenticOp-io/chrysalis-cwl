@@ -4,20 +4,57 @@ Pushed asks for siblings. Newest first.
 
 ---
 
-## 2026-10-08 - tip-1.0.85-dna-fingerprint
+## 2026-10-09 - tip-1.0.86-dna-fingerprint-strong
 
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.85** · language land `5215e9c` · ask `dna-fingerprint`  
-**Ask id:** `tip-1.0.85-dna-fingerprint`
+**CWL tip:** **1.0.86** · language land *(this candidate)* · ask `dna-fingerprint-strong`  
+**Ask id:** `tip-1.0.86-dna-fingerprint-strong`  
+**Lane rule:** Convert edits only `chrysalis-convert`. Secure edits only `chrysalis-security`. Neither edits CWL.
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.85**. Consume gold `94` (`dna certificate` / `dna fingerprint` / `dna bank` / `match live`). Document facts only — no invent |
-| Secure | Pin to **1.0.85**. Bind live-match / cutover to declared DNA certificate + SRI fingerprint. No Helix firewall invent in CWL |
+| Convert | Pin to **1.0.86**. Consume gold `95` (`dna fingerprint` sha384/sha512; `cwl:dna-fingerprint-too-weak`). Document facts only |
+| Secure | Pin to **1.0.86**. Enforce / refuse weak DNA digests in live-match consume. PQ certificate signatures stay Secure — do not invent CWL crypto |
+
+### CWL landed (this tip)
+
+- RFC-0043 DNA fingerprint strength · gold `95`
+- Gold `94` updated to sha384 floor
+- Tag `cwl-v1.0.85` on main; tip **1.0.86** candidate
+
+### Prove
+
+```bash
+npm run test:language
+```
+
+---
+
+## 2026-10-08 - tip-1.0.85-dna-fingerprint
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **done**  
+**CWL tip:** **1.0.85** · language land `5215e9c` · merge `14ed452` · tag `cwl-v1.0.85` · ask `dna-fingerprint`  
+**Ask id:** `tip-1.0.85-dna-fingerprint`
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | **done** — `CONVERT_TIP_1_0_85_OK` · [PR #97](https://github.com/AgenticOp-io/chrysalis/pull/97) · `13f43a1d` |
+| Secure | **done** — `SECURE_TIP_1_0_85_OK` / `CUTOVER_TIP_1_0_85_OK` · [PR #46](https://github.com/AgenticOp-io/chrysalis-security/pull/46) · `38f0796` |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | **done** (record): Pin to **1.0.85**. Consume gold `94` |
+| Secure | **done** (record): Pin to **1.0.85**. Live-match bind to declared DNA |
 
 ### CWL landed (this tip)
 
