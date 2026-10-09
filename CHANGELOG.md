@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.86 - 2026-10-09
+
+- DNA fingerprint strength (RFC-0043): `dna fingerprint` requires `sha384` / `sha512`; `sha256` → `cwl:dna-fingerprint-too-weak`
+- Gold `95-dna-fingerprint-strong`. Asset integrity may still use sha256; PQ signatures stay Secure
+
 ## 1.0.85 - 2026-10-08
 
 - DNA certificate fingerprint (RFC-0042): `dna certificate`, `dna fingerprint`, `dna bank`, `match live`

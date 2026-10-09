@@ -1,18 +1,18 @@
-# Fleet HEARTBEAT
+﻿# Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.85** language land · Convert/Secure pin asked
+**Fleet:** tip **1.0.86** · Convert pin done · Secure still open
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | land | `5215e9c` | tip **1.0.85** · RFC-0042 · gold `94` |
-| **Convert** | open | `d0d709b6` | pin **1.0.85** · gold `94` |
-| **Secure** | open | `ec2cee2` | pin **1.0.85** · live-match bind |
-| **Site** | idle | `ce6a72f` | prior docs ask optional |
+| **CWL** | land | `61f4ba3` | tip **1.0.86** · RFC-0043 · gold `95` |
+| **Convert** | done | `c12a505c` | `CONVERT_TIP_1_0_86_OK` · [PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98) |
+| **Secure** | open | `65c4995` | pin **1.0.86** · secure lane only |
+| **Site** | idle | `ce6a72f` | — |
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-ORDER: tip-1.0.85-dna-fingerprint
-NEXT: Convert + Secure pin 1.0.85 · consume gold 94
-RULE: CWL binds DNA; host/Secure verify; no Helix invent
+ORDER: tip-1.0.86-dna-fingerprint-strong
+NEXT: Secure pin 1.0.86 · stay in lane
+RULE: DNA fp sha384+; asset SRI may stay sha256; PQ sigs = Secure
 ```

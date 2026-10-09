@@ -38,7 +38,7 @@ page invoice {
 | Statement | Scope | Meaning |
 | --- | --- | --- |
 | `dna certificate "<path\|url>";` | module or route | Promoted DNA artifact this genome binds to |
-| `dna fingerprint "<sri>";` | module or route | SRI digest of that certificate (host verifies) |
+| `dna fingerprint "<sri>";` | module or route | SRI digest of that certificate (host verifies). Tip **1.0.86** / RFC-0043: `sha384` / `sha512` only |
 | `dna bank "<path\|url>";` | **module only** | Corpus of known certificates for proof |
 | `match live;` | module or route | Expect Secure live-match / cutover against bound DNA |
 
@@ -48,6 +48,7 @@ page invoice {
 | --- | --- |
 | `cwl:dna-certificate-not-url` | Bad certificate path/URL |
 | `cwl:bad-dna-fingerprint` | Non-SRI fingerprint |
+| `cwl:dna-fingerprint-too-weak` | `sha256-` used as DNA fingerprint (RFC-0043) |
 | `cwl:dna-bank-not-path` | Bad bank path/URL |
 | `cwl:dna-bank-not-on-route` | `dna bank` inside a route/page |
 

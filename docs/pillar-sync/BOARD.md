@@ -1,45 +1,45 @@
-# Chrysalis sync BOARD (git SoR in CWL)
+﻿# Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-08 · tip **1.0.85** · **Goal:** DNA of web languages. CWL creates the language. Convert peels. Secure pins. Site deploys.  
+**Updated:** 2026-10-09 · tip **1.0.86** · **Goal:** DNA of web languages. CWL creates the language. Convert peels. Secure pins. Site deploys.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.85 language land · DNA certificate / fingerprint / bank / match live
-CONVERT_NEXT: open · pin tip 1.0.85 · consume gold 94
-SECURE_NEXT: open · pin tip 1.0.85 · live-match gene consume (no Helix invent)
-CWL_NEXT: tip 1.0.85 candidate · wait Convert/Secure pins
-SITE_NEXT: idle · prior site-docs-build-1.0.84 may still apply after pins
+DISPATCH: tip 1.0.86 · Convert pin done · Secure pin still open
+CONVERT_NEXT: idle · CONVERT_TIP_1_0_86_OK · PR #98 · c12a505c
+SECURE_NEXT: open · pin tip 1.0.86 · refuse weak DNA digests (lane: secure only)
+CWL_NEXT: merge/tag tip 1.0.86 · wait Secure pin
+SITE_NEXT: idle
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.85`** (candidate) |
-| Packages | **`@agenticop-io/cwl@1.0.85`** (pin after merge/tag) |
-| Tags | `cwl-v1.0.84` · next `cwl-v1.0.85` |
+| **CWL tip** | **`1.0.86`** (landing) |
+| Packages | **`@agenticop-io/cwl@1.0.86`** |
+| Tags | `cwl-v1.0.85` · next `cwl-v1.0.86` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `candidate/cwl-1.0.85-dna-fingerprint` | 5215e9c | tip **1.0.85** language · RFC-0042 · gold `94` |
-| **Convert** | `main` | d0d709b6 | tip pin **1.0.84** · **pin 1.0.85 asked** |
-| **Secure** | `main` | ec2cee2 | tip pin **1.0.84** · **pin 1.0.85 asked** |
-| **Site** | `main` | ce6a72f | idle / prior docs ask |
+| **CWL** | candidate | 61f4ba3 | tip **1.0.86** · RFC-0043 · gold `95` |
+| **Convert** | `candidate/convert-tip-1.0.86` | c12a505c | **CONVERT_TIP_1_0_86_OK** · [PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98) |
+| **Secure** | candidate | 65c4995 | tip **1.0.86** pin in progress · no PR yet |
+| **Site** | `main` | ce6a72f | idle |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | Pin to **1.0.85**. Consume gold `94` (`dna certificate` / `fingerprint` / `bank` / `match live`). No invent |
-| **P0** | Secure | Pin to **1.0.85**. Document facts for live-match bind; no Helix firewall invent |
-| **done** | CWL | tip **1.0.85** language land · RFC-0042 · gold `94` · ask `dna-fingerprint` |
-| **open** | Operator | EXTFMAP / soak → enforce (from tip **1.0.81**; human) |
+| **P0** | Secure | **Lane only.** Pin to **1.0.86**. DNA fingerprint floor sha384+; open PR. No CWL/Convert edits |
+| **done** | Convert | Tip pin **1.0.86**, [PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98), `CONVERT_TIP_1_0_86_OK` |
+| **done** | CWL | tip **1.0.86** language land · golds 94–95 |
+| **open** | Operator | EXTFMAP / soak → enforce (human) |
 
 ## Honesty
 
-`dna certificate` / `fingerprint` / `bank` / `match live` are language facts. Host/Secure verify digests and enforce live-match. CWL does not invent hashes or Helix runtimes. No Nest/LiveView/Flutter façades.
+`dna fingerprint` requires `sha384` / `sha512`. `sha256` is `cwl:dna-fingerprint-too-weak` for DNA binds only. Asset integrity may still use sha256. No PQ hash invent in CWL. No Nest/LiveView/Flutter façades.
