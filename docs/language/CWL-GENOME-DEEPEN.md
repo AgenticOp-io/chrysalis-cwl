@@ -1,7 +1,7 @@
 # CWL genome deepen — Phase 1.x
 
 **Status:** active (reopened 2026-08-11)  
-**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.84**  
+**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.85**  
 **Authority:** [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md) · [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) · [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ## Thesis
@@ -45,6 +45,7 @@ Convert still **hears** origin stacks; Secure still **checks** live DNA. Neither
 | **DNA identity** | `replaces` / `from peel` / `capability` / `works without client` (RFC-0039) — done (`1.0.82`) |
 | **Asset integrity** | `script` / `style` + `integrity` / `module` / `crossorigin` (RFC-0040) — done (`1.0.83`) |
 | **Page form multipart** | `form … enctype multipart` + `field … "file"` (RFC-0041) — done (`1.0.84`) |
+| **DNA fingerprint** | `dna certificate` / `fingerprint` / `bank` / `match live` (RFC-0042) — done (`1.0.85`) |
 
 ## Explicit non-goals (unchanged)
 

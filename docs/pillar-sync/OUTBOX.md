@@ -4,6 +4,34 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-08 - tip-1.0.85-dna-fingerprint
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.85** · language land `5215e9c` · ask `dna-fingerprint`  
+**Ask id:** `tip-1.0.85-dna-fingerprint`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.85**. Consume gold `94` (`dna certificate` / `dna fingerprint` / `dna bank` / `match live`). Document facts only — no invent |
+| Secure | Pin to **1.0.85**. Bind live-match / cutover to declared DNA certificate + SRI fingerprint. No Helix firewall invent in CWL |
+
+### CWL landed (this tip)
+
+- RFC-0042 DNA certificate · fingerprint · bank · `match live` · gold `94`
+- Genome binds to traffic DNA for proof; host/Secure verify digests and enforce
+
+### Prove
+
+```bash
+npm run test:language
+```
+
+---
+
 ## 2026-10-06 - tip-1.0.84-page-form-multipart
 
 **To:** convert + secure  
