@@ -1,47 +1,45 @@
 # Chrysalis sync BOARD (git SoR in CWL)
 
-**Updated:** 2026-10-06 · tip **1.0.84** · **Goal:** DNA of web languages. CWL creates the language. Convert peels. Secure pins. Site deploys.  
+**Updated:** 2026-10-08 · tip **1.0.85** · **Goal:** DNA of web languages. CWL creates the language. Convert peels. Secure pins. Site deploys.  
 **Protocol:** [`PROTOCOL.md`](./PROTOCOL.md) · [`COORDINATOR.md`](./COORDINATOR.md)  
 **Queue:** [`../history/DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.84 language closed. Public site docs lag (pins 1.0.80 / golds 86). Parent asked site-docs-build-1.0.84
-CONVERT_NEXT: idle · CONVERT_TIP_1_0_84_OK · main c39088c4
-SECURE_NEXT: idle · SECURE_TIP_1_0_84_OK · main a8a3f58
-CWL_NEXT: open · public site docs build tip 1.0.84 · INBOX-SITE-DOCS-BUILD.md
-SITE_NEXT: blocked · wait CWL genome docs land · then emit + deploy
+DISPATCH: tip 1.0.85 language land · DNA certificate / fingerprint / bank / match live
+CONVERT_NEXT: open · pin tip 1.0.85 · consume gold 94
+SECURE_NEXT: open · pin tip 1.0.85 · live-match gene consume (no Helix invent)
+CWL_NEXT: tip 1.0.85 candidate · wait Convert/Secure pins
+SITE_NEXT: idle · prior site-docs-build-1.0.84 may still apply after pins
 ```
 
 ## Tips / pins
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.84`** |
-| Packages | **`@agenticop-io/cwl@1.0.84`** (pin; Packages publish when tagged) |
-| Tags | `cwl-v1.0.83` · `cwl-v1.0.84` |
+| **CWL tip** | **`1.0.85`** (candidate) |
+| Packages | **`@agenticop-io/cwl@1.0.85`** (pin after merge/tag) |
+| Tags | `cwl-v1.0.84` · next `cwl-v1.0.85` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | 799a858 | tip **1.0.84** closed · **docs ask open** |
-| **Convert** | `main` | c39088c4 | tip pin **1.0.84**, `CONVERT_TIP_1_0_84_OK` |
-| **Secure** | `main` | a8a3f58 | tip pin **1.0.84**, `SECURE_TIP_1_0_84_OK` |
-| **Site** | `main` | ce6a72f | blocked on docs genome |
+| **CWL** | candidate | *(this land)* | tip **1.0.85** language · RFC-0042 · gold `94` |
+| **Convert** | `main` | d0d709b6 | tip pin **1.0.84** · **pin 1.0.85 asked** |
+| **Secure** | `main` | ec2cee2 | tip pin **1.0.84** · **pin 1.0.85 asked** |
+| **Site** | `main` | ce6a72f | idle / prior docs ask |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | CWL | Public site docs build — tip pins **1.0.84**, tips **1.0.79–1.0.84**, RFCs **0035–0041**, golds **87–93**. [`INBOX-SITE-DOCS-BUILD.md`](./INBOX-SITE-DOCS-BUILD.md) |
-| **blocked** | Site | Emit + deploy after CWL docs land |
-| **done** | Convert | Tip pin **1.0.84**, main `c39088c4`, [PR #94](https://github.com/AgenticOp-io/chrysalis/pull/94) |
-| **done** | Secure | Tip pin **1.0.84**, main `a8a3f58`, [PR #38](https://github.com/AgenticOp-io/chrysalis-security/pull/38) |
-| **done** | CWL | tip **1.0.84** language land · tag `cwl-v1.0.84` |
+| **P0** | Convert | Pin to **1.0.85**. Consume gold `94` (`dna certificate` / `fingerprint` / `bank` / `match live`). No invent |
+| **P0** | Secure | Pin to **1.0.85**. Document facts for live-match bind; no Helix firewall invent |
+| **done** | CWL | tip **1.0.85** language land · RFC-0042 · gold `94` · ask `dna-fingerprint` |
 | **open** | Operator | EXTFMAP / soak → enforce (from tip **1.0.81**; human) |
 
 ## Honesty
 
-`enctype multipart` + `field … "file"` are language facts. Host owns transfer/storage. No upload middleware invent. No Nest/LiveView/Flutter façades.
+`dna certificate` / `fingerprint` / `bank` / `match live` are language facts. Host/Secure verify digests and enforce live-match. CWL does not invent hashes or Helix runtimes. No Nest/LiveView/Flutter façades.

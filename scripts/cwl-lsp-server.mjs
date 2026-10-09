@@ -305,6 +305,30 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: "works without client;",
   },
   {
+    label: "dna certificate",
+    kind: KIND_SNIPPET,
+    detail: "Bind a promoted traffic DNA certificate (RFC-0042). Host/Secure verify.",
+    insertText: 'dna certificate "${1:app.dna.json}";',
+  },
+  {
+    label: "dna fingerprint",
+    kind: KIND_SNIPPET,
+    detail: "SRI digest of the bound DNA certificate (RFC-0042). CWL does not invent hashes.",
+    insertText: 'dna fingerprint "${1:sha256-…}";',
+  },
+  {
+    label: "dna bank",
+    kind: KIND_SNIPPET,
+    detail: "Module-scope bank of known DNA certificates for proof (RFC-0042).",
+    insertText: 'dna bank "${1:dna/}";',
+  },
+  {
+    label: "match live",
+    kind: KIND_SNIPPET,
+    detail: "Expect Secure live-match against the bound DNA (RFC-0042).",
+    insertText: "match live;",
+  },
+  {
     label: "device host",
     kind: KIND_SNIPPET,
     detail: "Host device classes. Optional below <px> names the cut. <!-- cwl:device --> stays. CWL does not call matchMedia.",

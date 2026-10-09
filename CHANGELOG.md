@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.85 - 2026-10-08
+
+- DNA certificate fingerprint (RFC-0042): `dna certificate`, `dna fingerprint`, `dna bank`, `match live`
+- Gold `94-dna-fingerprint`. Bind genome to traffic DNA for proof; host/Secure verify — no Helix invent
+
 ## 1.0.84 - 2026-10-06
 
 - Page form multipart (RFC-0041): `form … enctype multipart` + `field … "file"`

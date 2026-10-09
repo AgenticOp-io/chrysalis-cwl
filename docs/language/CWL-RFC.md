@@ -40,6 +40,7 @@ CWL evolves by **RFC**: each proposal must cite cross-language evidence (path kn
 | [0039](CWL-RFC-0039-dna-identity.md) | DNA identity (`replaces` / `from peel` / `capability` / `works without client`) | accepted |
 | [0040](CWL-RFC-0040-asset-integrity.md) | Progressive asset integrity (`script` / `style` + SRI / module / crossorigin) | accepted |
 | [0041](CWL-RFC-0041-page-form-multipart.md) | Page form `enctype multipart` + `field … "file"` | accepted |
+| [0042](CWL-RFC-0042-dna-fingerprint.md) | DNA certificate · fingerprint · bank · `match live` | accepted |
 
 **Process**
 
