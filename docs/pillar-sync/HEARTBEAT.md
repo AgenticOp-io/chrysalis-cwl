@@ -1,18 +1,18 @@
 ﻿# Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.86** · Convert pin done · Secure still open
+**Fleet:** tip **1.0.86** closed · Convert + Secure pins done
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | land | `61f4ba3` | tip **1.0.86** · RFC-0043 · gold `95` |
+| **CWL** | done | `ee0b81a` | tip **1.0.86** · tag `cwl-v1.0.86` |
 | **Convert** | done | `c12a505c` | `CONVERT_TIP_1_0_86_OK` · [PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98) |
-| **Secure** | open | `65c4995` | pin **1.0.86** · secure lane only |
+| **Secure** | done | `270fc1a` | `SECURE_TIP_1_0_86_OK` · [PR #47](https://github.com/AgenticOp-io/chrysalis-security/pull/47) |
 | **Site** | idle | `ce6a72f` | — |
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: no
+CWL_FLEET_IDLE: yes
 ORDER: tip-1.0.86-dna-fingerprint-strong
-NEXT: Secure pin 1.0.86 · stay in lane
+NEXT: idle
 RULE: DNA fp sha384+; asset SRI may stay sha256; PQ sigs = Secure
 ```

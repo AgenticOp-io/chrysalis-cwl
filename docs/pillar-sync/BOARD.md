@@ -6,11 +6,11 @@
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.86 · Convert pin done · Secure pin still open
+CWL_FLEET_IDLE: yes
+DISPATCH: tip 1.0.86 closed · Convert + Secure pins done
 CONVERT_NEXT: idle · CONVERT_TIP_1_0_86_OK · PR #98 · c12a505c
-SECURE_NEXT: open · pin tip 1.0.86 · refuse weak DNA digests (lane: secure only)
-CWL_NEXT: merge/tag tip 1.0.86 · wait Secure pin
+SECURE_NEXT: idle · SECURE_TIP_1_0_86_OK · PR #47 · 270fc1a
+CWL_NEXT: idle
 SITE_NEXT: idle
 ```
 
@@ -18,26 +18,26 @@ SITE_NEXT: idle
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.86`** (landing) |
+| **CWL tip** | **`1.0.86`** |
 | Packages | **`@agenticop-io/cwl@1.0.86`** |
-| Tags | `cwl-v1.0.85` · next `cwl-v1.0.86` |
+| Tags | `cwl-v1.0.85` · `cwl-v1.0.86` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | candidate | 61f4ba3 | tip **1.0.86** · RFC-0043 · gold `95` |
+| **CWL** | `main` | ee0b81a | tip **1.0.86** · tag `cwl-v1.0.86` |
 | **Convert** | `candidate/convert-tip-1.0.86` | c12a505c | **CONVERT_TIP_1_0_86_OK** · [PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98) |
-| **Secure** | candidate | 65c4995 | tip **1.0.86** pin in progress · no PR yet |
+| **Secure** | `candidate/secure-tip-1.0.86` | 270fc1a | **SECURE_TIP_1_0_86_OK** · [PR #47](https://github.com/AgenticOp-io/chrysalis-security/pull/47) |
 | **Site** | `main` | ce6a72f | idle |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Secure | **Lane only.** Pin to **1.0.86**. DNA fingerprint floor sha384+; open PR. No CWL/Convert edits |
-| **done** | Convert | Tip pin **1.0.86**, [PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98), `CONVERT_TIP_1_0_86_OK` |
-| **done** | CWL | tip **1.0.86** language land · golds 94–95 |
+| **done** | CWL | tip **1.0.86** merge `ee0b81a` · tag `cwl-v1.0.86` |
+| **done** | Convert | Tip pin **1.0.86**, [PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98) |
+| **done** | Secure | Tip pin **1.0.86**, [PR #47](https://github.com/AgenticOp-io/chrysalis-security/pull/47) |
 | **open** | Operator | EXTFMAP / soak → enforce (human) |
 
 ## Honesty
