@@ -10,10 +10,12 @@ layout site {
   style "/agenticops.css";
   style "/fonts.css";
   image logo "/logo.svg";
+  image certified "/cwl-certified.svg";
   host firebase "agenticops" public "." error "/404.html";
   links primary;
   link home "/" "Home";
   link chrysalis "/chrysalis.html" "CWL";
+  link certified "/cwl-certified.html" "Certified";
   link convert "/convert.html" "Convert";
   link secure "/secure.html" "Secure";
   link docs "/docs.html" "Docs";
@@ -23,6 +25,7 @@ layout site {
   link contact "/contact.html" "Start a Pilot" class ao-nav-cta;
   links chrysalis;
   link chrysalis "/chrysalis.html" "CWL";
+  link certified "/cwl-certified.html" "Get CWL Certified";
   link convert "/convert.html" "Convert";
   link secure "/secure.html" "Secure";
   link docs "/docs.html" "Docs";
@@ -131,7 +134,17 @@ layout site {
         </div>
       </div>
       <div class="ao-footer-bottom">
-        <p class="ao-footer-fine">© <!-- cwl:year --> AgenticOps. CWL tip 1.0.80 is public — Convert and Secure consume it; traffic decides what ships.</p>
+        <div class="ao-footer-cert-row">
+          <a class="ao-cwl-certified" href="/cwl-certified.html" aria-label="Get CWL Certified — genome tip verified via emit:site">
+            <img class="ao-cwl-certified-mark" src="<!-- cwl:image certified -->" alt="" width="72" height="72" loading="lazy" decoding="async" />
+            <span class="ao-cwl-certified-meta">
+              <span class="ao-cwl-certified-kicker">Language of record</span>
+              <span class="ao-cwl-certified-title">CWL Certified</span>
+              <span class="ao-cwl-certified-sub">Genome · emit:site · tip verified</span>
+            </span>
+          </a>
+          <p class="ao-footer-fine">© <!-- cwl:year --> AgenticOps. CWL tip 1.0.88 is public — Convert and Secure consume it; traffic decides what ships.</p>
+        </div>
       </div>
     </div>
   </footer>
@@ -274,7 +287,7 @@ page home {
             </p>
             <div class="ao-hero-ctas">
               <a class="ao-btn ao-btn-primary" href="/chrysalis.html">Explore CWL</a>
-              <a class="ao-btn ao-btn-ghost" href="https://github.com/AgenticOp-io/chrysalis-cwl" target="_blank" rel="noopener">chrysalis-cwl on GitHub</a>
+              <a class="ao-btn ao-btn-ghost" href="/cwl-certified.html">Get CWL Certified</a>
               <a class="ao-btn ao-btn-link" href="/press.html">Press · tip 1.0.80 &rarr;</a>
             </div>
           </div>
@@ -1040,12 +1053,132 @@ page chrysalis {
   """;
 }
 
+@page GET "/cwl-certified.html"
+page certified {
+  effects: none;
+  nav certified;
+  layout site;
+  title "Get CWL Certified · tip-verified genome | AgenticOps";
+  description "CWL Certified means your public site pages come from a CWL genome, emit:site freeze, honest tip string, and required asset companions — not a sticker, not Helix traffic proof, not a crypto signature.";
+  canonical "https://agenticop.io/cwl-certified.html";
+  meta keywords "CWL Certified, Chrysalis Web Language, emit:site, tip verified, genome, AgenticOps";
+  meta robots "index, follow, max-image-preview:large, max-snippet:-1";
+  meta author "AgenticOps";
+  meta theme "#020208";
+  meta og type "website";
+  meta og site "AgenticOps";
+  meta og locale "en_US";
+  meta og url "https://agenticop.io/cwl-certified.html";
+  meta og title "Get CWL Certified";
+  meta og description "Standards mark for a tip-verified CWL marketing genome: pages from site.cwl, certified emit:site, honest tip, asset companions present.";
+  meta og image "https://agenticop.io/cwl-certified.svg";
+  meta twitter card "summary";
+  meta twitter title "Get CWL Certified";
+  meta twitter description "Genome · emit:site · tip verified. Language of record — not Helix enforce, not forged hashes.";
+  meta twitter image "https://agenticop.io/cwl-certified.svg";
+  icon logo apple;
+  jsonld """
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://agenticop.io/cwl-certified.html",
+    "name": "Get CWL Certified",
+    "description": "CWL Certified is a genome-form mark: site.cwl pages, emit:site freeze, honest tip, required assets. Not Helix traffic proof.",
+    "primaryImageOfPage": { "@type": "ImageObject", "url": "https://agenticop.io/cwl-certified.svg" },
+    "isPartOf": { "@type": "WebSite", "url": "https://agenticop.io/" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://agenticop.io/" },
+        { "@type": "ListItem", "position": 2, "name": "CWL", "item": "https://agenticop.io/chrysalis.html" },
+        { "@type": "ListItem", "position": 3, "name": "Get CWL Certified", "item": "https://agenticop.io/cwl-certified.html" }
+      ]
+    }
+  }
+  """;
+  return html """
+<main id="main" class="ao-page-main">
+    <section class="ao-section ao-certified-hero" aria-labelledby="cwl-certified-heading">
+      <div class="ao-wrap ao-certified-hero-inner">
+        <img
+          class="ao-certified-hero-mark"
+          src="/cwl-certified.svg"
+          width="200"
+          height="200"
+          alt="CWL Certified Genome — tip verified via emit:site"
+          decoding="async"
+        />
+        <div class="ao-certified-hero-copy">
+          <p class="ao-kicker ao-kicker--loud">CWL &middot; tip 1.0.88 &middot; language of record</p>
+          <h1 id="cwl-certified-heading" class="ao-page-title">Get CWL Certified.</h1>
+          <p class="ao-lead ao-lead--tight">
+            The seal marks a <strong>tip-verified marketing genome</strong>:
+            public pages authored in CWL, frozen with certified <code>emit:site</code>,
+            honest tip string, required asset companions present.
+            It is a claim of <em>genome form</em> — not Helix traffic proof, and not a crypto signature.
+          </p>
+          <div class="ao-hero-ctas">
+            <a class="ao-btn ao-btn-primary" href="/chrysalis.html">Read the CWL story</a>
+            <a class="ao-btn ao-btn-ghost" href="https://github.com/AgenticOp-io/chrysalis-cwl" target="_blank" rel="noopener">chrysalis-cwl on GitHub</a>
+            <a class="ao-btn ao-btn-link" href="/contact.html">Start a Pilot &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ao-section ao-section-alt">
+      <div class="ao-wrap">
+        <p class="ao-kicker">What the mark means</p>
+        <h2 class="ao-h2">Four facts. No invented hashes.</h2>
+        <ol class="ao-certified-checklist" aria-label="CWL Certified requirements">
+          <li>
+            <strong>Pages from CWL</strong>
+            <span>Route bodies live in <code>site.cwl</code> (or your genome). Emit produces the HTML.</span>
+          </li>
+          <li>
+            <strong>Certified <code>emit:site</code></strong>
+            <span>Freeze path is the language-owned site emitter — not a hand-edited HTML fork.</span>
+          </li>
+          <li>
+            <strong>Honest tip</strong>
+            <span>Public tip string matches the language tip you claim (today: <strong>1.0.88</strong>).</span>
+          </li>
+          <li>
+            <strong>Asset companions</strong>
+            <span>Owned CSS, fonts, logo, and the seal SVG ship with the freeze.</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="ao-section">
+      <div class="ao-wrap">
+        <p class="ao-kicker">What it is not</p>
+        <h2 class="ao-h2">Honesty over sticker theater.</h2>
+        <ul class="ao-certified-not">
+          <li>Not Helix DNA-firewall enforce or live traffic match</li>
+          <li>Not a post-quantum or hash &ldquo;certificate&rdquo; forged into the badge</li>
+          <li>Not permission to invent genes Convert cannot translate</li>
+          <li>Not a second page source under brand-only HTML</li>
+        </ul>
+        <p class="ao-sub ao-sub--wide" style="margin-top:1.5rem">
+          Contract: <a href="/docs.html">language docs</a> &middot;
+          genome SoR in <a href="https://github.com/AgenticOp-io/chrysalis-cwl" target="_blank" rel="noopener">chrysalis-cwl</a> &middot;
+          seal asset <code>/cwl-certified.svg</code>.
+        </p>
+        <p class="ao-next-page"><a href="/trust.html">Trust rules we will not break &rarr;</a></p>
+      </div>
+    </section>
+  </main>
+  """;
+}
+
 @page GET "/contact.html"
 page contact {
   effects: none;
   nav contact;
   layout site;
-  title "Contact � Start a Pilot | AgenticOps";
+  title "Contact · Start a Pilot | AgenticOps";
   description "VP Eng / CTO with a legacy stack? Start a fixed-scope Pilot. hello@agenticop.io � DNA of the web, Universal Translator, traffic-proven cutover.";
   canonical "https://agenticop.io/contact.html";
   meta theme "#020208";

@@ -4,6 +4,62 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-10 - site-cwl-certified-seal
+
+**To:** site / parent  
+**Priority:** P1  
+**Status:** **done** (CWL) · **open** (live redeploy)  
+**CWL tip:** **1.0.88** · no tip bump · invent stays CLOSED  
+**Ask id:** `site-cwl-certified-seal`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Site | `npm run emit:site` from `fixtures/sites/agenticop-io/site.cwl` (or CWL out dir) → Firebase `hosting:agenticops` when reauthed |
+| Convert / Secure | **none** — no pin |
+
+### CWL landed
+
+- Page `/cwl-certified.html` · nav **Certified** · footer seal → certified page
+- Seal SoR `assets/cwl-certified.svg` · contract in `CWL-SITE-COMPLETE.md`
+- Smokes: 27 pages · `ao-cwl-certified` · seal asset ships
+
+### Prove
+
+```bash
+npm run smoke:agenticop-site
+npm run smoke:cwl-site-complete
+```
+
+---
+
+## 2026-10-10 - fleet-all-of-that-dispatch
+
+**To:** convert + operator (secure FYI)  
+**Priority:** P0  
+**Status:** **done** (Convert named-residual) · **open** (operator paste) · CWL **parked**  
+**CWL tip:** **1.0.88** · invent CLOSED · page-gap verdict: **none**  
+**Ask id:** `fleet-all-of-that-1.0.88`  
+**Lane rule:** Convert edits only `chrysalis-convert`. Operator runs live systems. CWL does not invent a tip without a page gap.
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | **done** — named-residual ledger (not invent evaluate). `CONVERT_EXEC: named-residual` · `22f1d023` · `candidate/convert-exec-ceilings-honesty` · smokes `CONVERT_TIP_1_0_88_OK` · `CONVERT_EXEC_CEILINGS_HONEST`. Oracle fill for g_*/DB · N-iter HTML · island execution stays open |
+| Operator | EXTFMAP hunt or ABSENT attest + customer soak → enforce — paste checklist in [`OPERATOR-NEXT-1.0.23.md`](../history/OPERATOR-NEXT-1.0.23.md) |
+| Secure | **none** for tip pin — soak is ops |
+| CWL | **parked** — no RFC/gold tip; reopen only when a page cannot be written |
+
+### CWL landed (docs)
+
+- Page-gap verdict in [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
+- Operator checklist refreshed to tip **1.0.88**
+- BOARD: Convert EXEC honesty landed · CWL invent parked
+
+---
+
 ## 2026-10-10 - invent-queue-closed-1.0.88
 
 **To:** convert + secure (FYI)  

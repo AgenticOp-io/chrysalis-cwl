@@ -64,13 +64,13 @@ export async function emitCwlSite(opts) {
   for (const route of routes) {
     for (const href of route.styles ?? []) {
       if (typeof href === "string" && href.startsWith("/") && !href.startsWith("//")) {
-        assetNames.add(href.slice(1));
+        assetNames.add(href.slice(1).split("?")[0].split("#")[0]);
       }
     }
     for (const image of route.images ?? []) {
       const href = typeof image === "string" ? image : image?.path;
       if (typeof href === "string" && href.startsWith("/") && !href.startsWith("//")) {
-        assetNames.add(href.slice(1));
+        assetNames.add(href.slice(1).split("?")[0].split("#")[0]);
       }
     }
   }
@@ -79,7 +79,7 @@ export async function emitCwlSite(opts) {
     localAssetRe.lastIndex = 0;
     let match;
     while ((match = localAssetRe.exec(html)) != null) {
-      assetNames.add(match[1]);
+      assetNames.add(match[1].split("?")[0].split("#")[0]);
     }
   }
   /** @type {string[]} */
@@ -113,20 +113,28 @@ export async function emitCwlSite(opts) {
       }
     }
   }
-  const hosting = {
-    hosting: {
-      public: ".",
-      ignore: ["firebase.json", "**/.*", "**/node_modules/**", "**/*.md"],
-      ...(errorDoc ? { errorDocument: basename(errorDoc) } : {}),
-      headers: [
-        {
-          source: "**/*.@(html)",
-          headers: [{ key: "Cache-Control", value: "no-cache, no-store, must-revalidate" }],
-        },
-      ],
-    },
-  };
-  writeFileSync(join(outDir, "firebase.json"), `${JSON.stringify(hosting, null, 2)}\n`, "utf8");
+  const existingFirebasePath = join(outDir, "firebase.json");
+  let wroteFirebase = false;
+  if (existsSync(existingFirebasePath)) {
+    // Preserve site-lane firebase.json (targets / multi-hosting). Do not clobber.
+    wroteFirebase = false;
+  } else {
+    const hosting = {
+      hosting: {
+        public: ".",
+        ignore: ["firebase.json", "**/.*", "**/node_modules/**", "**/*.md"],
+        ...(errorDoc ? { errorDocument: basename(errorDoc) } : {}),
+        headers: [
+          {
+            source: "**/*.@(html)",
+            headers: [{ key: "Cache-Control", value: "no-cache, no-store, must-revalidate" }],
+          },
+        ],
+      },
+    };
+    writeFileSync(existingFirebasePath, `${JSON.stringify(hosting, null, 2)}\n`, "utf8");
+    wroteFirebase = true;
+  }
   return {
     kind: "chrysalis.cwl.host-site-emit",
     schemaVersion: 1,
@@ -139,6 +147,7 @@ export async function emitCwlSite(opts) {
     missingAssets,
     assetsDir,
     errorDocument: errorDoc,
+    wroteFirebase,
   };
 }
 

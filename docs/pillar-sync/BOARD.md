@@ -7,11 +7,11 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: yes
-DISPATCH: tip 1.0.88 closed · invent queue CLOSED · Convert + Secure pins on main
-CONVERT_NEXT: idle · CONVERT_TIP_1_0_88_OK · PR #100 merged · e7a34073
-SECURE_NEXT: idle · SECURE_TIP_1_0_88_OK · PR #49 merged · 281a4fb
-CWL_NEXT: idle · invent CLOSED · residual-driven standing goal only
-SITE_NEXT: idle
+DISPATCH: tip 1.0.88 closed · invent CLOSED · CWL Certified page + seal landed · site redeploy open
+CONVERT_NEXT: idle (ledger) · CONVERT_EXEC_CEILINGS_HONEST · 22f1d023 · oracle fill open · pin 1.0.88
+SECURE_NEXT: idle · SECURE_TIP_1_0_88_OK · PR #49 merged · 281a4fb · soak = operator
+CWL_NEXT: idle · site-cwl-certified-seal done (no tip invent)
+SITE_NEXT: open · emit:site + Firebase redeploy (parent/site)
 ```
 
 ## Tips / pins
@@ -28,7 +28,7 @@ SITE_NEXT: idle
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
 | **CWL** | `main` | 34298b5 | tip **1.0.88** · invent CLOSED · PR #133/#134 |
-| **Convert** | `main` | e7a34073 | **CONVERT_TIP_1_0_88_OK** · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) merged · sibling `cwl-v1.0.88` |
+| **Convert** | `candidate/convert-exec-ceilings-honesty` | 22f1d023 | **CONVERT_EXEC_CEILINGS_HONEST** · [PR #102](https://github.com/AgenticOp-io/chrysalis/pull/102) · tip pin main e7a34073 / [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
 | **Secure** | `main` | 281a4fb | **SECURE_TIP_1_0_88_OK** · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) merged |
 | **Site** | `main` | ce6a72f | idle |
 
@@ -39,8 +39,12 @@ SITE_NEXT: idle
 | **done** | CWL | tip **1.0.88** · invent queue CLOSED · VSIX 1.0.88 |
 | **done** | Convert | Tip pin **1.0.88** on main · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
 | **done** | Secure | Tip pin **1.0.88** on main · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) |
-| **idle** | CWL | Residual-driven standing goal only (no invent queue) |
-| **open** | Operator | EXTFMAP / soak → enforce (human) |
+| **parked** | CWL | Invent CLOSED · page-gap verdict **none** (no forge tip) |
+| **done** | Convert | Named-residual exec ceilings · `22f1d023` · oracle fill still open |
+| **open** | Operator | EXTFMAP / soak → enforce — [`OPERATOR-NEXT-1.0.23.md`](../history/OPERATOR-NEXT-1.0.23.md) |
+| **done** | CWL | Get CWL Certified page + seal — [`INBOX-SITE-CWL-CERTIFIED.md`](./INBOX-SITE-CWL-CERTIFIED.md) |
+| **open** | Site | `emit:site` + live Firebase redeploy after reauth |
+| **blocked** | Site | Live deploy after Firebase reauth + CWL seal reply |
 
 ## Honesty
 

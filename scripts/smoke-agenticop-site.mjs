@@ -27,7 +27,7 @@ const printed2 = printCwlModule(again, { header: null });
 if (printed !== printed2) fail("print is not idempotent");
 
 applyLayoutsToParsedModule(parsed);
-if (parsed.routes.length !== 26) fail(`expected 26 pages, got ${parsed.routes.length}`);
+if (parsed.routes.length !== 27) fail(`expected 27 pages, got ${parsed.routes.length}`);
 
 for (const route of parsed.routes) {
   const html = composeLayoutChromeHtml(route.layoutChromeHtml, route.body?.value ?? "", {
@@ -100,9 +100,18 @@ for (const route of parsed.routes) {
     if (!html.includes('id="ao-site-nav"')) fail(`${route.name} missing nav`);
     if (html.includes('id="ao-site-nav"></header>')) fail(`${route.name} nav is empty`);
     if (!html.includes('href="/chrysalis.html"')) fail(`${route.name} missing CWL link`);
+    if (!html.includes('href="/cwl-certified.html"')) fail(`${route.name} missing CWL Certified page link`);
+    if (!html.includes('class="ao-cwl-certified"')) fail(`${route.name} missing CWL Certified footer mark`);
+    if (!html.includes('src="/cwl-certified.svg"') && !html.includes('src="/cwl-certified.svg?')) {
+      fail(`${route.name} missing cwl-certified.svg`);
+    }
     if (html.includes("userAgent") || html.includes("matchMedia")) fail(`${route.name} reads the client`);
     const nav = route.navId || route.name;
     if (!html.includes(`data-ao-page="${nav}"`)) fail(`${route.name} page id is not ${nav}`);
+  }
+  if (route.name === "certified") {
+    if (!html.includes("Get CWL Certified")) fail("certified page missing heading");
+    if (!html.includes('src="/cwl-certified.svg"')) fail("certified page missing seal image");
   }
   if (route.name === "home" && !html.includes("is the DNA of the web.")) fail("home heading missing");
   if (route.name === "home" && !html.includes("application/ld+json")) fail("home lost JSON-LD");
