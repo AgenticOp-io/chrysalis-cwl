@@ -27,7 +27,7 @@ SITE_NEXT: idle
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | e04c2cc | tip **1.0.88** · hygiene PR #133 · invent queue CLOSED |
+| **CWL** | `main` | 34298b5 | tip **1.0.88** · invent CLOSED · PR #133/#134 |
 | **Convert** | `main` | e7a34073 | **CONVERT_TIP_1_0_88_OK** · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) merged · sibling `cwl-v1.0.88` |
 | **Secure** | `main` | 281a4fb | **SECURE_TIP_1_0_88_OK** · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) merged |
 | **Site** | `main` | ce6a72f | idle |
