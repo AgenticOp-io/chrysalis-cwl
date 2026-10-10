@@ -26,7 +26,7 @@ SITE_NEXT: idle
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | candidate → main | 537c0bc | tip **1.0.87** · tag after merge |
+| **CWL** | main | 24e7b5e | tip **1.0.87** · tag cwl-v1.0.87 |
 | **Convert** | `candidate/convert-tip-1.0.87` | ebfb2a46 | **CONVERT_TIP_1_0_87_OK** · [PR #99](https://github.com/AgenticOp-io/chrysalis/pull/99) |
 | **Secure** | `candidate/secure-tip-1.0.87` | 4da69c8 | **SECURE_TIP_1_0_87_OK** · [PR #48](https://github.com/AgenticOp-io/chrysalis-security/pull/48) |
 | **Site** | `main` | ce6a72f | idle |
