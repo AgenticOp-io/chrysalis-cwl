@@ -2,7 +2,7 @@
 
 **Path:** Rosetta → UT → DNA of web languages — [`ROSETTA-UT-PATH.md`](../language/ROSETTA-UT-PATH.md)  
 **Goal:** CWL is a language in its own right. It must be able to replace any web page. Golds `68`–`82` replace a document with navigation, a drawer, a device token, named assets, a same-site form, an off-site anchor, a named viewport cut, document identity, a social card, the remaining head facts, request-time HTML, dynamic HTML, and bound database operations. WebSocket duplex, raw SQL text, and unclassified client script stay named holes.  
-**Tip:** **`1.0.87`** - DNA proof deepen (RFC-0044): multi-fingerprint · match bank · dna expect.
+**Tip:** **`1.0.88`** - DNA proof units (RFC-0045): named proof · quorum · lineage · witness · scope.
 **Scope:** [`CWL-LANGUAGE-SCOPE.md`](../language/CWL-LANGUAGE-SCOPE.md) · [`CWL-GENOME-DEEPEN.md`](../language/CWL-GENOME-DEEPEN.md)
 
 ## Reopen rule
@@ -86,6 +86,7 @@
 | P0 | DNA certificate fingerprint (`94`, RFC-0042) | **done** (`1.0.85`) — certificate · fingerprint · bank · match live |
 | P0 | DNA fingerprint strength (`95`, RFC-0043) | **done** (`1.0.86`) — sha384 / sha512 floor; sha256 → too-weak |
 | P0 | DNA proof deepen (`96`, RFC-0044) | **done** (`1.0.87`) — multi-fingerprint · match bank · dna expect |
+| P0 | DNA proof units (`97`, RFC-0045) | **done** (`1.0.88`) — named proof · quorum · lineage · witness · scope |
 | P0 | Replace any web page | **open** — goal of the language. Remaining page behaviors stay named residuals until an honest RFC |
 | P1 | WebSocket duplex gene | **done** (`1.0.79`) — residual `unsupported:websocket` for undeclared peels |
 | P2 | Richer UI (hydration still non-goal) | **done** (`1.0.79`) for event contracts; hydration remains non-goal |
@@ -122,6 +123,7 @@
 | Tip pin **1.0.85** | Convert + Secure — **done** (Convert [PR #97](https://github.com/AgenticOp-io/chrysalis/pull/97); Secure [PR #46](https://github.com/AgenticOp-io/chrysalis-security/pull/46)) |
 | Tip pin **1.0.86** | Convert — **done** ([PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98), `c12a505c`); Secure — **done** ([PR #47](https://github.com/AgenticOp-io/chrysalis-security/pull/47), `270fc1a`) |
 | Tip pin **1.0.87** | Convert — **done** ([PR #99](https://github.com/AgenticOp-io/chrysalis/pull/99), `ebfb2a46`); Secure — **done** ([PR #48](https://github.com/AgenticOp-io/chrysalis-security/pull/48), `4da69c8`) |
+| Tip pin **1.0.88** | Convert — **done** ([PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100), `ec17a250`); Secure — **done** ([PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49), `fd01956`) |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **done** (`fbfd45e7`) |
 | Live-match / cutover vs tip seed | Secure — **done** (`975f734`, tip **1.0.81**) |
 | EXTFMAP / customer soak → enforce | **Operator** — see [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) (agents will not invent) |

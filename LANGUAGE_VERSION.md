@@ -3,16 +3,16 @@
 | Field | Value |
 | --- | --- |
 | **Language** | Chrysalis Web Language (CWL) |
-| **Goal** | DNA of web languages. Tip `1.0.87` expands Secure’s DNA bind consume — dual fingerprints, `match bank`, and `dna expect` lifecycle facts — without inventing Helix. |
-| **Version** | `1.0.87` |
-| **Status** | DNA proof deepen |
-| **Date** | 2026-10-09 |
+| **Goal** | DNA of web languages. Tip `1.0.88` makes traffic-DNA proof a first-class genome cell — named units with quorum, lineage, witness, and scope — so Convert and Secure share a bar no other web language declares. |
+| **Version** | `1.0.88` |
+| **Status** | DNA proof units |
+| **Date** | 2026-10-10 |
 
 ## What this version means
 
-- RFC-0044 + gold `96`: repeatable `dna fingerprint`, `match bank`, `dna expect promote|shadow|enforce`
-- Coherence holes: `cwl:match-without-certificate`, `cwl:match-bank-without-bank`
-- Prior tip **1.0.86:** DNA fingerprint sha384+ floor (RFC-0043)
+- RFC-0045 + gold `97`: `dna proof <name> { … }`, `use dna proof <name>;`
+- Quorum · lineage · supersedes · witness · scope (flat or inside the unit)
+- Prior tip **1.0.87:** multi-fingerprint · `match bank` · `dna expect` (RFC-0044)
 
 ## Gate
 

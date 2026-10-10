@@ -43,6 +43,7 @@ CWL evolves by **RFC**: each proposal must cite cross-language evidence (path kn
 | [0042](CWL-RFC-0042-dna-fingerprint.md) | DNA certificate · fingerprint · bank · `match live` | accepted |
 | [0043](CWL-RFC-0043-dna-fingerprint-strong.md) | DNA fingerprint strength (`sha384` / `sha512`; `sha256` too weak) | accepted |
 | [0044](CWL-RFC-0044-dna-proof.md) | DNA proof deepen (multi-fingerprint · `match bank` · `dna expect`) | accepted |
+| [0045](CWL-RFC-0045-dna-proof-unit.md) | DNA proof units (lineage · quorum · witness · named proof) | accepted |
 
 **Process**
 
