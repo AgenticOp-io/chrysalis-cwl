@@ -26,7 +26,7 @@ SITE_NEXT: idle
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | candidate → main | b477fa9 | tip **1.0.88** · tag after merge |
+| **CWL** | `main` | f2cb275 | tip **1.0.88** · tag `cwl-v1.0.88` |
 | **Convert** | `candidate/convert-tip-1.0.88` | ec17a250 | **CONVERT_TIP_1_0_88_OK** · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
 | **Secure** | `candidate/secure-tip-1.0.88` | fd01956 | **SECURE_TIP_1_0_88_OK** · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) |
 | **Site** | `main` | ce6a72f | idle |
@@ -35,7 +35,7 @@ SITE_NEXT: idle
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **done** | CWL | tip **1.0.88** language land · RFC-0045 · gold `97` |
+| **done** | CWL | tip **1.0.88** merge `f2cb275` · tag `cwl-v1.0.88` |
 | **done** | Convert | Tip pin **1.0.88**, [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
 | **done** | Secure | Tip pin **1.0.88**, [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) |
 | **open** | Operator | EXTFMAP / soak → enforce (human) |
