@@ -1,18 +1,18 @@
 ﻿# Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.87** language land · Convert/Secure pin asked (lanes)
+**Fleet:** tip **1.0.87** closed · Convert + Secure pins done
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | land | 537c0bc | tip **1.0.87** · RFC-0044 · gold `96` |
-| **Convert** | open | `c12a505c` | pin **1.0.87** · gold `96` · convert lane only |
-| **Secure** | open | `270fc1a` | pin **1.0.87** · expand DNA bind consume · secure lane only |
+| **CWL** | land | `537c0bc` | tip **1.0.87** · RFC-0044 · gold `96` |
+| **Convert** | done | `ebfb2a46` | `CONVERT_TIP_1_0_87_OK` · [PR #99](https://github.com/AgenticOp-io/chrysalis/pull/99) |
+| **Secure** | done | `4da69c8` | `SECURE_TIP_1_0_87_OK` · [PR #48](https://github.com/AgenticOp-io/chrysalis-security/pull/48) |
 | **Site** | idle | `ce6a72f` | — |
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: no
+CWL_FLEET_IDLE: yes
 ORDER: tip-1.0.87-dna-proof
-NEXT: Convert + Secure pin 1.0.87 · stay in lane
+NEXT: idle
 RULE: multi-fp · match bank · dna expect; Helix lifecycle = Secure
 ```

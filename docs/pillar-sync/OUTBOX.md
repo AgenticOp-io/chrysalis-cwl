@@ -8,17 +8,24 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip:** **1.0.87** · language land 537c0bc · ask `dna-proof`  
+**Status:** **done**  
+**CWL tip:** **1.0.87** · language land `537c0bc` · ask `dna-proof`  
 **Ask id:** `tip-1.0.87-dna-proof`  
 **Lane rule:** Convert edits only `chrysalis-convert`. Secure edits only `chrysalis-security`. Neither edits CWL.
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | **done** — `CONVERT_TIP_1_0_87_OK` · [PR #99](https://github.com/AgenticOp-io/chrysalis/pull/99) · `ebfb2a46` (feature `77da5ae5`); gold `96` |
+| Secure | **done** — `SECURE_TIP_1_0_87_OK` / `CUTOVER_TIP_1_0_87_OK` · [PR #48](https://github.com/AgenticOp-io/chrysalis-security/pull/48) · `4da69c8` |
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.87**. Consume gold `96` (multi-fingerprint · `match bank` · `dna expect`). Document facts only |
-| Secure | Pin to **1.0.87**. Expand DNA bind consume: `dnaFingerprints[]`, `cwl_match_bank`, `cwl_dna_expect`; keep sha384+ floor. Helix owns promote/shadow/enforce — no invent in CWL |
+| Convert | **done** (record): Pin to **1.0.87**. Consume gold `96` |
+| Secure | **done** (record): Expand DNA bind consume (`dnaFingerprints[]` / `match bank` / `dna expect`); sha384+ floor kept |
 
 ### CWL landed (this tip)
 
