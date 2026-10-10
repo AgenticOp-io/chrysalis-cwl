@@ -58,6 +58,8 @@ const LABEL_TO_WORDS = {
   "dna fingerprint": ["dna", "fingerprint"],
   "dna bank": ["dna", "bank"],
   "match live": ["match", "live"],
+  "match bank": ["match", "bank"],
+  "dna expect": ["dna", "expect", "promote", "shadow", "enforce"],
   "meta robots": ["meta", "robots"],
   "meta author": ["meta", "author"],
   "meta theme": ["meta", "theme"],

@@ -329,6 +329,18 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: "match live;",
   },
   {
+    label: "match bank",
+    kind: KIND_SNIPPET,
+    detail: "Expect Secure proof against the module DNA bank (RFC-0044).",
+    insertText: "match bank;",
+  },
+  {
+    label: "dna expect",
+    kind: KIND_SNIPPET,
+    detail: "Expected Helix mode promote|shadow|enforce (RFC-0044). Secure owns lifecycle.",
+    insertText: "dna expect ${1|promote,shadow,enforce|};",
+  },
+  {
     label: "device host",
     kind: KIND_SNIPPET,
     detail: "Host device classes. Optional below <px> names the cut. <!-- cwl:device --> stays. CWL does not call matchMedia.",

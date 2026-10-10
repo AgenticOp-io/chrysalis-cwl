@@ -31,7 +31,7 @@
       "patterns": [
         {
           "name": "keyword.control.cwl",
-          "match": "\\b(at|from|without|works|capability|peel|replaces|dna|certificate|fingerprint|bank|match|live|module|import|use|handler|page|load|effects|param|query|body|multipart|stream|header|cookie|status|return|html|ui|client|element|text|on|action|hole|if|else|foreach|repeat|as|none|layout|chrome|head|nav|year|host|link|links|drawer|device|below|toggle|panel|class|style|image|script|integrity|form|field|enctype|method|submit|target|rel|firebase|public|charset|viewport|title|description|canonical|meta|robots|author|theme|og|twitter|keywords|jsonld|icon|apple|preconnect|alternate|crossorigin|prop|proxy|upstream|table|db|engine|select|insert|update|delete|where|into|one|key|int|bool|real)\\b"
+          "match": "\\b(at|from|without|works|capability|peel|replaces|dna|certificate|fingerprint|bank|match|live|expect|promote|shadow|enforce|module|import|use|handler|page|load|effects|param|query|body|multipart|stream|header|cookie|status|return|html|ui|client|element|text|on|action|hole|if|else|foreach|repeat|as|none|layout|chrome|head|nav|year|host|link|links|drawer|device|below|toggle|panel|class|style|image|script|integrity|form|field|enctype|method|submit|target|rel|firebase|public|charset|viewport|title|description|canonical|meta|robots|author|theme|og|twitter|keywords|jsonld|icon|apple|preconnect|alternate|crossorigin|prop|proxy|upstream|table|db|engine|select|insert|update|delete|where|into|one|key|int|bool|real)\\b"
         },
         {
           "name": "keyword.control.cwl",

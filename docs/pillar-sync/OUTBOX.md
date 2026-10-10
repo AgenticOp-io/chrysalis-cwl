@@ -4,6 +4,35 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-09 - tip-1.0.87-dna-proof
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.87** · language land *(this candidate)* · ask `dna-proof`  
+**Ask id:** `tip-1.0.87-dna-proof`  
+**Lane rule:** Convert edits only `chrysalis-convert`. Secure edits only `chrysalis-security`. Neither edits CWL.
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.87**. Consume gold `96` (multi-fingerprint · `match bank` · `dna expect`). Document facts only |
+| Secure | Pin to **1.0.87**. Expand DNA bind consume: `dnaFingerprints[]`, `cwl_match_bank`, `cwl_dna_expect`; keep sha384+ floor. Helix owns promote/shadow/enforce — no invent in CWL |
+
+### CWL landed (this tip)
+
+- RFC-0044 DNA proof deepen · gold `96`
+- Expands Secure tip **1.0.86** bind surface on the genome side
+
+### Prove
+
+```bash
+npm run test:language
+```
+
+---
+
 ## 2026-10-09 - tip-1.0.86-dna-fingerprint-strong
 
 **To:** convert + secure  
