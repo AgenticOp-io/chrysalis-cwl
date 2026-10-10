@@ -1,5 +1,11 @@
 # CWL language changelog
 
+## 1.0.88 hygiene — 2026-10-10
+
+- ASCII `packages/cwl` description (VS Code npm task parse)
+- LSP / VS Code extension version aligned to tip **1.0.88**; pack `cwl-lsp-1.0.88.vsix`
+- Phase 1.x invent queue **CLOSED** in DNA-BUILD-NEXT (replace-any-page = residual-driven standing goal)
+
 ## 1.0.88 - 2026-10-10
 
 - DNA proof units (RFC-0045): named `dna proof` cells with quorum, lineage, supersedes, witness, scope; surfaces `use dna proof`

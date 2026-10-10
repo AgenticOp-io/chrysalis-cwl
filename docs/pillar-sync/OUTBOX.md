@@ -4,6 +4,30 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-10 - invent-queue-closed-1.0.88
+
+**To:** convert + secure (FYI)  
+**Priority:** P2  
+**Status:** **done** (CWL docs) — no new tip pin  
+**CWL tip:** **1.0.88** · invent queue CLOSED · VSIX `cwl-lsp-1.0.88.vsix`  
+**Ask id:** `invent-queue-closed-1.0.88`  
+**Lane rule:** No sibling action required unless a new gene tip opens.
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | **none** — stay on **1.0.88**; execution ceilings unchanged |
+| Secure | **none** — stay on **1.0.88** |
+
+### CWL landed
+
+- Phase 1.x invent queue closed in [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
+- Residual worklist locked (Nest/LiveView/Flutter/onion/raw-SQL/…)
+- Tip hygiene PR #133 on main; pack `cwl-lsp-1.0.88.vsix`
+
+---
+
 ## 2026-10-10 - tip-1.0.88-dna-proof-unit
 
 **To:** convert + secure  

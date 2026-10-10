@@ -39,7 +39,7 @@ npm run pack:cwl-vsix
 # → dist-editors/cwl-lsp-<tip>.vsix
 ```
 
-Install: Extensions → `Install from VSIX…` (or `code --install-extension dist-editors/cwl-lsp-1.0.39.vsix`).
+Install: Extensions → `Install from VSIX…` (or `code --install-extension dist-editors/cwl-lsp-1.0.88.vsix`).
 
 Extension spawns `scripts/cwl-lsp-server.mjs` from the chrysalis-cwl checkout above `editors/vscode`. For a machine without the full pillar, clone this public repo (or set path in extension settings when added).
 
