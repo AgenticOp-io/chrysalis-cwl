@@ -6,11 +6,11 @@
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: no
-DISPATCH: tip 1.0.88 language land · DNA proof units (named proof · quorum · lineage · witness)
-CONVERT_NEXT: open · pin tip 1.0.88 · consume gold 97 (lane: convert only)
-SECURE_NEXT: open · pin tip 1.0.88 · consume dnaProofs / quorum / lineage / witness (lane: secure only)
-CWL_NEXT: tip 1.0.88 candidate · wait Convert/Secure pins
+CWL_FLEET_IDLE: yes
+DISPATCH: tip 1.0.88 closed · Convert + Secure pins done
+CONVERT_NEXT: idle · CONVERT_TIP_1_0_88_OK · PR #100 · ec17a250
+SECURE_NEXT: idle · SECURE_TIP_1_0_88_OK · PR #49 · fd01956
+CWL_NEXT: idle
 SITE_NEXT: idle
 ```
 
@@ -18,28 +18,28 @@ SITE_NEXT: idle
 
 | Surface | Value |
 | --- | --- |
-| **CWL tip** | **`1.0.88`** (candidate) |
-| Packages | **`@agenticop-io/cwl@1.0.88`** (pin after merge/tag) |
-| Tags | `cwl-v1.0.87` · next `cwl-v1.0.88` |
+| **CWL tip** | **`1.0.88`** |
+| Packages | **`@agenticop-io/cwl@1.0.88`** |
+| Tags | `cwl-v1.0.87` · `cwl-v1.0.88` |
 
 ## Latest SHAs
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | candidate | b477fa9 | tip **1.0.88** · RFC-0045 · gold `97` |
-| **Convert** | candidate | ebfb2a46 | tip **1.0.87** · **1.0.88 asked** |
-| **Secure** | candidate | 4da69c8 | tip **1.0.87** · **1.0.88 asked** |
+| **CWL** | candidate → main | b477fa9 | tip **1.0.88** · tag after merge |
+| **Convert** | `candidate/convert-tip-1.0.88` | ec17a250 | **CONVERT_TIP_1_0_88_OK** · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
+| **Secure** | `candidate/secure-tip-1.0.88` | fd01956 | **SECURE_TIP_1_0_88_OK** · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) |
 | **Site** | `main` | ce6a72f | idle |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **P0** | Convert | **Lane only.** Pin to **1.0.88**. Consume gold `97`. No CWL/Secure edits |
-| **P0** | Secure | **Lane only.** Consume `dnaProofs`, quorum, lineage, supersedes, witness, scope. No CWL/Convert edits |
 | **done** | CWL | tip **1.0.88** language land · RFC-0045 · gold `97` |
+| **done** | Convert | Tip pin **1.0.88**, [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
+| **done** | Secure | Tip pin **1.0.88**, [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) |
 | **open** | Operator | EXTFMAP / soak → enforce (human) |
 
 ## Honesty
 
-Named DNA proof units are genome document facts. Helix verifies digests, witnesses, and lifecycle. CWL does not invent hashes, PQ signatures, or NGFW. No Nest/LiveView/Flutter façades.
+Named DNA proof units are genome document facts. Helix verifies. CWL does not invent hashes or PQ signatures. No Nest/LiveView/Flutter façades.

@@ -8,17 +8,24 @@ Pushed asks for siblings. Newest first.
 
 **To:** convert + secure  
 **Priority:** P0  
-**Status:** **open**  
-**CWL tip:** **1.0.88** · language land b477fa9 · ask `dna-proof-unit`  
+**Status:** **done**  
+**CWL tip:** **1.0.88** · language land `b477fa9` · ask `dna-proof-unit`  
 **Ask id:** `tip-1.0.88-dna-proof-unit`  
 **Lane rule:** Convert edits only `chrysalis-convert`. Secure edits only `chrysalis-security`. Neither edits CWL.
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | **done** — `CONVERT_TIP_1_0_88_OK` · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) · `ec17a250` (feature `e68139cf`); gold `97` |
+| Secure | **done** — `SECURE_TIP_1_0_88_OK` / `CUTOVER_TIP_1_0_88_OK` · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) · `fd01956` |
 
 ### Ask
 
 | Who | Action |
 | --- | --- |
-| Convert | Pin to **1.0.88**. Consume gold `97` (`dna proof` / `use dna proof` / quorum / lineage / witness / scope). Document facts only |
-| Secure | Pin to **1.0.88**. Expand bridge consume for `dnaProofs[]`, `dnaQuorum`, `dnaLineage`, `dnaSupersedes`, `dnaWitness`, `dnaScope`. Helix verifies — no CWL crypto invent |
+| Convert | **done** (record): Pin to **1.0.88**. Consume gold `97` |
+| Secure | **done** (record): Consume dnaProofs / quorum / lineage / supersedes / witness / scope |
 
 ### CWL landed (this tip)
 

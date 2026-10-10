@@ -1,18 +1,18 @@
 ﻿# Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.88** language land · Convert/Secure pin asked (lanes)
+**Fleet:** tip **1.0.88** closed · Convert + Secure pins done
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | land | b477fa9 | tip **1.0.88** · RFC-0045 · gold `97` |
-| **Convert** | open | `ebfb2a46` | pin **1.0.88** · gold `97` · convert lane only |
-| **Secure** | open | `4da69c8` | pin **1.0.88** · proof-unit consume · secure lane only |
+| **CWL** | land | `b477fa9` | tip **1.0.88** · RFC-0045 · gold `97` |
+| **Convert** | done | `ec17a250` | `CONVERT_TIP_1_0_88_OK` · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
+| **Secure** | done | `fd01956` | `SECURE_TIP_1_0_88_OK` · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) |
 | **Site** | idle | `ce6a72f` | — |
 
 ```text
 FLEET_MODE: on
-CWL_FLEET_IDLE: no
+CWL_FLEET_IDLE: yes
 ORDER: tip-1.0.88-dna-proof-unit
-NEXT: Convert + Secure pin 1.0.88 · stay in lane
+NEXT: idle
 RULE: named proof cells; Helix verifies; CWL does not invent
 ```

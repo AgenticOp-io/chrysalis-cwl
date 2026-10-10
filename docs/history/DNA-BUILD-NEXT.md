@@ -123,7 +123,7 @@
 | Tip pin **1.0.85** | Convert + Secure — **done** (Convert [PR #97](https://github.com/AgenticOp-io/chrysalis/pull/97); Secure [PR #46](https://github.com/AgenticOp-io/chrysalis-security/pull/46)) |
 | Tip pin **1.0.86** | Convert — **done** ([PR #98](https://github.com/AgenticOp-io/chrysalis/pull/98), `c12a505c`); Secure — **done** ([PR #47](https://github.com/AgenticOp-io/chrysalis-security/pull/47), `270fc1a`) |
 | Tip pin **1.0.87** | Convert — **done** ([PR #99](https://github.com/AgenticOp-io/chrysalis/pull/99), `ebfb2a46`); Secure — **done** ([PR #48](https://github.com/AgenticOp-io/chrysalis-security/pull/48), `4da69c8`) |
-| Tip pin **1.0.88** | Convert + Secure pin · consume gold `97` — **asked** |
+| Tip pin **1.0.88** | Convert — **done** ([PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100), `ec17a250`); Secure — **done** ([PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49), `fd01956`) |
 | Peels golds 40–63 + mail template / CORS methods | Convert — **done** (`fbfd45e7`) |
 | Live-match / cutover vs tip seed | Secure — **done** (`975f734`, tip **1.0.81**) |
 | EXTFMAP / customer soak → enforce | **Operator** — see [`OPERATOR-NEXT-1.0.23.md`](./OPERATOR-NEXT-1.0.23.md) (agents will not invent) |
