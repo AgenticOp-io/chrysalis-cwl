@@ -14,7 +14,7 @@ This repo **owns the genome**. Convert translates into/out of it. Secure may bri
 
 **Tip:** see [`LANGUAGE_VERSION.md`](./LANGUAGE_VERSION.md) (currently **1.0.88**). Phase 1.x deepen continues — RFCs **0001–0045**, language golds `01`–`97`.
 
-**Start here:** [`docs/language/CWL-HOWTO.md`](./docs/language/CWL-HOWTO.md) · [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md) · [`docs/language/ROSETTA-UT-PATH.md`](./docs/language/ROSETTA-UT-PATH.md) · [`docs/language/CWL-LANGUAGE-SCOPE.md`](./docs/language/CWL-LANGUAGE-SCOPE.md)
+**Start here:** [`docs/language/DOC-MAP.md`](./docs/language/DOC-MAP.md) · [`docs/language/CWL-HOWTO.md`](./docs/language/CWL-HOWTO.md) · [`docs/language/CWL-PILLAR-HOME.md`](./docs/language/CWL-PILLAR-HOME.md) · [`docs/language/ROSETTA-UT-PATH.md`](./docs/language/ROSETTA-UT-PATH.md) · [`docs/language/CWL-LANGUAGE-SCOPE.md`](./docs/language/CWL-LANGUAGE-SCOPE.md)
 
 ## Direction
 
@@ -37,12 +37,14 @@ CWL is a web language. It is not a universal programming language and not “PHP
 | `docs/language/CWL-PUBLISH.md` | GitHub Packages `@agenticop-io/cwl` + sibling pins |
 | `docs/language/CWL-CLI.md` | Authoring CLI |
 | `docs/language/CWL.md` | Language reference |
-| `docs/language/CWL-RFC.md` | RFC index (**0001–0033**) |
+| `docs/language/DOC-MAP.md` | Documentation map + honest doc holes |
+| `docs/language/CWL-RFC.md` | RFC index (**0001–0045**) |
 | `docs/language/CWL-SURFACE-TAXONOMY.md` | Named surfaces |
+| `docs/language/CWL-SITE-COMPLETE.md` | Complete marketing site + **CWL Certified** |
 | `docs/history/DNA-BUILD-NEXT.md` | Phase 1.x deepen queue |
 | `docs/history/ROADMAP.md` | Pillar roadmap |
 | `docs/pillar-sync/` | Sibling BOARD / OUTBOX (Convert · Secure) |
-| `fixtures/language-gold/` | Golden `.cwl` fixtures (`01`–`76`) |
+| `fixtures/language-gold/` | Golden `.cwl` fixtures (`01`–`97`) |
 | `fixtures/sites/agenticop-io/` | Public site genome (`npm run smoke:agenticop-site`) |
 | `packages/cwl` | Language package surface |
 | `packages/runtime-cwl*` | Runtimes |

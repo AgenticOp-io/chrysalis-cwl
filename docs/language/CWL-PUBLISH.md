@@ -1,7 +1,7 @@
 # CWL publish & consumer pin path
 
-**Status:** Exit **1.0** lineage — language tip **`1.0.39`** ([`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md)). GitHub Packages publishes `@agenticop-io/cwl` at tagged `cwl-v*` releases (registry tip may lag deepen; prefer tip pin or `file:` until Packages catches up).  
-See [`EXIT-1.0.md`](../history/EXIT-1.0.md) · how-to [`CWL-HOWTO.md`](./CWL-HOWTO.md) · queue [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md).
+**Status:** Exit **1.0** lineage — language tip **`1.0.88`** ([`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md)). GitHub Packages publishes `@agenticop-io/cwl` at tagged `cwl-v*` releases (tip tag `cwl-v1.0.88` ≡ Packages **1.0.88**). Siblings may still use `file:` during cutover.  
+See [`EXIT-1.0.md`](../history/EXIT-1.0.md) · how-to [`CWL-HOWTO.md`](./CWL-HOWTO.md) · doc map [`DOC-MAP.md`](./DOC-MAP.md) · queue [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md).
 
 Canonical version: [`LANGUAGE_VERSION.md`](../../LANGUAGE_VERSION.md)  
 Local package: [`packages/cwl/package.json`](../../packages/cwl/package.json) (`@chrysalis/cwl`)  
@@ -28,7 +28,7 @@ Published package: **`@agenticop-io/cwl`** (org scope)
 ```
 
 ```bash
-npm install @agenticop-io/cwl@1.0.39
+npm install @agenticop-io/cwl@1.0.88
 ```
 
 Ecology / VSIX: [`CWL-ECOLOGY.md`](./CWL-ECOLOGY.md) · end-to-end how-to: [`CWL-HOWTO.md`](./CWL-HOWTO.md).

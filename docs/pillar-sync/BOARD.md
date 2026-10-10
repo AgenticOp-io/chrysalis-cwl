@@ -7,11 +7,11 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: yes
-DISPATCH: tip 1.0.88 closed · invent queue CLOSED · Convert + Secure pins on main
-CONVERT_NEXT: idle · CONVERT_TIP_1_0_88_OK · PR #100 merged · e7a34073
-SECURE_NEXT: idle · SECURE_TIP_1_0_88_OK · PR #49 merged · 281a4fb
-CWL_NEXT: idle · invent CLOSED · residual-driven standing goal only
-SITE_NEXT: idle
+DISPATCH: tip 1.0.88 closed · invent CLOSED · three-pillar DOC-MAP on git
+CONVERT_NEXT: idle · DOC_MAP_OK · tip 13d0c903 · pin 1.0.88
+SECURE_NEXT: idle · DOC_MAP_OK · tip 97776e1 · pin 1.0.88
+CWL_NEXT: idle · DOC-MAP + tip-stale docs closed
+SITE_NEXT: open · tip messaging + Firebase (see DOC-HOLES)
 ```
 
 ## Tips / pins

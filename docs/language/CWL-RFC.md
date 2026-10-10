@@ -37,6 +37,11 @@ CWL evolves by **RFC**: each proposal must cite cross-language evidence (path kn
 | [0031](CWL-RFC-0031-html-repeat.md) | Repeated markup `repeat … as … html` (+ item fields) | accepted |
 | [0032](CWL-RFC-0032-credential-effects.md) | Credential / session effects (`auth.verify`, `session.mint`, `session.revoke`) | accepted |
 | [0033](CWL-RFC-0033-proxy-upstream.md) | Declared upstream forwards (`proxy upstream "…"`) | accepted |
+| [0034](CWL-RFC-0034-cookie-purpose.md) | Cookie purpose (`session` / `csrf` / `preference`; tracking refused) | accepted |
+| [0035](CWL-RFC-0035-stream-websocket.md) | WebSocket duplex (`stream websocket;`) | accepted |
+| [0036](CWL-RFC-0036-job-enqueue.md) | Job enqueue effect (`job.enqueue`) | accepted |
+| [0037](CWL-RFC-0037-ui-event-contracts.md) | Broader UI event contracts | accepted |
+| [0038](CWL-RFC-0038-framework-residuals.md) | Framework residuals (Nest / LiveView / Flutter / onion / raw-SQL) | accepted |
 | [0039](CWL-RFC-0039-dna-identity.md) | DNA identity (`replaces` / `from peel` / `capability` / `works without client`) | accepted |
 | [0040](CWL-RFC-0040-asset-integrity.md) | Progressive asset integrity (`script` / `style` + SRI / module / crossorigin) | accepted |
 | [0041](CWL-RFC-0041-page-form-multipart.md) | Page form `enctype multipart` + `field … "file"` | accepted |

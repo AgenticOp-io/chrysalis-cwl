@@ -4,6 +4,25 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-10 - three-pillar-doc-map
+
+**To:** convert + secure + site (FYI)  
+**Priority:** P1  
+**Status:** **done** (maps on git)  
+**CWL tip:** **1.0.88** · no tip bump  
+**Ask id:** `three-pillar-doc-map`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | **done** — `docs/DOC-MAP.md` + `DOC-HOLES.md` on main (`5be0940a` / tip `13d0c903`) |
+| Secure | **done** — `docs/DOC-MAP.md` + `DOC-HOLES.md` on main (`b14c2a4` / tip `97776e1`) |
+| CWL | **done** — `docs/language/DOC-MAP.md` + `DOC-HOLES.md`; tip-stale HOWTO/PUBLISH/ECOLOGY → **1.0.88**; RFC index 0034–0038 |
+| Site | FYI — live tip messaging refresh still open (see CWL `DOC-HOLES.md`) |
+
+---
+
 ## 2026-10-10 - invent-queue-closed-1.0.88
 
 **To:** convert + secure (FYI)  

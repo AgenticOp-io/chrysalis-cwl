@@ -1,18 +1,18 @@
 ﻿# Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.88** closed · Convert + Secure tip PRs on main
+**Fleet:** tip **1.0.88** · three-pillar documentation maps on git
 
-| Pillar | Status | SHA | Note |
-| --- | --- | --- | --- |
-| **CWL** | done | `d24fbbd` | tip **1.0.88** · tag `cwl-v1.0.88` |
-| **Convert** | done | `e7a34073` | `CONVERT_TIP_1_0_88_OK` · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) merged |
-| **Secure** | done | `281a4fb` | `SECURE_TIP_1_0_88_OK` · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) merged |
-| **Site** | idle | `ce6a72f` | — |
+| Pillar | Status | SHA / note |
+| --- | --- | --- |
+| **CWL** | done | DOC-MAP + tip **1.0.88** publish/howto (candidate) |
+| **Convert** | done | `13d0c903` · [DOC-MAP](https://github.com/AgenticOp-io/chrysalis/blob/main/docs/DOC-MAP.md) |
+| **Secure** | done | `97776e1` · [DOC-MAP](https://github.com/AgenticOp-io/chrysalis-security/blob/main/docs/DOC-MAP.md) |
+| **Site** | open | tip messaging + Firebase redeploy |
 
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: yes
-ORDER: tip-1.0.88-dna-proof-unit
-NEXT: idle
-RULE: named proof cells; Helix verifies; CWL does not invent
+ORDER: three-pillar-doc-map
+NEXT: site tip copy / Firebase (ops)
+RULE: maps + holes files; no tip invent; Convert/Secure DOC-HOLES remain honest
 ```
