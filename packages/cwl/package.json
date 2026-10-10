@@ -2,7 +2,7 @@
   "name": "@chrysalis/cwl",
   "version": "1.0.88",
   "private": false,
-  "description": "Chrysalis Web Language — DNA of web languages. A language that can replace any web page.",
+  "description": "Chrysalis Web Language - DNA of web languages. A language that can replace any web page.",
   "license": "Apache-2.0",
   "type": "module",
   "engines": {
