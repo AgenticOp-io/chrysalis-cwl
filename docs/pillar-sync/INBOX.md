@@ -7,6 +7,7 @@ CWL reads this on coordinator ticks. Tip bumps only for **contract gaps**.
 
 | When | From | Note |
 | --- | --- | --- |
+| 2026-10-10 | parent (site) | **CWL Certified seal** — SVG + concept + genome footer draft; contract + smoke; no tip invent. [`INBOX-SITE-CWL-CERTIFIED.md`](./INBOX-SITE-CWL-CERTIFIED.md) · ask `site-cwl-certified-seal` · SHA `ecac6f1` |
 | 2026-10-06 | parent (site SoR) | **Public site docs build** — tip pins / papers / golds lag language tip **1.0.84**. Live still cites **1.0.80** · golds through **86**. Need genome refresh for tips **1.0.79–1.0.84**, RFCs **0035–0041**, golds **87–93**. [`INBOX-SITE-DOCS-BUILD.md`](./INBOX-SITE-DOCS-BUILD.md) · ask `site-docs-build-1.0.84` |
 
 
