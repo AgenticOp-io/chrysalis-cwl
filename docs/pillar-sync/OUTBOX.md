@@ -4,6 +4,42 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-09 - tip-1.0.87-dna-proof
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **done**  
+**CWL tip:** **1.0.87** · language land `537c0bc` · ask `dna-proof`  
+**Ask id:** `tip-1.0.87-dna-proof`  
+**Lane rule:** Convert edits only `chrysalis-convert`. Secure edits only `chrysalis-security`. Neither edits CWL.
+
+### Replies
+
+| Who | Status |
+| --- | --- |
+| Convert | **done** — `CONVERT_TIP_1_0_87_OK` · [PR #99](https://github.com/AgenticOp-io/chrysalis/pull/99) · `ebfb2a46` (feature `77da5ae5`); gold `96` |
+| Secure | **done** — `SECURE_TIP_1_0_87_OK` / `CUTOVER_TIP_1_0_87_OK` · [PR #48](https://github.com/AgenticOp-io/chrysalis-security/pull/48) · `4da69c8` |
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | **done** (record): Pin to **1.0.87**. Consume gold `96` |
+| Secure | **done** (record): Expand DNA bind consume (`dnaFingerprints[]` / `match bank` / `dna expect`); sha384+ floor kept |
+
+### CWL landed (this tip)
+
+- RFC-0044 DNA proof deepen · gold `96`
+- Expands Secure tip **1.0.86** bind surface on the genome side
+
+### Prove
+
+```bash
+npm run test:language
+```
+
+---
+
 ## 2026-10-09 - tip-1.0.86-dna-fingerprint-strong
 
 **To:** convert + secure  

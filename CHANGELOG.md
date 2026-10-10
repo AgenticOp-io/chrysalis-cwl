@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.87 - 2026-10-09
+
+- DNA proof deepen (RFC-0044): repeatable `dna fingerprint`, `match bank`, `dna expect promote|shadow|enforce`
+- Gold `96-dna-proof`. Coherence holes for unbound match / bankless match bank. Helix lifecycle stays Secure
+
 ## 1.0.86 - 2026-10-09
 
 - DNA fingerprint strength (RFC-0043): `dna fingerprint` requires `sha384` / `sha512`; `sha256` → `cwl:dna-fingerprint-too-weak`
