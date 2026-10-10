@@ -19,7 +19,7 @@
 
 | Item | Meaning |
 | --- | --- |
-| Replace any web page | Open goal — new genes only with RFC + gold when a real page gap appears |
+| Replace any web page | Open goal — new genes only with RFC + gold when a real page gap appears · **verdict 2026-10-10: none open** (invent parked) |
 | Named residuals | Nest / LiveView / Flutter / onion / raw-SQL / etc. stay holes until honest peels |
 | Convert execution | `g_*` / N-iter HTML / island **execution** — Convert |
 | Operator EXTFMAP / soak | Not language invent |

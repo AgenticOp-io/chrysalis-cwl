@@ -24,6 +24,18 @@
 
 Do **not** reopen invent for volume. Reopen only for an honest page gap.
 
+## Page-gap verdict (2026-10-10)
+
+**No open page gene at tip `1.0.88`.** Agenticop site genome + head/layout/asset/form/DNA surfaces already cover pages that can be written honestly. Raw `return html` already carries ordinary markup (`picture` / `srcset` / `details` / etc.) without a new statement.
+
+| Would reopen invent | Would **not** (stays residual / sibling) |
+| --- | --- |
+| A real page that **cannot** be written in CWL without a new statement (RFC + gold) | Nest / LiveView / Flutter / onion façades |
+| Convert peel that needs a **new hole reason** in the catalog | Opaque `g_*` / N-iter HTML / island **execution** (Convert + oracle) |
+| | EXTFMAP / customer soak (operator) |
+
+Park CWL invent until one of the reopen rows is true.
+
 ## Residual worklist (not invent)
 
 These stay **named holes** until a real peel or host executor can fill them. Closing by forging runtimes is forbidden (**D6442** / **D6447**).
@@ -48,7 +60,7 @@ These stay **named holes** until a real peel or host executor can fill them. Clo
 | Item | Owner | Status |
 | --- | --- | --- |
 | Tip pin **1.0.88** | Convert + Secure | **Done** |
-| Opaque `g_*` / foreach N-iter HTML / island **execution** | Convert | Convert queue |
+| Opaque `g_*` / foreach N-iter HTML / island **execution** | Convert | **Named residual** `22f1d023` · `CONVERT_EXEC_CEILINGS_HONEST` · oracle fill open |
 | Live-match / cutover vs tip seed | Secure | Done at tip pin lineage |
 | Site deploy of CWL genomes | Site lane | Done for agenticop tip path |
 
