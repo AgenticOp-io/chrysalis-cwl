@@ -10,6 +10,7 @@ layout site {
   style "/agenticops.css";
   style "/fonts.css";
   image logo "/logo.svg";
+  image certified "/cwl-certified.svg";
   host firebase "agenticops" public "." error "/404.html";
   links primary;
   link home "/" "Home";
@@ -131,7 +132,17 @@ layout site {
         </div>
       </div>
       <div class="ao-footer-bottom">
-        <p class="ao-footer-fine">© <!-- cwl:year --> AgenticOps. CWL tip 1.0.80 is public — Convert and Secure consume it; traffic decides what ships.</p>
+        <div class="ao-footer-cert-row">
+          <a class="ao-cwl-certified" href="/chrysalis.html" aria-label="CWL Certified Genome — tip verified via emit:site">
+            <img class="ao-cwl-certified-mark" src="<!-- cwl:image certified -->" alt="" width="72" height="72" loading="lazy" decoding="async" />
+            <span class="ao-cwl-certified-meta">
+              <span class="ao-cwl-certified-kicker">Language of record</span>
+              <span class="ao-cwl-certified-title">CWL Certified</span>
+              <span class="ao-cwl-certified-sub">Genome · emit:site · tip verified</span>
+            </span>
+          </a>
+          <p class="ao-footer-fine">© <!-- cwl:year --> AgenticOps. CWL tip 1.0.84 is public — Convert and Secure consume it; traffic decides what ships.</p>
+        </div>
       </div>
     </div>
   </footer>

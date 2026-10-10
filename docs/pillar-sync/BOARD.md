@@ -7,11 +7,11 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: yes
-DISPATCH: tip 1.0.88 closed · invent CLOSED · Convert EXEC honesty landed · operator EXTFMAP/soak open
+DISPATCH: tip 1.0.88 closed · invent CLOSED · Convert EXEC honesty landed · operator EXTFMAP/soak open · site CWL Certified seal inbox open
 CONVERT_NEXT: idle (ledger) · CONVERT_EXEC_CEILINGS_HONEST · 22f1d023 · oracle fill open · pin 1.0.88
 SECURE_NEXT: idle · SECURE_TIP_1_0_88_OK · PR #49 merged · 281a4fb · soak = operator
-CWL_NEXT: parked · invent CLOSED · page-gap verdict: none · residual-driven only
-SITE_NEXT: idle
+CWL_NEXT: open · integrate site CWL Certified seal (no tip invent unless page gap) · INBOX-SITE-CWL-CERTIFIED
+SITE_NEXT: blocked · Firebase reauth · redeploy after CWL seal reply
 ```
 
 ## Tips / pins
@@ -42,6 +42,8 @@ SITE_NEXT: idle
 | **parked** | CWL | Invent CLOSED · page-gap verdict **none** (no forge tip) |
 | **done** | Convert | Named-residual exec ceilings · `22f1d023` · oracle fill still open |
 | **open** | Operator | EXTFMAP / soak → enforce — [`OPERATOR-NEXT-1.0.23.md`](../history/OPERATOR-NEXT-1.0.23.md) |
+| **open** | CWL | Site CWL Certified seal — [`INBOX-SITE-CWL-CERTIFIED.md`](./INBOX-SITE-CWL-CERTIFIED.md) (SVG + contract + smoke; no tip invent) |
+| **blocked** | Site | Live deploy after Firebase reauth + CWL seal reply |
 
 ## Honesty
 
