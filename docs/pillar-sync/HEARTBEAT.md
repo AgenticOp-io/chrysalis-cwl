@@ -1,12 +1,12 @@
 ﻿# Fleet HEARTBEAT
 
-**Fleet:** tip **1.0.88** closed · Convert + Secure pins done
+**Fleet:** tip **1.0.88** closed · Convert + Secure tip PRs on main
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | done | `f2cb275` | tip **1.0.88** · tag `cwl-v1.0.88` |
-| **Convert** | done | `ec17a250` | `CONVERT_TIP_1_0_88_OK` · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
-| **Secure** | done | `fd01956` | `SECURE_TIP_1_0_88_OK` · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) |
+| **CWL** | done | `d24fbbd` | tip **1.0.88** · tag `cwl-v1.0.88` |
+| **Convert** | done | `e7a34073` | `CONVERT_TIP_1_0_88_OK` · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) merged |
+| **Secure** | done | `281a4fb` | `SECURE_TIP_1_0_88_OK` · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) merged |
 | **Site** | idle | `ce6a72f` | — |
 
 ```text

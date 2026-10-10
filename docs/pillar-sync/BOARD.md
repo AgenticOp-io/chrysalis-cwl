@@ -7,9 +7,9 @@
 ```text
 FLEET_MODE: on
 CWL_FLEET_IDLE: yes
-DISPATCH: tip 1.0.88 closed · Convert + Secure pins done
-CONVERT_NEXT: idle · CONVERT_TIP_1_0_88_OK · PR #100 · ec17a250
-SECURE_NEXT: idle · SECURE_TIP_1_0_88_OK · PR #49 · fd01956
+DISPATCH: tip 1.0.88 closed · Convert + Secure tip PRs merged to main
+CONVERT_NEXT: idle · CONVERT_TIP_1_0_88_OK · PR #100 merged · e7a34073
+SECURE_NEXT: idle · SECURE_TIP_1_0_88_OK · PR #49 merged · 281a4fb
 CWL_NEXT: idle
 SITE_NEXT: idle
 ```
@@ -26,18 +26,18 @@ SITE_NEXT: idle
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | `main` | f2cb275 | tip **1.0.88** · tag `cwl-v1.0.88` |
-| **Convert** | `candidate/convert-tip-1.0.88` | ec17a250 | **CONVERT_TIP_1_0_88_OK** · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
-| **Secure** | `candidate/secure-tip-1.0.88` | fd01956 | **SECURE_TIP_1_0_88_OK** · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) |
+| **CWL** | `main` | d24fbbd | tip **1.0.88** · tag `cwl-v1.0.88` |
+| **Convert** | `main` | e7a34073 | **CONVERT_TIP_1_0_88_OK** · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) merged · sibling `cwl-v1.0.88` |
+| **Secure** | `main` | 281a4fb | **SECURE_TIP_1_0_88_OK** · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) merged |
 | **Site** | `main` | ce6a72f | idle |
 
 ## Who builds next
 
 | Priority | Owner | Work |
 | --- | --- | --- |
-| **done** | CWL | tip **1.0.88** merge `f2cb275` · tag `cwl-v1.0.88` |
-| **done** | Convert | Tip pin **1.0.88**, [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
-| **done** | Secure | Tip pin **1.0.88**, [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) |
+| **done** | CWL | tip **1.0.88** on main · tag `cwl-v1.0.88` |
+| **done** | Convert | Tip pin **1.0.88** on main · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
+| **done** | Secure | Tip pin **1.0.88** on main · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) |
 | **open** | Operator | EXTFMAP / soak → enforce (human) |
 
 ## Honesty

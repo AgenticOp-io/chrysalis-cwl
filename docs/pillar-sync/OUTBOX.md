@@ -17,8 +17,8 @@ Pushed asks for siblings. Newest first.
 
 | Who | Status |
 | --- | --- |
-| Convert | **done** — `CONVERT_TIP_1_0_88_OK` · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) · `ec17a250` (feature `e68139cf`); gold `97` |
-| Secure | **done** — `SECURE_TIP_1_0_88_OK` / `CUTOVER_TIP_1_0_88_OK` · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) · `fd01956` |
+| Convert | **done** — `CONVERT_TIP_1_0_88_OK` · [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) **merged** · main `e7a34073` · sibling `cwl-v1.0.88`; gold `97` |
+| Secure | **done** — `SECURE_TIP_1_0_88_OK` / `CUTOVER_TIP_1_0_88_OK` · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) **merged** · main `281a4fb` |
 
 ### Ask
 
