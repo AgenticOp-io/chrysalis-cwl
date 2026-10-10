@@ -28,7 +28,7 @@ SITE_NEXT: idle
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
 | **CWL** | `main` | 34298b5 | tip **1.0.88** · invent CLOSED · PR #133/#134 |
-| **Convert** | `candidate/convert-exec-ceilings-honesty` | 22f1d023 | **CONVERT_EXEC_CEILINGS_HONEST** · tip pin main e7a34073 / [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
+| **Convert** | `candidate/convert-exec-ceilings-honesty` | 22f1d023 | **CONVERT_EXEC_CEILINGS_HONEST** · [PR #102](https://github.com/AgenticOp-io/chrysalis/pull/102) · tip pin main e7a34073 / [PR #100](https://github.com/AgenticOp-io/chrysalis/pull/100) |
 | **Secure** | `main` | 281a4fb | **SECURE_TIP_1_0_88_OK** · [PR #49](https://github.com/AgenticOp-io/chrysalis-security/pull/49) merged |
 | **Site** | `main` | ce6a72f | idle |
 
