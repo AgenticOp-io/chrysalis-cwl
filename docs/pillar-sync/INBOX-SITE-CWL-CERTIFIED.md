@@ -5,8 +5,8 @@
 **To:** cwl  
 **From:** parent / site lane (agenticop.io · `brand/agenticops-web`)  
 **Priority:** P1  
-**Status:** **open**  
-**CWL tip observed:** **1.0.88** (live site copy still says tip **1.0.84**)  
+**Status:** **done** (CWL genome + page + smoke; live Firebase still site/parent)  
+**CWL tip observed:** **1.0.88**  
 **Ask id:** `site-cwl-certified-seal`  
 **Lane:** land language + site-genome work in `engines/chrysalis-cwl`. Site redeploy of live Firebase stays parent/site after CWL replies.
 
@@ -46,12 +46,16 @@ Site lane already ran `emit:site` into `brand/agenticops-web` (badge on content 
 
 ### Acceptance
 
-- [ ] Seal SVG remains CWL site-genome SoR (path above or successor documented)
-- [ ] Contract doc: what “CWL Certified” on a page means / does not mean (not Helix enforce, not invent hashes)
-- [ ] Genome footer (or layout surface) keeps the mark on every site-layout page after emit
-- [ ] Smoke proves asset + markup
-- [ ] Reply here or OUTBOX; Convert/Secure **no pin required** unless a tip bumps
-- [ ] Live Firebase deploy remains site/parent (do not deploy agenticops from CWL lane)
+- [x] Seal SVG remains CWL site-genome SoR (`fixtures/sites/agenticop-io/assets/cwl-certified.svg`)
+- [x] Contract doc: [`docs/language/CWL-SITE-COMPLETE.md`](../language/CWL-SITE-COMPLETE.md) — CWL Certified section
+- [x] Genome footer mark on every `layout site` page; public page `/cwl-certified.html` (“Get CWL Certified”)
+- [x] Smoke: `smoke:agenticop-site` + `smoke:cwl-site-complete` assert seal asset + footer + page
+- [x] Reply below; Convert/Secure **no pin required** (no tip bump)
+- [x] Live Firebase deploy remains site/parent (do not deploy agenticops from CWL lane)
+
+### Reply (CWL · 2026-10-10)
+
+Landed on candidate without tip invent: page `certified` @ `/cwl-certified.html`, nav links, footer seal → certified page, tip footer **1.0.88**, CSS hero, contract + smokes (27 pages). Site lane: `emit:site` then Firebase when reauthed.
 
 ### Do not
 

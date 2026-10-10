@@ -4,6 +4,36 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-10 - site-cwl-certified-seal
+
+**To:** site / parent  
+**Priority:** P1  
+**Status:** **done** (CWL) · **open** (live redeploy)  
+**CWL tip:** **1.0.88** · no tip bump · invent stays CLOSED  
+**Ask id:** `site-cwl-certified-seal`
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Site | `npm run emit:site` from `fixtures/sites/agenticop-io/site.cwl` (or CWL out dir) → Firebase `hosting:agenticops` when reauthed |
+| Convert / Secure | **none** — no pin |
+
+### CWL landed
+
+- Page `/cwl-certified.html` · nav **Certified** · footer seal → certified page
+- Seal SoR `assets/cwl-certified.svg` · contract in `CWL-SITE-COMPLETE.md`
+- Smokes: 27 pages · `ao-cwl-certified` · seal asset ships
+
+### Prove
+
+```bash
+npm run smoke:agenticop-site
+npm run smoke:cwl-site-complete
+```
+
+---
+
 ## 2026-10-10 - fleet-all-of-that-dispatch
 
 **To:** convert + operator (secure FYI)  

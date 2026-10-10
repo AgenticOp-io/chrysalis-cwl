@@ -19,16 +19,29 @@ Request-time `npm run live` is still a valid CWL host for dynamic modules; it is
 
 | Surface | Complete form |
 | --- | --- |
-| Pages | 26 `@page` routes |
+| Pages | 27 `@page` routes (includes `/cwl-certified.html`) |
 | Year | `year 2026;` literal fills `<!-- cwl:year -->` at compose (not `year host;`) |
 | Menu | Checkbox + label in chrome HTML; open state via owned CSS `:has(.ao-nav-open:checked)` |
 | Device cut | Owned CSS `@media (max-width: 820px)` — no `device host` / `matchMedia` script |
-| Styles / fonts / logo | `style` / `image` URLs |
+| Styles / fonts / logo / seal | `style` / `image` URLs (`image certified "/cwl-certified.svg"`) |
 | Firebase name | `host firebase` record only |
+
+## CWL Certified (genome-form mark)
+
+**CWL Certified** on agenticop.io is a **claim of genome form**, not Helix traffic proof and not a crypto signature.
+
+| Means | Does not mean |
+| --- | --- |
+| Pages authored in the site genome (`site.cwl`) | Helix DNA-firewall enforce / live traffic match |
+| Freeze via certified `emit:site` | Post-quantum or hash “certificate” in the badge |
+| Honest tip string (language tip of record) | Permission to invent genes Convert cannot translate |
+| Required asset companions present (CSS, fonts, logo, seal SVG) | Brand-only HTML as a second page source |
+
+**Artifacts:** seal SVG SoR `fixtures/sites/agenticop-io/assets/cwl-certified.svg` · public page `/cwl-certified.html` · footer mark `ao-cwl-certified` on every `layout site` page.
 
 ## Required asset companions
 
-Bytes under **`fixtures/sites/agenticop-io/assets/`** must ship with the freeze (`agenticops.css`, `fonts.css`, `fonts/*.woff2`, logo, explainers). Smokes prove copy. CWL does not parse CSS or invent pixels.
+Bytes under **`fixtures/sites/agenticop-io/assets/`** must ship with the freeze (`agenticops.css`, `fonts.css`, `fonts/*.woff2`, logo, explainers, **`cwl-certified.svg`**). Smokes prove copy. CWL does not parse CSS or invent pixels.
 
 ## Forever outside language
 

@@ -27,6 +27,7 @@ function check(id, ok) {
 const contract = readFileSync(CONTRACT, "utf8");
 check("contract-doc", contract.includes("Complete CWL site") && contract.includes("emit:site"));
 check("contract-no-host-js", contract.includes("No host-injected drawer") && contract.includes("year literal"));
+check("contract-certified", contract.includes("CWL Certified") && contract.includes("cwl-certified.svg"));
 check("default-assets", defaultCwlSiteAssetsDir(SITE) === ASSETS);
 
 const siteSrc = readFileSync(SITE, "utf8");
@@ -36,7 +37,7 @@ check("genome-no-device-host", !siteSrc.includes("device host"));
 check("genome-no-drawer-stmt", !siteSrc.includes("drawer ao-site-nav"));
 check("genome-checkbox", siteSrc.includes('id="ao-nav-open"'));
 
-for (const name of ["agenticops.css", "fonts.css", "logo.svg", "cwl-explainer.png"]) {
+for (const name of ["agenticops.css", "fonts.css", "logo.svg", "cwl-explainer.png", "cwl-certified.svg"]) {
   check(`asset-${name}`, existsSync(join(ASSETS, name)));
 }
 check("asset-woff2", readdirSync(join(ASSETS, "fonts")).filter((n) => n.endsWith(".woff2")).length >= 8);
@@ -68,7 +69,7 @@ try {
 const siteOut = mkdtempSync(join(tmpdir(), "cwl-site-complete-emit-"));
 try {
   const report = await emitCwlSite({ file: SITE, outDir: siteOut });
-  check("site-pages", report.pages === 26);
+  check("site-pages", report.pages === 27);
   check("site-missing-none", (report.missingAssets ?? []).length === 0);
   const siteHome = readFileSync(join(siteOut, "index.html"), "utf8");
   check("site-year", siteHome.includes("© 2026") && !siteHome.includes("<!-- cwl:year -->"));
@@ -80,6 +81,11 @@ try {
   check("site-no-hole-slogan", !/honest\s+holes/i.test(siteHome));
   check("site-fonts", existsSync(join(siteOut, "fonts.css")));
   check("site-css", existsSync(join(siteOut, "agenticops.css")));
+  check("site-certified-svg", existsSync(join(siteOut, "cwl-certified.svg")));
+  check("site-certified-footer", siteHome.includes('class="ao-cwl-certified"') && siteHome.includes("/cwl-certified.html"));
+  check("site-certified-page", existsSync(join(siteOut, "cwl-certified.html")));
+  const certifiedPage = readFileSync(join(siteOut, "cwl-certified.html"), "utf8");
+  check("site-certified-body", certifiedPage.includes("Get CWL Certified") && certifiedPage.includes('src="/cwl-certified.svg"'));
   check("forbid-live-deploy", (() => {
     try {
       assertCwlDemoHostingSite("agenticops");
