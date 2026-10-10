@@ -4,7 +4,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | land | *(candidate)* | tip **1.0.88** · RFC-0045 · gold `97` |
+| **CWL** | land | b477fa9 | tip **1.0.88** · RFC-0045 · gold `97` |
 | **Convert** | open | `ebfb2a46` | pin **1.0.88** · gold `97` · convert lane only |
 | **Secure** | open | `4da69c8` | pin **1.0.88** · proof-unit consume · secure lane only |
 | **Site** | idle | `ce6a72f` | — |

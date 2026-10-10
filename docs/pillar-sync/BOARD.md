@@ -26,7 +26,7 @@ SITE_NEXT: idle
 
 | Pillar | Branch | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | candidate | *(land)* | tip **1.0.88** · RFC-0045 · gold `97` |
+| **CWL** | candidate | b477fa9 | tip **1.0.88** · RFC-0045 · gold `97` |
 | **Convert** | candidate | ebfb2a46 | tip **1.0.87** · **1.0.88 asked** |
 | **Secure** | candidate | 4da69c8 | tip **1.0.87** · **1.0.88 asked** |
 | **Site** | `main` | ce6a72f | idle |
