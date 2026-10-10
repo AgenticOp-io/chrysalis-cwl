@@ -4,7 +4,7 @@
 
 | Pillar | Status | SHA | Note |
 | --- | --- | --- | --- |
-| **CWL** | land | *(candidate)* | tip **1.0.87** · RFC-0044 · gold `96` |
+| **CWL** | land | 537c0bc | tip **1.0.87** · RFC-0044 · gold `96` |
 | **Convert** | open | `c12a505c` | pin **1.0.87** · gold `96` · convert lane only |
 | **Secure** | open | `270fc1a` | pin **1.0.87** · expand DNA bind consume · secure lane only |
 | **Site** | idle | `ce6a72f` | — |

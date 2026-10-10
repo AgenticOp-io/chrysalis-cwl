@@ -9,7 +9,7 @@ Pushed asks for siblings. Newest first.
 **To:** convert + secure  
 **Priority:** P0  
 **Status:** **open**  
-**CWL tip:** **1.0.87** · language land *(this candidate)* · ask `dna-proof`  
+**CWL tip:** **1.0.87** · language land 537c0bc · ask `dna-proof`  
 **Ask id:** `tip-1.0.87-dna-proof`  
 **Lane rule:** Convert edits only `chrysalis-convert`. Secure edits only `chrysalis-security`. Neither edits CWL.
 
