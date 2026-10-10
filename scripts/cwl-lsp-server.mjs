@@ -341,6 +341,43 @@ export const CWL_COMPLETION_CATALOG = Object.freeze([
     insertText: "dna expect ${1|promote,shadow,enforce|};",
   },
   {
+    label: "dna proof",
+    kind: KIND_SNIPPET,
+    detail: "Named DNA proof unit (RFC-0045). Surfaces use dna proof <name>.",
+    insertText:
+      'dna proof ${1:name} {\n  certificate "${2:app.dna.json}";\n  fingerprint "${3:sha384-…}";\n  fingerprint "${4:sha512-…}";\n  quorum ${5:2};\n  bank "${6:dna/}";\n  match live;\n  match bank;\n  expect ${7|promote,shadow,enforce|};\n  lineage "${8:dna/prev.dna.json}";\n  witness "${9:https://attest.example/v1}";\n  scope ${10|path,host,method,surface|};\n}',
+  },
+  {
+    label: "use dna proof",
+    kind: KIND_SNIPPET,
+    detail: "Bind this surface to a named DNA proof unit (RFC-0045).",
+    insertText: "use dna proof ${1:name};",
+  },
+  {
+    label: "dna quorum",
+    kind: KIND_SNIPPET,
+    detail: "Require N strong DNA fingerprints (RFC-0045).",
+    insertText: "dna quorum ${1:2};",
+  },
+  {
+    label: "dna lineage",
+    kind: KIND_SNIPPET,
+    detail: "Prior DNA certificate in the succession (RFC-0045).",
+    insertText: 'dna lineage "${1:dna/prev.dna.json}";',
+  },
+  {
+    label: "dna witness",
+    kind: KIND_SNIPPET,
+    detail: "External attestation URL (RFC-0045). Host/Secure fetch — CWL does not.",
+    insertText: 'dna witness "${1:https://attest.example/v1}";',
+  },
+  {
+    label: "dna scope",
+    kind: KIND_SNIPPET,
+    detail: "DNA bind granularity path|host|method|surface (RFC-0045).",
+    insertText: "dna scope ${1|path,host,method,surface|};",
+  },
+  {
     label: "device host",
     kind: KIND_SNIPPET,
     detail: "Host device classes. Optional below <px> names the cut. <!-- cwl:device --> stays. CWL does not call matchMedia.",

@@ -4,6 +4,35 @@ Pushed asks for siblings. Newest first.
 
 ---
 
+## 2026-10-10 - tip-1.0.88-dna-proof-unit
+
+**To:** convert + secure  
+**Priority:** P0  
+**Status:** **open**  
+**CWL tip:** **1.0.88** · language land *(this candidate)* · ask `dna-proof-unit`  
+**Ask id:** `tip-1.0.88-dna-proof-unit`  
+**Lane rule:** Convert edits only `chrysalis-convert`. Secure edits only `chrysalis-security`. Neither edits CWL.
+
+### Ask
+
+| Who | Action |
+| --- | --- |
+| Convert | Pin to **1.0.88**. Consume gold `97` (`dna proof` / `use dna proof` / quorum / lineage / witness / scope). Document facts only |
+| Secure | Pin to **1.0.88**. Expand bridge consume for `dnaProofs[]`, `dnaQuorum`, `dnaLineage`, `dnaSupersedes`, `dnaWitness`, `dnaScope`. Helix verifies — no CWL crypto invent |
+
+### CWL landed (this tip)
+
+- RFC-0045 DNA proof units · gold `97`
+- Named proof cells beyond flat DNA binds — lineage, quorum, external witness, scope
+
+### Prove
+
+```bash
+npm run test:language
+```
+
+---
+
 ## 2026-10-09 - tip-1.0.87-dna-proof
 
 **To:** convert + secure  

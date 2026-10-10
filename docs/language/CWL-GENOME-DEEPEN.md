@@ -1,7 +1,7 @@
 # CWL genome deepen — Phase 1.x
 
 **Status:** active (reopened 2026-08-11)  
-**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.87**  
+**Tip start:** **1.0.18** (RFC-0025) · **current:** **1.0.88**  
 **Authority:** [`CWL-PILLAR-HOME.md`](./CWL-PILLAR-HOME.md) · [`CWL-LANGUAGE-SCOPE.md`](./CWL-LANGUAGE-SCOPE.md) · [`DNA-BUILD-NEXT.md`](../history/DNA-BUILD-NEXT.md)
 
 ## Thesis
@@ -48,6 +48,7 @@ Convert still **hears** origin stacks; Secure still **checks** live DNA. Neither
 | **DNA fingerprint** | `dna certificate` / `fingerprint` / `bank` / `match live` (RFC-0042) — done (`1.0.85`) |
 | **DNA fingerprint strength** | `sha384` / `sha512` floor; `sha256` → too-weak hole (RFC-0043) — done (`1.0.86`) |
 | **DNA proof** | Multi-fingerprint · `match bank` · `dna expect` (RFC-0044) — done (`1.0.87`) |
+| **DNA proof units** | Named `dna proof` · quorum · lineage · witness · scope (RFC-0045) — done (`1.0.88`) |
 
 ## Explicit non-goals (unchanged)
 

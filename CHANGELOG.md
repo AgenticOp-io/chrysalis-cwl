@@ -1,5 +1,10 @@
 # CWL language changelog
 
+## 1.0.88 - 2026-10-10
+
+- DNA proof units (RFC-0045): named `dna proof` cells with quorum, lineage, supersedes, witness, scope; surfaces `use dna proof`
+- Gold `97-dna-proof-unit`. Traffic-DNA proof as heritable genome object — Helix still verifies; CWL does not invent digests
+
 ## 1.0.87 - 2026-10-09
 
 - DNA proof deepen (RFC-0044): repeatable `dna fingerprint`, `match bank`, `dna expect promote|shadow|enforce`
